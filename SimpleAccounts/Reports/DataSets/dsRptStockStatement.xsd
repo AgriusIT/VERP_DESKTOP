@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsRptStockStatement" targetNamespace="http://tempuri.org/dsRptStockStatement.xsd" xmlns:mstns="http://tempuri.org/dsRptStockStatement.xsd" xmlns="http://tempuri.org/dsRptStockStatement.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsRptStockStatement" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsRptStockStatement" msprop:Generator_DataSetName="dsRptStockStatement">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtRptStockStatement" msprop:Generator_UserTableName="dtRptStockStatement" msprop:Generator_RowDeletedName="dtRptStockStatementRowDeleted" msprop:Generator_TableClassName="dtRptStockStatementDataTable" msprop:Generator_RowChangedName="dtRptStockStatementRowChanged" msprop:Generator_RowClassName="dtRptStockStatementRow" msprop:Generator_RowChangingName="dtRptStockStatementRowChanging" msprop:Generator_RowEvArgName="dtRptStockStatementRowChangeEvent" msprop:Generator_RowEvHandlerName="dtRptStockStatementRowChangeEventHandler" msprop:Generator_TablePropName="dtRptStockStatement" msprop:Generator_TableVarName="tabledtRptStockStatement" msprop:Generator_RowDeletingName="dtRptStockStatementRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ArticleCode" msprop:Generator_UserColumnName="ArticleCode" msprop:Generator_ColumnPropNameInRow="ArticleCode" msprop:Generator_ColumnVarNameInTable="columnArticleCode" msprop:Generator_ColumnPropNameInTable="ArticleCodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ArticleDescription" msprop:Generator_UserColumnName="ArticleDescription" msprop:Generator_ColumnPropNameInRow="ArticleDescription" msprop:Generator_ColumnVarNameInTable="columnArticleDescription" msprop:Generator_ColumnPropNameInTable="ArticleDescriptionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ArticleSizeName" msprop:Generator_UserColumnName="ArticleSizeName" msprop:Generator_ColumnPropNameInRow="ArticleSizeName" msprop:Generator_ColumnVarNameInTable="columnArticleSizeName" msprop:Generator_ColumnPropNameInTable="ArticleSizeNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ArticleColorName" msprop:Generator_UserColumnName="ArticleColorName" msprop:Generator_ColumnPropNameInRow="ArticleColorName" msprop:Generator_ColumnVarNameInTable="columnArticleColorName" msprop:Generator_ColumnPropNameInTable="ArticleColorNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="OpeningQty" msprop:Generator_UserColumnName="OpeningQty" msprop:Generator_ColumnPropNameInRow="OpeningQty" msprop:Generator_ColumnVarNameInTable="columnOpeningQty" msprop:Generator_ColumnPropNameInTable="OpeningQtyColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="OpeningAmount" msprop:Generator_UserColumnName="OpeningAmount" msprop:Generator_ColumnPropNameInRow="OpeningAmount" msprop:Generator_ColumnVarNameInTable="columnOpeningAmount" msprop:Generator_ColumnPropNameInTable="OpeningAmountColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="InQty" msprop:Generator_UserColumnName="InQty" msprop:Generator_ColumnPropNameInRow="InQty" msprop:Generator_ColumnVarNameInTable="columnInQty" msprop:Generator_ColumnPropNameInTable="InQtyColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="InAmount" msprop:Generator_UserColumnName="InAmount" msprop:Generator_ColumnPropNameInRow="InAmount" msprop:Generator_ColumnVarNameInTable="columnInAmount" msprop:Generator_ColumnPropNameInTable="InAmountColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="OutQty" msprop:Generator_UserColumnName="OutQty" msprop:Generator_ColumnPropNameInRow="OutQty" msprop:Generator_ColumnVarNameInTable="columnOutQty" msprop:Generator_ColumnPropNameInTable="OutQtyColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="OutAmount" msprop:Generator_UserColumnName="OutAmount" msprop:Generator_ColumnPropNameInRow="OutAmount" msprop:Generator_ColumnVarNameInTable="columnOutAmount" msprop:Generator_ColumnPropNameInTable="OutAmountColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="ClosingQty" msprop:Generator_UserColumnName="ClosingQty" msprop:Generator_ColumnPropNameInRow="ClosingQty" msprop:Generator_ColumnVarNameInTable="columnClosingQty" msprop:Generator_ColumnPropNameInTable="ClosingQtyColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="ClosingAmount" msprop:Generator_UserColumnName="ClosingAmount" msprop:Generator_ColumnPropNameInRow="ClosingAmount" msprop:Generator_ColumnVarNameInTable="columnClosingAmount" msprop:Generator_ColumnPropNameInTable="ClosingAmountColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

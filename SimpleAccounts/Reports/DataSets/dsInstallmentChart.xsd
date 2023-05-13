@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsInstallmentChart" targetNamespace="http://tempuri.org/dsInstallmentChart.xsd" xmlns:mstns="http://tempuri.org/dsInstallmentChart.xsd" xmlns="http://tempuri.org/dsInstallmentChart.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsInstallmentChart" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsInstallmentChart" msprop:Generator_UserDSName="dsInstallmentChart">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtInstallmentChart" msprop:Generator_TableClassName="dtInstallmentChartDataTable" msprop:Generator_TableVarName="tabledtInstallmentChart" msprop:Generator_TablePropName="dtInstallmentChart" msprop:Generator_RowDeletingName="dtInstallmentChartRowDeleting" msprop:Generator_RowChangingName="dtInstallmentChartRowChanging" msprop:Generator_RowEvHandlerName="dtInstallmentChartRowChangeEventHandler" msprop:Generator_RowDeletedName="dtInstallmentChartRowDeleted" msprop:Generator_UserTableName="dtInstallmentChart" msprop:Generator_RowChangedName="dtInstallmentChartRowChanged" msprop:Generator_RowEvArgName="dtInstallmentChartRowChangeEvent" msprop:Generator_RowClassName="dtInstallmentChartRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CustomerCode" msprop:Generator_ColumnVarNameInTable="columnCustomerCode" msprop:Generator_ColumnPropNameInRow="CustomerCode" msprop:Generator_ColumnPropNameInTable="CustomerCodeColumn" msprop:Generator_UserColumnName="CustomerCode" type="xs:string" minOccurs="0" />
+              <xs:element name="M_Year" msprop:Generator_ColumnVarNameInTable="columnM_Year" msprop:Generator_ColumnPropNameInRow="M_Year" msprop:Generator_ColumnPropNameInTable="M_YearColumn" msprop:Generator_UserColumnName="M_Year" type="xs:int" minOccurs="0" />
+              <xs:element name="Installment" msprop:Generator_ColumnVarNameInTable="columnInstallment" msprop:Generator_ColumnPropNameInRow="Installment" msprop:Generator_ColumnPropNameInTable="InstallmentColumn" msprop:Generator_UserColumnName="Installment" type="xs:double" minOccurs="0" />
+              <xs:element name="Receipt" msprop:Generator_ColumnVarNameInTable="columnReceipt" msprop:Generator_ColumnPropNameInRow="Receipt" msprop:Generator_ColumnPropNameInTable="ReceiptColumn" msprop:Generator_UserColumnName="Receipt" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
