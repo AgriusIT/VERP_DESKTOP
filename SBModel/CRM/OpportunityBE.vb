@@ -49,6 +49,7 @@
     Public Property InvoicePattern As String = ""
     Public Property DurationofMonth As String = ""
     Public Property ArticleId As Integer
+    Public Property PMFrequency As String = ""
 
 
 

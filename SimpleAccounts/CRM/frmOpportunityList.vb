@@ -140,6 +140,7 @@ Public Class frmOpportunityList
                 Obj.DurationofMonth = Me.grdOpportunityList.GetRow.Cells("DurationofMonth").Value.ToString
                 Obj.InvoicePattern = Me.grdOpportunityList.GetRow.Cells("InvoicePattern").Value.ToString
                 Obj.ArticleId = Val(Me.grdOpportunityList.GetRow.Cells("ArticleId").Value.ToString)
+                Obj.PMFrequency = Me.grdOpportunityList.GetRow.Cells("PMFrequency").Value.ToString
                 ''
                 Obj.ChkBoxBatteriesIncluded = Me.grdOpportunityList.GetRow.Cells("ChkBoxBatteriesIncluded").Value.ToString
                 Dim Opportunity As New frmopportunity(Obj, rightsModel)

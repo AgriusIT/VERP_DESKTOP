@@ -33,6 +33,7 @@ Imports Neodynamic.SDK.Barcode ''TFS3764
 Public Class frmDefArticle
     Implements IGeneral
     Dim IsFormOpend As Boolean = False
+    Private ArticleDetailIdforAlternative As Integer = 0I
     Private CurrentId As Integer = 0I
     Private mobjModel As Article
     Private COADetailID As Integer = 0I
@@ -668,8 +669,8 @@ Public Class frmDefArticle
             ElseIf Condition = "RelatedItem" Then
                 Dim strItem As String = "SELECT ArticleId,  ArticleCode as Code, ArticleDescription as Item, ArticleUnitName As Unit, Isnull(PackQty,0) as [Pack Qty], IsNull(PurchasePrice,0) as [Pur Price], IsNull(SalePrice,0) as [Sale Price] FROM ArticleDefView "
 
-                If CurrentId > 0 Then
-                    strItem += " Where ArticleId <> " & CurrentId & ""
+                If ArticleDetailIdforAlternative > 0 Then
+                    strItem += " Where ArticleId <> " & ArticleDetailIdforAlternative & ""
                 End If
                 If getConfigValueByType("ItemSortOrder").ToString = "True" Then
                     If getConfigValueByType("ItemAscending").ToString = "True" Then
@@ -712,6 +713,7 @@ Public Class frmDefArticle
             Me.mobjModel = New Article
             With mobjModel
                 .ArticleID = Me.CurrentId
+                .ArticleDetailIdforAlternative = ArticleDetailIdforAlternative
                 If Condition <> Me.BtnDelete.Text Then
                     .ArticleCode = Me.uitxtItemCode.Text
                     .ArticleDescription = Me.uitxtItemName.Text
@@ -981,7 +983,7 @@ Public Class frmDefArticle
                 .RelatedItemList = New List(Of RelatedItem)
                 For Each grRow As Janus.Windows.GridEX.GridEXRow In Me.grdRelatedItems.GetRows
                     Dim RelatedItem As New RelatedItem()
-                    RelatedItem.ArticleId = Me.CurrentId
+                    RelatedItem.ArticleId = Me.ArticleDetailIdforAlternative
                     RelatedItem.RelationId = grRow.Cells("RelationId").Value
                     RelatedItem.RelatedArticleId = grRow.Cells("RelatedArticleId").Value
                     RelatedItem.RowState = String.Empty
@@ -1257,7 +1259,7 @@ Public Class frmDefArticle
             Me.chkManufacturing.Checked = False
 
             Me.CurrentId = 0I
-
+            Me.ArticleDetailIdforAlternative = 0I
 
             ''TASK TFS1777
             FillCombos("RelatedItem")
@@ -1354,79 +1356,166 @@ Public Class frmDefArticle
             Me.lblProgress.Visible = True
             Application.DoEvents()
             'If Not msg_Confirm(str_ConfirmSave) = True Then Exit Function
-            If New ArticleDAL().Add(Me.mobjModel) Then
-                'Waqar: Start Added these lines to save alternatives using Recursive Loop
-                Me.mobjModel.RelatedItemList = New List(Of RelatedItem)
-                For Each grRow As Janus.Windows.GridEX.GridEXRow In Me.grdRelatedItems.GetRows
-                    Dim RelatedItem As New RelatedItem()
-                    RelatedItem.ArticleId = Me.CurrentId
-                    RelatedItem.RelationId = grRow.Cells("RelationId").Value
-                    RelatedItem.RelatedArticleId = grRow.Cells("RelatedArticleId").Value
-                    RelatedItem.RowState = String.Empty
-                    Me.mobjModel.RelatedItemList.Add(RelatedItem)
-                Next
-                Dim objCon As New OleDb.OleDbConnection(Con.ConnectionString)
-                If objCon.State = ConnectionState.Closed Then objCon.Open()
-                Dim trans As OleDb.OleDbTransaction = objCon.BeginTransaction
-                Dim cmd As New OleDb.OleDbCommand
-                cmd.Connection = objCon
-                cmd.CommandType = CommandType.Text
-                cmd.CommandTimeout = 30
-                cmd.Transaction = trans
-                'Dim SqlCommand1 As OleDbCommand = New OleDbCommand()
-                'SqlCommand1.Connection = Con2
-                For i As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
-                    cmd.CommandText = "Insert Into tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.CurrentId & ")"
-                    cmd.ExecuteNonQuery()
-                    For j As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
-                        If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
-                            If Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
-                                If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString <> Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString Then
-                                    cmd.CommandText = "Insert Into tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString & ")"
-                                    cmd.ExecuteNonQuery()
-                                    ''Return True
-                                End If
-                            End If
-                        End If
+            If Con.Database = "SIRIUS2_DB" Then
+                If New ArticleDAL().Add(Me.mobjModel) Then
+                    'Waqar: Start Added these lines to save alternatives using Recursive Loop
+                    Me.mobjModel.RelatedItemList = New List(Of RelatedItem)
+                    For Each grRow As Janus.Windows.GridEX.GridEXRow In Me.grdRelatedItems.GetRows
+                        Dim RelatedItem As New RelatedItem()
+                        RelatedItem.ArticleId = Me.ArticleDetailIdforAlternative
+                        RelatedItem.RelationId = grRow.Cells("RelationId").Value
+                        RelatedItem.RelatedArticleId = grRow.Cells("RelatedArticleId").Value
+                        RelatedItem.RowState = String.Empty
+                        Me.mobjModel.RelatedItemList.Add(RelatedItem)
                     Next
-                Next
-                trans.Commit()
-                Application.DoEvents()
-                'Waqar: End Added these lines to save alternatives using Recursive Loop
-                If _str_Path <> String.Empty Then
-                    If PictureBox1.Image IsNot Nothing Then
-                        Try
-                            'Dim DirInfo As IO.DirectoryInfo = New IO.DirectoryInfo(_ArticlePicPath)
-                            'Dim FolderSecurity As New Security.AccessControl.DirectorySecurity
-                            'FolderSecurity.AddAccessRule(New Security.AccessControl.FileSystemAccessRule(Environment.UserDomainName & "\\" & Environment.UserName, Security.AccessControl.FileSystemRights.FullControl, Security.AccessControl.AccessControlType.Allow))
-                            'DirInfo.SetAccessControl(FolderSecurity)
-                            If _str_Path.Length > 1 Then
-                                If IO.File.Exists(_str_Path) Then
-                                    File.Delete(_str_Path)
-                                    PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
-                                    'PictureBox1.Image.Dispose()
-                                    Me.PictureBox1.ImageLocation = String.Empty
-                                Else
-                                    'Ahmad Sharif : Check path of saving image, if not exist create directory and save image, MOdification on 04-06-2015
-                                    Dim dirPath As String = _str_Path.Substring(0, _str_Path.LastIndexOf("\")) 'Returns the directory e.g. C:\ARTICLEIMAGES
-
-                                    If Not IO.Directory.Exists(dirPath) Then
-                                        System.IO.Directory.CreateDirectory(dirPath)
+                    Dim objCon As New OleDb.OleDbConnection(Con.ConnectionString)
+                    If objCon.State = ConnectionState.Closed Then objCon.Open()
+                    Dim trans As OleDb.OleDbTransaction = objCon.BeginTransaction
+                    Dim cmd As New OleDb.OleDbCommand
+                    cmd.Connection = objCon
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandTimeout = 30
+                    cmd.Transaction = trans
+                    'Dim SqlCommand1 As OleDbCommand = New OleDbCommand()
+                    'SqlCommand1.Connection = Con2
+                    For i As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
+                        cmd.CommandText = "Insert Into tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.ArticleDetailIdforAlternative & ")"
+                        cmd.ExecuteNonQuery()
+                        For j As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
+                            If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
+                                If Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
+                                    If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString <> Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString Then
+                                        cmd.CommandText = "Insert Into tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString & ")"
+                                        cmd.ExecuteNonQuery()
+                                        ''Return True
                                     End If
-                                    PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
-                                    'PictureBox1.Image.Dispose()
-                                    Me.PictureBox1.ImageLocation = String.Empty
                                 End If
                             End If
-                        Catch ex As Exception
+                        Next
+                    Next
+                    trans.Commit()
+                    Application.DoEvents()
+                    'Waqar: End Added these lines to save alternatives using Recursive Loop
+                    If _str_Path <> String.Empty Then
+                        If PictureBox1.Image IsNot Nothing Then
+                            Try
+                                'Dim DirInfo As IO.DirectoryInfo = New IO.DirectoryInfo(_ArticlePicPath)
+                                'Dim FolderSecurity As New Security.AccessControl.DirectorySecurity
+                                'FolderSecurity.AddAccessRule(New Security.AccessControl.FileSystemAccessRule(Environment.UserDomainName & "\\" & Environment.UserName, Security.AccessControl.FileSystemRights.FullControl, Security.AccessControl.AccessControlType.Allow))
+                                'DirInfo.SetAccessControl(FolderSecurity)
+                                If _str_Path.Length > 1 Then
+                                    If IO.File.Exists(_str_Path) Then
+                                        File.Delete(_str_Path)
+                                        PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
+                                        'PictureBox1.Image.Dispose()
+                                        Me.PictureBox1.ImageLocation = String.Empty
+                                    Else
+                                        'Ahmad Sharif : Check path of saving image, if not exist create directory and save image, MOdification on 04-06-2015
+                                        Dim dirPath As String = _str_Path.Substring(0, _str_Path.LastIndexOf("\")) 'Returns the directory e.g. C:\ARTICLEIMAGES
 
-                        End Try
+                                        If Not IO.Directory.Exists(dirPath) Then
+                                            System.IO.Directory.CreateDirectory(dirPath)
+                                        End If
+                                        PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
+                                        'PictureBox1.Image.Dispose()
+                                        Me.PictureBox1.ImageLocation = String.Empty
+                                    End If
+                                End If
+                            Catch ex As Exception
+
+                            End Try
+                        End If
                     End If
+                    PrintBarCode()
+                    ' msg_Information(str_informSave)
+                    Me.GetAllRecords()
+                    Me.ReSetControls()
                 End If
-                PrintBarCode()
-                ' msg_Information(str_informSave)
-                Me.GetAllRecords()
-                Me.ReSetControls()
+            Else
+                If New ArticleDAL().AddInMultipleDB(Me.mobjModel) Then
+                    'Waqar: Start Added these lines to save alternatives using Recursive Loop
+                    Me.mobjModel.RelatedItemList = New List(Of RelatedItem)
+                    For Each grRow As Janus.Windows.GridEX.GridEXRow In Me.grdRelatedItems.GetRows
+                        Dim RelatedItem As New RelatedItem()
+                        RelatedItem.ArticleId = Me.ArticleDetailIdforAlternative
+                        RelatedItem.RelationId = grRow.Cells("RelationId").Value
+                        RelatedItem.RelatedArticleId = grRow.Cells("RelatedArticleId").Value
+                        RelatedItem.RowState = String.Empty
+                        Me.mobjModel.RelatedItemList.Add(RelatedItem)
+                    Next
+                    Dim objCon As New OleDb.OleDbConnection(Con.ConnectionString)
+                    If objCon.State = ConnectionState.Closed Then objCon.Open()
+                    Dim trans As OleDb.OleDbTransaction = objCon.BeginTransaction
+                    Dim cmd As New OleDb.OleDbCommand
+                    cmd.Connection = objCon
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandTimeout = 30
+                    cmd.Transaction = trans
+                    'Dim SqlCommand1 As OleDbCommand = New OleDbCommand()
+                    'SqlCommand1.Connection = Con2
+                    Dim OtherDB As String
+                    For d As Double = 1 To 3
+                        If d = 1 Then
+                            OtherDB = "UAE_Demo.dbo."
+                        ElseIf d = 2 Then
+                            OtherDB = "SIRIUS1_DB.dbo."
+                        ElseIf d = 3 Then
+                            OtherDB = "SIRIUS1_DB_Avg.dbo."
+                        End If
+                        For i As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
+                            cmd.CommandText = "Insert Into " & OtherDB & "tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.ArticleDetailIdforAlternative & ")"
+                            cmd.ExecuteNonQuery()
+                            For j As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
+                                If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
+                                    If Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
+                                        If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString <> Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString Then
+                                            cmd.CommandText = "Insert Into " & OtherDB & "tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString & ")"
+                                            cmd.ExecuteNonQuery()
+                                            ''Return True
+                                        End If
+                                    End If
+                                End If
+                            Next
+                        Next
+                    Next
+                    trans.Commit()
+                    Application.DoEvents()
+                    'Waqar: End Added these lines to save alternatives using Recursive Loop
+                    If _str_Path <> String.Empty Then
+                        If PictureBox1.Image IsNot Nothing Then
+                            Try
+                                'Dim DirInfo As IO.DirectoryInfo = New IO.DirectoryInfo(_ArticlePicPath)
+                                'Dim FolderSecurity As New Security.AccessControl.DirectorySecurity
+                                'FolderSecurity.AddAccessRule(New Security.AccessControl.FileSystemAccessRule(Environment.UserDomainName & "\\" & Environment.UserName, Security.AccessControl.FileSystemRights.FullControl, Security.AccessControl.AccessControlType.Allow))
+                                'DirInfo.SetAccessControl(FolderSecurity)
+                                If _str_Path.Length > 1 Then
+                                    If IO.File.Exists(_str_Path) Then
+                                        File.Delete(_str_Path)
+                                        PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
+                                        'PictureBox1.Image.Dispose()
+                                        Me.PictureBox1.ImageLocation = String.Empty
+                                    Else
+                                        'Ahmad Sharif : Check path of saving image, if not exist create directory and save image, MOdification on 04-06-2015
+                                        Dim dirPath As String = _str_Path.Substring(0, _str_Path.LastIndexOf("\")) 'Returns the directory e.g. C:\ARTICLEIMAGES
+
+                                        If Not IO.Directory.Exists(dirPath) Then
+                                            System.IO.Directory.CreateDirectory(dirPath)
+                                        End If
+                                        PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
+                                        'PictureBox1.Image.Dispose()
+                                        Me.PictureBox1.ImageLocation = String.Empty
+                                    End If
+                                End If
+                            Catch ex As Exception
+
+                            End Try
+                        End If
+                    End If
+                    PrintBarCode()
+                    ' msg_Information(str_informSave)
+                    Me.GetAllRecords()
+                    Me.ReSetControls()
+                End If
             End If
             _str_Path = String.Empty  'Task#05082015
         Catch ex As Exception
@@ -1475,79 +1564,178 @@ Public Class frmDefArticle
             Else
                 If Not Me.IsValidate Then Exit Function
                 If Not msg_Confirm(str_ConfirmUpdate) = True Then Exit Function
-                If New ArticleDAL().Update(Me.mobjModel) Then
-                    'Waqar: Start Added these lines to save alternatives using Recursive Loop
-                    Me.mobjModel.RelatedItemList = New List(Of RelatedItem)
-                    For Each grRow As Janus.Windows.GridEX.GridEXRow In Me.grdRelatedItems.GetRows
-                        Dim RelatedItem As New RelatedItem()
-                        RelatedItem.ArticleId = Me.CurrentId
-                        RelatedItem.RelationId = grRow.Cells("RelationId").Value
-                        RelatedItem.RelatedArticleId = grRow.Cells("RelatedArticleId").Value
-                        RelatedItem.RowState = String.Empty
-                        Me.mobjModel.RelatedItemList.Add(RelatedItem)
-                    Next
-                    Dim objCon As New OleDb.OleDbConnection(Con.ConnectionString)
-                    If objCon.State = ConnectionState.Closed Then objCon.Open()
-                    Dim trans As OleDb.OleDbTransaction = objCon.BeginTransaction
-                    Dim cmd As New OleDb.OleDbCommand
-                    cmd.Connection = objCon
-                    cmd.CommandType = CommandType.Text
-                    cmd.CommandTimeout = 30
-                    cmd.Transaction = trans
-                    'Dim SqlCommand1 As OleDbCommand = New OleDbCommand()
-                    'SqlCommand1.Connection = Con2
-                    For i As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
-                        cmd.CommandText = "Insert Into tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.CurrentId & ")"
-                        cmd.ExecuteNonQuery()
-                        For j As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
-                            If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
-                                If Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
-                                    If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString <> Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString Then
-                                        cmd.CommandText = "Insert Into tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString & ")"
-                                        cmd.ExecuteNonQuery()
-                                        ''Return True
-                                    End If
-                                End If
-                            End If
+                If Con.Database = "SIRIUS1_DB" Then
+                    If New ArticleDAL().Update(Me.mobjModel) Then
+                        'Waqar: Start Added these lines to save alternatives using Recursive Loop
+                        Me.mobjModel.RelatedItemList = New List(Of RelatedItem)
+                        For Each grRow As Janus.Windows.GridEX.GridEXRow In Me.grdRelatedItems.GetRows
+                            Dim RelatedItem As New RelatedItem()
+                            RelatedItem.ArticleId = Me.ArticleDetailIdforAlternative
+                            RelatedItem.RelationId = grRow.Cells("RelationId").Value
+                            RelatedItem.RelatedArticleId = grRow.Cells("RelatedArticleId").Value
+                            RelatedItem.RowState = String.Empty
+                            Me.mobjModel.RelatedItemList.Add(RelatedItem)
                         Next
-                    Next
-                    trans.Commit()
-                    Application.DoEvents()
-                    'Waqar: End Added these lines to save alternatives using Recursive Loop
-                    If PictureBox1.Image IsNot Nothing Then
-                        Try
-                            If IO.Directory.Exists(_ArticlePicPath) Then
-                                'Dim DirInfo As IO.DirectoryInfo = New IO.DirectoryInfo(_ArticlePicPath)
-                                'Dim FolderSecurity As New Security.AccessControl.DirectorySecurity
-                                'FolderSecurity.AddAccessRule(New Security.AccessControl.FileSystemAccessRule(Environment.UserDomainName & "\\" & Environment.UserName, Security.AccessControl.FileSystemRights.FullControl, Security.AccessControl.AccessControlType.Allow))
-                                'DirInfo.SetAccessControl(FolderSecurity)
-                                If _str_Path.Length > 1 Then
-                                    If IO.File.Exists(_str_Path) Then
-                                        File.Delete(_str_Path)
-                                        PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
-                                        'PictureBox1.Image.Dispose()
-                                        Me.PictureBox1.ImageLocation = String.Empty
-                                    Else
-                                        PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
-                                        'PictureBox1.Image.Dispose()
-                                        Me.PictureBox1.ImageLocation = String.Empty
+                        Dim objCon As New OleDb.OleDbConnection(Con.ConnectionString)
+                        If objCon.State = ConnectionState.Closed Then objCon.Open()
+                        Dim trans As OleDb.OleDbTransaction = objCon.BeginTransaction
+                        Dim cmd As New OleDb.OleDbCommand
+                        cmd.Connection = objCon
+                        cmd.CommandType = CommandType.Text
+                        cmd.CommandTimeout = 30
+                        cmd.Transaction = trans
+                        'Dim SqlCommand1 As OleDbCommand = New OleDbCommand()
+                        'SqlCommand1.Connection = Con2
+                        For i As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
+                            'Commented this query to check this line is making issue.
+                            cmd.CommandText = "Insert Into tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.ArticleDetailIdforAlternative & ")"
+                            cmd.ExecuteNonQuery()
+                            For j As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
+                                If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
+                                    If Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
+                                        If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString <> Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString Then
+                                            cmd.CommandText = "Insert Into tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString & ")"
+                                            cmd.ExecuteNonQuery()
+                                            ''Return True
+                                        End If
                                     End If
                                 End If
+                            Next
+                        Next
+                        trans.Commit()
+                        Application.DoEvents()
+                        'Waqar: End Added these lines to save alternatives using Recursive Loop
+                        If PictureBox1.Image IsNot Nothing Then
+                            Try
+                                If IO.Directory.Exists(_ArticlePicPath) Then
+                                    'Dim DirInfo As IO.DirectoryInfo = New IO.DirectoryInfo(_ArticlePicPath)
+                                    'Dim FolderSecurity As New Security.AccessControl.DirectorySecurity
+                                    'FolderSecurity.AddAccessRule(New Security.AccessControl.FileSystemAccessRule(Environment.UserDomainName & "\\" & Environment.UserName, Security.AccessControl.FileSystemRights.FullControl, Security.AccessControl.AccessControlType.Allow))
+                                    'DirInfo.SetAccessControl(FolderSecurity)
+                                    If _str_Path.Length > 1 Then
+                                        If IO.File.Exists(_str_Path) Then
+                                            File.Delete(_str_Path)
+                                            PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
+                                            'PictureBox1.Image.Dispose()
+                                            Me.PictureBox1.ImageLocation = String.Empty
+                                        Else
+                                            PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
+                                            'PictureBox1.Image.Dispose()
+                                            Me.PictureBox1.ImageLocation = String.Empty
+                                        End If
+                                    End If
+                                End If
+                            Catch ex As Exception
+
+                            End Try
+                        End If
+                        'msg_Information(str_informUpdate)
+                        Me.GetAllRecords()
+                        Me.ReSetControls() '' 18-Mar-2014 TASK:2503 Imran Ali ResetControl After Update On Inventory Item 
+
+                        Dim dt As DataTable = CType(CType(Me.grdAllRecords.DataSource, BindingSource).DataSource, DataTable)
+                        Dim drFind As DataRow = dt.Rows.Find(Me.CurrentId)
+                        If Not drFind Is Nothing Then
+                            Me.grdAllRecords.Row = dt.Rows.IndexOf(drFind)
+                        End If
+
+                    End If
+                Else
+                    If New ArticleDAL().UpdateInMultipleDB(Me.mobjModel) Then
+                        'Waqar: Start Added these lines to save alternatives using Recursive Loop
+                        Me.mobjModel.RelatedItemList = New List(Of RelatedItem)
+                        For Each grRow As Janus.Windows.GridEX.GridEXRow In Me.grdRelatedItems.GetRows
+                            Dim RelatedItem As New RelatedItem()
+                            RelatedItem.ArticleId = Me.ArticleDetailIdforAlternative
+                            RelatedItem.RelationId = grRow.Cells("RelationId").Value
+                            RelatedItem.RelatedArticleId = grRow.Cells("RelatedArticleId").Value
+                            RelatedItem.RowState = String.Empty
+                            Me.mobjModel.RelatedItemList.Add(RelatedItem)
+                        Next
+                        Dim objCon As New OleDb.OleDbConnection(Con.ConnectionString)
+                        If objCon.State = ConnectionState.Closed Then objCon.Open()
+                        Dim trans As OleDb.OleDbTransaction = objCon.BeginTransaction
+                        Dim cmd As New OleDb.OleDbCommand
+                        cmd.Connection = objCon
+                        cmd.CommandType = CommandType.Text
+                        cmd.CommandTimeout = 30
+                        cmd.Transaction = trans
+                        'Dim SqlCommand1 As OleDbCommand = New OleDbCommand()
+                        'SqlCommand1.Connection = Con2
+                        Dim OtherDB As String
+                        For d As Double = 1 To 5
+                            If d = 1 Then
+                                OtherDB = "SIRIUS_UAE_DB.dbo."
+                            ElseIf d = 2 Then
+                                OtherDB = "SIRIUS_MY_DB.dbo."
+                            ElseIf d = 3 Then
+                                OtherDB = "SIRIUS_KSA_DB.dbo."
+                            ElseIf d = 3 Then
+                                OtherDB = "RemmsTech_UAE_DB.dbo."
+                            ElseIf d = 3 Then
+                                OtherDB = "RemmsPAK_DB.dbo."
                             End If
-                        Catch ex As Exception
+                            For i As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
+                                'Commented this query to check this line is making issue.
+                                ''If Me.grdRelatedItems.GetRows(i).Cells("RelationId").Value < 1 Then
+                                cmd.CommandText = "Delete " & OtherDB & "tblRelatedItem Where ArticleId = " & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ""
+                                cmd.ExecuteNonQuery()
+                                cmd.CommandText = "Insert Into " & OtherDB & "tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.ArticleDetailIdforAlternative & ")"
+                                cmd.ExecuteNonQuery()
+                                ''End If
+                                For j As Int32 = 0 To Me.grdRelatedItems.RowCount - 1
+                                    If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
+                                        If Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString.Length > 0 Then
+                                            If Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString <> Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString Then
+                                                ''If Me.grdRelatedItems.GetRows(i).Cells("RelationId").Value < 1 Then
+                                                cmd.CommandText = "Insert Into " & OtherDB & "tblRelatedItem(ArticleId, RelatedArticleId) Values (" & Me.grdRelatedItems.GetRows(i).Cells("RelatedArticleId").Value.ToString & ", " & Me.grdRelatedItems.GetRows(j).Cells("RelatedArticleId").Value.ToString & ")"
+                                                cmd.ExecuteNonQuery()
+                                                ''End If
+                                                ''Return True
+                                            End If
+                                        End If
+                                    End If
+                                Next
+                            Next
+                        Next
+                        trans.Commit()
+                        Application.DoEvents()
+                        'Waqar: End Added these lines to save alternatives using Recursive Loop
+                        If PictureBox1.Image IsNot Nothing Then
+                            Try
+                                If IO.Directory.Exists(_ArticlePicPath) Then
+                                    'Dim DirInfo As IO.DirectoryInfo = New IO.DirectoryInfo(_ArticlePicPath)
+                                    'Dim FolderSecurity As New Security.AccessControl.DirectorySecurity
+                                    'FolderSecurity.AddAccessRule(New Security.AccessControl.FileSystemAccessRule(Environment.UserDomainName & "\\" & Environment.UserName, Security.AccessControl.FileSystemRights.FullControl, Security.AccessControl.AccessControlType.Allow))
+                                    'DirInfo.SetAccessControl(FolderSecurity)
+                                    If _str_Path.Length > 1 Then
+                                        If IO.File.Exists(_str_Path) Then
+                                            File.Delete(_str_Path)
+                                            PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
+                                            'PictureBox1.Image.Dispose()
+                                            Me.PictureBox1.ImageLocation = String.Empty
+                                        Else
+                                            PictureBox1.Image.Save(_str_Path, System.Drawing.Imaging.ImageFormat.Jpeg)
+                                            'PictureBox1.Image.Dispose()
+                                            Me.PictureBox1.ImageLocation = String.Empty
+                                        End If
+                                    End If
+                                End If
+                            Catch ex As Exception
 
-                        End Try
+                            End Try
+                        End If
+                        'msg_Information(str_informUpdate)
+                        Me.GetAllRecords()
+                        Me.ReSetControls() '' 18-Mar-2014 TASK:2503 Imran Ali ResetControl After Update On Inventory Item 
+
+                        Dim dt As DataTable = CType(CType(Me.grdAllRecords.DataSource, BindingSource).DataSource, DataTable)
+                        Dim drFind As DataRow = dt.Rows.Find(Me.CurrentId)
+                        If Not drFind Is Nothing Then
+                            Me.grdAllRecords.Row = dt.Rows.IndexOf(drFind)
+                        End If
+
                     End If
-                    'msg_Information(str_informUpdate)
-                    Me.GetAllRecords()
-                    Me.ReSetControls() '' 18-Mar-2014 TASK:2503 Imran Ali ResetControl After Update On Inventory Item 
-
-                    Dim dt As DataTable = CType(CType(Me.grdAllRecords.DataSource, BindingSource).DataSource, DataTable)
-                    Dim drFind As DataRow = dt.Rows.Find(Me.CurrentId)
-                    If Not drFind Is Nothing Then
-                        Me.grdAllRecords.Row = dt.Rows.IndexOf(drFind)
-                    End If
-
                 End If
             End If
 
@@ -1830,7 +2018,7 @@ Public Class frmDefArticle
 
             ' Me.txtAccountID.Text = Me.grdAllRecords.GetRow().Cells(EnumGrid.AccountID).Value.ToString
             Me.CurrentId = Me.grdAllRecords.GetRow().Cells(EnumGrid.ArticleId).Value.ToString
-
+            Me.ArticleDetailIdforAlternative = Me.grdAllRecords.GetRow().Cells("ArticleDetailId").Value.ToString
             FillCombos("RelatedItem")
             Me.COADetailID = Val(Me.grdAllRecords.GetRow().Cells(EnumGrid.AccountID).Value.ToString) ''Exception occuring : Now convert to val : Ayesha Rehman
             ''get sizes\
@@ -1956,7 +2144,7 @@ Public Class frmDefArticle
             Me.MakeCustomersItem(Me.CurrentId)
 
             ''TASK TFS1777
-            Me.GetRelatedItems(Me.CurrentId)
+            Me.GetRelatedItems(Me.ArticleDetailIdforAlternative)
             ''END TASK TFS1777
             'Me.GetItemDetailByMasterId(Me.CurrentId)
             Me.GetArticleAliasTable(Me.CurrentId) ''TFS1805
@@ -3803,7 +3991,7 @@ Public Class frmDefArticle
     Private Sub GetRelatedItems(ByVal MasterItemId As Integer)
         Try
             Dim str As String = String.Empty
-            str = "Select tblRelatedItem.RelationId AS RelationId, ArticleDescription as Item, ArticleCode as Code, ArticleUnitDefTable.ArticleUnitName As Unit, Isnull(PackQty,0) as [Pack Qty], IsNull(PurchasePrice,0) as [Pur Price], IsNull(SalePrice,0) as [Sale Price], tblRelatedItem.ArticleId, tblRelatedItem.RelatedArticleId From ArticleDefTableMaster INNER JOIN tblRelatedItem ON  ArticleDefTableMaster.ArticleId = tblRelatedItem.RelatedArticleId LEFT JOIN ArticleUnitDefTable ON ArticleDefTableMaster.ArticleUnitId = ArticleUnitDefTable.ArticleUnitId WHERE tblRelatedItem.ArticleId = " & MasterItemId & ""
+            str = "Select tblRelatedItem.RelationId AS RelationId, ArticleDescription as Item, ArticleCode as Code, ArticleUnitDefTable.ArticleUnitName As Unit, Isnull(PackQty,0) as [Pack Qty], IsNull(PurchasePrice,0) as [Pur Price], IsNull(SalePrice,0) as [Sale Price], tblRelatedItem.ArticleId, tblRelatedItem.RelatedArticleId From ArticleDefTable INNER JOIN tblRelatedItem ON  ArticleDefTable.ArticleId = tblRelatedItem.RelatedArticleId LEFT JOIN ArticleUnitDefTable ON ArticleDefTable.ArticleUnitId = ArticleUnitDefTable.ArticleUnitId WHERE tblRelatedItem.ArticleId = " & MasterItemId & ""
             Dim dtRelatedItems As DataTable = GetDataTable(str)
             Me.grdRelatedItems.DataSource = dtRelatedItems
             'Me.grdRelatedItems.RootTable.Columns("RelationId").Visible = False

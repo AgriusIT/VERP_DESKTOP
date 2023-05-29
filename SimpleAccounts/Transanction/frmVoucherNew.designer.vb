@@ -26,14 +26,14 @@ Partial Class frmVoucherNew
         Dim Appearance13 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance14 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim UltraGridBand1 As Infragistics.Win.UltraWinGrid.UltraGridBand = New Infragistics.Win.UltraWinGrid.UltraGridBand("Band 0", -1)
-        Dim UltraGridColumn9 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("coa_detail_id")
-        Dim UltraGridColumn10 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("detail_title")
-        Dim UltraGridColumn11 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("detail_code")
-        Dim UltraGridColumn12 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("account_type")
-        Dim UltraGridColumn13 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("sub_sub_title")
-        Dim UltraGridColumn14 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("sub_title")
-        Dim UltraGridColumn15 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("main_title")
-        Dim UltraGridColumn16 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("main_type")
+        Dim UltraGridColumn1 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("coa_detail_id")
+        Dim UltraGridColumn2 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("detail_title")
+        Dim UltraGridColumn3 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("detail_code")
+        Dim UltraGridColumn4 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("account_type")
+        Dim UltraGridColumn5 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("sub_sub_title")
+        Dim UltraGridColumn6 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("sub_title")
+        Dim UltraGridColumn7 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("main_title")
+        Dim UltraGridColumn8 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("main_type")
         Dim Appearance15 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance16 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance17 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
@@ -72,7 +72,6 @@ Partial Class frmVoucherNew
         Me.txtCurrencyRate = New System.Windows.Forms.TextBox()
         Me.pnlHeader = New System.Windows.Forms.Panel()
         Me.Button13 = New System.Windows.Forms.Button()
-        Me.CtrlGrdBar1 = New SimpleAccounts.CtrlGrdBar()
         Me.grd = New Janus.Windows.GridEX.GridEX()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -88,6 +87,8 @@ Partial Class frmVoucherNew
         Me.Button2 = New System.Windows.Forms.Button()
         Me.lblPrintStatus = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.cmbsalesorderId = New System.Windows.Forms.ComboBox()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.lblAdvanceRequest = New System.Windows.Forms.Label()
         Me.cmbAdvanceRequest = New System.Windows.Forms.ComboBox()
         Me.lblCurrentBalance = New System.Windows.Forms.Label()
@@ -180,7 +181,6 @@ Partial Class frmVoucherNew
         Me.HelpToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.btnReversalVoucher = New System.Windows.Forms.ToolStripButton()
         Me.UltraTabPageControl2 = New Infragistics.Win.UltraWinTabControl.UltraTabPageControl()
-        Me.CtrlGrdBar2 = New SimpleAccounts.CtrlGrdBar()
         Me.grdSaved = New Janus.Windows.GridEX.GridEX()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.pnlHeader1 = New System.Windows.Forms.Panel()
@@ -253,7 +253,6 @@ Partial Class frmVoucherNew
         Me.HelpToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.UltraTabPageControl3 = New Infragistics.Win.UltraWinTabControl.UltraTabPageControl()
-        Me.CtrlGrdBar3 = New SimpleAccounts.CtrlGrdBar()
         Me.grdTemplates = New Janus.Windows.GridEX.GridEX()
         Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.btnLoadTemplate = New System.Windows.Forms.ToolStripButton()
@@ -292,6 +291,9 @@ Partial Class frmVoucherNew
         Me.PayablesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReceiveablesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BalanceSheetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CtrlGrdBar1 = New SimpleAccounts.CtrlGrdBar()
+        Me.CtrlGrdBar2 = New SimpleAccounts.CtrlGrdBar()
+        Me.CtrlGrdBar3 = New SimpleAccounts.CtrlGrdBar()
         Me.UltraTabPageControl1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.pnlHeader.SuspendLayout()
@@ -343,7 +345,7 @@ Partial Class frmVoucherNew
         Me.UltraTabPageControl1.Controls.Add(Me.ToolStrip1)
         Me.UltraTabPageControl1.Location = New System.Drawing.Point(1, 1)
         Me.UltraTabPageControl1.Name = "UltraTabPageControl1"
-        Me.UltraTabPageControl1.Size = New System.Drawing.Size(891, 613)
+        Me.UltraTabPageControl1.Size = New System.Drawing.Size(831, 610)
         '
         'lblVTypeHeading
         '
@@ -352,7 +354,7 @@ Partial Class frmVoucherNew
         Me.lblVTypeHeading.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lblVTypeHeading.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblVTypeHeading.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.lblVTypeHeading.Location = New System.Drawing.Point(782, 73)
+        Me.lblVTypeHeading.Location = New System.Drawing.Point(722, 73)
         Me.lblVTypeHeading.Name = "lblVTypeHeading"
         Me.lblVTypeHeading.Size = New System.Drawing.Size(111, 68)
         Me.lblVTypeHeading.TabIndex = 64
@@ -366,7 +368,7 @@ Partial Class frmVoucherNew
         Me.Panel1.Controls.Add(Me.cmbCurrency)
         Me.Panel1.Controls.Add(Me.lblCurrencyRate)
         Me.Panel1.Controls.Add(Me.txtCurrencyRate)
-        Me.Panel1.Location = New System.Drawing.Point(598, 73)
+        Me.Panel1.Location = New System.Drawing.Point(538, 73)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(182, 68)
         Me.Panel1.TabIndex = 7
@@ -379,7 +381,7 @@ Partial Class frmVoucherNew
         Me.Label30.Location = New System.Drawing.Point(4, 11)
         Me.Label30.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(70, 13)
+        Me.Label30.Size = New System.Drawing.Size(85, 17)
         Me.Label30.TabIndex = 0
         Me.Label30.Text = "Currency:"
         '
@@ -391,7 +393,7 @@ Partial Class frmVoucherNew
         Me.cmbCurrency.FormattingEnabled = True
         Me.cmbCurrency.Location = New System.Drawing.Point(80, 9)
         Me.cmbCurrency.Name = "cmbCurrency"
-        Me.cmbCurrency.Size = New System.Drawing.Size(95, 21)
+        Me.cmbCurrency.Size = New System.Drawing.Size(95, 25)
         Me.cmbCurrency.TabIndex = 1
         '
         'lblCurrencyRate
@@ -402,7 +404,7 @@ Partial Class frmVoucherNew
         Me.lblCurrencyRate.Location = New System.Drawing.Point(4, 40)
         Me.lblCurrencyRate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCurrencyRate.Name = "lblCurrencyRate"
-        Me.lblCurrencyRate.Size = New System.Drawing.Size(40, 13)
+        Me.lblCurrencyRate.Size = New System.Drawing.Size(49, 17)
         Me.lblCurrencyRate.TabIndex = 2
         Me.lblCurrencyRate.Text = "Rate:"
         '
@@ -412,7 +414,7 @@ Partial Class frmVoucherNew
         Me.txtCurrencyRate.Location = New System.Drawing.Point(80, 38)
         Me.txtCurrencyRate.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtCurrencyRate.Name = "txtCurrencyRate"
-        Me.txtCurrencyRate.Size = New System.Drawing.Size(95, 21)
+        Me.txtCurrencyRate.Size = New System.Drawing.Size(95, 24)
         Me.txtCurrencyRate.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.txtCurrencyRate, "Receipt Amount")
         '
@@ -436,7 +438,7 @@ Partial Class frmVoucherNew
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 25)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(887, 44)
+        Me.pnlHeader.Size = New System.Drawing.Size(827, 44)
         Me.pnlHeader.TabIndex = 1
         '
         'Button13
@@ -448,7 +450,7 @@ Partial Class frmVoucherNew
         Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button13.Location = New System.Drawing.Point(637, 11)
+        Me.Button13.Location = New System.Drawing.Point(577, 11)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(23, 26)
         Me.Button13.TabIndex = 4
@@ -456,19 +458,6 @@ Partial Class frmVoucherNew
         Me.ToolTip1.SetToolTip(Me.Button13, "Save")
         Me.Button13.UseVisualStyleBackColor = True
         Me.Button13.Visible = False
-        '
-        'CtrlGrdBar1
-        '
-        Me.CtrlGrdBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CtrlGrdBar1.BackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.CtrlGrdBar1.Email = Nothing
-        Me.CtrlGrdBar1.FormName = Me
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(857, 0)
-        Me.CtrlGrdBar1.MyGrid = Me.grd
-        Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
-        Me.CtrlGrdBar1.Size = New System.Drawing.Size(33, 25)
-        Me.CtrlGrdBar1.TabIndex = 46
-        Me.CtrlGrdBar1.TabStop = False
         '
         'grd
         '
@@ -482,7 +471,7 @@ Partial Class frmVoucherNew
         Me.grd.GroupByBoxVisible = False
         Me.grd.Location = New System.Drawing.Point(0, 432)
         Me.grd.Name = "grd"
-        Me.grd.Size = New System.Drawing.Size(887, 179)
+        Me.grd.Size = New System.Drawing.Size(827, 179)
         Me.grd.TabIndex = 39
         Me.grd.TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ControlNavigation
         Me.grd.TabStop = False
@@ -499,7 +488,7 @@ Partial Class frmVoucherNew
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button3.Location = New System.Drawing.Point(844, 7)
+        Me.Button3.Location = New System.Drawing.Point(784, 7)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(24, 28)
         Me.Button3.TabIndex = 1
@@ -516,7 +505,7 @@ Partial Class frmVoucherNew
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button4.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button4.Location = New System.Drawing.Point(613, 7)
+        Me.Button4.Location = New System.Drawing.Point(553, 7)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(24, 33)
         Me.Button4.TabIndex = 3
@@ -533,7 +522,7 @@ Partial Class frmVoucherNew
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button5.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button5.Location = New System.Drawing.Point(684, 10)
+        Me.Button5.Location = New System.Drawing.Point(624, 10)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(24, 28)
         Me.Button5.TabIndex = 6
@@ -550,7 +539,7 @@ Partial Class frmVoucherNew
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button6.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button6.Location = New System.Drawing.Point(592, 8)
+        Me.Button6.Location = New System.Drawing.Point(532, 8)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(24, 28)
         Me.Button6.TabIndex = 2
@@ -577,7 +566,7 @@ Partial Class frmVoucherNew
         Me.lblHeader.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.lblHeader.Location = New System.Drawing.Point(42, 9)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(108, 25)
+        Me.lblHeader.Size = New System.Drawing.Size(140, 32)
         Me.lblHeader.TabIndex = 1
         Me.lblHeader.Text = "Voucher"
         '
@@ -590,7 +579,7 @@ Partial Class frmVoucherNew
         Me.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnReport.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.btnReport.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnReport.Location = New System.Drawing.Point(820, 7)
+        Me.btnReport.Location = New System.Drawing.Point(760, 7)
         Me.btnReport.Name = "btnReport"
         Me.btnReport.Size = New System.Drawing.Size(24, 28)
         Me.btnReport.TabIndex = 71
@@ -607,7 +596,7 @@ Partial Class frmVoucherNew
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button9.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button9.Location = New System.Drawing.Point(660, 7)
+        Me.Button9.Location = New System.Drawing.Point(600, 7)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(27, 35)
         Me.Button9.TabIndex = 5
@@ -624,7 +613,7 @@ Partial Class frmVoucherNew
         Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button10.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button10.Location = New System.Drawing.Point(709, 13)
+        Me.Button10.Location = New System.Drawing.Point(649, 13)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(24, 28)
         Me.Button10.TabIndex = 7
@@ -641,7 +630,7 @@ Partial Class frmVoucherNew
         Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button11.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button11.Location = New System.Drawing.Point(732, 10)
+        Me.Button11.Location = New System.Drawing.Point(672, 10)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(24, 28)
         Me.Button11.TabIndex = 8
@@ -658,7 +647,7 @@ Partial Class frmVoucherNew
         Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button12.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button12.Location = New System.Drawing.Point(754, 10)
+        Me.Button12.Location = New System.Drawing.Point(694, 10)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(24, 28)
         Me.Button12.TabIndex = 9
@@ -675,7 +664,7 @@ Partial Class frmVoucherNew
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button2.Location = New System.Drawing.Point(778, 10)
+        Me.Button2.Location = New System.Drawing.Point(718, 10)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(24, 28)
         Me.Button2.TabIndex = 10
@@ -691,7 +680,7 @@ Partial Class frmVoucherNew
         Me.lblPrintStatus.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.lblPrintStatus.Location = New System.Drawing.Point(322, 130)
         Me.lblPrintStatus.Name = "lblPrintStatus"
-        Me.lblPrintStatus.Size = New System.Drawing.Size(161, 13)
+        Me.lblPrintStatus.Size = New System.Drawing.Size(200, 17)
         Me.lblPrintStatus.TabIndex = 5
         Me.lblPrintStatus.Text = "Print Status : Print Pending"
         '
@@ -700,6 +689,8 @@ Partial Class frmVoucherNew
         Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.cmbsalesorderId)
+        Me.Panel3.Controls.Add(Me.Label12)
         Me.Panel3.Controls.Add(Me.lblAdvanceRequest)
         Me.Panel3.Controls.Add(Me.cmbAdvanceRequest)
         Me.Panel3.Controls.Add(Me.lblCurrentBalance)
@@ -728,8 +719,31 @@ Partial Class frmVoucherNew
         Me.Panel3.Controls.Add(Me.Label5)
         Me.Panel3.Location = New System.Drawing.Point(305, 147)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(583, 254)
+        Me.Panel3.Size = New System.Drawing.Size(523, 254)
         Me.Panel3.TabIndex = 3
+        '
+        'cmbsalesorderId
+        '
+        Me.cmbsalesorderId.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbsalesorderId.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.cmbsalesorderId.FormattingEnabled = True
+        Me.cmbsalesorderId.Location = New System.Drawing.Point(410, 139)
+        Me.cmbsalesorderId.Name = "cmbsalesorderId"
+        Me.cmbsalesorderId.Size = New System.Drawing.Size(103, 25)
+        Me.cmbsalesorderId.TabIndex = 25
+        Me.cmbsalesorderId.TabStop = False
+        '
+        'Label12
+        '
+        Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
+        Me.Label12.Location = New System.Drawing.Point(303, 142)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(124, 17)
+        Me.Label12.TabIndex = 24
+        Me.Label12.Text = "Sales Order No"
         '
         'lblAdvanceRequest
         '
@@ -737,9 +751,9 @@ Partial Class frmVoucherNew
         Me.lblAdvanceRequest.AutoSize = True
         Me.lblAdvanceRequest.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAdvanceRequest.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
-        Me.lblAdvanceRequest.Location = New System.Drawing.Point(401, 111)
+        Me.lblAdvanceRequest.Location = New System.Drawing.Point(303, 111)
         Me.lblAdvanceRequest.Name = "lblAdvanceRequest"
-        Me.lblAdvanceRequest.Size = New System.Drawing.Size(64, 13)
+        Me.lblAdvanceRequest.Size = New System.Drawing.Size(78, 17)
         Me.lblAdvanceRequest.TabIndex = 22
         Me.lblAdvanceRequest.Text = "Adv. Req"
         '
@@ -748,9 +762,9 @@ Partial Class frmVoucherNew
         Me.cmbAdvanceRequest.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbAdvanceRequest.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbAdvanceRequest.FormattingEnabled = True
-        Me.cmbAdvanceRequest.Location = New System.Drawing.Point(470, 108)
+        Me.cmbAdvanceRequest.Location = New System.Drawing.Point(410, 108)
         Me.cmbAdvanceRequest.Name = "cmbAdvanceRequest"
-        Me.cmbAdvanceRequest.Size = New System.Drawing.Size(103, 21)
+        Me.cmbAdvanceRequest.Size = New System.Drawing.Size(103, 25)
         Me.cmbAdvanceRequest.TabIndex = 23
         Me.cmbAdvanceRequest.TabStop = False
         '
@@ -760,9 +774,9 @@ Partial Class frmVoucherNew
         Me.lblCurrentBalance.AutoSize = True
         Me.lblCurrentBalance.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCurrentBalance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
-        Me.lblCurrentBalance.Location = New System.Drawing.Point(401, 79)
+        Me.lblCurrentBalance.Location = New System.Drawing.Point(303, 79)
         Me.lblCurrentBalance.Name = "lblCurrentBalance"
-        Me.lblCurrentBalance.Size = New System.Drawing.Size(62, 13)
+        Me.lblCurrentBalance.Size = New System.Drawing.Size(74, 17)
         Me.lblCurrentBalance.TabIndex = 8
         Me.lblCurrentBalance.Text = "Balance:"
         '
@@ -771,10 +785,10 @@ Partial Class frmVoucherNew
         Me.txtCurrentBalance.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCurrentBalance.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txtCurrentBalance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.txtCurrentBalance.Location = New System.Drawing.Point(470, 76)
+        Me.txtCurrentBalance.Location = New System.Drawing.Point(410, 76)
         Me.txtCurrentBalance.Name = "txtCurrentBalance"
         Me.txtCurrentBalance.ReadOnly = True
-        Me.txtCurrentBalance.Size = New System.Drawing.Size(103, 21)
+        Me.txtCurrentBalance.Size = New System.Drawing.Size(103, 24)
         Me.txtCurrentBalance.TabIndex = 9
         Me.txtCurrentBalance.TabStop = False
         Me.ToolTip1.SetToolTip(Me.txtCurrentBalance, "Current Balance")
@@ -818,7 +832,7 @@ Partial Class frmVoucherNew
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label10.Location = New System.Drawing.Point(18, 43)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(100, 13)
+        Me.Label10.Size = New System.Drawing.Size(121, 17)
         Me.Label10.TabIndex = 3
         Me.Label10.Text = "Account &Head:"
         '
@@ -830,7 +844,7 @@ Partial Class frmVoucherNew
         Me.txtDescription.Appearance = Appearance10
         Me.txtDescription.Location = New System.Drawing.Point(148, 137)
         Me.txtDescription.Name = "txtDescription"
-        Me.txtDescription.Size = New System.Drawing.Size(425, 22)
+        Me.txtDescription.Size = New System.Drawing.Size(147, 26)
         Me.txtDescription.TabIndex = 10
         '
         'Label8
@@ -842,7 +856,7 @@ Partial Class frmVoucherNew
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label8.Location = New System.Drawing.Point(18, 144)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(85, 13)
+        Me.Label8.Size = New System.Drawing.Size(101, 17)
         Me.Label8.TabIndex = 9
         Me.Label8.Text = "&Description:"
         '
@@ -855,7 +869,7 @@ Partial Class frmVoucherNew
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label6.Location = New System.Drawing.Point(18, 79)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(63, 13)
+        Me.Label6.Size = New System.Drawing.Size(77, 17)
         Me.Label6.TabIndex = 5
         Me.Label6.Text = "&Account:"
         '
@@ -869,7 +883,7 @@ Partial Class frmVoucherNew
         Me.cmbACHead.FormattingEnabled = True
         Me.cmbACHead.Location = New System.Drawing.Point(148, 42)
         Me.cmbACHead.Name = "cmbACHead"
-        Me.cmbACHead.Size = New System.Drawing.Size(425, 21)
+        Me.cmbACHead.Size = New System.Drawing.Size(365, 25)
         Me.cmbACHead.TabIndex = 4
         Me.cmbACHead.TabStop = False
         Me.ToolTip1.SetToolTip(Me.cmbACHead, "Select Account Head And Gets Account Detail in Account List")
@@ -884,7 +898,7 @@ Partial Class frmVoucherNew
         Me.cmbEmployee.FormattingEnabled = True
         Me.cmbEmployee.Location = New System.Drawing.Point(148, 108)
         Me.cmbEmployee.Name = "cmbEmployee"
-        Me.cmbEmployee.Size = New System.Drawing.Size(247, 21)
+        Me.cmbEmployee.Size = New System.Drawing.Size(147, 25)
         Me.cmbEmployee.TabIndex = 8
         '
         'cmbCostCenter
@@ -897,7 +911,7 @@ Partial Class frmVoucherNew
         Me.cmbCostCenter.FormattingEnabled = True
         Me.cmbCostCenter.Location = New System.Drawing.Point(148, 11)
         Me.cmbCostCenter.Name = "cmbCostCenter"
-        Me.cmbCostCenter.Size = New System.Drawing.Size(425, 21)
+        Me.cmbCostCenter.Size = New System.Drawing.Size(365, 25)
         Me.cmbCostCenter.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbCostCenter, "Select Project And Saving Voucher under project")
         '
@@ -913,34 +927,34 @@ Partial Class frmVoucherNew
         Me.cmbAccount.DataSource = Me.UltraDataSource1
         Appearance14.BackColor = System.Drawing.Color.White
         Me.cmbAccount.DisplayLayout.Appearance = Appearance14
-        UltraGridColumn9.Header.Caption = "ID"
-        UltraGridColumn9.Header.VisiblePosition = 0
-        UltraGridColumn9.Hidden = True
-        UltraGridColumn9.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(8, 0)
-        UltraGridColumn10.Header.Caption = "Account"
-        UltraGridColumn10.Header.VisiblePosition = 1
-        UltraGridColumn10.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(128, 0)
-        UltraGridColumn11.Header.Caption = "Code"
-        UltraGridColumn11.Header.VisiblePosition = 2
-        UltraGridColumn12.Header.Caption = "Type"
-        UltraGridColumn12.Header.VisiblePosition = 3
-        UltraGridColumn12.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(96, 0)
-        UltraGridColumn13.Header.Caption = "Sub Sub Ac"
-        UltraGridColumn13.Header.VisiblePosition = 4
-        UltraGridColumn13.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(106, 0)
-        UltraGridColumn14.Header.Caption = "Sub Ac"
-        UltraGridColumn14.Header.VisiblePosition = 5
-        UltraGridColumn14.Hidden = True
-        UltraGridColumn14.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(102, 0)
-        UltraGridColumn15.Header.Caption = "Main Ac"
-        UltraGridColumn15.Header.VisiblePosition = 6
-        UltraGridColumn15.Hidden = True
-        UltraGridColumn15.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(82, 0)
-        UltraGridColumn16.Header.Caption = "Ac Head"
-        UltraGridColumn16.Header.VisiblePosition = 7
-        UltraGridColumn16.Hidden = True
-        UltraGridColumn16.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(84, 0)
-        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn9, UltraGridColumn10, UltraGridColumn11, UltraGridColumn12, UltraGridColumn13, UltraGridColumn14, UltraGridColumn15, UltraGridColumn16})
+        UltraGridColumn1.Header.Caption = "ID"
+        UltraGridColumn1.Header.VisiblePosition = 0
+        UltraGridColumn1.Hidden = True
+        UltraGridColumn1.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(8, 0)
+        UltraGridColumn2.Header.Caption = "Account"
+        UltraGridColumn2.Header.VisiblePosition = 1
+        UltraGridColumn2.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(128, 0)
+        UltraGridColumn3.Header.Caption = "Code"
+        UltraGridColumn3.Header.VisiblePosition = 2
+        UltraGridColumn4.Header.Caption = "Type"
+        UltraGridColumn4.Header.VisiblePosition = 3
+        UltraGridColumn4.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(96, 0)
+        UltraGridColumn5.Header.Caption = "Sub Sub Ac"
+        UltraGridColumn5.Header.VisiblePosition = 4
+        UltraGridColumn5.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(106, 0)
+        UltraGridColumn6.Header.Caption = "Sub Ac"
+        UltraGridColumn6.Header.VisiblePosition = 5
+        UltraGridColumn6.Hidden = True
+        UltraGridColumn6.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(102, 0)
+        UltraGridColumn7.Header.Caption = "Main Ac"
+        UltraGridColumn7.Header.VisiblePosition = 6
+        UltraGridColumn7.Hidden = True
+        UltraGridColumn7.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(82, 0)
+        UltraGridColumn8.Header.Caption = "Ac Head"
+        UltraGridColumn8.Header.VisiblePosition = 7
+        UltraGridColumn8.Hidden = True
+        UltraGridColumn8.RowLayoutColumnInfo.PreferredCellSize = New System.Drawing.Size(84, 0)
+        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn1, UltraGridColumn2, UltraGridColumn3, UltraGridColumn4, UltraGridColumn5, UltraGridColumn6, UltraGridColumn7, UltraGridColumn8})
         Me.cmbAccount.DisplayLayout.BandsSerializer.Add(UltraGridBand1)
         Me.cmbAccount.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.No
         Me.cmbAccount.DisplayLayout.Override.AllowDelete = Infragistics.Win.DefaultableBoolean.[False]
@@ -973,7 +987,7 @@ Partial Class frmVoucherNew
         Me.cmbAccount.Location = New System.Drawing.Point(148, 74)
         Me.cmbAccount.MaxDropDownItems = 16
         Me.cmbAccount.Name = "cmbAccount"
-        Me.cmbAccount.Size = New System.Drawing.Size(247, 23)
+        Me.cmbAccount.Size = New System.Drawing.Size(147, 27)
         Me.cmbAccount.TabIndex = 6
         Me.ToolTip1.SetToolTip(Me.cmbAccount, "Select Account")
         '
@@ -988,7 +1002,7 @@ Partial Class frmVoucherNew
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label9.Location = New System.Drawing.Point(147, 164)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(45, 13)
+        Me.Label9.Size = New System.Drawing.Size(54, 17)
         Me.Label9.TabIndex = 11
         Me.Label9.Text = "Debit:"
         '
@@ -997,7 +1011,7 @@ Partial Class frmVoucherNew
         Me.txtDebit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.txtDebit.Location = New System.Drawing.Point(150, 182)
         Me.txtDebit.Name = "txtDebit"
-        Me.txtDebit.Size = New System.Drawing.Size(125, 21)
+        Me.txtDebit.Size = New System.Drawing.Size(125, 24)
         Me.txtDebit.TabIndex = 12
         Me.ToolTip1.SetToolTip(Me.txtDebit, "Debit Amount")
         '
@@ -1008,7 +1022,7 @@ Partial Class frmVoucherNew
         Me.LinkLabel1.AutoSize = True
         Me.LinkLabel1.Location = New System.Drawing.Point(16, 28)
         Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(61, 13)
+        Me.LinkLabel1.Size = New System.Drawing.Size(74, 17)
         Me.LinkLabel1.TabIndex = 2
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "(Refersh)"
@@ -1021,7 +1035,7 @@ Partial Class frmVoucherNew
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(308, 164)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(50, 13)
+        Me.Label7.Size = New System.Drawing.Size(61, 17)
         Me.Label7.TabIndex = 13
         Me.Label7.Text = "Credit:"
         '
@@ -1034,7 +1048,7 @@ Partial Class frmVoucherNew
         Me.lblEmployee.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.lblEmployee.Location = New System.Drawing.Point(19, 111)
         Me.lblEmployee.Name = "lblEmployee"
-        Me.lblEmployee.Size = New System.Drawing.Size(75, 13)
+        Me.lblEmployee.Size = New System.Drawing.Size(89, 17)
         Me.lblEmployee.TabIndex = 7
         Me.lblEmployee.Text = "Employee:"
         '
@@ -1047,7 +1061,7 @@ Partial Class frmVoucherNew
         Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label17.Location = New System.Drawing.Point(18, 14)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(58, 13)
+        Me.Label17.Size = New System.Drawing.Size(70, 17)
         Me.Label17.TabIndex = 0
         Me.Label17.Text = "Project:"
         '
@@ -1058,7 +1072,7 @@ Partial Class frmVoucherNew
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label4.Location = New System.Drawing.Point(147, 207)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(80, 13)
+        Me.Label4.Size = New System.Drawing.Size(99, 17)
         Me.Label4.TabIndex = 15
         Me.Label4.Text = "Cheque No:"
         '
@@ -1067,7 +1081,7 @@ Partial Class frmVoucherNew
         Me.txtCredit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.txtCredit.Location = New System.Drawing.Point(311, 182)
         Me.txtCredit.Name = "txtCredit"
-        Me.txtCredit.Size = New System.Drawing.Size(125, 21)
+        Me.txtCredit.Size = New System.Drawing.Size(125, 24)
         Me.txtCredit.TabIndex = 14
         Me.ToolTip1.SetToolTip(Me.txtCredit, "Credit Amount")
         '
@@ -1077,7 +1091,7 @@ Partial Class frmVoucherNew
         Me.dtpChequeDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpChequeDate.Location = New System.Drawing.Point(311, 225)
         Me.dtpChequeDate.Name = "dtpChequeDate"
-        Me.dtpChequeDate.Size = New System.Drawing.Size(125, 21)
+        Me.dtpChequeDate.Size = New System.Drawing.Size(125, 24)
         Me.dtpChequeDate.TabIndex = 18
         Me.ToolTip1.SetToolTip(Me.dtpChequeDate, "Cheque Date")
         '
@@ -1086,7 +1100,7 @@ Partial Class frmVoucherNew
         Me.txtChequeNo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.txtChequeNo.Location = New System.Drawing.Point(150, 225)
         Me.txtChequeNo.Name = "txtChequeNo"
-        Me.txtChequeNo.Size = New System.Drawing.Size(125, 21)
+        Me.txtChequeNo.Size = New System.Drawing.Size(125, 24)
         Me.txtChequeNo.TabIndex = 16
         Me.ToolTip1.SetToolTip(Me.txtChequeNo, "Cheque No")
         '
@@ -1097,7 +1111,7 @@ Partial Class frmVoucherNew
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label5.Location = New System.Drawing.Point(308, 207)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(93, 13)
+        Me.Label5.Size = New System.Drawing.Size(113, 17)
         Me.Label5.TabIndex = 17
         Me.Label5.Text = "Cheque Date:"
         '
@@ -1131,7 +1145,7 @@ Partial Class frmVoucherNew
         Me.lblCheckedBy.AutoSize = True
         Me.lblCheckedBy.Location = New System.Drawing.Point(149, 232)
         Me.lblCheckedBy.Name = "lblCheckedBy"
-        Me.lblCheckedBy.Size = New System.Drawing.Size(13, 13)
+        Me.lblCheckedBy.Size = New System.Drawing.Size(15, 17)
         Me.lblCheckedBy.TabIndex = 16
         Me.lblCheckedBy.Text = "c"
         '
@@ -1140,7 +1154,7 @@ Partial Class frmVoucherNew
         Me.lblPostedBy.AutoSize = True
         Me.lblPostedBy.Location = New System.Drawing.Point(4, 232)
         Me.lblPostedBy.Name = "lblPostedBy"
-        Me.lblPostedBy.Size = New System.Drawing.Size(14, 13)
+        Me.lblPostedBy.Size = New System.Drawing.Size(17, 17)
         Me.lblPostedBy.TabIndex = 15
         Me.lblPostedBy.Text = "p"
         '
@@ -1152,7 +1166,7 @@ Partial Class frmVoucherNew
         Me.cmbCompany.Items.AddRange(New Object() {"Loose", "Pack"})
         Me.cmbCompany.Location = New System.Drawing.Point(3, 40)
         Me.cmbCompany.Name = "cmbCompany"
-        Me.cmbCompany.Size = New System.Drawing.Size(290, 21)
+        Me.cmbCompany.Size = New System.Drawing.Size(290, 25)
         Me.cmbCompany.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbCompany, "Voucher Type")
         '
@@ -1163,7 +1177,7 @@ Partial Class frmVoucherNew
         Me.lblHeading.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.lblHeading.Location = New System.Drawing.Point(114, 13)
         Me.lblHeading.Name = "lblHeading"
-        Me.lblHeading.Size = New System.Drawing.Size(85, 18)
+        Me.lblHeading.Size = New System.Drawing.Size(109, 23)
         Me.lblHeading.TabIndex = 0
         Me.lblHeading.Text = "Company"
         '
@@ -1175,7 +1189,7 @@ Partial Class frmVoucherNew
         Me.chkChecked.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.chkChecked.Location = New System.Drawing.Point(152, 214)
         Me.chkChecked.Name = "chkChecked"
-        Me.chkChecked.Size = New System.Drawing.Size(76, 17)
+        Me.chkChecked.Size = New System.Drawing.Size(89, 21)
         Me.chkChecked.TabIndex = 11
         Me.chkChecked.TabStop = False
         Me.chkChecked.Text = "Checked"
@@ -1189,7 +1203,7 @@ Partial Class frmVoucherNew
         Me.Label28.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label28.Location = New System.Drawing.Point(3, 255)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(74, 13)
+        Me.Label28.Size = New System.Drawing.Size(92, 17)
         Me.Label28.TabIndex = 12
         Me.Label28.Text = "CMFA Doc:"
         '
@@ -1199,7 +1213,7 @@ Partial Class frmVoucherNew
         Me.cmbCMFADoc.FormattingEnabled = True
         Me.cmbCMFADoc.Location = New System.Drawing.Point(83, 252)
         Me.cmbCMFADoc.Name = "cmbCMFADoc"
-        Me.cmbCMFADoc.Size = New System.Drawing.Size(210, 21)
+        Me.cmbCMFADoc.Size = New System.Drawing.Size(210, 25)
         Me.cmbCMFADoc.TabIndex = 13
         Me.cmbCMFADoc.TabStop = False
         '
@@ -1211,7 +1225,7 @@ Partial Class frmVoucherNew
         Me.chkPost.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.chkPost.Location = New System.Drawing.Point(7, 214)
         Me.chkPost.Name = "chkPost"
-        Me.chkPost.Size = New System.Drawing.Size(64, 17)
+        Me.chkPost.Size = New System.Drawing.Size(78, 21)
         Me.chkPost.TabIndex = 10
         Me.chkPost.TabStop = False
         Me.chkPost.Text = "Posted"
@@ -1225,7 +1239,7 @@ Partial Class frmVoucherNew
         Me.chkOtherVoucher.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.chkOtherVoucher.Location = New System.Drawing.Point(174, 283)
         Me.chkOtherVoucher.Name = "chkOtherVoucher"
-        Me.chkOtherVoucher.Size = New System.Drawing.Size(119, 17)
+        Me.chkOtherVoucher.Size = New System.Drawing.Size(144, 21)
         Me.chkOtherVoucher.TabIndex = 14
         Me.chkOtherVoucher.TabStop = False
         Me.chkOtherVoucher.Text = "Other Voucher"
@@ -1239,7 +1253,7 @@ Partial Class frmVoucherNew
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(3, 70)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(98, 13)
+        Me.Label2.Size = New System.Drawing.Size(119, 17)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Voucher Date:"
         '
@@ -1248,7 +1262,7 @@ Partial Class frmVoucherNew
         Me.uitxtReference.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.uitxtReference.Location = New System.Drawing.Point(3, 184)
         Me.uitxtReference.Name = "uitxtReference"
-        Me.uitxtReference.Size = New System.Drawing.Size(290, 21)
+        Me.uitxtReference.Size = New System.Drawing.Size(290, 24)
         Me.uitxtReference.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.uitxtReference, "Reference for necessary")
         '
@@ -1258,7 +1272,7 @@ Partial Class frmVoucherNew
         Me.dtpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpVoucherDate.Location = New System.Drawing.Point(3, 92)
         Me.dtpVoucherDate.Name = "dtpVoucherDate"
-        Me.dtpVoucherDate.Size = New System.Drawing.Size(131, 21)
+        Me.dtpVoucherDate.Size = New System.Drawing.Size(131, 24)
         Me.dtpVoucherDate.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.dtpVoucherDate, "Voucher Date")
         '
@@ -1270,7 +1284,7 @@ Partial Class frmVoucherNew
         Me.cmbVoucherType.Items.AddRange(New Object() {"Loose", "Pack"})
         Me.cmbVoucherType.Location = New System.Drawing.Point(144, 92)
         Me.cmbVoucherType.Name = "cmbVoucherType"
-        Me.cmbVoucherType.Size = New System.Drawing.Size(149, 21)
+        Me.cmbVoucherType.Size = New System.Drawing.Size(149, 25)
         Me.cmbVoucherType.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.cmbVoucherType, "Voucher Type")
         '
@@ -1281,7 +1295,7 @@ Partial Class frmVoucherNew
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(141, 70)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(100, 13)
+        Me.Label1.Size = New System.Drawing.Size(122, 17)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Voucher Type:"
         '
@@ -1292,7 +1306,7 @@ Partial Class frmVoucherNew
         Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label16.Location = New System.Drawing.Point(3, 166)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(77, 13)
+        Me.Label16.Size = New System.Drawing.Size(92, 17)
         Me.Label16.TabIndex = 6
         Me.Label16.Text = "Reference:"
         '
@@ -1303,7 +1317,7 @@ Partial Class frmVoucherNew
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label3.Location = New System.Drawing.Point(3, 119)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(85, 13)
+        Me.Label3.Size = New System.Drawing.Size(105, 17)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Voucher No:"
         '
@@ -1313,7 +1327,7 @@ Partial Class frmVoucherNew
         Me.txtVoucherNo.Location = New System.Drawing.Point(3, 138)
         Me.txtVoucherNo.Name = "txtVoucherNo"
         Me.txtVoucherNo.ReadOnly = True
-        Me.txtVoucherNo.Size = New System.Drawing.Size(290, 21)
+        Me.txtVoucherNo.Size = New System.Drawing.Size(290, 24)
         Me.txtVoucherNo.TabIndex = 7
         Me.txtVoucherNo.TabStop = False
         Me.ToolTip1.SetToolTip(Me.txtVoucherNo, "Voucher No")
@@ -1334,7 +1348,7 @@ Partial Class frmVoucherNew
         '
         Me.txtVoucherID.Location = New System.Drawing.Point(324, 101)
         Me.txtVoucherID.Name = "txtVoucherID"
-        Me.txtVoucherID.Size = New System.Drawing.Size(145, 21)
+        Me.txtVoucherID.Size = New System.Drawing.Size(145, 24)
         Me.txtVoucherID.TabIndex = 4
         Me.txtVoucherID.Visible = False
         '
@@ -1345,7 +1359,7 @@ Partial Class frmVoucherNew
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Location = New System.Drawing.Point(427, 582)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(34, 13)
+        Me.Label11.Size = New System.Drawing.Size(41, 17)
         Me.Label11.TabIndex = 12
         Me.Label11.Text = "Total"
         Me.Label11.Visible = False
@@ -1357,7 +1371,7 @@ Partial Class frmVoucherNew
         Me.txtTotalCredit.Location = New System.Drawing.Point(598, 579)
         Me.txtTotalCredit.Name = "txtTotalCredit"
         Me.txtTotalCredit.ReadOnly = True
-        Me.txtTotalCredit.Size = New System.Drawing.Size(115, 21)
+        Me.txtTotalCredit.Size = New System.Drawing.Size(115, 24)
         Me.txtTotalCredit.TabIndex = 11
         Me.txtTotalCredit.Visible = False
         '
@@ -1368,7 +1382,7 @@ Partial Class frmVoucherNew
         Me.txtTotalDebit.Location = New System.Drawing.Point(476, 555)
         Me.txtTotalDebit.Name = "txtTotalDebit"
         Me.txtTotalDebit.ReadOnly = True
-        Me.txtTotalDebit.Size = New System.Drawing.Size(115, 21)
+        Me.txtTotalDebit.Size = New System.Drawing.Size(115, 24)
         Me.txtTotalDebit.TabIndex = 10
         Me.txtTotalDebit.Visible = False
         '
@@ -1376,10 +1390,11 @@ Partial Class frmVoucherNew
         '
         Me.ToolStrip1.AutoSize = False
         Me.ToolStrip1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnNew, Me.BtnEdit, Me.BtnSave, Me.BtnDelete, Me.BtnPrint, Me.toolStripSeparator1, Me.ToolStripDropDownButton1, Me.btnUpdateTimes, Me.btnReminder, Me.BtnRefresh, Me.ToolStripButton1, Me.btnOpenLedger, Me.ToolStripSeparator3, Me.btnApprovalHistory, Me.btnAttachment, Me.ToolStripSeparator6, Me.HelpToolStripButton, Me.btnReversalVoucher})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(887, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(827, 25)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -1388,7 +1403,7 @@ Partial Class frmVoucherNew
         Me.BtnNew.Image = CType(resources.GetObject("BtnNew.Image"), System.Drawing.Image)
         Me.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnNew.Name = "BtnNew"
-        Me.BtnNew.Size = New System.Drawing.Size(50, 22)
+        Me.BtnNew.Size = New System.Drawing.Size(60, 22)
         Me.BtnNew.Text = "&New"
         '
         'BtnEdit
@@ -1396,7 +1411,7 @@ Partial Class frmVoucherNew
         Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
         Me.BtnEdit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(47, 22)
+        Me.BtnEdit.Size = New System.Drawing.Size(56, 22)
         Me.BtnEdit.Text = "&Edit"
         '
         'BtnSave
@@ -1405,13 +1420,13 @@ Partial Class frmVoucherNew
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
         Me.BtnSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(62, 22)
+        Me.BtnSave.Size = New System.Drawing.Size(76, 22)
         Me.BtnSave.Text = "&Save"
         '
         'SaveAsTemplateToolStripMenuItem
         '
         Me.SaveAsTemplateToolStripMenuItem.Name = "SaveAsTemplateToolStripMenuItem"
-        Me.SaveAsTemplateToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
+        Me.SaveAsTemplateToolStripMenuItem.Size = New System.Drawing.Size(187, 26)
         Me.SaveAsTemplateToolStripMenuItem.Text = "Save as &template"
         '
         'BtnDelete
@@ -1419,7 +1434,7 @@ Partial Class frmVoucherNew
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.RightToLeftAutoMirrorImage = True
-        Me.BtnDelete.Size = New System.Drawing.Size(60, 22)
+        Me.BtnDelete.Size = New System.Drawing.Size(72, 22)
         Me.BtnDelete.Text = "&Delete"
         '
         'BtnPrint
@@ -1428,49 +1443,49 @@ Partial Class frmVoucherNew
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
         Me.BtnPrint.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(63, 22)
+        Me.BtnPrint.Size = New System.Drawing.Size(77, 22)
         Me.BtnPrint.Text = "&Print"
         '
         'PrintVoucherToolStripMenuItem
         '
         Me.PrintVoucherToolStripMenuItem.Name = "PrintVoucherToolStripMenuItem"
-        Me.PrintVoucherToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintVoucherToolStripMenuItem.Size = New System.Drawing.Size(243, 26)
         Me.PrintVoucherToolStripMenuItem.Text = "&Print Voucher"
         '
         'PrintSelectedVoucherToolStripMenuItem
         '
         Me.PrintSelectedVoucherToolStripMenuItem.Name = "PrintSelectedVoucherToolStripMenuItem"
-        Me.PrintSelectedVoucherToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintSelectedVoucherToolStripMenuItem.Size = New System.Drawing.Size(243, 26)
         Me.PrintSelectedVoucherToolStripMenuItem.Text = "Print &Selected Voucher "
         '
         'DebitCreditNoteToolStripMenuItem
         '
         Me.DebitCreditNoteToolStripMenuItem.Name = "DebitCreditNoteToolStripMenuItem"
-        Me.DebitCreditNoteToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.DebitCreditNoteToolStripMenuItem.Size = New System.Drawing.Size(243, 26)
         Me.DebitCreditNoteToolStripMenuItem.Text = "Debit/Credit Note"
         '
         'PrintReceiptToolStripMenuItem
         '
         Me.PrintReceiptToolStripMenuItem.Name = "PrintReceiptToolStripMenuItem"
-        Me.PrintReceiptToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintReceiptToolStripMenuItem.Size = New System.Drawing.Size(243, 26)
         Me.PrintReceiptToolStripMenuItem.Text = "Print Receipt"
         '
         'PrintPaymentToolStripMenuItem
         '
         Me.PrintPaymentToolStripMenuItem.Name = "PrintPaymentToolStripMenuItem"
-        Me.PrintPaymentToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintPaymentToolStripMenuItem.Size = New System.Drawing.Size(243, 26)
         Me.PrintPaymentToolStripMenuItem.Text = "Print Payment"
         '
         'PrintAttachmentVoucherToolStripMenuItem
         '
         Me.PrintAttachmentVoucherToolStripMenuItem.Name = "PrintAttachmentVoucherToolStripMenuItem"
-        Me.PrintAttachmentVoucherToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintAttachmentVoucherToolStripMenuItem.Size = New System.Drawing.Size(243, 26)
         Me.PrintAttachmentVoucherToolStripMenuItem.Text = "Print Attachment Voucher"
         '
         'PrintUpdateVoucherToolStripMenuItem
         '
         Me.PrintUpdateVoucherToolStripMenuItem.Name = "PrintUpdateVoucherToolStripMenuItem"
-        Me.PrintUpdateVoucherToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintUpdateVoucherToolStripMenuItem.Size = New System.Drawing.Size(243, 26)
         Me.PrintUpdateVoucherToolStripMenuItem.Text = "Print Update Voucher"
         '
         'toolStripSeparator1
@@ -1485,43 +1500,43 @@ Partial Class frmVoucherNew
         Me.ToolStripDropDownButton1.Image = CType(resources.GetObject("ToolStripDropDownButton1.Image"), System.Drawing.Image)
         Me.ToolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
-        Me.ToolStripDropDownButton1.Size = New System.Drawing.Size(76, 22)
+        Me.ToolStripDropDownButton1.Size = New System.Drawing.Size(90, 22)
         Me.ToolStripDropDownButton1.Text = "Reports"
         '
         'ChartsOfAccountToolStripMenuItem1
         '
         Me.ChartsOfAccountToolStripMenuItem1.Name = "ChartsOfAccountToolStripMenuItem1"
-        Me.ChartsOfAccountToolStripMenuItem1.Size = New System.Drawing.Size(224, 22)
+        Me.ChartsOfAccountToolStripMenuItem1.Size = New System.Drawing.Size(263, 26)
         Me.ChartsOfAccountToolStripMenuItem1.Text = "Charts of Account"
         '
         'CashFlowStatmentToolStripMenuItem
         '
         Me.CashFlowStatmentToolStripMenuItem.Name = "CashFlowStatmentToolStripMenuItem"
-        Me.CashFlowStatmentToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.CashFlowStatmentToolStripMenuItem.Size = New System.Drawing.Size(263, 26)
         Me.CashFlowStatmentToolStripMenuItem.Text = "Cash Flow Statment "
         '
         'StanderCashFlowStatementToolStripMenuItem1
         '
         Me.StanderCashFlowStatementToolStripMenuItem1.Name = "StanderCashFlowStatementToolStripMenuItem1"
-        Me.StanderCashFlowStatementToolStripMenuItem1.Size = New System.Drawing.Size(224, 22)
+        Me.StanderCashFlowStatementToolStripMenuItem1.Size = New System.Drawing.Size(263, 26)
         Me.StanderCashFlowStatementToolStripMenuItem1.Text = "Stander Cash Flow statement"
         '
         'PayablesToolStripMenuItem
         '
         Me.PayablesToolStripMenuItem.Name = "PayablesToolStripMenuItem"
-        Me.PayablesToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.PayablesToolStripMenuItem.Size = New System.Drawing.Size(263, 26)
         Me.PayablesToolStripMenuItem.Text = "Payables"
         '
         'ReciveablesToolStripMenuItem
         '
         Me.ReciveablesToolStripMenuItem.Name = "ReciveablesToolStripMenuItem"
-        Me.ReciveablesToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ReciveablesToolStripMenuItem.Size = New System.Drawing.Size(263, 26)
         Me.ReciveablesToolStripMenuItem.Text = "Reciveables"
         '
         'BlanceSheetToolStripMenuItem
         '
         Me.BlanceSheetToolStripMenuItem.Name = "BlanceSheetToolStripMenuItem"
-        Me.BlanceSheetToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.BlanceSheetToolStripMenuItem.Size = New System.Drawing.Size(263, 26)
         Me.BlanceSheetToolStripMenuItem.Text = "Blance Sheet"
         '
         'btnUpdateTimes
@@ -1529,7 +1544,7 @@ Partial Class frmVoucherNew
         Me.btnUpdateTimes.Image = CType(resources.GetObject("btnUpdateTimes.Image"), System.Drawing.Image)
         Me.btnUpdateTimes.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnUpdateTimes.Name = "btnUpdateTimes"
-        Me.btnUpdateTimes.Size = New System.Drawing.Size(115, 22)
+        Me.btnUpdateTimes.Size = New System.Drawing.Size(139, 22)
         Me.btnUpdateTimes.Text = "Update history"
         '
         'btnReminder
@@ -1537,7 +1552,7 @@ Partial Class frmVoucherNew
         Me.btnReminder.Image = CType(resources.GetObject("btnReminder.Image"), System.Drawing.Image)
         Me.btnReminder.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnReminder.Name = "btnReminder"
-        Me.btnReminder.Size = New System.Drawing.Size(76, 22)
+        Me.btnReminder.Size = New System.Drawing.Size(91, 22)
         Me.btnReminder.Text = "Reminder"
         '
         'BtnRefresh
@@ -1545,7 +1560,7 @@ Partial Class frmVoucherNew
         Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
         Me.BtnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnRefresh.Name = "BtnRefresh"
-        Me.BtnRefresh.Size = New System.Drawing.Size(66, 22)
+        Me.BtnRefresh.Size = New System.Drawing.Size(78, 22)
         Me.BtnRefresh.Text = "Refresh"
         '
         'ToolStripButton1
@@ -1553,49 +1568,49 @@ Partial Class frmVoucherNew
         Me.ToolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
         Me.ToolStripButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GeneralToolStripMenuItem, Me.CashToolStripMenuItem, Me.BankToolStripMenuItem, Me.CustomerToolStripMenuItem, Me.VendorToolStripMenuItem, Me.ExpenseToolStripMenuItem, Me.CostCenterToolStripMenuItem})
         Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(115, 22)
+        Me.ToolStripButton1.Size = New System.Drawing.Size(138, 23)
         Me.ToolStripButton1.Text = "Add New Account"
         '
         'GeneralToolStripMenuItem
         '
         Me.GeneralToolStripMenuItem.Name = "GeneralToolStripMenuItem"
-        Me.GeneralToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.GeneralToolStripMenuItem.Size = New System.Drawing.Size(157, 26)
         Me.GeneralToolStripMenuItem.Text = "General"
         '
         'CashToolStripMenuItem
         '
         Me.CashToolStripMenuItem.Name = "CashToolStripMenuItem"
-        Me.CashToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.CashToolStripMenuItem.Size = New System.Drawing.Size(157, 26)
         Me.CashToolStripMenuItem.Text = "Cash"
         '
         'BankToolStripMenuItem
         '
         Me.BankToolStripMenuItem.Name = "BankToolStripMenuItem"
-        Me.BankToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.BankToolStripMenuItem.Size = New System.Drawing.Size(157, 26)
         Me.BankToolStripMenuItem.Text = "Bank"
         '
         'CustomerToolStripMenuItem
         '
         Me.CustomerToolStripMenuItem.Name = "CustomerToolStripMenuItem"
-        Me.CustomerToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.CustomerToolStripMenuItem.Size = New System.Drawing.Size(157, 26)
         Me.CustomerToolStripMenuItem.Text = "Customer"
         '
         'VendorToolStripMenuItem
         '
         Me.VendorToolStripMenuItem.Name = "VendorToolStripMenuItem"
-        Me.VendorToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.VendorToolStripMenuItem.Size = New System.Drawing.Size(157, 26)
         Me.VendorToolStripMenuItem.Text = "Vendor"
         '
         'ExpenseToolStripMenuItem
         '
         Me.ExpenseToolStripMenuItem.Name = "ExpenseToolStripMenuItem"
-        Me.ExpenseToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.ExpenseToolStripMenuItem.Size = New System.Drawing.Size(157, 26)
         Me.ExpenseToolStripMenuItem.Text = "Expense"
         '
         'CostCenterToolStripMenuItem
         '
         Me.CostCenterToolStripMenuItem.Name = "CostCenterToolStripMenuItem"
-        Me.CostCenterToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.CostCenterToolStripMenuItem.Size = New System.Drawing.Size(157, 26)
         Me.CostCenterToolStripMenuItem.Text = "Cost Center"
         '
         'btnOpenLedger
@@ -1603,7 +1618,7 @@ Partial Class frmVoucherNew
         Me.btnOpenLedger.Image = Global.SimpleAccounts.My.Resources.Resources.BtnEdit_Image
         Me.btnOpenLedger.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnOpenLedger.Name = "btnOpenLedger"
-        Me.btnOpenLedger.Size = New System.Drawing.Size(94, 22)
+        Me.btnOpenLedger.Size = New System.Drawing.Size(113, 24)
         Me.btnOpenLedger.Text = "Open Ledger"
         '
         'ToolStripSeparator3
@@ -1616,7 +1631,7 @@ Partial Class frmVoucherNew
         Me.btnApprovalHistory.Image = Global.SimpleAccounts.My.Resources.Resources.Copy
         Me.btnApprovalHistory.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnApprovalHistory.Name = "btnApprovalHistory"
-        Me.btnApprovalHistory.Size = New System.Drawing.Size(112, 20)
+        Me.btnApprovalHistory.Size = New System.Drawing.Size(136, 24)
         Me.btnApprovalHistory.Text = "Approval History"
         '
         'btnAttachment
@@ -1626,13 +1641,13 @@ Partial Class frmVoucherNew
         Me.btnAttachment.Image = CType(resources.GetObject("btnAttachment.Image"), System.Drawing.Image)
         Me.btnAttachment.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnAttachment.Name = "btnAttachment"
-        Me.btnAttachment.Size = New System.Drawing.Size(92, 20)
+        Me.btnAttachment.Size = New System.Drawing.Size(111, 24)
         Me.btnAttachment.Text = "Attachment"
         '
         'btnPreviewAttachment
         '
         Me.btnPreviewAttachment.Name = "btnPreviewAttachment"
-        Me.btnPreviewAttachment.Size = New System.Drawing.Size(175, 22)
+        Me.btnPreviewAttachment.Size = New System.Drawing.Size(207, 26)
         Me.btnPreviewAttachment.Text = "Preview Attachment"
         '
         'ToolStripSeparator6
@@ -1645,7 +1660,7 @@ Partial Class frmVoucherNew
         Me.HelpToolStripButton.Image = CType(resources.GetObject("HelpToolStripButton.Image"), System.Drawing.Image)
         Me.HelpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.HelpToolStripButton.Name = "HelpToolStripButton"
-        Me.HelpToolStripButton.Size = New System.Drawing.Size(51, 20)
+        Me.HelpToolStripButton.Size = New System.Drawing.Size(61, 24)
         Me.HelpToolStripButton.Text = "He&lp"
         Me.HelpToolStripButton.ToolTipText = resources.GetString("HelpToolStripButton.ToolTipText")
         Me.HelpToolStripButton.Visible = False
@@ -1655,7 +1670,7 @@ Partial Class frmVoucherNew
         Me.btnReversalVoucher.Image = Global.SimpleAccounts.My.Resources.Resources.Sign_Refresh_icon
         Me.btnReversalVoucher.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnReversalVoucher.Name = "btnReversalVoucher"
-        Me.btnReversalVoucher.Size = New System.Drawing.Size(114, 20)
+        Me.btnReversalVoucher.Size = New System.Drawing.Size(137, 24)
         Me.btnReversalVoucher.Text = "Reversal Voucher"
         '
         'UltraTabPageControl2
@@ -1665,20 +1680,7 @@ Partial Class frmVoucherNew
         Me.UltraTabPageControl2.Controls.Add(Me.ToolStrip2)
         Me.UltraTabPageControl2.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl2.Name = "UltraTabPageControl2"
-        Me.UltraTabPageControl2.Size = New System.Drawing.Size(891, 613)
-        '
-        'CtrlGrdBar2
-        '
-        Me.CtrlGrdBar2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CtrlGrdBar2.BackColor = System.Drawing.SystemColors.Control
-        Me.CtrlGrdBar2.Email = Nothing
-        Me.CtrlGrdBar2.FormName = Me
-        Me.CtrlGrdBar2.Location = New System.Drawing.Point(858, -1)
-        Me.CtrlGrdBar2.MyGrid = Me.grdSaved
-        Me.CtrlGrdBar2.Name = "CtrlGrdBar2"
-        Me.CtrlGrdBar2.Size = New System.Drawing.Size(33, 25)
-        Me.CtrlGrdBar2.TabIndex = 47
-        Me.CtrlGrdBar2.TabStop = False
+        Me.UltraTabPageControl2.Size = New System.Drawing.Size(831, 610)
         '
         'grdSaved
         '
@@ -1695,7 +1697,7 @@ Partial Class frmVoucherNew
         Me.grdSaved.Location = New System.Drawing.Point(0, 0)
         Me.grdSaved.Name = "grdSaved"
         Me.grdSaved.RecordNavigator = True
-        Me.grdSaved.Size = New System.Drawing.Size(891, 304)
+        Me.grdSaved.Size = New System.Drawing.Size(831, 301)
         Me.grdSaved.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.grdSaved, "Saved Record Detail")
         Me.grdSaved.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -1720,7 +1722,7 @@ Partial Class frmVoucherNew
         '
         Me.SplitContainer1.Panel2.AutoScroll = True
         Me.SplitContainer1.Panel2.Controls.Add(Me.grdSaved)
-        Me.SplitContainer1.Size = New System.Drawing.Size(891, 588)
+        Me.SplitContainer1.Size = New System.Drawing.Size(831, 585)
         Me.SplitContainer1.SplitterDistance = 280
         Me.SplitContainer1.TabIndex = 1
         '
@@ -1744,7 +1746,7 @@ Partial Class frmVoucherNew
         Me.pnlHeader1.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader1.Location = New System.Drawing.Point(0, 0)
         Me.pnlHeader1.Name = "pnlHeader1"
-        Me.pnlHeader1.Size = New System.Drawing.Size(891, 46)
+        Me.pnlHeader1.Size = New System.Drawing.Size(831, 46)
         Me.pnlHeader1.TabIndex = 31
         '
         'Button26
@@ -1756,7 +1758,7 @@ Partial Class frmVoucherNew
         Me.Button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button26.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button26.Location = New System.Drawing.Point(627, 9)
+        Me.Button26.Location = New System.Drawing.Point(567, 9)
         Me.Button26.Name = "Button26"
         Me.Button26.Size = New System.Drawing.Size(31, 30)
         Me.Button26.TabIndex = 23
@@ -1773,7 +1775,7 @@ Partial Class frmVoucherNew
         Me.Button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button25.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button25.Location = New System.Drawing.Point(605, 12)
+        Me.Button25.Location = New System.Drawing.Point(545, 12)
         Me.Button25.Name = "Button25"
         Me.Button25.Size = New System.Drawing.Size(24, 28)
         Me.Button25.TabIndex = 22
@@ -1790,7 +1792,7 @@ Partial Class frmVoucherNew
         Me.Button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button24.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button24.Location = New System.Drawing.Point(577, 10)
+        Me.Button24.Location = New System.Drawing.Point(517, 10)
         Me.Button24.Name = "Button24"
         Me.Button24.Size = New System.Drawing.Size(28, 32)
         Me.Button24.TabIndex = 21
@@ -1807,7 +1809,7 @@ Partial Class frmVoucherNew
         Me.Button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button23.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button23.Location = New System.Drawing.Point(554, 10)
+        Me.Button23.Location = New System.Drawing.Point(494, 10)
         Me.Button23.Name = "Button23"
         Me.Button23.Size = New System.Drawing.Size(24, 28)
         Me.Button23.TabIndex = 20
@@ -1824,7 +1826,7 @@ Partial Class frmVoucherNew
         Me.Button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button22.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button22.Location = New System.Drawing.Point(703, 11)
+        Me.Button22.Location = New System.Drawing.Point(643, 11)
         Me.Button22.Name = "Button22"
         Me.Button22.Size = New System.Drawing.Size(27, 28)
         Me.Button22.TabIndex = 19
@@ -1841,7 +1843,7 @@ Partial Class frmVoucherNew
         Me.Button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button21.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button21.Location = New System.Drawing.Point(680, 11)
+        Me.Button21.Location = New System.Drawing.Point(620, 11)
         Me.Button21.Name = "Button21"
         Me.Button21.Size = New System.Drawing.Size(24, 28)
         Me.Button21.TabIndex = 18
@@ -1858,7 +1860,7 @@ Partial Class frmVoucherNew
         Me.Button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button20.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button20.Location = New System.Drawing.Point(656, 10)
+        Me.Button20.Location = New System.Drawing.Point(596, 10)
         Me.Button20.Name = "Button20"
         Me.Button20.Size = New System.Drawing.Size(24, 28)
         Me.Button20.TabIndex = 17
@@ -1875,7 +1877,7 @@ Partial Class frmVoucherNew
         Me.Button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button19.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button19.Location = New System.Drawing.Point(785, 10)
+        Me.Button19.Location = New System.Drawing.Point(725, 10)
         Me.Button19.Name = "Button19"
         Me.Button19.Size = New System.Drawing.Size(24, 28)
         Me.Button19.TabIndex = 16
@@ -1892,7 +1894,7 @@ Partial Class frmVoucherNew
         Me.Button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button18.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button18.Location = New System.Drawing.Point(759, 10)
+        Me.Button18.Location = New System.Drawing.Point(699, 10)
         Me.Button18.Name = "Button18"
         Me.Button18.Size = New System.Drawing.Size(24, 28)
         Me.Button18.TabIndex = 15
@@ -1909,7 +1911,7 @@ Partial Class frmVoucherNew
         Me.Button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button17.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button17.Location = New System.Drawing.Point(724, 11)
+        Me.Button17.Location = New System.Drawing.Point(664, 11)
         Me.Button17.Name = "Button17"
         Me.Button17.Size = New System.Drawing.Size(37, 29)
         Me.Button17.TabIndex = 14
@@ -1926,7 +1928,7 @@ Partial Class frmVoucherNew
         Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button16.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button16.Location = New System.Drawing.Point(832, 10)
+        Me.Button16.Location = New System.Drawing.Point(772, 10)
         Me.Button16.Name = "Button16"
         Me.Button16.Size = New System.Drawing.Size(24, 26)
         Me.Button16.TabIndex = 13
@@ -1943,7 +1945,7 @@ Partial Class frmVoucherNew
         Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button15.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button15.Location = New System.Drawing.Point(810, 7)
+        Me.Button15.Location = New System.Drawing.Point(750, 7)
         Me.Button15.Name = "Button15"
         Me.Button15.Size = New System.Drawing.Size(24, 32)
         Me.Button15.TabIndex = 12
@@ -1960,7 +1962,7 @@ Partial Class frmVoucherNew
         Me.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Button14.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button14.Location = New System.Drawing.Point(854, 10)
+        Me.Button14.Location = New System.Drawing.Point(794, 10)
         Me.Button14.Name = "Button14"
         Me.Button14.Size = New System.Drawing.Size(24, 28)
         Me.Button14.TabIndex = 11
@@ -1975,7 +1977,7 @@ Partial Class frmVoucherNew
         Me.lblHeader1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.lblHeader1.Location = New System.Drawing.Point(23, 11)
         Me.lblHeader1.Name = "lblHeader1"
-        Me.lblHeader1.Size = New System.Drawing.Size(166, 23)
+        Me.lblHeader1.Size = New System.Drawing.Size(206, 29)
         Me.lblHeader1.TabIndex = 0
         Me.lblHeader1.Text = "Vocher Search"
         '
@@ -2014,7 +2016,7 @@ Partial Class frmVoucherNew
         Me.Label27.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label27.Location = New System.Drawing.Point(11, 12)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(47, 13)
+        Me.Label27.Size = New System.Drawing.Size(57, 17)
         Me.Label27.TabIndex = 18
         Me.Label27.Text = "Source"
         '
@@ -2026,7 +2028,7 @@ Partial Class frmVoucherNew
         Me.cmbSearchProject.Items.AddRange(New Object() {".... Select any value ....", "General", "Cash", "Bank", "Customer", "Vendor", "Expense", "Inventory"})
         Me.cmbSearchProject.Location = New System.Drawing.Point(137, 29)
         Me.cmbSearchProject.Name = "cmbSearchProject"
-        Me.cmbSearchProject.Size = New System.Drawing.Size(160, 21)
+        Me.cmbSearchProject.Size = New System.Drawing.Size(160, 25)
         Me.cmbSearchProject.TabIndex = 21
         Me.ToolTip1.SetToolTip(Me.cmbSearchProject, "Select Any Project")
         '
@@ -2049,7 +2051,7 @@ Partial Class frmVoucherNew
         Me.Label24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label24.Location = New System.Drawing.Point(301, 12)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(69, 13)
+        Me.Label24.Size = New System.Drawing.Size(84, 17)
         Me.Label24.TabIndex = 22
         Me.Label24.Text = "Comments"
         '
@@ -2059,7 +2061,7 @@ Partial Class frmVoucherNew
         Me.cmbSource.FormattingEnabled = True
         Me.cmbSource.Location = New System.Drawing.Point(14, 29)
         Me.cmbSource.Name = "cmbSource"
-        Me.cmbSource.Size = New System.Drawing.Size(117, 21)
+        Me.cmbSource.Size = New System.Drawing.Size(117, 25)
         Me.cmbSource.TabIndex = 19
         Me.ToolTip1.SetToolTip(Me.cmbSource, "Select Any Source ")
         '
@@ -2069,7 +2071,7 @@ Partial Class frmVoucherNew
         Me.Label26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.Label26.Location = New System.Drawing.Point(134, 12)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(47, 13)
+        Me.Label26.Size = New System.Drawing.Size(57, 17)
         Me.Label26.TabIndex = 20
         Me.Label26.Text = "Project"
         '
@@ -2106,7 +2108,7 @@ Partial Class frmVoucherNew
         Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label20.Location = New System.Drawing.Point(30, 13)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(77, 13)
+        Me.Label20.Size = New System.Drawing.Size(94, 17)
         Me.Label20.TabIndex = 8
         Me.Label20.Text = "Vocher Type"
         '
@@ -2114,7 +2116,7 @@ Partial Class frmVoucherNew
         '
         Me.TxtfromAmount.Location = New System.Drawing.Point(33, 69)
         Me.TxtfromAmount.Name = "TxtfromAmount"
-        Me.TxtfromAmount.Size = New System.Drawing.Size(138, 21)
+        Me.TxtfromAmount.Size = New System.Drawing.Size(138, 24)
         Me.TxtfromAmount.TabIndex = 13
         Me.ToolTip1.SetToolTip(Me.TxtfromAmount, "Larger Than Amount")
         '
@@ -2124,7 +2126,7 @@ Partial Class frmVoucherNew
         Me.Label25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label25.Location = New System.Drawing.Point(174, 53)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(112, 13)
+        Me.Label25.Size = New System.Drawing.Size(141, 17)
         Me.Label25.TabIndex = 14
         Me.Label25.Text = "Less Than Amount"
         '
@@ -2133,7 +2135,7 @@ Partial Class frmVoucherNew
         Me.txtSearchChequeNo.AcceptsReturn = True
         Me.txtSearchChequeNo.Location = New System.Drawing.Point(33, 111)
         Me.txtSearchChequeNo.Name = "txtSearchChequeNo"
-        Me.txtSearchChequeNo.Size = New System.Drawing.Size(281, 21)
+        Me.txtSearchChequeNo.Size = New System.Drawing.Size(281, 24)
         Me.txtSearchChequeNo.TabIndex = 17
         Me.ToolTip1.SetToolTip(Me.txtSearchChequeNo, "Cheque No")
         '
@@ -2141,7 +2143,7 @@ Partial Class frmVoucherNew
         '
         Me.TxtToAmount.Location = New System.Drawing.Point(178, 69)
         Me.TxtToAmount.Name = "TxtToAmount"
-        Me.TxtToAmount.Size = New System.Drawing.Size(138, 21)
+        Me.TxtToAmount.Size = New System.Drawing.Size(138, 24)
         Me.TxtToAmount.TabIndex = 15
         Me.ToolTip1.SetToolTip(Me.TxtToAmount, "Less Than Amount")
         '
@@ -2151,7 +2153,7 @@ Partial Class frmVoucherNew
         Me.Label21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label21.Location = New System.Drawing.Point(174, 13)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(65, 13)
+        Me.Label21.Size = New System.Drawing.Size(80, 17)
         Me.Label21.TabIndex = 10
         Me.Label21.Text = "Vocher No"
         '
@@ -2161,7 +2163,7 @@ Partial Class frmVoucherNew
         Me.cmbVType.FormattingEnabled = True
         Me.cmbVType.Location = New System.Drawing.Point(33, 29)
         Me.cmbVType.Name = "cmbVType"
-        Me.cmbVType.Size = New System.Drawing.Size(138, 21)
+        Me.cmbVType.Size = New System.Drawing.Size(138, 25)
         Me.cmbVType.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.cmbVType, "Select Any Voucher Type")
         '
@@ -2171,7 +2173,7 @@ Partial Class frmVoucherNew
         Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label22.Location = New System.Drawing.Point(30, 53)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(124, 13)
+        Me.Label22.Size = New System.Drawing.Size(154, 17)
         Me.Label22.TabIndex = 12
         Me.Label22.Text = "Larger Than Amount"
         '
@@ -2181,7 +2183,7 @@ Partial Class frmVoucherNew
         Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label23.Location = New System.Drawing.Point(30, 95)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(70, 13)
+        Me.Label23.Size = New System.Drawing.Size(85, 17)
         Me.Label23.TabIndex = 16
         Me.Label23.Text = "Chaque No"
         '
@@ -2189,7 +2191,7 @@ Partial Class frmVoucherNew
         '
         Me.TxtSearchVocherno.Location = New System.Drawing.Point(178, 29)
         Me.TxtSearchVocherno.Name = "TxtSearchVocherno"
-        Me.TxtSearchVocherno.Size = New System.Drawing.Size(138, 21)
+        Me.TxtSearchVocherno.Size = New System.Drawing.Size(138, 24)
         Me.TxtSearchVocherno.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.TxtSearchVocherno, "Voucher No")
         '
@@ -2215,7 +2217,7 @@ Partial Class frmVoucherNew
         Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label13.Location = New System.Drawing.Point(34, 14)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(67, 13)
+        Me.Label13.Size = New System.Drawing.Size(82, 17)
         Me.Label13.TabIndex = 0
         Me.Label13.Text = "From Date"
         '
@@ -2225,7 +2227,7 @@ Partial Class frmVoucherNew
         Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label14.Location = New System.Drawing.Point(178, 14)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(51, 13)
+        Me.Label14.Size = New System.Drawing.Size(62, 17)
         Me.Label14.TabIndex = 2
         Me.Label14.Text = "To Date"
         '
@@ -2235,7 +2237,7 @@ Partial Class frmVoucherNew
         Me.Label19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label19.Location = New System.Drawing.Point(37, 95)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(80, 13)
+        Me.Label19.Size = New System.Drawing.Size(99, 17)
         Me.Label19.TabIndex = 6
         Me.Label19.Text = "Account Title"
         '
@@ -2246,7 +2248,7 @@ Partial Class frmVoucherNew
         Me.cmbSearchAccountType.Items.AddRange(New Object() {".... Select any value ....", "General", "Cash", "Bank", "Customer", "Vendor", "Expense", "Inventory"})
         Me.cmbSearchAccountType.Location = New System.Drawing.Point(37, 72)
         Me.cmbSearchAccountType.Name = "cmbSearchAccountType"
-        Me.cmbSearchAccountType.Size = New System.Drawing.Size(282, 21)
+        Me.cmbSearchAccountType.Size = New System.Drawing.Size(282, 25)
         Me.cmbSearchAccountType.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.cmbSearchAccountType, "Select Any Account Type")
         '
@@ -2258,7 +2260,7 @@ Partial Class frmVoucherNew
         Me.dtpto.Location = New System.Drawing.Point(181, 31)
         Me.dtpto.Name = "dtpto"
         Me.dtpto.ShowCheckBox = True
-        Me.dtpto.Size = New System.Drawing.Size(138, 21)
+        Me.dtpto.Size = New System.Drawing.Size(138, 24)
         Me.dtpto.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.dtpto, "To Date")
         '
@@ -2335,7 +2337,7 @@ Partial Class frmVoucherNew
         Me.dtpfrom.Location = New System.Drawing.Point(37, 31)
         Me.dtpfrom.Name = "dtpfrom"
         Me.dtpfrom.ShowCheckBox = True
-        Me.dtpfrom.Size = New System.Drawing.Size(138, 21)
+        Me.dtpfrom.Size = New System.Drawing.Size(138, 24)
         Me.dtpfrom.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.dtpfrom, "From Date")
         '
@@ -2345,17 +2347,18 @@ Partial Class frmVoucherNew
         Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Label18.Location = New System.Drawing.Point(37, 55)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(83, 13)
+        Me.Label18.Size = New System.Drawing.Size(103, 17)
         Me.Label18.TabIndex = 4
         Me.Label18.Text = "Account Type"
         '
         'ToolStrip2
         '
         Me.ToolStrip2.AutoSize = False
+        Me.ToolStrip2.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnSearchEdit, Me.btnSearchPrint, Me.toolStripSeparator, Me.btnUpdatedVoucher, Me.btnSearchDelete, Me.toolStripSeparator2, Me.ToolStripSplitButton1, Me.btnSearchLoadAll, Me.btnSearchDocument, Me.btnReminder1, Me.ToolStripSeparator4, Me.Btn_SaveAttachment, Me.btnAttachmentFile, Me.btnDownload, Me.ToolStripSeparator5, Me.HelpToolStripButton1, Me.ToolStripButton2})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(891, 25)
+        Me.ToolStrip2.Size = New System.Drawing.Size(831, 25)
         Me.ToolStrip2.TabIndex = 0
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -2364,7 +2367,7 @@ Partial Class frmVoucherNew
         Me.btnSearchEdit.Image = CType(resources.GetObject("btnSearchEdit.Image"), System.Drawing.Image)
         Me.btnSearchEdit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSearchEdit.Name = "btnSearchEdit"
-        Me.btnSearchEdit.Size = New System.Drawing.Size(47, 22)
+        Me.btnSearchEdit.Size = New System.Drawing.Size(59, 22)
         Me.btnSearchEdit.Text = "&Edit"
         '
         'btnSearchPrint
@@ -2373,43 +2376,43 @@ Partial Class frmVoucherNew
         Me.btnSearchPrint.Image = CType(resources.GetObject("btnSearchPrint.Image"), System.Drawing.Image)
         Me.btnSearchPrint.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSearchPrint.Name = "btnSearchPrint"
-        Me.btnSearchPrint.Size = New System.Drawing.Size(64, 22)
+        Me.btnSearchPrint.Size = New System.Drawing.Size(78, 22)
         Me.btnSearchPrint.Text = "&Print"
         '
         'PrintVoucherToolStripMenuItem1
         '
         Me.PrintVoucherToolStripMenuItem1.Name = "PrintVoucherToolStripMenuItem1"
-        Me.PrintVoucherToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
+        Me.PrintVoucherToolStripMenuItem1.Size = New System.Drawing.Size(252, 26)
         Me.PrintVoucherToolStripMenuItem1.Text = "&Print Voucher"
         '
         'PrintSelectedVoucherToolStripMenuItem1
         '
         Me.PrintSelectedVoucherToolStripMenuItem1.Name = "PrintSelectedVoucherToolStripMenuItem1"
-        Me.PrintSelectedVoucherToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
+        Me.PrintSelectedVoucherToolStripMenuItem1.Size = New System.Drawing.Size(252, 26)
         Me.PrintSelectedVoucherToolStripMenuItem1.Text = "Print &Selected Voucher"
         '
         'DebitCreditNoteToolStripMenuItem1
         '
         Me.DebitCreditNoteToolStripMenuItem1.Name = "DebitCreditNoteToolStripMenuItem1"
-        Me.DebitCreditNoteToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
+        Me.DebitCreditNoteToolStripMenuItem1.Size = New System.Drawing.Size(252, 26)
         Me.DebitCreditNoteToolStripMenuItem1.Text = "Debit/Credit Note"
         '
         'PrintReceiptToolStripMenuItem1
         '
         Me.PrintReceiptToolStripMenuItem1.Name = "PrintReceiptToolStripMenuItem1"
-        Me.PrintReceiptToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
+        Me.PrintReceiptToolStripMenuItem1.Size = New System.Drawing.Size(252, 26)
         Me.PrintReceiptToolStripMenuItem1.Text = "Print Receipt"
         '
         'PrintPaymentToolStripMenuItem1
         '
         Me.PrintPaymentToolStripMenuItem1.Name = "PrintPaymentToolStripMenuItem1"
-        Me.PrintPaymentToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
+        Me.PrintPaymentToolStripMenuItem1.Size = New System.Drawing.Size(252, 26)
         Me.PrintPaymentToolStripMenuItem1.Text = "Print Payment"
         '
         'PrintAttachmentVoucherToolStripMenuItem1
         '
         Me.PrintAttachmentVoucherToolStripMenuItem1.Name = "PrintAttachmentVoucherToolStripMenuItem1"
-        Me.PrintAttachmentVoucherToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
+        Me.PrintAttachmentVoucherToolStripMenuItem1.Size = New System.Drawing.Size(252, 26)
         Me.PrintAttachmentVoucherToolStripMenuItem1.Text = "Print Attachment Voucher"
         '
         'toolStripSeparator
@@ -2422,7 +2425,7 @@ Partial Class frmVoucherNew
         Me.btnUpdatedVoucher.Image = CType(resources.GetObject("btnUpdatedVoucher.Image"), System.Drawing.Image)
         Me.btnUpdatedVoucher.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnUpdatedVoucher.Name = "btnUpdatedVoucher"
-        Me.btnUpdatedVoucher.Size = New System.Drawing.Size(146, 22)
+        Me.btnUpdatedVoucher.Size = New System.Drawing.Size(182, 22)
         Me.btnUpdatedVoucher.Text = "Print Updated Voucher"
         '
         'btnSearchDelete
@@ -2430,7 +2433,7 @@ Partial Class frmVoucherNew
         Me.btnSearchDelete.Image = CType(resources.GetObject("btnSearchDelete.Image"), System.Drawing.Image)
         Me.btnSearchDelete.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSearchDelete.Name = "btnSearchDelete"
-        Me.btnSearchDelete.Size = New System.Drawing.Size(60, 22)
+        Me.btnSearchDelete.Size = New System.Drawing.Size(77, 22)
         Me.btnSearchDelete.Text = "D&elete"
         '
         'toolStripSeparator2
@@ -2445,13 +2448,13 @@ Partial Class frmVoucherNew
         Me.ToolStripSplitButton1.Image = CType(resources.GetObject("ToolStripSplitButton1.Image"), System.Drawing.Image)
         Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
-        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(136, 22)
+        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(170, 22)
         Me.ToolStripSplitButton1.Text = "Display from Voucher"
         '
         'DisplayAllVoucherToolStripMenuItem
         '
         Me.DisplayAllVoucherToolStripMenuItem.Name = "DisplayAllVoucherToolStripMenuItem"
-        Me.DisplayAllVoucherToolStripMenuItem.Size = New System.Drawing.Size(129, 22)
+        Me.DisplayAllVoucherToolStripMenuItem.Size = New System.Drawing.Size(155, 26)
         Me.DisplayAllVoucherToolStripMenuItem.Text = "Display All"
         '
         'btnSearchLoadAll
@@ -2459,7 +2462,7 @@ Partial Class frmVoucherNew
         Me.btnSearchLoadAll.Image = CType(resources.GetObject("btnSearchLoadAll.Image"), System.Drawing.Image)
         Me.btnSearchLoadAll.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSearchLoadAll.Name = "btnSearchLoadAll"
-        Me.btnSearchLoadAll.Size = New System.Drawing.Size(70, 22)
+        Me.btnSearchLoadAll.Size = New System.Drawing.Size(88, 22)
         Me.btnSearchLoadAll.Text = "Load All"
         '
         'btnSearchDocument
@@ -2467,7 +2470,7 @@ Partial Class frmVoucherNew
         Me.btnSearchDocument.Image = CType(resources.GetObject("btnSearchDocument.Image"), System.Drawing.Image)
         Me.btnSearchDocument.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSearchDocument.Name = "btnSearchDocument"
-        Me.btnSearchDocument.Size = New System.Drawing.Size(62, 22)
+        Me.btnSearchDocument.Size = New System.Drawing.Size(77, 22)
         Me.btnSearchDocument.Text = "Search"
         '
         'btnReminder1
@@ -2475,7 +2478,7 @@ Partial Class frmVoucherNew
         Me.btnReminder1.Image = CType(resources.GetObject("btnReminder1.Image"), System.Drawing.Image)
         Me.btnReminder1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnReminder1.Name = "btnReminder1"
-        Me.btnReminder1.Size = New System.Drawing.Size(78, 22)
+        Me.btnReminder1.Size = New System.Drawing.Size(97, 24)
         Me.btnReminder1.Text = "Reminder"
         '
         'ToolStripSeparator4
@@ -2488,7 +2491,7 @@ Partial Class frmVoucherNew
         Me.Btn_SaveAttachment.Image = CType(resources.GetObject("Btn_SaveAttachment.Image"), System.Drawing.Image)
         Me.Btn_SaveAttachment.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Btn_SaveAttachment.Name = "Btn_SaveAttachment"
-        Me.Btn_SaveAttachment.Size = New System.Drawing.Size(117, 22)
+        Me.Btn_SaveAttachment.Size = New System.Drawing.Size(145, 24)
         Me.Btn_SaveAttachment.Text = "Save Attachment"
         '
         'btnAttachmentFile
@@ -2497,7 +2500,7 @@ Partial Class frmVoucherNew
         Me.btnAttachmentFile.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnAttachmentFile.Name = "btnAttachmentFile"
         Me.btnAttachmentFile.RightToLeftAutoMirrorImage = True
-        Me.btnAttachmentFile.Size = New System.Drawing.Size(90, 20)
+        Me.btnAttachmentFile.Size = New System.Drawing.Size(110, 24)
         Me.btnAttachmentFile.Text = "Attachment"
         '
         'btnDownload
@@ -2505,7 +2508,7 @@ Partial Class frmVoucherNew
         Me.btnDownload.Image = CType(resources.GetObject("btnDownload.Image"), System.Drawing.Image)
         Me.btnDownload.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnDownload.Name = "btnDownload"
-        Me.btnDownload.Size = New System.Drawing.Size(102, 20)
+        Me.btnDownload.Size = New System.Drawing.Size(129, 24)
         Me.btnDownload.Text = "Download File"
         '
         'ToolStripSeparator5
@@ -2518,7 +2521,7 @@ Partial Class frmVoucherNew
         Me.HelpToolStripButton1.Image = CType(resources.GetObject("HelpToolStripButton1.Image"), System.Drawing.Image)
         Me.HelpToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.HelpToolStripButton1.Name = "HelpToolStripButton1"
-        Me.HelpToolStripButton1.Size = New System.Drawing.Size(52, 20)
+        Me.HelpToolStripButton1.Size = New System.Drawing.Size(65, 24)
         Me.HelpToolStripButton1.Text = "He&lp"
         '
         'ToolStripButton2
@@ -2526,7 +2529,7 @@ Partial Class frmVoucherNew
         Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
         Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(94, 20)
+        Me.ToolStripButton2.Size = New System.Drawing.Size(117, 24)
         Me.ToolStripButton2.Text = "Preview Files"
         '
         'UltraTabPageControl3
@@ -2537,20 +2540,7 @@ Partial Class frmVoucherNew
         Me.UltraTabPageControl3.Controls.Add(Me.lblTemplateProgress)
         Me.UltraTabPageControl3.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl3.Name = "UltraTabPageControl3"
-        Me.UltraTabPageControl3.Size = New System.Drawing.Size(891, 613)
-        '
-        'CtrlGrdBar3
-        '
-        Me.CtrlGrdBar3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CtrlGrdBar3.BackColor = System.Drawing.SystemColors.Control
-        Me.CtrlGrdBar3.Email = Nothing
-        Me.CtrlGrdBar3.FormName = Me
-        Me.CtrlGrdBar3.Location = New System.Drawing.Point(859, -1)
-        Me.CtrlGrdBar3.MyGrid = Me.grdTemplates
-        Me.CtrlGrdBar3.Name = "CtrlGrdBar3"
-        Me.CtrlGrdBar3.Size = New System.Drawing.Size(33, 25)
-        Me.CtrlGrdBar3.TabIndex = 48
-        Me.CtrlGrdBar3.TabStop = False
+        Me.UltraTabPageControl3.Size = New System.Drawing.Size(831, 610)
         '
         'grdTemplates
         '
@@ -2565,7 +2555,7 @@ Partial Class frmVoucherNew
         Me.grdTemplates.Location = New System.Drawing.Point(0, 25)
         Me.grdTemplates.Name = "grdTemplates"
         Me.grdTemplates.RecordNavigator = True
-        Me.grdTemplates.Size = New System.Drawing.Size(891, 588)
+        Me.grdTemplates.Size = New System.Drawing.Size(831, 585)
         Me.grdTemplates.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.grdTemplates, "Saved Record Detail")
         Me.grdTemplates.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -2573,10 +2563,11 @@ Partial Class frmVoucherNew
         'ToolStrip3
         '
         Me.ToolStrip3.AutoSize = False
+        Me.ToolStrip3.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoadTemplate, Me.btnDeleteTemplate, Me.ToolStripSeparator10, Me.ToolStripButton12})
         Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
-        Me.ToolStrip3.Size = New System.Drawing.Size(891, 25)
+        Me.ToolStrip3.Size = New System.Drawing.Size(831, 25)
         Me.ToolStrip3.TabIndex = 44
         Me.ToolStrip3.Text = "ToolStrip3"
         '
@@ -2585,7 +2576,7 @@ Partial Class frmVoucherNew
         Me.btnLoadTemplate.Image = CType(resources.GetObject("btnLoadTemplate.Image"), System.Drawing.Image)
         Me.btnLoadTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnLoadTemplate.Name = "btnLoadTemplate"
-        Me.btnLoadTemplate.Size = New System.Drawing.Size(105, 22)
+        Me.btnLoadTemplate.Size = New System.Drawing.Size(132, 22)
         Me.btnLoadTemplate.Text = "&Load Template"
         '
         'btnDeleteTemplate
@@ -2593,7 +2584,7 @@ Partial Class frmVoucherNew
         Me.btnDeleteTemplate.Image = CType(resources.GetObject("btnDeleteTemplate.Image"), System.Drawing.Image)
         Me.btnDeleteTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnDeleteTemplate.Name = "btnDeleteTemplate"
-        Me.btnDeleteTemplate.Size = New System.Drawing.Size(60, 22)
+        Me.btnDeleteTemplate.Size = New System.Drawing.Size(77, 22)
         Me.btnDeleteTemplate.Text = "D&elete"
         '
         'ToolStripSeparator10
@@ -2606,7 +2597,7 @@ Partial Class frmVoucherNew
         Me.ToolStripButton12.Image = CType(resources.GetObject("ToolStripButton12.Image"), System.Drawing.Image)
         Me.ToolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton12.Name = "ToolStripButton12"
-        Me.ToolStripButton12.Size = New System.Drawing.Size(52, 22)
+        Me.ToolStripButton12.Size = New System.Drawing.Size(65, 22)
         Me.ToolStripButton12.Text = "He&lp"
         '
         'lblTemplateProgress
@@ -2631,7 +2622,7 @@ Partial Class frmVoucherNew
         Me.UltraTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.UltraTabControl1.Name = "UltraTabControl1"
         Me.UltraTabControl1.SharedControlsPage = Me.UltraTabSharedControlsPage1
-        Me.UltraTabControl1.Size = New System.Drawing.Size(893, 634)
+        Me.UltraTabControl1.Size = New System.Drawing.Size(833, 634)
         Me.UltraTabControl1.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel
         Me.UltraTabControl1.TabIndex = 0
         Me.UltraTabControl1.TabOrientation = Infragistics.Win.UltraWinTabs.TabOrientation.BottomLeft
@@ -2650,7 +2641,7 @@ Partial Class frmVoucherNew
         '
         Me.UltraTabSharedControlsPage1.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabSharedControlsPage1.Name = "UltraTabSharedControlsPage1"
-        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(891, 613)
+        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(831, 610)
         '
         'BackgroundWorker1
         '
@@ -2668,161 +2659,204 @@ Partial Class frmVoucherNew
         '
         'ContextMenuStrip1
         '
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.PrintSelectedVocuherToolStripMenuItem, Me.DebitCreditToolStripMenuItem, Me.PrintRecipitsToolStripMenuItem, Me.PrintPaymentsToolStripMenuItem, Me.PrintAttahmentVoucherToolStripMenuItem, Me.PrintUpdatedVoucherToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(206, 158)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(240, 172)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(205, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(239, 24)
         Me.ToolStripMenuItem1.Text = "Print Voucher"
         '
         'PrintSelectedVocuherToolStripMenuItem
         '
         Me.PrintSelectedVocuherToolStripMenuItem.Name = "PrintSelectedVocuherToolStripMenuItem"
-        Me.PrintSelectedVocuherToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintSelectedVocuherToolStripMenuItem.Size = New System.Drawing.Size(239, 24)
         Me.PrintSelectedVocuherToolStripMenuItem.Text = "Print Selected Vocuher"
         '
         'DebitCreditToolStripMenuItem
         '
         Me.DebitCreditToolStripMenuItem.Name = "DebitCreditToolStripMenuItem"
-        Me.DebitCreditToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.DebitCreditToolStripMenuItem.Size = New System.Drawing.Size(239, 24)
         Me.DebitCreditToolStripMenuItem.Text = "Debit/Credit  Notes"
         '
         'PrintRecipitsToolStripMenuItem
         '
         Me.PrintRecipitsToolStripMenuItem.Name = "PrintRecipitsToolStripMenuItem"
-        Me.PrintRecipitsToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintRecipitsToolStripMenuItem.Size = New System.Drawing.Size(239, 24)
         Me.PrintRecipitsToolStripMenuItem.Text = "Print receipt"
         '
         'PrintPaymentsToolStripMenuItem
         '
         Me.PrintPaymentsToolStripMenuItem.Name = "PrintPaymentsToolStripMenuItem"
-        Me.PrintPaymentsToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintPaymentsToolStripMenuItem.Size = New System.Drawing.Size(239, 24)
         Me.PrintPaymentsToolStripMenuItem.Text = "Print Payment"
         '
         'PrintAttahmentVoucherToolStripMenuItem
         '
         Me.PrintAttahmentVoucherToolStripMenuItem.Name = "PrintAttahmentVoucherToolStripMenuItem"
-        Me.PrintAttahmentVoucherToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintAttahmentVoucherToolStripMenuItem.Size = New System.Drawing.Size(239, 24)
         Me.PrintAttahmentVoucherToolStripMenuItem.Text = "Print Attahment Voucher"
         '
         'PrintUpdatedVoucherToolStripMenuItem
         '
         Me.PrintUpdatedVoucherToolStripMenuItem.Name = "PrintUpdatedVoucherToolStripMenuItem"
-        Me.PrintUpdatedVoucherToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrintUpdatedVoucherToolStripMenuItem.Size = New System.Drawing.Size(239, 24)
         Me.PrintUpdatedVoucherToolStripMenuItem.Text = "Print Updated Voucher"
         '
         'ContextMenuStrip2
         '
+        Me.ContextMenuStrip2.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PreviewToolStripMenuItem, Me.CashToolStripMenuItem1, Me.BankToolStripMenuItem1, Me.CustomerToolStripMenuItem1, Me.VendorToolStripMenuItem1, Me.ExpenseToolStripMenuItem1, Me.CostCenterToolStripMenuItem1})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(137, 158)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(155, 172)
         '
         'PreviewToolStripMenuItem
         '
         Me.PreviewToolStripMenuItem.Name = "PreviewToolStripMenuItem"
-        Me.PreviewToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.PreviewToolStripMenuItem.Size = New System.Drawing.Size(154, 24)
         Me.PreviewToolStripMenuItem.Text = "General"
         '
         'CashToolStripMenuItem1
         '
         Me.CashToolStripMenuItem1.Name = "CashToolStripMenuItem1"
-        Me.CashToolStripMenuItem1.Size = New System.Drawing.Size(136, 22)
+        Me.CashToolStripMenuItem1.Size = New System.Drawing.Size(154, 24)
         Me.CashToolStripMenuItem1.Text = "Cash"
         '
         'BankToolStripMenuItem1
         '
         Me.BankToolStripMenuItem1.Name = "BankToolStripMenuItem1"
-        Me.BankToolStripMenuItem1.Size = New System.Drawing.Size(136, 22)
+        Me.BankToolStripMenuItem1.Size = New System.Drawing.Size(154, 24)
         Me.BankToolStripMenuItem1.Text = "Bank"
         '
         'CustomerToolStripMenuItem1
         '
         Me.CustomerToolStripMenuItem1.Name = "CustomerToolStripMenuItem1"
-        Me.CustomerToolStripMenuItem1.Size = New System.Drawing.Size(136, 22)
+        Me.CustomerToolStripMenuItem1.Size = New System.Drawing.Size(154, 24)
         Me.CustomerToolStripMenuItem1.Text = "Customer"
         '
         'VendorToolStripMenuItem1
         '
         Me.VendorToolStripMenuItem1.Name = "VendorToolStripMenuItem1"
-        Me.VendorToolStripMenuItem1.Size = New System.Drawing.Size(136, 22)
+        Me.VendorToolStripMenuItem1.Size = New System.Drawing.Size(154, 24)
         Me.VendorToolStripMenuItem1.Text = "Vendor"
         '
         'ExpenseToolStripMenuItem1
         '
         Me.ExpenseToolStripMenuItem1.Name = "ExpenseToolStripMenuItem1"
-        Me.ExpenseToolStripMenuItem1.Size = New System.Drawing.Size(136, 22)
+        Me.ExpenseToolStripMenuItem1.Size = New System.Drawing.Size(154, 24)
         Me.ExpenseToolStripMenuItem1.Text = "Expense"
         '
         'CostCenterToolStripMenuItem1
         '
         Me.CostCenterToolStripMenuItem1.Name = "CostCenterToolStripMenuItem1"
-        Me.CostCenterToolStripMenuItem1.Size = New System.Drawing.Size(136, 22)
+        Me.CostCenterToolStripMenuItem1.Size = New System.Drawing.Size(154, 24)
         Me.CostCenterToolStripMenuItem1.Text = "Cost Center"
         '
         'ContextMenuStrip3
         '
+        Me.ContextMenuStrip3.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaveAsTemplateToolStripMenuItem1})
         Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(165, 26)
+        Me.ContextMenuStrip3.Size = New System.Drawing.Size(194, 28)
         '
         'SaveAsTemplateToolStripMenuItem1
         '
         Me.SaveAsTemplateToolStripMenuItem1.Name = "SaveAsTemplateToolStripMenuItem1"
-        Me.SaveAsTemplateToolStripMenuItem1.Size = New System.Drawing.Size(164, 22)
+        Me.SaveAsTemplateToolStripMenuItem1.Size = New System.Drawing.Size(193, 24)
         Me.SaveAsTemplateToolStripMenuItem1.Text = "Save as Template"
         '
         'ContextMenuStrip4
         '
+        Me.ContextMenuStrip4.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChartsOfAccountToolStripMenuItem, Me.CashFlowStatementToolStripMenuItem, Me.StanderedCashFlowStatementToolStripMenuItem, Me.PayablesToolStripMenuItem1, Me.ReceiveablesToolStripMenuItem, Me.BalanceSheetToolStripMenuItem})
         Me.ContextMenuStrip4.Name = "ContextMenuStrip4"
-        Me.ContextMenuStrip4.Size = New System.Drawing.Size(242, 136)
+        Me.ContextMenuStrip4.Size = New System.Drawing.Size(289, 148)
         '
         'ChartsOfAccountToolStripMenuItem
         '
         Me.ChartsOfAccountToolStripMenuItem.Name = "ChartsOfAccountToolStripMenuItem"
-        Me.ChartsOfAccountToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.ChartsOfAccountToolStripMenuItem.Size = New System.Drawing.Size(288, 24)
         Me.ChartsOfAccountToolStripMenuItem.Text = "Charts of Account"
         '
         'CashFlowStatementToolStripMenuItem
         '
         Me.CashFlowStatementToolStripMenuItem.Name = "CashFlowStatementToolStripMenuItem"
-        Me.CashFlowStatementToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.CashFlowStatementToolStripMenuItem.Size = New System.Drawing.Size(288, 24)
         Me.CashFlowStatementToolStripMenuItem.Text = "Cash Flow Statement"
         '
         'StanderedCashFlowStatementToolStripMenuItem
         '
         Me.StanderedCashFlowStatementToolStripMenuItem.Name = "StanderedCashFlowStatementToolStripMenuItem"
-        Me.StanderedCashFlowStatementToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.StanderedCashFlowStatementToolStripMenuItem.Size = New System.Drawing.Size(288, 24)
         Me.StanderedCashFlowStatementToolStripMenuItem.Text = "Standered Cash Flow Statement"
         '
         'PayablesToolStripMenuItem1
         '
         Me.PayablesToolStripMenuItem1.Name = "PayablesToolStripMenuItem1"
-        Me.PayablesToolStripMenuItem1.Size = New System.Drawing.Size(241, 22)
+        Me.PayablesToolStripMenuItem1.Size = New System.Drawing.Size(288, 24)
         Me.PayablesToolStripMenuItem1.Text = "Payables"
         '
         'ReceiveablesToolStripMenuItem
         '
         Me.ReceiveablesToolStripMenuItem.Name = "ReceiveablesToolStripMenuItem"
-        Me.ReceiveablesToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.ReceiveablesToolStripMenuItem.Size = New System.Drawing.Size(288, 24)
         Me.ReceiveablesToolStripMenuItem.Text = "Receiveables"
         '
         'BalanceSheetToolStripMenuItem
         '
         Me.BalanceSheetToolStripMenuItem.Name = "BalanceSheetToolStripMenuItem"
-        Me.BalanceSheetToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.BalanceSheetToolStripMenuItem.Size = New System.Drawing.Size(288, 24)
         Me.BalanceSheetToolStripMenuItem.Text = "Balance Sheet"
+        '
+        'CtrlGrdBar1
+        '
+        Me.CtrlGrdBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CtrlGrdBar1.BackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.CtrlGrdBar1.Email = Nothing
+        Me.CtrlGrdBar1.FormName = Me
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(797, 0)
+        Me.CtrlGrdBar1.MyGrid = Me.grd
+        Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
+        Me.CtrlGrdBar1.Size = New System.Drawing.Size(33, 25)
+        Me.CtrlGrdBar1.TabIndex = 46
+        Me.CtrlGrdBar1.TabStop = False
+        '
+        'CtrlGrdBar2
+        '
+        Me.CtrlGrdBar2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CtrlGrdBar2.BackColor = System.Drawing.SystemColors.Control
+        Me.CtrlGrdBar2.Email = Nothing
+        Me.CtrlGrdBar2.FormName = Me
+        Me.CtrlGrdBar2.Location = New System.Drawing.Point(798, -1)
+        Me.CtrlGrdBar2.MyGrid = Me.grdSaved
+        Me.CtrlGrdBar2.Name = "CtrlGrdBar2"
+        Me.CtrlGrdBar2.Size = New System.Drawing.Size(33, 25)
+        Me.CtrlGrdBar2.TabIndex = 47
+        Me.CtrlGrdBar2.TabStop = False
+        '
+        'CtrlGrdBar3
+        '
+        Me.CtrlGrdBar3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CtrlGrdBar3.BackColor = System.Drawing.SystemColors.Control
+        Me.CtrlGrdBar3.Email = Nothing
+        Me.CtrlGrdBar3.FormName = Me
+        Me.CtrlGrdBar3.Location = New System.Drawing.Point(799, -1)
+        Me.CtrlGrdBar3.MyGrid = Me.grdTemplates
+        Me.CtrlGrdBar3.Name = "CtrlGrdBar3"
+        Me.CtrlGrdBar3.Size = New System.Drawing.Size(33, 25)
+        Me.CtrlGrdBar3.TabIndex = 48
+        Me.CtrlGrdBar3.TabStop = False
         '
         'frmVoucherNew
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(893, 634)
+        Me.ClientSize = New System.Drawing.Size(833, 634)
         Me.Controls.Add(Me.UltraTabControl1)
         Me.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -3103,4 +3137,6 @@ Partial Class frmVoucherNew
     Friend WithEvents lblAdvanceRequest As System.Windows.Forms.Label
     Friend WithEvents cmbAdvanceRequest As System.Windows.Forms.ComboBox
     Friend WithEvents CtrlGrdBar3 As SimpleAccounts.CtrlGrdBar
+    Friend WithEvents cmbsalesorderId As System.Windows.Forms.ComboBox
+    Friend WithEvents Label12 As System.Windows.Forms.Label
 End Class

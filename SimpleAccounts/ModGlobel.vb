@@ -89,7 +89,7 @@ Module ModGlobel
     Public str_Company3 As String = "V-ERP (Remms-UAE)"
     Public str_Company4 As String = "V-ERP (KSA)"
     Public str_Company5 As String = "V-ERP (MY)"
-    Public companycountry As String
+    Public companycountry As String = ""
     Public companyinitials As String
     Public CompanyPrefix As String = ""
     'Rafay : Task End

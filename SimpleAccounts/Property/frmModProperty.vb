@@ -632,9 +632,11 @@ Public Class frmModProperty
 
 
         ElseIf MyForm = "frmStockDispatch" Then
-            FormName = frmStockDispatch
+            'Stock Dispatch commented for rebuild
+            'FormName = frmStockDispatch
             If Tags.Length > 0 Then
-                frmStockDispatch.Get_All(Tags)
+                'Stock Dispatch commented for rebuild
+                'frmStockDispatch.Get_All(Tags)
             End If
 
 
@@ -706,7 +708,8 @@ Public Class frmModProperty
 
 
         ElseIf MyForm = "frmStockDispatch" Then
-            FormName = frmStockDispatch
+            'Stock Dispatch commented for rebuild
+            'FormName = frmStockDispatch
 
 
         ElseIf MyForm = "frmStockReceive" Then
@@ -1251,7 +1254,8 @@ Public Class frmModProperty
             FormName = frmSMSConfig
 
         ElseIf MyForm = "frmDefServices" Then
-            FormName = frmDefServices
+            'Stock Dispatch commented for rebuild
+            'FormName = frmDefServices
 
 
         ElseIf MyForm = "FrmLocation" Then
@@ -3756,10 +3760,12 @@ Public Class frmModProperty
             FormName = frmMaterialDecomposition
 
         ElseIf FormName = "frmGrdProductionPlaning" Then
-            FormName = frmStockDispatch
+            'Stock Dispatch commented for rebuild
+            'FormName = frmStockDispatch
             enm = EnumForms.frmStockDispatch
             If Tags.Length > 0 Then
-                frmStockDispatch.Get_All(Tags)
+                'Stock Dispatch commented for rebuild
+                'frmStockDispatch.Get_All(Tags)
                 'Tags = String.Empty Comment Against 18-Feb-2014 Task:2429 Imran Ali 1-error in payable/receivable tracing
             End If
 

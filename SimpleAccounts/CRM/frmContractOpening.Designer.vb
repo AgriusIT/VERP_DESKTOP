@@ -386,7 +386,7 @@ Partial Class frmContractOpening
         Me.rdoMannualAmount.Name = "rdoMannualAmount"
         Me.rdoMannualAmount.Size = New System.Drawing.Size(127, 21)
         Me.rdoMannualAmount.TabIndex = 2
-        Me.rdoMannualAmount.Text = "Munnal Amount"
+        Me.rdoMannualAmount.Text = "Manual Amount"
         Me.rdoMannualAmount.UseVisualStyleBackColor = True
         '
         'rdoDifferentAmount

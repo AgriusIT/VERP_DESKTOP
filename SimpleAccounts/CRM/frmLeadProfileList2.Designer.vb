@@ -43,9 +43,8 @@ Partial Class frmLeadProfileList2
         Me.pnlHeader.Controls.Add(Me.btnAddDock)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
-        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1061, 47)
+        Me.pnlHeader.Size = New System.Drawing.Size(796, 38)
         Me.pnlHeader.TabIndex = 13
         '
         'btnLoadAll
@@ -54,10 +53,9 @@ Partial Class frmLeadProfileList2
         Me.btnLoadAll.BackColor = System.Drawing.Color.White
         Me.btnLoadAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnLoadAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnLoadAll.Location = New System.Drawing.Point(872, 7)
-        Me.btnLoadAll.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnLoadAll.Location = New System.Drawing.Point(654, 6)
         Me.btnLoadAll.Name = "btnLoadAll"
-        Me.btnLoadAll.Size = New System.Drawing.Size(76, 32)
+        Me.btnLoadAll.Size = New System.Drawing.Size(57, 26)
         Me.btnLoadAll.TabIndex = 18
         Me.btnLoadAll.Text = "Load All"
         Me.btnLoadAll.UseVisualStyleBackColor = False
@@ -68,11 +66,10 @@ Partial Class frmLeadProfileList2
         Me.CtrlGrdBar1.BackColor = System.Drawing.Color.Transparent
         Me.CtrlGrdBar1.Email = Nothing
         Me.CtrlGrdBar1.FormName = Me
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(959, 7)
-        Me.CtrlGrdBar1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(719, 6)
         Me.CtrlGrdBar1.MyGrid = Me.grdLeadProfileList
         Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
-        Me.CtrlGrdBar1.Size = New System.Drawing.Size(51, 31)
+        Me.CtrlGrdBar1.Size = New System.Drawing.Size(38, 25)
         Me.CtrlGrdBar1.TabIndex = 17
         Me.CtrlGrdBar1.TabStop = False
         '
@@ -86,12 +83,11 @@ Partial Class frmLeadProfileList2
         Me.grdLeadProfileList.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown
         Me.grdLeadProfileList.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges
         Me.grdLeadProfileList.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
-        Me.grdLeadProfileList.Location = New System.Drawing.Point(0, 47)
-        Me.grdLeadProfileList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grdLeadProfileList.Location = New System.Drawing.Point(0, 38)
         Me.grdLeadProfileList.Name = "grdLeadProfileList"
         Me.grdLeadProfileList.RecordNavigator = True
         Me.grdLeadProfileList.ScrollBars = Janus.Windows.GridEX.ScrollBars.Both
-        Me.grdLeadProfileList.Size = New System.Drawing.Size(1061, 566)
+        Me.grdLeadProfileList.Size = New System.Drawing.Size(796, 460)
         Me.grdLeadProfileList.TabIndex = 14
         Me.grdLeadProfileList.TreeLineColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.grdLeadProfileList.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005
@@ -102,10 +98,9 @@ Partial Class frmLeadProfileList2
         Me.lblHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(212, Byte), Integer), CType(CType(232, Byte), Integer))
         Me.lblHeader.Font = New System.Drawing.Font("Times New Roman", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeader.ForeColor = System.Drawing.Color.Black
-        Me.lblHeader.Location = New System.Drawing.Point(12, 9)
-        Me.lblHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblHeader.Location = New System.Drawing.Point(9, 7)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(160, 31)
+        Me.lblHeader.Size = New System.Drawing.Size(129, 25)
         Me.lblHeader.TabIndex = 7
         Me.lblHeader.Text = "Lead Profile"
         '
@@ -116,23 +111,21 @@ Partial Class frmLeadProfileList2
         Me.btnAddDock.BackgroundImage = CType(resources.GetObject("btnAddDock.BackgroundImage"), System.Drawing.Image)
         Me.btnAddDock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnAddDock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddDock.Location = New System.Drawing.Point(1017, 10)
-        Me.btnAddDock.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAddDock.Location = New System.Drawing.Point(763, 8)
         Me.btnAddDock.Name = "btnAddDock"
-        Me.btnAddDock.Size = New System.Drawing.Size(27, 25)
+        Me.btnAddDock.Size = New System.Drawing.Size(20, 20)
         Me.btnAddDock.TabIndex = 6
         Me.btnAddDock.UseVisualStyleBackColor = False
         '
         'frmLeadProfileList2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1061, 613)
+        Me.ClientSize = New System.Drawing.Size(796, 498)
         Me.Controls.Add(Me.grdLeadProfileList)
         Me.Controls.Add(Me.pnlHeader)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmLeadProfileList2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Lead Profile List"

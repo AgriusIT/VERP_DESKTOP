@@ -1,5 +1,6 @@
 Public Class Article
     Private _ArticleId As Integer
+    Private _ArticleDetailIdforAlternative As Integer
     Private _ArticleCode As String
     Private _ArticleDescription As String
     Private _ArticleRemarks As String
@@ -209,6 +210,14 @@ Public Class Article
         End Get
         Set(ByVal value As Integer)
             Me._ArticleGroupID = value
+        End Set
+    End Property
+    Public Property ArticleDetailIdforAlternative() As Integer
+        Get
+            Return Me._ArticleDetailIdforAlternative
+        End Get
+        Set(ByVal value As Integer)
+            Me._ArticleDetailIdforAlternative = value
         End Set
     End Property
     ''Start TFS1799

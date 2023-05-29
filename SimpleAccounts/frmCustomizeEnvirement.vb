@@ -1337,10 +1337,12 @@ Public Class frmCustomizeEnvirement
             ControlName = frmReleaseUpdate
 
         ElseIf key = "Stock Dispatch" Then
-            ControlName = frmStockDispatch
+            'Stock Dispatch commented for rebuild
+            'ControlName = frmStockDispatch
             enm = EnumForms.frmStockDispatch
             If Tags.Length > 0 Then
-                frmStockDispatch.Get_All(Tags)
+                'Stock Dispatch commented for rebuild
+                'frmStockDispatch.Get_All(Tags)
                 'Tags = String.Empty Comment Against 18-Feb-2014 Task:2429 Imran Ali 1-error in payable/receivable tracing
             End If
 
@@ -1974,8 +1976,9 @@ Public Class frmCustomizeEnvirement
             Exit Sub
             'End Task 2624
         ElseIf key = "TaxRate" Then
-            ApplyStyleSheet(frmDefServices)
-            frmDefServices.ShowDialog()
+            'Stock Dispatch commented for rebuild
+            'ApplyStyleSheet(frmDefServices)
+            'frmDefServices.ShowDialog()
             Exit Sub
             'Task:2725 Add new report product summary.
         ElseIf key = "frmGrdRptProductCustomerWiseReport" Then

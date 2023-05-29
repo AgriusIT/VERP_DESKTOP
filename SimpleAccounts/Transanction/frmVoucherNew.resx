@@ -1600,7 +1600,7 @@
   <data name="btnSearchEdit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJHSURBVDhPxZBdSNNhFMb/F110ZZEVhVBgeeHNICiiuggp
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJHSURBVDhPxZBdSNNhFMb/F110ZZEVhVBgeeHNICiiuggp
         olAUyyxI0oSaH1QYC3N+tKnp5ubm1JUua5uuqdNKMwr7kApFItTUkWZqVhSVYmao5Nevvy7UoYR3HXh4
         4XCe33nOKyy3lAY7l9RWMo0O/raWXxEyo5spVYTNvOGyfIRPfW+ptOkXqaPl6T83hcRmExSdgzAz3NVm
         YWyoYla/B+1M9JtxWLPpaH22JORIjI6gKAMB0jyEimIdo4OlbuaprwVMOOMovammpDADc34qppwUrmnl
@@ -1616,7 +1616,7 @@
   <data name="btnSearchPrint.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIpSURBVDhPtZL/T1JRGMb5p1itrVZbbRpqZbawnBENV1I0
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIpSURBVDhPtZL/T1JRGMb5p1itrVZbbRpqZbawnBENV1I0
         jGlByTSyJTXJwq2oKZQb1KAv6JCYWSxvBrkkZUq4CeQEiRABFeLL072Xa0zRra31bO8v57zP5znnPYf1
         X+TxhWF6O7VtGYcnwbSWijKPOLzYrPSvLPwLS3huGUMlT7o9wGD9grVUBj+icdid03S9tDmgNxNwTgVQ
         J+rA8XNtWwM+uuZATMwxmQVRycuJFNyzIRitDlScugKzjSgFRGJJaIwEsrk8AsHIhnSL/Ssck37UNipQ
@@ -1631,7 +1631,7 @@
   <data name="btnUpdatedVoucher.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABcAAAAWCAYAAAArdgcFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACbSURBVEhL3Y6BDoAgCET5dD/NPzOPea6RocxaW7TXBLlX
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACbSURBVEhL3Y6BDoAgCET5dD/NPzOPea6RocxaW7TXBLlX
         Ul4qESkqzzk/SkrpY7kuTBjlp3IGvdqW65KBc9Qo68oZ9GpbrguG0Rx1zm/9Oe4hsPvsb+U6nGDFYCrH
         gOcV+KFleQRIQnKeLZLqcqX3TW7FIC5vT+8RbizLI4T+HDDk4YkB7y5yoBcLjLLAle/yEzmap1F5e72A
         lAPRFUPXKeENgwAAAABJRU5ErkJggg==
@@ -1640,7 +1640,7 @@
   <data name="btnSearchDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGDSURBVDhPrZFNSwJRGIX9NYGbFoUlFElY1EJQKEYhCJsi
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGDSURBVDhPrZFNSwJRGIX9NYGbFoUlFElY1EJQKEYhCJsi
         LaVsERnRF5iCaSZJO1toCDVGFkgoFpWQWWRR2aIvUxm1BKN1wSnHCFw4TOCzue+9nPNw4eVVnav4Izzb
         QfxeGZ5TWaxT/rK3irzmC7CsusvC1G4IkbNLboIiDieF4GGUKeTeClDpppF8eeEu2PIfwfrzizSdw3Hk
         EnKlFpkMzV2wH77AosOFTV8A+vkl9CiHuJeLJNNZjM8tYWB0FkTvMAwmy/8ERTR6CwjlGAi1Ccence6C
@@ -1653,7 +1653,7 @@
   <data name="ToolStripSplitButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
         YKxG6WBogkMZKgPNCEVJFBGdGETEvgwyO9DJE5syZw3PIlPEE9pgBCLZ5XvdMB8Ew8gXbl54nuf63dd9
         0OGSnwCahxbPRNPAPMw9Xpg6ZmF46kZZ0xSKzJPIrhpDWsVnpBhGkKx3nAX8Pv7z1zg8OoY/cITdn4fw
         bf/C0kYAN3Ma/w3gWfZL5kzTKBxjWyK2DftwI9tyMYCZKXbNHaD91bLYJrDXsYbrWfUKwJrPE9M2M1Oc
@@ -1668,7 +1668,7 @@
   <data name="btnSearchLoadAll.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGbSURBVEhL3ZS9SgNBFEbzHj6AsbbyBcRC8AHsFCx8AEGs
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGbSURBVEhL3ZS9SgNBFEbzHj6AsbbyBcRC8AHsFCx8AEGs
         tE6hjU3ARhFBU22poCQIgmg6wcWAEoJNQEhjJD8jZ8k3zGZ3smuwysAhZLL7nXvvTrYwG+vs+sWs7gVe
         Nko3ptlsRYxu+dsiYLnc9TK3VjLVu+r0AqokqHjQSgXB4k7VUty88HJYqSe7zRLkBfnC+nGyWwSP7z+p
         1N66XirPnQQIgiAwYRjGBf2BsXS+h1Gr8NHuxfYF++NCCsoloBL2AIn2Cb3c+opR3m1acgvcY8sJY4+q
@@ -1681,7 +1681,7 @@
   <data name="btnSearchDocument.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAeMSURBVFhHzZd7UFTXHcdJQlr7nE5Mxr7+6GTstOWPTJt0
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAeMSURBVFhHzZd7UFTXHcdJQlr7nE5Mxr7+6GTstOWPTJt0
         MnnaOJlRk6my0WoTagfZu6wRweg4kwIroIjKWx5CREiJ8n4IKiiwvJFIURFjRBszyhBcebm8lgUWFr79
         /u5eEjuDGNtmpr+Zz/zOPfec3/d3f3vuuWfd/q9t/fr1j72lKKvW6PWpOh+fizq9cptA9bxmf5rcl3Ha
         lP+defr4KCK0wd+ETaaj8Ittxo7Uy/jbR93YnnwJfjFN7M+E3PfUKz0yXpv639l6b+8fr9mknPtzwC5s
@@ -1719,7 +1719,7 @@
   <data name="btnReminder1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAL7SURBVDhPjZNrSJNhGIY/d7B0VtNKkoioH0bYGRSLkKwf
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAL7SURBVDhPjZNrSJNhGIY/d7B0VtNKkoioH0bYGRSLkKwf
         naQTizIPUS4NbZYQOTdtSYTYaS5saSdiWWqnpbnl9n1uhQZaTdGRZqY5p+Wmm5nNU8Xd21o/woQueP7d
         z/2c3pe6ncreqUrxMtw5yjI/TecwupPsTr3E6z4t5ayl/odfyS3qXTCe9kVv9X58bUmD03QQrwuCQWey
         82mxd7BH+m+K01gNxmwfOBuy4Go/i7GeYoxYlfjaHIveF3EwnuJBn8mSeuQTeZrBqepiEvH5VQKJeAyZ
@@ -1738,7 +1738,7 @@
   <data name="Btn_SaveAttachment.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIySURBVDhPrZLfS5NRGMfff6H7boIuuq2pMZyL1eAt11CW
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIySURBVDhPrZLfS5NRGMfff6H7boIuuq2pMZyL1eAt11CW
         DcOKsB9vpFmaLtNExco0av6CbIVLJ61Wk3BSkT/AFCkRZSpZmrmiJQ41xSaCwdfznL15XEUX0Reem5f3
         8znnec4j/Zc8fxYGla91CS3eRTx0z6OpMYS7jmnU1X6B/VYA18snUVoyjsKCt8jLHcH5c36ouCQR2NUJ
         1Nas4G9ZXlmFKbULh1Kf8lJxSfI+WeCCyopv6q+/h+DQ/DJ2WV5Ao1FgPegRAveDOS4oLfmq/h6dn/DH
@@ -1754,7 +1754,7 @@
   <data name="btnAttachmentFile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAmUSURBVFhHtZcJWFVlGsedUKewabFlQsUms0YfLbJs8bG6
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAmUSURBVFhHtZcJWFVlGsedUKewabFlQsUms0YfLbJs8bG6
         mD6F7YrNpGkuRGWZW2apTXfSIcSNdDI1c0kxtwRTDBHxAokgu2yXe73Chcu+X+7lLufcc/7z/+7FCbVZ
         rJn34X0OPOd83+9d/t97Dj2u1voODrnhlgDNkCem6z94cpb+6FNvlWXf88jCybzV2/fE/8MeerPXoNFr
         Hn9gYsr7j0wxJIx6/XzJtGXFjje0WjVkjhlBT0cf5FMBvod/tWl6Xhc4rl/AffOfCHql+N2Rr5Qe1szS
@@ -1801,7 +1801,7 @@
   <data name="btnDownload.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEJSURBVDhPzZCxaoRAFEWff7Ft/iDkC7ZMkyofkC6xEAXR
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEJSURBVDhPzZCxaoRAFEWff7Ft/iDkC7ZMkyofkC6xEAXR
         gCgBOxtT7h9svYVlipRpJGBjBIMY0BTaJJD+xuc4uxoS3N0qBw68mXfvCNL/ZBEp+M1hPQ+HH74Im08h
         zwc/sP4grBohz7MPdIGIQ9L7lnBXCXke7zqjobaDF7fvNPHmVfjznrNDbQovrt5o62UqHN/9WZZw4Lz7
         Krt8VnrlebYs4eDZC+H0Senlee+yhAsnj8KDyxIu7lu+ONIt13EcI0kSZFmGoihQVRXatkXTNKjrGmVZ
@@ -1812,7 +1812,7 @@
   <data name="HelpToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIVSURBVDhPtVJNaxNRFM1PyE+Yn1AUXLjK0uWgDWQZwUUX
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIVSURBVDhPtVJNaxNRFM1PyE+Yn1AUXLjK0uWgDWQZwUUX
         KsGFBEEcCkIwqBEpGiydsSo2kupsasdo7Yi2toh0sFZjG5JpiZo20/TpVOmH5njvm8BYahEXHji8+968
         c+55l4n8F0zM+rhVWkHmdg29A/PoK1Yw8uIjOp/3xpvqBgrjLeilZbjNLXxZ34bwt6jexMVCGRndQenl
         0p+NWHzPXoP3rQ3bAbQhQM0E5Np2BKprbZzrm8TIs8puE+68+r0NwwZiacCwALEBCVcAqet8JlAjk1PZ
@@ -1827,7 +1827,7 @@
   <data name="ToolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAWESURBVFhH7VZbTJtlGMbNMZ06dSZGzUKmcUbjaS56YTQm
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAWESURBVFhH7VZbTJtlGMbNMZ06dSZGzUKmcUbjaS56YTQm
         HkK80ER0u9JoNF54ozHGQxaT/bP9z21pCxRaWsqx0PUELR2lZYxTx2DQwwBlHDJBhszFKHcbsuz1fT/+
         LuFqttuV2ZM8Sfv+3/d+7/t8z/f9f9Et/G/Al/MPy6qgSpLujKxyfyIviKrQLapiqTbk5kCSpD2yzMck
         lW/iOG4Hi6n8QdUor/pDXhg81Qdj2REYy4xAvLcLcMxVUeF/YJNvFABwm6TqB8PRIDjddlAU4T1J4T+j
@@ -1860,7 +1860,7 @@
   <data name="btnLoadTemplate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJHSURBVDhPxZBdSNNhFMb/F110ZZEVhVBgeeHNICiiuggp
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJHSURBVDhPxZBdSNNhFMb/F110ZZEVhVBgeeHNICiiuggp
         olAUyyxI0oSaH1QYC3N+tKnp5ubm1JUua5uuqdNKMwr7kApFItTUkWZqVhSVYmao5Nevvy7UoYR3HXh4
         4XCe33nOKyy3lAY7l9RWMo0O/raWXxEyo5spVYTNvOGyfIRPfW+ptOkXqaPl6T83hcRmExSdgzAz3NVm
         YWyoYla/B+1M9JtxWLPpaH22JORIjI6gKAMB0jyEimIdo4OlbuaprwVMOOMovammpDADc34qppwUrmnl
@@ -1876,7 +1876,7 @@
   <data name="btnDeleteTemplate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGDSURBVDhPrZFNSwJRGIX9NYGbFoUlFElY1EJQKEYhCJsi
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGDSURBVDhPrZFNSwJRGIX9NYGbFoUlFElY1EJQKEYhCJsi
         LaVsERnRF5iCaSZJO1toCDVGFkgoFpWQWWRR2aIvUxm1BKN1wSnHCFw4TOCzue+9nPNw4eVVnav4Izzb
         QfxeGZ5TWaxT/rK3irzmC7CsusvC1G4IkbNLboIiDieF4GGUKeTeClDpppF8eeEu2PIfwfrzizSdw3Hk
         EnKlFpkMzV2wH77AosOFTV8A+vkl9CiHuJeLJNNZjM8tYWB0FkTvMAwmy/8ERTR6CwjlGAi1Ccence6C
@@ -1889,7 +1889,7 @@
   <data name="ToolStripButton12.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIVSURBVDhPtVJNaxNRFM1PyE+Yn1AUXLjK0uWgDWQZwUUX
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIVSURBVDhPtVJNaxNRFM1PyE+Yn1AUXLjK0uWgDWQZwUUX
         KsGFBEEcCkIwqBEpGiydsSo2kupsasdo7Yi2toh0sFZjG5JpiZo20/TpVOmH5njvm8BYahEXHji8+968
         c+55l4n8F0zM+rhVWkHmdg29A/PoK1Yw8uIjOp/3xpvqBgrjLeilZbjNLXxZ34bwt6jexMVCGRndQenl
         0p+NWHzPXoP3rQ3bAbQhQM0E5Np2BKprbZzrm8TIs8puE+68+r0NwwZiacCwALEBCVcAqet8JlAjk1PZ
@@ -1902,7 +1902,7 @@
 </value>
   </data>
   <data name="grd_DesignTimeLayout.LayoutString" xml:space="preserve">
-    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="Head"&gt;&lt;Caption&gt;Head&lt;/Caption&gt;&lt;DataMember&gt;Head&lt;/DataMember&gt;&lt;Key&gt;Head&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;112&lt;/Width&gt;&lt;/Column0&gt;&lt;Column1 ID="Account"&gt;&lt;Caption&gt;Account&lt;/Caption&gt;&lt;DataMember&gt;Account&lt;/DataMember&gt;&lt;Key&gt;Account&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;117&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="AccountCode"&gt;&lt;Caption&gt;Account Code&lt;/Caption&gt;&lt;DataMember&gt;AccountCode&lt;/DataMember&gt;&lt;Key&gt;AccountCode&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;/Column2&gt;&lt;Column3 ID="Description"&gt;&lt;Caption&gt;Description&lt;/Caption&gt;&lt;DataMember&gt;Description&lt;/DataMember&gt;&lt;Key&gt;Description&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;144&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="CostCenterId"&gt;&lt;Caption&gt;Cost Center&lt;/Caption&gt;&lt;DataMember&gt;CostCenterId&lt;/DataMember&gt;&lt;EditType&gt;Combo&lt;/EditType&gt;&lt;Key&gt;CostCenterId&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Width&gt;106&lt;/Width&gt;&lt;DefaultValue&gt;0&lt;/DefaultValue&gt;&lt;DefaultValueType&gt;System.UInt32&lt;/DefaultValueType&gt;&lt;HasValueList&gt;True&lt;/HasValueList&gt;&lt;/Column4&gt;&lt;Column5 ID="Cheque_No"&gt;&lt;Caption&gt;Cheque No&lt;/Caption&gt;&lt;DataMember&gt;Cheque_No&lt;/DataMember&gt;&lt;Key&gt;Cheque_No&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;Width&gt;110&lt;/Width&gt;&lt;/Column5&gt;&lt;Column6 ID="Cheque_Date"&gt;&lt;Caption&gt;Cheque Date&lt;/Caption&gt;&lt;DataMember&gt;Cheque_Date&lt;/DataMember&gt;&lt;EditType&gt;CalendarDropDown&lt;/EditType&gt;&lt;FormatString&gt;dd/MMM/yyyy&lt;/FormatString&gt;&lt;Key&gt;Cheque_Date&lt;/Key&gt;&lt;Position&gt;6&lt;/Position&gt;&lt;Width&gt;104&lt;/Width&gt;&lt;/Column6&gt;&lt;Column7 ID="CurrencyId"&gt;&lt;Caption&gt;CurrencyId&lt;/Caption&gt;&lt;DataMember&gt;CurrencyId&lt;/DataMember&gt;&lt;Key&gt;CurrencyId&lt;/Key&gt;&lt;Position&gt;7&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column7&gt;&lt;Column8 ID="CurrencyDr"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Currency Dr&lt;/Caption&gt;&lt;DataMember&gt;CurrencyDr&lt;/DataMember&gt;&lt;FormatString&gt;N&lt;/FormatString&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;CurrencyDr&lt;/Key&gt;&lt;Position&gt;8&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;101&lt;/Width&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;CellStyle&gt;&lt;BackColor&gt;255, 255, 192&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column8&gt;&lt;Column9 ID="CurrencyCr"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Currency Cr&lt;/Caption&gt;&lt;DataMember&gt;CurrencyCr&lt;/DataMember&gt;&lt;DefaultGroupPrefix&gt;CurrencyCr:&lt;/DefaultGroupPrefix&gt;&lt;FormatString&gt;N&lt;/FormatString&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;CurrencyCr&lt;/Key&gt;&lt;Position&gt;9&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;97&lt;/Width&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;CellStyle&gt;&lt;BackColor&gt;255, 255, 192&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column9&gt;&lt;Column10 ID="CurrencyRate"&gt;&lt;Caption&gt;CurrencyRate&lt;/Caption&gt;&lt;DataMember&gt;CurrencyRate&lt;/DataMember&gt;&lt;Key&gt;CurrencyRate&lt;/Key&gt;&lt;Position&gt;10&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column10&gt;&lt;Column11 ID="BaseCurrencyId"&gt;&lt;Caption&gt;BaseCurrencyId&lt;/Caption&gt;&lt;DataMember&gt;BaseCurrencyId&lt;/DataMember&gt;&lt;Key&gt;BaseCurrencyId&lt;/Key&gt;&lt;Position&gt;11&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column11&gt;&lt;Column12 ID="BaseCurrencyRate"&gt;&lt;Caption&gt;BaseCurrencyRate&lt;/Caption&gt;&lt;DataMember&gt;BaseCurrencyRate&lt;/DataMember&gt;&lt;Key&gt;BaseCurrencyRate&lt;/Key&gt;&lt;Position&gt;12&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column12&gt;&lt;Column13 ID="Debit"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Debit&lt;/Caption&gt;&lt;DataMember&gt;Debit&lt;/DataMember&gt;&lt;FormatString&gt;N&lt;/FormatString&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Debit&lt;/Key&gt;&lt;Position&gt;13&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;95&lt;/Width&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column13&gt;&lt;Column14 ID="Credit"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Credit&lt;/Caption&gt;&lt;DataMember&gt;Credit&lt;/DataMember&gt;&lt;FormatString&gt;N&lt;/FormatString&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Credit&lt;/Key&gt;&lt;Position&gt;14&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;92&lt;/Width&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column14&gt;&lt;Column15 ID="AccountId"&gt;&lt;Caption&gt;CategoryId&lt;/Caption&gt;&lt;DataMember&gt;AccountId&lt;/DataMember&gt;&lt;Key&gt;AccountId&lt;/Key&gt;&lt;Position&gt;15&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column15&gt;&lt;Column16 ID="Type"&gt;&lt;Caption&gt;Type&lt;/Caption&gt;&lt;DataMember&gt;Type&lt;/DataMember&gt;&lt;Key&gt;Type&lt;/Key&gt;&lt;Position&gt;16&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column16&gt;&lt;Column17 ID="VoucherDetailId"&gt;&lt;Caption&gt;VoucherDetailId&lt;/Caption&gt;&lt;DataMember&gt;VoucherDetailId&lt;/DataMember&gt;&lt;Key&gt;VoucherDetailId&lt;/Key&gt;&lt;Position&gt;17&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column17&gt;&lt;Column18 ID="DetailId"&gt;&lt;Caption&gt;DetailId&lt;/Caption&gt;&lt;DataMember&gt;DetailId&lt;/DataMember&gt;&lt;Key&gt;DetailId&lt;/Key&gt;&lt;Position&gt;18&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column18&gt;&lt;Column19 ID="EmpID"&gt;&lt;Caption&gt;Employee&lt;/Caption&gt;&lt;DataMember&gt;EmpID&lt;/DataMember&gt;&lt;EditType&gt;Combo&lt;/EditType&gt;&lt;Key&gt;EmpID&lt;/Key&gt;&lt;Position&gt;19&lt;/Position&gt;&lt;HasValueList&gt;True&lt;/HasValueList&gt;&lt;/Column19&gt;&lt;Column20 ID="EmpName"&gt;&lt;Caption&gt;EmpName&lt;/Caption&gt;&lt;DataMember&gt;EmpName&lt;/DataMember&gt;&lt;Key&gt;EmpName&lt;/Key&gt;&lt;Position&gt;20&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column20&gt;&lt;Column21 ID="RequestId"&gt;&lt;Caption&gt;Request No&lt;/Caption&gt;&lt;DataMember&gt;RequestId&lt;/DataMember&gt;&lt;EditType&gt;Combo&lt;/EditType&gt;&lt;Key&gt;RequestId&lt;/Key&gt;&lt;Position&gt;21&lt;/Position&gt;&lt;HasValueList&gt;True&lt;/HasValueList&gt;&lt;/Column21&gt;&lt;Column22 ID="Delete"&gt;&lt;ButtonDisplayMode&gt;Always&lt;/ButtonDisplayMode&gt;&lt;ButtonText&gt;Delete&lt;/ButtonText&gt;&lt;ButtonStyle&gt;ButtonCell&lt;/ButtonStyle&gt;&lt;Caption&gt;Action&lt;/Caption&gt;&lt;BoundMode&gt;Unbound&lt;/BoundMode&gt;&lt;HeaderAlignment&gt;Center&lt;/HeaderAlignment&gt;&lt;Key&gt;Delete&lt;/Key&gt;&lt;Position&gt;22&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;155&lt;/Width&gt;&lt;/Column22&gt;&lt;/Columns&gt;&lt;SortKeys Collection="true" ElementName="SortKey"&gt;&lt;SortKey0 ID="SortKey0"&gt;&lt;ColIndex&gt;22&lt;/ColIndex&gt;&lt;/SortKey0&gt;&lt;/SortKeys&gt;&lt;GroupCondition /&gt;&lt;TotalRow&gt;True&lt;/TotalRow&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="Head"&gt;&lt;Caption&gt;Head&lt;/Caption&gt;&lt;DataMember&gt;Head&lt;/DataMember&gt;&lt;Key&gt;Head&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;112&lt;/Width&gt;&lt;/Column0&gt;&lt;Column1 ID="Account"&gt;&lt;Caption&gt;Account&lt;/Caption&gt;&lt;DataMember&gt;Account&lt;/DataMember&gt;&lt;Key&gt;Account&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;117&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="AccountCode"&gt;&lt;Caption&gt;Account Code&lt;/Caption&gt;&lt;DataMember&gt;AccountCode&lt;/DataMember&gt;&lt;Key&gt;AccountCode&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;/Column2&gt;&lt;Column3 ID="Description"&gt;&lt;Caption&gt;Description&lt;/Caption&gt;&lt;DataMember&gt;Description&lt;/DataMember&gt;&lt;Key&gt;Description&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;144&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="CostCenterId"&gt;&lt;Caption&gt;Cost Center&lt;/Caption&gt;&lt;DataMember&gt;CostCenterId&lt;/DataMember&gt;&lt;EditType&gt;Combo&lt;/EditType&gt;&lt;Key&gt;CostCenterId&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Width&gt;106&lt;/Width&gt;&lt;DefaultValue&gt;0&lt;/DefaultValue&gt;&lt;DefaultValueType&gt;System.UInt32&lt;/DefaultValueType&gt;&lt;HasValueList&gt;True&lt;/HasValueList&gt;&lt;/Column4&gt;&lt;Column5 ID="Cheque_No"&gt;&lt;Caption&gt;Cheque No&lt;/Caption&gt;&lt;DataMember&gt;Cheque_No&lt;/DataMember&gt;&lt;Key&gt;Cheque_No&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;Width&gt;110&lt;/Width&gt;&lt;/Column5&gt;&lt;Column6 ID="Cheque_Date"&gt;&lt;Caption&gt;Cheque Date&lt;/Caption&gt;&lt;DataMember&gt;Cheque_Date&lt;/DataMember&gt;&lt;EditType&gt;CalendarDropDown&lt;/EditType&gt;&lt;FormatString&gt;dd/MMM/yyyy&lt;/FormatString&gt;&lt;Key&gt;Cheque_Date&lt;/Key&gt;&lt;Position&gt;6&lt;/Position&gt;&lt;Width&gt;104&lt;/Width&gt;&lt;/Column6&gt;&lt;Column7 ID="CurrencyId"&gt;&lt;Caption&gt;CurrencyId&lt;/Caption&gt;&lt;DataMember&gt;CurrencyId&lt;/DataMember&gt;&lt;Key&gt;CurrencyId&lt;/Key&gt;&lt;Position&gt;7&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column7&gt;&lt;Column8 ID="CurrencyDr"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Currency Dr&lt;/Caption&gt;&lt;DataMember&gt;CurrencyDr&lt;/DataMember&gt;&lt;FormatString&gt;N&lt;/FormatString&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;CurrencyDr&lt;/Key&gt;&lt;Position&gt;8&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;101&lt;/Width&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;CellStyle&gt;&lt;BackColor&gt;255, 255, 192&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column8&gt;&lt;Column9 ID="CurrencyCr"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Currency Cr&lt;/Caption&gt;&lt;DataMember&gt;CurrencyCr&lt;/DataMember&gt;&lt;DefaultGroupPrefix&gt;CurrencyCr:&lt;/DefaultGroupPrefix&gt;&lt;FormatString&gt;N&lt;/FormatString&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;CurrencyCr&lt;/Key&gt;&lt;Position&gt;9&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;97&lt;/Width&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;CellStyle&gt;&lt;BackColor&gt;255, 255, 192&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column9&gt;&lt;Column10 ID="CurrencyRate"&gt;&lt;Caption&gt;CurrencyRate&lt;/Caption&gt;&lt;DataMember&gt;CurrencyRate&lt;/DataMember&gt;&lt;Key&gt;CurrencyRate&lt;/Key&gt;&lt;Position&gt;10&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column10&gt;&lt;Column11 ID="BaseCurrencyId"&gt;&lt;Caption&gt;BaseCurrencyId&lt;/Caption&gt;&lt;DataMember&gt;BaseCurrencyId&lt;/DataMember&gt;&lt;Key&gt;BaseCurrencyId&lt;/Key&gt;&lt;Position&gt;11&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column11&gt;&lt;Column12 ID="BaseCurrencyRate"&gt;&lt;Caption&gt;BaseCurrencyRate&lt;/Caption&gt;&lt;DataMember&gt;BaseCurrencyRate&lt;/DataMember&gt;&lt;Key&gt;BaseCurrencyRate&lt;/Key&gt;&lt;Position&gt;12&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column12&gt;&lt;Column13 ID="Debit"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Debit&lt;/Caption&gt;&lt;DataMember&gt;Debit&lt;/DataMember&gt;&lt;FormatString&gt;N&lt;/FormatString&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Debit&lt;/Key&gt;&lt;Position&gt;13&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;95&lt;/Width&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column13&gt;&lt;Column14 ID="Credit"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Credit&lt;/Caption&gt;&lt;DataMember&gt;Credit&lt;/DataMember&gt;&lt;FormatString&gt;N&lt;/FormatString&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Credit&lt;/Key&gt;&lt;Position&gt;14&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;92&lt;/Width&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column14&gt;&lt;Column15 ID="AccountId"&gt;&lt;Caption&gt;CategoryId&lt;/Caption&gt;&lt;DataMember&gt;AccountId&lt;/DataMember&gt;&lt;Key&gt;AccountId&lt;/Key&gt;&lt;Position&gt;15&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column15&gt;&lt;Column16 ID="Type"&gt;&lt;Caption&gt;Type&lt;/Caption&gt;&lt;DataMember&gt;Type&lt;/DataMember&gt;&lt;Key&gt;Type&lt;/Key&gt;&lt;Position&gt;16&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column16&gt;&lt;Column17 ID="VoucherDetailId"&gt;&lt;Caption&gt;VoucherDetailId&lt;/Caption&gt;&lt;DataMember&gt;VoucherDetailId&lt;/DataMember&gt;&lt;Key&gt;VoucherDetailId&lt;/Key&gt;&lt;Position&gt;17&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column17&gt;&lt;Column18 ID="DetailId"&gt;&lt;Caption&gt;DetailId&lt;/Caption&gt;&lt;DataMember&gt;DetailId&lt;/DataMember&gt;&lt;Key&gt;DetailId&lt;/Key&gt;&lt;Position&gt;18&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column18&gt;&lt;Column19 ID="EmpID"&gt;&lt;Caption&gt;Employee&lt;/Caption&gt;&lt;DataMember&gt;EmpID&lt;/DataMember&gt;&lt;EditType&gt;Combo&lt;/EditType&gt;&lt;Key&gt;EmpID&lt;/Key&gt;&lt;Position&gt;19&lt;/Position&gt;&lt;HasValueList&gt;True&lt;/HasValueList&gt;&lt;/Column19&gt;&lt;Column20 ID="EmpName"&gt;&lt;Caption&gt;EmpName&lt;/Caption&gt;&lt;DataMember&gt;EmpName&lt;/DataMember&gt;&lt;Key&gt;EmpName&lt;/Key&gt;&lt;Position&gt;20&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column20&gt;&lt;Column21 ID="RequestId"&gt;&lt;Caption&gt;Request No&lt;/Caption&gt;&lt;DataMember&gt;RequestId&lt;/DataMember&gt;&lt;EditType&gt;Combo&lt;/EditType&gt;&lt;Key&gt;RequestId&lt;/Key&gt;&lt;Position&gt;21&lt;/Position&gt;&lt;HasValueList&gt;True&lt;/HasValueList&gt;&lt;/Column21&gt;&lt;Column22 ID="SalesOrderId"&gt;&lt;Caption&gt;SalesOrderId&lt;/Caption&gt;&lt;DataMember&gt;SalesOrderId&lt;/DataMember&gt;&lt;EditType&gt;Combo&lt;/EditType&gt;&lt;Key&gt;SalesOrderId&lt;/Key&gt;&lt;Position&gt;22&lt;/Position&gt;&lt;HasValueList&gt;True&lt;/HasValueList&gt;&lt;/Column22&gt;&lt;Column23 ID="Delete"&gt;&lt;ButtonDisplayMode&gt;Always&lt;/ButtonDisplayMode&gt;&lt;ButtonText&gt;Delete&lt;/ButtonText&gt;&lt;ButtonStyle&gt;ButtonCell&lt;/ButtonStyle&gt;&lt;Caption&gt;Action&lt;/Caption&gt;&lt;BoundMode&gt;Unbound&lt;/BoundMode&gt;&lt;HeaderAlignment&gt;Center&lt;/HeaderAlignment&gt;&lt;Key&gt;Delete&lt;/Key&gt;&lt;Position&gt;23&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;155&lt;/Width&gt;&lt;/Column23&gt;&lt;/Columns&gt;&lt;SortKeys Collection="true" ElementName="SortKey"&gt;&lt;SortKey0 ID="SortKey0"&gt;&lt;ColIndex&gt;23&lt;/ColIndex&gt;&lt;/SortKey0&gt;&lt;/SortKeys&gt;&lt;GroupCondition /&gt;&lt;TotalRow&gt;True&lt;/TotalRow&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
   </data>
   <data name="Button3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3432,7 +3432,7 @@
   <data name="BtnNew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAERSURBVDhPrZDbSgJRGIXnpewd6jXsjSQvIrwoI0RQMChU
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAERSURBVDhPrZDbSgJRGIXnpewd6jXsjSQvIrwoI0RQMChU
         0iiDPCGiE3ZCRkvR8VzTeBhnyR5/ccaZNnPhB4t9sdf6Ln5hb8QeathNJFVFKF5C8DqL4ksDVHWGDf7j
         LHyPg6NjviSaFqlu5yQYR+KpupaIkrMknCxT3Y7v/NYYb0ITK1c3BarbWWhLQ7IR0cTKReyZ6lZ0XYei
         ztHpK4bAc+h1FgQijzSxMptrGIxVSO0xX3AaStFki7bUMVFmaMm/eJMGfIH/MkGzLep0AXn4h/r3CJV3
@@ -3443,7 +3443,7 @@
   <data name="BtnEdit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJHSURBVDhPxZBdSNNhFMb/F110ZZEVhVBgeeHNICiiuggp
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJHSURBVDhPxZBdSNNhFMb/F110ZZEVhVBgeeHNICiiuggp
         olAUyyxI0oSaH1QYC3N+tKnp5ubm1JUua5uuqdNKMwr7kApFItTUkWZqVhSVYmao5Nevvy7UoYR3HXh4
         4XCe33nOKyy3lAY7l9RWMo0O/raWXxEyo5spVYTNvOGyfIRPfW+ptOkXqaPl6T83hcRmExSdgzAz3NVm
         YWyoYla/B+1M9JtxWLPpaH22JORIjI6gKAMB0jyEimIdo4OlbuaprwVMOOMovammpDADc34qppwUrmnl
@@ -3459,7 +3459,7 @@
   <data name="BtnSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIySURBVDhPrZLfS5NRGMfff6H7boIuuq2pMZyL1eAt11CW
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIySURBVDhPrZLfS5NRGMfff6H7boIuuq2pMZyL1eAt11CW
         DcOKsB9vpFmaLtNExco0av6CbIVLJ61Wk3BSkT/AFCkRZSpZmrmiJQ41xSaCwdfznL15XEUX0Reem5f3
         8znnec4j/Zc8fxYGla91CS3eRTx0z6OpMYS7jmnU1X6B/VYA18snUVoyjsKCt8jLHcH5c36ouCQR2NUJ
         1Nas4G9ZXlmFKbULh1Kf8lJxSfI+WeCCyopv6q+/h+DQ/DJ2WV5Ao1FgPegRAveDOS4oLfmq/h6dn/DH
@@ -3488,7 +3488,7 @@
   <data name="BtnPrint.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIpSURBVDhPtZL/T1JRGMb5p1itrVZbbRpqZbawnBENV1I0
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIpSURBVDhPtZL/T1JRGMb5p1itrVZbbRpqZbawnBENV1I0
         jGlByTSyJTXJwq2oKZQb1KAv6JCYWSxvBrkkZUq4CeQEiRABFeLL072Xa0zRra31bO8v57zP5znnPYf1
         X+TxhWF6O7VtGYcnwbSWijKPOLzYrPSvLPwLS3huGUMlT7o9wGD9grVUBj+icdid03S9tDmgNxNwTgVQ
         J+rA8XNtWwM+uuZATMwxmQVRycuJFNyzIRitDlScugKzjSgFRGJJaIwEsrk8AsHIhnSL/Ssck37UNipQ
@@ -3503,7 +3503,7 @@
   <data name="ToolStripDropDownButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAiCSURBVFhHvVYJcJTlGaYMtGCxdWynM6XDWFqkHgWBQuSy
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAiCSURBVFhHvVYJcJTlGaYMtGCxdWynM6XDWFqkHgWBQuSy
         aIsFDMaBpgmUggWRQzLIZRIgKaDQcoMIhCAMdyIiCCGkwpKEQGjuww27mz3/vY/8e1//bpbk6fv9/jBg
         oKZO6TN55t/s/vM+7/t+7/H1+H+hbMP2y8VvZ56U/n00GD9303OLNx97FkDP+vr6H9fV1Q3RctzLar1+
         razsKo7vz2uSXv32IOPfuXXrVr+WlpYBKpVqpEGrfcNms2XUNmuOfl7dJOhtLnc4FNLV1NSEysvLO+h9
@@ -3546,7 +3546,7 @@
   <data name="btnUpdateTimes.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJnSURBVDhPrZNdSFNhHIdPF110V3jjnRJSEUHpztGV1oog
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJnSURBVDhPrZNdSFNhHIdPF110V3jjnRJSEUHpztGV1oog
         KoRs6nTzM8g5iVokVlr0QZhRypzzq023zDlCR9hgfo0U20yHzYnH6bRykxo2GxEt2orJL88hlopZF/3h
         uXl5fs/dS/yXIwWqqt0C1TdKoMK/wLjMhh1T6ZrIxFwtpPrvsI2Ng6bpDbEMv1p2g+AKm8FNq9pCxPJr
         oxLzdJDogusO1jI4ZMX5ajNyCyox0Gch2cCB3DbkNH2Fx+P5K+qGGjyVFsJzvwIjddUqYu8pWTQ3pw0p
@@ -3563,7 +3563,7 @@
   <data name="btnReminder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAL7SURBVDhPjZNrSJNhGIY/d7B0VtNKkoioH0bYGRSLkKwf
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAL7SURBVDhPjZNrSJNhGIY/d7B0VtNKkoioH0bYGRSLkKwf
         naQTizIPUS4NbZYQOTdtSYTYaS5saSdiWWqnpbnl9n1uhQZaTdGRZqY5p+Wmm5nNU8Xd21o/woQueP7d
         z/2c3pe6ncreqUrxMtw5yjI/TecwupPsTr3E6z4t5ayl/odfyS3qXTCe9kVv9X58bUmD03QQrwuCQWey
         82mxd7BH+m+K01gNxmwfOBuy4Go/i7GeYoxYlfjaHIveF3EwnuJBn8mSeuQTeZrBqepiEvH5VQKJeAyZ
@@ -3582,7 +3582,7 @@
   <data name="BtnRefresh.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAmJSURBVFhH1Vd5VJNXFg+ztFat2k5pbQdBrVXHUute67Sl
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAmJSURBVFhH1Vd5VJNXFg+ztFat2k5pbQdBrVXHUute67Sl
         jtqqoBADKIrGooBsLSAIouQrtQiooOICBiRAlLCGzUCEhABJiJIEyqLiwmI7rVaKKLVSWfz1vQ/kaBdb
         z/Sfuef8zvfy3n333nfv7y3h/L+JCceB89dJSzlPm9mPen782jEW05xNJ726+rlxEx2eGz3NgfMUh+H8
         hdX7U4UYNbPnPDNrs8X8rcLNR3N0yU3ayyVdhlZ1b02jtq+graCnsrHglliTWOd2wGn3dOeXLGmQZOb/
@@ -3629,7 +3629,7 @@
   <data name="btnAttachment.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
         YKxG6WBogkMZKgPNCEVJFBGdGETEvgwyO9DJE5syZw3PIlPEE9pgBCLZ5XvdMB8Ew8gXbl54nuf63dd9
         0OGSnwCahxbPRNPAPMw9Xpg6ZmF46kZZ0xSKzJPIrhpDWsVnpBhGkKx3nAX8Pv7z1zg8OoY/cITdn4fw
         bf/C0kYAN3Ma/w3gWfZL5kzTKBxjWyK2DftwI9tyMYCZKXbNHaD91bLYJrDXsYbrWfUKwJrPE9M2M1Oc
@@ -3644,7 +3644,7 @@
   <data name="HelpToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIVSURBVDhPtVJNaxNRFM1PyE+Yn1AUXLjK0uWgDWQZwUUX
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIVSURBVDhPtVJNaxNRFM1PyE+Yn1AUXLjK0uWgDWQZwUUX
         KsGFBEEcCkIwqBEpGiydsSo2kupsasdo7Yi2toh0sFZjG5JpiZo20/TpVOmH5njvm8BYahEXHji8+968
         c+55l4n8F0zM+rhVWkHmdg29A/PoK1Yw8uIjOp/3xpvqBgrjLeilZbjNLXxZ34bwt6jexMVCGRndQenl
         0p+NWHzPXoP3rQ3bAbQhQM0E5Np2BKprbZzrm8TIs8puE+68+r0NwwZiacCwALEBCVcAqet8JlAjk1PZ

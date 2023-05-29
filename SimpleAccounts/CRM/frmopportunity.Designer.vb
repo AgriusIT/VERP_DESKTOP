@@ -277,7 +277,7 @@ Partial Class frmopportunity
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.cmbInvoicePattern = New System.Windows.Forms.ComboBox()
-        Me.cmbDurationofMonth = New System.Windows.Forms.ComboBox()
+        Me.cmbPMFrequency = New System.Windows.Forms.ComboBox()
         Me.cmbOnsiteIntervention = New System.Windows.Forms.ComboBox()
         Me.btnAddSupport = New System.Windows.Forms.Button()
         Me.btnDownloadBOQ1 = New System.Windows.Forms.Button()
@@ -287,8 +287,8 @@ Partial Class frmopportunity
         Me.cmbSupportType = New Infragistics.Win.UltraWinGrid.UltraCombo()
         Me.cmbItem = New Infragistics.Win.UltraWinGrid.UltraCombo()
         Me.cmbPreventionMaintenance = New Infragistics.Win.UltraWinGrid.UltraCombo()
+        Me.Label37 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
         Me.lblOnsiteIntervention = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -300,6 +300,7 @@ Partial Class frmopportunity
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.pnlContract = New System.Windows.Forms.Panel()
         Me.UiListControl1 = New SimpleAccounts.uiListControl()
+        Me.cmbDurationofMonth = New System.Windows.Forms.ComboBox()
         Me.lstInterestedIn = New SimpleAccounts.uiListControl()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.dtpStartDate = New System.Windows.Forms.DateTimePicker()
@@ -311,6 +312,7 @@ Partial Class frmopportunity
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.txtDurationInMonths = New System.Windows.Forms.TextBox()
         Me.Label25 = New System.Windows.Forms.Label()
@@ -638,6 +640,7 @@ Partial Class frmopportunity
         'Panel10
         '
         Me.Panel10.Controls.Add(Me.cmbInvoicePattern)
+        Me.Panel10.Controls.Add(Me.cmbPMFrequency)
         Me.Panel10.Controls.Add(Me.cmbOnsiteIntervention)
         Me.Panel10.Controls.Add(Me.btnAddSupport)
         Me.Panel10.Controls.Add(Me.btnDownloadBOQ1)
@@ -647,6 +650,7 @@ Partial Class frmopportunity
         Me.Panel10.Controls.Add(Me.cmbSupportType)
         Me.Panel10.Controls.Add(Me.cmbItem)
         Me.Panel10.Controls.Add(Me.cmbPreventionMaintenance)
+        Me.Panel10.Controls.Add(Me.Label37)
         Me.Panel10.Controls.Add(Me.Label21)
         Me.Panel10.Controls.Add(Me.lblOnsiteIntervention)
         Me.Panel10.Controls.Add(Me.Label36)
@@ -676,22 +680,22 @@ Partial Class frmopportunity
         Me.cmbInvoicePattern.Size = New System.Drawing.Size(220, 29)
         Me.cmbInvoicePattern.TabIndex = 34
         '
-        'cmbDurationofMonth
+        'cmbPMFrequency
         '
-        Me.cmbDurationofMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbDurationofMonth.FormattingEnabled = True
-        Me.cmbDurationofMonth.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"})
-        Me.cmbDurationofMonth.Location = New System.Drawing.Point(30, 104)
-        Me.cmbDurationofMonth.Margin = New System.Windows.Forms.Padding(4)
-        Me.cmbDurationofMonth.Name = "cmbDurationofMonth"
-        Me.cmbDurationofMonth.Size = New System.Drawing.Size(149, 29)
-        Me.cmbDurationofMonth.TabIndex = 34
+        Me.cmbPMFrequency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbPMFrequency.FormattingEnabled = True
+        Me.cmbPMFrequency.Items.AddRange(New Object() {"Monthly", "Quarterly", "Half Yearly", "Yearly", "Full in advance"})
+        Me.cmbPMFrequency.Location = New System.Drawing.Point(492, 102)
+        Me.cmbPMFrequency.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmbPMFrequency.Name = "cmbPMFrequency"
+        Me.cmbPMFrequency.Size = New System.Drawing.Size(220, 29)
+        Me.cmbPMFrequency.TabIndex = 34
         '
         'cmbOnsiteIntervention
         '
         Me.cmbOnsiteIntervention.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbOnsiteIntervention.FormattingEnabled = True
-        Me.cmbOnsiteIntervention.Location = New System.Drawing.Point(493, 102)
+        Me.cmbOnsiteIntervention.Location = New System.Drawing.Point(726, 102)
         Me.cmbOnsiteIntervention.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbOnsiteIntervention.Name = "cmbOnsiteIntervention"
         Me.cmbOnsiteIntervention.Size = New System.Drawing.Size(220, 29)
@@ -961,6 +965,16 @@ Partial Class frmopportunity
         Me.cmbPreventionMaintenance.TabIndex = 10
         Me.ToolTip1.SetToolTip(Me.cmbPreventionMaintenance, "Please select prevention maintenance.")
         '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(488, 74)
+        Me.Label37.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(118, 23)
+        Me.Label37.TabIndex = 9
+        Me.Label37.Text = "PM Frequency"
+        '
         'Label21
         '
         Me.Label21.AutoSize = True
@@ -971,20 +985,10 @@ Partial Class frmopportunity
         Me.Label21.TabIndex = 9
         Me.Label21.Text = "Invoice Pattern"
         '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(24, 77)
-        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(153, 23)
-        Me.Label15.TabIndex = 9
-        Me.Label15.Text = "Duration of Month"
-        '
         'lblOnsiteIntervention
         '
         Me.lblOnsiteIntervention.AutoSize = True
-        Me.lblOnsiteIntervention.Location = New System.Drawing.Point(489, 74)
+        Me.lblOnsiteIntervention.Location = New System.Drawing.Point(722, 74)
         Me.lblOnsiteIntervention.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblOnsiteIntervention.Name = "lblOnsiteIntervention"
         Me.lblOnsiteIntervention.Size = New System.Drawing.Size(157, 23)
@@ -1121,6 +1125,17 @@ Partial Class frmopportunity
         Me.UiListControl1.Size = New System.Drawing.Size(195, 151)
         Me.UiListControl1.TabIndex = 37
         Me.UiListControl1.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
+        '
+        'cmbDurationofMonth
+        '
+        Me.cmbDurationofMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbDurationofMonth.FormattingEnabled = True
+        Me.cmbDurationofMonth.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"})
+        Me.cmbDurationofMonth.Location = New System.Drawing.Point(30, 104)
+        Me.cmbDurationofMonth.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmbDurationofMonth.Name = "cmbDurationofMonth"
+        Me.cmbDurationofMonth.Size = New System.Drawing.Size(149, 29)
+        Me.cmbDurationofMonth.TabIndex = 34
         '
         'lstInterestedIn
         '
@@ -1356,6 +1371,16 @@ Partial Class frmopportunity
         Me.Label26.Size = New System.Drawing.Size(86, 23)
         Me.Label26.TabIndex = 5
         Me.Label26.Text = "Start Date"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(24, 77)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(153, 23)
+        Me.Label15.TabIndex = 9
+        Me.Label15.Text = "Duration of Month"
         '
         'Label24
         '
@@ -3411,4 +3436,6 @@ Partial Class frmopportunity
     Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
     Friend WithEvents cmbItem As Infragistics.Win.UltraWinGrid.UltraCombo
     Friend WithEvents Label36 As System.Windows.Forms.Label
+    Friend WithEvents cmbPMFrequency As System.Windows.Forms.ComboBox
+    Friend WithEvents Label37 As System.Windows.Forms.Label
 End Class

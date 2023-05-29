@@ -730,6 +730,7 @@ Public Class frmMain
                 Me.Timer11.Enabled = True
                 Me.Timer11.Interval = 5000
                 Me.Timer12.Enabled = True
+                ''Me.Timer12.Interval = 5000
                 Me.Timer12.Interval = 86400000
                 Me.Timer13.Enabled = True
                 Me.Timer13.Interval = 1800000
@@ -834,7 +835,7 @@ Public Class frmMain
             ElseIf Con.Database = "RemmsPAK_DB" Then
                 CompanyPrefix = str_Company2
                 str_MessageHeader = str_MessageHeader
-            ElseIf Con.Database = "RemmsUAE_DB" Then
+            ElseIf Con.Database = "RemmsTech_UAE_DB" Then
                 CompanyPrefix = str_Company3
                 str_MessageHeader = str_MessageHeader
             ElseIf Con.Database = "SIRIUS_MY_DB" Then
@@ -3345,17 +3346,21 @@ Public Class frmMain
             ControlName = frmReleaseDownload
             frmReleaseDownload.ShowDialog()
             frmReleaseDownload.Show()
+            'Stock Dispatch commented for rebuild
         ElseIf key = "Stock Dispatch" Then
             ControlName = frmStockDispatch
             enm = EnumForms.frmStockDispatch
             If Tags.Length > 0 Then
+                'Stock Dispatch commented for rebuild
                 frmStockDispatch.Get_All(Tags)
                 'Tags = String.Empty Comment Against 18-Feb-2014 Task:2429 Imran Ali 1-error in payable/receivable tracing
             End If
         ElseIf key = "Stock Dispatch1" Then
+            'Stock Dispatch commented for rebuild
             ControlName = frmStockDispatch
             enm = EnumForms.frmStockDispatch
             If Tags.Length > 0 Then
+                'Stock Dispatch commented for rebuild
                 frmStockDispatch.Get_All(Tags)
                 'Tags = String.Empty Comment Against 18-Feb-2014 Task:2429 Imran Ali 1-error in payable/receivable tracing
             End If
@@ -4151,7 +4156,8 @@ Public Class frmMain
             'End Task 2624
         ElseIf key = "TaxRate" Then
             'applystylesheet(frmDefServices)
-            frmDefServices.ShowDialog()
+            'Stock Dispatch commented for rebuild
+            'frmDefServices.ShowDialog()
             Exit Sub
             'Task:2725 Add new report product summary.
         ElseIf key = "frmGrdRptProductCustomerWiseReport" Then
@@ -5060,7 +5066,7 @@ Public Class frmMain
             'End If
 
             GetExpiredEmailData()
-            ' ''End If
+            '' ''End If
             SendContractExpiryEmail()
             GetInvoiceData()
         Catch ex As Exception
@@ -7673,7 +7679,7 @@ Public Class frmMain
                         StartDate1 = r.Item(2)
                         EndDate1 = r.Item(4)
                         Invoiceamount = r.Item(3)
-                        query1 = "Select * from ContractMasterTable where ContractId = " & r.Item(1) & " "
+                        query1 = "SELECT ContractId,ContractNo,StartDate,EndDate,SLAType,PreventionMaintenance,CustomerId,OpportunityId,Status,EndCustomer,PONumber,ContactofNotification,Site,InvoicingFrequency,PaymentTerms,Comments,Currency,Amount,Employee,ISNULL(ContractType,'') AS ContractType,ISNULL(TerminateStatus,'') AS TerminateStatus,ISNULL(ContractStatus,'') AS ContractStatus,PreviousContracts,ISNULL(HoldReason,'') AS HoldReason,ISNULL(OthersDescription,'') AS OthersDescription,ISNULL(HoldCheckBox,0) AS HoldCheckBox,ISNULL(ChkBoxBatteriesIncluded,0) AS ChkBoxBatteriesIncluded,ISNULL(DurationofMonth,'') AS DurationofMonth,ISNULL(InvoicePattern,'') AS InvoicePattern,ISNULL(ArticleId,0) AS ArticleId,ISNULL(Tax,0) AS Tax FROM ContractMasterTable where ContractId = " & r.Item(1) & " "
                         dt1 = GetDataTable(query1)
                         dt1.AcceptChanges()
                         For Each C As DataRow In dt1.Rows
@@ -7709,8 +7715,8 @@ Public Class frmMain
                             Dim strWords As String() = C.Item(14).Split(" ")
                             PaymentTerms = strWords(0)
                             Comments = C.Item(15)
-                            Currency = C.Item(17)
-                            Amount = C.Item(16)
+                            Currency = C.Item(16)
+                            Amount = C.Item(17)
                             Employee = C.Item(18)
                             ArticleId = C.Item(29)
                             Tax = Val(C.Item(30))
@@ -7833,11 +7839,11 @@ Public Class frmMain
                             Dim trans As OleDbTransaction = objCon.BeginTransaction
                             objCommand.CommandType = CommandType.Text
                             objCommand.Transaction = trans
-                            objCommand.CommandText = "Insert into SalesMasterTable (LocationId,SalesNo,InvoiceType,SalesDate,DueDays,InvoiceParty,CostCenterId,SalesAmount,Post,CustomerCode,EmployeeCode) values('1',N'" & InvoiceNo & "','Credit',N'" & InvoiceDate & "',N'" & PaymentTerms & "',N'" & CustomerId & "',N'" & COSTCenterID & "',N'" & CurrencyRate * Invoiceamount & "','1',N'" & SalesCustomerID & "',N'" & SalespersonID & "')SELECT @@IDENTITY"
+                            objCommand.CommandText = "Insert into SalesMasterTable (LocationId,SalesNo,InvoiceType,SalesDate,DueDays,InvoiceParty,CostCenterId,SalesAmount,Post,CustomerCode,EmployeeCode) values('1',N'" & InvoiceNo & "','Credit',N'" & InvoiceDate & "',N'" & IIf(PaymentTerms = "Pre-Payment", "0", PaymentTerms) & "',N'" & CustomerId & "',N'" & COSTCenterID & "',N'" & CurrencyRate * Invoiceamount & "','1',N'" & SalesCustomerID & "',N'" & SalespersonID & "')SELECT @@IDENTITY"
                             Dim CId As Integer = objCommand.ExecuteScalar
-                            objCommand.CommandText = "Insert into SalesDetailTable (SalesId,LocationId,ArticleDefId,ArticleSize,Sz1,Sz7,Qty,Price,CurrentPrice,TaxPercent,PurchasePrice,Comments,BaseCurrencyId,BaseCurrencyRate,CurrencyId,CurrencyRate,CurrencyAmount,PostDiscountPrice) VALUES ( " & CId & ",N'" & LocationID & "',N'" & ArticleId & "','Loose',1,1,1,N'" & Invoiceamount & "',N'" & Invoiceamount & "',0,0,N'" & InvoiceMonths & "',N'" & BaseCurrencyId & "',1,N'" & CurrencyID & "',N'" & CurrencyRate & "',N'" & CurrencyRate * Invoiceamount & "',N'" & Invoiceamount & "')"
+                            objCommand.CommandText = "Insert into SalesDetailTable (SalesId,LocationId,ArticleDefId,ArticleSize,Sz1,Sz7,Qty,Price,CurrentPrice,TaxPercent,PurchasePrice,Comments,BaseCurrencyId,BaseCurrencyRate,CurrencyId,CurrencyRate,CurrencyAmount,PostDiscountPrice, BatchID, SampleQty) VALUES ( " & CId & ",N'" & LocationID & "',N'" & ArticleId & "','Loose',1,1,1,N'" & Invoiceamount & "',N'" & Invoiceamount & "',N'" & Tax & "',0,N'" & InvoiceMonths & "',N'" & BaseCurrencyId & "',1,N'" & CurrencyID & "',N'" & CurrencyRate & "',N'" & CurrencyRate * Invoiceamount & "',N'" & Invoiceamount & "',0,0)"
                             objCommand.ExecuteNonQuery()
-                            objCommand.CommandText = "Insert INTO tblVoucher (location_id,finiancial_year_id,voucher_type_id,voucher_no,voucher_date,post,UserName,Posted_UserName,Remarks) values(1,1,7,N'" & InvoiceNo & "',N'" & InvoiceDate & "',1,'V-ERP','V-ERP',N'" & InvoiceMonths & "')SELECT @@IDENTITY"
+                            objCommand.CommandText = "Insert INTO tblVoucher (location_id,finiancial_year_id,voucher_type_id,voucher_no,voucher_date,post,UserName,Posted_UserName,Remarks, Source) values(1,1,7,N'" & InvoiceNo & "',N'" & InvoiceDate & "',1,'V-ERP','V-ERP',N'" & InvoiceMonths & "','frmSales')SELECT @@IDENTITY"
                             Dim VId As Integer = objCommand.ExecuteScalar
                             objCommand.CommandText = "INSERT INTO tblVoucherDetail (voucher_id,location_id,coa_detail_id,comments,debit_amount,credit_amount,direction,CostCenterID,ArticleDefId,BaseCurrencyId,BaseCurrencyRate,CurrencyId,CurrencyRate,Currency_debit_amount,Currency_Credit_Amount) VALUES ( " & VId & ",1,N'" & SalesCustomerID & "',N'" & ArticleDescription & ",(" & 1 & " X " & Invoiceamount & ")," & InvoiceMonths & " " & Invoiceyear & "',N'" & CurrencyRate * Invoiceamount & "',0,N'" & ArticleId & "',N'" & COSTCenterID & "',N'" & ArticleId & "',N'" & BaseCurrencyId & "',1,N'" & CurrencyID & "',N'" & CurrencyRate & "',N'" & Invoiceamount & "',0)"
                             objCommand.ExecuteNonQuery()
@@ -8068,15 +8074,15 @@ Public Class frmMain
 
     Private Sub Timer13_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer13.Tick
         Try
-            'If DateTime.Now.Hour = 8 Then
-            Me.Timer13.Enabled = False
-            If BackgroundWorker25.IsBusy Then Exit Sub
-            BackgroundWorker25.RunWorkerAsync()
-            Do While BackgroundWorker25.IsBusy
-                Application.DoEvents()
-            Loop
-            Me.Timer13.Enabled = True
-            'End If
+            If DateTime.Now.Hour = 8 Then
+                Me.Timer13.Enabled = False
+                If BackgroundWorker25.IsBusy Then Exit Sub
+                BackgroundWorker25.RunWorkerAsync()
+                Do While BackgroundWorker25.IsBusy
+                    Application.DoEvents()
+                Loop
+                Me.Timer13.Enabled = True
+            End If
         Catch ex As Exception
             ShowErrorMessage("Not Getting Currency Rate")
         End Try
@@ -8086,7 +8092,7 @@ Public Class frmMain
     Private Sub BackgroundWorker25_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker25.DoWork
         'Try
         Try
-            ''GetLiveCurrencyRate()
+            GetLiveCurrencyRate()
         Catch ex As Exception
             MessageBox.Show("An error occurred: " & ex.Message)
         End Try
@@ -8102,7 +8108,7 @@ Public Class frmMain
                         DocNo = GetSerialNo("SI1" & "-" + Microsoft.VisualBasic.Right(Me.InvoiceDate.Year, 2) + "-", "SalesMasterTable", "SalesNo")
                     Else
                         companyinitials = "PK"
-                        DocNo = GetNextDocNo("SI1" & "-" & companyinitials & "-" & Format(Me.InvoiceDate, "yy"), 4, "SalesMasterTable", "SalesNo")
+                        DocNo = GetNextDocNo("SI" & "-" & companyinitials & "-" & Format(Me.InvoiceDate, "yy"), 4, "SalesMasterTable", "SalesNo")
                     End If
                 End If
             ElseIf getConfigValueByType("VoucherNo").ToString = "Monthly" Then
@@ -8113,7 +8119,7 @@ Public Class frmMain
                         DocNo = GetNextDocNo("SI1" & "" & "-" & Format(Me.InvoiceDate, "yy") & Me.InvoiceDate.Month.ToString("00"), 2, "SalesMasterTable", "SalesNo")
                     Else
                         companyinitials = "PK"
-                        DocNo = GetNextDocNo("SI1" & "-" & companyinitials & "-" & Format(Me.InvoiceDate, "yy"), 4, "SalesMasterTable", "SalesNo")
+                        DocNo = GetNextDocNo("SI" & "-" & companyinitials & "-" & Format(Me.InvoiceDate, "yy"), 4, "SalesMasterTable", "SalesNo")
                     End If
                 End If
             Else

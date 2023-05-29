@@ -110,9 +110,10 @@ Public Class frmStockTransferItemsList
                 Exit Sub
             Else
                 For Each _Row As Janus.Windows.GridEX.GridEXRow In CheckedRows
-                    If frmStockDispatch.Validate_AddToGridForPopUp(Val(_Row.Cells("ArticleId").Value.ToString), Val(_Row.Cells("AvailableStock").Value.ToString), Val(_Row.Cells("Price").Value.ToString), Val(_Row.Cells("SalePrice").Value.ToString), Val(_Row.Cells("Unit").Value.ToString), Val(_Row.Cells("PackQty").Value.ToString), Val(_Row.Cells("AvailableStock").Value.ToString)) Then
-                        frmStockDispatch.LoadItemFromPopup(Val(_Row.Cells("ArticleId").Value.ToString), Val(_Row.Cells("AvailableStock").Value.ToString), Val(_Row.Cells("Price").Value.ToString), Val(_Row.Cells("SalePrice").Value.ToString), Val(_Row.Cells("Unit").Value.ToString), Val(_Row.Cells("PackQty").Value.ToString), Val(_Row.Cells("AvailableStock").Value.ToString))
-                    End If
+                    'Stock Dispatch commented for rebuild
+                    'If frmStockDispatch.Validate_AddToGridForPopUp(Val(_Row.Cells("ArticleId").Value.ToString), Val(_Row.Cells("AvailableStock").Value.ToString), Val(_Row.Cells("Price").Value.ToString), Val(_Row.Cells("SalePrice").Value.ToString), Val(_Row.Cells("Unit").Value.ToString), Val(_Row.Cells("PackQty").Value.ToString), Val(_Row.Cells("AvailableStock").Value.ToString)) Then
+                    '    frmStockDispatch.LoadItemFromPopup(Val(_Row.Cells("ArticleId").Value.ToString), Val(_Row.Cells("AvailableStock").Value.ToString), Val(_Row.Cells("Price").Value.ToString), Val(_Row.Cells("SalePrice").Value.ToString), Val(_Row.Cells("Unit").Value.ToString), Val(_Row.Cells("PackQty").Value.ToString), Val(_Row.Cells("AvailableStock").Value.ToString))
+                    'End If
                 Next
                 Me.txtSearch.Text = ""
                 Me.Close()

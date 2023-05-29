@@ -978,27 +978,27 @@ Public Class frmLeadProfile2
 
     Private Sub cmbType_ValueChanged(sender As Object, e As EventArgs) Handles cmbType.ValueChanged
         Try
-            'If Me.cmbType.Value = 1 Then
-            '    cmbActivity.Visible = True
-            '    lblActivity.Visible = True
-            '    lblIndustry.Visible = False
-            '    cmbIndustry.Visible = False
-            'ElseIf Me.cmbType.Value = 3 Then
-            '    cmbActivity.Visible = False
-            '    lblActivity.Visible = False
-            '    cmbIndustry.Visible = True
-            '    lblIndustry.Visible = True
-            'ElseIf Me.cmbType.Value = 2 Then
-            '    cmbActivity.Visible = False
-            '    lblActivity.Visible = False
-            '    cmbIndustry.Visible = False
-            '    lblIndustry.Visible = False
-            'ElseIf Me.cmbType.Value = 0 Then
-            '    cmbActivity.Visible = False
-            '    lblActivity.Visible = False
-            '    cmbIndustry.Visible = False
-            '    lblIndustry.Visible = False
-            'End If
+            If Me.cmbType.Value = 1 Then
+                cmbActivity.Visible = True
+                lblActivity.Visible = True
+                lblIndustry.Visible = False
+                cmbIndustry.Visible = False
+            ElseIf Me.cmbType.Value = 3 Then
+                cmbActivity.Visible = False
+                lblActivity.Visible = False
+                cmbIndustry.Visible = True
+                lblIndustry.Visible = True
+            ElseIf Me.cmbType.Value = 2 Then
+                cmbActivity.Visible = False
+                lblActivity.Visible = False
+                cmbIndustry.Visible = False
+                lblIndustry.Visible = False
+            ElseIf Me.cmbType.Value = 0 Then
+                cmbActivity.Visible = False
+                lblActivity.Visible = False
+                cmbIndustry.Visible = False
+                lblIndustry.Visible = False
+            End If
 
         Catch ex As Exception
             ShowErrorMessage(ex.Message)

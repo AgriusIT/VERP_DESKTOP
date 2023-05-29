@@ -228,6 +228,9 @@ Partial Class frmLeadProfile2
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.txtAddress = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.lstBrandFocus = New SimpleAccounts.uiListControl()
         Me.pnlHeader.SuspendLayout()
         CType(Me.grd, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -250,7 +253,7 @@ Partial Class frmLeadProfile2
         Me.txtDocumentNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtDocumentNo.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDocumentNo.Location = New System.Drawing.Point(5, 89)
-        Me.txtDocumentNo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtDocumentNo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDocumentNo.Name = "txtDocumentNo"
         Me.txtDocumentNo.ReadOnly = True
         Me.txtDocumentNo.Size = New System.Drawing.Size(210, 29)
@@ -277,9 +280,10 @@ Partial Class frmLeadProfile2
         Me.lblType.Location = New System.Drawing.Point(439, 64)
         Me.lblType.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblType.Name = "lblType"
-        Me.lblType.Size = New System.Drawing.Size(188, 23)
+        Me.lblType.Size = New System.Drawing.Size(45, 23)
         Me.lblType.TabIndex = 5
-        Me.lblType.Text = "Topography of the land"
+        Me.lblType.Text = "Type"
+        Me.lblType.Visible = False
         '
         'Label2
         '
@@ -300,9 +304,9 @@ Partial Class frmLeadProfile2
         Me.pnlHeader.Controls.Add(Me.lblHeader)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
-        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1284, 52)
+        Me.pnlHeader.Size = New System.Drawing.Size(1322, 52)
         Me.pnlHeader.TabIndex = 0
         '
         'CtrlGrdBar3
@@ -311,8 +315,8 @@ Partial Class frmLeadProfile2
         Me.CtrlGrdBar3.BackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.CtrlGrdBar3.Email = Nothing
         Me.CtrlGrdBar3.FormName = Me
-        Me.CtrlGrdBar3.Location = New System.Drawing.Point(1235, 15)
-        Me.CtrlGrdBar3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CtrlGrdBar3.Location = New System.Drawing.Point(1273, 15)
+        Me.CtrlGrdBar3.Margin = New System.Windows.Forms.Padding(4)
         Me.CtrlGrdBar3.MyGrid = Me.grd
         Me.CtrlGrdBar3.Name = "CtrlGrdBar3"
         Me.CtrlGrdBar3.Size = New System.Drawing.Size(45, 31)
@@ -326,7 +330,7 @@ Partial Class frmLeadProfile2
         Me.grd.Font = New System.Drawing.Font("Verdana", 8.25!)
         Me.grd.GroupByBoxVisible = False
         Me.grd.Location = New System.Drawing.Point(7, 517)
-        Me.grd.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grd.Margin = New System.Windows.Forms.Padding(4)
         Me.grd.Name = "grd"
         Me.grd.RecordNavigator = True
         Me.grd.Size = New System.Drawing.Size(1277, 274)
@@ -346,9 +350,9 @@ Partial Class frmLeadProfile2
         Me.lblCompanyName.Location = New System.Drawing.Point(657, 64)
         Me.lblCompanyName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCompanyName.Name = "lblCompanyName"
-        Me.lblCompanyName.Size = New System.Drawing.Size(98, 23)
+        Me.lblCompanyName.Size = New System.Drawing.Size(134, 23)
         Me.lblCompanyName.TabIndex = 7
-        Me.lblCompanyName.Text = "Farm Name"
+        Me.lblCompanyName.Text = "Company Name"
         '
         'lblActivity
         '
@@ -358,9 +362,9 @@ Partial Class frmLeadProfile2
         Me.lblActivity.Location = New System.Drawing.Point(3, 123)
         Me.lblActivity.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblActivity.Name = "lblActivity"
-        Me.lblActivity.Size = New System.Drawing.Size(75, 23)
+        Me.lblActivity.Size = New System.Drawing.Size(65, 23)
         Me.lblActivity.TabIndex = 9
-        Me.lblActivity.Text = "Soil type"
+        Me.lblActivity.Text = "Activity"
         Me.lblActivity.Visible = False
         '
         'lblSource
@@ -371,16 +375,16 @@ Partial Class frmLeadProfile2
         Me.lblSource.Location = New System.Drawing.Point(220, 123)
         Me.lblSource.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblSource.Name = "lblSource"
-        Me.lblSource.Size = New System.Drawing.Size(134, 23)
+        Me.lblSource.Size = New System.Drawing.Size(62, 23)
         Me.lblSource.TabIndex = 11
-        Me.lblSource.Text = "Source of power"
+        Me.lblSource.Text = "Source"
         '
         'txtActivityRemarks
         '
         Me.txtActivityRemarks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtActivityRemarks.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtActivityRemarks.Location = New System.Drawing.Point(1073, 310)
-        Me.txtActivityRemarks.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtActivityRemarks.Margin = New System.Windows.Forms.Padding(4)
         Me.txtActivityRemarks.Multiline = True
         Me.txtActivityRemarks.Name = "txtActivityRemarks"
         Me.txtActivityRemarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -409,9 +413,9 @@ Partial Class frmLeadProfile2
         Me.lblIndustry.Location = New System.Drawing.Point(439, 123)
         Me.lblIndustry.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblIndustry.Name = "lblIndustry"
-        Me.lblIndustry.Size = New System.Drawing.Size(117, 23)
+        Me.lblIndustry.Size = New System.Drawing.Size(72, 23)
         Me.lblIndustry.TabIndex = 13
-        Me.lblIndustry.Text = "Olive Varieties"
+        Me.lblIndustry.Text = "Industry"
         '
         'lblStatus
         '
@@ -430,7 +434,7 @@ Partial Class frmLeadProfile2
         Me.txtCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtCompanyName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCompanyName.Location = New System.Drawing.Point(661, 89)
-        Me.txtCompanyName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtCompanyName.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCompanyName.Name = "txtCompanyName"
         Me.txtCompanyName.Size = New System.Drawing.Size(210, 29)
         Me.txtCompanyName.TabIndex = 8
@@ -441,7 +445,7 @@ Partial Class frmLeadProfile2
         Me.txtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtFirstName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFirstName.Location = New System.Drawing.Point(169, 28)
-        Me.txtFirstName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtFirstName.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFirstName.Name = "txtFirstName"
         Me.txtFirstName.Size = New System.Drawing.Size(151, 29)
         Me.txtFirstName.TabIndex = 3
@@ -454,7 +458,7 @@ Partial Class frmLeadProfile2
         Me.dtpDocumentDate.Font = New System.Drawing.Font("Segoe UI", 9.75!)
         Me.dtpDocumentDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpDocumentDate.Location = New System.Drawing.Point(224, 89)
-        Me.dtpDocumentDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dtpDocumentDate.Margin = New System.Windows.Forms.Padding(4)
         Me.dtpDocumentDate.Name = "dtpDocumentDate"
         Me.dtpDocumentDate.Size = New System.Drawing.Size(209, 29)
         Me.dtpDocumentDate.TabIndex = 4
@@ -465,7 +469,7 @@ Partial Class frmLeadProfile2
         Me.txtWebsite.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtWebsite.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtWebsite.Location = New System.Drawing.Point(661, 207)
-        Me.txtWebsite.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtWebsite.Margin = New System.Windows.Forms.Padding(4)
         Me.txtWebsite.Name = "txtWebsite"
         Me.txtWebsite.Size = New System.Drawing.Size(210, 29)
         Me.txtWebsite.TabIndex = 23
@@ -476,7 +480,7 @@ Partial Class frmLeadProfile2
         Me.txtExtention.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtExtention.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtExtention.Location = New System.Drawing.Point(489, 82)
-        Me.txtExtention.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtExtention.Margin = New System.Windows.Forms.Padding(4)
         Me.txtExtention.Name = "txtExtention"
         Me.txtExtention.Size = New System.Drawing.Size(151, 29)
         Me.txtExtention.TabIndex = 21
@@ -487,7 +491,7 @@ Partial Class frmLeadProfile2
         Me.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtPhone.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPhone.Location = New System.Drawing.Point(329, 82)
-        Me.txtPhone.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtPhone.Margin = New System.Windows.Forms.Padding(4)
         Me.txtPhone.Name = "txtPhone"
         Me.txtPhone.Size = New System.Drawing.Size(151, 29)
         Me.txtPhone.TabIndex = 19
@@ -498,7 +502,7 @@ Partial Class frmLeadProfile2
         Me.txtMobile2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMobile2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMobile2.Location = New System.Drawing.Point(168, 82)
-        Me.txtMobile2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtMobile2.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMobile2.Name = "txtMobile2"
         Me.txtMobile2.Size = New System.Drawing.Size(153, 29)
         Me.txtMobile2.TabIndex = 17
@@ -509,7 +513,7 @@ Partial Class frmLeadProfile2
         Me.txtMobile1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMobile1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMobile1.Location = New System.Drawing.Point(8, 82)
-        Me.txtMobile1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtMobile1.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMobile1.Name = "txtMobile1"
         Me.txtMobile1.Size = New System.Drawing.Size(151, 29)
         Me.txtMobile1.TabIndex = 15
@@ -520,7 +524,7 @@ Partial Class frmLeadProfile2
         Me.txtEmail2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtEmail2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEmail2.Location = New System.Drawing.Point(963, 28)
-        Me.txtEmail2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEmail2.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEmail2.Name = "txtEmail2"
         Me.txtEmail2.Size = New System.Drawing.Size(146, 29)
         Me.txtEmail2.TabIndex = 13
@@ -531,7 +535,7 @@ Partial Class frmLeadProfile2
         Me.txtEmail1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtEmail1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEmail1.Location = New System.Drawing.Point(809, 28)
-        Me.txtEmail1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEmail1.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEmail1.Name = "txtEmail1"
         Me.txtEmail1.Size = New System.Drawing.Size(145, 29)
         Me.txtEmail1.TabIndex = 11
@@ -542,7 +546,7 @@ Partial Class frmLeadProfile2
         Me.txtJobTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtJobTitle.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtJobTitle.Location = New System.Drawing.Point(489, 28)
-        Me.txtJobTitle.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtJobTitle.Margin = New System.Windows.Forms.Padding(4)
         Me.txtJobTitle.Name = "txtJobTitle"
         Me.txtJobTitle.Size = New System.Drawing.Size(151, 29)
         Me.txtJobTitle.TabIndex = 7
@@ -553,7 +557,7 @@ Partial Class frmLeadProfile2
         Me.txtLastName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtLastName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLastName.Location = New System.Drawing.Point(329, 28)
-        Me.txtLastName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtLastName.Margin = New System.Windows.Forms.Padding(4)
         Me.txtLastName.Name = "txtLastName"
         Me.txtLastName.Size = New System.Drawing.Size(151, 29)
         Me.txtLastName.TabIndex = 5
@@ -621,7 +625,7 @@ Partial Class frmLeadProfile2
         Me.cmbType.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.cmbType.LimitToList = True
         Me.cmbType.Location = New System.Drawing.Point(443, 89)
-        Me.cmbType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbType.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbType.Name = "cmbType"
         Me.cmbType.Size = New System.Drawing.Size(211, 30)
         Me.cmbType.TabIndex = 6
@@ -689,7 +693,7 @@ Partial Class frmLeadProfile2
         Me.cmbActivity.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.cmbActivity.LimitToList = True
         Me.cmbActivity.Location = New System.Drawing.Point(5, 148)
-        Me.cmbActivity.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbActivity.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbActivity.Name = "cmbActivity"
         Me.cmbActivity.Size = New System.Drawing.Size(211, 30)
         Me.cmbActivity.TabIndex = 10
@@ -758,7 +762,7 @@ Partial Class frmLeadProfile2
         Me.cmbSource.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.cmbSource.LimitToList = True
         Me.cmbSource.Location = New System.Drawing.Point(224, 148)
-        Me.cmbSource.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbSource.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbSource.Name = "cmbSource"
         Me.cmbSource.Size = New System.Drawing.Size(211, 30)
         Me.cmbSource.TabIndex = 12
@@ -826,7 +830,7 @@ Partial Class frmLeadProfile2
         Me.cmbIndustry.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.cmbIndustry.LimitToList = True
         Me.cmbIndustry.Location = New System.Drawing.Point(443, 148)
-        Me.cmbIndustry.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbIndustry.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbIndustry.Name = "cmbIndustry"
         Me.cmbIndustry.Size = New System.Drawing.Size(211, 30)
         Me.cmbIndustry.TabIndex = 14
@@ -894,7 +898,7 @@ Partial Class frmLeadProfile2
         Me.cmbInterestedIn.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.cmbInterestedIn.LimitToList = True
         Me.cmbInterestedIn.Location = New System.Drawing.Point(443, 247)
-        Me.cmbInterestedIn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbInterestedIn.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbInterestedIn.Name = "cmbInterestedIn"
         Me.cmbInterestedIn.Size = New System.Drawing.Size(211, 30)
         Me.cmbInterestedIn.TabIndex = 18
@@ -963,7 +967,7 @@ Partial Class frmLeadProfile2
         Me.cmbBrandFocus.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.cmbBrandFocus.LimitToList = True
         Me.cmbBrandFocus.Location = New System.Drawing.Point(661, 247)
-        Me.cmbBrandFocus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbBrandFocus.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbBrandFocus.Name = "cmbBrandFocus"
         Me.cmbBrandFocus.Size = New System.Drawing.Size(211, 30)
         Me.cmbBrandFocus.TabIndex = 20
@@ -1032,7 +1036,7 @@ Partial Class frmLeadProfile2
         Me.cmbDepartment.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.cmbDepartment.LimitToList = True
         Me.cmbDepartment.Location = New System.Drawing.Point(649, 28)
-        Me.cmbDepartment.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbDepartment.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbDepartment.Name = "cmbDepartment"
         Me.cmbDepartment.Size = New System.Drawing.Size(152, 30)
         Me.cmbDepartment.TabIndex = 9
@@ -1100,7 +1104,7 @@ Partial Class frmLeadProfile2
         Me.cmbCountry.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.cmbCountry.LimitToList = True
         Me.cmbCountry.Location = New System.Drawing.Point(649, 82)
-        Me.cmbCountry.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbCountry.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbCountry.Name = "cmbCountry"
         Me.cmbCountry.Size = New System.Drawing.Size(149, 30)
         Me.cmbCountry.TabIndex = 25
@@ -1113,7 +1117,7 @@ Partial Class frmLeadProfile2
         Me.pbUser.ErrorImage = Global.SimpleAccounts.My.Resources.Resources.no_image
         Me.pbUser.InitialImage = Global.SimpleAccounts.My.Resources.Resources.no_image
         Me.pbUser.Location = New System.Drawing.Point(1180, 117)
-        Me.pbUser.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbUser.Margin = New System.Windows.Forms.Padding(4)
         Me.pbUser.Name = "pbUser"
         Me.pbUser.Size = New System.Drawing.Size(92, 84)
         Me.pbUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1128,7 +1132,7 @@ Partial Class frmLeadProfile2
         Me.lstInterestedIn.BackColor = System.Drawing.Color.Transparent
         Me.lstInterestedIn.disableWhenChecked = False
         Me.lstInterestedIn.HeadingLabelName = "lstShiftGroup"
-        Me.lstInterestedIn.HeadingText = "Source of Irrigation"
+        Me.lstInterestedIn.HeadingText = "Interested In"
         Me.lstInterestedIn.Location = New System.Drawing.Point(7, 188)
         Me.lstInterestedIn.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstInterestedIn.Name = "lstInterestedIn"
@@ -1163,7 +1167,7 @@ Partial Class frmLeadProfile2
         Me.btnSave.Font = New System.Drawing.Font("Verdana", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
         Me.btnSave.Location = New System.Drawing.Point(1181, 799)
-        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(100, 28)
         Me.btnSave.TabIndex = 27
@@ -1178,7 +1182,7 @@ Partial Class frmLeadProfile2
         Me.btnConvertToAccount.Font = New System.Drawing.Font("Verdana", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConvertToAccount.ForeColor = System.Drawing.Color.White
         Me.btnConvertToAccount.Location = New System.Drawing.Point(896, 799)
-        Me.btnConvertToAccount.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnConvertToAccount.Margin = New System.Windows.Forms.Padding(4)
         Me.btnConvertToAccount.Name = "btnConvertToAccount"
         Me.btnConvertToAccount.Size = New System.Drawing.Size(151, 28)
         Me.btnConvertToAccount.TabIndex = 25
@@ -1193,7 +1197,7 @@ Partial Class frmLeadProfile2
         Me.btnActivityHistory.Font = New System.Drawing.Font("Verdana", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnActivityHistory.ForeColor = System.Drawing.Color.White
         Me.btnActivityHistory.Location = New System.Drawing.Point(1055, 799)
-        Me.btnActivityHistory.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnActivityHistory.Margin = New System.Windows.Forms.Padding(4)
         Me.btnActivityHistory.Name = "btnActivityHistory"
         Me.btnActivityHistory.Size = New System.Drawing.Size(119, 28)
         Me.btnActivityHistory.TabIndex = 26
@@ -1237,7 +1241,7 @@ Partial Class frmLeadProfile2
         Me.Panel1.Controls.Add(Me.lblFirstName)
         Me.Panel1.Controls.Add(Me.lblSalutation)
         Me.Panel1.Location = New System.Drawing.Point(7, 390)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1182, 119)
         Me.Panel1.TabIndex = 23
@@ -1320,7 +1324,7 @@ Partial Class frmLeadProfile2
         Me.Button3.Font = New System.Drawing.Font("Verdana", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.Color.White
         Me.Button3.Location = New System.Drawing.Point(957, 82)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(57, 30)
         Me.Button3.TabIndex = 28
@@ -1334,7 +1338,7 @@ Partial Class frmLeadProfile2
         Me.txtSalutation.FormattingEnabled = True
         Me.txtSalutation.Items.AddRange(New Object() {"Mr.", "Ms.", "Mrs.", "Others."})
         Me.txtSalutation.Location = New System.Drawing.Point(9, 30)
-        Me.txtSalutation.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtSalutation.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSalutation.Name = "txtSalutation"
         Me.txtSalutation.Size = New System.Drawing.Size(149, 29)
         Me.txtSalutation.TabIndex = 16
@@ -1440,7 +1444,7 @@ Partial Class frmLeadProfile2
         Me.cmbCity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.cmbCity.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbCity.Location = New System.Drawing.Point(809, 84)
-        Me.cmbCity.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbCity.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbCity.Name = "cmbCity"
         Me.cmbCity.Size = New System.Drawing.Size(145, 29)
         Me.cmbCity.TabIndex = 11
@@ -1522,7 +1526,7 @@ Partial Class frmLeadProfile2
         Me.cmbStatus.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbStatus.FormattingEnabled = True
         Me.cmbStatus.Location = New System.Drawing.Point(661, 148)
-        Me.cmbStatus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbStatus.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Size = New System.Drawing.Size(209, 29)
         Me.cmbStatus.TabIndex = 16
@@ -1535,7 +1539,7 @@ Partial Class frmLeadProfile2
         Me.btnAttachments.Font = New System.Drawing.Font("Verdana", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAttachments.ForeColor = System.Drawing.Color.White
         Me.btnAttachments.Location = New System.Drawing.Point(885, 89)
-        Me.btnAttachments.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAttachments.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAttachments.Name = "btnAttachments"
         Me.btnAttachments.Size = New System.Drawing.Size(151, 28)
         Me.btnAttachments.TabIndex = 28
@@ -1554,7 +1558,7 @@ Partial Class frmLeadProfile2
         Me.btnCompanyLogo.Font = New System.Drawing.Font("Verdana", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCompanyLogo.ForeColor = System.Drawing.Color.White
         Me.btnCompanyLogo.Location = New System.Drawing.Point(1044, 89)
-        Me.btnCompanyLogo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnCompanyLogo.Margin = New System.Windows.Forms.Padding(4)
         Me.btnCompanyLogo.Name = "btnCompanyLogo"
         Me.btnCompanyLogo.Size = New System.Drawing.Size(73, 28)
         Me.btnCompanyLogo.TabIndex = 29
@@ -1579,7 +1583,7 @@ Partial Class frmLeadProfile2
         Me.btnPrint.Font = New System.Drawing.Font("Verdana", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnPrint.ForeColor = System.Drawing.Color.White
         Me.btnPrint.Location = New System.Drawing.Point(9, 799)
-        Me.btnPrint.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnPrint.Margin = New System.Windows.Forms.Padding(4)
         Me.btnPrint.Name = "btnPrint"
         Me.btnPrint.Size = New System.Drawing.Size(100, 28)
         Me.btnPrint.TabIndex = 27
@@ -1594,9 +1598,10 @@ Partial Class frmLeadProfile2
         Me.lblNoofEmplpyee.Location = New System.Drawing.Point(439, 183)
         Me.lblNoofEmplpyee.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblNoofEmplpyee.Name = "lblNoofEmplpyee"
-        Me.lblNoofEmplpyee.Size = New System.Drawing.Size(131, 23)
+        Me.lblNoofEmplpyee.Size = New System.Drawing.Size(132, 23)
         Me.lblNoofEmplpyee.TabIndex = 19
-        Me.lblNoofEmplpyee.Text = "Soil Preparation"
+        Me.lblNoofEmplpyee.Text = "No of Emplpyee"
+        Me.lblNoofEmplpyee.Visible = False
         '
         'cmbNoofEmployee
         '
@@ -1660,7 +1665,7 @@ Partial Class frmLeadProfile2
         Me.cmbNoofEmployee.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.cmbNoofEmployee.LimitToList = True
         Me.cmbNoofEmployee.Location = New System.Drawing.Point(443, 208)
-        Me.cmbNoofEmployee.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbNoofEmployee.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbNoofEmployee.Name = "cmbNoofEmployee"
         Me.cmbNoofEmployee.Size = New System.Drawing.Size(211, 30)
         Me.cmbNoofEmployee.TabIndex = 20
@@ -1739,7 +1744,7 @@ Partial Class frmLeadProfile2
         Me.cmbMasterCountry.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.cmbMasterCountry.LimitToList = True
         Me.cmbMasterCountry.Location = New System.Drawing.Point(884, 207)
-        Me.cmbMasterCountry.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbMasterCountry.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbMasterCountry.Name = "cmbMasterCountry"
         Me.cmbMasterCountry.Size = New System.Drawing.Size(184, 30)
         Me.cmbMasterCountry.TabIndex = 25
@@ -1749,7 +1754,7 @@ Partial Class frmLeadProfile2
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Red
-        Me.Label3.Location = New System.Drawing.Point(636, 65)
+        Me.Label3.Location = New System.Drawing.Point(479, 65)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(15, 20)
@@ -1761,7 +1766,7 @@ Partial Class frmLeadProfile2
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Red
-        Me.Label4.Location = New System.Drawing.Point(751, 65)
+        Me.Label4.Location = New System.Drawing.Point(785, 65)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(15, 20)
@@ -1773,7 +1778,7 @@ Partial Class frmLeadProfile2
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Red
-        Me.Label6.Location = New System.Drawing.Point(72, 124)
+        Me.Label6.Location = New System.Drawing.Point(60, 124)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(15, 20)
@@ -1785,7 +1790,7 @@ Partial Class frmLeadProfile2
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.Red
-        Me.Label7.Location = New System.Drawing.Point(552, 124)
+        Me.Label7.Location = New System.Drawing.Point(504, 124)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(15, 20)
@@ -1797,7 +1802,7 @@ Partial Class frmLeadProfile2
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.Red
-        Me.Label8.Location = New System.Drawing.Point(152, 183)
+        Me.Label8.Location = New System.Drawing.Point(108, 183)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(15, 20)
@@ -1833,11 +1838,50 @@ Partial Class frmLeadProfile2
         Me.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtAddress.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAddress.Location = New System.Drawing.Point(443, 310)
-        Me.txtAddress.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtAddress.Margin = New System.Windows.Forms.Padding(4)
         Me.txtAddress.Multiline = True
         Me.txtAddress.Name = "txtAddress"
         Me.txtAddress.Size = New System.Drawing.Size(623, 65)
         Me.txtAddress.TabIndex = 8
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label19.Location = New System.Drawing.Point(571, 180)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(77, 23)
+        Me.Label19.TabIndex = 40
+        Me.Label19.Text = "Morality "
+        Me.Label19.Visible = False
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label18.Location = New System.Drawing.Point(108, 124)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(77, 23)
+        Me.Label18.TabIndex = 39
+        Me.Label18.Text = "Soil Type"
+        Me.Label18.Visible = False
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label17.Location = New System.Drawing.Point(518, 65)
+        Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(195, 23)
+        Me.Label17.TabIndex = 38
+        Me.Label17.Text = "Topography of The Land"
+        Me.Label17.Visible = False
         '
         'lstBrandFocus
         '
@@ -1846,7 +1890,7 @@ Partial Class frmLeadProfile2
         Me.lstBrandFocus.BackColor = System.Drawing.Color.Transparent
         Me.lstBrandFocus.disableWhenChecked = False
         Me.lstBrandFocus.HeadingLabelName = "lstShiftGroup"
-        Me.lstBrandFocus.HeadingText = "Before Olive Plantation"
+        Me.lstBrandFocus.HeadingText = "Brand Focus"
         Me.lstBrandFocus.Location = New System.Drawing.Point(224, 188)
         Me.lstBrandFocus.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstBrandFocus.Name = "lstBrandFocus"
@@ -1856,7 +1900,7 @@ Partial Class frmLeadProfile2
         Me.lstBrandFocus.ShowNoCheck = False
         Me.lstBrandFocus.ShowResetAllButton = False
         Me.lstBrandFocus.ShowSelectall = True
-        Me.lstBrandFocus.Size = New System.Drawing.Size(218, 187)
+        Me.lstBrandFocus.Size = New System.Drawing.Size(203, 187)
         Me.lstBrandFocus.TabIndex = 36
         Me.lstBrandFocus.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
         '
@@ -1866,7 +1910,10 @@ Partial Class frmLeadProfile2
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1217, 599)
+        Me.ClientSize = New System.Drawing.Size(1343, 683)
+        Me.Controls.Add(Me.Label19)
+        Me.Controls.Add(Me.Label18)
+        Me.Controls.Add(Me.Label17)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
@@ -1914,7 +1961,7 @@ Partial Class frmLeadProfile2
         Me.Controls.Add(Me.lblType)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.pnlHeader)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmLeadProfile2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.pnlHeader.ResumeLayout(False)
@@ -2021,4 +2068,7 @@ Partial Class frmLeadProfile2
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents txtAddress As System.Windows.Forms.TextBox
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents Label17 As System.Windows.Forms.Label
 End Class

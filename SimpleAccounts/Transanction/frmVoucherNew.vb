@@ -69,6 +69,7 @@ Public Class frmVoucherNew
         EmpID
         EmpName
         RequestId
+        SalesOrderID
         Delete
         'Change by Murtaza for txtcurrencyrate text change (11/09/2022)
         CurrencyAmount
@@ -127,6 +128,7 @@ Public Class frmVoucherNew
     'Altered Against Task#2015060001 Ali Ansari
     Dim CurrentVoucherNo As String = String.Empty
     Dim BaseCurrencyId As Integer
+    Dim SalesOrder As Integer
     Dim BaseCurrencyName As String = String.Empty
     Dim intVoucherId As Integer = 0I
     Dim NotificationDAL As New NotificationTemplatesDAL
@@ -279,6 +281,7 @@ Public Class frmVoucherNew
             FillCombo("Account")
             FillCombo("CMFA")
             FillCombo("Employee")
+            FillCombo("SalesOrder")
             'FillCombo("AR")
             FillCombo(Me.cmbCostCenter.Name)
             RefreshControls()
@@ -291,6 +294,7 @@ Public Class frmVoucherNew
 
             ' Selecting base currency by default
             Me.cmbCurrency.SelectedValue = Me.BaseCurrencyId
+            Me.cmbsalesorderId.SelectedValue = Me.SalesOrder
             'lblVTypeHeading.BackColor = Color.FromArgb(90, 211, 247)
 
             '31-Jul-2017        TFS1111       R@! Shahid      Deactivated Account should not display on Trial Balance Screen
@@ -523,6 +527,14 @@ Public Class frmVoucherNew
                 str = "Select tblCurrency.currency_id, tblCurrency.currency_code, IsNull(tblCurrencyRate.CurrencyRate, 0) As CurrencyRate From tblCurrency Left Outer Join(Select * FROM tblCurrencyRate Where CurrencyRateId in (Select Max(CurrencyRateId) From tblCurrencyRate group by CurrencyId)) tblCurrencyRate On tblCurrency.currency_id = tblCurrencyRate.CurrencyId "
                 FillDropDown(Me.cmbCurrency, str, False)
                 Me.cmbCurrency.SelectedValue = BaseCurrencyId
+            ElseIf strCondition = "SalesOrder" Then
+                str = String.Empty
+                str = "select SalesOrderId,SalesOrderNo from SalesOrderMasterTable"
+                FillDropDown(Me.cmbsalesorderId, str)
+                Dim dtsalesorder As New DataTable
+                dtsalesorder = GetDataTable(str)
+                dtsalesorder.AcceptChanges()
+                Me.grd.RootTable.Columns("SalesOrderID").ValueList.PopulateValueList(dtsalesorder.DefaultView, "SalesOrderId", "SalesOrderNo")
             End If
         Catch ex As Exception
             Throw ex
@@ -561,6 +573,7 @@ Public Class frmVoucherNew
             Me.cmbEmployee.SelectedIndex = 0
             Me.cmbAdvanceRequest.SelectedIndex = 0
             Me.txtCurrentBalance.Text = 0
+            Me.cmbsalesorderId.SelectedIndex = 0
             Me.BtnSave.Text = "&Save"
             'Rafay
             companyinitials = ""
@@ -1054,6 +1067,7 @@ Public Class frmVoucherNew
             dr.Item(EnumGrid.Credit) = Math.Round(IIf(Me.txtCredit.Text = "", 0, Val(Me.txtCredit.Text) * Val(Me.txtCurrencyRate.Text)), TotalAmountRounding)
             dr.Item(EnumGrid.AccountID) = Me.cmbAccount.ActiveRow.Cells(0).Value
             dr.Item(EnumGrid.EmpID) = IIf(Me.cmbEmployee.SelectedIndex > 0, Me.cmbEmployee.SelectedValue, 0)
+            dr.Item(EnumGrid.SalesOrderID) = IIf(Me.cmbsalesorderId.SelectedValue > 0, Me.cmbsalesorderId.SelectedValue, 0)
             dr.Item(EnumGrid.RequestId) = IIf(Me.cmbAdvanceRequest.SelectedIndex > 0, Me.cmbAdvanceRequest.SelectedValue, 0)
             dr.Item(EnumGrid.EmpName) = 0 'Me.cmbEmployee.Text
             dtGrd.Rows.InsertAt(dr, 0)
@@ -1182,9 +1196,9 @@ Public Class frmVoucherNew
                     End If
                 End If
 
-                objCommand.CommandText = "Insert into tblVoucherTemplateDetail (voucher_id, location_id,coa_detail_id, comments,debit_amount,credit_amount, CostCenterID, Cheque_No, Cheque_Date,ChequeDescription, CurrencyId, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, EmpID, RequestId) values( " _
+                objCommand.CommandText = "Insert into tblVoucherTemplateDetail (voucher_id, location_id,coa_detail_id, comments,debit_amount,credit_amount, CostCenterID, Cheque_No, Cheque_Date,ChequeDescription, CurrencyId, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, EmpID, RequestId,SalesOrderId) values( " _
                                    & " " & intVoucherId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", Me.cmbCompany.SelectedValue.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.AccountID).Value) & ",N'" & (grd.GetRows(i).Cells(EnumGrid.Description).Value.ToString.Replace("'", "''")) & "'," & Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value) & ", " _
-                                   & " " & Val(grd.GetRows(i).Cells(EnumGrid.Credit).Value) & ", " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & grd.GetRows(i).Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(grd.GetRows(i).Cells("Cheque_Date").Value), Now, grd.GetRows(i).Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", N'" & GetComments(grd.GetRows(i)).Replace("'", "''") & "', " & Val(grd.GetRow(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("currencyDr").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("CurrencyCr").Value.ToString) & ", '" & Me.cmbCurrency.Text & "', " & Val(grd.GetRows(i).Cells(EnumGrid.EmpID).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RequestId).Value.ToString) & ")Select @@Identity"
+                                   & " " & Val(grd.GetRows(i).Cells(EnumGrid.Credit).Value) & ", " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & grd.GetRows(i).Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(grd.GetRows(i).Cells("Cheque_Date").Value), Now, grd.GetRows(i).Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", N'" & GetComments(grd.GetRows(i)).Replace("'", "''") & "', " & Val(grd.GetRow(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("currencyDr").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("CurrencyCr").Value.ToString) & ", '" & Me.cmbCurrency.Text & "', " & Val(grd.GetRows(i).Cells(EnumGrid.EmpID).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RequestId).Value.ToString) & "," & Val(grd.GetRows(i).Cells(EnumGrid.SalesOrderID).Value.ToString) & ")Select @@Identity"
 
                 objCommand.ExecuteScalar()
 
@@ -1360,9 +1374,9 @@ Public Class frmVoucherNew
                 ''End Task:2745
 
                 ' Added 2 new columns Currency_debit_amount, Currency_Credit_Amount
-                objCommand.CommandText = "Insert into tblVoucherDetail (voucher_id, location_id,coa_detail_id, comments,debit_amount,credit_amount, CostCenterID, Cheque_No, Cheque_Date,ChequeDescription, CurrencyId, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, EmpID, RequestId) values( " _
+                objCommand.CommandText = "Insert into tblVoucherDetail (voucher_id, location_id,coa_detail_id, comments,debit_amount,credit_amount, CostCenterID, Cheque_No, Cheque_Date,ChequeDescription, CurrencyId, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, EmpID, RequestId,SalesOrderId) values( " _
                                    & " ident_current('tblVoucher'), " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Val(grd.GetRows(i).Cells(EnumGrid.AccountID).Value) & ",N'" & (grd.GetRows(i).Cells(EnumGrid.Description).Value.ToString.Replace("'", "''")) & "'," & Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value) & ", " _
-                                   & " " & Val(grd.GetRows(i).Cells(EnumGrid.Credit).Value) & ", " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & grd.GetRows(i).Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(grd.GetRows(i).Cells("Cheque_Date").Value), Now, grd.GetRows(i).Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", N'" & GetComments(grd.GetRows(i)).Replace("'", "''") & "', " & Val(grd.GetRow(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("currencyDr").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("CurrencyCr").Value.ToString) & ", '" & Me.cmbCurrency.Text & "', " & Val(grd.GetRows(i).Cells(EnumGrid.EmpID).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RequestId).Value.ToString) & ")Select @@Identity"
+                                   & " " & Val(grd.GetRows(i).Cells(EnumGrid.Credit).Value) & ", " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & grd.GetRows(i).Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(grd.GetRows(i).Cells("Cheque_Date").Value), Now, grd.GetRows(i).Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", N'" & GetComments(grd.GetRows(i)).Replace("'", "''") & "', " & Val(grd.GetRow(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("currencyDr").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("CurrencyCr").Value.ToString) & ", '" & Me.cmbCurrency.Text & "', " & Val(grd.GetRows(i).Cells(EnumGrid.EmpID).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RequestId).Value.ToString) & "," & Val(grd.GetRows(i).Cells(EnumGrid.SalesOrderID).Value) & ")Select @@Identity"
 
                 objCommand.ExecuteScalar()
                 'Val(grd.Rows(i).Cells(5).Value)
@@ -1618,9 +1632,9 @@ Public Class frmVoucherNew
                 ''End Task:2745
 
                 ' Added 2 new columns Currency_debit_amount, Currency_Credit_Amount
-                objCommand.CommandText = "Insert into tblVoucherDetail (voucher_id, location_id,coa_detail_id, comments,debit_amount,credit_amount, CostCenterID, Cheque_No, Cheque_Date,ChequeDescription, CurrencyId, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, EmpID, RequestId) values( " _
+                objCommand.CommandText = "Insert into tblVoucherDetail (voucher_id, location_id,coa_detail_id, comments,debit_amount,credit_amount, CostCenterID, Cheque_No, Cheque_Date,ChequeDescription, CurrencyId, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, EmpID, RequestId,SalesOrderId) values( " _
                                    & txtVoucherID.Text & " , " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Val(grd.GetRows(i).Cells(EnumGrid.AccountID).Value) & ",N'" & (grd.GetRows(i).Cells(EnumGrid.Description).Value.ToString.Replace("'", "''")) & "'," & Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value) & ", " _
-                                   & " " & Val(grd.GetRows(i).Cells(EnumGrid.Credit).Value) & ", " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & grd.GetRows(i).Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(grd.GetRows(i).Cells("Cheque_Date").Value), Now, grd.GetRows(i).Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", N'" & GetComments(grd.GetRows(i)).Replace("'", "''") & "', " & Val(grd.GetRow(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("currencyDr").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("CurrencyCr").Value.ToString) & ", '" & Me.cmbCurrency.Text & "', " & Val(grd.GetRows(i).Cells(EnumGrid.EmpID).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RequestId).Value.ToString) & ")Select @@Identity"
+                                   & " " & Val(grd.GetRows(i).Cells(EnumGrid.Credit).Value) & ", " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & grd.GetRows(i).Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(grd.GetRows(i).Cells("Cheque_Date").Value), Now, grd.GetRows(i).Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", N'" & GetComments(grd.GetRows(i)).Replace("'", "''") & "', " & Val(grd.GetRow(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("currencyDr").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("CurrencyCr").Value.ToString) & ", '" & Me.cmbCurrency.Text & "', " & Val(grd.GetRows(i).Cells(EnumGrid.EmpID).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RequestId).Value.ToString) & "," & Val(grd.GetRows(i).Cells(EnumGrid.SalesOrderID).Value) & ")Select @@Identity"
 
 
 
@@ -1979,7 +1993,7 @@ Public Class frmVoucherNew
             '// Adding 2 new columns of CurrencyDr, CurrecnyCr after Currency id
             ''TFS4650 : 27-09-2018 : Ayesha Rehman : Added a new column Account Code 
             ''TASK TFS4913 : removed the GetDate() function from Cheque_Date field in case field is null to have the null value instead of GetDate() value. done on 14-11-2016
-            str = " SELECT     ACDetail.sub_sub_title AS Head, ACDetail.detail_title AS Account , ACDetail.detail_code As AccountCode, VD.comments AS Description, ISNULL(VD.CostCenterID, 0) AS CostCenterId, VD.Cheque_No, VD.Cheque_Date AS Cheque_Date, ISNULL(VD.CurrencyId, 0) AS CurrencyId, ISNULL(VD.Currency_debit_amount, VD.debit_amount) AS CurrencyDr, ISNULL(VD.Currency_Credit_Amount, VD.credit_amount) AS CurrencyCr, ISNULL(VD.CurrencyRate, 1) AS CurrencyRate, ISNULL(VD.BaseCurrencyId, 0) AS BaseCurrencyId, ISNULL(VD.BaseCurrencyRate, 0) AS BaseCurrencyRate, CONVERT(money, VD.debit_amount) AS Debit, CONVERT(money, VD.credit_amount) AS Credit, VD.coa_detail_id AS AccountId, ACDetail.account_type AS Type, ISNULL(InvAdj.VoucherDetailId, 0) AS VoucherDetailId, VD.voucher_detail_id AS DetailId, VD.EmpID, tblDefEmployee.Employee_Name as EmpName, ISNULL(VD.RequestId, 0) as RequestId FROM tblVoucher AS V INNER JOIN tblVoucherDetail AS VD ON V.voucher_id = VD.voucher_id INNER JOIN vwCOADetail AS ACDetail ON VD.coa_detail_id = ACDetail.coa_detail_id LEFT OUTER JOIN tblDefEmployee ON VD.EmpID = tblDefEmployee.Employee_ID LEFT OUTER JOIN tblDefCostCenter ON VD.CostCenterID = tblDefCostCenter.CostCenterID LEFT OUTER JOIN (SELECT DISTINCT VoucherDetailId FROM InvoiceAdjustmentTable) AS InvAdj ON InvAdj.VoucherDetailId = VD.voucher_detail_id " _
+            str = " SELECT     ACDetail.sub_sub_title AS Head, ACDetail.detail_title AS Account , ACDetail.detail_code As AccountCode, VD.comments AS Description, ISNULL(VD.CostCenterID, 0) AS CostCenterId, VD.Cheque_No, VD.Cheque_Date AS Cheque_Date, ISNULL(VD.CurrencyId, 0) AS CurrencyId, ISNULL(VD.Currency_debit_amount, VD.debit_amount) AS CurrencyDr, ISNULL(VD.Currency_Credit_Amount, VD.credit_amount) AS CurrencyCr, ISNULL(VD.CurrencyRate, 1) AS CurrencyRate, ISNULL(VD.BaseCurrencyId, 0) AS BaseCurrencyId, ISNULL(VD.BaseCurrencyRate, 0) AS BaseCurrencyRate, CONVERT(money, VD.debit_amount) AS Debit, CONVERT(money, VD.credit_amount) AS Credit, VD.coa_detail_id AS AccountId, ACDetail.account_type AS Type, ISNULL(InvAdj.VoucherDetailId, 0) AS VoucherDetailId, VD.voucher_detail_id AS DetailId, VD.EmpID, tblDefEmployee.Employee_Name as EmpName, ISNULL(VD.RequestId, 0) as RequestId,ISNULL(VD.SalesOrderId,0) FROM tblVoucher AS V INNER JOIN tblVoucherDetail AS VD ON V.voucher_id = VD.voucher_id INNER JOIN vwCOADetail AS ACDetail ON VD.coa_detail_id = ACDetail.coa_detail_id LEFT OUTER JOIN tblDefEmployee ON VD.EmpID = tblDefEmployee.Employee_ID LEFT OUTER JOIN tblDefCostCenter ON VD.CostCenterID = tblDefCostCenter.CostCenterID LEFT OUTER JOIN (SELECT DISTINCT VoucherDetailId FROM InvoiceAdjustmentTable) AS InvAdj ON InvAdj.VoucherDetailId = VD.voucher_detail_id " _
                         & " Where VD.Voucher_ID =" & VoucherID & " order by VD.Voucher_Detail_Id ASC "
 
             Dim objCommand As New OleDbCommand
@@ -2214,6 +2228,7 @@ Public Class frmVoucherNew
             End If
 
         Catch ex As Exception
+
             Throw ex
         End Try
     End Function
@@ -2416,6 +2431,7 @@ Public Class frmVoucherNew
                 UsersEmail = New List(Of String)
                 'UsersEmail.Add("adil@agriusit.com")
                 ''UsersEmail.Add("ali@agriusit.com")
+                UsersEmail.Add("r.ejaz@agriusit.com")
                 UsersEmail.Add("h.saeed@agriusit.com")
                 FormatStringBuilder(dtEmail)
                 For Each _email As String In UsersEmail
@@ -3063,6 +3079,7 @@ Public Class frmVoucherNew
             FillCombo("Company")
             'End Task#05082015
             FillCombo("Employee")
+            FillCombo("SalesOrder")
             FillCombo("AR")
             FillCombo("GrdEmployee")
             FillCombo("GrdAR")
@@ -3188,7 +3205,7 @@ Public Class frmVoucherNew
                 'R@!    11-Jun-2016 Dollor Account
                 ' Added Currency Dr, Cr columns in filter
                 'If col.Index <> EnumGrid.Description AndAlso col.Index <> EnumGrid.CostCenterID AndAlso col.Index <> EnumGrid.Cheque_No AndAlso col.Index <> EnumGrid.Cheque_Date AndAlso col.Index <> EnumGrid.CurrencyAmount AndAlso col.Index <> EnumGrid.CurrencyRate Then
-                If col.Index <> EnumGrid.Description AndAlso col.Index <> EnumGrid.CostCenterID AndAlso col.Index <> EnumGrid.Cheque_No AndAlso col.Index <> EnumGrid.Cheque_Date AndAlso col.Index <> EnumGrid.CurrencyDr AndAlso col.Index <> EnumGrid.CurrencyCr AndAlso col.Index <> EnumGrid.EmpID AndAlso col.Index <> EnumGrid.RequestId AndAlso col.Index <> EnumGrid.EmpName Then
+                If col.Index <> EnumGrid.Description AndAlso col.Index <> EnumGrid.CostCenterID AndAlso col.Index <> EnumGrid.Cheque_No AndAlso col.Index <> EnumGrid.Cheque_Date AndAlso col.Index <> EnumGrid.CurrencyDr AndAlso col.Index <> EnumGrid.CurrencyCr AndAlso col.Index <> EnumGrid.EmpID AndAlso col.Index <> EnumGrid.RequestId AndAlso col.Index <> EnumGrid.EmpName AndAlso col.Index <> EnumGrid.SalesOrderID Then
                     col.EditType = Janus.Windows.GridEX.EditType.NoEdit
                 End If
             Next

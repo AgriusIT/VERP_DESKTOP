@@ -497,6 +497,7 @@ Public Class frmopportunity
                 Obj.DurationofMonth = cmbDurationofMonth.Text
                 Obj.InvoicePattern = cmbInvoicePattern.Text
                 Obj.ArticleId = cmbItem.Value
+                Obj.PMFrequency = cmbPMFrequency.Text
                 Obj.OpportunityType = OpportunityType.Support
                 Me.grdSupport.UpdateData()
                 For Each Row As Janus.Windows.GridEX.GridEXRow In Me.grdSupport.GetRows
@@ -639,6 +640,7 @@ Public Class frmopportunity
             cmbOpportuniyyOwner.SelectedValue = LoginUserId
             cmbOnsiteIntervention.SelectedValue = 0
             cmbDurationofMonth.SelectedIndex = 0
+            cmbPMFrequency.SelectedIndex = 0
             cmbInvoicePattern.SelectedIndex = 0
             txtFreight.Text = String.Empty
             cmbPaymentHardware.Rows(0).Activate()
@@ -842,9 +844,21 @@ Public Class frmopportunity
                 If CompanyPrefix = "V-ERP (UAE)" Then
                     'companyinitials = "UE"
                     StandardNo = GetSerialNo("OP" & "-" + Microsoft.VisualBasic.Right(dtpDocDate.Value.Year, 2) + "-", "tblDefOpportunity", "DocNo")
-                Else
+                ElseIf CompanyPrefix = "V-ERP (PAK)" Then
                     companyinitials = "PK"
                     StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                ElseIf CompanyPrefix = "V-ERP (KSA)" Then
+                    companyinitials = "KSA"
+                    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                ElseIf CompanyPrefix = "V-ERP (MY)" Then
+                    companyinitials = "MY"
+                    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                    'ElseIf CompanyPrefix = "V-ERP (Remms-PAK)" Then
+                    '    companyinitials = "RPK"
+                    '    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                    'ElseIf CompanyPrefix = "V-ERP (Remms-UAE)" Then
+                    '    companyinitials = "RUAE"
+                    '    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
                 End If
             ElseIf getConfigValueByType("VoucherNo").ToString = "Monthly" Then
                 'rafay
@@ -852,15 +866,33 @@ Public Class frmopportunity
                 If CompanyPrefix = "V-ERP (UAE)" Then
                     'companyinitials = "UE"
                     StandardNo = GetSerialNo("OP" & "-" + Microsoft.VisualBasic.Right(dtpDocDate.Value.Year, 2) + "-", "tblDefOpportunity", "DocNo")
-                Else
+                ElseIf CompanyPrefix = "V-ERP (PAK)" Then
                     companyinitials = "PK"
                     StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                ElseIf CompanyPrefix = "V-ERP (KSA)" Then
+                    companyinitials = "KSA"
+                    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                ElseIf CompanyPrefix = "V-ERP (MY)" Then
+                    companyinitials = "MY"
+                    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                    'ElseIf CompanyPrefix = "V-ERP (Remms-PAK)" Then
+                    '    companyinitials = "RPK"
+                    '    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                    'ElseIf CompanyPrefix = "V-ERP (Remms-UAE)" Then
+                    '    companyinitials = "RUAE"
+                    '    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
                 End If
                 '  StandardNo = GetNextDocNo("OP" & "-" & Format(dtpDocDate.Value, "yy") & dtpDocDate.Value.Month.ToString("00"), 4, "tblDefOpportunity", "DocNo")
                 'rafay
             Else
                 StandardNo = GetNextDocNo("OP", 6, "tblDefOpportunity", "StandardNo")
             End If
+            'Public str_Company As String = "V-ERP (UAE)"
+            'Public str_Company1 As String = "V-ERP (PAK)"
+            'Public str_Company2 As String = "V-ERP (Remms-PAK)"
+            'Public str_Company3 As String = "V-ERP (Remms-UAE)"
+            'Public str_Company4 As String = "V-ERP (KSA)"
+            'Public str_Company5 As String = "V-ERP (MY)"
             Return StandardNo
         Catch ex As Exception
             Throw ex
@@ -939,6 +971,7 @@ Public Class frmopportunity
             Me.cmbDurationofMonth.Text = Obj.DurationofMonth
             Me.cmbInvoicePattern.Text = Obj.InvoicePattern
             Me.cmbItem.Value = Obj.ArticleId
+            Me.cmbPMFrequency.Text = Obj.PMFrequency
             Me.UiListControl1.SelectItemsByIDs(Obj.CoverageWindow)
             Me.lstInterestedIn.SelectItemsByIDs(Obj.OnsiteIntervention)
             Me.lblTotalAmount.Text = Obj.TotalAmount
@@ -2480,7 +2513,7 @@ Public Class frmopportunity
 
     End Sub
 
-    Private Sub cmbOnsiteIntervention_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbOnsiteIntervention.SelectedIndexChanged, cmbInvoicePattern.SelectedIndexChanged, cmbDurationofMonth.SelectedIndexChanged, ComboBox1.SelectedIndexChanged, ComboBox2.SelectedIndexChanged
+    Private Sub cmbOnsiteIntervention_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbOnsiteIntervention.SelectedIndexChanged, cmbInvoicePattern.SelectedIndexChanged, cmbDurationofMonth.SelectedIndexChanged, ComboBox1.SelectedIndexChanged, ComboBox2.SelectedIndexChanged, cmbPMFrequency.SelectedIndexChanged
 
     End Sub
 

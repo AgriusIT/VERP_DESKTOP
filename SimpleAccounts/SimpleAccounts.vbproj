@@ -859,12 +859,6 @@
     <Compile Include="Configuration\frmDefGender.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Configuration\frmDefServices.Designer.vb">
-      <DependentUpon>frmDefServices.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Configuration\frmDefServices.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Configuration\frmDefShift.Designer.vb">
       <DependentUpon>frmDefShift.vb</DependentUpon>
     </Compile>
@@ -8019,10 +8013,6 @@
       <DependentUpon>frmDefGender.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Configuration\frmDefServices.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmDefServices.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Configuration\frmDefShift.resx">
       <DependentUpon>frmDefShift.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -11422,7 +11412,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transanction New\frmStockDispatch.resx">
       <DependentUpon>frmStockDispatch.vb</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Transanction New\frmStockReceive.resx">
       <DependentUpon>frmStockReceive.vb</DependentUpon>
