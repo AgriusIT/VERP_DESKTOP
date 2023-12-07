@@ -341,7 +341,7 @@ Public Class frmExpense
                 ' companyinitials = "UE"
                 Return GetSerialNo(VType + "-" + Microsoft.VisualBasic.Right(Me.dtVoucherDate.Value.Year, 2) + "-", "tblVoucher", "voucher_no")
             Else
-                companyinitials = "PK"
+                ''companyinitials = "PK"
                 Return GetNextDocNo(VType & "-" & companyinitials & "-" & Format(Me.dtVoucherDate.Value, "yy"), 4, "tblVoucher", "voucher_no")
             End If
             'rafay
@@ -356,7 +356,7 @@ Public Class frmExpense
                         ' companyinitials = "UE"
                         Return GetSerialNo(VType + "-" + Microsoft.VisualBasic.Right(Me.dtVoucherDate.Value.Year, 2) + "-", "tblVoucher", "voucher_no")
                     Else
-                        companyinitials = "PK"
+                        ''companyinitials = "PK"
                         Return GetNextDocNo(VType & "-" & companyinitials & "-" & Format(Me.dtVoucherDate.Value, "yy"), 4, "tblVoucher", "voucher_no")
                     End If
                     'rafay

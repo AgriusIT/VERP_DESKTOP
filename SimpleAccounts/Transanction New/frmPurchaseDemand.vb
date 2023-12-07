@@ -98,6 +98,7 @@ Public Class frmPurchaseDemand
     Dim EmailBody As String = String.Empty
     Dim PurchaseDemandId As Integer
     Dim html As StringBuilder
+
     'Changes added by Murtaza for email generation on save (11/14/2022)
     Enum GrdEnum
         'Category
@@ -201,6 +202,7 @@ Public Class frmPurchaseDemand
             'FillCombo("Currency")
             'FillCombo("LC") 'R933 Call LC List
             FillCombo("CostCenter")
+            FillCombo("Ticket")
             '2015060004 Fill Combo Ali Ansari
             FillCombo("SOrder")
             '2015060004 Fill Combo Ali Ansari
@@ -427,7 +429,7 @@ Public Class frmPurchaseDemand
         Me.dtpPODate.Enabled = True
         txtRemarks.Text = ""
         'rafay
-        companyinitials = ""
+        ''companyinitials = ""
         'rafay
         txtPaid.Text = ""
         'txtAmount.Text = ""
@@ -1106,7 +1108,11 @@ Public Class frmPurchaseDemand
         '2015060004 Fill Combobox
         ElseIf strCondition = "SO" Then
         str = "Select SalesID, SalesNo from SalesMasterTable where SalesId not in(select PoId from salesReturnMasterTable)"
-        FillDropDown(cmbPo, str)
+            FillDropDown(cmbPo, str)
+
+        ElseIf strCondition = "Ticket" Then
+            str = "select * from TicketMasterTable where Status = 'Open'"
+            FillDropDown(cmbTicketNo, str)
 
         ElseIf strCondition = "SOComplete" Then
         str = "Select SalesID, SalesNo from SalesMasterTable "
@@ -1161,7 +1167,7 @@ Public Class frmPurchaseDemand
         'Task:2856
         'FillDropDown(Me.cmbCMFADoc, strQuery)
         ElseIf strCondition = "CostCenter" Then
-        FillDropDown(Me.cmbProject, "Select * From tblDefCostCenter ORDER BY Name ASC")
+            FillDropDown(Me.cmbProject, "Select * From tblDefCostCenter WHERE Active = 1 AND Contract = 1 ORDER BY Name ASC")
 
 
 
@@ -1230,6 +1236,9 @@ Public Class frmPurchaseDemand
                                         & gobjLocationId & ", N'" & txtPONo.Text & "',N'" & dtpPODate.Value.ToString("yyyy-M-d h:mm:ss tt") & "'," & cmbVendor.ActiveRow.Cells(0).Value & ", " & Me.grd.GetTotal(Me.grd.RootTable.Columns("Qty"), Janus.Windows.GridEX.AggregateFunction.Sum) & ",N'" & txtRemarks.Text.ToString.Replace("'", "''") & "',N'" & LoginUserName & "', N'" & EnumStatus.Open.ToString & "', " & IIf(Me.chkPost.Checked = True, 1, 0) & "," & Me.cmbProject.SelectedValue & "," & Me.cmbSalesOrder.SelectedValue & ") Select @@Identity"
        
             getVoucher_Id = objCommand.ExecuteScalar 'objCommand.ExecuteNonQuery()
+
+            objCommand.CommandText = "insert into tblDefCostCenter(Name,Code,sortorder, CostCenterGroup, Active, OutwardGatepass, DayShift, IsLogical, Amount, SOBudget, SalaryBudget, DepartmentBudget, Contract, PurchaseDemand) values(N'" & txtPONo.Text.Replace("'", "''") & "','" & txtPONo.Text.Replace("'", "''") & "','1', N'', 1, 0, 0, 0,0, 0, 0, 0, 0, 1)"
+            objCommand.ExecuteNonQuery()
             'Task#201506000 Add SalesOrderId in PurchaseDemandMasterTable to block salesorder no which were saved before
             'End Task:2673
             'objCommand.CommandText = ""
@@ -1392,6 +1401,14 @@ Public Class frmPurchaseDemand
         If Not Me.grd.RowCount > 0 Then
             msg_Error(str_ErrorNoRecordFound)
             cmbItem.Focus() : FormValidate = False : Exit Function
+        End If
+        If chkRefill.Checked = True Then
+
+        Else
+            If cmbTicketNo.SelectedValue = 0 Then
+                msg_Error("Please select Ticket to Proceed")
+                cmbTicketNo.Focus() : FormValidate = False : Exit Function
+            End If
         End If
         ''Start TFS2988
         If IsEditMode = True Then
@@ -2603,6 +2620,7 @@ Public Class frmPurchaseDemand
             'End R933 
             id = Me.cmbProject.SelectedIndex
             FillCombo("CostCenter")
+            FillCombo("Ticket")
             ''start TFs4161
             'Ali Faisal : UDL : Changes for Reports and other for UDL on 14-16 Nov 2018.
             If Not getConfigValueByType("PurchaseDiablePackQuantity").ToString = "Error" Then
@@ -2814,7 +2832,7 @@ Public Class frmPurchaseDemand
                     ' companyinitials = "UE"
                     Return GetSerialNo("PD" + "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "PurchaseDemandMasterTable", "PurchaseDemandNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     ''  Return GetNextDocNo("PD" & "-" & Format(Me.dtpPODate.Value, "yy") & Me.dtpPODate.Value.Month.ToString("00"), 4, "PurchaseDemandMasterTable", "PurchaseDemandNo")
                     Return GetNextDocNo("PD" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "PurchaseDemandMasterTable", "PurchaseDemandNo")
                 End If
@@ -2826,7 +2844,7 @@ Public Class frmPurchaseDemand
                     ' companyinitials = "UE"
                     Return GetSerialNo("PD" + "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "PurchaseDemandMasterTable", "PurchaseDemandNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     ''  Return GetNextDocNo("PD" & "-" & Format(Me.dtpPODate.Value, "yy") & Me.dtpPODate.Value.Month.ToString("00"), 4, "PurchaseDemandMasterTable", "PurchaseDemandNo")
                     Return GetNextDocNo("PD" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "PurchaseDemandMasterTable", "PurchaseDemandNo")
                 End If
@@ -3649,7 +3667,7 @@ Public Class frmPurchaseDemand
     End Sub
 
    
-    Private Sub cmbSalesOrder_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbSalesOrder.SelectedIndexChanged
+    Private Sub cmbSalesOrder_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbSalesOrder.SelectedIndexChanged, cmbTicketNo.SelectedIndexChanged
         Try
             If IsFormLoaded = False Then Exit Sub
             If Not cmbSalesOrder.SelectedIndex = -1 Then
@@ -3923,7 +3941,7 @@ Public Class frmPurchaseDemand
                 'FillDataSet()
                 UsersEmail = New List(Of String)
                 'Added by murtaza (01/05/2023) for Remms email
-                If Con.Database = "RemmsTech_UAE_DB" Then
+                If Con.Database.Contains("Remms") Then
                     UsersEmail.Add("purchase@remmsit.com")
                 Else
                     UsersEmail.Add("purchase@agriusit.com")
@@ -4014,6 +4032,12 @@ Public Class frmPurchaseDemand
             Dim mailItem As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
             mailItem.Subject = "Creating New Purchase Demand: " + txtPONo.Text & " " & "(" & txtRemarks.Text & ")"
             mailItem.To = Email
+            ''mailItem.CC = "dispatch@agriusit.com"
+            If Con.Database.Contains("Remms") Then
+                mailItem.CC = "dispatch@remmsit.com"
+            Else
+                mailItem.CC = "dispatch@agriusit.com"
+            End If
             Email = String.Empty
             mailItem.Importance = Outlook.OlImportance.olImportanceNormal
             mailItem.Display(mailItem)
@@ -4094,4 +4118,27 @@ Public Class frmPurchaseDemand
     End Sub
 
     'Changes added by Murtaza for email generation on save (11/14/2022)
+
+    Private Sub cmbProject_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbProject.SelectedValueChanged
+        Try
+            If cmbProject.SelectedValue > 0 Then
+                Dim str As String
+                Dim str1 As String
+                Dim contractId As Integer
+                Dim dt As DataTable
+                str = "SELECT ContractId from ContractMasterTable WHERE ContractNo = '" & cmbProject.Text & "'"
+                dt = GetDataTable(str)
+                If dt.Rows.Count > 0 Then
+                    contractId = dt.Rows(0).Item(0)
+                    str1 = "select * from TicketMasterTable where Status = 'Open' AND ContractId = " & contractId & ""
+                    FillDropDown(cmbTicketNo, str1)
+                End If
+            Else
+                FillCombo("Ticket")
+            End If
+            
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
 End Class

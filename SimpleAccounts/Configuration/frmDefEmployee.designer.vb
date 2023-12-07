@@ -210,6 +210,10 @@ Partial Class frmDefEmployee
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.CtrlGrdBar1 = New SimpleAccounts.CtrlGrdBar()
+        Me.cmbReportingTo = New System.Windows.Forms.ComboBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label56 = New System.Windows.Forms.Label()
+        Me.txtOfficialEmail = New System.Windows.Forms.TextBox()
         Me.UltraTabPageControl7.SuspendLayout()
         Me.UltraTabPageControl6.SuspendLayout()
         Me.UltraTabPageControl4.SuspendLayout()
@@ -264,13 +268,13 @@ Partial Class frmDefEmployee
         Me.UltraTabPageControl7.Controls.Add(Me.dtpAttendanceDate)
         Me.UltraTabPageControl7.Location = New System.Drawing.Point(2, 24)
         Me.UltraTabPageControl7.Name = "UltraTabPageControl7"
-        Me.UltraTabPageControl7.Size = New System.Drawing.Size(854, 230)
+        Me.UltraTabPageControl7.Size = New System.Drawing.Size(936, 223)
         '
         'Label55
         '
         Me.Label55.AutoSize = True
         Me.Label55.BackColor = System.Drawing.Color.Transparent
-        Me.Label55.Location = New System.Drawing.Point(336, 159)
+        Me.Label55.Location = New System.Drawing.Point(316, 127)
         Me.Label55.Name = "Label55"
         Me.Label55.Size = New System.Drawing.Size(160, 17)
         Me.Label55.TabIndex = 28
@@ -281,7 +285,7 @@ Partial Class frmDefEmployee
         Me.dtpContractEndingDate.Checked = False
         Me.dtpContractEndingDate.CustomFormat = "dd/MMM/yyyy"
         Me.dtpContractEndingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpContractEndingDate.Location = New System.Drawing.Point(471, 153)
+        Me.dtpContractEndingDate.Location = New System.Drawing.Point(451, 121)
         Me.dtpContractEndingDate.Name = "dtpContractEndingDate"
         Me.dtpContractEndingDate.ShowCheckBox = True
         Me.dtpContractEndingDate.Size = New System.Drawing.Size(173, 24)
@@ -353,7 +357,7 @@ Partial Class frmDefEmployee
         '
         Me.Label49.AutoSize = True
         Me.Label49.BackColor = System.Drawing.Color.Transparent
-        Me.Label49.Location = New System.Drawing.Point(338, 21)
+        Me.Label49.Location = New System.Drawing.Point(316, 20)
         Me.Label49.Name = "Label49"
         Me.Label49.Size = New System.Drawing.Size(103, 17)
         Me.Label49.TabIndex = 16
@@ -374,7 +378,7 @@ Partial Class frmDefEmployee
         Me.cmbReferenceEmployee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.cmbReferenceEmployee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmbReferenceEmployee.FormattingEnabled = True
-        Me.cmbReferenceEmployee.Location = New System.Drawing.Point(471, 18)
+        Me.cmbReferenceEmployee.Location = New System.Drawing.Point(449, 17)
         Me.cmbReferenceEmployee.Name = "cmbReferenceEmployee"
         Me.cmbReferenceEmployee.Size = New System.Drawing.Size(173, 25)
         Me.cmbReferenceEmployee.TabIndex = 17
@@ -393,7 +397,7 @@ Partial Class frmDefEmployee
         '
         Me.Label18.AutoSize = True
         Me.Label18.BackColor = System.Drawing.Color.Transparent
-        Me.Label18.Location = New System.Drawing.Point(14, 195)
+        Me.Label18.Location = New System.Drawing.Point(628, 70)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(92, 17)
         Me.Label18.TabIndex = 14
@@ -404,7 +408,7 @@ Partial Class frmDefEmployee
         Me.Label48.AutoSize = True
         Me.Label48.BackColor = System.Drawing.Color.Transparent
         Me.Label48.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label48.Location = New System.Drawing.Point(338, 134)
+        Me.Label48.Location = New System.Drawing.Point(629, 95)
         Me.Label48.Name = "Label48"
         Me.Label48.Size = New System.Drawing.Size(112, 17)
         Me.Label48.TabIndex = 24
@@ -414,7 +418,7 @@ Partial Class frmDefEmployee
         '
         Me.ddlDept.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ddlDept.FormattingEnabled = True
-        Me.ddlDept.Location = New System.Drawing.Point(129, 195)
+        Me.ddlDept.Location = New System.Drawing.Point(743, 70)
         Me.ddlDept.Name = "ddlDept"
         Me.ddlDept.Size = New System.Drawing.Size(177, 25)
         Me.ddlDept.TabIndex = 15
@@ -425,7 +429,7 @@ Partial Class frmDefEmployee
         Me.dtpLeaving.Checked = False
         Me.dtpLeaving.CustomFormat = "dd/MMM/yyyy"
         Me.dtpLeaving.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpLeaving.Location = New System.Drawing.Point(126, 145)
+        Me.dtpLeaving.Location = New System.Drawing.Point(740, 20)
         Me.dtpLeaving.Name = "dtpLeaving"
         Me.dtpLeaving.ShowCheckBox = True
         Me.dtpLeaving.Size = New System.Drawing.Size(180, 24)
@@ -436,7 +440,7 @@ Partial Class frmDefEmployee
         '
         Me.Label20.AutoSize = True
         Me.Label20.BackColor = System.Drawing.Color.Transparent
-        Me.Label20.Location = New System.Drawing.Point(14, 145)
+        Me.Label20.Location = New System.Drawing.Point(628, 20)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(99, 17)
         Me.Label20.TabIndex = 10
@@ -446,9 +450,9 @@ Partial Class frmDefEmployee
         '
         Me.cmbPayrollDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbPayrollDivision.FormattingEnabled = True
-        Me.cmbPayrollDivision.Location = New System.Drawing.Point(471, 126)
+        Me.cmbPayrollDivision.Location = New System.Drawing.Point(743, 98)
         Me.cmbPayrollDivision.Name = "cmbPayrollDivision"
-        Me.cmbPayrollDivision.Size = New System.Drawing.Size(173, 25)
+        Me.cmbPayrollDivision.Size = New System.Drawing.Size(177, 25)
         Me.cmbPayrollDivision.TabIndex = 25
         Me.ToolTip1.SetToolTip(Me.cmbPayrollDivision, "Select Any Department")
         '
@@ -456,7 +460,7 @@ Partial Class frmDefEmployee
         '
         Me.Label21.AutoSize = True
         Me.Label21.BackColor = System.Drawing.Color.Transparent
-        Me.Label21.Location = New System.Drawing.Point(338, 178)
+        Me.Label21.Location = New System.Drawing.Point(628, 126)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(84, 17)
         Me.Label21.TabIndex = 26
@@ -467,7 +471,7 @@ Partial Class frmDefEmployee
         Me.Label47.AutoSize = True
         Me.Label47.BackColor = System.Drawing.Color.Transparent
         Me.Label47.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label47.Location = New System.Drawing.Point(338, 78)
+        Me.Label47.Location = New System.Drawing.Point(316, 77)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(62, 17)
         Me.Label47.TabIndex = 20
@@ -475,10 +479,10 @@ Partial Class frmDefEmployee
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(471, 180)
+        Me.txtComments.Location = New System.Drawing.Point(743, 129)
         Me.txtComments.Multiline = True
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(173, 33)
+        Me.txtComments.Size = New System.Drawing.Size(177, 33)
         Me.txtComments.TabIndex = 27
         Me.ToolTip1.SetToolTip(Me.txtComments, "Comments")
         '
@@ -486,7 +490,7 @@ Partial Class frmDefEmployee
         '
         Me.cmbDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbDivision.FormattingEnabled = True
-        Me.cmbDivision.Location = New System.Drawing.Point(471, 72)
+        Me.cmbDivision.Location = New System.Drawing.Point(449, 71)
         Me.cmbDivision.Name = "cmbDivision"
         Me.cmbDivision.Size = New System.Drawing.Size(173, 25)
         Me.cmbDivision.TabIndex = 21
@@ -496,7 +500,7 @@ Partial Class frmDefEmployee
         '
         Me.cmbShiftGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbShiftGroup.FormattingEnabled = True
-        Me.cmbShiftGroup.Location = New System.Drawing.Point(471, 45)
+        Me.cmbShiftGroup.Location = New System.Drawing.Point(449, 44)
         Me.cmbShiftGroup.Name = "cmbShiftGroup"
         Me.cmbShiftGroup.Size = New System.Drawing.Size(173, 25)
         Me.cmbShiftGroup.TabIndex = 19
@@ -506,7 +510,7 @@ Partial Class frmDefEmployee
         '
         Me.Label22.AutoSize = True
         Me.Label22.BackColor = System.Drawing.Color.Transparent
-        Me.Label22.Location = New System.Drawing.Point(338, 48)
+        Me.Label22.Location = New System.Drawing.Point(316, 47)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(90, 17)
         Me.Label22.TabIndex = 18
@@ -516,7 +520,7 @@ Partial Class frmDefEmployee
         '
         Me.Label19.AutoSize = True
         Me.Label19.BackColor = System.Drawing.Color.Transparent
-        Me.Label19.Location = New System.Drawing.Point(14, 170)
+        Me.Label19.Location = New System.Drawing.Point(628, 45)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(91, 17)
         Me.Label19.TabIndex = 12
@@ -526,7 +530,7 @@ Partial Class frmDefEmployee
         '
         Me.ddlDesignation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ddlDesignation.FormattingEnabled = True
-        Me.ddlDesignation.Location = New System.Drawing.Point(129, 170)
+        Me.ddlDesignation.Location = New System.Drawing.Point(743, 45)
         Me.ddlDesignation.Name = "ddlDesignation"
         Me.ddlDesignation.Size = New System.Drawing.Size(177, 25)
         Me.ddlDesignation.TabIndex = 13
@@ -554,7 +558,7 @@ Partial Class frmDefEmployee
         '
         Me.Label29.AutoSize = True
         Me.Label29.BackColor = System.Drawing.Color.Transparent
-        Me.Label29.Location = New System.Drawing.Point(338, 105)
+        Me.Label29.Location = New System.Drawing.Point(316, 104)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(126, 17)
         Me.Label29.TabIndex = 22
@@ -565,7 +569,7 @@ Partial Class frmDefEmployee
         Me.dtpAttendanceDate.Checked = False
         Me.dtpAttendanceDate.CustomFormat = "dd/MMM/yyyy"
         Me.dtpAttendanceDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpAttendanceDate.Location = New System.Drawing.Point(471, 99)
+        Me.dtpAttendanceDate.Location = New System.Drawing.Point(449, 98)
         Me.dtpAttendanceDate.Name = "dtpAttendanceDate"
         Me.dtpAttendanceDate.ShowCheckBox = True
         Me.dtpAttendanceDate.Size = New System.Drawing.Size(173, 24)
@@ -603,7 +607,7 @@ Partial Class frmDefEmployee
         Me.UltraTabPageControl6.Controls.Add(Me.txtAddress)
         Me.UltraTabPageControl6.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl6.Name = "UltraTabPageControl6"
-        Me.UltraTabPageControl6.Size = New System.Drawing.Size(854, 230)
+        Me.UltraTabPageControl6.Size = New System.Drawing.Size(936, 223)
         '
         'cmbBelt
         '
@@ -864,7 +868,7 @@ Partial Class frmDefEmployee
         Me.UltraTabPageControl4.Controls.Add(Me.Label35)
         Me.UltraTabPageControl4.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl4.Name = "UltraTabPageControl4"
-        Me.UltraTabPageControl4.Size = New System.Drawing.Size(854, 230)
+        Me.UltraTabPageControl4.Size = New System.Drawing.Size(854, 223)
         '
         'txtEobiNo
         '
@@ -940,7 +944,7 @@ Partial Class frmDefEmployee
         Me.UltraTabPageControl5.Controls.Add(Me.btnReceiveableAccount)
         Me.UltraTabPageControl5.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl5.Name = "UltraTabPageControl5"
-        Me.UltraTabPageControl5.Size = New System.Drawing.Size(854, 230)
+        Me.UltraTabPageControl5.Size = New System.Drawing.Size(854, 223)
         '
         'cmbBankAcName
         '
@@ -1081,7 +1085,7 @@ Partial Class frmDefEmployee
         Me.UltraTabPageControl8.Controls.Add(Me.grdSalaryDetail)
         Me.UltraTabPageControl8.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl8.Name = "UltraTabPageControl8"
-        Me.UltraTabPageControl8.Size = New System.Drawing.Size(854, 230)
+        Me.UltraTabPageControl8.Size = New System.Drawing.Size(854, 223)
         '
         'grdSalaryDetail
         '
@@ -1097,7 +1101,7 @@ Partial Class frmDefEmployee
         Me.grdSalaryDetail.Location = New System.Drawing.Point(3, 3)
         Me.grdSalaryDetail.Name = "grdSalaryDetail"
         Me.grdSalaryDetail.RecordNavigator = True
-        Me.grdSalaryDetail.Size = New System.Drawing.Size(850, 227)
+        Me.grdSalaryDetail.Size = New System.Drawing.Size(850, 220)
         Me.grdSalaryDetail.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.grdSalaryDetail, "Employee Salary Detail")
         Me.grdSalaryDetail.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -1114,7 +1118,9 @@ Partial Class frmDefEmployee
         Me.UltraTabPageControl1.Controls.Add(Me.UltraTabControl1)
         Me.UltraTabPageControl1.Controls.Add(Me.CmbPrefix)
         Me.UltraTabPageControl1.Controls.Add(Me.lblProgress)
+        Me.UltraTabPageControl1.Controls.Add(Me.txtOfficialEmail)
         Me.UltraTabPageControl1.Controls.Add(Me.txtReligion)
+        Me.UltraTabPageControl1.Controls.Add(Me.Label56)
         Me.UltraTabPageControl1.Controls.Add(Me.Label7)
         Me.UltraTabPageControl1.Controls.Add(Me.Label46)
         Me.UltraTabPageControl1.Controls.Add(Me.cmbJobType)
@@ -1129,6 +1135,8 @@ Partial Class frmDefEmployee
         Me.UltraTabPageControl1.Controls.Add(Me.Label41)
         Me.UltraTabPageControl1.Controls.Add(Me.cmbDomicile)
         Me.UltraTabPageControl1.Controls.Add(Me.Label40)
+        Me.UltraTabPageControl1.Controls.Add(Me.Label15)
+        Me.UltraTabPageControl1.Controls.Add(Me.cmbReportingTo)
         Me.UltraTabPageControl1.Controls.Add(Me.txtNicPlace)
         Me.UltraTabPageControl1.Controls.Add(Me.Label34)
         Me.UltraTabPageControl1.Controls.Add(Me.txtIdRemark)
@@ -1161,7 +1169,7 @@ Partial Class frmDefEmployee
         Me.UltraTabPageControl1.Controls.Add(Me.txtEmpID)
         Me.UltraTabPageControl1.Location = New System.Drawing.Point(1, 1)
         Me.UltraTabPageControl1.Name = "UltraTabPageControl1"
-        Me.UltraTabPageControl1.Size = New System.Drawing.Size(882, 598)
+        Me.UltraTabPageControl1.Size = New System.Drawing.Size(964, 598)
         '
         'pnlHeader
         '
@@ -1170,7 +1178,7 @@ Partial Class frmDefEmployee
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(882, 34)
+        Me.pnlHeader.Size = New System.Drawing.Size(964, 34)
         Me.pnlHeader.TabIndex = 113
         '
         'lblHeader
@@ -1247,10 +1255,10 @@ Partial Class frmDefEmployee
         Me.UltraTabControl1.Controls.Add(Me.UltraTabPageControl6)
         Me.UltraTabControl1.Controls.Add(Me.UltraTabPageControl7)
         Me.UltraTabControl1.Controls.Add(Me.UltraTabPageControl8)
-        Me.UltraTabControl1.Location = New System.Drawing.Point(13, 333)
+        Me.UltraTabControl1.Location = New System.Drawing.Point(13, 340)
         Me.UltraTabControl1.Name = "UltraTabControl1"
         Me.UltraTabControl1.SharedControlsPage = Me.UltraTabSharedControlsPage2
-        Me.UltraTabControl1.Size = New System.Drawing.Size(858, 256)
+        Me.UltraTabControl1.Size = New System.Drawing.Size(940, 249)
         Me.UltraTabControl1.TabIndex = 0
         Me.UltraTabControl1.TabOrientation = Infragistics.Win.UltraWinTabs.TabOrientation.TopLeft
         UltraTab7.TabPage = Me.UltraTabPageControl7
@@ -1270,7 +1278,7 @@ Partial Class frmDefEmployee
         '
         Me.UltraTabSharedControlsPage2.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabSharedControlsPage2.Name = "UltraTabSharedControlsPage2"
-        Me.UltraTabSharedControlsPage2.Size = New System.Drawing.Size(854, 230)
+        Me.UltraTabSharedControlsPage2.Size = New System.Drawing.Size(936, 223)
         '
         'CmbPrefix
         '
@@ -1286,7 +1294,7 @@ Partial Class frmDefEmployee
         '
         Me.lblProgress.BackColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(212, Byte), Integer), CType(CType(232, Byte), Integer))
         Me.lblProgress.ForeColor = System.Drawing.Color.Navy
-        Me.lblProgress.Location = New System.Drawing.Point(182, 207)
+        Me.lblProgress.Location = New System.Drawing.Point(664, 139)
         Me.lblProgress.Name = "lblProgress"
         Me.lblProgress.Size = New System.Drawing.Size(267, 45)
         Me.lblProgress.TabIndex = 2
@@ -1760,7 +1768,7 @@ Partial Class frmDefEmployee
         Me.UltraTabPageControl2.Controls.Add(Me.grdSaved)
         Me.UltraTabPageControl2.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl2.Name = "UltraTabPageControl2"
-        Me.UltraTabPageControl2.Size = New System.Drawing.Size(882, 598)
+        Me.UltraTabPageControl2.Size = New System.Drawing.Size(964, 598)
         '
         'grdSaved
         '
@@ -1775,7 +1783,7 @@ Partial Class frmDefEmployee
         Me.grdSaved.Location = New System.Drawing.Point(0, 0)
         Me.grdSaved.Name = "grdSaved"
         Me.grdSaved.RecordNavigator = True
-        Me.grdSaved.Size = New System.Drawing.Size(882, 598)
+        Me.grdSaved.Size = New System.Drawing.Size(964, 598)
         Me.grdSaved.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.grdSaved, "Define Employees")
         Me.grdSaved.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005
@@ -1792,7 +1800,7 @@ Partial Class frmDefEmployee
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnNew, Me.BtnEdit, Me.BtnSave, Me.BtnDelete, Me.toolStripSeparator, Me.BtnPrint, Me.BtnTarget, Me.ToolStripSeparator1, Me.btnSalaryType, Me.ToolStripSeparator2, Me.btnRefresh, Me.HelpToolStripButton, Me.BtnAddEmployee, Me.btnAttachments})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(884, 31)
+        Me.ToolStrip1.Size = New System.Drawing.Size(966, 31)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -1998,7 +2006,7 @@ Partial Class frmDefEmployee
         Me.TABHISTORY.Location = New System.Drawing.Point(0, 31)
         Me.TABHISTORY.Name = "TABHISTORY"
         Me.TABHISTORY.SharedControlsPage = Me.UltraTabSharedControlsPage1
-        Me.TABHISTORY.Size = New System.Drawing.Size(884, 622)
+        Me.TABHISTORY.Size = New System.Drawing.Size(966, 622)
         Me.TABHISTORY.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel
         Me.TABHISTORY.TabIndex = 1
         Me.TABHISTORY.TabOrientation = Infragistics.Win.UltraWinTabs.TabOrientation.BottomLeft
@@ -2013,7 +2021,7 @@ Partial Class frmDefEmployee
         '
         Me.UltraTabSharedControlsPage1.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabSharedControlsPage1.Name = "UltraTabSharedControlsPage1"
-        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(882, 598)
+        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(964, 598)
         '
         'OpenFileDialog1
         '
@@ -2025,18 +2033,54 @@ Partial Class frmDefEmployee
         Me.CtrlGrdBar1.BackColor = System.Drawing.Color.Transparent
         Me.CtrlGrdBar1.Email = Nothing
         Me.CtrlGrdBar1.FormName = Me
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(846, 0)
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(928, 0)
         Me.CtrlGrdBar1.MyGrid = Me.grdSaved
         Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
         Me.CtrlGrdBar1.Size = New System.Drawing.Size(38, 25)
         Me.CtrlGrdBar1.TabIndex = 2
+        '
+        'cmbReportingTo
+        '
+        Me.cmbReportingTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbReportingTo.FormattingEnabled = True
+        Me.cmbReportingTo.Location = New System.Drawing.Point(482, 312)
+        Me.cmbReportingTo.Name = "cmbReportingTo"
+        Me.cmbReportingTo.Size = New System.Drawing.Size(177, 25)
+        Me.cmbReportingTo.TabIndex = 13
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.BackColor = System.Drawing.Color.Transparent
+        Me.Label15.Location = New System.Drawing.Point(326, 315)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(98, 17)
+        Me.Label15.TabIndex = 12
+        Me.Label15.Text = "Reporting To"
+        '
+        'Label56
+        '
+        Me.Label56.AutoSize = True
+        Me.Label56.BackColor = System.Drawing.Color.Transparent
+        Me.Label56.Location = New System.Drawing.Point(12, 315)
+        Me.Label56.Name = "Label56"
+        Me.Label56.Size = New System.Drawing.Size(94, 17)
+        Me.Label56.TabIndex = 38
+        Me.Label56.Text = "Official Email"
+        '
+        'txtOfficialEmail
+        '
+        Me.txtOfficialEmail.Location = New System.Drawing.Point(134, 314)
+        Me.txtOfficialEmail.Name = "txtOfficialEmail"
+        Me.txtOfficialEmail.Size = New System.Drawing.Size(186, 24)
+        Me.txtOfficialEmail.TabIndex = 39
         '
         'frmDefEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(884, 653)
+        Me.ClientSize = New System.Drawing.Size(966, 653)
         Me.Controls.Add(Me.CtrlGrdBar1)
         Me.Controls.Add(Me.TABHISTORY)
         Me.Controls.Add(Me.ToolStrip1)
@@ -2254,4 +2298,8 @@ Partial Class frmDefEmployee
     Friend WithEvents dtpContractEndingDate As System.Windows.Forms.DateTimePicker
     Friend WithEvents pnlHeader As System.Windows.Forms.Panel
     Friend WithEvents btnAttachments As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents cmbReportingTo As System.Windows.Forms.ComboBox
+    Friend WithEvents txtOfficialEmail As System.Windows.Forms.TextBox
+    Friend WithEvents Label56 As System.Windows.Forms.Label
 End Class

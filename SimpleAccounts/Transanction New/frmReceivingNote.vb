@@ -545,6 +545,7 @@ Public Class frmReceivingNote
             'txtTotal.Text = ""
             'txtTotalQty.Text = ""
             txtBalance.Text = ""
+            lblRemainingBudget.Text = ""
             txtPackQty.Text = 1
             'Me.txtTax.Text = ""
             txtVhNo.Text = ""
@@ -559,7 +560,7 @@ Public Class frmReceivingNote
             'FillCombo("CostCenter")
             cmbUnit.SelectedIndex = 0
             'rafay
-            companyinitials = ""
+            ''companyinitials = ""
             'rafay
             Me.cmbSalesMan.SelectedIndex = 0
             cmbVendor.Rows(0).Activate()
@@ -1530,10 +1531,11 @@ Public Class frmReceivingNote
             dtCountry.AcceptChanges()
             Me.grd.RootTable.Columns("Origin").ValueList.PopulateValueList(dtCountry.DefaultView, "CountryName", "CountryName")
         ElseIf strCondition = "CostCenter" Then
-            str = "If  exists(select CostCentre_Id FROM tblUserCostCentreRights where UserID = " & LoginUserId & " and ISNULL(CostCentre_Id, 0) > 0) " _
-                    & "Select CostCenterID, Name from tblDefCostCenter where CostCenterID in (select CostCentre_Id FROM tblUserCostCentreRights where UserID = " & LoginUserId & ") order by SortOrder " _
-                    & "Else " _
-                    & "Select CostCenterID, Name from tblDefCostCenter where Active = 1 order by SortOrder"
+            'str = "If  exists(select CostCentre_Id FROM tblUserCostCentreRights where UserID = " & LoginUserId & " and ISNULL(CostCentre_Id, 0) > 0) " _
+            '        & "Select CostCenterID, Name from tblDefCostCenter where CostCenterID in (select CostCentre_Id FROM tblUserCostCentreRights where UserID = " & LoginUserId & ") order by SortOrder " _
+            '        & "Else " _
+            '        & "Select CostCenterID, Name from tblDefCostCenter where Active = 1 order by SortOrder"
+            str = "select * from tblDefCostCenter where  (ISNULL(SOBudget,0) = 1 AND ISNULL(SalaryBudget,0) = 0 AND ISNULL(DepartmentBudget,0) = 0 AND Active = 1) OR  (ISNULL(PurchaseDemand,0) = 1 AND ISNULL(SOBudget,0) = 0 AND ISNULL(SalaryBudget,0) = 0 AND ISNULL(DepartmentBudget,0) = 0 AND Active = 1) ORDER BY Name ASC"
             FillDropDown(Me.cmbProject, str)
 
         ElseIf strCondition = "Currency" Then
@@ -2342,6 +2344,18 @@ Public Class frmReceivingNote
             End If
         End If
         ''End TFS2988
+
+        'Dim strBudget As String
+        'Dim dtBudget As DataTable
+        'strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, Amount from tbldefCostCenter where CostCenterID = " & cmbProject.SelectedValue & ""
+        'dtBudget = GetDataTable(strBudget)
+        'If dtBudget.Rows.Count > 0 Then
+        '    If dtBudget.Rows(0).Item(0) = "True" Then
+        '        If Val(lblRemainingBudget.Text) < (Me.grd.GetTotal(Me.grd.RootTable.Columns("rate"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Transportation_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Custom_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) - Me.grd.GetTotal(Me.grd.RootTable.Columns("Discount_Price"), Janus.Windows.GridEX.AggregateFunction.Sum)) * (Me.grd.GetTotal(Me.grd.RootTable.Columns("TotalQty"), Janus.Windows.GridEX.AggregateFunction.Sum) * Val(txtCurrencyRate.Text)) Then
+        '            msg_Error("Amount exceeds from SO Budget.") : Return False : Exit Function
+        '        End If
+        '    End If
+        'End If
         Return True
 
     End Function
@@ -5184,7 +5198,7 @@ Public Class frmReceivingNote
                     'companyinitials = "UE"
                     Return GetSerialNo("GRN" + "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "ReceivingNoteMasterTable", "ReceivingNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo("GRN" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "ReceivingNoteMasterTable", "ReceivingNo")
                 End If
             ElseIf getConfigValueByType("VoucherNo").ToString = "Monthly" Then
@@ -5193,7 +5207,7 @@ Public Class frmReceivingNote
                     'companyinitials = "UE"
                     Return GetSerialNo("GRN" + "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "ReceivingNoteMasterTable", "ReceivingNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo("GRN" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "ReceivingNoteMasterTable", "ReceivingNo")
                 End If
                 'Rafay:Task End
@@ -5900,7 +5914,7 @@ Public Class frmReceivingNote
                 'frmRelatedItems.ShowDialog()
                 ''frmRelatedItems.formname = "frmReceivingNote"
 
-                Dim frmRelItems As New frmRelatedItems(Me.Name)
+                Dim frmRelItems As New frmRelatedItems(Me.Name, Val(grd.CurrentRow.Cells("ArticleDefId").Value))
                 frmRelItems.ShowDialog()
 
 
@@ -6819,6 +6833,29 @@ Public Class frmReceivingNote
                 End If
             End If
         Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
+    Private Sub cmbProject_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbProject.SelectedIndexChanged
+        Try
+            'Dim Budget As String
+            'Dim dtbudget As DataTable
+            'Dim BudgetValue As Double
+            'If cmbProject.SelectedValue > 0 Then
+            '    If BtnSave.Text = "&Save" Then
+            '        Budget = "SELECT ISNULL(Amount,0) as Amount from tbldefCostCenter where CostCenterID =" & cmbProject.SelectedValue & ""
+            '        dtbudget = GetDataTable(Budget)
+            '        If dtbudget.Rows.Count > 0 Then
+            '            BudgetValue = dtbudget.Rows(0).Item(0)
+            '        End If
+            '        lblRemainingBudget.Text = BudgetValue - CDbl(GetAccountBalance(Me.cmbProject.SelectedValue))
+            '    Else
+            '        lblRemainingBudget.Text = BudgetValue - CDbl(GetAccountBalance(Me.cmbProject.SelectedValue, txtPONo.Text))
+            '    End If
+            'Else
+            '    lblRemainingBudget.Text = ""
+            'End If
+        Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
     End Sub

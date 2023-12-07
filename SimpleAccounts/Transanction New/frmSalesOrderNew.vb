@@ -551,7 +551,7 @@ Public Class frmSalesOrderNew
         ''END TFS4544
         Me.cmbVendor.Enabled = True
         'Rafay:
-        companyinitials = ""
+        ''companyinitials = ""
         'Rafay
         Me.txtRemarks.Enabled = True
         txtPONo.Text = ""
@@ -564,6 +564,7 @@ Public Class frmSalesOrderNew
         txtPaid.Text = ""
         'txtAmount.Text = ""
         txtTotal.Text = ""
+        CurrencyRate = 1
         Me.txtNetTotal.Text = ""    ''27-Dec-2013   ReqId-954   M Ijaz Javed    Item rate against generate Total
         FillCombo("Item")
         cmbVendor.Rows(0).Activate()
@@ -1737,6 +1738,8 @@ Public Class frmSalesOrderNew
                                   & IIf(Me.cmbCompany.SelectedValue = Nothing, 0, Me.cmbCompany.SelectedValue) & ", N'" & txtPONo.Text & "',N'" & dtpPODate.Value.ToString("yyyy-M-d h:mm:ss tt") & "'," & cmbVendor.ActiveRow.Cells(0).Value & ", " & Me.grd.GetTotal(Me.grd.RootTable.Columns("TotalQuantity"), Janus.Windows.GridEX.AggregateFunction.Sum) & "," & NetAmount & ", " & Val(txtPaid.Text) & ",N'" & txtRemarks.Text.Replace("'", "''") & "',N'" & LoginUserName & "', N'" & EnumStatus.Open.ToString & "', " & IIf(Me.rbtAdjPercentage.Checked = True, Val(Me.txtSpecialAdjustment.Text), 0) & ", " & IIf(Me.chkPost.Checked = True, 1, 0) & ", N'" & Me.txtCustPONo.Text.Replace("'", "''") & "', " & Me.cmbSalesMan.SelectedValue & ", " & IIf(Me.dtpDeliveryDate.Checked = True, "N'" & Me.dtpDeliveryDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "'", "NULL") & ", " & IIf(Me.rbtAdjFlat.Checked = True, 0, 1) & ", " & IIf(Me.rbtAdjFlat.Checked = True, Adjustment, Val(Me.txtSpecialAdjustment.Text)) & ", " & Me.cmbProject.SelectedValue & ", " & IIf(Me.dtpPDate.Checked = True, "N'" & Me.dtpPDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "'", "NULL") & ", " & TransitPercent & "," & WHTaxPercent & ",N'" & ReplaceNewLine(Me.txtTerms_And_Condition.Text, False).Replace("'", "''") & "'," & IIf(Me.cmbOrderStatus.SelectedValue = Nothing, 0, Me.cmbOrderStatus.SelectedValue) & ", " & IIf(Me.cmbQuotation.SelectedIndex = -1, 0, Me.cmbQuotation.SelectedValue) & ", 0, N'" & Me.txtSpecialInstructions.Text.Replace("'", "''") & "', " & Val(txtTechnicalDrawingNo.Text) & ", " & IIf(Me.dtpTechnicalDrawingDate.Checked = True, "N'" & Me.dtpTechnicalDrawingDate.Value.ToString("yyyy-M-d hh:mm:ss tt") & "'", "NULL") & " , '" & Me.txtAccountsRemarks.Text.Replace("'", "''") & "', '" & Me.txtStoreRemarks.Text.Replace("'", "''") & "', '" & Me.txtProductionRemarks.Text.Replace("'", "''") & "', '" & Me.txtServicesRemarks.Text.Replace("'", "''") & "', '" & Me.txtSalesRemarks.Text.Replace("'", "''") & "', '" & Me.cmbTermOfPayments.Text.Replace("'", "''") & "', '" & Me.cmbTermOfDelivery.Text.Replace("'", "''") & "', " & Val(txtQuotationNo.Text) & ", " & IIf(Me.dtpQuotationDate.Checked = True, "N'" & Me.dtpQuotationDate.Value.ToString("yyyy-M-d hh:mm:ss tt") & "'", "NULL") & ", '" & Me.cmbPOType.Text.Replace("'", "''") & "', " & Val(LoginUserId) & ", " & IIf(Me.cmbTransporter.SelectedValue = Nothing, 0, Me.cmbTransporter.SelectedValue) & ", N'" & EnumStatus.Open.ToString & "' ) Select @@Identity"
             getVoucher_Id = objCommand.ExecuteScalar
 
+            objCommand.CommandText = "insert into tblDefCostCenter(Name,Code,sortorder, CostCenterGroup, Active, OutwardGatepass, DayShift, IsLogical, Amount, SOBudget, SalaryBudget, DepartmentBudget, Contract) values(N'" & txtPONo.Text.Replace("'", "''") & "','" & txtPONo.Text.Replace("'", "''") & "','1', N'', 0, 0, 0, 0,'" & (NetAmount / 100) * 88 & "', 1, 0, 0,0)"
+            objCommand.ExecuteNonQuery()
 
 
             For Each r As Janus.Windows.GridEX.GridEXRow In Me.grdOutwardExpDetail.GetRows
@@ -2109,7 +2112,7 @@ Public Class frmSalesOrderNew
                 If Not msg_Confirm(str_ConfirmGridClear) = True Then Exit Sub
             End If
             'Me.FillCombo("SOComplete")
-
+            Me.cmbCurrency.SelectedValue = BaseCurrencyId
 
             Me.cmbCompany.SelectedValue = grdSaved.GetRow.Cells("LocationId").Value
             txtPONo.Text = grdSaved.CurrentRow.Cells(0).Value.ToString
@@ -2670,6 +2673,7 @@ Public Class frmSalesOrderNew
                     'Me.cmbCurrency.Enabled = False
                     CurrencyRate = Val(dtDisplayDetail.Rows.Item(0).Item("CurrencyRate").ToString)
                     Me.cmbCurrency.SelectedValue = Val(dtDisplayDetail.Rows.Item(0).Item("CurrencyId").ToString)
+                    'txtCurrencyRate.Text = Val(dtDisplayDetail.Rows.Item(0).Item("CurrencyRate").ToString)
                     '' Being made editable against TASK TFS3493 on 07/06/18
                     Me.cmbCurrency.Enabled = True
                 End If
@@ -3209,7 +3213,11 @@ Public Class frmSalesOrderNew
                 UsersEmail = New List(Of String)
                 'UsersEmail.Add("adil@agriusit.com")
                 ''UsersEmail.Add("ali@agriusit.com")
-                UsersEmail.Add("h.saeed@agriusit.com")
+                If Con.Database.Contains("Remms") Then
+                    UsersEmail.Add("r.ejaz@remmsit.com")
+                Else
+                    UsersEmail.Add("r.ejaz@agriusit.com")
+                End If
                 FormatStringBuilder(dtEmail)
                 'CreateOutLookMail()
                 For Each _email As String In UsersEmail
@@ -4246,16 +4254,17 @@ Public Class frmSalesOrderNew
                     'companyinitials = "UE"
                     Return GetSerialNo("SO1" & "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "SalesOrderMasterTable", "SalesOrderNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo("SO" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "SalesOrderMasterTable", "SalesOrderNo")
                 End If
             ElseIf getConfigValueByType("VoucherNo").ToString = "Monthly" Then
                 ''Return GetNextDocNo("SO" & Me.cmbCompany.SelectedValue & "-" & CompanyPrefix & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "SalesOrderMasterTable", "SalesOrderNo")
+
                 If CompanyPrefix = "V-ERP (UAE)" Then
                     'companyinitials = "UE"
                     Return GetSerialNo("SO1" & "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "SalesOrderMasterTable", "SalesOrderNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo("SO" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "SalesOrderMasterTable", "SalesOrderNo")
                 End If
             Else
@@ -7376,6 +7385,7 @@ Public Class frmSalesOrderNew
                 ''Below four lines are commented against TASK TFS3700
                 If Me.cmbCurrency.SelectedValue = BaseCurrencyId Then
                     Me.txtCurrencyRate.Enabled = False
+                    Me.txtCurrencyRate.Text = 1
                 Else
                     Me.txtCurrencyRate.Enabled = True
 

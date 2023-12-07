@@ -2,7 +2,7 @@
 
     Private Sub frmMainHome_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         btnAddDock.FlatAppearance.BorderSize = 0
-        lblusername.Text = LoginUserName
+        lblusername.Text = "WELCOME! " & LoginUserName & ""
     End Sub
     ''' <summary>
     ''' Open Dashboard on click of hand image

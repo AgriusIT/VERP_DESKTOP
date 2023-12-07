@@ -64,6 +64,7 @@ Public Class frmStockDispatch
     Dim IsBulkStockTransfer As Boolean = False
     Dim IsPackQtyDisabled As Boolean = False ''TFS4161
     Dim ItemFilterByName As Boolean = False
+    Dim GridClick As Boolean = False
     Enum grdEnm
         LocationId
         ArticleCode
@@ -353,6 +354,7 @@ Public Class frmStockDispatch
         If Validate_AddToGrid() Then
             AddItemToGrid()
             'GetTotal()
+            GridClick = True
             grd.MoveFirst()
             grd_Click(Nothing, Nothing)
             ClearDetailControls()
@@ -1109,7 +1111,7 @@ Public Class frmStockDispatch
             End If
             str += "  Group By BatchNo Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0 ORDER BY StockDetailTable.BatchNo ASC"
             FillUltraDropDown(Me.cmbBatchNo, str)
-            Me.cmbBatchNo.DisplayLayout.Bands(0).Columns(0).Hidden = True
+            Me.cmbBatchNo.DisplayLayout.Bands(0).Columns(1).Hidden = True
             cmbBatchNo.Rows(0).Activate()
             ''Start TFS4181
             'ElseIf strCondition = "grdBatchNo" Then
@@ -2669,7 +2671,7 @@ Public Class frmStockDispatch
     Public Sub ApplyGridSettings(Optional ByVal Condition As String = "") Implements IGeneral.ApplyGridSettings
         Try
             For Each col As Janus.Windows.GridEX.GridEXColumn In Me.grd.RootTable.Columns
-                If col.Index <> grdEnm.LocationId AndAlso col.Index <> grdEnm.Qty AndAlso col.Index <> grdEnm.TotalQuantity AndAlso col.Index <> grdEnm.Rate AndAlso col.Index <> grdEnm.Engine_No AndAlso col.Index <> grdEnm.Chassis_No Then
+                If col.Index <> grdEnm.LocationId AndAlso col.Index <> grdEnm.Qty AndAlso col.Index <> grdEnm.TotalQuantity AndAlso col.Index <> grdEnm.Rate AndAlso col.Index <> grdEnm.Engine_No AndAlso col.Index <> grdEnm.Chassis_No AndAlso col.Index <> grdEnm.CommercialPrice AndAlso col.Index <> grdEnm.IncoTerm Then
                     col.EditType = Janus.Windows.GridEX.EditType.NoEdit
                 End If
             Next
@@ -2949,32 +2951,38 @@ Public Class frmStockDispatch
 
     Private Sub grd_Click(sender As Object, e As EventArgs) Handles grd.Click
         Try
-            If Me.grd.RowCount > 0 AndAlso Me.grd.GetRow.Cells(grdEnm.ItemId).Value IsNot Nothing Then
-                Dim str As String = ""
-                str = " Select  BatchNo,BatchNo,ExpiryDate,Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx')  And ArticledefId = " & Me.grd.GetRow.Cells(grdEnm.ItemId).Value & " And LocationId = " & Val(Me.grd.GetRow.Cells(grdEnm.LocationId).Value.ToString) & " Group by BatchNo,ExpiryDate,Origin Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0  ORDER BY ExpiryDate Asc"
-                Dim dt As DataTable = GetDataTable(str)
-                ''Me.grd.RootTable.Columns(grdEnm.BatchNo).ValueList.PopulateValueList(dt.DefaultView, "BatchNo", "BatchNo")
-                If Not dt.Rows.Count > 0 Then
-                    grd.GetRow.Cells(grdEnm.BatchNo).Value = "xxxx"
-                Else
-                    If IsDBNull(grd.GetRow.Cells(grdEnm.BatchNo).Value) Or grd.GetRow.Cells(grdEnm.BatchNo).Value.ToString = "" Then
-                        grd.GetRow.Cells(grdEnm.BatchNo).Value = dt.Rows(0).Item("BatchNo").ToString
+            If cmbBatchNo.Value <> "0" Then
+                If Me.grd.RowCount > 0 AndAlso Me.grd.GetRow.Cells(grdEnm.ItemId).Value IsNot Nothing AndAlso GridClick = True Then
+                    Dim str As String = ""
+                    str = " Select  BatchNo,BatchNo,ExpiryDate,Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx')  And ArticledefId = " & Me.grd.GetRow.Cells(grdEnm.ItemId).Value & " And LocationId = " & Val(Me.grd.GetRow.Cells(grdEnm.LocationId).Value.ToString) & " Group by BatchNo,ExpiryDate,Origin Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0  ORDER BY ExpiryDate Asc"
+                    Dim dt As DataTable = GetDataTable(str)
+                    ''Me.grd.RootTable.Columns(grdEnm.BatchNo).ValueList.PopulateValueList(dt.DefaultView, "BatchNo", "BatchNo")
+                    If Not dt.Rows.Count > 0 Then
+                        grd.GetRow.Cells(grdEnm.BatchNo).Value = "xxxx"
+                    Else
+                        If IsDBNull(grd.GetRow.Cells(grdEnm.BatchNo).Value) Or grd.GetRow.Cells(grdEnm.BatchNo).Value.ToString = "" Then
+                            grd.GetRow.Cells(grdEnm.BatchNo).Value = dt.Rows(0).Item("BatchNo").ToString
+                        End If
                     End If
-                End If
-                If dt.Rows.Count > 0 Then
-                    If Not IsDBNull(dt.Rows(0).Item("BatchNo").ToString) Then
-                        str = " Select   ExpiryDate, Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx') And BatchNo ='" & Me.grd.GetRow.Cells(grdEnm.BatchNo).Value.ToString & "'" _
-                             & " And ArticledefId = " & Me.grd.GetRow.Cells(grdEnm.ItemId).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(grdEnm.LocationId).Value.ToString) & "  And (isnull(InQty, 0) - isnull(OutQty, 0)) > 0 Group by BatchNo,ExpiryDate,Origin ORDER BY ExpiryDate  Asc "
-                        Dim dtExpiry As DataTable = GetDataTable(str)
-                        If dtExpiry.Rows.Count > 0 Then
-                            If IsDBNull(dtExpiry.Rows(0).Item("ExpiryDate")) = False Then
-                                grd.GetRow.Cells("ExpiryDate").Value = CType(dtExpiry.Rows(0).Item("ExpiryDate").ToString, Date)
+                    If dt.Rows.Count > 0 Then
+                        If Not IsDBNull(dt.Rows(0).Item("BatchNo").ToString) Then
+                            str = " Select   ExpiryDate, Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx') And BatchNo ='" & Me.grd.GetRow.Cells(grdEnm.BatchNo).Value.ToString & "'" _
+                                 & " And ArticledefId = " & Me.grd.GetRow.Cells(grdEnm.ItemId).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(grdEnm.LocationId).Value.ToString) & "  And (isnull(InQty, 0) - isnull(OutQty, 0)) > 0 Group by BatchNo,ExpiryDate,Origin ORDER BY ExpiryDate  Asc "
+                            Dim dtExpiry As DataTable = GetDataTable(str)
+                            If dtExpiry.Rows.Count > 0 Then
+                                If IsDBNull(dtExpiry.Rows(0).Item("ExpiryDate")) = False Then
+                                    grd.GetRow.Cells("ExpiryDate").Value = CType(dtExpiry.Rows(0).Item("ExpiryDate").ToString, Date)
+                                End If
+                                grd.GetRow.Cells("Origin").Value = dtExpiry.Rows(0).Item("Origin").ToString
                             End If
-                            grd.GetRow.Cells("Origin").Value = dtExpiry.Rows(0).Item("Origin").ToString
                         End If
                     End If
                 End If
+                GridClick = False
+                'Else
+                'grd.GetRow.Cells(grdEnm.BatchNo).Value = "xxxx"
             End If
+            
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try

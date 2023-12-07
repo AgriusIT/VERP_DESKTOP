@@ -398,6 +398,7 @@ Implements IGeneral
     Dim SOOrigin As String = String.Empty
     Dim IsAllowPDPEdit As Boolean = False  ''TFS4718
     Dim DCStockImpact As Boolean = False ''TFS4773
+    Dim SubmittedBy As String = ""
     Private Sub frmSales_Activated(sender As Object, e As EventArgs)
 
     End Sub
@@ -943,7 +944,7 @@ Implements IGeneral
             'Rafay :Task : Modified Query to add PO_NO in sales history
             'Rafay :Task : Modified Query to add CUrrency And AmountUS in sales history
             str = "SELECT " & IIf(StrCondition.ToString = "All", "", "Top " & If(HistoryLoad = 0, 50, HistoryLoad)) & "    Recv.SalesNo, Recv.SalesDate AS Date,Case When IsNull(DV.POID,0)=0 Then V.SalesOrderNo else SO_DL.SalesOrderNo End as SalesOrderNo,  Case When IsNull(DV.POID,0)=0 Then V.SalesOrderDate else SO_DL.SalesOrderDate End as SalesOrderDate, vwCOADetail.detail_title as CustomerName, Pack.Packs, Recv.SalesQty,dbo.tblcurrency.currency_code,Currency.CurrencyRate, Recv.SalesAmount,Recv.AmountUS, Recv.SalesAmount, Recv.SalesId, Recv.Arrival_Time , Recv.Departure_Time, Recv.Com_Percentage,  " & _
-                     "Recv.CustomerCode, tbldefEmployee.Employee_Name,Recv.PO_NO,Recv.ContractNo, Recv.Remarks, Recv.InternalRemarks,CONVERT(varchar, Recv.CashPaid) AS CashPaid, Recv.EmployeeCode, Recv.PoId, Recv.BiltyNo,isnull(Recv.TransporterId ,0) as TransporterId, Recv.LocationId, Recv.FuelExpense as Fuel, Recv.OtherExpense as Expense ,recv.Adjustment, " & IIf(flgExcludeTaxPrice = True, "(Recv.SalesAmount + NetInfo.SedTaxAmount ) As NetAmount ", " (Recv.SalesAmount + NetInfo.SedTaxAmount + NetInfo.TaxAmount ) As NetAmount ") & ", IsNull(Recv.Invoice_Status,0) as InvoiceStatus , isnull(recv.TransitInsurance,0) as TransitInsurance, IsNull(Recv.Post,0) as Post, Case When IsNull(Recv.Post,0)=1 then 'Posted' else 'UnPosted' end As Status, ISNULL(Recv.ServiceItemSale,0) as ServiceItemSale, Recv.DeliveryDate, ISNULL(Recv.Delivered,0) as Delivered, isnull(Recv.DeliveryChalanId, 0) as DeliveryId, DV.DeliveryNo, DV.DeliveryDate as [Dc Date], Recv.DcNo, isnull(Recv.Adj_Flag,0) as Adj_Flag, isnull(Recv.Adj_Percentage,0) as Adj_Percentage ,Isnull(Recv.CostCenterId,0) as CostCenterId, CASE WHEN ISNULL(PrintLog.Cont,0)=0 THEN 'Print Pending' ELSE 'Printed' end as [Print Status], tblDefCostCenter.Name, Isnull(Recv.ManualInvoice,0) as ManualInvoice, Recv.InvoiceParty, ISNULL(Recv.CMFADocId,0) as CMFADocID, (CMFA.DocNo + '~' + Convert(varchar,Convert(varchar,CMFA.DocDate, 102))) as CMFADocNo, IsNull(Recv.DueDays,0) as DueDays, dbo.vwCOADetail.Contact_Email as Email, IsNull(Recv.InvoiceType,'Credit') as [Inv Type], IsNull([No Of Attachment],0) as  [No Of Attachment],Recv.Other_Company, Recv.Party_Mobile_No , Adjustment.InvoiceID,Recv.UserName as 'User Name',Recv.UpdateUserName as [Modified By], IsNull(tblSalesTaxInvoiceStatus.SalesTaxInvoiceStatus_ID,0) as SalesTaxInvoiceStatus_ID, tblSalesTaxInvoiceStatus.SalesTaxInvoice_Status as [Invoice Status], IsNull(Recv.PreviousBalance,0) as PreviousBalance, IsNull(Recv.JobCardId, 0) As JobCardId, tblJobCard.JobCardNo,  Convert(bit, IsNull(Recv.IsSOSeparateClosure, 0)) AS IsSOSeparateClosure " & _
+                     "Recv.CustomerCode, tbldefEmployee.Employee_Name,Recv.PO_NO,Recv.ContractNo,ISNULL(Recv.Submitted,0) as Submitted,ISNULL(Recv.SubmittedTo,'') as SubmittedTo,ISNULL(Recv.SubmittedDate,'') as SubmittedDate,ISNULL(Recv.SubmittedBy,'') as SubmittedBy, Recv.Remarks, Recv.InternalRemarks,CONVERT(varchar, Recv.CashPaid) AS CashPaid, Recv.EmployeeCode, Recv.PoId, Recv.BiltyNo,isnull(Recv.TransporterId ,0) as TransporterId, Recv.LocationId, Recv.FuelExpense as Fuel, Recv.OtherExpense as Expense ,recv.Adjustment, " & IIf(flgExcludeTaxPrice = True, "(Recv.SalesAmount + NetInfo.SedTaxAmount ) As NetAmount ", " (Recv.SalesAmount + NetInfo.SedTaxAmount + NetInfo.TaxAmount ) As NetAmount ") & ", IsNull(Recv.Invoice_Status,0) as InvoiceStatus , isnull(recv.TransitInsurance,0) as TransitInsurance, IsNull(Recv.Post,0) as Post, Case When IsNull(Recv.Post,0)=1 then 'Posted' else 'UnPosted' end As Status, ISNULL(Recv.ServiceItemSale,0) as ServiceItemSale, Recv.DeliveryDate, ISNULL(Recv.Delivered,0) as Delivered, isnull(Recv.DeliveryChalanId, 0) as DeliveryId, DV.DeliveryNo, DV.DeliveryDate as [Dc Date], Recv.DcNo, isnull(Recv.Adj_Flag,0) as Adj_Flag, isnull(Recv.Adj_Percentage,0) as Adj_Percentage ,Isnull(Recv.CostCenterId,0) as CostCenterId, CASE WHEN ISNULL(PrintLog.Cont,0)=0 THEN 'Print Pending' ELSE 'Printed' end as [Print Status], tblDefCostCenter.Name, Isnull(Recv.ManualInvoice,0) as ManualInvoice, Recv.InvoiceParty, ISNULL(Recv.CMFADocId,0) as CMFADocID, (CMFA.DocNo + '~' + Convert(varchar,Convert(varchar,CMFA.DocDate, 102))) as CMFADocNo, IsNull(Recv.DueDays,0) as DueDays, dbo.vwCOADetail.Contact_Email as Email, IsNull(Recv.InvoiceType,'Credit') as [Inv Type], IsNull([No Of Attachment],0) as  [No Of Attachment],Recv.Other_Company, Recv.Party_Mobile_No , Adjustment.InvoiceID,Recv.UserName as 'User Name',Recv.UpdateUserName as [Modified By], IsNull(tblSalesTaxInvoiceStatus.SalesTaxInvoiceStatus_ID,0) as SalesTaxInvoiceStatus_ID, tblSalesTaxInvoiceStatus.SalesTaxInvoice_Status as [Invoice Status], IsNull(Recv.PreviousBalance,0) as PreviousBalance, IsNull(Recv.JobCardId, 0) As JobCardId, tblJobCard.JobCardNo,  Convert(bit, IsNull(Recv.IsSOSeparateClosure, 0)) AS IsSOSeparateClosure " & _
                      "FROM tblDefCostCenter Right Outer JOIN SalesMasterTable Recv ON tblDefCostCenter.CostCenterID=Recv.CostCenterId INNER JOIN " & _
                      "vwCOADetail ON Recv.CustomerCode = vwCOADetail.coa_detail_id LEFT OUTER JOIN tblJobCard ON Recv.JobCardId = tblJobCard.JobCardID LEFT OUTER JOIN (Select SalesId, Sum(IsNull(Sz1, 0)) As Packs From SalesDetailTable Group By SalesId) As Pack ON Recv.SalesId = Pack.SalesId LEFT OUTER JOIN " & _
                      "tblDefEmployee ON Recv.EmployeeCode = tblDefEmployee.Employee_Id LEFT OUTER JOIN " & _
@@ -1219,8 +1220,13 @@ Implements IGeneral
                 txtPO.Text = ""
                 'Changes add to add column contract no (Murtaza) (11/15/2022)
                 txtcontractno.Text = ""
+                chkSubmitted.Checked = False
+                txtSubmittedTo.Text = ""
+                SubmittedBy = ""
+                dtpSubmissionDate.Checked = False
+                dtpSubmissionDate.Value = Date.Now
                 'Changes add to add column contract no (Murtaza) (11/15/2022)
-                companyinitials = ""
+                ''companyinitials = ""
                 'Rafay
                 richTxtInternalRemarks.Text = "" ''TFS1864
                 txtPaid.Text = ""
@@ -1335,8 +1341,13 @@ Implements IGeneral
                 txtPO.Text = ""
                 'Changes add to add column contract no (Murtaza) (11/15/2022)
                 txtcontractno.Text = ""
+                chkSubmitted.Checked = False
+                txtSubmittedTo.Text = ""
+                SubmittedBy = ""
+                dtpSubmissionDate.Checked = False
+                dtpSubmissionDate.Value = Date.Now
                 'Changes add to add column contract no (Murtaza) (11/15/2022)
-                companyinitials = ""
+                ''companyinitials = ""
                 'Rafay
                 richTxtInternalRemarks.Text = "" ''TFS1864
                 cmbUnit.SelectedIndex = 0
@@ -1481,6 +1492,11 @@ Implements IGeneral
             'rafay:task end
             'Changes add to add column contract no (Murtaza) (11/15/2022)
             txtcontractno.Text = String.Empty
+            chkSubmitted.Checked = False
+            txtSubmittedTo.Text = String.Empty
+            SubmittedBy = String.Empty
+            dtpSubmissionDate.Checked = False
+            dtpSubmissionDate.Value = Date.Now
             'Changes add to add column contract no (Murtaza) (11/15/2022)
             If Not Me.cmbCMFADoc.SelectedIndex = -1 Then Me.cmbCMFADoc.SelectedIndex = 0
             If blnCMFADocumentLoad = False Then
@@ -1735,16 +1751,32 @@ Implements IGeneral
         If StockChecked = False Then
             If Mode = "Normal" Then
                 If Not IsMinus = True Then
-                    'If CheckLocationWiseMinusStock(Me.cmbCategory.SelectedValue) = False Then
-                    If Val(Me.txtStock.Text) <> Val(txtTotalQuantity.Text) Then
-                        'If Val(Me.txtStock.Text) - IIf(Val(txtPackQty.Text) = 0, Val(Me.txtQty.Text), Val(txtPackQty.Text)) * Val(txtQty.Text) <= 0 Then
-                        If Val(Me.txtStock.Text) - Val(totalQuantity) < 0 Then
+                    'Waqar Start: Added these lines of code because system is checking the negative stock for Service Items like SLA item and TroubleShooting Items.
+                    Dim str1 As String = "Select ServiceItem from ArticleDefView where ArticleId = " & cmbItem.Value & ""
+                    Dim dt As DataTable = GetDataTable(str1)
+                    dt.AcceptChanges()
+                    Dim ServiceItem As Boolean = Val(dt.Rows(0).Item("ServiceItem").ToString)
+                    If ServiceItem = True Then
+                        'Waqar End: Added these lines of code because system is checking the negative stock for Service Items like SLA item and TroubleShooting Items.
+                        'System should not check the quantity available in stock for service items. that is why this condition is empty.
+                    Else
+                        If Val(Me.txtStock.Text) <> Val(txtTotalQuantity.Text) Then
+                            'If Val(Me.txtStock.Text) - IIf(Val(txtPackQty.Text) = 0, Val(Me.txtQty.Text), Val(txtPackQty.Text)) * Val(txtQty.Text) <= 0 Then
+                            If Val(Me.txtStock.Text) - Val(totalQuantity) < 0 Then
 
-                            'Altered agaisnt task#201506027 to allow equal qty to grid Ali Ansari
-                            msg_Error(Me.cmbItem.ActiveRow.Cells("Item").Value.ToString & str_ErrorStockNotEnough)
-                            cmbItem.Focus() : Validate_AddToGrid = False : Exit Function
+                                'Altered agaisnt task#201506027 to allow equal qty to grid Ali Ansari
+                                msg_Error(Me.cmbItem.ActiveRow.Cells("Item").Value.ToString & str_ErrorStockNotEnough)
+                                cmbItem.Focus() : Validate_AddToGrid = False : Exit Function
+                            End If
                         End If
+                        'Dim str2 As String = "Select CGSAccountId from ArticleDefView where ArticleId = " & cmbItem.Value & ""
+                        'Dim dt1 As DataTable = GetDataTable(str2)
+                        'dt1.AcceptChanges()
+                        ''AccountId = Val(dt1.Rows(0).Item("CGSAccountId").ToString)
+                        'AccountId = "Select ServiceItem from ArticleDefView where ArticleId = " & grd.GetRows(i).Cells("ItemId").Value & ""
                     End If
+                    'If CheckLocationWiseMinusStock(Me.cmbCategory.SelectedValue) = False Then
+
                     'End If
                     ' Return True 'Comment against task:2416
                     'If Val(Me.cmbItem.ActiveRow.Cells("Stock").Value) <= 0 Then
@@ -2502,6 +2534,7 @@ Implements IGeneral
             'drNewItem(EnumGridDetail.Credit) = IIf(Me.txtCredit.Text = "", 0, Val(Me.txtCredit.Text) * Val(Me.txtCurrencyRate.Text))
             drNewItem(EnumGridDetail.OldSalePrice) = Val(0)
             drNewItem(EnumGridDetail.SalePriceProcessId) = Val(0)
+            drNewItem(EnumGridDetail.AlternativeItemId) = 0
             dtGrid.Rows.Add(drNewItem)
         Else
             If Val(totalQuantity) > Val(Me.txtStock.Text) AndAlso Val(Me.txtStock.Text) > 0 Then
@@ -2628,6 +2661,7 @@ Implements IGeneral
                 'drNewItem(EnumGridDetail.Credit) = IIf(Me.txtCredit.Text = "", 0, Val(Me.txtCredit.Text) * Val(Me.txtCurrencyRate.Text))
                 drNewItem(EnumGridDetail.OldSalePrice) = Val(0)
                 drNewItem(EnumGridDetail.SalePriceProcessId) = Val(0)
+                drNewItem(EnumGridDetail.AlternativeItemId) = 0
                 dtGrid.Rows.Add(drNewItem)
             End If
 
@@ -2754,6 +2788,7 @@ Implements IGeneral
                 End If
                 drNewItem(EnumGridDetail.OldSalePrice) = Val(0)
                 drNewItem(EnumGridDetail.SalePriceProcessId) = Val(0)
+                drNewItem(EnumGridDetail.AlternativeItemId) = 0
                 dtGrid.Rows.Add(drNewItem)
             End If
 
@@ -2890,6 +2925,7 @@ Implements IGeneral
                             End If
                             drNewItem(EnumGridDetail.OldSalePrice) = Val(0)
                             drNewItem(EnumGridDetail.SalePriceProcessId) = Val(0)
+                            drNewItem(EnumGridDetail.AlternativeItemId) = 0
                             dtGrid.Rows.Add(drNewItem)
                             qty = qty - dt.Rows(i)("Stock")
                             dt.Rows(i)("Stock") = 0
@@ -3019,6 +3055,7 @@ Implements IGeneral
                             End If
                             drNewItem(EnumGridDetail.OldSalePrice) = Val(0)
                             drNewItem(EnumGridDetail.SalePriceProcessId) = Val(0)
+                            drNewItem(EnumGridDetail.AlternativeItemId) = 0
                             dtGrid.Rows.Add(drNewItem)
                             dt.Rows(i)("Stock") = dt.Rows(i)("Stock") - qty
                             qty = 0
@@ -3149,6 +3186,7 @@ Implements IGeneral
                     End If
                     drNewItem(EnumGridDetail.OldSalePrice) = Val(0)
                     drNewItem(EnumGridDetail.SalePriceProcessId) = Val(0)
+                    drNewItem(EnumGridDetail.AlternativeItemId) = 0
                     dtGrid.Rows.Add(drNewItem)
                 ElseIf qty > 0 AndAlso qtyLrgThnStock > 0 Then
                     '    'grd.AddItem(cmbCategory.Text, cmbItem.ActiveRow.Cells("Item").Value.ToString, dt.Rows(dt.Rows.Count - 1)("Batch No").ToString, cmbUnit.Text, qty, txtRate.Text, IIf(cmbUnit.Text = "Pack", qty * Val(txtRate.Text) * Val(txtPackQty.Text), qty * Val(txtRate.Text)), cmbCategory.SelectedValue, cmbItem.ActiveRow.Cells(0).Value, Me.txtPackQty.Text, Me.cmbItem.ActiveRow.Cells("Price").Value, "0", "0", Me.cmbBatchNo.Value, Me.cmbCategory.SelectedValue, 0)
@@ -3272,6 +3310,7 @@ Implements IGeneral
                     End If
                     drNewItem(EnumGridDetail.OldSalePrice) = Val(0)
                     drNewItem(EnumGridDetail.SalePriceProcessId) = Val(0)
+                    drNewItem(EnumGridDetail.AlternativeItemId) = 0
                     dtGrid.Rows.Add(drNewItem)
                 End If
             Else
@@ -3399,6 +3438,7 @@ Implements IGeneral
                     End If
                     drNewItem(EnumGridDetail.OldSalePrice) = Val(0)
                     drNewItem(EnumGridDetail.SalePriceProcessId) = Val(0)
+                    drNewItem(EnumGridDetail.AlternativeItemId) = 0
                     dtGrid.Rows.Add(drNewItem)
                 ElseIf qty >= 0 AndAlso qtyLrgThnStock <= 0 Then
                     '    'grd.AddItem(cmbCategory.Text, cmbItem.ActiveRow.Cells("Item").Value.ToString, dt.Rows(dt.Rows.Count - 1)("Batch No").ToString, cmbUnit.Text, qty, txtRate.Text, IIf(cmbUnit.Text = "Pack", qty * Val(txtRate.Text) * Val(txtPackQty.Text), qty * Val(txtRate.Text)), cmbCategory.SelectedValue, cmbItem.ActiveRow.Cells(0).Value, Me.txtPackQty.Text, Me.cmbItem.ActiveRow.Cells("Price").Value, "0", "0", Me.cmbBatchNo.Value, Me.cmbCategory.SelectedValue, 0)
@@ -3521,6 +3561,7 @@ Implements IGeneral
                     End If
                     drNewItem(EnumGridDetail.OldSalePrice) = Val(0)
                     drNewItem(EnumGridDetail.SalePriceProcessId) = Val(0)
+                    drNewItem(EnumGridDetail.AlternativeItemId) = 0
                     dtGrid.Rows.Add(drNewItem)
                 End If
             End If
@@ -3735,6 +3776,7 @@ Implements IGeneral
             drNewItem(EnumGridDetail.ApplyAdjustmentFuelExp) = Convert.ToBoolean(Me.cmbItem.ActiveRow.Cells("ApplyAdjustmentFuelExp").Value.ToString)
             drNewItem(EnumGridDetail.TotalQty) = Val(Me.txtTotalQuantity.Text)
             drNewItem(EnumGridDetail.LogicalItem) = Convert.ToBoolean(Me.cmbItem.ActiveRow.Cells("LogicalItem").Value.ToString) ''TFS1957
+            drNewItem(EnumGridDetail.AlternativeItemId) = 0
             dtGrid.Rows.Add(drNewItem)
             dtGrid.AcceptChanges()
 
@@ -4799,7 +4841,7 @@ Implements IGeneral
             End If
         End If
         If CheckDuplicateSerialNo() = True Then
-            ShowErrorMessage("Serial No ALready Exist")
+            ''ShowErrorMessage("Serial No ALready Exist")
             Return False
         End If
         'R-974 Ehtisham ul Haq user friendly system modification on 3-1-14
@@ -4870,8 +4912,8 @@ Implements IGeneral
             'Task#07072015 add Invoice_Status column in query
             'Task#1864 add InternalRemarks column in query
             'rafay :Modified the query to add PO_NO
-            objCommand.CommandText = "Insert into SalesMasterTable (LocationId,SalesNo,SalesDate,CustomerCode,Poid, Employeecode,Com_Percentage,SalesQty,SalesAmount, CashPaid,PO_NO ,ContractNo, Remarks, InternalRemarks,UserName,PreviousBalance,TransporterId,BiltyNo,FuelExpense, OtherExpense, Adjustment, CostCenterId, Post,  DeliveryDate, Delivered, TransitInsurance, DeliveryChalanId, DcNo, Adj_Flag, Adj_Percentage, RefDocId, ManualInvoice, InvoiceParty, CMFADocID, DueDays,InvoiceType,Other_Company,Party_Mobile_No,Invoice_Status,Arrival_Time,Departure_Time, JobCardId, IsSOSeparateClosure, RevisionNumber) values( " _
-            & Me.cmbCompany.SelectedValue & ", N'" & txtPONo.Text & "',N'" & dtpPODate.Value.ToString("yyyy-M-d h:mm:ss tt") & "'," & cmbVendor.ActiveRow.Cells(0).Value & "," & IIf(Me.cmbPo.SelectedIndex = -1, 0, cmbPo.SelectedValue) & "," & Me.cmbSalesMan.SelectedValue & ", " & IIf(Me.txtComPercentage.Text <> "", Me.txtComPercentage.Text, 0) & " , " & Math.Round(Val(txtTotalQty.Text), DecimalPointInValue) & "," & Val(txtAmount.Text) & ", " & Val(txtRecAmount.Text) & ",N'" & txtPO.Text.Replace("'", "''") & "',N'" & txtcontractno.Text.Replace("'", "''") & "',N'" & txtRemarks.Text.Replace("'", "''") & "',N'" & richTxtInternalRemarks.Text.Replace("'", "''") & "',N'" & LoginUserName & "'," & CurrentBalance & "," & Me.cmbTransporter.SelectedValue & ",N'" & Me.uitxtBiltyNo.Text.Replace("'", "''") & "', " & Val(Me.txtFuel.Text) & "," & Val(Me.txtExpense.Text) & "," & IIf(Me.rbtAdjFlat.Checked = True, Val(Me.txtAdjustment.Text), Adjustment) & ", " & Me.cmbProject.SelectedValue & ", " & IIf(Me.chkPost.Checked = True, 1, 0) & ", N'" & Me.dtpPODate.Value.ToString("yyyy-M-d h:mm:ss tt") & "', " & IIf(Me.chkDelivered.Checked = True, 1, 0) & ", " & Val(Me.txtAddTransitInsurance.Text) & ", " & IIf(DeliveryChalanId > 0, "" & DeliveryChalanId & "", "NULL") & ", N'" & Me.txtDcNo.Text.Replace("'", "''") & "', " & IIf(Me.rbtAdjFlat.Checked = True, 0, 1) & ", " & IIf(Me.rbtAdjPercentage.Checked = True, "" & Val(Me.txtAdjustment.Text) & "", "0") & ", " & _RefDocId & ", " & IIf(blnNoneFinancialEffectInvoice = True, 1, 0) & ", N'" & Me.txtInvParty.Text.Replace("'", "''") & "', " & IIf(Me.cmbCMFADoc.SelectedIndex > 0, Me.cmbCMFADoc.SelectedValue, 0) & ", " & Val(Me.txtDueDays.Text) & ",N'" & Me.cmbInvType.Text.Replace("'", "''") & "', N'" & Me.cmbOtherCompany.Text.Replace("'", "''") & "','" & Me.txtMobileNo.Text.Replace("'", "''") & "'," & Me.cmbInvoiceStatus.Value & " ,N'" & dtpArrivalTime1.Value.ToString("h:mm:ss tt") & "', " & IIf(Me.dtpDepartureTime1.Checked = True, "Convert(Datetime,'" & Me.dtpDepartureTime1.Value.ToString("yyyy-M-d hh:mm:ss tt") & "',102)", "NULL") & ", " & Val(Me.txtJobCardId.Text) & ", " & IIf(IsSOSeparateClosure = False, 0, 1) & ", 0)" _
+            objCommand.CommandText = "Insert into SalesMasterTable (LocationId,SalesNo,SalesDate,CustomerCode,Poid, Employeecode,Com_Percentage,SalesQty,SalesAmount, CashPaid,PO_NO ,ContractNo, Submitted, SubmittedDate, SubmittedTo, SubmittedBy, Remarks, InternalRemarks,UserName,PreviousBalance,TransporterId,BiltyNo,FuelExpense, OtherExpense, Adjustment, CostCenterId, Post,  DeliveryDate, Delivered, TransitInsurance, DeliveryChalanId, DcNo, Adj_Flag, Adj_Percentage, RefDocId, ManualInvoice, InvoiceParty, CMFADocID, DueDays,InvoiceType,Other_Company,Party_Mobile_No,Invoice_Status,Arrival_Time,Departure_Time, JobCardId, IsSOSeparateClosure, RevisionNumber) values( " _
+            & Me.cmbCompany.SelectedValue & ", N'" & txtPONo.Text & "',N'" & dtpPODate.Value.ToString("yyyy-M-d h:mm:ss tt") & "'," & cmbVendor.ActiveRow.Cells(0).Value & "," & IIf(Me.cmbPo.SelectedIndex = -1, 0, cmbPo.SelectedValue) & "," & Me.cmbSalesMan.SelectedValue & ", " & IIf(Me.txtComPercentage.Text <> "", Me.txtComPercentage.Text, 0) & " , " & Math.Round(Val(txtTotalQty.Text), DecimalPointInValue) & "," & Val(txtAmount.Text) & ", " & Val(txtRecAmount.Text) & ",N'" & txtPO.Text.Replace("'", "''") & "',N'" & txtcontractno.Text.Replace("'", "''") & "'," & IIf(chkSubmitted.Checked = False, 0, 1) & ",N'" & IIf(chkSubmitted.Checked = False, "", dtpSubmissionDate.Value.ToString("yyyy-M-d h:mm:ss tt")) & "',N'" & IIf(chkSubmitted.Checked = False, "", txtSubmittedTo.Text.Replace("'", "''")) & "',N'" & IIf(SubmittedBy = "", "", SubmittedBy) & "',N'" & txtRemarks.Text.Replace("'", "''") & "',N'" & richTxtInternalRemarks.Text.Replace("'", "''") & "',N'" & LoginUserName & "'," & CurrentBalance & "," & Me.cmbTransporter.SelectedValue & ",N'" & Me.uitxtBiltyNo.Text.Replace("'", "''") & "', " & Val(Me.txtFuel.Text) & "," & Val(Me.txtExpense.Text) & "," & IIf(Me.rbtAdjFlat.Checked = True, Val(Me.txtAdjustment.Text), Adjustment) & ", " & Me.cmbProject.SelectedValue & ", " & IIf(Me.chkPost.Checked = True, 1, 0) & ", N'" & Me.dtpPODate.Value.ToString("yyyy-M-d h:mm:ss tt") & "', " & IIf(Me.chkDelivered.Checked = True, 1, 0) & ", " & Val(Me.txtAddTransitInsurance.Text) & ", " & IIf(DeliveryChalanId > 0, "" & DeliveryChalanId & "", "NULL") & ", N'" & Me.txtDcNo.Text.Replace("'", "''") & "', " & IIf(Me.rbtAdjFlat.Checked = True, 0, 1) & ", " & IIf(Me.rbtAdjPercentage.Checked = True, "" & Val(Me.txtAdjustment.Text) & "", "0") & ", " & _RefDocId & ", " & IIf(blnNoneFinancialEffectInvoice = True, 1, 0) & ", N'" & Me.txtInvParty.Text.Replace("'", "''") & "', " & IIf(Me.cmbCMFADoc.SelectedIndex > 0, Me.cmbCMFADoc.SelectedValue, 0) & ", " & Val(Me.txtDueDays.Text) & ",N'" & Me.cmbInvType.Text.Replace("'", "''") & "', N'" & Me.cmbOtherCompany.Text.Replace("'", "''") & "','" & Me.txtMobileNo.Text.Replace("'", "''") & "'," & Me.cmbInvoiceStatus.Value & " ,N'" & dtpArrivalTime1.Value.ToString("h:mm:ss tt") & "', " & IIf(Me.dtpDepartureTime1.Checked = True, "Convert(Datetime,'" & Me.dtpDepartureTime1.Value.ToString("yyyy-M-d hh:mm:ss tt") & "',102)", "NULL") & ", " & Val(Me.txtJobCardId.Text) & ", " & IIf(IsSOSeparateClosure = False, 0, 1) & ", 0)" _
             & " SELECT @@IDENTITY"
             InvId = objCommand.ExecuteScalar
             '//To Update JobCard History if radio button paid is checked//TASK # 943
@@ -6746,6 +6788,13 @@ Implements IGeneral
                 Return False
             End If
         End If
+        If chkSubmitted.Checked = True Then
+            If txtSubmittedTo.Text = "" Then
+                ShowErrorMessage("Please enter submitted to email address.")
+                Me.txtSubmittedTo.Focus()
+                Return False
+            End If
+        End If
         ''Start TFS2988 : Ayesha Rehman : 09-04-2018
         If IsEditMode = True Then
             If ValidateApprovalProcessMapped(Me.txtPONo.Text.Trim) Then
@@ -6787,9 +6836,16 @@ Implements IGeneral
 
                 'If CurrentBalance + Val(Me.txtTotal.Text) > Val(cmbVendor.ActiveRow.Cells("Limit").Value.ToString) Then 'Comment against task:M29
                 'Task:M29 Replace Amount 
-                If ((CurrentBalance + Val(Me.txtAmount.Text)) - Val(Me.txtRecAmount.Text)) > Val(cmbVendor.ActiveRow.Cells("Limit").Value.ToString) Then
-                    msg_Error("Credit Limit Of Customer is Over ")
-                    cmbVendor.Focus() : FormValidate = False : Exit Function
+                If BtnSave.Text = "&Save" Then
+                    If ((CurrentBalance + Val(Me.txtAmount.Text)) - Val(Me.txtRecAmount.Text)) > Val(cmbVendor.ActiveRow.Cells("Limit").Value.ToString) Then
+                        msg_Error("Credit Limit Of Customer is Over ")
+                        cmbVendor.Focus() : FormValidate = False : Exit Function
+                    End If
+                Else
+                    If Val(txtCurrentBalance.Text) > Val(cmbVendor.ActiveRow.Cells("Limit").Value.ToString) Then
+                        msg_Error("Credit Limit Of Customer is Over ")
+                        cmbVendor.Focus() : FormValidate = False : Exit Function
+                    End If
                 End If
             End If
 
@@ -7035,7 +7091,40 @@ Implements IGeneral
                 End If
             End If
         End If
-
+        Dim AvailableStock As Double
+        If IsEditMode = True Then
+            Return True
+            Exit Function
+        End If
+        For Each r As Janus.Windows.GridEX.GridEXRow In Me.grd.GetRows
+            'If r.Cells("AlternativeItemId").Value.ToString) = "" Then
+            '    AvailableStock = Convert.ToDouble(GetStockById(IIf(Val(r.Cells("AlternativeItemId").Value.ToString) <> "", r.Cells("AlternativeItemId").Value, r.Cells("ArticleDefId").Value), r.Cells("LocationId").Value, IIf(r.Cells("unit").ToString = "Loose", "Loose", "Pack")))
+            '    If AvailableStock - r.Cells("Qty").Value < 0 Then
+            '        msg_Error(IIf(r.Cells("AlternativeItemId").Value.ToString <> "", r.Cells("AlternativeItem").Value.ToString, r.Cells("Item").Value.ToString) & str_ErrorStockNotEnough)
+            '        Return False
+            '        Exit For
+            '    End If
+            'Else
+            Dim strserviceitem As String = "Select ServiceItem from ArticleDefView where ArticleId = " & IIf(Val(r.Cells("AlternativeItemId").Value.ToString) <> 0, r.Cells("AlternativeItemId").Value, r.Cells("ArticleDefId").Value) & ""
+            Dim dt2serviceitem As DataTable = GetDataTable(strserviceitem)
+            dt2serviceitem.AcceptChanges()
+            Dim ServiceItem1 As Boolean = Val(dt2serviceitem.Rows(0).Item("ServiceItem").ToString)
+            If ServiceItem1 = False Then
+                AvailableStock = Convert.ToDouble(GetStockById(IIf(Val(r.Cells("AlternativeItemId").Value.ToString) <> 0, r.Cells("AlternativeItemId").Value, r.Cells("ArticleDefId").Value), r.Cells("LocationId").Value, IIf(r.Cells("unit").ToString = "Loose", "Loose", "Pack")))
+                If AvailableStock - r.Cells("Qty").Value < 0 Then
+                    msg_Error(IIf(Val(r.Cells("AlternativeItemId").Value.ToString) <> 0, r.Cells("AlternativeItem").Value.ToString, r.Cells("Item").Value.ToString) & str_ErrorStockNotEnough)
+                    Return False
+                    Exit For
+                End If
+            End If
+            'End if
+            'AvailableStock = Convert.ToDouble(GetStockById(IIf(r.Cells("AlternativeItemId").Value.ToString <> 0, r.Cells("AlternativeItemId").Value, r.Cells("ArticleDefId").Value), r.Cells("LocationId").Value, IIf(r.Cells("unit").ToString = "Loose", "Loose", "Pack")))
+            '    If AvailableStock - r.Cells("Qty").Value < 0 Then
+            '        msg_Error(IIf(r.Cells("AlternativeItemId").Value.ToString <> 0, r.Cells("AlternativeItem").Value.ToString, r.Cells("Item").Value.ToString) & str_ErrorStockNotEnough)
+            '        Return False
+            '        Exit For
+            '    End If
+        Next
 
         Return True
 
@@ -7100,6 +7189,21 @@ Implements IGeneral
             'Changes add to add column contract no (Murtaza) (11/15/2022)
             Me.txtcontractno.Text = grdSaved.CurrentRow.Cells("ContractNo").Value & ""
             'Changes add to add column contract no (Murtaza) (11/15/2022)
+            Me.chkSubmitted.Checked = Me.grdSaved.GetRow.Cells("Submitted").Value
+            Me.txtSubmittedTo.Text = grdSaved.CurrentRow.Cells("SubmittedTo").Value & ""
+            SubmittedBy = grdSaved.CurrentRow.Cells("SubmittedBy").Value & ""
+            'If grdSaved.CurrentRow.Cells("SubmittedDate").Value.ToString <> "" Then
+            'dtpSubmissionDate.Checked = True
+            If grdSaved.CurrentRow.Cells("SubmittedDate").Value.ToString = "1/1/1900 12:00:00 AM" Then
+                dtpSubmissionDate.Checked = False
+            Else
+                dtpSubmissionDate.Checked = True
+            End If
+            dtpSubmissionDate.Value = grdSaved.CurrentRow.Cells("SubmittedDate").Value
+            'Else
+            'dtpSubmissionDate.Checked = False
+            ' ''dtpSubmissionDate.Value = grdSaved.CurrentRow.Cells("SubmittedDate").Value
+            'End If
             richTxtInternalRemarks.Text = grdSaved.CurrentRow.Cells("InternalRemarks").Value & "" ''TFS1864
             txtPaid.Text = grdSaved.CurrentRow.Cells("CashPaid").Value & ""
             txtCurrentBalance.Text = Val(grdSaved.CurrentRow.Cells("PreviousBalance").Value.ToString)
@@ -7227,7 +7331,7 @@ Implements IGeneral
 
                 End Try
             End If
-            
+
             If IsSalesOrderAnalysis = True Then
                 Me.rbtAdjPercentage.Enabled = False
             Else
@@ -8219,20 +8323,24 @@ Implements IGeneral
             If IsMinus = False Then
                 If objDataSet.Tables(0).Rows.Count > 0 Then
                         For Each dr As DataRow In objDataSet.Tables(0).Rows
-                            Dim strserviceitem As String = "Select ServiceItem from ArticleDefView where ArticleId = " & dr.Item("ArticleDefId") & ""
+                            Dim strserviceitem As String = "Select ServiceItem from ArticleDefView where ArticleId = " & IIf(dr.Item("AlternativeItemId").ToString <> 0, dr.Item("AlternativeItemId"), dr.Item("ArticleDefId")) & ""
                             Dim dt2serviceitem As DataTable = GetDataTable(strserviceitem)
                             dt2serviceitem.AcceptChanges()
-                            Dim ServiceItem1 As Boolean = Val(dt2serviceitem.Rows(0).Item("ServiceItem").ToString)
+                            Dim ServiceItem1 As Boolean
+                            If dt2serviceitem.Rows.Count > 0 Then
+                                ServiceItem1 = Val(dt2serviceitem.Rows(0).Item("ServiceItem").ToString)
+                            End If
+
                             If ServiceItem1 = False Then
                                 dr.BeginEdit()
-                                AvailableStock = Convert.ToDouble(GetStockById(dr.Item("ArticleDefId"), dr.Item("LocationId"), IIf(dr.Item("unit").ToString = "Loose", "Loose", "Pack")))
+                                AvailableStock = Convert.ToDouble(GetStockById(IIf(dr.Item("AlternativeItemId").ToString <> 0, dr.Item("AlternativeItemId"), dr.Item("ArticleDefId")), dr.Item("LocationId"), IIf(dr.Item("unit").ToString = "Loose", "Loose", "Pack")))
                                 If AvailableStock < 0 Then
-                                    ShowErrorMessage("Stock is negative against item " & dr.Item("Item").ToString & " ")
+                                    ShowErrorMessage("Stock is negative against item " & IIf(dr.Item("AlternativeItemId").ToString <> 0, dr.Item("AlternativeItem").ToString, dr.Item("Item").ToString) & " ")
                                     dr.Delete()
                                 Else
                                     If dr.Item("unit").ToString = "Loose" Then
                                         If Val(dr.Item("TotalQty")) > AvailableStock Then
-                                            If msg_Confirm("Stock is not enough " & dr.Item("Item").ToString & ". Do you want to load available Qty in stock as partial Qty?") = False Then
+                                            If msg_Confirm("Stock is not enough " & IIf(dr.Item("AlternativeItemId").ToString <> 0, dr.Item("AlternativeItem").ToString, dr.Item("Item").ToString) & ". Do you want to load available Qty in stock as partial Qty?") = False Then
                                                 Exit Sub
                                             Else
                                                 StockChecked = True
@@ -8243,7 +8351,7 @@ Implements IGeneral
 
                                     Else
                                         If Val(dr.Item("Qty")) > AvailableStock Then
-                                            If msg_Confirm("Stock is not enough " & dr.Item("Item").ToString & ". Do you want to load available Qty in stock as partial Qty?") = False Then
+                                            If msg_Confirm("Stock is not enough " & IIf(dr.Item("AlternativeItemId").ToString <> 0, dr.Item("AlternativeItem").ToString, dr.Item("Item").ToString) & ". Do you want to load available Qty in stock as partial Qty?") = False Then
                                                 Exit Sub
                                             Else
                                                 StockChecked = True
@@ -8705,7 +8813,7 @@ Implements IGeneral
             'Task # 1864 Updating Column internal Remarks in SalesMasterTable
             'Rafay:ADD COlumn PO_NO in SalesMAsterTable
             objCommand.CommandText = "Update SalesMasterTable set SalesNo =N'" & txtPONo.Text & "',SalesDate=N'" & dtpPODate.Value.ToString("yyyy-M-d h:mm:ss tt") & "',CustomerCode=" & cmbVendor.ActiveRow.Cells(0).Value & ", PoID=" & Val(Me.cmbPo.SelectedValue) & ",EmployeeCode=" & Val(cmbSalesMan.SelectedValue.ToString) & ", " _
-                     & " SalesQty=" & Val(txtTotalQty.Text) & ", Com_Percentage=" & IIf(Val(txtComPercentage.Text) <> 0, Val(txtComPercentage.Text), 0) & ", SalesAmount=" & Val(txtAmount.Text) & ", CashPaid=" & Val(txtRecAmount.Text) & ",PO_NO=N'" & txtPO.Text.Replace("'", "''") & "',ContractNo=N'" & txtcontractno.Text.Replace("'", "''") & "', Remarks=N'" & txtRemarks.Text.Replace("'", "''") & "', InternalRemarks=N'" & richTxtInternalRemarks.Text.Replace("'", "''") & "',UpdateUserName=N'" & LoginUserName & "', TransporterId=" & Me.cmbTransporter.SelectedValue & ",BiltyNo=N'" & Me.uitxtBiltyNo.Text.Replace("'", "''") & "', FuelExpense=" & Val(Me.txtFuel.Text) & ", OtherExpense=" & Val(Me.txtExpense.Text) & ", adjustment = " & IIf(Me.rbtAdjFlat.Checked = True, Val(Me.txtAdjustment.Text), Adjustment) & ", CostCenterId=" & cmbProject.SelectedValue & ", Post=" & IIf(Me.chkPost.Checked = True, 1, 0) & ", Delivered=" & IIf(Me.chkDelivered.Checked = True, 1, 0) & ", TransitInsurance=" & Val(Me.txtAddTransitInsurance.Text) & ", DeliveryChalanId=" & IIf(DeliveryChalanId > 0, "" & DeliveryChalanId & "", "NULL") & ", DcNo=N'" & Me.txtDcNo.Text.Replace("'", "''") & "', Adj_Flag=" & IIf(Me.rbtAdjFlat.Checked = True, 0, 1) & ", Adj_Percentage=" & IIf(Me.rbtAdjPercentage.Checked = True, "" & Val(Me.txtAdjustment.Text) & "", "0") & ", ManualInvoice=" & IIf(blnNoneFinancialEffectInvoice = True, 1, 0) & ", InvoiceParty=N'" & Me.txtInvParty.Text.Replace("'", "''") & "', CMFADocID=" & IIf(Me.cmbCMFADoc.SelectedIndex > 0, Me.cmbCMFADoc.SelectedValue, 0) & ", DueDays=" & Val(Me.txtDueDays.Text) & ", InvoiceType=N'" & Me.cmbInvType.Text.Replace("'", "''") & "', Other_Company=N'" & Me.cmbOtherCompany.Text.Replace("'", "''") & "',Party_Mobile_No='" & Me.txtMobileNo.Text.Replace("'", "''") & "',Invoice_Status=" & Me.cmbInvoiceStatus.Value & ",Arrival_Time=N'" & dtpArrivalTime1.Value.ToString("yyyy-M-d h:mm:ss tt") & "',Departure_Time=" & IIf(Me.dtpDepartureTime1.Checked = True, "Convert(Datetime,'" & Me.dtpDepartureTime1.Value.ToString("yyyy-M-d hh:mm:ss tt") & "',102)", "NULL") & ", JobCardId = " & Val(Me.txtJobCardId.Text) & ", RevisionNumber = ISNULL(RevisionNumber, 0) + 1  Where SalesID= " & txtReceivingID.Text & ""
+                     & " SalesQty=" & Val(txtTotalQty.Text) & ", Com_Percentage=" & IIf(Val(txtComPercentage.Text) <> 0, Val(txtComPercentage.Text), 0) & ", SalesAmount=" & Val(txtAmount.Text) & ", CashPaid=" & Val(txtRecAmount.Text) & ",PO_NO=N'" & txtPO.Text.Replace("'", "''") & "',ContractNo=N'" & txtcontractno.Text.Replace("'", "''") & "',Submitted = " & IIf(chkSubmitted.Checked = False, 0, 1) & ",SubmittedTo = N'" & IIf(chkSubmitted.Checked = False, "", txtSubmittedTo.Text.Replace("'", "''")) & "', SubmittedDate = N'" & IIf(chkSubmitted.Checked = False, "", dtpSubmissionDate.Value.ToString("yyyy-M-d h:mm:ss tt")) & "',SubmittedBy=N'" & SubmittedBy & "', Remarks=N'" & txtRemarks.Text.Replace("'", "''") & "', InternalRemarks=N'" & richTxtInternalRemarks.Text.Replace("'", "''") & "',UpdateUserName=N'" & LoginUserName & "', TransporterId=" & Me.cmbTransporter.SelectedValue & ",BiltyNo=N'" & Me.uitxtBiltyNo.Text.Replace("'", "''") & "', FuelExpense=" & Val(Me.txtFuel.Text) & ", OtherExpense=" & Val(Me.txtExpense.Text) & ", adjustment = " & IIf(Me.rbtAdjFlat.Checked = True, Val(Me.txtAdjustment.Text), Adjustment) & ", CostCenterId=" & cmbProject.SelectedValue & ", Post=" & IIf(Me.chkPost.Checked = True, 1, 0) & ", Delivered=" & IIf(Me.chkDelivered.Checked = True, 1, 0) & ", TransitInsurance=" & Val(Me.txtAddTransitInsurance.Text) & ", DeliveryChalanId=" & IIf(DeliveryChalanId > 0, "" & DeliveryChalanId & "", "NULL") & ", DcNo=N'" & Me.txtDcNo.Text.Replace("'", "''") & "', Adj_Flag=" & IIf(Me.rbtAdjFlat.Checked = True, 0, 1) & ", Adj_Percentage=" & IIf(Me.rbtAdjPercentage.Checked = True, "" & Val(Me.txtAdjustment.Text) & "", "0") & ", ManualInvoice=" & IIf(blnNoneFinancialEffectInvoice = True, 1, 0) & ", InvoiceParty=N'" & Me.txtInvParty.Text.Replace("'", "''") & "', CMFADocID=" & IIf(Me.cmbCMFADoc.SelectedIndex > 0, Me.cmbCMFADoc.SelectedValue, 0) & ", DueDays=" & Val(Me.txtDueDays.Text) & ", InvoiceType=N'" & Me.cmbInvType.Text.Replace("'", "''") & "', Other_Company=N'" & Me.cmbOtherCompany.Text.Replace("'", "''") & "',Party_Mobile_No='" & Me.txtMobileNo.Text.Replace("'", "''") & "',Invoice_Status=" & Me.cmbInvoiceStatus.Value & ",Arrival_Time=N'" & dtpArrivalTime1.Value.ToString("yyyy-M-d h:mm:ss tt") & "',Departure_Time=" & IIf(Me.dtpDepartureTime1.Checked = True, "Convert(Datetime,'" & Me.dtpDepartureTime1.Value.ToString("yyyy-M-d hh:mm:ss tt") & "',102)", "NULL") & ", JobCardId = " & Val(Me.txtJobCardId.Text) & ", RevisionNumber = ISNULL(RevisionNumber, 0) + 1 Where SalesID= " & txtReceivingID.Text & ""
             objCommand.ExecuteNonQuery()
             '//To update jobcard history if invoice is paid or not //TASK # 943
             '29-Jun-2017: Start Task # 943: Waqar Raza: Change True and False to 1 and 0 for all SQL server.
@@ -10749,11 +10857,11 @@ Implements IGeneral
             Exit Sub
         End If
 
-        If e.KeyCode = Keys.Delete Then
-            If Me.grdSaved.RowCount <= 0 Then Exit Sub
-            DeleteToolStripButton_Click(Nothing, Nothing)
-            Exit Sub
-        End If
+        'If e.KeyCode = Keys.Delete Then
+        '    If Me.grdSaved.RowCount <= 0 Then Exit Sub
+        '    DeleteToolStripButton_Click(Nothing, Nothing)
+        '    Exit Sub
+        'End If
     End Sub
 
     Private Sub grdSaved_LinkClicked(ByVal sender As Object, ByVal e As Janus.Windows.GridEX.ColumnActionEventArgs) Handles grdSaved.LinkClicked
@@ -13312,7 +13420,7 @@ Implements IGeneral
                         'DocNo = GetSerialNo("SI" & "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "SalesMasterTable", "SalesNo")
                         'DocNo = GetNextDocNo("SI" & Me.cmbCompany.SelectedValue & "-" & Format(Me.dtpPODate.Value, "yy") & Me.dtpPODate.Value.Month.ToString("00"), 2, "SalesMasterTable", "SalesNo")
                     Else
-                        companyinitials = "PK"
+                        ''companyinitials = "PK"
                         DocNo = GetNextDocNo("SI" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "SalesMasterTable", "SalesNo")
                     End If
                     '  DocNo = GetSerialNo("SI" & Me.cmbCompany.SelectedValue & "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "SalesMasterTable", "SalesNo")
@@ -13329,7 +13437,7 @@ Implements IGeneral
                         DocNo = GetNextDocNo("SI" & Me.cmbCompany.SelectedValue & "-" & Format(Me.dtpPODate.Value, "yy") & Me.dtpPODate.Value.Month.ToString("00"), 2, "SalesMasterTable", "SalesNo")
                         'DocNo = GetSerialNo("SI" & "-" & companyinitials & "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "SalesMasterTable", "SalesNo")
                     Else
-                        companyinitials = "PK"
+                        ''companyinitials = "PK"
                         DocNo = GetNextDocNo("SI" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "SalesMasterTable", "SalesNo")
                     End If
                     'rafay
@@ -16645,7 +16753,7 @@ Implements IGeneral
                 Select Case e.Column.Key
                     Case "Qty"
                         Dim str As String
-                        str = "SELECT Engine_No, Chassis_No, Sum(InQty) InQty, Sum(OutQty) OutQty, Sum(InQty)-Sum(OutQty) Qty FROM StockDetailTable WHERE Engine_No <> '' And ArticleDefId = " & Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString) & " GROUP BY Engine_No, Chassis_No HAVING Sum(InQty)-Sum(OutQty) > 0"
+                        str = "SELECT Engine_No, Chassis_No, Sum(InQty) InQty, Sum(OutQty) OutQty, Sum(InQty)-Sum(OutQty) Qty FROM StockDetailTable WHERE Engine_No <> '' And ArticleDefId = " & IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString)) & " GROUP BY Engine_No, Chassis_No HAVING Sum(InQty)-Sum(OutQty) > 0"
                         Dim dt As DataTable = GetDataTable(str)
                         If dt.Rows.Count > 0 Then
                             If Val(grd.GetRow.Cells("TotalQty").Value) > dt.Rows(0).Item("Qty") Then
@@ -16660,7 +16768,7 @@ Implements IGeneral
             If Not IsDBNull(Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value) Then
                 Dim str As String = String.Empty
                 str = " Select   ExpiryDate, Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx') And BatchNo ='" & Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString & "'" _
-                     & " And ArticledefId = " & Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & "  And (isnull(InQty, 0) - isnull(OutQty, 0)) > 0 Group by BatchNo,ExpiryDate,Origin ORDER BY ExpiryDate  Asc "
+                     & " And ArticledefId = " & Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & " Group by BatchNo,ExpiryDate,Origin  Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0 ORDER BY ExpiryDate  Asc "
                 Dim dtExpiry As DataTable = GetDataTable(str)
                 If dtExpiry.Rows.Count > 0 Then
                     If IsDBNull(dtExpiry.Rows(0).Item("ExpiryDate")) = False Then
@@ -16686,7 +16794,7 @@ Implements IGeneral
                 Dim dblPurchasePrice As Double = 0D
                 Dim dblCostPrice As Double = 0D
 
-                Dim strPriceData() As String = GetRateByItem(Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString)).Split(",")
+                Dim strPriceData() As String = GetRateByItem(IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString))).Split(",")
 
                 If strPriceData.Length > 1 Then
                     dblCostPrice = Val(strPriceData(0).ToString)
@@ -16697,8 +16805,8 @@ Implements IGeneral
                 End If
 
                 If flgAvgRate = True And getConfigValueByType("CostImplementationLotWiseOnStockMovement") = "True" Then
-                    If Convert.ToDouble(GetItemRateByBatch(Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString)) > 0 Then
-                        Me.grd.GetRow.Cells("CostPrice").Value = Convert.ToDouble(GetItemRateByBatch(Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString))
+                    If Convert.ToDouble(GetItemRateByBatch(IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString)), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString)) > 0 Then
+                        Me.grd.GetRow.Cells("CostPrice").Value = Convert.ToDouble(GetItemRateByBatch(IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString)), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString))
                     Else
                         ' Me.grd.GetRow.Cells("CostPrice").Value = dblPurchasePrice ''Commented Against TFS3528
                         Me.grd.GetRow.Cells("CostPrice").Value = dblCostPrice
@@ -16723,7 +16831,7 @@ Implements IGeneral
                     Dim dblPurchasePrice As Double = 0D
                     Dim dblCostPrice As Double = 0D
 
-                    Dim strPriceData() As String = GetRateByItem(Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString)).Split(",")
+                    Dim strPriceData() As String = GetRateByItem(IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString))).Split(",")
 
                     If strPriceData.Length > 1 Then
                         dblCostPrice = Val(strPriceData(0).ToString)
@@ -16734,8 +16842,8 @@ Implements IGeneral
                     End If
 
                     If flgAvgRate = True And getConfigValueByType("CostImplementationLotWiseOnStockMovement") = "True" Then
-                        If Convert.ToDouble(GetItemRateByBatch(Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString)) > 0 Then
-                            Me.grd.GetRow.Cells("CostPrice").Value = Convert.ToDouble(GetItemRateByBatch(Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString))
+                        If Convert.ToDouble(GetItemRateByBatch(IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString)), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString)) > 0 Then
+                            Me.grd.GetRow.Cells("CostPrice").Value = Convert.ToDouble(GetItemRateByBatch(IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString)), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString))
                         Else
                             ' Me.grd.GetRow.Cells("CostPrice").Value = dblPurchasePrice ''Commented Against TFS3528
                             Me.grd.GetRow.Cells("CostPrice").Value = dblCostPrice
@@ -17553,7 +17661,7 @@ Implements IGeneral
             If Not StockOutConfigration.Equals("Disabled") Then
                 If Me.grd.RowCount > 0 AndAlso Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value IsNot Nothing Then
                     Dim str As String = ""
-                    str = " Select  BatchNo,BatchNo,ExpiryDate,Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx')  And ArticledefId = " & Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & " Group by BatchNo,ExpiryDate,Origin Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0  ORDER BY ExpiryDate Asc"
+                    str = " Select  BatchNo,BatchNo,ExpiryDate,Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx')  And ArticledefId = " & IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString)) & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & " Group by BatchNo,ExpiryDate,Origin Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0  ORDER BY ExpiryDate Asc"
                     Dim dt As DataTable = GetDataTable(str)
                     Me.grd.RootTable.Columns(EnumGridDetail.BatchNo).ValueList.PopulateValueList(dt.DefaultView, "BatchNo", "BatchNo")
                     If Not dt.Rows.Count > 0 Then
@@ -17566,7 +17674,7 @@ Implements IGeneral
                     If dt.Rows.Count > 0 Then
                         If Not IsDBNull(dt.Rows(0).Item("BatchNo").ToString) Then
                             str = " Select   ExpiryDate, Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx') And BatchNo ='" & Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString & "'" _
-                                 & " And ArticledefId = " & Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & "  And (isnull(InQty, 0) - isnull(OutQty, 0)) > 0 Group by BatchNo,ExpiryDate,Origin ORDER BY ExpiryDate  Asc "
+                                 & " And ArticledefId = " & IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString)) & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & "  And (isnull(InQty, 0) - isnull(OutQty, 0)) > 0 Group by BatchNo,ExpiryDate,Origin ORDER BY ExpiryDate  Asc "
                             Dim dtExpiry As DataTable = GetDataTable(str)
                             If dtExpiry.Rows.Count > 0 Then
                                 If IsDBNull(dtExpiry.Rows(0).Item("ExpiryDate")) = False Then
@@ -18742,6 +18850,30 @@ Implements IGeneral
     End Function
 
 
+    
+    Private Sub chkSubmitted_CheckedChanged(sender As Object, e As EventArgs) Handles chkSubmitted.CheckedChanged
+        Try
+            If IsFormOpend = False Then Exit Sub
+            If chkSubmitted.Checked = True Then
+                lblSubmittedTo.Visible = True
+                txtSubmittedTo.Visible = True
+                lblSubmittedDate.Visible = True
+                dtpSubmissionDate.Visible = True
+                dtpSubmissionDate.Checked = True
+                If dtpSubmissionDate.Value.ToString = "1/1/1900 12:00:00 AM" Then
+                    SubmittedBy = LoginUserName
+                    dtpSubmissionDate.Value = Date.Now
+                End If
+            Else
+                lblSubmittedTo.Visible = False
+                txtSubmittedTo.Visible = False
+                lblSubmittedDate.Visible = False
+                dtpSubmissionDate.Visible = False
+            End If
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
 End Class
 
 

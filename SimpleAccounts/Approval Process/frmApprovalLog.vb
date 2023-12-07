@@ -544,6 +544,32 @@ Public Class frmApprovalLog
             ApprovalHistoryDetail.Level = Val(Me.grdLog.CurrentRow.Cells(enmgrd.Level).Value.ToString)
 
             If e.Column.Key = "Approve" Then
+
+                ''Start: Waqar Added these lines just to Lock the Approval for SO if Customer is on Hold.
+                If Me.grdLog.CurrentRow.Cells(enmgrd.DocumentNo).Value.ToString.Contains("SO") Then
+                    Dim str As String = "SELECT ISNULL(Hold,0) as Hold from tblCustomer where AccountId = " & Me.grdLog.CurrentRow.Cells(enmgrd.CustomerCode).Value.ToString & ""
+                    Dim dt As DataTable = GetDataTable(str)
+                    If dt.Rows.Count > 0 Then
+                        If dt.Rows(0).Item(0).ToString = "True" Then
+                            ShowErrorMessage("Cannot approve this SO because this Customer is on Hold.")
+                            Exit Sub
+                        End If
+                    End If
+                End If
+                ''End: Waqar Added these lines just to Lock the Approval for SO if Customer is on Hold.
+
+                If Me.grdLog.CurrentRow.Cells(enmgrd.DocumentNo).Value.ToString.Contains("PO") Then
+                    Dim str As String = "SELECT Amount,RemainingAmount from tbldefCostCenter where CostCenterID IN ( SELECT CostCenterId from PurchaseOrderMasterTable WHERE PurchaseOrderNo = '" & Me.grdLog.CurrentRow.Cells(enmgrd.DocumentNo).Value.ToString & "')"
+                    'Dim str As String = "SELECT Amount,RemainingAmount from tbldefCostCenter where AccountId = " & Me.grdLog.CurrentRow.Cells(enmgrd.CustomerCode).Value.ToString & ""
+                    Dim dt As DataTable = GetDataTable(str)
+                    If dt.Rows.Count > 0 Then
+                        If dt.Rows(0).Item(0).ToString = "True" Then
+                            ShowErrorMessage("Cannot approve this SO because this Customer is on Hold.")
+                            Exit Sub
+                        End If
+                    End If
+                End If
+
                 If Not msg_Confirm("Do You Want to Approve") = True Then Exit Sub
                 ApprovalHistory.Status = "Approved"
                 'UpdateApprovalHistory(ApprovalHistory)
@@ -634,126 +660,126 @@ Public Class frmApprovalLog
 
                 ShowApprovalLog()
             End If
-                            If e.Column.Key = "History" Then
+            If e.Column.Key = "History" Then
                 frmApprovalHistory.BringToFront()
-                                frmApprovalHistory.DocumentNo = ApprovalHistory.DocumentNo
-                                frmApprovalHistory.Source = ApprovalHistory.Source
-                                frmApprovalHistory.ShowDialog()
+                frmApprovalHistory.DocumentNo = ApprovalHistory.DocumentNo
+                frmApprovalHistory.Source = ApprovalHistory.Source
+                frmApprovalHistory.ShowDialog()
 
-                            End If
+            End If
 
-                            If e.Column.Key = "Preview" Then
-                                Dim strSource As String = GetSource(Me.grdLog.GetRow.Cells(enmgrd.ReferenceType).Text.ToString)
-                                Dim IsPrint As Boolean = False
-                                ''The Parameter (true) for Showing Report in container is removed from each Show Report : TFS3404
-                                Select Case strSource
-                                    Case "frmPurchase"
-                                        IsPrint = True
-                                        ShowReport("PurchaseInvoice", "{ReceivingMasterTable.ReceivingId}=" & grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString, , , , , , , , , )
-                                    Case "frmPurchaseReturn"
-                                        IsPrint = True
-                                        ShowReport("PurchaseReturn", "{PurchaseReturnMasterTable.PurchaseReturnId}=" & grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString, , , , , , , , , )
-                                    Case "frmVendorQuotation"
-                                        IsPrint = True
-                                        ShowInformationMessage("Print preview not available")
-                                    Case "frmPurchaseOrderNew"
-                                        IsPrint = True
-                                        ShowReport("PurchaseOrder", "{PurchaseOrderMasterTable.PurchaseOrderId}=" & grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString, , , , , , , , , )
-                                    Case "frmPurchaseDemand"
-                                        IsPrint = True
-                                        ShowReport("PurchaseDemand", "{PurchaseDemandMasterTable.PurchaseDemandId}=" & grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString, , , , , , , , , )
-                                    Case "frmReceivingNote"
-                                        IsPrint = True
-                                        AddRptParam("@ReceivingNoteId", grdLog.GetRow.Cells(enmgrd.ReferenceId).Value)
-                                        ShowReport("inwardgatepassreceived", , , , , , , , , , , )
-                                    Case "frmPurchaseInquiry"
-                                        IsPrint = True
-                                        ShowInformationMessage("Print preview not available")
-                                        ''Start TFS3113
-                                    Case "frmQoutationNew"
-                                        IsPrint = True
-                                        AddRptParam("@QuotationId", Val(Me.grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString))
-                                        ShowReport("rptQuotationItemSpecifications")
-                                    Case "frmSales"
-                                        IsPrint = True
-                                        'Dim newinvoice As Boolean = False
-                                        'Dim strCriteria As String = "Nothing"
-                                        'newinvoice = getConfigValueByType("NewInvoice")
-                                        'If newinvoice = True Then
-                                        '    str_ReportParam = "@SaleID|" & grdLog.CurrentRow.Cells(enmgrd.ReferenceId).Value
-                                        'Else
-                                        '    str_ReportParam = String.Empty
-                                        '    strCriteria = "{SalesDetailTable.SalesId} = " & grdLog.CurrentRow.Cells(enmgrd.ReferenceId).Value
-                                        'End If
+            If e.Column.Key = "Preview" Then
+                Dim strSource As String = GetSource(Me.grdLog.GetRow.Cells(enmgrd.ReferenceType).Text.ToString)
+                Dim IsPrint As Boolean = False
+                ''The Parameter (true) for Showing Report in container is removed from each Show Report : TFS3404
+                Select Case strSource
+                    Case "frmPurchase"
+                        IsPrint = True
+                        ShowReport("PurchaseInvoice", "{ReceivingMasterTable.ReceivingId}=" & grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString, , , , , , , , , )
+                    Case "frmPurchaseReturn"
+                        IsPrint = True
+                        ShowReport("PurchaseReturn", "{PurchaseReturnMasterTable.PurchaseReturnId}=" & grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString, , , , , , , , , )
+                    Case "frmVendorQuotation"
+                        IsPrint = True
+                        ShowInformationMessage("Print preview not available")
+                    Case "frmPurchaseOrderNew"
+                        IsPrint = True
+                        ShowReport("PurchaseOrder", "{PurchaseOrderMasterTable.PurchaseOrderId}=" & grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString, , , , , , , , , )
+                    Case "frmPurchaseDemand"
+                        IsPrint = True
+                        ShowReport("PurchaseDemand", "{PurchaseDemandMasterTable.PurchaseDemandId}=" & grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString, , , , , , , , , )
+                    Case "frmReceivingNote"
+                        IsPrint = True
+                        AddRptParam("@ReceivingNoteId", grdLog.GetRow.Cells(enmgrd.ReferenceId).Value)
+                        ShowReport("inwardgatepassreceived", , , , , , , , , , , )
+                    Case "frmPurchaseInquiry"
+                        IsPrint = True
+                        ShowInformationMessage("Print preview not available")
+                        ''Start TFS3113
+                    Case "frmQoutationNew"
+                        IsPrint = True
+                        AddRptParam("@QuotationId", Val(Me.grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString))
+                        ShowReport("rptQuotationItemSpecifications")
+                    Case "frmSales"
+                        IsPrint = True
+                        'Dim newinvoice As Boolean = False
+                        'Dim strCriteria As String = "Nothing"
+                        'newinvoice = getConfigValueByType("NewInvoice")
+                        'If newinvoice = True Then
+                        '    str_ReportParam = "@SaleID|" & grdLog.CurrentRow.Cells(enmgrd.ReferenceId).Value
+                        'Else
+                        '    str_ReportParam = String.Empty
+                        '    strCriteria = "{SalesDetailTable.SalesId} = " & grdLog.CurrentRow.Cells(enmgrd.ReferenceId).Value
+                        'End If
 
-                                        'ShowReport(IIf(newinvoice = False, "SalesInvoice", "SalesInvoiceNew") & grdLog.CurrentRow.Cells(enmgrd.LocationId).Value.ToString, strCriteria, "Nothing", "Nothing", False, , "New", , , , , )
-                                        AddRptParam("@SaleID", Me.grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString)
-                                        ShowReport("SalesInvoiceNew" & Me.grdLog.GetRow.Cells(enmgrd.LocationId).Value.ToString, , , , , , , , , , )
-                                    Case "frmDeliveryChalan"
-                                        IsPrint = True
-                                        'Dim newinvoice As Boolean = False
-                                        'Dim strCriteria As String = "Nothing"
-                                        'newinvoice = getConfigValueByType("NewInvoice")
-                                        'If newinvoice = True Then
-                                        '    str_ReportParam = "@DeliveryID|" & grdLog.CurrentRow.Cells(enmgrd.ReferenceId).Value
-                                        'Else
-                                        '    str_ReportParam = String.Empty
-                                        '    strCriteria = "{DeliveryChalanDetailTable.DeliveryId} = " & grdLog.CurrentRow.Cells(enmgrd.ReferenceId).Value
-                                        'End If
+                        'ShowReport(IIf(newinvoice = False, "SalesInvoice", "SalesInvoiceNew") & grdLog.CurrentRow.Cells(enmgrd.LocationId).Value.ToString, strCriteria, "Nothing", "Nothing", False, , "New", , , , , )
+                        AddRptParam("@SaleID", Me.grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString)
+                        ShowReport("SalesInvoiceNew" & Me.grdLog.GetRow.Cells(enmgrd.LocationId).Value.ToString, , , , , , , , , , )
+                    Case "frmDeliveryChalan"
+                        IsPrint = True
+                        'Dim newinvoice As Boolean = False
+                        'Dim strCriteria As String = "Nothing"
+                        'newinvoice = getConfigValueByType("NewInvoice")
+                        'If newinvoice = True Then
+                        '    str_ReportParam = "@DeliveryID|" & grdLog.CurrentRow.Cells(enmgrd.ReferenceId).Value
+                        'Else
+                        '    str_ReportParam = String.Empty
+                        '    strCriteria = "{DeliveryChalanDetailTable.DeliveryId} = " & grdLog.CurrentRow.Cells(enmgrd.ReferenceId).Value
+                        'End If
 
-                                        'ShowReport(IIf(newinvoice = False, "DeliveryChalan", "DeliveryChalanNew") & grdLog.CurrentRow.Cells(enmgrd.LocationId).Value.ToString, strCriteria, "Nothing", "Nothing", False, , "New", , , , , )
-                                        AddRptParam("@DeliveryID", Me.grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString)
-                                        ShowReport("DeliveryChalanNew" & Me.grdLog.GetRow.Cells(enmgrd.LocationId).Value.ToString, , , , , , , , , , )
-                                    Case "frmSalesOrderNew"
-                                        IsPrint = True
-                                        AddRptParam("@SalesOrderId", Me.grdLog.GetRow.Cells(enmgrd.ReferenceId).Value)
-                                        ShowReport("rptSalesOrder", , , , , , , , , , , )
-                                    Case "frmSalesReturn"
-                                        IsPrint = True
-                                        ShowReport("SalesReturn", "{SalesReturnMasterTable.SalesReturnId}=" & grdLog.GetRow.Cells(enmgrd.ReferenceId).Value, , , , , , , , , )
-                                    Case "frmSalesInquiry"
-                                        IsPrint = True
-                                        ShowInformationMessage("Print preview not available")
-                                    Case "frmCashRequest"
-                                        IsPrint = True
-                                        ShowInformationMessage("Print preview not available")
-                                    Case "frmAdvanceRequest"
-                                        IsPrint = True
-                                        ShowInformationMessage("Print preview not available")
-                                    Case "frmSalesTransfer" ''TFS4431 
-                                        IsPrint = True
-                                        ShowInformationMessage("Print preview not available")
-                                        ''End TFS3113
-                                End Select
-                                If IsPrint = False Then
-                                    'AddRptParam("@VoucherId", Me.grd.GetRow.Cells("Voucher_Id").Value.ToString)
-                                    ShowReport("rptVoucher", , , , , , , DTFromGrid(Val(Me.grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString)), , , )
-                                End If
-                                If ReportViewerForContainer IsNot Nothing Then
-                                    ReportViewerForContainer.Show()
-                                    ReportViewerForContainer.BringToFront()
-                                End If
-                                'If ReportViewerForContainer IsNot Nothing Then
-                                '    ReportViewerForContainer.Show()
-                                '    ReportViewerForContainer.BringToFront()
-                                'End If
-                                'Exit Sub
-                                'ElseIf e.Column.Key = "Preveiw Attach" Then
-                                '    AddRptParam("@CompanyName", CompanyTitle)
-                                '    AddRptParam("@CompanyAddress", CompanyAddressHeader)
-                                '    AddRptParam("@ShowHeader", True)
-                                '    DataSetShowReport("RptVoucherDocument", GetVoucherRecord(), True)
-                                '    If ReportViewerForContainer IsNot Nothing Then
-                                '        ReportViewerForContainer.Show()
-                                '        ReportViewerForContainer.BringToFront()
-                                '    End If
-                                'Else
-                                '    Exit Sub
-                            End If
+                        'ShowReport(IIf(newinvoice = False, "DeliveryChalan", "DeliveryChalanNew") & grdLog.CurrentRow.Cells(enmgrd.LocationId).Value.ToString, strCriteria, "Nothing", "Nothing", False, , "New", , , , , )
+                        AddRptParam("@DeliveryID", Me.grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString)
+                        ShowReport("DeliveryChalanNew" & Me.grdLog.GetRow.Cells(enmgrd.LocationId).Value.ToString, , , , , , , , , , )
+                    Case "frmSalesOrderNew"
+                        IsPrint = True
+                        AddRptParam("@SalesOrderId", Me.grdLog.GetRow.Cells(enmgrd.ReferenceId).Value)
+                        ShowReport("rptSalesOrder", , , , , , , , , , , )
+                    Case "frmSalesReturn"
+                        IsPrint = True
+                        ShowReport("SalesReturn", "{SalesReturnMasterTable.SalesReturnId}=" & grdLog.GetRow.Cells(enmgrd.ReferenceId).Value, , , , , , , , , )
+                    Case "frmSalesInquiry"
+                        IsPrint = True
+                        ShowInformationMessage("Print preview not available")
+                    Case "frmCashRequest"
+                        IsPrint = True
+                        ShowInformationMessage("Print preview not available")
+                    Case "frmAdvanceRequest"
+                        IsPrint = True
+                        ShowInformationMessage("Print preview not available")
+                    Case "frmSalesTransfer" ''TFS4431 
+                        IsPrint = True
+                        ShowInformationMessage("Print preview not available")
+                        ''End TFS3113
+                End Select
+                If IsPrint = False Then
+                    'AddRptParam("@VoucherId", Me.grd.GetRow.Cells("Voucher_Id").Value.ToString)
+                    ShowReport("rptVoucher", , , , , , , DTFromGrid(Val(Me.grdLog.GetRow.Cells(enmgrd.ReferenceId).Value.ToString)), , , )
+                End If
+                If ReportViewerForContainer IsNot Nothing Then
+                    ReportViewerForContainer.Show()
+                    ReportViewerForContainer.BringToFront()
+                End If
+                'If ReportViewerForContainer IsNot Nothing Then
+                '    ReportViewerForContainer.Show()
+                '    ReportViewerForContainer.BringToFront()
+                'End If
+                'Exit Sub
+                'ElseIf e.Column.Key = "Preveiw Attach" Then
+                '    AddRptParam("@CompanyName", CompanyTitle)
+                '    AddRptParam("@CompanyAddress", CompanyAddressHeader)
+                '    AddRptParam("@ShowHeader", True)
+                '    DataSetShowReport("RptVoucherDocument", GetVoucherRecord(), True)
+                '    If ReportViewerForContainer IsNot Nothing Then
+                '        ReportViewerForContainer.Show()
+                '        ReportViewerForContainer.BringToFront()
+                '    End If
+                'Else
+                '    Exit Sub
+            End If
 
 
-                            'Ali Faisal : Commented due to stop recall of grid data refil on report opening or attachement opening
-                            'ShowApprovalLog()
+            'Ali Faisal : Commented due to stop recall of grid data refil on report opening or attachement opening
+            'ShowApprovalLog()
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -1067,6 +1093,9 @@ Public Class frmApprovalLog
                 SQLHelper.ExecuteNonQuery(trans, CommandType.Text, str)
             ElseIf Reference = EnumReferenceType.SalesOrder.ToString Then
                 str = " Update SalesOrderMasterTable Set Posted = 1 , Posted_UserName = '" & LoginUserName & "' , PostedDate = '" & DateTime.Now.ToString("yyyy-M-d h:mm:ss tt") & "' where SalesOrderNo = '" & DocumentNo & "'"
+                SQLHelper.ExecuteNonQuery(trans, CommandType.Text, str)
+                str = ""
+                str = " Update tbldefCostCenter Set Active = 1 WHERE Name = '" & DocumentNo & "'"
                 SQLHelper.ExecuteNonQuery(trans, CommandType.Text, str)
             ElseIf Reference = EnumReferenceType.SalesQuotation.ToString Then
                 str = " Update QuotationMasterTable Set Posted = 1 , Posted_UserName = '" & LoginUserName & "' , PostedDate = '" & DateTime.Now.ToString("yyyy-M-d h:mm:ss tt") & "', Apprved = 1   where QuotationNo = '" & DocumentNo & "'"

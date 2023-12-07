@@ -93,8 +93,9 @@ Partial Class frmDefLeaveTypes
         Me.UltraTabPageControl1.Controls.Add(Me.Panel6)
         Me.UltraTabPageControl1.Controls.Add(Me.pnlLeave)
         Me.UltraTabPageControl1.Location = New System.Drawing.Point(1, 1)
+        Me.UltraTabPageControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabPageControl1.Name = "UltraTabPageControl1"
-        Me.UltraTabPageControl1.Size = New System.Drawing.Size(743, 290)
+        Me.UltraTabPageControl1.Size = New System.Drawing.Size(991, 361)
         '
         'pnlHeader
         '
@@ -103,17 +104,19 @@ Partial Class frmDefLeaveTypes
         Me.pnlHeader.Controls.Add(Me.lblHeader)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
+        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(743, 41)
+        Me.pnlHeader.Size = New System.Drawing.Size(991, 50)
         Me.pnlHeader.TabIndex = 0
         '
         'lblProgress
         '
         Me.lblProgress.BackColor = System.Drawing.Color.LightYellow
         Me.lblProgress.ForeColor = System.Drawing.Color.Navy
-        Me.lblProgress.Location = New System.Drawing.Point(270, -2)
+        Me.lblProgress.Location = New System.Drawing.Point(360, -2)
+        Me.lblProgress.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblProgress.Name = "lblProgress"
-        Me.lblProgress.Size = New System.Drawing.Size(263, 45)
+        Me.lblProgress.Size = New System.Drawing.Size(351, 55)
         Me.lblProgress.TabIndex = 1
         Me.lblProgress.Text = "Processing please wait ..."
         Me.lblProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -124,9 +127,10 @@ Partial Class frmDefLeaveTypes
         Me.lblHeader.AutoSize = True
         Me.lblHeader.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeader.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
-        Me.lblHeader.Location = New System.Drawing.Point(3, 9)
+        Me.lblHeader.Location = New System.Drawing.Point(4, 11)
+        Me.lblHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(220, 23)
+        Me.lblHeader.Size = New System.Drawing.Size(274, 29)
         Me.lblHeader.TabIndex = 0
         Me.lblHeader.Text = "Define Leave Types"
         '
@@ -139,9 +143,10 @@ Partial Class frmDefLeaveTypes
         Me.Panel6.Controls.Add(Me.Label11)
         Me.Panel6.Controls.Add(Me.cmbCompany)
         Me.Panel6.Controls.Add(Me.Label12)
-        Me.Panel6.Location = New System.Drawing.Point(11, 47)
+        Me.Panel6.Location = New System.Drawing.Point(15, 58)
+        Me.Panel6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(720, 39)
+        Me.Panel6.Size = New System.Drawing.Size(960, 48)
         Me.Panel6.TabIndex = 1
         '
         'cmbEmpType
@@ -149,18 +154,20 @@ Partial Class frmDefLeaveTypes
         Me.cmbEmpType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbEmpType.FormattingEnabled = True
         Me.cmbEmpType.Items.AddRange(New Object() {"Paid", "UnPaid"})
-        Me.cmbEmpType.Location = New System.Drawing.Point(561, 9)
+        Me.cmbEmpType.Location = New System.Drawing.Point(748, 11)
+        Me.cmbEmpType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbEmpType.Name = "cmbEmpType"
-        Me.cmbEmpType.Size = New System.Drawing.Size(136, 21)
+        Me.cmbEmpType.Size = New System.Drawing.Size(180, 24)
         Me.cmbEmpType.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.cmbEmpType, "Select Employee Type")
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(474, 12)
+        Me.Label13.Location = New System.Drawing.Point(632, 15)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(55, 13)
+        Me.Label13.Size = New System.Drawing.Size(72, 17)
         Me.Label13.TabIndex = 4
         Me.Label13.Text = "Emp Type"
         '
@@ -169,18 +176,20 @@ Partial Class frmDefLeaveTypes
         Me.cmbCostCenter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCostCenter.FormattingEnabled = True
         Me.cmbCostCenter.Items.AddRange(New Object() {"Paid", "UnPaid"})
-        Me.cmbCostCenter.Location = New System.Drawing.Point(332, 9)
+        Me.cmbCostCenter.Location = New System.Drawing.Point(443, 11)
+        Me.cmbCostCenter.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbCostCenter.Name = "cmbCostCenter"
-        Me.cmbCostCenter.Size = New System.Drawing.Size(136, 21)
+        Me.cmbCostCenter.Size = New System.Drawing.Size(180, 24)
         Me.cmbCostCenter.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.cmbCostCenter, "Select Cost Center")
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(244, 12)
+        Me.Label11.Location = New System.Drawing.Point(325, 15)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(62, 13)
+        Me.Label11.Size = New System.Drawing.Size(82, 17)
         Me.Label11.TabIndex = 2
         Me.Label11.Text = "Cost Center"
         '
@@ -189,18 +198,20 @@ Partial Class frmDefLeaveTypes
         Me.cmbCompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCompany.FormattingEnabled = True
         Me.cmbCompany.Items.AddRange(New Object() {"Paid", "UnPaid"})
-        Me.cmbCompany.Location = New System.Drawing.Point(102, 9)
+        Me.cmbCompany.Location = New System.Drawing.Point(136, 11)
+        Me.cmbCompany.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbCompany.Name = "cmbCompany"
-        Me.cmbCompany.Size = New System.Drawing.Size(136, 21)
+        Me.cmbCompany.Size = New System.Drawing.Size(180, 24)
         Me.cmbCompany.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbCompany, "Select Company")
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(5, 12)
+        Me.Label12.Location = New System.Drawing.Point(7, 15)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(82, 13)
+        Me.Label12.Size = New System.Drawing.Size(108, 17)
         Me.Label12.TabIndex = 0
         Me.Label12.Text = "Company Name"
         '
@@ -230,9 +241,10 @@ Partial Class frmDefLeaveTypes
         Me.pnlLeave.Controls.Add(Me.txtTypeTitle)
         Me.pnlLeave.Controls.Add(Me.Label2)
         Me.pnlLeave.Controls.Add(Me.lblTypeTitle)
-        Me.pnlLeave.Location = New System.Drawing.Point(11, 92)
+        Me.pnlLeave.Location = New System.Drawing.Point(15, 113)
+        Me.pnlLeave.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlLeave.Name = "pnlLeave"
-        Me.pnlLeave.Size = New System.Drawing.Size(720, 183)
+        Me.pnlLeave.Size = New System.Drawing.Size(960, 225)
         Me.pnlLeave.TabIndex = 0
         '
         'chkActive
@@ -240,9 +252,10 @@ Partial Class frmDefLeaveTypes
         Me.chkActive.AutoSize = True
         Me.chkActive.Checked = True
         Me.chkActive.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkActive.Location = New System.Drawing.Point(466, 150)
+        Me.chkActive.Location = New System.Drawing.Point(621, 185)
+        Me.chkActive.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.chkActive.Name = "chkActive"
-        Me.chkActive.Size = New System.Drawing.Size(56, 17)
+        Me.chkActive.Size = New System.Drawing.Size(68, 21)
         Me.chkActive.TabIndex = 22
         Me.chkActive.Text = "Active"
         Me.ToolTip1.SetToolTip(Me.chkActive, "Active")
@@ -253,27 +266,30 @@ Partial Class frmDefLeaveTypes
         Me.cmbCarriedForward.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCarriedForward.FormattingEnabled = True
         Me.cmbCarriedForward.Items.AddRange(New Object() {"True", "False"})
-        Me.cmbCarriedForward.Location = New System.Drawing.Point(102, 121)
+        Me.cmbCarriedForward.Location = New System.Drawing.Point(136, 149)
+        Me.cmbCarriedForward.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbCarriedForward.Name = "cmbCarriedForward"
-        Me.cmbCarriedForward.Size = New System.Drawing.Size(231, 21)
+        Me.cmbCarriedForward.Size = New System.Drawing.Size(307, 24)
         Me.cmbCarriedForward.TabIndex = 17
         Me.ToolTip1.SetToolTip(Me.cmbCarriedForward, "Select Carried Forward")
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(5, 125)
+        Me.Label15.Location = New System.Drawing.Point(7, 154)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(81, 13)
+        Me.Label15.Size = New System.Drawing.Size(109, 17)
         Me.Label15.TabIndex = 16
         Me.Label15.Text = "Carried Forward"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(339, 17)
+        Me.Label14.Location = New System.Drawing.Point(452, 21)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(82, 13)
+        Me.Label14.Size = New System.Drawing.Size(108, 17)
         Me.Label14.TabIndex = 2
         Me.Label14.Text = "Leave Catagory"
         '
@@ -282,17 +298,19 @@ Partial Class frmDefLeaveTypes
         Me.cmbCatagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCatagory.FormattingEnabled = True
         Me.cmbCatagory.Items.AddRange(New Object() {"Paid", "UnPaid"})
-        Me.cmbCatagory.Location = New System.Drawing.Point(466, 14)
+        Me.cmbCatagory.Location = New System.Drawing.Point(621, 17)
+        Me.cmbCatagory.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbCatagory.Name = "cmbCatagory"
-        Me.cmbCatagory.Size = New System.Drawing.Size(231, 21)
+        Me.cmbCatagory.Size = New System.Drawing.Size(307, 24)
         Me.cmbCatagory.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.cmbCatagory, "Select Leave Catagory")
         '
         'txtAllowedPerYear
         '
-        Me.txtAllowedPerYear.Location = New System.Drawing.Point(466, 95)
+        Me.txtAllowedPerYear.Location = New System.Drawing.Point(621, 117)
+        Me.txtAllowedPerYear.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtAllowedPerYear.Name = "txtAllowedPerYear"
-        Me.txtAllowedPerYear.Size = New System.Drawing.Size(231, 20)
+        Me.txtAllowedPerYear.Size = New System.Drawing.Size(307, 22)
         Me.txtAllowedPerYear.TabIndex = 15
         Me.txtAllowedPerYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtAllowedPerYear, "Leaves Allowed per year")
@@ -302,26 +320,29 @@ Partial Class frmDefLeaveTypes
         Me.cmbLeaveInCashment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbLeaveInCashment.FormattingEnabled = True
         Me.cmbLeaveInCashment.Items.AddRange(New Object() {"True", "False"})
-        Me.cmbLeaveInCashment.Location = New System.Drawing.Point(102, 94)
+        Me.cmbLeaveInCashment.Location = New System.Drawing.Point(136, 116)
+        Me.cmbLeaveInCashment.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbLeaveInCashment.Name = "cmbLeaveInCashment"
-        Me.cmbLeaveInCashment.Size = New System.Drawing.Size(231, 21)
+        Me.cmbLeaveInCashment.Size = New System.Drawing.Size(307, 24)
         Me.cmbLeaveInCashment.TabIndex = 13
         Me.ToolTip1.SetToolTip(Me.cmbLeaveInCashment, "Select Leave InCashment")
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(5, 98)
+        Me.Label9.Location = New System.Drawing.Point(7, 121)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(96, 13)
+        Me.Label9.Size = New System.Drawing.Size(125, 17)
         Me.Label9.TabIndex = 12
         Me.Label9.Text = "Leave InCashment"
         '
         'txtSortOrder
         '
-        Me.txtSortOrder.Location = New System.Drawing.Point(102, 148)
+        Me.txtSortOrder.Location = New System.Drawing.Point(136, 182)
+        Me.txtSortOrder.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtSortOrder.Name = "txtSortOrder"
-        Me.txtSortOrder.Size = New System.Drawing.Size(231, 20)
+        Me.txtSortOrder.Size = New System.Drawing.Size(307, 22)
         Me.txtSortOrder.TabIndex = 21
         Me.txtSortOrder.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtSortOrder, "Sort Order")
@@ -329,9 +350,10 @@ Partial Class frmDefLeaveTypes
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(5, 151)
+        Me.Label6.Location = New System.Drawing.Point(7, 186)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(55, 13)
+        Me.Label6.Size = New System.Drawing.Size(75, 17)
         Me.Label6.TabIndex = 20
         Me.Label6.Text = "Sort Order"
         '
@@ -340,17 +362,19 @@ Partial Class frmDefLeaveTypes
         Me.cmbLeaveApproval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbLeaveApproval.FormattingEnabled = True
         Me.cmbLeaveApproval.Items.AddRange(New Object() {"... Select any value ...", "Project Manager", "Department Head", "Specific Employee"})
-        Me.cmbLeaveApproval.Location = New System.Drawing.Point(102, 67)
+        Me.cmbLeaveApproval.Location = New System.Drawing.Point(136, 82)
+        Me.cmbLeaveApproval.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbLeaveApproval.Name = "cmbLeaveApproval"
-        Me.cmbLeaveApproval.Size = New System.Drawing.Size(231, 21)
+        Me.cmbLeaveApproval.Size = New System.Drawing.Size(307, 24)
         Me.cmbLeaveApproval.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.cmbLeaveApproval, "Select Leave Approval")
         '
         'txtCarriedForward
         '
-        Me.txtCarriedForward.Location = New System.Drawing.Point(466, 121)
+        Me.txtCarriedForward.Location = New System.Drawing.Point(621, 149)
+        Me.txtCarriedForward.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtCarriedForward.Name = "txtCarriedForward"
-        Me.txtCarriedForward.Size = New System.Drawing.Size(231, 20)
+        Me.txtCarriedForward.Size = New System.Drawing.Size(307, 22)
         Me.txtCarriedForward.TabIndex = 19
         Me.txtCarriedForward.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtCarriedForward, "Carried Forward Days")
@@ -358,18 +382,20 @@ Partial Class frmDefLeaveTypes
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(5, 70)
+        Me.Label10.Location = New System.Drawing.Point(7, 86)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(96, 13)
+        Me.Label10.Size = New System.Drawing.Size(126, 17)
         Me.Label10.TabIndex = 8
         Me.Label10.Text = "Leave Approval by"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(339, 128)
+        Me.Label8.Location = New System.Drawing.Point(452, 158)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(108, 13)
+        Me.Label8.Size = New System.Drawing.Size(145, 17)
         Me.Label8.TabIndex = 18
         Me.Label8.Text = "Carried Forward Days"
         '
@@ -378,27 +404,30 @@ Partial Class frmDefLeaveTypes
         Me.cmbLeaveType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbLeaveType.FormattingEnabled = True
         Me.cmbLeaveType.Items.AddRange(New Object() {"... Select any value ...", "Paid", "UnPaid"})
-        Me.cmbLeaveType.Location = New System.Drawing.Point(102, 40)
+        Me.cmbLeaveType.Location = New System.Drawing.Point(136, 49)
+        Me.cmbLeaveType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbLeaveType.Name = "cmbLeaveType"
-        Me.cmbLeaveType.Size = New System.Drawing.Size(231, 21)
+        Me.cmbLeaveType.Size = New System.Drawing.Size(307, 24)
         Me.cmbLeaveType.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.cmbLeaveType, "Select Leave Type")
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(339, 43)
+        Me.Label3.Location = New System.Drawing.Point(452, 53)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(76, 13)
+        Me.Label3.Size = New System.Drawing.Size(98, 17)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Leave Accrual"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(339, 98)
+        Me.Label7.Location = New System.Drawing.Point(452, 121)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(87, 13)
+        Me.Label7.Size = New System.Drawing.Size(115, 17)
         Me.Label7.TabIndex = 14
         Me.Label7.Text = "Allowed per Year"
         '
@@ -407,9 +436,10 @@ Partial Class frmDefLeaveTypes
         Me.cmbLeaveAccrual.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbLeaveAccrual.FormattingEnabled = True
         Me.cmbLeaveAccrual.Items.AddRange(New Object() {"... Select any value ...", "Daily", "Monthly", "Yearly"})
-        Me.cmbLeaveAccrual.Location = New System.Drawing.Point(466, 40)
+        Me.cmbLeaveAccrual.Location = New System.Drawing.Point(621, 49)
+        Me.cmbLeaveAccrual.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbLeaveAccrual.Name = "cmbLeaveAccrual"
-        Me.cmbLeaveAccrual.Size = New System.Drawing.Size(231, 21)
+        Me.cmbLeaveAccrual.Size = New System.Drawing.Size(307, 24)
         Me.cmbLeaveAccrual.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.cmbLeaveAccrual, "Select Leave Accrual")
         '
@@ -418,53 +448,59 @@ Partial Class frmDefLeaveTypes
         Me.cmbGenderRes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbGenderRes.FormattingEnabled = True
         Me.cmbGenderRes.Items.AddRange(New Object() {"Any Gender", "Male", "Female"})
-        Me.cmbGenderRes.Location = New System.Drawing.Point(466, 67)
+        Me.cmbGenderRes.Location = New System.Drawing.Point(621, 82)
+        Me.cmbGenderRes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbGenderRes.Name = "cmbGenderRes"
-        Me.cmbGenderRes.Size = New System.Drawing.Size(231, 21)
+        Me.cmbGenderRes.Size = New System.Drawing.Size(307, 24)
         Me.cmbGenderRes.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.cmbGenderRes, "Select Gender Restriction ")
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(5, 43)
+        Me.Label1.Location = New System.Drawing.Point(7, 53)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(64, 13)
+        Me.Label1.Size = New System.Drawing.Size(83, 17)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Leave Type"
         '
         'txtTypeTitle
         '
-        Me.txtTypeTitle.Location = New System.Drawing.Point(102, 14)
+        Me.txtTypeTitle.Location = New System.Drawing.Point(136, 17)
+        Me.txtTypeTitle.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtTypeTitle.Name = "txtTypeTitle"
-        Me.txtTypeTitle.Size = New System.Drawing.Size(231, 20)
+        Me.txtTypeTitle.Size = New System.Drawing.Size(307, 22)
         Me.txtTypeTitle.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.txtTypeTitle, "Leave Type Title")
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(339, 71)
+        Me.Label2.Location = New System.Drawing.Point(452, 87)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(95, 13)
+        Me.Label2.Size = New System.Drawing.Size(127, 17)
         Me.Label2.TabIndex = 10
         Me.Label2.Text = "Gender Restriction"
         '
         'lblTypeTitle
         '
         Me.lblTypeTitle.AutoSize = True
-        Me.lblTypeTitle.Location = New System.Drawing.Point(5, 17)
+        Me.lblTypeTitle.Location = New System.Drawing.Point(7, 21)
+        Me.lblTypeTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblTypeTitle.Name = "lblTypeTitle"
-        Me.lblTypeTitle.Size = New System.Drawing.Size(54, 13)
+        Me.lblTypeTitle.Size = New System.Drawing.Size(71, 17)
         Me.lblTypeTitle.TabIndex = 0
         Me.lblTypeTitle.Text = "Type Title"
         '
         'UltraTabPageControl2
         '
         Me.UltraTabPageControl2.Controls.Add(Me.grdSaved)
-        Me.UltraTabPageControl2.Location = New System.Drawing.Point(-10000, -10000)
+        Me.UltraTabPageControl2.Location = New System.Drawing.Point(-13333, -12308)
+        Me.UltraTabPageControl2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabPageControl2.Name = "UltraTabPageControl2"
-        Me.UltraTabPageControl2.Size = New System.Drawing.Size(743, 290)
+        Me.UltraTabPageControl2.Size = New System.Drawing.Size(991, 361)
         '
         'grdSaved
         '
@@ -478,9 +514,10 @@ Partial Class frmDefLeaveTypes
         Me.grdSaved.Font = New System.Drawing.Font("Verdana", 8.25!)
         Me.grdSaved.GroupByBoxVisible = False
         Me.grdSaved.Location = New System.Drawing.Point(0, 0)
+        Me.grdSaved.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.grdSaved.Name = "grdSaved"
         Me.grdSaved.RecordNavigator = True
-        Me.grdSaved.Size = New System.Drawing.Size(743, 290)
+        Me.grdSaved.Size = New System.Drawing.Size(991, 361)
         Me.grdSaved.TabIndex = 7
         Me.grdSaved.TotalRow = Janus.Windows.GridEX.InheritableBoolean.[True]
         Me.grdSaved.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
@@ -488,10 +525,11 @@ Partial Class frmDefLeaveTypes
         '
         'ToolStrip1
         '
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnNew, Me.btnEdit, Me.btnSave, Me.btnDelete, Me.btnRefresh, Me.btnPrint, Me.toolStripSeparator1, Me.btnHelp})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(745, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(993, 27)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -500,7 +538,7 @@ Partial Class frmDefLeaveTypes
         Me.btnNew.Image = CType(resources.GetObject("btnNew.Image"), System.Drawing.Image)
         Me.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(51, 22)
+        Me.btnNew.Size = New System.Drawing.Size(63, 24)
         Me.btnNew.Text = "&New"
         '
         'btnEdit
@@ -508,7 +546,7 @@ Partial Class frmDefLeaveTypes
         Me.btnEdit.Image = CType(resources.GetObject("btnEdit.Image"), System.Drawing.Image)
         Me.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(47, 22)
+        Me.btnEdit.Size = New System.Drawing.Size(59, 24)
         Me.btnEdit.Text = "&Edit"
         '
         'btnSave
@@ -516,7 +554,7 @@ Partial Class frmDefLeaveTypes
         Me.btnSave.Image = CType(resources.GetObject("btnSave.Image"), System.Drawing.Image)
         Me.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(51, 22)
+        Me.btnSave.Size = New System.Drawing.Size(64, 24)
         Me.btnSave.Text = "&Save"
         '
         'btnDelete
@@ -524,7 +562,7 @@ Partial Class frmDefLeaveTypes
         Me.btnDelete.Image = CType(resources.GetObject("btnDelete.Image"), System.Drawing.Image)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.RightToLeftAutoMirrorImage = True
-        Me.btnDelete.Size = New System.Drawing.Size(60, 22)
+        Me.btnDelete.Size = New System.Drawing.Size(77, 24)
         Me.btnDelete.Text = "&Delete"
         '
         'btnRefresh
@@ -532,7 +570,7 @@ Partial Class frmDefLeaveTypes
         Me.btnRefresh.Image = Global.SimpleAccounts.My.Resources.Resources.Refresh
         Me.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(66, 22)
+        Me.btnRefresh.Size = New System.Drawing.Size(82, 24)
         Me.btnRefresh.Text = "&Refresh"
         '
         'btnPrint
@@ -540,14 +578,14 @@ Partial Class frmDefLeaveTypes
         Me.btnPrint.Image = CType(resources.GetObject("btnPrint.Image"), System.Drawing.Image)
         Me.btnPrint.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnPrint.Name = "btnPrint"
-        Me.btnPrint.Size = New System.Drawing.Size(52, 22)
+        Me.btnPrint.Size = New System.Drawing.Size(63, 24)
         Me.btnPrint.Text = "&Print"
         Me.btnPrint.Visible = False
         '
         'toolStripSeparator1
         '
         Me.toolStripSeparator1.Name = "toolStripSeparator1"
-        Me.toolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.toolStripSeparator1.Size = New System.Drawing.Size(6, 27)
         '
         'btnHelp
         '
@@ -555,7 +593,7 @@ Partial Class frmDefLeaveTypes
         Me.btnHelp.Image = CType(resources.GetObject("btnHelp.Image"), System.Drawing.Image)
         Me.btnHelp.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnHelp.Name = "btnHelp"
-        Me.btnHelp.Size = New System.Drawing.Size(23, 22)
+        Me.btnHelp.Size = New System.Drawing.Size(24, 24)
         Me.btnHelp.Text = "He&lp"
         Me.btnHelp.Visible = False
         '
@@ -567,10 +605,11 @@ Partial Class frmDefLeaveTypes
         Me.UltraTabControl2.Controls.Add(Me.UltraTabSharedControlsPage2)
         Me.UltraTabControl2.Controls.Add(Me.UltraTabPageControl1)
         Me.UltraTabControl2.Controls.Add(Me.UltraTabPageControl2)
-        Me.UltraTabControl2.Location = New System.Drawing.Point(0, 28)
+        Me.UltraTabControl2.Location = New System.Drawing.Point(0, 34)
+        Me.UltraTabControl2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabControl2.Name = "UltraTabControl2"
         Me.UltraTabControl2.SharedControlsPage = Me.UltraTabSharedControlsPage2
-        Me.UltraTabControl2.Size = New System.Drawing.Size(745, 311)
+        Me.UltraTabControl2.Size = New System.Drawing.Size(993, 383)
         Me.UltraTabControl2.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel
         Me.UltraTabControl2.TabIndex = 2
         Me.UltraTabControl2.TabOrientation = Infragistics.Win.UltraWinTabs.TabOrientation.BottomLeft
@@ -585,8 +624,9 @@ Partial Class frmDefLeaveTypes
         'UltraTabSharedControlsPage2
         '
         Me.UltraTabSharedControlsPage2.Location = New System.Drawing.Point(-10000, -10000)
+        Me.UltraTabSharedControlsPage2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabSharedControlsPage2.Name = "UltraTabSharedControlsPage2"
-        Me.UltraTabSharedControlsPage2.Size = New System.Drawing.Size(743, 290)
+        Me.UltraTabSharedControlsPage2.Size = New System.Drawing.Size(991, 361)
         '
         'CtrlGrdBar1
         '
@@ -594,20 +634,22 @@ Partial Class frmDefLeaveTypes
         Me.CtrlGrdBar1.BackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.CtrlGrdBar1.Email = Nothing
         Me.CtrlGrdBar1.FormName = Me
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(708, 0)
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(944, 0)
+        Me.CtrlGrdBar1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CtrlGrdBar1.MyGrid = Me.grdSaved
         Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
-        Me.CtrlGrdBar1.Size = New System.Drawing.Size(37, 25)
+        Me.CtrlGrdBar1.Size = New System.Drawing.Size(49, 31)
         Me.CtrlGrdBar1.TabIndex = 1
         '
         'frmDefLeaveTypes
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(745, 338)
+        Me.ClientSize = New System.Drawing.Size(993, 416)
         Me.Controls.Add(Me.UltraTabControl2)
         Me.Controls.Add(Me.CtrlGrdBar1)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmDefLeaveTypes"
         Me.Text = "Define Leave Types"
         Me.UltraTabPageControl1.ResumeLayout(False)

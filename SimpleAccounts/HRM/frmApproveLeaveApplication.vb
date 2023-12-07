@@ -5,26 +5,22 @@ Imports SBModel
 Imports System.Text
 Imports Microsoft.Office.Interop
 Imports System.Text.RegularExpressions
-
-Public Class frmNewLeaveApplication
+Public Class frmApproveLeaveApplication
     Implements IGeneral
     Dim objDAL As LeaveApplicationDAL
     Dim objModel As LeaveApplicationBE
     Dim CostCenterRights As Boolean = False
-    Dim IsFormOpen As Boolean = False
-    Dim EmailTemplate As String = String.Empty
-    Dim UsersEmail As String = String.Empty
-    Dim ContractNo As String = String.Empty
-    Dim CustomerId As String = String.Empty
-    Dim StartDate As String = String.Empty
-    Dim EndDate As String = String.Empty
-    Dim ConcernEmployee As String = String.Empty
+    Dim ApplicationId As Integer = 0
     Dim dtEmail As DataTable
     Dim EmailDAL As New EmailTemplateDAL
     Dim AfterFieldsElement As String = String.Empty
     Dim AllFields As List(Of String)
     Dim html As StringBuilder
     Dim EmailBody As String = String.Empty
+    Dim EmailTemplate As String = String.Empty
+    Dim UsersEmail As String = String.Empty
+    Dim IsFormOpen As Boolean = False
+
     ''' <summary>
     ''' Ali Faisal : TFS1525 : Set indexes of grid columns
     ''' </summary>
@@ -57,19 +53,19 @@ Public Class frmNewLeaveApplication
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function GetDocumentNo() As String
-        Try
-            If getConfigValueByType("VoucherNo").ToString = "Yearly" Then
-                Return GetSerialNo("APL-" & IIf(companyinitials <> "", companyinitials, "UE") & "-" + Microsoft.VisualBasic.Right(Me.dtpDocDate.Value.Year, 2) + "-", "tblLeaveApplication", "ApplicationNo")
-            ElseIf getConfigValueByType("VoucherNo").ToString = "Monthly" Then
-                Return GetNextDocNo("APL-" & IIf(companyinitials <> "", companyinitials, "UE") & "-" & Format(Me.dtpDocDate.Value, "yy") & Me.dtpDocDate.Value.Month.ToString("00"), 4, "tblLeaveApplication", "ApplicationNo")
-            Else
-                Return GetNextDocNo("APL-" & IIf(companyinitials <> "", companyinitials, "UE") & "-", 6, "tblLeaveApplication", "ApplicationNo")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
+    'Function GetDocumentNo() As String
+    '    Try
+    '        If getConfigValueByType("VoucherNo").ToString = "Yearly" Then
+    '            Return GetSerialNo("APL-" + Microsoft.VisualBasic.Right(Me.dtpDocDate.Value.Year, 2) + "-", "tblLeaveApplication", "ApplicationNo")
+    '        ElseIf getConfigValueByType("VoucherNo").ToString = "Monthly" Then
+    '            Return GetNextDocNo("APL-" & Format(Me.dtpDocDate.Value, "yy") & Me.dtpDocDate.Value.Month.ToString("00"), 4, "tblLeaveApplication", "ApplicationNo")
+    '        Else
+    '            Return GetNextDocNo("APL-", 6, "tblLeaveApplication", "ApplicationNo")
+    '        End If
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Function
     ''' <summary>
     ''' Ali Faisal : TFS1525 : Apply grid settings to hide columns and formating too
     ''' </summary>
@@ -84,11 +80,9 @@ Public Class frmNewLeaveApplication
             Me.grdSaved.RootTable.Columns(grd.AttendanceId).Visible = False
             Me.grdSaved.RootTable.Columns(grd.PeriodId).Visible = False
             Me.grdSaved.RootTable.Columns(grd.ApplicationDate).FormatString = str_DisplayDateFormat
-            Me.grdSaved.RootTable.Columns("FromDate").Visible = True
-            Me.grdSaved.RootTable.Columns("ToDate").Visible = True
-            Me.grdSaved.RootTable.Columns("FromDate").FormatString = str_DisplayDateFormat
-            Me.grdSaved.RootTable.Columns("ToDate").FormatString = str_DisplayDateFormat
-            Me.grdSaved.RootTable.Columns("JoiningDate").FormatString = str_DisplayDateFormat
+            Me.grdSaved.RootTable.Columns(grd.FromDate).FormatString = str_DisplayDateFormat
+            Me.grdSaved.RootTable.Columns(grd.ToDate).FormatString = str_DisplayDateFormat
+            Me.grdSaved.RootTable.Columns(grd.JoiningDate).FormatString = str_DisplayDateFormat
         Catch ex As Exception
             Throw ex
         End Try
@@ -176,10 +170,10 @@ Public Class frmNewLeaveApplication
             Dim str As String = ""
             If Condition = "Employee" Then
                 If CostCenterRights = False Then
-                    str = "SELECT Employee_ID, Employee_Name, Employee_Code, EmployeeDeptName, EmployeeDesignationName, Gender, CityName, Phone FROM EmployeesView WHERE Employee_ID in (select EmployeeId from tblUser where User_ID = " & LoginUserId & ")"
+                    str = "SELECT Employee_ID, Employee_Name, Employee_Code, EmployeeDeptName, EmployeeDesignationName, Gender, CityName, Phone FROM EmployeesView WHERE ReportingTo in (select EmployeeId from tblUser where User_ID = " & LoginUserId & ")"
                 Else
                     ''TASK TFS3571
-                    str = "SELECT Employee_ID, Employee_Name, Employee_Code, EmployeeDeptName, EmployeeDesignationName, Gender, CityName, Phone FROM EmployeesView WHERE Employee_ID in (select EmployeeId from tblUser where User_ID = " & LoginUserId & ") AND CostCentre IN (SELECT CostCentre_Id FROM tblUserCostCentreRights WHERE UserID = " & LoginUserId & ")"
+                    str = "SELECT Employee_ID, Employee_Name, Employee_Code, EmployeeDeptName, EmployeeDesignationName, Gender, CityName, Phone FROM EmployeesView WHERE ReportingTo in (select EmployeeId from tblUser where User_ID = " & LoginUserId & " AND CostCentre IN (SELECT CostCentre_Id FROM tblUserCostCentreRights WHERE UserID = " & LoginUserId & ")"
                     ''END TASK TFS3571
                 End If
                 FillUltraDropDown(Me.cmbEmp, str, True)
@@ -199,12 +193,15 @@ Public Class frmNewLeaveApplication
                 '    ''END TASK TFS3571
                 'End If
                 FillDropDown(Me.cmbForwardTo, str, False)
-                'ElseIf Condition = "AttendanceStatus" Then
-                '    str = "SELECT Att_Status_ID, Att_Status_Name FROM tblDefAttendenceStatus WHERE Active = 1 AND Att_Status_Name NOT IN ('Present','Absent','Outdoor Duty','Break','Off Day','Short Absent')"
-                '    FillDropDown(Me.cmbAttendanceStatus, str, True)
+            ElseIf Condition = "AttendanceStatus" Then
+                str = "SELECT Att_Status_ID, Att_Status_Name FROM tblDefAttendenceStatus WHERE Active = 1 AND Att_Status_Name NOT IN ('Present','Absent','Outdoor Duty','Break','Off Day','Short Absent')"
+                FillDropDown(Me.cmbAttendanceStatus, str, True)
             ElseIf Condition = "Period" Then
                 str = "SELECT PeriodId, PeriodTitle FROM tblDefLeavePeriod WHERE Active = 1"
                 FillDropDown(Me.cmbPeriod, str, True)
+            ElseIf Condition = "LeaveApplication" Then
+                str = "SELECT LeaveApplicationId, ApplicationNo FROM tblLeaveApplication WHERE EmployeeId = " & Val(cmbEmp.Value) & " and Status is null ORDER BY LeaveApplicationId DESC"
+                FillUltraDropDown(Me.cmbApplicationNo, str, True)
             ElseIf Condition = "AlternateContact" Then
                 str = "select Employee_ID, Employee_Name, OfficialEmail from tblDefEmployee where Active = 1"
                 FillDropDown(Me.cmbAlternateContact, str, True)
@@ -221,22 +218,22 @@ Public Class frmNewLeaveApplication
     Public Sub FillModel(Optional Condition As String = "") Implements IGeneral.FillModel
         Try
             objModel = New LeaveApplicationBE
-            If Me.btnSave.Text = "&Save" Then
-                objModel.ApplicationId = 0
-                objModel.ApplicationNo = GetDocumentNo()
-            Else
-                objModel.ApplicationId = Val(Me.grdSaved.CurrentRow.Cells(grd.ApplicationId).Value)
-                objModel.ApplicationNo = Me.txtDocNo.Text
-            End If
+            'If Me.btnSave.Text = "&Save" Then
+            '    objModel.ApplicationId = 0
+            '    'objModel.ApplicationNo = GetDocumentNo()
+            'Else
+            objModel.ApplicationId = cmbApplicationNo.Value
+            objModel.ApplicationNo = Me.txtDocNo.Text
+            'End If
             objModel.ApplicationDate = Me.dtpDocDate.Value
             objModel.EmployeeId = Me.cmbEmp.Value
             objModel.Reason = Me.txtReason.Text
             objModel.LeaveTypeId = Me.cmbLeaveType.SelectedValue
             objModel.ForwardToId = Me.cmbForwardTo.SelectedValue
             objModel.AlternateContactNo = Me.cmbAlternateContact.Text
-            'objModel.AttendanceStatusId = Me.cmbAttendanceStatus.SelectedValue
+            objModel.AttendanceStatusId = Me.cmbAttendanceStatus.SelectedValue
             objModel.FromDate = Me.dtpFromDate.Value
-            objModel.joiningdate = Me.dtpJoiningDate.Value
+            objModel.JoiningDate = Me.dtpJoiningDate.Value
             If Me.dtpToDate.Visible = True Then
                 objModel.ToDate = Me.dtpToDate.Value
             Else
@@ -249,12 +246,19 @@ Public Class frmNewLeaveApplication
             End If
             Dim DateFrom As DateTime = Me.dtpFromDate.Value.ToString("yyyy-MM-dd")
             Dim DateTo As DateTime = Me.dtpToDate.Value.ToString("yyyy-MM-dd")
-            objModel.NoOfDays = LeaveDays.Text ''DateDiff(DateInterval.Day, DateFrom, DateTo)
+            objModel.NoOfDays = txtNoofDays.Text
             objModel.Description = Me.txtDescription.Text
+            objModel.Status = IIf(rdoApprove.Checked = True, 1, 0)
+            objModel.ApprovedBy = LoginUserName
+            'objModel.ApprovedBy = Username
             If pnlCompensatoryLeave.Visible = True Then
                 objModel.ScheduledLeave = Me.dtpScheduledLeave.Value.ToString("yyyy-MM-dd")
                 objModel.CompensatoryLeave = Me.dtpCompensatoryLeave.Value.ToString("yyyy-MM-dd")
-                objModel.Difference = Me.txtDifference.Text
+                objModel.AlternateContactNo = Me.txtDifference.Text
+            Else
+                objModel.ScheduledLeave = Date.Now.ToString("yyyy-MM-dd")
+                objModel.CompensatoryLeave = Date.Now.ToString("yyyy-MM-dd")
+                objModel.AlternateContactNo = 0
             End If
         Catch ex As Exception
             Throw ex
@@ -268,43 +272,27 @@ Public Class frmNewLeaveApplication
         Try
             Me.btnSave.Text = "&Update"
             Me.txtDocNo.Text = Me.grdSaved.GetRow.Cells(grd.ApplicationNo).Value.ToString
-            Me.dtpDocDate.Value = Me.grdSaved.GetRow.Cells(grd.ApplicationDate).Value
+            'Me.dtpDocDate.Value = Me.grdSaved.GetRow.Cells(grd.ApplicationDate).Value
             Me.cmbEmp.Value = Val(Me.grdSaved.GetRow.Cells(grd.EmployeeId).Value)
             Me.txtReason.Text = Me.grdSaved.GetRow.Cells(grd.Reason).Value.ToString
             Me.cmbLeaveType.SelectedValue = Val(Me.grdSaved.GetRow.Cells(grd.LeaveTypeId).Value)
             Me.cmbForwardTo.SelectedValue = Val(Me.grdSaved.GetRow.Cells(grd.ForwardToId).Value)
             Me.cmbAlternateContact.Text = Me.grdSaved.GetRow.Cells(grd.ContactNo).Value.ToString
-            'Me.cmbAttendanceStatus.SelectedValue = Val(Me.grdSaved.GetRow.Cells(grd.AttendanceId).Value)
-            Me.dtpFromDate.Value = Me.grdSaved.GetRow.Cells("FromDate").Value
-            Me.dtpToDate.Value = Me.grdSaved.GetRow.Cells("ToDate").Value
-            'If IsDBNull(Me.grdSaved.GetRow.Cells("ToDate").Value) Then
-            '    Me.dtpToDate.Value = Date.Now
-            'Else
-            '    Me.dtpToDate.Value = Me.grdSaved.GetRow.Cells("ToDate").Value
-            'End If
-            'If IsDBNull(Me.grdSaved.GetRow.Cells("ToDate").Value) Then
-            '    Me.dtpToDate.Value = Date.Now
-            'Else
-            '    Me.dtpToDate.Value = Me.grdSaved.GetRow.Cells("ToDate").Value
-            'End If
-            If IsDBNull(Me.grdSaved.GetRow.Cells("ScheduledLeave").Value) Then
-                Me.dtpScheduledLeave.Value = Date.Now
+            Me.cmbAttendanceStatus.SelectedValue = Val(Me.grdSaved.GetRow.Cells(grd.AttendanceId).Value)
+            Me.dtpFromDate.Value = Me.grdSaved.GetRow.Cells(grd.FromDate).Value
+            If IsDBNull(Me.grdSaved.GetRow.Cells(grd.ToDate).Value) Then
+                Me.dtpToDate.Value = Date.Now
             Else
-                Me.dtpScheduledLeave.Value = Me.grdSaved.GetRow.Cells("ScheduledLeave").Value
+                Me.dtpToDate.Value = Me.grdSaved.GetRow.Cells(grd.ToDate).Value
             End If
-            If IsDBNull(Me.grdSaved.GetRow.Cells("CompensatoryLeave").Value) Then
-                Me.dtpCompensatoryLeave.Value = Date.Now
-            Else
-                Me.dtpCompensatoryLeave.Value = Me.grdSaved.GetRow.Cells("CompensatoryLeave").Value
-            End If
+
             Me.cmbPeriod.SelectedValue = Val(Me.grdSaved.GetRow.Cells(grd.PeriodId).Value)
             Me.txtDescription.Text = Me.grdSaved.GetRow.Cells(grd.Description).Value.ToString
-            ApplySecurity(SBUtility.Utility.EnumDataMode.Edit)
-            'Me.dtpScheduledLeave.Value = Me.grdSaved.GetRow.Cells(grd.ScheduledLeave).Value
-            'Me.dtpCompensatoryLeave.Value = Me.grdSaved.GetRow.Cells(grd.CompensatoryLeave).Value
-            Me.cmbAlternateContact.Text = Me.grdSaved.GetRow.Cells("ContactNo").Value
-            Me.txtDifference.Text = Me.grdSaved.GetRow.Cells("Difference").Value
-            Me.dtpJoiningDate.Value = Me.grdSaved.GetRow.Cells("JoiningDate").Value
+            Me.dtpScheduledLeave.Value = Me.grdSaved.GetRow.Cells(grd.ScheduledLeave).Value
+            Me.dtpCompensatoryLeave.Value = Me.grdSaved.GetRow.Cells(grd.CompensatoryLeave).Value
+            Me.txtDifference.Text = Me.grdSaved.GetRow.Cells(grd.Differnce).Value
+            Me.dtpJoiningDate.Value = Me.grdSaved.GetRow.Cells(grd.JoiningDate).Value
+            'ApplySecurity(SBUtility.Utility.EnumDataMode.Edit)
         Catch ex As Exception
             Throw ex
         End Try
@@ -318,16 +306,16 @@ Public Class frmNewLeaveApplication
         Try
             Dim str As String = String.Empty
             If CostCenterRights = False Then
-                str = "SELECT App.LeaveApplicationId AS ApplicationId, App.ApplicationNo, App.ApplicationDate, App.EmployeeId, Emp.Employee_Name AS EmployeeName, App.ForwardToId, Frwd.Employee_Name AS ForwardTo, App.LeaveTypeId, Type.LeaveTypeTitle AS LeaveType, App.ApplicationReason AS Reason, App.FromDate, App.ToDate, App.PeriodId, App.AlternateContactNo AS ContactNo, App.ApplicationDetails AS Description,App.NoOfDays, App.Status, App.ApprovedBy, App.ScheduledLeave, App.CompensatoryLeave, App.Difference, App.JoiningDate " _
-                                  & "FROM tblLeaveApplication AS App INNER JOIN tblDefEmployee AS Emp ON App.EmployeeId = Emp.Employee_ID INNER JOIN tblDefEmployee AS Frwd ON App.ForwardToId = Frwd.Employee_ID LEFT OUTER JOIN tblDefLeaveTypes AS Type ON App.LeaveTypeId = Type.Id WHERE Emp.Employee_ID in (select EmployeeId from tblUser where User_ID = " & LoginUserId & ") ORDER BY App.LeaveApplicationId DESC"
+                str = "SELECT App.LeaveApplicationId AS ApplicationId, App.ApplicationNo, App.ApplicationDate, App.EmployeeId, Emp.Employee_Name AS EmployeeName, App.ForwardToId, Frwd.Employee_Name AS ForwardTo, App.LeaveTypeId, Type.LeaveTypeTitle AS LeaveType, App.ApplicationReason AS Reason, App.AttendanceStatusId AS AttendanceId, Status.Att_Status_Name AS Attendance, App.FromDate, App.ToDate, App.PeriodId, App.AlternateContactNo AS ContactNo, App.ApplicationDetails AS Description, App.Status, App.ApprovedBy, App.ScheduledLeave, App.CompensatoryLeave, App.Difference, App.JoiningDate  " _
+                                  & "FROM tblLeaveApplication AS App INNER JOIN tblDefEmployee AS Emp ON App.EmployeeId = Emp.Employee_ID INNER JOIN tblDefEmployee AS Frwd ON App.ForwardToId = Frwd.Employee_ID LEFT OUTER JOIN tblDefLeaveTypes AS Type ON App.LeaveTypeId = Type.Id INNER JOIN tblDefAttendenceStatus AS Status ON App.AttendanceStatusId = Status.Att_Status_ID WHERE Emp.ReportingTo in (select EmployeeId from tblUser where User_ID = " & LoginUserId & ") ORDER BY App.LeaveApplicationId DESC"
             Else
                 'e.CostCentre IN (SELECT CostCentre_Id FROM tblUserCostCentreRights WHERE UserID = " & LoginUserId & ")
                 ''TASK TFS3571
-                str = "SELECT App.LeaveApplicationId AS ApplicationId, App.ApplicationNo, App.ApplicationDate, App.EmployeeId, Emp.Employee_Name AS EmployeeName, App.ForwardToId, Frwd.Employee_Name AS ForwardTo, App.LeaveTypeId, Type.LeaveTypeTitle AS LeaveType, App.ApplicationReason AS Reason, App.FromDate, App.ToDate, App.PeriodId, App.AlternateContactNo AS ContactNo, App.ApplicationDetails AS Description,App.NoOfDays, App.Status, App.ApprovedBy, App.ScheduledLeave, App.CompensatoryLeave, App.Difference, App.JoiningDate " _
-                                & "FROM tblLeaveApplication AS App INNER JOIN tblDefEmployee AS Emp ON App.EmployeeId = Emp.Employee_ID INNER JOIN tblDefEmployee AS Frwd ON App.ForwardToId = Frwd.Employee_ID LEFT OUTER JOIN tblDefLeaveTypes AS Type ON App.LeaveTypeId = Type.Id WHERE Emp.Employee_ID in (select EmployeeId from tblUser where User_ID = " & LoginUserId & ") AND Emp.CostCentre IN (SELECT CostCentre_Id FROM tblUserCostCentreRights WHERE UserID = " & LoginUserId & ") ORDER BY App.LeaveApplicationId DESC"
+                str = "SELECT App.LeaveApplicationId AS ApplicationId, App.ApplicationNo, App.ApplicationDate, App.EmployeeId, Emp.Employee_Name AS EmployeeName, App.ForwardToId, Frwd.Employee_Name AS ForwardTo, App.LeaveTypeId, Type.LeaveTypeTitle AS LeaveType, App.ApplicationReason AS Reason, App.AttendanceStatusId AS AttendanceId, Status.Att_Status_Name AS Attendance, App.FromDate, App.ToDate, App.PeriodId, App.AlternateContactNo AS ContactNo, App.ApplicationDetails AS Description, App.Status, App.ApprovedBy, App.ScheduledLeave, App.CompensatoryLeave, App.Difference, App.JoiningDate  " _
+                                & "FROM tblLeaveApplication AS App INNER JOIN tblDefEmployee AS Emp ON App.EmployeeId = Emp.Employee_ID INNER JOIN tblDefEmployee AS Frwd ON App.ForwardToId = Frwd.Employee_ID LEFT OUTER JOIN tblDefLeaveTypes AS Type ON App.LeaveTypeId = Type.Id INNER JOIN tblDefAttendenceStatus AS Status ON App.AttendanceStatusId = Status.Att_Status_ID WHERE Emp.ReportingTo in (select EmployeeId from tblUser where User_ID = " & LoginUserId & ") AND Emp.CostCentre IN (SELECT CostCentre_Id FROM tblUserCostCentreRights WHERE UserID = " & LoginUserId & ") ORDER BY App.LeaveApplicationId DESC"
                 ''END TFS3571
             End If
-            Dim dt As DataTable = GetDataTable(str)
+            Dim dt As DataTable = GetDataTable(Str)
             Me.grdSaved.DataSource = dt
             Me.grdSaved.RetrieveStructure()
             ApplyGridSettings()
@@ -344,26 +332,25 @@ Public Class frmNewLeaveApplication
     ''' <remarks></remarks>
     Public Function IsValidate(Optional Mode As SBUtility.Utility.EnumDataMode = SBUtility.Utility.EnumDataMode.Disabled, Optional Condition As String = "") As Boolean Implements IGeneral.IsValidate
         Try
-            If Me.txtDocNo.Text = "" Then
-                ShowErrorMessage("Please enter the valid Doc No")
-                Me.txtDocNo.Focus()
-                Return False
-            ElseIf Me.cmbEmp.Value = 0 Then
-                ShowErrorMessage("Please select any employee")
-                Me.cmbEmp.Focus()
-                Return False
-            ElseIf Me.cmbAlternateContact.SelectedValue = 0 Then
-                ShowErrorMessage("Please select Alternate Contact")
-                Me.cmbAlternateContact.Focus()
-                Return False
-            ElseIf Me.txtReason.Text = "" Then
-                ShowErrorMessage("Please enter the leave reason")
-                Me.txtReason.Focus()
-                Return False
-                'ElseIf Me.cmbAttendanceStatus.SelectedValue = 0 Then
-                '    ShowErrorMessage("Please select any attendance status")
-                '    Me.cmbAttendanceStatus.Focus()
-                '    Return False
+            'If Me.txtDocNo.Text = "" Then
+            '    ShowErrorMessage("Please enter the valid Doc No")
+            '    Me.txtDocNo.Focus()
+            '    Return False
+            'If Me.cmbEmp.Value = 0 Then
+            '    ShowErrorMessage("Please select any employee")
+            '    Me.cmbEmp.Focus()
+            '    Return False
+            'ElseIf Me.txtReason.Text = "" Then
+            '    ShowErrorMessage("Please enter the leave reason")
+            '    Me.txtReason.Focus()
+            '    Return False
+            'ElseIf Me.cmbAttendanceStatus.SelectedValue = 0 Then
+            '    ShowErrorMessage("Please select any attendance status")
+            '    Me.cmbAttendanceStatus.Focus()
+            '    Return False
+            'End If
+            If pnlCompensatoryLeave.Visible = True AndAlso Me.txtDifference.Text > 7 Then
+                If msg_Confirm("This compensatory leave applied after 7 days. Do you want to Proceed?") = False Then Return False
             End If
             FillModel()
             Return True
@@ -378,8 +365,8 @@ Public Class frmNewLeaveApplication
     ''' <remarks></remarks>
     Public Sub ReSetControls(Optional Condition As String = "") Implements IGeneral.ReSetControls
         Try
-            Me.txtDocNo.Text = GetDocumentNo()
-            Me.dtpDocDate.Value = Date.Now
+            Me.txtDocNo.Text = ""
+            'Me.dtpDocDate.Value = Date.Now
             ''TASK TFS3571
             If Not getConfigValueByType("RightBasedCostCenters") = "Error" Then
                 CostCenterRights = CBool(getConfigValueByType("RightBasedCostCenters"))
@@ -391,31 +378,34 @@ Public Class frmNewLeaveApplication
             FillCombos("AlternateContact")
             FillCombos("AttendanceStatus")
             FillCombos("Period")
-            Me.cmbEmp.Value = 0
+            FillCombos("LeaveApplication")
+            ''Me.cmbEmp.Value = 0
             Me.txtReason.Text = ""
             Me.cmbLeaveType.SelectedValue = 0
             Me.cmbForwardTo.SelectedValue = 0
             Me.cmbAlternateContact.SelectedValue = 0
             Me.txtAlternateContact.Text = ""
-            'Me.cmbAttendanceStatus.SelectedValue = 0
+            Me.cmbAttendanceStatus.SelectedValue = 0
             Me.dtpFromDate.Value = Date.Now
-            Me.dtpJoiningDate.Value = Date.Now
             Me.dtpToDate.Value = Date.Now
+            Me.dtpJoiningDate.Value = Date.Now
             Me.dtpScheduledLeave.Value = Date.Now
             Me.dtpCompensatoryLeave.Value = Date.Now
             Me.txtDifference.Text = 0
-            Me.LeaveDays.Text = 0
             Me.txtDescription.Text = ""
             Me.cmbPeriod.Visible = False
             Me.lblPeriod.Visible = False
             Me.btnSave.Text = "&Save"
             Me.btnDelete.Visible = False
             Me.btnPrint.Visible = False
+
+
+
+
+
             CtrlGrdBar1_Load(Nothing, Nothing)
             Me.UltraTabControl1.Tabs(0).Selected = True
-            Me.dtpToDate_CloseUp(Nothing, Nothing)
             IsFormOpen = True
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -464,7 +454,7 @@ Public Class frmNewLeaveApplication
         Try
             objDAL = New LeaveApplicationDAL
             If IsValidate() = True Then
-                If objDAL.UpdateLeaveApplication(objModel) = True Then
+                If objDAL.Update(objModel) = True Then
                     'Insert Activity Log by Ali Faisal
                     SaveActivityLog("HRM", Me.Text, EnumActions.Update, LoginUserId, EnumRecordType.Configuration, Me.txtDocNo.Text, True)
                     Return True
@@ -523,7 +513,7 @@ Public Class frmNewLeaveApplication
         Try
             ReSetControls()
             GetAllRecords()
-            ApplySecurity(SBUtility.Utility.EnumDataMode.New)
+            'ApplySecurity(SBUtility.Utility.EnumDataMode.New)
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -554,20 +544,19 @@ Public Class frmNewLeaveApplication
             Me.lblProgress.Visible = True
             Application.DoEvents()
             Me.Cursor = Cursors.WaitCursor
-            If Me.btnSave.Text = "&Save" Then
-                If Save() = True Then
-                    msg_Information(str_informSave)
-                    SendAutoEmail()
-                    btnNew_Click(Nothing, Nothing)
-                End If
-            Else
-                If msg_Confirm(str_ConfirmUpdate) = False Then Exit Sub
-                If Update1() = True Then
-                    msg_Information(str_informUpdate)
-                    SendAutoEmail()
-                    btnNew_Click(Nothing, Nothing)
-                End If
+            'If Me.btnSave.Text = "&Save" Then
+            '    If Save() = True Then
+            '        msg_Information(str_informSave)
+            '        btnNew_Click(Nothing, Nothing)
+            '    End If
+            'Else
+            '    If msg_Confirm(str_ConfirmUpdate) = False Then Exit Sub
+            If Update1() = True Then
+                msg_Information(IIf(rdoApprove.Checked = True, "Leave are Approved.", "Leave are Rejected."))
+                SendAutoEmail()
+                btnNew_Click(Nothing, Nothing)
             End If
+            'End If
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         Finally
@@ -635,16 +624,17 @@ Public Class frmNewLeaveApplication
             FillCombos("ForwardTo")
             Me.cmbForwardTo.SelectedValue = id
 
-            id = Me.cmbAlternateContact.SelectedValue
-            FillCombos("AlternateContact")
-            Me.cmbAlternateContact.SelectedValue = id
-            'id = Me.cmbAttendanceStatus.SelectedValue
-            'FillCombos("AttendanceStatus")
-            'Me.cmbAttendanceStatus.SelectedValue = id
+            id = Me.cmbAttendanceStatus.SelectedValue
+            FillCombos("AttendanceStatus")
+            Me.cmbAttendanceStatus.SelectedValue = id
 
             id = Me.cmbPeriod.SelectedValue
             FillCombos("Period")
             Me.cmbPeriod.SelectedValue = id
+
+            id = Me.cmbAlternateContact.SelectedValue
+            FillCombos("AlternateContact")
+            Me.cmbAlternateContact.SelectedValue = id
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -704,9 +694,46 @@ Public Class frmNewLeaveApplication
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub cmbEmp_ValueChanged(sender As Object, e As EventArgs) Handles cmbEmp.ValueChanged
+    Private Sub cmbApplicationNo_ValueChanged(sender As Object, e As EventArgs) Handles cmbApplicationNo.ValueChanged
         Try
-            FillCombos("ForwardTo")
+            If cmbApplicationNo.Value > 0 Then
+                Dim str1 As String = ""
+                str1 = "SELECT App.LeaveApplicationId AS ApplicationId, App.ApplicationNo, App.ApplicationDate, App.EmployeeId, Emp.Employee_Name AS EmployeeName, App.ForwardToId, Frwd.Employee_Name AS ForwardTo, App.LeaveTypeId, Type.LeaveTypeTitle AS LeaveType, App.ApplicationReason AS Reason, App.FromDate, App.ToDate, App.PeriodId, App.AlternateContactNo AS ContactNo, App.ApplicationDetails AS Description, App.NoOfDays, App.ScheduledLeave, App.CompensatoryLeave, App.Difference, App.JoiningDate  FROM tblLeaveApplication AS App INNER JOIN tblDefEmployee AS Emp ON App.EmployeeId = Emp.Employee_ID INNER JOIN tblDefEmployee AS Frwd ON App.ForwardToId = Frwd.Employee_ID LEFT OUTER JOIN tblDefLeaveTypes AS Type ON App.LeaveTypeId = Type.Id where app.LeaveApplicationId = " & cmbApplicationNo.Value & ""
+                Dim dt1 As DataTable
+                dt1 = GetDataTable(str1)
+                Me.txtDocNo.Text = dt1.Rows(0).Item("ApplicationNo")
+                Me.dtpDocDate.Value = dt1.Rows(0).Item("ApplicationDate")
+                Me.txtReason.Text = dt1.Rows(0).Item("Reason")
+                Me.cmbLeaveType.SelectedValue = dt1.Rows(0).Item("LeaveTypeId")
+                Me.cmbAlternateContact.Text = dt1.Rows(0).Item("ContactNo")
+                Me.dtpFromDate.Value = dt1.Rows(0).Item("FromDate")
+                Me.dtpToDate.Value = dt1.Rows(0).Item("ToDate")
+                Me.txtNoofDays.Text = dt1.Rows(0).Item("NoOfDays")
+                Me.txtDescription.Text = dt1.Rows(0).Item("Description")
+                ''Me.cmbAttendanceStatus.SelectedValue = dt1.Rows(0).Item("AttendanceId")
+                Me.cmbForwardTo.SelectedValue = dt1.Rows(0).Item("ForwardToId")
+                If dt1.Rows(0).Item("LeaveTypeId") = 3 Then
+                    Me.dtpScheduledLeave.Value = dt1.Rows(0).Item("ScheduledLeave")
+                    Me.dtpCompensatoryLeave.Value = dt1.Rows(0).Item("CompensatoryLeave")
+                End If
+                Me.txtDifference.Text = dt1.Rows(0).Item("Difference")
+                Me.dtpJoiningDate.Value = dt1.Rows(0).Item("JoiningDate")
+                'Me.txtCountry.Text = dt1.Rows(0).Item("Country")
+                'Me.txtCity.Text = dt1.Rows(0).Item("City")
+                'Dim str As Stringv
+                'rafay 1modified query to add and show check box of batteries Included'
+                'str = "select customerid, StartDate, EndDate, isnull(EndCustomer, '') as EndCustomer, isnull(Employee, '') as Employee,ChkBoxBatteriesIncluded FROM ContractMasterTable WHERE ContractId = " & cmbContractNo.SelectedValue & ""
+                'Dim dt As DataTable
+                'dt = GetDataTable(str)
+                'txtCompanyName.Text = dt.Rows(0).Item("customerid")
+                'txtCustomerName.Text = dt.Rows(0).Item("EndCustomer")
+                'txtEmployee.Text = dt.Rows(0).Item("Employee")
+                'dtpContractStartDate.Value = dt.Rows(0).Item("StartDate")
+                'dtpContractEndDate.Value = dt.Rows(0).Item("EndDate")
+                ''rafay 12-4-22
+                'ChkBatteriesIncluded.Checked = IsDBNull(dt.Rows(0).Item("ChkBoxBatteriesIncluded"))
+                'Me.ChkBatteriesIncluded.Checked = cmbSerialNo.ActiveRow.Cells("BatteriesIncluded").Value.ToString
+            End If
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -735,6 +762,55 @@ Public Class frmNewLeaveApplication
         End Try
     End Sub
 
+    Private Sub cmbEmp_ValueChanged(sender As Object, e As EventArgs) Handles cmbEmp.ValueChanged
+        Try
+            FillCombos("ForwardTo")
+            FillCombos("LeaveApplication")
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub cmbLeaveType_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbLeaveType.SelectedValueChanged
+        Try
+            If cmbLeaveType.SelectedValue = 1 Or cmbLeaveType.SelectedValue = 2 Then
+                Dim AllowedLeaves As String
+                AllowedLeaves = "select AllowedPerYear from tblDefLeaveTypes where Id = " & cmbLeaveType.SelectedValue & ""
+                Dim dtAllowedLeaves As DataTable
+                dtAllowedLeaves = GetDataTable(AllowedLeaves)
+                Dim MonthlyStr As String = "select Month('" & dtpDocDate.Value.ToString("yyyy-M-d 00:00:00") & "') - 1 as DateDiffrence"
+                Dim monthlydt As DataTable = GetDataTable(MonthlyStr)
+                Dim NumberOfMonths As Double
+                If monthlydt.Rows.Count > 0 Then
+                    NumberOfMonths = monthlydt.Rows(0).Item(0)
+                    If NumberOfMonths = 11 Then
+                        NumberOfMonths = 12
+                    End If
+                End If
+                Me.txtAllowedLeaves.Text = dtAllowedLeaves.Rows(0).Item("AllowedPerYear") * NumberOfMonths
+                Dim AvailedLeaves As String
+                AvailedLeaves = "select ISNUll(Sum(NoOfDays),0) as AvailedLeaves from tblLeaveApplication where EmployeeId = " & cmbEmp.Value & " and leavetypeid = " & cmbLeaveType.SelectedValue & " and Status = 1"
+                Dim dtAvailedLeaves As DataTable
+                dtAvailedLeaves = GetDataTable(AvailedLeaves)
+                Me.txtAvailedLeaves.Text = dtAvailedLeaves.Rows(0).Item("AvailedLeaves")
+                Me.txtRemainingLeaves.Text = Val(txtAllowedLeaves.Text) - Val(txtAvailedLeaves.Text)
+                pnlCompensatoryLeave.Visible = False
+                txtNoofDays.Enabled = True
+            ElseIf cmbLeaveType.SelectedValue < 1 Then
+                txtAllowedLeaves.Text = 0
+                txtAvailedLeaves.Text = 0
+                txtRemainingLeaves.Text = 0
+                pnlCompensatoryLeave.Visible = False
+            ElseIf cmbLeaveType.SelectedValue = 3 Then
+                txtAllowedLeaves.Text = 0
+                txtAvailedLeaves.Text = 0
+                txtRemainingLeaves.Text = 0
+                pnlCompensatoryLeave.Visible = True
+            End If
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
     Private Sub dtpToDate_CloseUp(sender As Object, e As EventArgs) Handles dtpToDate.ValueChanged
         Try
             If IsFormOpen = False Then Exit Sub
@@ -744,120 +820,27 @@ Public Class frmNewLeaveApplication
             dt4 = GetDataTable(Query4)
             dt4.AcceptChanges()
             For Each D As DataRow In dt4.Rows
-                LeaveDays.Text = D.Item(0)
+                txtNoofDays.Text = D.Item(0)
             Next
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
     End Sub
-
-    Private Sub cmbLeaveType_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbLeaveType.SelectedValueChanged
-        Try
-            'Dim strprobation As String
-            'Dim dtprobation As DataTable
-            Dim MonthlyStr As String
-            Dim monthlydt As DataTable
-            Dim NumberOfMonths As Double
-            Dim AllowedLeaves As String
-            If cmbLeaveType.SelectedValue = 1 Then
-
-                Dim strEmployeeJoiningYear As String
-                Dim dtEmployeeJoiningYear As DataTable
-                strEmployeeJoiningYear = "select YEAR(ISNULL(Joining_Date,'')) as Joining_Year, convert(varchar(5),ISNULL(Joining_Date,''),110) as Joining_Date from tblDefEmployee where Employee_ID = " & cmbEmp.Value & ""
-                dtEmployeeJoiningYear = GetDataTable(strEmployeeJoiningYear)
-                If dtEmployeeJoiningYear.Rows(0).Item(1).ToString >= "09-25" Then
-                    If Year(dtpDocDate.Value.ToString("yyyy-M-d 00:00:00")).ToString - dtEmployeeJoiningYear.Rows(0).Item(0).ToString = 1 Then
-                        MonthlyStr = "SELECT datediff(mm,'" & dtEmployeeJoiningYear.Rows(0).Item(1).ToString & "','" & dtpDocDate.Value.ToString("yyyy-M-d 00:00:00") & "') - 1 as MonthDifference"
-                        monthlydt = GetDataTable(MonthlyStr)
-                        If monthlydt.Rows.Count > 0 Then
-                            NumberOfMonths = monthlydt.Rows(0).Item(0)
-                        End If
-                    End If
-                Else
-                    If dtEmployeeJoiningYear.Rows.Count > 0 Then
-                        If dtEmployeeJoiningYear.Rows(0).Item(0).ToString <> "" Then
-                            If Year(dtpDocDate.Value.ToString("yyyy-M-d 00:00:00")).ToString = dtEmployeeJoiningYear.Rows(0).Item(0).ToString Then
-                                MonthlyStr = "SELECT datediff(mm,'" & dtEmployeeJoiningYear.Rows(0).Item(1).ToString & "','" & dtpDocDate.Value.ToString("yyyy-M-d 00:00:00") & "') - 1 as MonthDifference"
-                                monthlydt = GetDataTable(MonthlyStr)
-                                If monthlydt.Rows.Count > 0 Then
-                                    NumberOfMonths = monthlydt.Rows(0).Item(0)
-                                End If
-                            Else
-                                MonthlyStr = "select Month('" & dtpDocDate.Value.ToString("yyyy-M-d 00:00:00") & "') - 1 as DateDiffrence"
-                                monthlydt = GetDataTable(MonthlyStr)
-                                If monthlydt.Rows.Count > 0 Then
-                                    NumberOfMonths = monthlydt.Rows(0).Item(0)
-                                    If NumberOfMonths = 11 Then
-                                        NumberOfMonths = 12
-                                    End If
-                                End If
-                            End If
-                        Else
-                            ShowErrorMessage("Please ask HR to Add your joining Date so you can proceed.")
-                        End If
-                    End If
-                End If
-                
-                AllowedLeaves = "select AllowedPerYear from tblDefLeaveTypes where Id = " & cmbLeaveType.SelectedValue & ""
-                Dim dtAllowedLeaves As DataTable
-                dtAllowedLeaves = GetDataTable(AllowedLeaves)
-                Me.txtAllowedLeaves.Text = dtAllowedLeaves.Rows(0).Item("AllowedPerYear") * NumberOfMonths
-                Dim AvailedLeaves As String
-                AvailedLeaves = "select ISNUll(Sum(NoOfDays),0) as AvailedLeaves from tblLeaveApplication where EmployeeId = " & cmbEmp.Value & " and leavetypeid = " & cmbLeaveType.SelectedValue & " and Status = 1 AND YEAR(ApplicationDate) = YEAR('" & dtpDocDate.Value.ToString("yyyy-M-d 00:00:00") & "') "
-                Dim dtAvailedLeaves As DataTable
-                dtAvailedLeaves = GetDataTable(AvailedLeaves)
-                Me.txtAvailedLeaves.Text = dtAvailedLeaves.Rows(0).Item("AvailedLeaves")
-                Me.txtRemainingLeaves.Text = Val(txtAllowedLeaves.Text) - Val(txtAvailedLeaves.Text)
-                pnlCompensatoryLeave.Visible = False
-                LeaveDays.Enabled = True
-            ElseIf cmbLeaveType.SelectedValue < 1 Then
-                txtAllowedLeaves.Text = 0
-                txtAvailedLeaves.Text = 0
-                txtRemainingLeaves.Text = 0
-                pnlCompensatoryLeave.Visible = False
-                LeaveDays.Enabled = True
-            ElseIf cmbLeaveType.SelectedValue = 3 Then
-                txtAllowedLeaves.Text = 0
-                txtAvailedLeaves.Text = 0
-                txtRemainingLeaves.Text = 0
-                pnlCompensatoryLeave.Visible = True
-                LeaveDays.Text = 1
-                LeaveDays.Enabled = False
-            ElseIf cmbLeaveType.SelectedValue = 2 Then
-                ''Dim AllowedLeaves As String
-                AllowedLeaves = "select AllowedPerYear from tblDefLeaveTypes where Id = " & cmbLeaveType.SelectedValue & ""
-                Dim dtAllowedLeaves As DataTable
-                dtAllowedLeaves = GetDataTable(AllowedLeaves)
-                Me.txtAllowedLeaves.Text = dtAllowedLeaves.Rows(0).Item("AllowedPerYear")
-                Dim AvailedLeaves As String
-                AvailedLeaves = "select ISNUll(Sum(NoOfDays),0) as AvailedLeaves from tblLeaveApplication where EmployeeId = " & cmbEmp.Value & " and leavetypeid = " & cmbLeaveType.SelectedValue & " and Status = 1"
-                Dim dtAvailedLeaves As DataTable
-                dtAvailedLeaves = GetDataTable(AvailedLeaves)
-                Me.txtAvailedLeaves.Text = dtAvailedLeaves.Rows(0).Item("AvailedLeaves")
-                Me.txtRemainingLeaves.Text = Val(txtAllowedLeaves.Text) - Val(txtAvailedLeaves.Text)
-                pnlCompensatoryLeave.Visible = False
-                LeaveDays.Enabled = True
-            End If
-        Catch ex As Exception
-            ShowErrorMessage(ex.Message)
-        End Try
-    End Sub
-
-    Private Sub dtpCompensatoryLeave_CloseUp(sender As Object, e As EventArgs) Handles dtpCompensatoryLeave.CloseUp
-        Try
-            If IsFormOpen = False Then Exit Sub
-            Dim Query4 As String = String.Empty
-            Dim dt4 As New DataTable
-            Query4 = "NoOfLeaveDays'" & Me.dtpScheduledLeave.Value.ToString("yyyy-M-d") & "','" & Me.dtpCompensatoryLeave.Value.ToString("yyyy-M-d") & "' "
-            dt4 = GetDataTable(Query4)
-            dt4.AcceptChanges()
-            For Each D As DataRow In dt4.Rows
-                txtDifference.Text = D.Item(0)
-            Next
-        Catch ex As Exception
-            ShowErrorMessage(ex.Message)
-        End Try
-    End Sub
+    'Private Sub dtpCompensatoryLeave_CloseUp(sender As Object, e As EventArgs) Handles dtpCompensatoryLeave.CloseUp
+    '    Try
+    '        If IsFormOpen = False Then Exit Sub
+    '        Dim Query4 As String = String.Empty
+    '        Dim dt4 As New DataTable
+    '        Query4 = "NoOfLeaveDays'" & Me.dtpScheduledLeave.Value.ToString("yyyy-M-d") & "','" & Me.dtpCompensatoryLeave.Value.ToString("yyyy-M-d") & "' "
+    '        dt4 = GetDataTable(Query4)
+    '        dt4.AcceptChanges()
+    '        For Each D As DataRow In dt4.Rows
+    '            txtDifference.Text = D.Item(0)
+    '        Next
+    '    Catch ex As Exception
+    '        ShowErrorMessage(ex.Message)
+    '    End Try
+    'End Sub
     Private Sub SendAutoEmail(Optional ByVal Activity As String = "")
         Try
             GetTemplate("Receipt")
@@ -865,7 +848,7 @@ Public Class frmNewLeaveApplication
                 'GetAutoEmailData()
                 Dim query As String = String.Empty
                 Dim dt As New DataTable
-                query = "select OfficialEmail from tblDefEmployee where Employee_ID = " & cmbForwardTo.SelectedValue & ""
+                query = "select OfficialEmail from tblDefEmployee where Employee_ID = " & cmbEmp.Value & ""
                 dt = GetDataTable(query)
                 dt.AcceptChanges()
                 If dt.Rows.Count > 0 Then
@@ -980,16 +963,17 @@ Public Class frmNewLeaveApplication
             'mailItem.SendUsingAccount = OutAccount
 
             ''If Birthdate() = True Then
-            mailItem.Subject = "Request for " & LTrim(cmbLeaveType.Text) & " Approval against " & txtDocNo.Text & ""
+            mailItem.Subject = "Leave Request against " & txtDocNo.Text & " is " & IIf(rdoApprove.Checked = True, "Approved", "Rejected") & ""
             mailItem.To = Email
+            mailItem.CC = "hr@agriusit.com"
             'Email = String.Empty
             mailItem.Importance = Outlook.OlImportance.olImportanceNormal
             mailItem.Display(mailItem)
             Dim myStr As String
             If cmbLeaveType.SelectedValue = 3 Then
-                myStr = "Hi " & cmbForwardTo.Text & "," & "<br> " & "I am requesting you to approve my " & cmbLeaveType.Text & "" & "<br>" & "<br>" & "<b>Leave Type:  </b>" & cmbLeaveType.Text & "<br>" & "<b>Scheduled Date:  </b>" & dtpScheduledLeave.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>Compensatory Date:  </b>" & dtpCompensatoryLeave.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>Joining Date:  </b>" & dtpJoiningDate.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>Alternate Contact:  </b>" & cmbAlternateContact.Text & "<br>" & "<br>" & "<b>Best Regards:</b>" & "<br>" & cmbEmp.Text
+                myStr = "Hi HR," & "<br>" & cmbLeaveType.Text & " of " & cmbEmp.Text & " is " & IIf(rdoApprove.Checked = True, "Approved", "Rejected") & "" & "<br>" & "<br>" & "<b>Scheduled Date:  </b>" & dtpScheduledLeave.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>Compensatory Date:  </b>" & dtpCompensatoryLeave.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>Alternate Contact:  </b>" & cmbAlternateContact.Text & "<br>" & "<br>" & "<b>Best Regards:</b>" & "<br>" & cmbForwardTo.Text
             Else
-                myStr = "Hi " & cmbForwardTo.Text & "," & "<br> " & "I am requesting you to approve my " & cmbLeaveType.Text & "" & "<br>" & "<br>" & "<b>Leave Type:  </b>" & cmbLeaveType.Text & "<br>" & "<b>From Date:  </b>" & dtpFromDate.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>To Date:  </b>" & dtpToDate.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>Joining Date:  </b>" & dtpJoiningDate.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>Alternate Contact:  </b>" & cmbAlternateContact.Text & "<br><b>Number of Days:  </b>" & LeaveDays.Text & "<br>" & "<br>" & "<b>Best Regards:</b>" & "<br>" & cmbEmp.Text
+                myStr = "Hi HR," & "<br>" & cmbLeaveType.Text & " of " & cmbEmp.Text & " is " & IIf(rdoApprove.Checked = True, "Approved", "Rejected") & "" & "<br>" & "<br>" & "<b>From Date:  </b>" & dtpFromDate.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>To Date:  </b>" & dtpToDate.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>Joining Date:  </b>" & dtpJoiningDate.Value.ToString("yyyy-MM-dd") & "<br>" & "<b>Alternate Contact:  </b>" & cmbAlternateContact.Text & "<br>" & "<b>Number of Days:  </b>" & txtNoofDays.Text & "<br>" & "<br>" & "<b>Best Regards:</b>" & "<br>" & cmbForwardTo.Text
             End If
             mailItem.HTMLBody = myStr
             'mailItem.HTMLBody = ""

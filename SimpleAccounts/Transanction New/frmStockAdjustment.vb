@@ -335,7 +335,7 @@ Public Class frmStockAdjustment
                     Str += " And ArticledefId=" & Me.cmbItem.Value & " "
                 End If
                 Str += "  Group By BatchNo Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0 ORDER BY StockDetailTable.BatchNo ASC"
-                FillDropDown(Me.cmbBatchNo, Str, True)
+                FillDropDown(Me.cmbBatchNo, Str, False)
             End If
         Catch ex As Exception
             Throw ex
@@ -671,8 +671,10 @@ Public Class frmStockAdjustment
             dtGrd.AcceptChanges()
             flgSelectedItem = True
             ClearData()
-            grd.MoveFirst()
-            grd_Click(Nothing, Nothing)
+            If cmbType.SelectedValue = 2 Then
+                grd.MoveLast()
+                grd_Click(Nothing, Nothing)
+            End If
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -1025,7 +1027,7 @@ Public Class frmStockAdjustment
 
     Private Sub grd_Click(sender As Object, e As EventArgs) Handles grd.Click
         Try
-            If Me.grd.RowCount > 0 AndAlso Me.grd.GetRow.Cells(enmGrd.ArticleId).Value IsNot Nothing Then
+            If Me.grd.RowCount > 0 AndAlso Me.grd.GetRow.Cells(enmGrd.ArticleId).Value IsNot Nothing AndAlso Me.grd.GetRow.Cells(enmGrd.AdjTypeId).Value = 2 Then
                 Dim str As String = ""
                 str = " Select  BatchNo,BatchNo,ExpiryDate,Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx')  And ArticledefId = " & Me.grd.GetRow.Cells(enmGrd.ArticleId).Value & " And LocationId = " & Val(Me.grd.GetRow.Cells(enmGrd.LocationId).Value.ToString) & " Group by BatchNo,ExpiryDate,Origin Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0  ORDER BY ExpiryDate Asc"
                 Dim dt As DataTable = GetDataTable(str)
@@ -1040,7 +1042,7 @@ Public Class frmStockAdjustment
                 If dt.Rows.Count > 0 Then
                     If Not IsDBNull(dt.Rows(0).Item("BatchNo").ToString) Then
                         str = " Select   ExpiryDate, Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx') And BatchNo ='" & Me.grd.GetRow.Cells(enmGrd.BatchNo).Value.ToString & "'" _
-                             & " And ArticledefId = " & Me.grd.GetRow.Cells(enmGrd.ArticleId).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(enmGrd.LocationId).Value.ToString) & "  And (isnull(InQty, 0) - isnull(OutQty, 0)) > 0 Group by BatchNo,ExpiryDate,Origin ORDER BY ExpiryDate  Asc "
+                             & " And ArticledefId = " & Me.grd.GetRow.Cells(enmGrd.ArticleId).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(enmGrd.LocationId).Value.ToString) & "  Group by BatchNo,ExpiryDate,Origin  Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0 ORDER BY ExpiryDate  Asc "
                         Dim dtExpiry As DataTable = GetDataTable(str)
                         If dtExpiry.Rows.Count > 0 Then
                             If IsDBNull(dtExpiry.Rows(0).Item("ExpiryDate")) = False Then
@@ -1186,11 +1188,11 @@ Public Class frmStockAdjustment
             Exit Sub
         End If
 
-        If e.KeyCode = Keys.Delete Then
-            If Me.grdDataHistory.RowCount <= 0 Then Exit Sub
-            btnDelete_Click(Nothing, Nothing)
-            Exit Sub
-        End If
+        'If e.KeyCode = Keys.Delete Then
+        '    If Me.grdDataHistory.RowCount <= 0 Then Exit Sub
+        '    btnDelete_Click(Nothing, Nothing)
+        '    Exit Sub
+        'End If
         If e.KeyCode = Keys.F5 Then
             btnRefresh_Click(Nothing, Nothing)
         End If

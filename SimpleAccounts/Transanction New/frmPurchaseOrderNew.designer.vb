@@ -175,6 +175,8 @@ Partial Class frmPurchaseOrderNew
         Me.txtTerms_And_Condition = New System.Windows.Forms.TextBox()
         Me.UltraTabPageControl1 = New Infragistics.Win.UltraWinTabControl.UltraTabPageControl()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label76 = New System.Windows.Forms.Label()
+        Me.lblRemainingBudget = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.btnAddStockDispatchStatus = New System.Windows.Forms.Button()
         Me.cmbPOType = New System.Windows.Forms.ComboBox()
@@ -524,9 +526,9 @@ Partial Class frmPurchaseOrderNew
         '
         Me.UltraTabPageControl3.Controls.Add(Me.FlowLayoutPanel1)
         Me.UltraTabPageControl3.Controls.Add(Me.TableLayoutPanel1)
-        Me.UltraTabPageControl3.Location = New System.Drawing.Point(1, 22)
+        Me.UltraTabPageControl3.Location = New System.Drawing.Point(1, 25)
         Me.UltraTabPageControl3.Name = "UltraTabPageControl3"
-        Me.UltraTabPageControl3.Size = New System.Drawing.Size(1034, 359)
+        Me.UltraTabPageControl3.Size = New System.Drawing.Size(1034, 356)
         '
         'FlowLayoutPanel1
         '
@@ -601,7 +603,7 @@ Partial Class frmPurchaseOrderNew
         Me.rbtService.AutoSize = True
         Me.rbtService.Location = New System.Drawing.Point(124, 11)
         Me.rbtService.Name = "rbtService"
-        Me.rbtService.Size = New System.Drawing.Size(68, 17)
+        Me.rbtService.Size = New System.Drawing.Size(79, 21)
         Me.rbtService.TabIndex = 2
         Me.rbtService.Text = "Service"
         Me.ToolTip1.SetToolTip(Me.rbtService, "Service Items")
@@ -612,7 +614,7 @@ Partial Class frmPurchaseOrderNew
         Me.rbtVendor.AutoSize = True
         Me.rbtVendor.Location = New System.Drawing.Point(53, 11)
         Me.rbtVendor.Name = "rbtVendor"
-        Me.rbtVendor.Size = New System.Drawing.Size(65, 17)
+        Me.rbtVendor.Size = New System.Drawing.Size(79, 21)
         Me.rbtVendor.TabIndex = 1
         Me.rbtVendor.Text = "Vendor"
         Me.ToolTip1.SetToolTip(Me.rbtVendor, "Item By Vendor")
@@ -624,7 +626,7 @@ Partial Class frmPurchaseOrderNew
         Me.rbtAll.Checked = True
         Me.rbtAll.Location = New System.Drawing.Point(8, 11)
         Me.rbtAll.Name = "rbtAll"
-        Me.rbtAll.Size = New System.Drawing.Size(39, 17)
+        Me.rbtAll.Size = New System.Drawing.Size(45, 21)
         Me.rbtAll.TabIndex = 0
         Me.rbtAll.TabStop = True
         Me.rbtAll.Text = "All"
@@ -636,7 +638,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label38.AutoSize = True
         Me.Label38.Location = New System.Drawing.Point(132, 57)
         Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(58, 13)
+        Me.Label38.Size = New System.Drawing.Size(71, 17)
         Me.Label38.TabIndex = 14
         Me.Label38.Text = "Total Qty"
         '
@@ -644,7 +646,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtTotalQuantity.Location = New System.Drawing.Point(136, 72)
         Me.txtTotalQuantity.Name = "txtTotalQuantity"
-        Me.txtTotalQuantity.Size = New System.Drawing.Size(72, 21)
+        Me.txtTotalQuantity.Size = New System.Drawing.Size(72, 24)
         Me.txtTotalQuantity.TabIndex = 15
         Me.txtTotalQuantity.Text = "1"
         Me.ToolTip1.SetToolTip(Me.txtTotalQuantity, "Quantity")
@@ -654,7 +656,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label37.AutoSize = True
         Me.Label37.Location = New System.Drawing.Point(361, 56)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(33, 13)
+        Me.Label37.Size = New System.Drawing.Size(40, 17)
         Me.Label37.TabIndex = 20
         Me.Label37.Text = "Rate"
         '
@@ -663,7 +665,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(12, 17)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(54, 13)
+        Me.Label5.Size = New System.Drawing.Size(67, 17)
         Me.Label5.TabIndex = 0
         Me.Label5.Text = "Location"
         '
@@ -672,7 +674,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label28.AutoSize = True
         Me.Label28.Location = New System.Drawing.Point(448, 56)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(64, 13)
+        Me.Label28.Size = New System.Drawing.Size(76, 17)
         Me.Label28.TabIndex = 22
         Me.Label28.Text = "Pack Rate"
         '
@@ -681,7 +683,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtPackRate.Enabled = False
         Me.txtPackRate.Location = New System.Drawing.Point(451, 72)
         Me.txtPackRate.Name = "txtPackRate"
-        Me.txtPackRate.Size = New System.Drawing.Size(79, 21)
+        Me.txtPackRate.Size = New System.Drawing.Size(79, 24)
         Me.txtPackRate.TabIndex = 23
         Me.ToolTip1.SetToolTip(Me.txtPackRate, "Purchase Invoice No From Vendor")
         '
@@ -690,7 +692,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label36.AutoSize = True
         Me.Label36.Location = New System.Drawing.Point(310, 57)
         Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(47, 13)
+        Me.Label36.Size = New System.Drawing.Size(57, 17)
         Me.Label36.TabIndex = 18
         Me.Label36.Text = "Disc %"
         '
@@ -700,7 +702,7 @@ Partial Class frmPurchaseOrderNew
         Me.rdoCode.Checked = True
         Me.rdoCode.Location = New System.Drawing.Point(231, 14)
         Me.rdoCode.Name = "rdoCode"
-        Me.rdoCode.Size = New System.Drawing.Size(55, 17)
+        Me.rdoCode.Size = New System.Drawing.Size(65, 21)
         Me.rdoCode.TabIndex = 3
         Me.rdoCode.TabStop = True
         Me.rdoCode.Text = "Code"
@@ -710,7 +712,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtDisc.Location = New System.Drawing.Point(313, 72)
         Me.txtDisc.Name = "txtDisc"
-        Me.txtDisc.Size = New System.Drawing.Size(44, 21)
+        Me.txtDisc.Size = New System.Drawing.Size(44, 24)
         Me.txtDisc.TabIndex = 19
         Me.txtDisc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtDisc, "Rate")
@@ -721,7 +723,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbStatus.FormattingEnabled = True
         Me.cmbStatus.Location = New System.Drawing.Point(896, 32)
         Me.cmbStatus.Name = "cmbStatus"
-        Me.cmbStatus.Size = New System.Drawing.Size(124, 21)
+        Me.cmbStatus.Size = New System.Drawing.Size(124, 25)
         Me.cmbStatus.TabIndex = 8
         '
         'cmbUnit
@@ -731,7 +733,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbUnit.Items.AddRange(New Object() {"Loose", "Pack"})
         Me.cmbUnit.Location = New System.Drawing.Point(675, 32)
         Me.cmbUnit.Name = "cmbUnit"
-        Me.cmbUnit.Size = New System.Drawing.Size(148, 21)
+        Me.cmbUnit.Size = New System.Drawing.Size(148, 25)
         Me.cmbUnit.TabIndex = 8
         Me.ToolTip1.SetToolTip(Me.cmbUnit, "Select Unit")
         '
@@ -739,7 +741,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtCurrentRate.Location = New System.Drawing.Point(214, 72)
         Me.txtCurrentRate.Name = "txtCurrentRate"
-        Me.txtCurrentRate.Size = New System.Drawing.Size(93, 21)
+        Me.txtCurrentRate.Size = New System.Drawing.Size(93, 24)
         Me.txtCurrentRate.TabIndex = 17
         Me.txtCurrentRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtCurrentRate, "Press F1 to open rate conversion screen")
@@ -749,7 +751,7 @@ Partial Class frmPurchaseOrderNew
         Me.rdoName.AutoSize = True
         Me.rdoName.Location = New System.Drawing.Point(292, 14)
         Me.rdoName.Name = "rdoName"
-        Me.rdoName.Size = New System.Drawing.Size(58, 17)
+        Me.rdoName.Size = New System.Drawing.Size(68, 21)
         Me.rdoName.TabIndex = 4
         Me.rdoName.Text = "Name"
         Me.rdoName.UseVisualStyleBackColor = True
@@ -759,7 +761,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label32.AutoSize = True
         Me.Label32.Location = New System.Drawing.Point(723, 56)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(57, 13)
+        Me.Label32.Size = New System.Drawing.Size(70, 17)
         Me.Label32.TabIndex = 28
         Me.Label32.Text = "Net Total"
         '
@@ -769,7 +771,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbCategory.FormattingEnabled = True
         Me.cmbCategory.Location = New System.Drawing.Point(15, 33)
         Me.cmbCategory.Name = "cmbCategory"
-        Me.cmbCategory.Size = New System.Drawing.Size(207, 21)
+        Me.cmbCategory.Size = New System.Drawing.Size(207, 25)
         Me.cmbCategory.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbCategory, "Select Location")
         '
@@ -778,7 +780,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(211, 56)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(81, 13)
+        Me.Label9.Size = New System.Drawing.Size(99, 17)
         Me.Label9.TabIndex = 16
         Me.Label9.Text = "Current Rate"
         '
@@ -787,7 +789,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblStock.AutoSize = True
         Me.lblStock.Location = New System.Drawing.Point(587, 16)
         Me.lblStock.Name = "lblStock"
-        Me.lblStock.Size = New System.Drawing.Size(39, 13)
+        Me.lblStock.Size = New System.Drawing.Size(48, 17)
         Me.lblStock.TabIndex = 7
         Me.lblStock.Text = "Stock"
         '
@@ -796,7 +798,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtNetTotal.Location = New System.Drawing.Point(726, 72)
         Me.txtNetTotal.Name = "txtNetTotal"
         Me.txtNetTotal.ReadOnly = True
-        Me.txtNetTotal.Size = New System.Drawing.Size(116, 21)
+        Me.txtNetTotal.Size = New System.Drawing.Size(116, 24)
         Me.txtNetTotal.TabIndex = 29
         Me.txtNetTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtNetTotal, "Total Amount")
@@ -805,7 +807,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtPackQty.Location = New System.Drawing.Point(15, 73)
         Me.txtPackQty.Name = "txtPackQty"
-        Me.txtPackQty.Size = New System.Drawing.Size(51, 21)
+        Me.txtPackQty.Size = New System.Drawing.Size(51, 24)
         Me.txtPackQty.TabIndex = 11
         Me.txtPackQty.TabStop = False
         Me.txtPackQty.Text = "1"
@@ -814,7 +816,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtTax.Location = New System.Drawing.Point(675, 72)
         Me.txtTax.Name = "txtTax"
-        Me.txtTax.Size = New System.Drawing.Size(45, 21)
+        Me.txtTax.Size = New System.Drawing.Size(45, 24)
         Me.txtTax.TabIndex = 27
         Me.txtTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtTax, "Rate")
@@ -825,7 +827,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtStock.Name = "txtStock"
         Me.txtStock.ReadOnly = True
         Me.txtStock.ShortcutsEnabled = False
-        Me.txtStock.Size = New System.Drawing.Size(79, 21)
+        Me.txtStock.Size = New System.Drawing.Size(79, 24)
         Me.txtStock.TabIndex = 6
         Me.txtStock.TabStop = False
         Me.txtStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -836,7 +838,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(534, 57)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(34, 13)
+        Me.Label10.Size = New System.Drawing.Size(41, 17)
         Me.Label10.TabIndex = 24
         Me.Label10.Text = "Total"
         '
@@ -845,7 +847,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label75.AutoSize = True
         Me.Label75.Location = New System.Drawing.Point(891, 13)
         Me.Label75.Name = "Label75"
-        Me.Label75.Size = New System.Drawing.Size(43, 13)
+        Me.Label75.Size = New System.Drawing.Size(55, 17)
         Me.Label75.TabIndex = 9
         Me.Label75.Text = "Status"
         '
@@ -854,7 +856,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label74.AutoSize = True
         Me.Label74.Location = New System.Drawing.Point(826, 15)
         Me.Label74.Name = "Label74"
-        Me.Label74.Size = New System.Drawing.Size(59, 13)
+        Me.Label74.Size = New System.Drawing.Size(73, 17)
         Me.Label74.TabIndex = 9
         Me.Label74.Text = "Warranty"
         '
@@ -863,7 +865,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(675, 16)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(29, 13)
+        Me.Label7.Size = New System.Drawing.Size(36, 17)
         Me.Label7.TabIndex = 9
         Me.Label7.Text = "Unit"
         '
@@ -872,7 +874,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label31.AutoSize = True
         Me.Label31.Location = New System.Drawing.Point(671, 57)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(43, 13)
+        Me.Label31.Size = New System.Drawing.Size(52, 17)
         Me.Label31.TabIndex = 26
         Me.Label31.Text = "Tax %"
         '
@@ -934,7 +936,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbItem.Location = New System.Drawing.Point(228, 32)
         Me.cmbItem.MaxDropDownItems = 20
         Me.cmbItem.Name = "cmbItem"
-        Me.cmbItem.Size = New System.Drawing.Size(356, 23)
+        Me.cmbItem.Size = New System.Drawing.Size(356, 27)
         Me.cmbItem.TabIndex = 2
         Me.ToolTip1.SetToolTip(Me.cmbItem, "Select Item")
         '
@@ -942,7 +944,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtTotal.Location = New System.Drawing.Point(537, 72)
         Me.txtTotal.Name = "txtTotal"
-        Me.txtTotal.Size = New System.Drawing.Size(132, 21)
+        Me.txtTotal.Size = New System.Drawing.Size(132, 24)
         Me.txtTotal.TabIndex = 25
         Me.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtTotal, "Total Amount")
@@ -952,7 +954,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label18.AutoSize = True
         Me.Label18.Location = New System.Drawing.Point(17, 57)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(38, 13)
+        Me.Label18.Size = New System.Drawing.Size(46, 17)
         Me.Label18.TabIndex = 10
         Me.Label18.Text = "P Qty"
         '
@@ -961,7 +963,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtRate.Enabled = False
         Me.txtRate.Location = New System.Drawing.Point(364, 72)
         Me.txtRate.Name = "txtRate"
-        Me.txtRate.Size = New System.Drawing.Size(81, 21)
+        Me.txtRate.Size = New System.Drawing.Size(81, 24)
         Me.txtRate.TabIndex = 21
         Me.txtRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtRate, "Rate")
@@ -981,7 +983,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(68, 56)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(27, 13)
+        Me.Label8.Size = New System.Drawing.Size(33, 17)
         Me.Label8.TabIndex = 12
         Me.Label8.Text = "Qty"
         '
@@ -989,7 +991,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtWarranty.Location = New System.Drawing.Point(829, 32)
         Me.txtWarranty.Name = "txtWarranty"
-        Me.txtWarranty.Size = New System.Drawing.Size(60, 21)
+        Me.txtWarranty.Size = New System.Drawing.Size(60, 24)
         Me.txtWarranty.TabIndex = 13
         Me.txtWarranty.Text = "1"
         '
@@ -997,7 +999,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtQty.Location = New System.Drawing.Point(72, 72)
         Me.txtQty.Name = "txtQty"
-        Me.txtQty.Size = New System.Drawing.Size(60, 21)
+        Me.txtQty.Size = New System.Drawing.Size(60, 24)
         Me.txtQty.TabIndex = 13
         Me.txtQty.Text = "1"
         Me.ToolTip1.SetToolTip(Me.txtQty, "Quantity")
@@ -1046,7 +1048,7 @@ Partial Class frmPurchaseOrderNew
         Me.UltraTabPageControl4.Controls.Add(Me.grdInwardExpDetail)
         Me.UltraTabPageControl4.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl4.Name = "UltraTabPageControl4"
-        Me.UltraTabPageControl4.Size = New System.Drawing.Size(1034, 359)
+        Me.UltraTabPageControl4.Size = New System.Drawing.Size(1034, 356)
         '
         'btnAddExp
         '
@@ -1108,7 +1110,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbInwardExpense.LimitToList = True
         Me.cmbInwardExpense.Location = New System.Drawing.Point(4, 27)
         Me.cmbInwardExpense.Name = "cmbInwardExpense"
-        Me.cmbInwardExpense.Size = New System.Drawing.Size(390, 23)
+        Me.cmbInwardExpense.Size = New System.Drawing.Size(390, 27)
         Me.cmbInwardExpense.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.cmbInwardExpense, "Select Vendor")
         '
@@ -1134,7 +1136,7 @@ Partial Class frmPurchaseOrderNew
         Me.UltraTabPageControl5.Controls.Add(Me.GroupBox4)
         Me.UltraTabPageControl5.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl5.Name = "UltraTabPageControl5"
-        Me.UltraTabPageControl5.Size = New System.Drawing.Size(1034, 359)
+        Me.UltraTabPageControl5.Size = New System.Drawing.Size(1034, 356)
         '
         'GroupBox4
         '
@@ -1144,7 +1146,7 @@ Partial Class frmPurchaseOrderNew
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox4.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(1034, 359)
+        Me.GroupBox4.Size = New System.Drawing.Size(1034, 356)
         Me.GroupBox4.TabIndex = 2
         Me.GroupBox4.TabStop = False
         '
@@ -1153,7 +1155,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(6, 22)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(131, 13)
+        Me.Label6.Size = New System.Drawing.Size(161, 17)
         Me.Label6.TabIndex = 17
         Me.Label6.Text = "Terms and Conditions"
         '
@@ -1164,7 +1166,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbTermCondition.Items.AddRange(New Object() {"Loose", "Pack"})
         Me.cmbTermCondition.Location = New System.Drawing.Point(143, 19)
         Me.cmbTermCondition.Name = "cmbTermCondition"
-        Me.cmbTermCondition.Size = New System.Drawing.Size(196, 21)
+        Me.cmbTermCondition.Size = New System.Drawing.Size(196, 25)
         Me.cmbTermCondition.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbTermCondition, "Select Unit")
         '
@@ -1177,7 +1179,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtTerms_And_Condition.Multiline = True
         Me.txtTerms_And_Condition.Name = "txtTerms_And_Condition"
         Me.txtTerms_And_Condition.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtTerms_And_Condition.Size = New System.Drawing.Size(1024, 310)
+        Me.txtTerms_And_Condition.Size = New System.Drawing.Size(1024, 307)
         Me.txtTerms_And_Condition.TabIndex = 0
         '
         'UltraTabPageControl1
@@ -1194,11 +1196,13 @@ Partial Class frmPurchaseOrderNew
         Me.UltraTabPageControl1.Controls.Add(Me.cmbPo)
         Me.UltraTabPageControl1.Location = New System.Drawing.Point(1, 1)
         Me.UltraTabPageControl1.Name = "UltraTabPageControl1"
-        Me.UltraTabPageControl1.Size = New System.Drawing.Size(1038, 660)
+        Me.UltraTabPageControl1.Size = New System.Drawing.Size(1038, 657)
         '
         'Panel1
         '
         Me.Panel1.AutoScroll = True
+        Me.Panel1.Controls.Add(Me.Label76)
+        Me.Panel1.Controls.Add(Me.lblRemainingBudget)
         Me.Panel1.Controls.Add(Me.GroupBox2)
         Me.Panel1.Controls.Add(Me.GroupBox3)
         Me.Panel1.Controls.Add(Me.GroupBox1)
@@ -1211,6 +1215,29 @@ Partial Class frmPurchaseOrderNew
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1038, 217)
         Me.Panel1.TabIndex = 20
+        '
+        'Label76
+        '
+        Me.Label76.AutoSize = True
+        Me.Label76.BackColor = System.Drawing.Color.Transparent
+        Me.Label76.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label76.ForeColor = System.Drawing.Color.Black
+        Me.Label76.Location = New System.Drawing.Point(794, 19)
+        Me.Label76.Name = "Label76"
+        Me.Label76.Size = New System.Drawing.Size(156, 17)
+        Me.Label76.TabIndex = 7
+        Me.Label76.Text = "Remaining Budget:"
+        '
+        'lblRemainingBudget
+        '
+        Me.lblRemainingBudget.AutoSize = True
+        Me.lblRemainingBudget.BackColor = System.Drawing.Color.Transparent
+        Me.lblRemainingBudget.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRemainingBudget.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.lblRemainingBudget.Location = New System.Drawing.Point(801, 39)
+        Me.lblRemainingBudget.Name = "lblRemainingBudget"
+        Me.lblRemainingBudget.Size = New System.Drawing.Size(0, 17)
+        Me.lblRemainingBudget.TabIndex = 8
         '
         'GroupBox2
         '
@@ -1250,7 +1277,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbPOType.Items.AddRange(New Object() {"Local PO", "Import PO", "Services Contract"})
         Me.cmbPOType.Location = New System.Drawing.Point(72, 40)
         Me.cmbPOType.Name = "cmbPOType"
-        Me.cmbPOType.Size = New System.Drawing.Size(113, 21)
+        Me.cmbPOType.Size = New System.Drawing.Size(113, 25)
         Me.cmbPOType.TabIndex = 3
         '
         'Label27
@@ -1258,7 +1285,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label27.AutoSize = True
         Me.Label27.Location = New System.Drawing.Point(5, 97)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(59, 13)
+        Me.Label27.Size = New System.Drawing.Size(71, 17)
         Me.Label27.TabIndex = 6
         Me.Label27.Text = "Rec Date"
         '
@@ -1267,7 +1294,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblPOType.AutoSize = True
         Me.lblPOType.Location = New System.Drawing.Point(5, 43)
         Me.lblPOType.Name = "lblPOType"
-        Me.lblPOType.Size = New System.Drawing.Size(54, 13)
+        Me.lblPOType.Size = New System.Drawing.Size(65, 17)
         Me.lblPOType.TabIndex = 2
         Me.lblPOType.Text = "PO Type"
         '
@@ -1320,7 +1347,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbStockDispatchStatus.LimitToList = True
         Me.cmbStockDispatchStatus.Location = New System.Drawing.Point(9, 137)
         Me.cmbStockDispatchStatus.Name = "cmbStockDispatchStatus"
-        Me.cmbStockDispatchStatus.Size = New System.Drawing.Size(149, 23)
+        Me.cmbStockDispatchStatus.Size = New System.Drawing.Size(149, 27)
         Me.cmbStockDispatchStatus.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.cmbStockDispatchStatus, "Select Stock Dispatch Status")
         '
@@ -1332,7 +1359,7 @@ Partial Class frmPurchaseOrderNew
         Me.dtpReceivingDate.Location = New System.Drawing.Point(72, 94)
         Me.dtpReceivingDate.Name = "dtpReceivingDate"
         Me.dtpReceivingDate.ShowCheckBox = True
-        Me.dtpReceivingDate.Size = New System.Drawing.Size(113, 21)
+        Me.dtpReceivingDate.Size = New System.Drawing.Size(113, 24)
         Me.dtpReceivingDate.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.dtpReceivingDate, "Document Date")
         '
@@ -1341,7 +1368,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtPONo.Location = New System.Drawing.Point(72, 16)
         Me.txtPONo.Name = "txtPONo"
         Me.txtPONo.ReadOnly = True
-        Me.txtPONo.Size = New System.Drawing.Size(113, 21)
+        Me.txtPONo.Size = New System.Drawing.Size(113, 24)
         Me.txtPONo.TabIndex = 1
         Me.txtPONo.TabStop = False
         Me.ToolTip1.SetToolTip(Me.txtPONo, "Document No")
@@ -1351,7 +1378,7 @@ Partial Class frmPurchaseOrderNew
         Me.chkPost.AutoSize = True
         Me.chkPost.Location = New System.Drawing.Point(10, 163)
         Me.chkPost.Name = "chkPost"
-        Me.chkPost.Size = New System.Drawing.Size(64, 17)
+        Me.chkPost.Size = New System.Drawing.Size(78, 21)
         Me.chkPost.TabIndex = 10
         Me.chkPost.Text = "Posted"
         Me.chkPost.UseVisualStyleBackColor = True
@@ -1361,7 +1388,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblStockDispatchStatus.AutoSize = True
         Me.lblStockDispatchStatus.Location = New System.Drawing.Point(7, 118)
         Me.lblStockDispatchStatus.Name = "lblStockDispatchStatus"
-        Me.lblStockDispatchStatus.Size = New System.Drawing.Size(72, 13)
+        Me.lblStockDispatchStatus.Size = New System.Drawing.Size(91, 17)
         Me.lblStockDispatchStatus.TabIndex = 8
         Me.lblStockDispatchStatus.Text = "Disp Status"
         '
@@ -1371,7 +1398,7 @@ Partial Class frmPurchaseOrderNew
         Me.dtpPODate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpPODate.Location = New System.Drawing.Point(72, 67)
         Me.dtpPODate.Name = "dtpPODate"
-        Me.dtpPODate.Size = New System.Drawing.Size(113, 21)
+        Me.dtpPODate.Size = New System.Drawing.Size(113, 24)
         Me.dtpPODate.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.dtpPODate, "Document Date")
         '
@@ -1380,7 +1407,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(5, 70)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(60, 13)
+        Me.Label2.Size = New System.Drawing.Size(73, 17)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "Doc Date"
         '
@@ -1389,7 +1416,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(5, 19)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(52, 13)
+        Me.Label1.Size = New System.Drawing.Size(64, 17)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Doc No."
         '
@@ -1423,7 +1450,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label35.AutoSize = True
         Me.Label35.Location = New System.Drawing.Point(6, 73)
         Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(47, 13)
+        Me.Label35.Size = New System.Drawing.Size(57, 17)
         Me.Label35.TabIndex = 4
         Me.Label35.Text = "Project"
         '
@@ -1444,7 +1471,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbProject.FormattingEnabled = True
         Me.cmbProject.Location = New System.Drawing.Point(83, 70)
         Me.cmbProject.Name = "cmbProject"
-        Me.cmbProject.Size = New System.Drawing.Size(256, 21)
+        Me.cmbProject.Size = New System.Drawing.Size(256, 25)
         Me.cmbProject.TabIndex = 5
         '
         'Label34
@@ -1452,7 +1479,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label34.AutoSize = True
         Me.Label34.Location = New System.Drawing.Point(272, 123)
         Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(27, 13)
+        Me.Label34.Size = New System.Drawing.Size(32, 17)
         Me.Label34.TabIndex = 12
         Me.Label34.Text = "Diff"
         '
@@ -1461,7 +1488,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtCMFADiff.Location = New System.Drawing.Point(275, 139)
         Me.txtCMFADiff.Name = "txtCMFADiff"
         Me.txtCMFADiff.ReadOnly = True
-        Me.txtCMFADiff.Size = New System.Drawing.Size(64, 21)
+        Me.txtCMFADiff.Size = New System.Drawing.Size(64, 24)
         Me.txtCMFADiff.TabIndex = 13
         Me.txtCMFADiff.TabStop = False
         Me.ToolTip1.SetToolTip(Me.txtCMFADiff, "Purchase Invoice No From Vendor")
@@ -1471,7 +1498,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label33.AutoSize = True
         Me.Label33.Location = New System.Drawing.Point(80, 123)
         Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(86, 13)
+        Me.Label33.Size = New System.Drawing.Size(107, 17)
         Me.Label33.TabIndex = 8
         Me.Label33.Text = "CMFA Amount"
         '
@@ -1480,7 +1507,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtCMFAAmount.Location = New System.Drawing.Point(83, 139)
         Me.txtCMFAAmount.Name = "txtCMFAAmount"
         Me.txtCMFAAmount.ReadOnly = True
-        Me.txtCMFAAmount.Size = New System.Drawing.Size(90, 21)
+        Me.txtCMFAAmount.Size = New System.Drawing.Size(90, 24)
         Me.txtCMFAAmount.TabIndex = 9
         Me.txtCMFAAmount.TabStop = False
         Me.ToolTip1.SetToolTip(Me.txtCMFAAmount, "Purchase Invoice No From Vendor")
@@ -1490,7 +1517,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label16.AutoSize = True
         Me.Label16.Location = New System.Drawing.Point(176, 123)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(71, 13)
+        Me.Label16.Size = New System.Drawing.Size(88, 17)
         Me.Label16.TabIndex = 10
         Me.Label16.Text = "PO Amount"
         '
@@ -1499,7 +1526,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label15.AutoSize = True
         Me.Label15.Location = New System.Drawing.Point(6, 100)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(64, 13)
+        Me.Label15.Size = New System.Drawing.Size(78, 17)
         Me.Label15.TabIndex = 6
         Me.Label15.Text = "CMFA Doc"
         '
@@ -1508,7 +1535,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label17.AutoSize = True
         Me.Label17.Location = New System.Drawing.Point(6, 46)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(22, 13)
+        Me.Label17.Size = New System.Drawing.Size(26, 17)
         Me.Label17.TabIndex = 2
         Me.Label17.Text = "LC"
         '
@@ -1517,7 +1544,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbCMFADoc.FormattingEnabled = True
         Me.cmbCMFADoc.Location = New System.Drawing.Point(83, 97)
         Me.cmbCMFADoc.Name = "cmbCMFADoc"
-        Me.cmbCMFADoc.Size = New System.Drawing.Size(256, 21)
+        Me.cmbCMFADoc.Size = New System.Drawing.Size(256, 25)
         Me.cmbCMFADoc.TabIndex = 7
         '
         'txtPOAmountAgainstCMFA
@@ -1525,7 +1552,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtPOAmountAgainstCMFA.Location = New System.Drawing.Point(179, 139)
         Me.txtPOAmountAgainstCMFA.Name = "txtPOAmountAgainstCMFA"
         Me.txtPOAmountAgainstCMFA.ReadOnly = True
-        Me.txtPOAmountAgainstCMFA.Size = New System.Drawing.Size(90, 21)
+        Me.txtPOAmountAgainstCMFA.Size = New System.Drawing.Size(90, 24)
         Me.txtPOAmountAgainstCMFA.TabIndex = 11
         Me.txtPOAmountAgainstCMFA.TabStop = False
         Me.ToolTip1.SetToolTip(Me.txtPOAmountAgainstCMFA, "Purchase Invoice No From Vendor")
@@ -1579,7 +1606,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbLC.LimitToList = True
         Me.cmbLC.Location = New System.Drawing.Point(83, 41)
         Me.cmbLC.Name = "cmbLC"
-        Me.cmbLC.Size = New System.Drawing.Size(256, 23)
+        Me.cmbLC.Size = New System.Drawing.Size(256, 27)
         Me.cmbLC.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.cmbLC, "Select Vendor")
         '
@@ -1632,7 +1659,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbVendor.LimitToList = True
         Me.cmbVendor.Location = New System.Drawing.Point(83, 14)
         Me.cmbVendor.Name = "cmbVendor"
-        Me.cmbVendor.Size = New System.Drawing.Size(256, 23)
+        Me.cmbVendor.Size = New System.Drawing.Size(256, 27)
         Me.cmbVendor.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbVendor, "Select Vendor")
         '
@@ -1650,7 +1677,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(6, 19)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(47, 13)
+        Me.Label3.Size = New System.Drawing.Size(58, 17)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Vendor"
         '
@@ -1659,7 +1686,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(6, 170)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(58, 13)
+        Me.Label4.Size = New System.Drawing.Size(69, 17)
         Me.Label4.TabIndex = 14
         Me.Label4.Text = "Remarks"
         '
@@ -1679,7 +1706,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label40.AutoSize = True
         Me.Label40.Location = New System.Drawing.Point(11, 20)
         Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(42, 13)
+        Me.Label40.Size = New System.Drawing.Size(50, 17)
         Me.Label40.TabIndex = 0
         Me.Label40.Text = "Terms"
         '
@@ -1689,7 +1716,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbPaymentTypes.FormattingEnabled = True
         Me.cmbPaymentTypes.Location = New System.Drawing.Point(77, 16)
         Me.cmbPaymentTypes.Name = "cmbPaymentTypes"
-        Me.cmbPaymentTypes.Size = New System.Drawing.Size(134, 21)
+        Me.cmbPaymentTypes.Size = New System.Drawing.Size(134, 25)
         Me.cmbPaymentTypes.TabIndex = 1
         '
         'lblLastPrice
@@ -1697,7 +1724,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblLastPrice.AutoSize = True
         Me.lblLastPrice.Location = New System.Drawing.Point(562, 196)
         Me.lblLastPrice.Name = "lblLastPrice"
-        Me.lblLastPrice.Size = New System.Drawing.Size(62, 13)
+        Me.lblLastPrice.Size = New System.Drawing.Size(75, 17)
         Me.lblLastPrice.TabIndex = 6
         Me.lblLastPrice.Text = "Last Price"
         '
@@ -1706,7 +1733,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtLastPrice.Location = New System.Drawing.Point(628, 193)
         Me.txtLastPrice.Name = "txtLastPrice"
         Me.txtLastPrice.ReadOnly = True
-        Me.txtLastPrice.Size = New System.Drawing.Size(134, 21)
+        Me.txtLastPrice.Size = New System.Drawing.Size(134, 24)
         Me.txtLastPrice.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.txtLastPrice, "Purchase Invoice No From Vendor")
         '
@@ -1728,7 +1755,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label30.AutoSize = True
         Me.Label30.Location = New System.Drawing.Point(11, 44)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(33, 13)
+        Me.Label30.Size = New System.Drawing.Size(40, 17)
         Me.Label30.TabIndex = 2
         Me.Label30.Text = "Rate"
         '
@@ -1736,7 +1763,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtCurrencyRate.Location = New System.Drawing.Point(77, 40)
         Me.txtCurrencyRate.Name = "txtCurrencyRate"
-        Me.txtCurrencyRate.Size = New System.Drawing.Size(134, 21)
+        Me.txtCurrencyRate.Size = New System.Drawing.Size(134, 24)
         Me.txtCurrencyRate.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.txtCurrencyRate, "Purchase Invoice No From Vendor")
         '
@@ -1745,7 +1772,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label29.AutoSize = True
         Me.Label29.Location = New System.Drawing.Point(11, 20)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(60, 13)
+        Me.Label29.Size = New System.Drawing.Size(71, 17)
         Me.Label29.TabIndex = 0
         Me.Label29.Text = "Currency"
         '
@@ -1755,7 +1782,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbCurrency.FormattingEnabled = True
         Me.cmbCurrency.Location = New System.Drawing.Point(77, 16)
         Me.cmbCurrency.Name = "cmbCurrency"
-        Me.cmbCurrency.Size = New System.Drawing.Size(134, 21)
+        Me.cmbCurrency.Size = New System.Drawing.Size(134, 25)
         Me.cmbCurrency.TabIndex = 1
         '
         'GroupBox5
@@ -1827,7 +1854,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbPurchaseDemand.Location = New System.Drawing.Point(6, 17)
         Me.cmbPurchaseDemand.MaxDropDownItems = 20
         Me.cmbPurchaseDemand.Name = "cmbPurchaseDemand"
-        Me.cmbPurchaseDemand.Size = New System.Drawing.Size(152, 23)
+        Me.cmbPurchaseDemand.Size = New System.Drawing.Size(152, 27)
         Me.cmbPurchaseDemand.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.cmbPurchaseDemand, "Select Item")
         '
@@ -1858,7 +1885,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblHeader.ForeColor = System.Drawing.Color.Navy
         Me.lblHeader.Location = New System.Drawing.Point(18, 5)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(176, 23)
+        Me.lblHeader.Size = New System.Drawing.Size(222, 29)
         Me.lblHeader.TabIndex = 0
         Me.lblHeader.Text = "Purchase Order"
         '
@@ -1889,7 +1916,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.UltraTabSharedControlsPage2.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabSharedControlsPage2.Name = "UltraTabSharedControlsPage2"
-        Me.UltraTabSharedControlsPage2.Size = New System.Drawing.Size(1034, 359)
+        Me.UltraTabSharedControlsPage2.Size = New System.Drawing.Size(1034, 356)
         '
         'cmbSalesMan
         '
@@ -1897,7 +1924,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbSalesMan.FormattingEnabled = True
         Me.cmbSalesMan.Location = New System.Drawing.Point(782, 87)
         Me.cmbSalesMan.Name = "cmbSalesMan"
-        Me.cmbSalesMan.Size = New System.Drawing.Size(90, 21)
+        Me.cmbSalesMan.Size = New System.Drawing.Size(90, 25)
         Me.cmbSalesMan.TabIndex = 0
         Me.cmbSalesMan.TabStop = False
         Me.cmbSalesMan.Visible = False
@@ -1908,7 +1935,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblPrintStatus.AutoSize = True
         Me.lblPrintStatus.Location = New System.Drawing.Point(871, 34)
         Me.lblPrintStatus.Name = "lblPrintStatus"
-        Me.lblPrintStatus.Size = New System.Drawing.Size(161, 13)
+        Me.lblPrintStatus.Size = New System.Drawing.Size(200, 17)
         Me.lblPrintStatus.TabIndex = 3
         Me.lblPrintStatus.Text = "Print Status : Print Pending"
         '
@@ -1927,6 +1954,7 @@ Partial Class frmPurchaseOrderNew
         'ToolStrip1
         '
         Me.ToolStrip1.AutoSize = False
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnNew, Me.BtnEdit, Me.BtnSave, Me.BtnDelete, Me.BtnTransferAccounts, Me.BtnPrint, Me.toolStripSeparator, Me.BtnRefresh, Me.ToolStripSeparator5, Me.btnApprovalHistory, Me.btnAddNewitem, Me.ToolStripSeparator6, Me.ToolStripButton1, Me.btnLoadSalesOrder, Me.ToolStripSeparator1, Me.btnPaymentSchedule, Me.ToolStripSeparator4, Me.btnCMFA, Me.ToolStripSeparator9, Me.btnSMSTemplate, Me.btnAttachment, Me.btnImports, Me.btnPrintWImage, Me.btnEmailPurchaseOrder})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
@@ -1939,7 +1967,7 @@ Partial Class frmPurchaseOrderNew
         Me.BtnNew.Image = CType(resources.GetObject("BtnNew.Image"), System.Drawing.Image)
         Me.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnNew.Name = "BtnNew"
-        Me.BtnNew.Size = New System.Drawing.Size(51, 22)
+        Me.BtnNew.Size = New System.Drawing.Size(63, 22)
         Me.BtnNew.Text = "&New"
         '
         'BtnEdit
@@ -1947,7 +1975,7 @@ Partial Class frmPurchaseOrderNew
         Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
         Me.BtnEdit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(47, 22)
+        Me.BtnEdit.Size = New System.Drawing.Size(59, 22)
         Me.BtnEdit.Text = "&Edit"
         '
         'BtnSave
@@ -1956,13 +1984,13 @@ Partial Class frmPurchaseOrderNew
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
         Me.BtnSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(63, 22)
+        Me.BtnSave.Size = New System.Drawing.Size(79, 22)
         Me.BtnSave.Text = "&Save"
         '
         'SaveAsTemplateToolStripMenuItem
         '
         Me.SaveAsTemplateToolStripMenuItem.Name = "SaveAsTemplateToolStripMenuItem"
-        Me.SaveAsTemplateToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.SaveAsTemplateToolStripMenuItem.Size = New System.Drawing.Size(199, 26)
         Me.SaveAsTemplateToolStripMenuItem.Text = "Save as Template"
         '
         'BtnDelete
@@ -1970,7 +1998,7 @@ Partial Class frmPurchaseOrderNew
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.RightToLeftAutoMirrorImage = True
-        Me.BtnDelete.Size = New System.Drawing.Size(60, 22)
+        Me.BtnDelete.Size = New System.Drawing.Size(77, 22)
         Me.BtnDelete.Text = "&Delete"
         '
         'BtnTransferAccounts
@@ -1978,7 +2006,7 @@ Partial Class frmPurchaseOrderNew
         Me.BtnTransferAccounts.Image = Global.SimpleAccounts.My.Resources.Resources.sendcontactdetails
         Me.BtnTransferAccounts.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnTransferAccounts.Name = "BtnTransferAccounts"
-        Me.BtnTransferAccounts.Size = New System.Drawing.Size(135, 22)
+        Me.BtnTransferAccounts.Size = New System.Drawing.Size(167, 22)
         Me.BtnTransferAccounts.Text = "Transfer to Accounts"
         Me.BtnTransferAccounts.Visible = False
         '
@@ -1988,13 +2016,13 @@ Partial Class frmPurchaseOrderNew
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
         Me.BtnPrint.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(64, 22)
+        Me.BtnPrint.Size = New System.Drawing.Size(78, 22)
         Me.BtnPrint.Text = "&Print"
         '
         'PrintPOWithImageToolStripMenuItem
         '
         Me.PrintPOWithImageToolStripMenuItem.Name = "PrintPOWithImageToolStripMenuItem"
-        Me.PrintPOWithImageToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.PrintPOWithImageToolStripMenuItem.Size = New System.Drawing.Size(218, 26)
         Me.PrintPOWithImageToolStripMenuItem.Text = "Print PO With Image"
         '
         'toolStripSeparator
@@ -2007,7 +2035,7 @@ Partial Class frmPurchaseOrderNew
         Me.BtnRefresh.Image = Global.SimpleAccounts.My.Resources.Resources.Refresh
         Me.BtnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnRefresh.Name = "BtnRefresh"
-        Me.BtnRefresh.Size = New System.Drawing.Size(66, 22)
+        Me.BtnRefresh.Size = New System.Drawing.Size(82, 22)
         Me.BtnRefresh.Text = "Refresh"
         '
         'ToolStripSeparator5
@@ -2020,7 +2048,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnApprovalHistory.Image = Global.SimpleAccounts.My.Resources.Resources.Copy
         Me.btnApprovalHistory.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnApprovalHistory.Name = "btnApprovalHistory"
-        Me.btnApprovalHistory.Size = New System.Drawing.Size(116, 22)
+        Me.btnApprovalHistory.Size = New System.Drawing.Size(145, 22)
         Me.btnApprovalHistory.Text = "Approval History"
         '
         'btnAddNewitem
@@ -2028,7 +2056,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnAddNewitem.Image = Global.SimpleAccounts.My.Resources.Resources.Attendanceadd
         Me.btnAddNewitem.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnAddNewitem.Name = "btnAddNewitem"
-        Me.btnAddNewitem.Size = New System.Drawing.Size(103, 22)
+        Me.btnAddNewitem.Size = New System.Drawing.Size(129, 22)
         Me.btnAddNewitem.Text = "Add New Item"
         '
         'ToolStripSeparator6
@@ -2041,7 +2069,7 @@ Partial Class frmPurchaseOrderNew
         Me.ToolStripButton1.Image = Global.SimpleAccounts.My.Resources.Resources.PurchaseOrder
         Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(66, 22)
+        Me.ToolStripButton1.Size = New System.Drawing.Size(80, 22)
         Me.ToolStripButton1.Text = "Add LC"
         '
         'btnLoadSalesOrder
@@ -2049,7 +2077,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnLoadSalesOrder.Image = Global.SimpleAccounts.My.Resources.Resources.Copy
         Me.btnLoadSalesOrder.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnLoadSalesOrder.Name = "btnLoadSalesOrder"
-        Me.btnLoadSalesOrder.Size = New System.Drawing.Size(110, 22)
+        Me.btnLoadSalesOrder.Size = New System.Drawing.Size(140, 22)
         Me.btnLoadSalesOrder.Text = "Load Sale Order"
         '
         'ToolStripSeparator1
@@ -2062,7 +2090,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnPaymentSchedule.Image = Global.SimpleAccounts.My.Resources.Resources.account_balances_icon
         Me.btnPaymentSchedule.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnPaymentSchedule.Name = "btnPaymentSchedule"
-        Me.btnPaymentSchedule.Size = New System.Drawing.Size(125, 22)
+        Me.btnPaymentSchedule.Size = New System.Drawing.Size(153, 24)
         Me.btnPaymentSchedule.Text = "Payment Schedule"
         '
         'ToolStripSeparator4
@@ -2076,7 +2104,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnCMFA.Image = Global.SimpleAccounts.My.Resources.Resources.Compose_Email
         Me.btnCMFA.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnCMFA.Name = "btnCMFA"
-        Me.btnCMFA.Size = New System.Drawing.Size(118, 20)
+        Me.btnCMFA.Size = New System.Drawing.Size(144, 24)
         Me.btnCMFA.Text = "CMFA Document"
         Me.btnCMFA.Visible = False
         '
@@ -2090,7 +2118,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnSMSTemplate.Image = Global.SimpleAccounts.My.Resources.Resources.Attach
         Me.btnSMSTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSMSTemplate.Name = "btnSMSTemplate"
-        Me.btnSMSTemplate.Size = New System.Drawing.Size(139, 20)
+        Me.btnSMSTemplate.Size = New System.Drawing.Size(175, 24)
         Me.btnSMSTemplate.Text = "SMS template setting"
         '
         'btnAttachment
@@ -2098,7 +2126,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnAttachment.Image = CType(resources.GetObject("btnAttachment.Image"), System.Drawing.Image)
         Me.btnAttachment.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnAttachment.Name = "btnAttachment"
-        Me.btnAttachment.Size = New System.Drawing.Size(102, 20)
+        Me.btnAttachment.Size = New System.Drawing.Size(125, 24)
         Me.btnAttachment.Text = "Attachment"
         '
         'btnImports
@@ -2107,21 +2135,21 @@ Partial Class frmPurchaseOrderNew
         Me.btnImports.Image = Global.SimpleAccounts.My.Resources.Resources.Documentation
         Me.btnImports.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnImports.Name = "btnImports"
-        Me.btnImports.Size = New System.Drawing.Size(77, 20)
+        Me.btnImports.Size = New System.Drawing.Size(94, 24)
         Me.btnImports.Text = "Imports"
         '
         'AddLCToolStripMenuItem
         '
         Me.AddLCToolStripMenuItem.Image = Global.SimpleAccounts.My.Resources.Resources.PurchaseOrder
         Me.AddLCToolStripMenuItem.Name = "AddLCToolStripMenuItem"
-        Me.AddLCToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.AddLCToolStripMenuItem.Size = New System.Drawing.Size(218, 26)
         Me.AddLCToolStripMenuItem.Text = "Add LC"
         '
         'POInvoicePerformaToolStripMenuItem
         '
         Me.POInvoicePerformaToolStripMenuItem.Image = Global.SimpleAccounts.My.Resources.Resources.Write
         Me.POInvoicePerformaToolStripMenuItem.Name = "POInvoicePerformaToolStripMenuItem"
-        Me.POInvoicePerformaToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.POInvoicePerformaToolStripMenuItem.Size = New System.Drawing.Size(218, 26)
         Me.POInvoicePerformaToolStripMenuItem.Text = "PO Invoice Performa"
         '
         'btnPrintWImage
@@ -2129,7 +2157,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnPrintWImage.Image = Global.SimpleAccounts.My.Resources.Resources.print
         Me.btnPrintWImage.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnPrintWImage.Name = "btnPrintWImage"
-        Me.btnPrintWImage.Size = New System.Drawing.Size(116, 20)
+        Me.btnPrintWImage.Size = New System.Drawing.Size(144, 24)
         Me.btnPrintWImage.Text = "Print With Image"
         '
         'btnEmailPurchaseOrder
@@ -2137,14 +2165,14 @@ Partial Class frmPurchaseOrderNew
         Me.btnEmailPurchaseOrder.Image = Global.SimpleAccounts.My.Resources.Resources.SL_Social_media_icons_Email_128
         Me.btnEmailPurchaseOrder.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnEmailPurchaseOrder.Name = "btnEmailPurchaseOrder"
-        Me.btnEmailPurchaseOrder.Size = New System.Drawing.Size(75, 20)
+        Me.btnEmailPurchaseOrder.Size = New System.Drawing.Size(93, 24)
         Me.btnEmailPurchaseOrder.Text = "Email PO"
         '
         'txtDcNo
         '
         Me.txtDcNo.Location = New System.Drawing.Point(782, 200)
         Me.txtDcNo.Name = "txtDcNo"
-        Me.txtDcNo.Size = New System.Drawing.Size(90, 21)
+        Me.txtDcNo.Size = New System.Drawing.Size(90, 24)
         Me.txtDcNo.TabIndex = 3
         Me.txtDcNo.TabStop = False
         Me.txtDcNo.Visible = False
@@ -2153,7 +2181,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtReceivingID.Location = New System.Drawing.Point(782, 227)
         Me.txtReceivingID.Name = "txtReceivingID"
-        Me.txtReceivingID.Size = New System.Drawing.Size(90, 21)
+        Me.txtReceivingID.Size = New System.Drawing.Size(90, 24)
         Me.txtReceivingID.TabIndex = 5
         Me.txtReceivingID.TabStop = False
         Me.txtReceivingID.Visible = False
@@ -2164,7 +2192,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbPo.FormattingEnabled = True
         Me.cmbPo.Location = New System.Drawing.Point(782, 114)
         Me.cmbPo.Name = "cmbPo"
-        Me.cmbPo.Size = New System.Drawing.Size(90, 21)
+        Me.cmbPo.Size = New System.Drawing.Size(90, 25)
         Me.cmbPo.TabIndex = 1
         Me.cmbPo.TabStop = False
         Me.cmbPo.Visible = False
@@ -2176,7 +2204,7 @@ Partial Class frmPurchaseOrderNew
         Me.UltraTabPageControl2.Controls.Add(Me.SplitContainer1)
         Me.UltraTabPageControl2.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl2.Name = "UltraTabPageControl2"
-        Me.UltraTabPageControl2.Size = New System.Drawing.Size(1038, 660)
+        Me.UltraTabPageControl2.Size = New System.Drawing.Size(1038, 657)
         '
         'CtrlGrdBar2
         '
@@ -2212,6 +2240,7 @@ Partial Class frmPurchaseOrderNew
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ToolStrip2.AutoSize = False
         Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip2.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnSearchEdit, Me.btnSearchPrint, Me.toolStripSeparator2, Me.btnSearchDelete, Me.toolStripSeparator3, Me.ToolStripButton2, Me.btnSearchDocument, Me.ToolStripSeparator7, Me.btnPaymentSchedule1, Me.ToolStripSeparator8, Me.btnPayment, Me.HelpToolStripButton1, Me.btnImport})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
@@ -2224,7 +2253,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnSearchEdit.Image = CType(resources.GetObject("btnSearchEdit.Image"), System.Drawing.Image)
         Me.btnSearchEdit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSearchEdit.Name = "btnSearchEdit"
-        Me.btnSearchEdit.Size = New System.Drawing.Size(47, 22)
+        Me.btnSearchEdit.Size = New System.Drawing.Size(59, 22)
         Me.btnSearchEdit.Text = "&Edit"
         '
         'btnSearchPrint
@@ -2233,24 +2262,24 @@ Partial Class frmPurchaseOrderNew
         Me.btnSearchPrint.Image = CType(resources.GetObject("btnSearchPrint.Image"), System.Drawing.Image)
         Me.btnSearchPrint.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSearchPrint.Name = "btnSearchPrint"
-        Me.btnSearchPrint.Size = New System.Drawing.Size(64, 22)
+        Me.btnSearchPrint.Size = New System.Drawing.Size(78, 22)
         Me.btnSearchPrint.Text = "&Print"
         '
         'PrintSelectedVouchersToolStripMenuItem
         '
         Me.PrintSelectedVouchersToolStripMenuItem.Name = "PrintSelectedVouchersToolStripMenuItem"
-        Me.PrintSelectedVouchersToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.PrintSelectedVouchersToolStripMenuItem.Size = New System.Drawing.Size(326, 26)
         Me.PrintSelectedVouchersToolStripMenuItem.Text = "Print Selected Vouchers"
         '
         'PrintPOWithArticleImageToolStripMenuItem1
         '
         Me.PrintPOWithArticleImageToolStripMenuItem1.Name = "PrintPOWithArticleImageToolStripMenuItem1"
-        Me.PrintPOWithArticleImageToolStripMenuItem1.Size = New System.Drawing.Size(266, 22)
+        Me.PrintPOWithArticleImageToolStripMenuItem1.Size = New System.Drawing.Size(326, 26)
         '
         'PrintPOWithArticleImageToolStripMenuItem
         '
         Me.PrintPOWithArticleImageToolStripMenuItem.Name = "PrintPOWithArticleImageToolStripMenuItem"
-        Me.PrintPOWithArticleImageToolStripMenuItem.Size = New System.Drawing.Size(266, 22)
+        Me.PrintPOWithArticleImageToolStripMenuItem.Size = New System.Drawing.Size(326, 26)
         Me.PrintPOWithArticleImageToolStripMenuItem.Text = "Selected Print PO With Article Image"
         '
         'toolStripSeparator2
@@ -2263,7 +2292,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnSearchDelete.Image = CType(resources.GetObject("btnSearchDelete.Image"), System.Drawing.Image)
         Me.btnSearchDelete.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSearchDelete.Name = "btnSearchDelete"
-        Me.btnSearchDelete.Size = New System.Drawing.Size(60, 22)
+        Me.btnSearchDelete.Size = New System.Drawing.Size(77, 22)
         Me.btnSearchDelete.Text = "D&elete"
         '
         'toolStripSeparator3
@@ -2276,7 +2305,7 @@ Partial Class frmPurchaseOrderNew
         Me.ToolStripButton2.Image = Global.SimpleAccounts.My.Resources.Resources.sendcontactdetails
         Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(70, 22)
+        Me.ToolStripButton2.Size = New System.Drawing.Size(88, 22)
         Me.ToolStripButton2.Text = "Load All"
         '
         'btnSearchDocument
@@ -2284,7 +2313,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnSearchDocument.Image = Global.SimpleAccounts.My.Resources.Resources.search_32
         Me.btnSearchDocument.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSearchDocument.Name = "btnSearchDocument"
-        Me.btnSearchDocument.Size = New System.Drawing.Size(65, 22)
+        Me.btnSearchDocument.Size = New System.Drawing.Size(81, 22)
         Me.btnSearchDocument.Text = "Search "
         '
         'ToolStripSeparator7
@@ -2297,7 +2326,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnPaymentSchedule1.Image = Global.SimpleAccounts.My.Resources.Resources.account_balances_icon
         Me.btnPaymentSchedule1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnPaymentSchedule1.Name = "btnPaymentSchedule1"
-        Me.btnPaymentSchedule1.Size = New System.Drawing.Size(125, 22)
+        Me.btnPaymentSchedule1.Size = New System.Drawing.Size(153, 22)
         Me.btnPaymentSchedule1.Text = "Payment Schedule"
         '
         'ToolStripSeparator8
@@ -2310,7 +2339,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnPayment.Image = Global.SimpleAccounts.My.Resources.Resources.cash
         Me.btnPayment.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnPayment.Name = "btnPayment"
-        Me.btnPayment.Size = New System.Drawing.Size(123, 22)
+        Me.btnPayment.Size = New System.Drawing.Size(150, 22)
         Me.btnPayment.Text = "Advance Payment"
         '
         'HelpToolStripButton1
@@ -2318,7 +2347,7 @@ Partial Class frmPurchaseOrderNew
         Me.HelpToolStripButton1.Image = CType(resources.GetObject("HelpToolStripButton1.Image"), System.Drawing.Image)
         Me.HelpToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.HelpToolStripButton1.Name = "HelpToolStripButton1"
-        Me.HelpToolStripButton1.Size = New System.Drawing.Size(52, 22)
+        Me.HelpToolStripButton1.Size = New System.Drawing.Size(65, 22)
         Me.HelpToolStripButton1.Text = "He&lp"
         '
         'btnImport
@@ -2327,21 +2356,21 @@ Partial Class frmPurchaseOrderNew
         Me.btnImport.Image = Global.SimpleAccounts.My.Resources.Resources.Documentation
         Me.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnImport.Name = "btnImport"
-        Me.btnImport.Size = New System.Drawing.Size(72, 22)
+        Me.btnImport.Size = New System.Drawing.Size(88, 22)
         Me.btnImport.Text = "&Import"
         '
         'AddLCToolStripMenuItem1
         '
         Me.AddLCToolStripMenuItem1.Image = Global.SimpleAccounts.My.Resources.Resources.PurchaseOrder
         Me.AddLCToolStripMenuItem1.Name = "AddLCToolStripMenuItem1"
-        Me.AddLCToolStripMenuItem1.Size = New System.Drawing.Size(164, 22)
+        Me.AddLCToolStripMenuItem1.Size = New System.Drawing.Size(195, 26)
         Me.AddLCToolStripMenuItem1.Text = "Add LC"
         '
         'PerformaInvoiceToolStripMenuItem
         '
         Me.PerformaInvoiceToolStripMenuItem.Image = Global.SimpleAccounts.My.Resources.Resources.custom_reports
         Me.PerformaInvoiceToolStripMenuItem.Name = "PerformaInvoiceToolStripMenuItem"
-        Me.PerformaInvoiceToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.PerformaInvoiceToolStripMenuItem.Size = New System.Drawing.Size(195, 26)
         Me.PerformaInvoiceToolStripMenuItem.Text = "Performa Invoice"
         '
         'SplitContainer1
@@ -2409,7 +2438,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label26.AutoSize = True
         Me.Label26.Location = New System.Drawing.Point(479, 64)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(58, 13)
+        Me.Label26.Size = New System.Drawing.Size(69, 17)
         Me.Label26.TabIndex = 16
         Me.Label26.Text = "Remarks"
         '
@@ -2418,7 +2447,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label25.AutoSize = True
         Me.Label25.Location = New System.Drawing.Point(479, 37)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(47, 13)
+        Me.Label25.Size = New System.Drawing.Size(58, 17)
         Me.Label25.TabIndex = 14
         Me.Label25.Text = "Vendor"
         '
@@ -2427,7 +2456,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label24.AutoSize = True
         Me.Label24.Location = New System.Drawing.Point(244, 32)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(78, 13)
+        Me.Label24.Size = New System.Drawing.Size(95, 17)
         Me.Label24.TabIndex = 7
         Me.Label24.Text = "Purchase No"
         '
@@ -2436,7 +2465,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label23.AutoSize = True
         Me.Label23.Location = New System.Drawing.Point(244, 86)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(112, 13)
+        Me.Label23.Size = New System.Drawing.Size(141, 17)
         Me.Label23.TabIndex = 12
         Me.Label23.Text = "Less Than Amount"
         '
@@ -2445,7 +2474,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label22.AutoSize = True
         Me.Label22.Location = New System.Drawing.Point(244, 59)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(124, 13)
+        Me.Label22.Size = New System.Drawing.Size(154, 17)
         Me.Label22.TabIndex = 9
         Me.Label22.Text = "Larger Than Amount"
         '
@@ -2454,7 +2483,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label21.AutoSize = True
         Me.Label21.Location = New System.Drawing.Point(479, 89)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(54, 13)
+        Me.Label21.Size = New System.Drawing.Size(67, 17)
         Me.Label21.TabIndex = 18
         Me.Label21.Text = "Location"
         '
@@ -2463,7 +2492,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label11.AutoSize = True
         Me.Label11.Location = New System.Drawing.Point(6, 86)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(84, 13)
+        Me.Label11.Size = New System.Drawing.Size(104, 17)
         Me.Label11.TabIndex = 5
         Me.Label11.Text = "Document No"
         '
@@ -2471,7 +2500,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtSearchRemarks.Location = New System.Drawing.Point(563, 60)
         Me.txtSearchRemarks.Name = "txtSearchRemarks"
-        Me.txtSearchRemarks.Size = New System.Drawing.Size(233, 21)
+        Me.txtSearchRemarks.Size = New System.Drawing.Size(233, 24)
         Me.txtSearchRemarks.TabIndex = 17
         Me.ToolTip1.SetToolTip(Me.txtSearchRemarks, "Remarks ")
         '
@@ -2521,7 +2550,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbSearchAccount.LimitToList = True
         Me.cmbSearchAccount.Location = New System.Drawing.Point(563, 32)
         Me.cmbSearchAccount.Name = "cmbSearchAccount"
-        Me.cmbSearchAccount.Size = New System.Drawing.Size(233, 23)
+        Me.cmbSearchAccount.Size = New System.Drawing.Size(233, 27)
         Me.cmbSearchAccount.TabIndex = 15
         Me.ToolTip1.SetToolTip(Me.cmbSearchAccount, "Select Any Vendor")
         '
@@ -2529,7 +2558,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtPurchaseNo.Location = New System.Drawing.Point(373, 29)
         Me.txtPurchaseNo.Name = "txtPurchaseNo"
-        Me.txtPurchaseNo.Size = New System.Drawing.Size(100, 21)
+        Me.txtPurchaseNo.Size = New System.Drawing.Size(100, 24)
         Me.txtPurchaseNo.TabIndex = 8
         Me.ToolTip1.SetToolTip(Me.txtPurchaseNo, "Purchase No")
         '
@@ -2538,7 +2567,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbSearchLocation.FormattingEnabled = True
         Me.cmbSearchLocation.Location = New System.Drawing.Point(563, 86)
         Me.cmbSearchLocation.Name = "cmbSearchLocation"
-        Me.cmbSearchLocation.Size = New System.Drawing.Size(144, 21)
+        Me.cmbSearchLocation.Size = New System.Drawing.Size(144, 25)
         Me.cmbSearchLocation.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.cmbSearchLocation, "Select Any Location")
         '
@@ -2546,7 +2575,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtFromAmount.Location = New System.Drawing.Point(374, 55)
         Me.txtFromAmount.Name = "txtFromAmount"
-        Me.txtFromAmount.Size = New System.Drawing.Size(100, 21)
+        Me.txtFromAmount.Size = New System.Drawing.Size(100, 24)
         Me.txtFromAmount.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.txtFromAmount, "Larger Than Amount")
         '
@@ -2554,7 +2583,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtToAmount.Location = New System.Drawing.Point(374, 82)
         Me.txtToAmount.Name = "txtToAmount"
-        Me.txtToAmount.Size = New System.Drawing.Size(100, 21)
+        Me.txtToAmount.Size = New System.Drawing.Size(100, 24)
         Me.txtToAmount.TabIndex = 13
         Me.ToolTip1.SetToolTip(Me.txtToAmount, "Less Than Amount")
         '
@@ -2562,7 +2591,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtSearchDocNo.Location = New System.Drawing.Point(93, 82)
         Me.txtSearchDocNo.Name = "txtSearchDocNo"
-        Me.txtSearchDocNo.Size = New System.Drawing.Size(145, 21)
+        Me.txtSearchDocNo.Size = New System.Drawing.Size(145, 24)
         Me.txtSearchDocNo.TabIndex = 6
         Me.ToolTip1.SetToolTip(Me.txtSearchDocNo, "Document No")
         '
@@ -2571,7 +2600,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label19.AutoSize = True
         Me.Label19.Location = New System.Drawing.Point(6, 59)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(51, 13)
+        Me.Label19.Size = New System.Drawing.Size(62, 17)
         Me.Label19.TabIndex = 2
         Me.Label19.Text = "To Date"
         '
@@ -2580,7 +2609,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label20.AutoSize = True
         Me.Label20.Location = New System.Drawing.Point(6, 32)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(67, 13)
+        Me.Label20.Size = New System.Drawing.Size(82, 17)
         Me.Label20.TabIndex = 0
         Me.Label20.Text = "From Date"
         '
@@ -2591,7 +2620,7 @@ Partial Class frmPurchaseOrderNew
         Me.dtpFrom.Location = New System.Drawing.Point(93, 28)
         Me.dtpFrom.Name = "dtpFrom"
         Me.dtpFrom.ShowCheckBox = True
-        Me.dtpFrom.Size = New System.Drawing.Size(145, 21)
+        Me.dtpFrom.Size = New System.Drawing.Size(145, 24)
         Me.dtpFrom.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.dtpFrom, "From Date")
         '
@@ -2602,7 +2631,7 @@ Partial Class frmPurchaseOrderNew
         Me.dtpTo.Location = New System.Drawing.Point(93, 55)
         Me.dtpTo.Name = "dtpTo"
         Me.dtpTo.ShowCheckBox = True
-        Me.dtpTo.Size = New System.Drawing.Size(145, 21)
+        Me.dtpTo.Size = New System.Drawing.Size(145, 24)
         Me.dtpTo.TabIndex = 4
         Me.ToolTip1.SetToolTip(Me.dtpTo, "To Date")
         '
@@ -2612,7 +2641,7 @@ Partial Class frmPurchaseOrderNew
         Me.UltraTabPageControl6.Controls.Add(Me.ToolStrip5)
         Me.UltraTabPageControl6.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl6.Name = "UltraTabPageControl6"
-        Me.UltraTabPageControl6.Size = New System.Drawing.Size(1038, 660)
+        Me.UltraTabPageControl6.Size = New System.Drawing.Size(1038, 657)
         '
         'GridEX2
         '
@@ -2630,7 +2659,7 @@ Partial Class frmPurchaseOrderNew
         Me.GridEX2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GridEX2.Name = "GridEX2"
         Me.GridEX2.RecordNavigator = True
-        Me.GridEX2.Size = New System.Drawing.Size(1038, 627)
+        Me.GridEX2.Size = New System.Drawing.Size(1038, 624)
         Me.GridEX2.TabIndex = 47
         Me.ToolTip1.SetToolTip(Me.GridEX2, "Saved Record Detail")
         Me.GridEX2.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -2638,6 +2667,7 @@ Partial Class frmPurchaseOrderNew
         'ToolStrip5
         '
         Me.ToolStrip5.AutoSize = False
+        Me.ToolStrip5.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton7, Me.ToolStripButton8, Me.ToolStripSeparator13, Me.ToolStripButton9})
         Me.ToolStrip5.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip5.Name = "ToolStrip5"
@@ -2650,7 +2680,7 @@ Partial Class frmPurchaseOrderNew
         Me.ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), System.Drawing.Image)
         Me.ToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton7.Name = "ToolStripButton7"
-        Me.ToolStripButton7.Size = New System.Drawing.Size(104, 30)
+        Me.ToolStripButton7.Size = New System.Drawing.Size(132, 30)
         Me.ToolStripButton7.Text = "&Load Template"
         '
         'ToolStripButton8
@@ -2658,7 +2688,7 @@ Partial Class frmPurchaseOrderNew
         Me.ToolStripButton8.Image = CType(resources.GetObject("ToolStripButton8.Image"), System.Drawing.Image)
         Me.ToolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton8.Name = "ToolStripButton8"
-        Me.ToolStripButton8.Size = New System.Drawing.Size(60, 30)
+        Me.ToolStripButton8.Size = New System.Drawing.Size(77, 30)
         Me.ToolStripButton8.Text = "D&elete"
         '
         'ToolStripSeparator13
@@ -2671,7 +2701,7 @@ Partial Class frmPurchaseOrderNew
         Me.ToolStripButton9.Image = CType(resources.GetObject("ToolStripButton9.Image"), System.Drawing.Image)
         Me.ToolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton9.Name = "ToolStripButton9"
-        Me.ToolStripButton9.Size = New System.Drawing.Size(52, 30)
+        Me.ToolStripButton9.Size = New System.Drawing.Size(65, 30)
         Me.ToolStripButton9.Text = "He&lp"
         '
         'PrintPOWithImageToolStripMenuItem1
@@ -2684,7 +2714,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtPaid.Location = New System.Drawing.Point(550, 409)
         Me.txtPaid.Name = "txtPaid"
-        Me.txtPaid.Size = New System.Drawing.Size(131, 21)
+        Me.txtPaid.Size = New System.Drawing.Size(131, 24)
         Me.txtPaid.TabIndex = 1
         Me.txtPaid.Visible = False
         '
@@ -2692,7 +2722,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtBalance.Location = New System.Drawing.Point(550, 435)
         Me.txtBalance.Name = "txtBalance"
-        Me.txtBalance.Size = New System.Drawing.Size(131, 21)
+        Me.txtBalance.Size = New System.Drawing.Size(131, 24)
         Me.txtBalance.TabIndex = 3
         Me.txtBalance.Visible = False
         '
@@ -2701,7 +2731,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label12.AutoSize = True
         Me.Label12.Location = New System.Drawing.Point(472, 412)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(64, 13)
+        Me.Label12.Size = New System.Drawing.Size(76, 17)
         Me.Label12.TabIndex = 0
         Me.Label12.Text = "Cash Paid"
         Me.Label12.Visible = False
@@ -2711,7 +2741,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label13.AutoSize = True
         Me.Label13.Location = New System.Drawing.Point(472, 435)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(52, 13)
+        Me.Label13.Size = New System.Drawing.Size(61, 17)
         Me.Label13.TabIndex = 2
         Me.Label13.Text = "Balance"
         Me.Label13.Visible = False
@@ -2743,7 +2773,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.UltraTabSharedControlsPage1.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabSharedControlsPage1.Name = "UltraTabSharedControlsPage1"
-        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(1038, 660)
+        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(1038, 657)
         '
         'BackgroundWorker1
         '
@@ -2789,7 +2819,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtInquiryNo.Location = New System.Drawing.Point(893, 58)
         Me.txtInquiryNo.Name = "txtInquiryNo"
-        Me.txtInquiryNo.Size = New System.Drawing.Size(145, 20)
+        Me.txtInquiryNo.Size = New System.Drawing.Size(145, 22)
         Me.txtInquiryNo.TabIndex = 21
         Me.ToolTip1.SetToolTip(Me.txtInquiryNo, "Sales Inquiry No")
         '
@@ -2797,7 +2827,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtCustomerInquiryNo.Location = New System.Drawing.Point(893, 31)
         Me.txtCustomerInquiryNo.Name = "txtCustomerInquiryNo"
-        Me.txtCustomerInquiryNo.Size = New System.Drawing.Size(145, 20)
+        Me.txtCustomerInquiryNo.Size = New System.Drawing.Size(145, 22)
         Me.txtCustomerInquiryNo.TabIndex = 19
         Me.ToolTip1.SetToolTip(Me.txtCustomerInquiryNo, "Sales Inquiry No")
         '
@@ -2805,7 +2835,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.TextBox1.Location = New System.Drawing.Point(609, 60)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(145, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(145, 22)
         Me.TextBox1.TabIndex = 15
         Me.ToolTip1.SetToolTip(Me.TextBox1, "Remarks")
         '
@@ -2844,7 +2874,7 @@ Partial Class frmPurchaseOrderNew
         Me.UltraCombo1.LimitToList = True
         Me.UltraCombo1.Location = New System.Drawing.Point(609, 32)
         Me.UltraCombo1.Name = "UltraCombo1"
-        Me.UltraCombo1.Size = New System.Drawing.Size(145, 22)
+        Me.UltraCombo1.Size = New System.Drawing.Size(145, 25)
         Me.UltraCombo1.TabIndex = 13
         Me.ToolTip1.SetToolTip(Me.UltraCombo1, "Select Any Customer")
         '
@@ -2852,7 +2882,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.TextBox2.Location = New System.Drawing.Point(374, 28)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(145, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(145, 22)
         Me.TextBox2.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.TextBox2, "Sales No")
         '
@@ -2861,7 +2891,7 @@ Partial Class frmPurchaseOrderNew
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(609, 85)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(145, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(145, 24)
         Me.ComboBox1.TabIndex = 17
         Me.ToolTip1.SetToolTip(Me.ComboBox1, "Select Any Location")
         '
@@ -2869,7 +2899,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.TextBox3.Location = New System.Drawing.Point(374, 55)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(145, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(145, 22)
         Me.TextBox3.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.TextBox3, "Larger Than Amount")
         '
@@ -2877,7 +2907,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.TextBox4.Location = New System.Drawing.Point(374, 82)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(145, 20)
+        Me.TextBox4.Size = New System.Drawing.Size(145, 22)
         Me.TextBox4.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.TextBox4, "Less Than Amount")
         '
@@ -2885,7 +2915,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.TextBox5.Location = New System.Drawing.Point(93, 82)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(145, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(145, 22)
         Me.TextBox5.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.TextBox5, "Document No")
         '
@@ -2896,7 +2926,7 @@ Partial Class frmPurchaseOrderNew
         Me.DateTimePicker1.Location = New System.Drawing.Point(93, 28)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.ShowCheckBox = True
-        Me.DateTimePicker1.Size = New System.Drawing.Size(145, 20)
+        Me.DateTimePicker1.Size = New System.Drawing.Size(145, 22)
         Me.DateTimePicker1.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.DateTimePicker1, "From Date")
         '
@@ -2907,7 +2937,7 @@ Partial Class frmPurchaseOrderNew
         Me.DateTimePicker2.Location = New System.Drawing.Point(93, 55)
         Me.DateTimePicker2.Name = "DateTimePicker2"
         Me.DateTimePicker2.ShowCheckBox = True
-        Me.DateTimePicker2.Size = New System.Drawing.Size(145, 20)
+        Me.DateTimePicker2.Size = New System.Drawing.Size(145, 22)
         Me.DateTimePicker2.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.DateTimePicker2, "To Date")
         '
@@ -2916,7 +2946,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbItemDescription.FormattingEnabled = True
         Me.cmbItemDescription.Location = New System.Drawing.Point(3, 33)
         Me.cmbItemDescription.Name = "cmbItemDescription"
-        Me.cmbItemDescription.Size = New System.Drawing.Size(121, 21)
+        Me.cmbItemDescription.Size = New System.Drawing.Size(121, 24)
         Me.cmbItemDescription.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbItemDescription, "Item Description")
         '
@@ -2925,7 +2955,7 @@ Partial Class frmPurchaseOrderNew
         Me.TextBox6.Location = New System.Drawing.Point(85, 39)
         Me.TextBox6.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(174, 20)
+        Me.TextBox6.Size = New System.Drawing.Size(174, 22)
         Me.TextBox6.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.TextBox6, "Receipt Amount")
         '
@@ -2934,7 +2964,7 @@ Partial Class frmPurchaseOrderNew
         Me.LnkLoadAll.AutoSize = True
         Me.LnkLoadAll.Location = New System.Drawing.Point(15, 133)
         Me.LnkLoadAll.Name = "LnkLoadAll"
-        Me.LnkLoadAll.Size = New System.Drawing.Size(45, 13)
+        Me.LnkLoadAll.Size = New System.Drawing.Size(59, 17)
         Me.LnkLoadAll.TabIndex = 3
         Me.LnkLoadAll.TabStop = True
         Me.LnkLoadAll.Text = "Load All"
@@ -2945,7 +2975,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtManualSerialNo.Location = New System.Drawing.Point(85, 92)
         Me.txtManualSerialNo.Name = "txtManualSerialNo"
-        Me.txtManualSerialNo.Size = New System.Drawing.Size(174, 20)
+        Me.txtManualSerialNo.Size = New System.Drawing.Size(174, 22)
         Me.txtManualSerialNo.TabIndex = 10
         Me.ToolTip1.SetToolTip(Me.txtManualSerialNo, "Manual Serial No.")
         '
@@ -2955,7 +2985,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbRevisionNumber.FormattingEnabled = True
         Me.cmbRevisionNumber.Location = New System.Drawing.Point(217, 15)
         Me.cmbRevisionNumber.Name = "cmbRevisionNumber"
-        Me.cmbRevisionNumber.Size = New System.Drawing.Size(42, 21)
+        Me.cmbRevisionNumber.Size = New System.Drawing.Size(42, 24)
         Me.cmbRevisionNumber.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.cmbRevisionNumber, "Select Revision ")
         '
@@ -2967,7 +2997,7 @@ Partial Class frmPurchaseOrderNew
         Me.dtpPDate.Location = New System.Drawing.Point(85, 119)
         Me.dtpPDate.Name = "dtpPDate"
         Me.dtpPDate.ShowCheckBox = True
-        Me.dtpPDate.Size = New System.Drawing.Size(174, 20)
+        Me.dtpPDate.Size = New System.Drawing.Size(174, 22)
         Me.dtpPDate.TabIndex = 12
         Me.ToolTip1.SetToolTip(Me.dtpPDate, "Inquiry Date")
         '
@@ -2979,7 +3009,7 @@ Partial Class frmPurchaseOrderNew
         Me.dtpDeliveryDate.Location = New System.Drawing.Point(85, 68)
         Me.dtpDeliveryDate.Name = "dtpDeliveryDate"
         Me.dtpDeliveryDate.ShowCheckBox = True
-        Me.dtpDeliveryDate.Size = New System.Drawing.Size(174, 20)
+        Me.dtpDeliveryDate.Size = New System.Drawing.Size(174, 22)
         Me.dtpDeliveryDate.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.dtpDeliveryDate, "Delivery Date")
         '
@@ -2988,7 +3018,7 @@ Partial Class frmPurchaseOrderNew
         Me.TextBox7.Location = New System.Drawing.Point(85, 14)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(95, 20)
+        Me.TextBox7.Size = New System.Drawing.Size(95, 22)
         Me.TextBox7.TabIndex = 1
         Me.TextBox7.TabStop = False
         Me.ToolTip1.SetToolTip(Me.TextBox7, "Document No")
@@ -2999,7 +3029,7 @@ Partial Class frmPurchaseOrderNew
         Me.DateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.DateTimePicker3.Location = New System.Drawing.Point(85, 41)
         Me.DateTimePicker3.Name = "DateTimePicker3"
-        Me.DateTimePicker3.Size = New System.Drawing.Size(174, 20)
+        Me.DateTimePicker3.Size = New System.Drawing.Size(174, 22)
         Me.DateTimePicker3.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.DateTimePicker3, "Document Date")
         '
@@ -3007,7 +3037,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtCustPONo.Location = New System.Drawing.Point(85, 146)
         Me.txtCustPONo.Name = "txtCustPONo"
-        Me.txtCustPONo.Size = New System.Drawing.Size(174, 20)
+        Me.txtCustPONo.Size = New System.Drawing.Size(174, 22)
         Me.txtCustPONo.TabIndex = 15
         Me.ToolTip1.SetToolTip(Me.txtCustPONo, "Inquiry No.")
         '
@@ -3015,7 +3045,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtSubject.Location = New System.Drawing.Point(84, 266)
         Me.txtSubject.Name = "txtSubject"
-        Me.txtSubject.Size = New System.Drawing.Size(375, 20)
+        Me.txtSubject.Size = New System.Drawing.Size(375, 22)
         Me.txtSubject.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.txtSubject, "Enter Subject")
         '
@@ -3025,7 +3055,7 @@ Partial Class frmPurchaseOrderNew
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Location = New System.Drawing.Point(70, 96)
         Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(165, 21)
+        Me.ComboBox3.Size = New System.Drawing.Size(165, 24)
         Me.ComboBox3.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.ComboBox3, "Select SalesPerson")
         '
@@ -3035,7 +3065,7 @@ Partial Class frmPurchaseOrderNew
         Me.ComboBox4.FormattingEnabled = True
         Me.ComboBox4.Location = New System.Drawing.Point(70, 40)
         Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(165, 21)
+        Me.ComboBox4.Size = New System.Drawing.Size(165, 24)
         Me.ComboBox4.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.ComboBox4, "Select A Project")
         '
@@ -3045,7 +3075,7 @@ Partial Class frmPurchaseOrderNew
         Me.cmbCompany.FormattingEnabled = True
         Me.cmbCompany.Location = New System.Drawing.Point(70, 13)
         Me.cmbCompany.Name = "cmbCompany"
-        Me.cmbCompany.Size = New System.Drawing.Size(165, 21)
+        Me.cmbCompany.Size = New System.Drawing.Size(165, 24)
         Me.cmbCompany.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbCompany, "Select Invoice Type")
         '
@@ -3087,7 +3117,7 @@ Partial Class frmPurchaseOrderNew
         Me.UltraCombo2.LimitToList = True
         Me.UltraCombo2.Location = New System.Drawing.Point(70, 67)
         Me.UltraCombo2.Name = "UltraCombo2"
-        Me.UltraCombo2.Size = New System.Drawing.Size(165, 22)
+        Me.UltraCombo2.Size = New System.Drawing.Size(165, 25)
         Me.UltraCombo2.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.UltraCombo2, "Select Customer")
         '
@@ -3104,7 +3134,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtCustomerAddress.Location = New System.Drawing.Point(65, 50)
         Me.txtCustomerAddress.Name = "txtCustomerAddress"
-        Me.txtCustomerAddress.Size = New System.Drawing.Size(375, 20)
+        Me.txtCustomerAddress.Size = New System.Drawing.Size(375, 22)
         Me.txtCustomerAddress.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.txtCustomerAddress, "Address")
         '
@@ -3112,7 +3142,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtCustomerMobile.Location = New System.Drawing.Point(306, 23)
         Me.txtCustomerMobile.Name = "txtCustomerMobile"
-        Me.txtCustomerMobile.Size = New System.Drawing.Size(134, 20)
+        Me.txtCustomerMobile.Size = New System.Drawing.Size(134, 22)
         Me.txtCustomerMobile.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.txtCustomerMobile, "Enter Mobile No. of New Customer")
         '
@@ -3120,7 +3150,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtNewCustomer.Location = New System.Drawing.Point(65, 23)
         Me.txtNewCustomer.Name = "txtNewCustomer"
-        Me.txtNewCustomer.Size = New System.Drawing.Size(163, 20)
+        Me.txtNewCustomer.Size = New System.Drawing.Size(163, 22)
         Me.txtNewCustomer.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.txtNewCustomer, "Enter Name of New Customer")
         '
@@ -3128,7 +3158,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.TextBox9.Location = New System.Drawing.Point(84, 100)
         Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(134, 20)
+        Me.TextBox9.Size = New System.Drawing.Size(134, 22)
         Me.TextBox9.TabIndex = 8
         Me.ToolTip1.SetToolTip(Me.TextBox9, "Pack Rate")
         '
@@ -3136,7 +3166,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtSpecialAdjustment.Location = New System.Drawing.Point(83, 14)
         Me.txtSpecialAdjustment.Name = "txtSpecialAdjustment"
-        Me.txtSpecialAdjustment.Size = New System.Drawing.Size(134, 20)
+        Me.txtSpecialAdjustment.Size = New System.Drawing.Size(134, 22)
         Me.txtSpecialAdjustment.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.txtSpecialAdjustment, "Adjustment")
         '
@@ -3145,7 +3175,7 @@ Partial Class frmPurchaseOrderNew
         Me.txtNetBill.Location = New System.Drawing.Point(84, 73)
         Me.txtNetBill.Name = "txtNetBill"
         Me.txtNetBill.ReadOnly = True
-        Me.txtNetBill.Size = New System.Drawing.Size(134, 20)
+        Me.txtNetBill.Size = New System.Drawing.Size(134, 22)
         Me.txtNetBill.TabIndex = 6
         Me.ToolTip1.SetToolTip(Me.txtNetBill, "Net Bill")
         '
@@ -3163,6 +3193,7 @@ Partial Class frmPurchaseOrderNew
         'ToolStrip3
         '
         Me.ToolStrip3.AutoSize = False
+        Me.ToolStrip3.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoadTemplate, Me.btnDeleteTemplate, Me.ToolStripSeparator10, Me.ToolStripButton12})
         Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
@@ -3175,7 +3206,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnLoadTemplate.Image = CType(resources.GetObject("btnLoadTemplate.Image"), System.Drawing.Image)
         Me.btnLoadTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnLoadTemplate.Name = "btnLoadTemplate"
-        Me.btnLoadTemplate.Size = New System.Drawing.Size(104, 30)
+        Me.btnLoadTemplate.Size = New System.Drawing.Size(132, 30)
         Me.btnLoadTemplate.Text = "&Load Template"
         '
         'btnDeleteTemplate
@@ -3183,7 +3214,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnDeleteTemplate.Image = CType(resources.GetObject("btnDeleteTemplate.Image"), System.Drawing.Image)
         Me.btnDeleteTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnDeleteTemplate.Name = "btnDeleteTemplate"
-        Me.btnDeleteTemplate.Size = New System.Drawing.Size(60, 30)
+        Me.btnDeleteTemplate.Size = New System.Drawing.Size(77, 30)
         Me.btnDeleteTemplate.Text = "D&elete"
         '
         'ToolStripSeparator10
@@ -3196,7 +3227,7 @@ Partial Class frmPurchaseOrderNew
         Me.ToolStripButton12.Image = CType(resources.GetObject("ToolStripButton12.Image"), System.Drawing.Image)
         Me.ToolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton12.Name = "ToolStripButton12"
-        Me.ToolStripButton12.Size = New System.Drawing.Size(52, 30)
+        Me.ToolStripButton12.Size = New System.Drawing.Size(65, 30)
         Me.ToolStripButton12.Text = "He&lp"
         '
         'UltraTabControl3
@@ -3211,9 +3242,9 @@ Partial Class frmPurchaseOrderNew
         '
         'UltraTabSharedControlsPage3
         '
-        Me.UltraTabSharedControlsPage3.Location = New System.Drawing.Point(1, 20)
+        Me.UltraTabSharedControlsPage3.Location = New System.Drawing.Point(1, 24)
         Me.UltraTabSharedControlsPage3.Name = "UltraTabSharedControlsPage3"
-        Me.UltraTabSharedControlsPage3.Size = New System.Drawing.Size(196, 77)
+        Me.UltraTabSharedControlsPage3.Size = New System.Drawing.Size(196, 73)
         '
         'UltraTabPageControl7
         '
@@ -3239,6 +3270,7 @@ Partial Class frmPurchaseOrderNew
         'ToolStrip4
         '
         Me.ToolStrip4.AutoSize = False
+        Me.ToolStrip4.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton3, Me.ToolStripSeparator11, Me.ToolStripSplitButton1, Me.ToolStripButton4, Me.ToolStripSeparator12, Me.btnSearchLoadAll, Me.ToolStripButton5, Me.ToolStripButton6})
         Me.ToolStrip4.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip4.Name = "ToolStrip4"
@@ -3251,7 +3283,7 @@ Partial Class frmPurchaseOrderNew
         Me.ToolStripButton3.Image = Global.SimpleAccounts.My.Resources.Resources.BtnEdit_Image
         Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton3.Name = "ToolStripButton3"
-        Me.ToolStripButton3.Size = New System.Drawing.Size(47, 22)
+        Me.ToolStripButton3.Size = New System.Drawing.Size(59, 22)
         Me.ToolStripButton3.Text = "&Edit"
         '
         'ToolStripSeparator11
@@ -3265,61 +3297,61 @@ Partial Class frmPurchaseOrderNew
         Me.ToolStripSplitButton1.Image = Global.SimpleAccounts.My.Resources.Resources.print
         Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
-        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(64, 22)
+        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(78, 22)
         Me.ToolStripSplitButton1.Text = "&Print"
         '
         'SelectedQuotationPrintToolStripMenuItem
         '
         Me.SelectedQuotationPrintToolStripMenuItem.Name = "SelectedQuotationPrintToolStripMenuItem"
-        Me.SelectedQuotationPrintToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.SelectedQuotationPrintToolStripMenuItem.Size = New System.Drawing.Size(309, 26)
         Me.SelectedQuotationPrintToolStripMenuItem.Text = "Selected Quotation Print"
         '
         'PrintAttachmentQuotationToolStripMenuItem
         '
         Me.PrintAttachmentQuotationToolStripMenuItem.Name = "PrintAttachmentQuotationToolStripMenuItem"
-        Me.PrintAttachmentQuotationToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.PrintAttachmentQuotationToolStripMenuItem.Size = New System.Drawing.Size(309, 26)
         Me.PrintAttachmentQuotationToolStripMenuItem.Text = "Print Attachment Quotation"
         '
         'PrintQuotationQtyToolStripMenuItem
         '
         Me.PrintQuotationQtyToolStripMenuItem.Name = "PrintQuotationQtyToolStripMenuItem"
-        Me.PrintQuotationQtyToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.PrintQuotationQtyToolStripMenuItem.Size = New System.Drawing.Size(309, 26)
         Me.PrintQuotationQtyToolStripMenuItem.Text = "Print Quotation Qty"
         '
         'PrintQuotationTaxToolStripMenuItem
         '
         Me.PrintQuotationTaxToolStripMenuItem.Name = "PrintQuotationTaxToolStripMenuItem"
-        Me.PrintQuotationTaxToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.PrintQuotationTaxToolStripMenuItem.Size = New System.Drawing.Size(309, 26)
         Me.PrintQuotationTaxToolStripMenuItem.Text = "Print Quotation Tax"
         '
         'CustomPrintToolStripMenuItem
         '
         Me.CustomPrintToolStripMenuItem.Name = "CustomPrintToolStripMenuItem"
-        Me.CustomPrintToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.CustomPrintToolStripMenuItem.Size = New System.Drawing.Size(309, 26)
         Me.CustomPrintToolStripMenuItem.Text = "Custom Print"
         '
         'PrintQuotationItemSpecificationToolStripMenuItem1
         '
         Me.PrintQuotationItemSpecificationToolStripMenuItem1.Name = "PrintQuotationItemSpecificationToolStripMenuItem1"
-        Me.PrintQuotationItemSpecificationToolStripMenuItem1.Size = New System.Drawing.Size(254, 22)
+        Me.PrintQuotationItemSpecificationToolStripMenuItem1.Size = New System.Drawing.Size(309, 26)
         Me.PrintQuotationItemSpecificationToolStripMenuItem1.Text = "Print Quotation Item Specification"
         '
         'PrintQuotationWithImageToolStripMenuItem1
         '
         Me.PrintQuotationWithImageToolStripMenuItem1.Name = "PrintQuotationWithImageToolStripMenuItem1"
-        Me.PrintQuotationWithImageToolStripMenuItem1.Size = New System.Drawing.Size(254, 22)
+        Me.PrintQuotationWithImageToolStripMenuItem1.Size = New System.Drawing.Size(309, 26)
         Me.PrintQuotationWithImageToolStripMenuItem1.Text = "Print Quotation with Image"
         '
         'PrintDuplicateQuotationToolStripMenuItem1
         '
         Me.PrintDuplicateQuotationToolStripMenuItem1.Name = "PrintDuplicateQuotationToolStripMenuItem1"
-        Me.PrintDuplicateQuotationToolStripMenuItem1.Size = New System.Drawing.Size(254, 22)
+        Me.PrintDuplicateQuotationToolStripMenuItem1.Size = New System.Drawing.Size(309, 26)
         Me.PrintDuplicateQuotationToolStripMenuItem1.Text = "Print Duplicate Quotation"
         '
         'PrintSelectedRevisionToolStripMenuItem1
         '
         Me.PrintSelectedRevisionToolStripMenuItem1.Name = "PrintSelectedRevisionToolStripMenuItem1"
-        Me.PrintSelectedRevisionToolStripMenuItem1.Size = New System.Drawing.Size(254, 22)
+        Me.PrintSelectedRevisionToolStripMenuItem1.Size = New System.Drawing.Size(309, 26)
         Me.PrintSelectedRevisionToolStripMenuItem1.Text = "Print Selected Revision"
         '
         'ToolStripButton4
@@ -3327,7 +3359,7 @@ Partial Class frmPurchaseOrderNew
         Me.ToolStripButton4.Image = Global.SimpleAccounts.My.Resources.Resources.BtnDelete_Image
         Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton4.Name = "ToolStripButton4"
-        Me.ToolStripButton4.Size = New System.Drawing.Size(60, 22)
+        Me.ToolStripButton4.Size = New System.Drawing.Size(77, 22)
         Me.ToolStripButton4.Text = "Dele&te"
         '
         'ToolStripSeparator12
@@ -3340,7 +3372,7 @@ Partial Class frmPurchaseOrderNew
         Me.btnSearchLoadAll.Image = Global.SimpleAccounts.My.Resources.Resources.sendcontactdetails
         Me.btnSearchLoadAll.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSearchLoadAll.Name = "btnSearchLoadAll"
-        Me.btnSearchLoadAll.Size = New System.Drawing.Size(70, 22)
+        Me.btnSearchLoadAll.Size = New System.Drawing.Size(88, 22)
         Me.btnSearchLoadAll.Text = "&Load All"
         '
         'ToolStripButton5
@@ -3348,14 +3380,14 @@ Partial Class frmPurchaseOrderNew
         Me.ToolStripButton5.Image = Global.SimpleAccounts.My.Resources.Resources.search_32
         Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(62, 22)
+        Me.ToolStripButton5.Size = New System.Drawing.Size(77, 22)
         Me.ToolStripButton5.Text = "Search"
         '
         'ToolStripButton6
         '
         Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton6.Name = "ToolStripButton6"
-        Me.ToolStripButton6.Size = New System.Drawing.Size(36, 22)
+        Me.ToolStripButton6.Size = New System.Drawing.Size(45, 22)
         Me.ToolStripButton6.Text = "He&lp"
         '
         'SplitContainer2
@@ -3417,7 +3449,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label14.AutoSize = True
         Me.Label14.Location = New System.Drawing.Point(760, 61)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(55, 13)
+        Me.Label14.Size = New System.Drawing.Size(72, 17)
         Me.Label14.TabIndex = 22
         Me.Label14.Text = "Inquiry No"
         '
@@ -3426,7 +3458,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label46.AutoSize = True
         Me.Label46.Location = New System.Drawing.Point(760, 37)
         Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(102, 13)
+        Me.Label46.Size = New System.Drawing.Size(136, 17)
         Me.Label46.TabIndex = 20
         Me.Label46.Text = "Customer Inquiry No"
         '
@@ -3444,7 +3476,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label39.AutoSize = True
         Me.Label39.Location = New System.Drawing.Point(525, 64)
         Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(49, 13)
+        Me.Label39.Size = New System.Drawing.Size(64, 17)
         Me.Label39.TabIndex = 14
         Me.Label39.Text = "Remarks"
         '
@@ -3453,7 +3485,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label41.AutoSize = True
         Me.Label41.Location = New System.Drawing.Point(525, 37)
         Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(51, 13)
+        Me.Label41.Size = New System.Drawing.Size(68, 17)
         Me.Label41.TabIndex = 12
         Me.Label41.Text = "Customer"
         '
@@ -3462,7 +3494,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label42.AutoSize = True
         Me.Label42.Location = New System.Drawing.Point(244, 31)
         Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(39, 13)
+        Me.Label42.Size = New System.Drawing.Size(50, 17)
         Me.Label42.TabIndex = 6
         Me.Label42.Text = "SO No"
         '
@@ -3471,7 +3503,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label43.AutoSize = True
         Me.Label43.Location = New System.Drawing.Point(244, 86)
         Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(96, 13)
+        Me.Label43.Size = New System.Drawing.Size(127, 17)
         Me.Label43.TabIndex = 10
         Me.Label43.Text = "Less Than Amount"
         '
@@ -3480,7 +3512,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label44.AutoSize = True
         Me.Label44.Location = New System.Drawing.Point(244, 59)
         Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(104, 13)
+        Me.Label44.Size = New System.Drawing.Size(139, 17)
         Me.Label44.TabIndex = 8
         Me.Label44.Text = "Larger Than Amount"
         '
@@ -3489,7 +3521,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label45.AutoSize = True
         Me.Label45.Location = New System.Drawing.Point(523, 88)
         Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(51, 13)
+        Me.Label45.Size = New System.Drawing.Size(67, 17)
         Me.Label45.TabIndex = 16
         Me.Label45.Text = "Company"
         '
@@ -3498,7 +3530,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label47.AutoSize = True
         Me.Label47.Location = New System.Drawing.Point(6, 86)
         Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(73, 13)
+        Me.Label47.Size = New System.Drawing.Size(94, 17)
         Me.Label47.TabIndex = 4
         Me.Label47.Text = "Document No"
         '
@@ -3507,7 +3539,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label48.AutoSize = True
         Me.Label48.Location = New System.Drawing.Point(6, 59)
         Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(46, 13)
+        Me.Label48.Size = New System.Drawing.Size(59, 17)
         Me.Label48.TabIndex = 2
         Me.Label48.Text = "To Date"
         '
@@ -3516,7 +3548,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label49.AutoSize = True
         Me.Label49.Location = New System.Drawing.Point(6, 32)
         Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(56, 13)
+        Me.Label49.Size = New System.Drawing.Size(74, 17)
         Me.Label49.TabIndex = 0
         Me.Label49.Text = "From Date"
         '
@@ -3566,7 +3598,7 @@ Partial Class frmPurchaseOrderNew
         Me.GroupBox9.Controls.Add(Me.Label55)
         Me.GroupBox9.Location = New System.Drawing.Point(755, 6)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(9932, 253)
+        Me.GroupBox9.Size = New System.Drawing.Size(11588, 253)
         Me.GroupBox9.TabIndex = 0
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "Item Description"
@@ -3576,7 +3608,7 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtTenderSrNo.Location = New System.Drawing.Point(6, 227)
         Me.txtTenderSrNo.Name = "txtTenderSrNo"
-        Me.txtTenderSrNo.Size = New System.Drawing.Size(119, 20)
+        Me.txtTenderSrNo.Size = New System.Drawing.Size(119, 22)
         Me.txtTenderSrNo.TabIndex = 1
         '
         'Label50
@@ -3584,7 +3616,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label50.AutoSize = True
         Me.Label50.Location = New System.Drawing.Point(6, 212)
         Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(71, 13)
+        Me.Label50.Size = New System.Drawing.Size(94, 17)
         Me.Label50.TabIndex = 0
         Me.Label50.Text = "Tender Sr No"
         '
@@ -3592,14 +3624,14 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtTradePrice.Location = New System.Drawing.Point(5, 148)
         Me.txtTradePrice.Name = "txtTradePrice"
-        Me.txtTradePrice.Size = New System.Drawing.Size(119, 20)
+        Me.txtTradePrice.Size = New System.Drawing.Size(119, 22)
         Me.txtTradePrice.TabIndex = 7
         '
         'txtItemRegNo
         '
         Me.txtItemRegNo.Location = New System.Drawing.Point(5, 108)
         Me.txtItemRegNo.Name = "txtItemRegNo"
-        Me.txtItemRegNo.Size = New System.Drawing.Size(119, 20)
+        Me.txtItemRegNo.Size = New System.Drawing.Size(119, 22)
         Me.txtItemRegNo.TabIndex = 5
         '
         'Label51
@@ -3607,7 +3639,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label51.AutoSize = True
         Me.Label51.Location = New System.Drawing.Point(3, 18)
         Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(60, 13)
+        Me.Label51.Size = New System.Drawing.Size(79, 17)
         Me.Label51.TabIndex = 0
         Me.Label51.Text = "Description"
         '
@@ -3615,14 +3647,14 @@ Partial Class frmPurchaseOrderNew
         '
         Me.txtSpecs.Location = New System.Drawing.Point(3, 68)
         Me.txtSpecs.Name = "txtSpecs"
-        Me.txtSpecs.Size = New System.Drawing.Size(119, 20)
+        Me.txtSpecs.Size = New System.Drawing.Size(119, 22)
         Me.txtSpecs.TabIndex = 3
         '
         'txtBrand
         '
         Me.txtBrand.Location = New System.Drawing.Point(5, 188)
         Me.txtBrand.Name = "txtBrand"
-        Me.txtBrand.Size = New System.Drawing.Size(119, 20)
+        Me.txtBrand.Size = New System.Drawing.Size(119, 22)
         Me.txtBrand.TabIndex = 10
         '
         'Label52
@@ -3630,7 +3662,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label52.AutoSize = True
         Me.Label52.Location = New System.Drawing.Point(6, 132)
         Me.Label52.Name = "Label52"
-        Me.Label52.Size = New System.Drawing.Size(62, 13)
+        Me.Label52.Size = New System.Drawing.Size(82, 17)
         Me.Label52.TabIndex = 6
         Me.Label52.Text = "Trade Price"
         '
@@ -3639,7 +3671,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label53.AutoSize = True
         Me.Label53.Location = New System.Drawing.Point(3, 92)
         Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(47, 13)
+        Me.Label53.Size = New System.Drawing.Size(60, 17)
         Me.Label53.TabIndex = 4
         Me.Label53.Text = "Reg. No"
         '
@@ -3648,7 +3680,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label54.AutoSize = True
         Me.Label54.Location = New System.Drawing.Point(3, 52)
         Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(73, 13)
+        Me.Label54.Size = New System.Drawing.Size(95, 17)
         Me.Label54.TabIndex = 2
         Me.Label54.Text = "Specifications"
         '
@@ -3657,7 +3689,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label55.AutoSize = True
         Me.Label55.Location = New System.Drawing.Point(6, 172)
         Me.Label55.Name = "Label55"
-        Me.Label55.Size = New System.Drawing.Size(66, 13)
+        Me.Label55.Size = New System.Drawing.Size(87, 17)
         Me.Label55.TabIndex = 9
         Me.Label55.Text = "Brand Name"
         '
@@ -3680,7 +3712,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label57.Location = New System.Drawing.Point(4, 15)
         Me.Label57.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label57.Name = "Label57"
-        Me.Label57.Size = New System.Drawing.Size(60, 13)
+        Me.Label57.Size = New System.Drawing.Size(71, 17)
         Me.Label57.TabIndex = 0
         Me.Label57.Text = "Currency"
         '
@@ -3691,7 +3723,7 @@ Partial Class frmPurchaseOrderNew
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Location = New System.Drawing.Point(85, 12)
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(174, 21)
+        Me.ComboBox2.Size = New System.Drawing.Size(174, 24)
         Me.ComboBox2.TabIndex = 1
         '
         'lblCurrencyRate
@@ -3701,7 +3733,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblCurrencyRate.Location = New System.Drawing.Point(4, 42)
         Me.lblCurrencyRate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCurrencyRate.Name = "lblCurrencyRate"
-        Me.lblCurrencyRate.Size = New System.Drawing.Size(33, 13)
+        Me.lblCurrencyRate.Size = New System.Drawing.Size(40, 17)
         Me.lblCurrencyRate.TabIndex = 2
         Me.lblCurrencyRate.Text = "Rate"
         '
@@ -3735,7 +3767,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label56.AutoSize = True
         Me.Label56.Location = New System.Drawing.Point(6, 99)
         Me.Label56.Name = "Label56"
-        Me.Label56.Size = New System.Drawing.Size(53, 13)
+        Me.Label56.Size = New System.Drawing.Size(70, 17)
         Me.Label56.TabIndex = 8
         Me.Label56.Text = "Serial No."
         '
@@ -3744,7 +3776,7 @@ Partial Class frmPurchaseOrderNew
         Me.lnkLblRevisions.AutoSize = True
         Me.lnkLblRevisions.Location = New System.Drawing.Point(186, 17)
         Me.lnkLblRevisions.Name = "lnkLblRevisions"
-        Me.lnkLblRevisions.Size = New System.Drawing.Size(27, 13)
+        Me.lnkLblRevisions.Size = New System.Drawing.Size(33, 17)
         Me.lnkLblRevisions.TabIndex = 2
         Me.lnkLblRevisions.TabStop = True
         Me.lnkLblRevisions.Text = "Rev"
@@ -3754,7 +3786,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblRev.AutoSize = True
         Me.lblRev.Location = New System.Drawing.Point(185, 18)
         Me.lblRev.Name = "lblRev"
-        Me.lblRev.Size = New System.Drawing.Size(27, 13)
+        Me.lblRev.Size = New System.Drawing.Size(33, 17)
         Me.lblRev.TabIndex = 2
         Me.lblRev.Text = "Rev"
         '
@@ -3763,7 +3795,7 @@ Partial Class frmPurchaseOrderNew
         Me.ChkApproved.AutoSize = True
         Me.ChkApproved.Location = New System.Drawing.Point(145, 170)
         Me.ChkApproved.Name = "ChkApproved"
-        Me.ChkApproved.Size = New System.Drawing.Size(72, 17)
+        Me.ChkApproved.Size = New System.Drawing.Size(91, 21)
         Me.ChkApproved.TabIndex = 0
         Me.ChkApproved.Text = "Approved"
         Me.ChkApproved.UseVisualStyleBackColor = True
@@ -3773,7 +3805,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label58.AutoSize = True
         Me.Label58.Location = New System.Drawing.Point(6, 119)
         Me.Label58.Name = "Label58"
-        Me.Label58.Size = New System.Drawing.Size(64, 13)
+        Me.Label58.Size = New System.Drawing.Size(84, 17)
         Me.Label58.TabIndex = 11
         Me.Label58.Text = "Inquiry Date"
         '
@@ -3782,7 +3814,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblDeliveryDate.AutoSize = True
         Me.lblDeliveryDate.Location = New System.Drawing.Point(6, 72)
         Me.lblDeliveryDate.Name = "lblDeliveryDate"
-        Me.lblDeliveryDate.Size = New System.Drawing.Size(49, 13)
+        Me.lblDeliveryDate.Size = New System.Drawing.Size(62, 17)
         Me.lblDeliveryDate.TabIndex = 6
         Me.lblDeliveryDate.Text = "DR Date"
         '
@@ -3791,7 +3823,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label59.AutoSize = True
         Me.Label59.Location = New System.Drawing.Point(6, 146)
         Me.Label59.Name = "Label59"
-        Me.Label59.Size = New System.Drawing.Size(58, 13)
+        Me.Label59.Size = New System.Drawing.Size(76, 17)
         Me.Label59.TabIndex = 14
         Me.Label59.Text = "Inquiry No."
         '
@@ -3800,7 +3832,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label60.AutoSize = True
         Me.Label60.Location = New System.Drawing.Point(6, 43)
         Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(53, 13)
+        Me.Label60.Size = New System.Drawing.Size(67, 17)
         Me.Label60.TabIndex = 4
         Me.Label60.Text = "Doc Date"
         '
@@ -3809,7 +3841,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label61.AutoSize = True
         Me.Label61.Location = New System.Drawing.Point(6, 17)
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(47, 13)
+        Me.Label61.Size = New System.Drawing.Size(59, 17)
         Me.Label61.TabIndex = 0
         Me.Label61.Text = "Doc No."
         '
@@ -3818,7 +3850,7 @@ Partial Class frmPurchaseOrderNew
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Location = New System.Drawing.Point(89, 170)
         Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(47, 17)
+        Me.CheckBox1.Size = New System.Drawing.Size(58, 21)
         Me.CheckBox1.TabIndex = 16
         Me.CheckBox1.Text = "Post"
         Me.CheckBox1.UseVisualStyleBackColor = True
@@ -3846,7 +3878,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label62.AutoSize = True
         Me.Label62.Location = New System.Drawing.Point(9, 99)
         Me.Label62.Name = "Label62"
-        Me.Label62.Size = New System.Drawing.Size(52, 13)
+        Me.Label62.Size = New System.Drawing.Size(69, 17)
         Me.Label62.TabIndex = 6
         Me.Label62.Text = "SalesPer:"
         '
@@ -3855,7 +3887,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label63.AutoSize = True
         Me.Label63.Location = New System.Drawing.Point(6, 43)
         Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(40, 13)
+        Me.Label63.Size = New System.Drawing.Size(52, 17)
         Me.Label63.TabIndex = 2
         Me.Label63.Text = "Project"
         '
@@ -3864,7 +3896,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label64.AutoSize = True
         Me.Label64.Location = New System.Drawing.Point(9, 126)
         Me.Label64.Name = "Label64"
-        Me.Label64.Size = New System.Drawing.Size(49, 13)
+        Me.Label64.Size = New System.Drawing.Size(64, 17)
         Me.Label64.TabIndex = 8
         Me.Label64.Text = "Remarks"
         '
@@ -3873,7 +3905,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblInvType.AutoSize = True
         Me.lblInvType.Location = New System.Drawing.Point(6, 17)
         Me.lblInvType.Name = "lblInvType"
-        Me.lblInvType.Size = New System.Drawing.Size(49, 13)
+        Me.lblInvType.Size = New System.Drawing.Size(62, 17)
         Me.lblInvType.TabIndex = 0
         Me.lblInvType.Text = "Inv Type"
         '
@@ -3882,7 +3914,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label65.AutoSize = True
         Me.Label65.Location = New System.Drawing.Point(6, 72)
         Me.Label65.Name = "Label65"
-        Me.Label65.Size = New System.Drawing.Size(51, 13)
+        Me.Label65.Size = New System.Drawing.Size(68, 17)
         Me.Label65.TabIndex = 4
         Me.Label65.Text = "Customer"
         '
@@ -3907,7 +3939,7 @@ Partial Class frmPurchaseOrderNew
         Me.chkAddItemDescription.AutoSize = True
         Me.chkAddItemDescription.Location = New System.Drawing.Point(65, 77)
         Me.chkAddItemDescription.Name = "chkAddItemDescription"
-        Me.chkAddItemDescription.Size = New System.Drawing.Size(201, 17)
+        Me.chkAddItemDescription.Size = New System.Drawing.Size(263, 21)
         Me.chkAddItemDescription.TabIndex = 6
         Me.chkAddItemDescription.Text = "Do you want to add item description?"
         Me.chkAddItemDescription.UseVisualStyleBackColor = True
@@ -3917,7 +3949,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label66.AutoSize = True
         Me.Label66.Location = New System.Drawing.Point(6, 53)
         Me.Label66.Name = "Label66"
-        Me.Label66.Size = New System.Drawing.Size(45, 13)
+        Me.Label66.Size = New System.Drawing.Size(60, 17)
         Me.Label66.TabIndex = 4
         Me.Label66.Text = "Address"
         '
@@ -3926,7 +3958,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label67.AutoSize = True
         Me.Label67.Location = New System.Drawing.Point(234, 26)
         Me.Label67.Name = "Label67"
-        Me.Label67.Size = New System.Drawing.Size(58, 13)
+        Me.Label67.Size = New System.Drawing.Size(75, 17)
         Me.Label67.TabIndex = 2
         Me.Label67.Text = "Mobile No."
         '
@@ -3935,7 +3967,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label68.AutoSize = True
         Me.Label68.Location = New System.Drawing.Point(6, 26)
         Me.Label68.Name = "Label68"
-        Me.Label68.Size = New System.Drawing.Size(35, 13)
+        Me.Label68.Size = New System.Drawing.Size(45, 17)
         Me.Label68.TabIndex = 0
         Me.Label68.Text = "Name"
         '
@@ -3973,7 +4005,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label70.AutoSize = True
         Me.Label70.Location = New System.Drawing.Point(9, 103)
         Me.Label70.Name = "Label70"
-        Me.Label70.Size = New System.Drawing.Size(58, 13)
+        Me.Label70.Size = New System.Drawing.Size(73, 17)
         Me.Label70.TabIndex = 7
         Me.Label70.Text = "Pack Rate"
         '
@@ -3982,7 +4014,7 @@ Partial Class frmPurchaseOrderNew
         Me.rbtAdjPercentage.AutoSize = True
         Me.rbtAdjPercentage.Location = New System.Drawing.Point(129, 41)
         Me.rbtAdjPercentage.Name = "rbtAdjPercentage"
-        Me.rbtAdjPercentage.Size = New System.Drawing.Size(80, 17)
+        Me.rbtAdjPercentage.Size = New System.Drawing.Size(102, 21)
         Me.rbtAdjPercentage.TabIndex = 3
         Me.rbtAdjPercentage.Text = "Percentage"
         Me.rbtAdjPercentage.UseVisualStyleBackColor = True
@@ -3993,7 +4025,7 @@ Partial Class frmPurchaseOrderNew
         Me.rbtAdjFlat.Checked = True
         Me.rbtAdjFlat.Location = New System.Drawing.Point(83, 41)
         Me.rbtAdjFlat.Name = "rbtAdjFlat"
-        Me.rbtAdjFlat.Size = New System.Drawing.Size(42, 17)
+        Me.rbtAdjFlat.Size = New System.Drawing.Size(52, 21)
         Me.rbtAdjFlat.TabIndex = 2
         Me.rbtAdjFlat.TabStop = True
         Me.rbtAdjFlat.Text = "Flat"
@@ -4004,7 +4036,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label71.AutoSize = True
         Me.Label71.Location = New System.Drawing.Point(9, 76)
         Me.Label71.Name = "Label71"
-        Me.Label71.Size = New System.Drawing.Size(40, 13)
+        Me.Label71.Size = New System.Drawing.Size(52, 17)
         Me.Label71.TabIndex = 5
         Me.Label71.Text = "Net Bill"
         '
@@ -4013,7 +4045,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label72.AutoSize = True
         Me.Label72.Location = New System.Drawing.Point(6, 17)
         Me.Label72.Name = "Label72"
-        Me.Label72.Size = New System.Drawing.Size(59, 13)
+        Me.Label72.Size = New System.Drawing.Size(78, 17)
         Me.Label72.TabIndex = 0
         Me.Label72.Text = "Adjustment"
         '
@@ -4022,7 +4054,7 @@ Partial Class frmPurchaseOrderNew
         Me.lblSubject.AutoSize = True
         Me.lblSubject.Location = New System.Drawing.Point(7, 269)
         Me.lblSubject.Name = "lblSubject"
-        Me.lblSubject.Size = New System.Drawing.Size(43, 13)
+        Me.lblSubject.Size = New System.Drawing.Size(55, 17)
         Me.lblSubject.TabIndex = 4
         Me.lblSubject.Text = "Subject"
         '
@@ -4043,7 +4075,7 @@ Partial Class frmPurchaseOrderNew
         Me.Label73.ForeColor = System.Drawing.Color.Navy
         Me.Label73.Location = New System.Drawing.Point(11, 9)
         Me.Label73.Name = "Label73"
-        Me.Label73.Size = New System.Drawing.Size(118, 23)
+        Me.Label73.Size = New System.Drawing.Size(145, 29)
         Me.Label73.TabIndex = 1
         Me.Label73.Text = "Quotation"
         '
@@ -4082,13 +4114,13 @@ Partial Class frmPurchaseOrderNew
         '
         'UltraTabSharedControlsPage4
         '
-        Me.UltraTabSharedControlsPage4.Location = New System.Drawing.Point(1, 20)
+        Me.UltraTabSharedControlsPage4.Location = New System.Drawing.Point(1, 24)
         Me.UltraTabSharedControlsPage4.Name = "UltraTabSharedControlsPage4"
-        Me.UltraTabSharedControlsPage4.Size = New System.Drawing.Size(196, 77)
+        Me.UltraTabSharedControlsPage4.Size = New System.Drawing.Size(196, 73)
         '
         'frmPurchaseOrderNew
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(1040, 681)
@@ -4534,5 +4566,7 @@ Partial Class frmPurchaseOrderNew
     Friend WithEvents Label75 As System.Windows.Forms.Label
     Friend WithEvents Label74 As System.Windows.Forms.Label
     Friend WithEvents txtWarranty As System.Windows.Forms.TextBox
+    Friend WithEvents Label76 As System.Windows.Forms.Label
+    Friend WithEvents lblRemainingBudget As System.Windows.Forms.Label
 
 End Class

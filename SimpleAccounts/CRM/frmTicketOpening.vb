@@ -32,6 +32,7 @@ Public Class frmTicketOpening
     Dim status As String = String.Empty
     Dim Approved As String = String.Empty
     Dim dtpsperverdate As Date
+    Dim EticketNo As Integer = 0
 
     'Changes added by Murtaza for email generation on save (12/21/2022)
     Enum grdPOS
@@ -167,7 +168,10 @@ Public Class frmTicketOpening
             dtpContactTime.Value = Me.grd.CurrentRow.Cells("ContactTime").Value.ToString
             cmbSeverity.Text = Me.grd.CurrentRow.Cells("Severity").Value.ToString
             cmbStatus.Text = Me.grd.CurrentRow.Cells("Status").Value.ToString
-            Status = Me.grd.CurrentRow.Cells("Status").Value.ToString
+            status = Me.grd.CurrentRow.Cells("Status").Value.ToString
+            txtTicketHistory.Text = Me.grd.CurrentRow.Cells("TicketHistory").Value.ToString
+            chkPartUsed.Checked = Me.grd.CurrentRow.Cells("PartUsed").Value.ToString
+            ''ChkBatteriesIncluded.Checked = Me.grd.CurrentRow.Cells("ChkBoxBatteriesIncluded").Value
             'rafay
             '       txtserialpartno.Text = Me.grdCreditDetail.CurrentRow.Cells("Partno").Value.ToString
             'rafay
@@ -265,6 +269,15 @@ Public Class frmTicketOpening
             'Dim listtext As String = ModGlobel.GetRowValuesIntoString(_SearchDt, GridColumns.CUSTOMER)
             objModel.EngineerAssigned = Me.lstEngineerAssigned.SelectedIDs
             objModel.InitialProblem = Me.txtInitialProblem.Text
+            Dim strticketHistory As String = String.Empty
+            Dim str10 As String = String.Empty
+            'If Me.cmbTopic.Text <> CurrentTopic Then
+            '    str = "[" & Me.cmbTopic.Text & "]"
+            'End If
+            str10 += Chr(10) & "[" & LoginUserName & ":" & Date.Now & "]"
+            strticketHistory = str10 & Chr(10) & Me.txtTicketHistory.Text
+            objModel.TicketHistory = strticketHistory
+            objModel.PartUsed = chkPartUsed.Checked
             list = New List(Of TicketOpeningDetailBE)
             For i As Integer = 0 To grdCreditDetail.RowCount - 1
                 Dim Detail As New TicketOpeningDetailBE
@@ -372,7 +385,7 @@ Public Class frmTicketOpening
     Public Sub GetAllRecords(Optional Condition As String = "") Implements IGeneral.GetAllRecords
         Try
             If Condition = "TicketMaster" Then
-                Dim str As String = "SELECT TicketId, TicketNo, TicketDate, SerialNo, CallerName,CustomerName,CompanyName, ContactVia, ContactTime, Severity, TicketMasterTable.Status, EngineerAssigned, InitialProblem,ContractId,Site,SaleOrderId,SalesOrderNo FROM TicketMasterTable LEFT join SalesOrderMasterTable ON TicketMasterTable.SaleOrderId=SalesOrderMasterTable.SalesOrderId ORDER BY TicketMasterTable.TicketId DESC"
+                Dim str As String = "SELECT TicketId, TicketNo, TicketDate, SerialNo, CallerName,CustomerName,CompanyName, ContactVia, ContactTime, Severity, TicketMasterTable.Status, EngineerAssigned, InitialProblem,ContractId,Site,SaleOrderId,SalesOrderNo,TicketHistory,ISNULL(PartUsed,0) as PartUsed FROM TicketMasterTable LEFT join SalesOrderMasterTable ON TicketMasterTable.SaleOrderId=SalesOrderMasterTable.SalesOrderId ORDER BY TicketMasterTable.TicketId DESC"
                 Dim dt As DataTable
                 dt = GetDataTable(str)
                 Me.grd.DataSource = dt
@@ -385,6 +398,7 @@ Public Class frmTicketOpening
                 Me.grd.RootTable.Columns("SaleOrderId").Visible = False
                 'Murtaza
                 Me.grd.RootTable.Columns("TicketNo").Width = 150
+                Me.grd.RootTable.Columns("TicketHistory").Width = 150
                 Me.grd.RootTable.Columns("ContactTime").FormatString = "h:mm:ss tt"
             ElseIf Condition = "TicketDetail" Then
                 Dim str As String = "SELECT TicketDetailId, TicketId, OnsiteEngineer, TimeOnSite, ActivityStart, ActivityEnd, ActivityPerformed, TicketState, Escalation, PNUsed,Partno,ISNULL(Quantity,0) AS Quantity,PartDescription,FaultyPartSN FROM TicketDetailTable where TicketId = " & TicketId & " ORDER BY TicketDetailTable.TicketDetailId ASC"
@@ -429,6 +443,14 @@ Public Class frmTicketOpening
                     Return False
                 End If
             End If
+            Dim str As String = "SELECT ISNULL(tblCustomer.Hold,0) as Hold FROM ContractMasterTable LEFT OUTER JOIN tblCustomer ON ContractMasterTable.CustomerId = tblCustomer.CustomerName WHERE  (ContractMasterTable.ContractNo = '" & cmbContractNo.Text & "')"
+            Dim dt As DataTable = GetDataTable(str)
+            If dt.Rows.Count > 0 Then
+                If dt.Rows(0).Item(0).ToString = "True" Then
+                    ShowErrorMessage("Cannot approve this SO because this Customer is on Hold.")
+                    Return False
+                End If
+            End If
             'rafay agar contractscreen say contract hold select hai tou phr error show kar day
             If CType(Me.cmbContractNo.SelectedItem, DataRowView).Row.Item("HoldCheckBox").ToString = "True" Then
                 msg_Error("This contract is on hold. Please contact Accounts Department")
@@ -459,6 +481,10 @@ Public Class frmTicketOpening
             'Murtaza
             If Me.cmbSerialNo.Rows.Count > 0 Then cmbSerialNo.Rows(0).Activate()
             txtCompanyName.Text = ""
+            txtTicketHistory.Text = ""
+            If chkPartUsed.Checked = True Then
+                chkPartUsed.Checked = False
+            End If
             txtCustomerName.Text = ""
             txtBrand.Text = ""
             txtModelNo.Text = ""
@@ -477,7 +503,8 @@ Public Class frmTicketOpening
             'rafay :task start
             txtCustomerName.Text = ""
             txtCompanyName.Text = ""
-            companyinitials = ""
+            txtTicketHistory.Text = ""
+            ''companyinitials = ""
             'rafay:Task end
             'rfay
             If ChkBatteriesIncluded.Checked = True Then
@@ -608,7 +635,7 @@ Public Class frmTicketOpening
             cmbapproval.Visible = False
             txtapproval.Visible = False
             'Rafay
-
+            dtpsperverdate = TOServerDate()
             'Rafay
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
@@ -618,20 +645,23 @@ Public Class frmTicketOpening
     Function GetDocumentNo() As String
         Try
             Dim PreFix As String = ""
-            Dim CompanyWisePrefix As Boolean = False
+            Dim CompanyWisePrefix As Boolean = False ''companyinitials
             CompanyWisePrefix = Convert.ToBoolean(getConfigValueByType("ShowCompanyWisePrefix").ToString)
             If CompanyPrefix = "V-ERP (UAE)" Then
                 'companyinitials = "UE"
                 Return GetNextDocNo("TKT-" & Format(Me.dtpTicketDate.Value, "yy") & Me.dtpTicketDate.Value.Month.ToString("00") & Me.dtpTicketDate.Value.Day.ToString("00"), 4, "TicketMasterTable", "TicketNo")
+                Return GetNextDocNo("TKT-" & Format(Me.dtpTicketDate.Value, "yy") & Me.dtpTicketDate.Value.Month.ToString("00") & Me.dtpTicketDate.Value.Day.ToString("00"), 4, "TicketMasterTable", "TicketNo")
             Else
-                companyinitials = "PK"
+                ''companyinitials = "PK"
+                'Return GetNextDocNo("TKT-" & companyinitials & "-" & Format(Me.dtpTicketDate.Value, "yy") & Me.dtpTicketDate.Value.Month.ToString("00") & Me.dtpTicketDate.Value.Day.ToString("00"), 4, "TicketMasterTable", "TicketNo")
                 Return GetNextDocNo("TKT-" & companyinitials & "-" & Format(Me.dtpTicketDate.Value, "yy") & Me.dtpTicketDate.Value.Month.ToString("00") & Me.dtpTicketDate.Value.Day.ToString("00"), 4, "TicketMasterTable", "TicketNo")
             End If
             If CompanyPrefix = "V-ERP (UAE)" Then
                 'companyinitials = "UE"
                 Return GetNextDocNo("TKT-" & Format(Me.dtpTicketDate.Value, "yy") & Me.dtpTicketDate.Value.Month.ToString("00") & Me.dtpTicketDate.Value.Day.ToString("00"), 4, "TicketMasterTable", "TicketNo")
             Else
-                companyinitials = "PK"
+                ''companyinitials = "PK"
+                'Return GetNextDocNo("TKT-" & companyinitials & "-" & Format(Me.dtpTicketDate.Value, "yy") & Me.dtpTicketDate.Value.Month.ToString("00") & Me.dtpTicketDate.Value.Day.ToString("00"), 4, "TicketMasterTable", "TicketNo")
                 Return GetNextDocNo("TKT-" & companyinitials & "-" & Format(Me.dtpTicketDate.Value, "yy") & Me.dtpTicketDate.Value.Month.ToString("00") & Me.dtpTicketDate.Value.Day.ToString("00"), 4, "TicketMasterTable", "TicketNo")
             End If
         Catch ex As Exception
@@ -649,6 +679,9 @@ Public Class frmTicketOpening
                     If chkTroubleShoot.Checked = True And cmbStatus.Text = "Open" Then
                         SendAutoEmailApproval()
                     End If
+                    If cmbStatus.Text = "Close" Then
+                        SendPartNoEmail()
+                    End If
                     msg_Information(str_informSave)
                     btnNew_Click(Nothing, Nothing)
                 End If
@@ -658,7 +691,9 @@ Public Class frmTicketOpening
                     If cmbSaleorderNo.SelectedValue > 0 And cmbStatus.Text = "Close" Then
                         SendAutoEmail()
                     End If
-
+                    If cmbStatus.Text = "Close" Then
+                        SendPartNoEmail()
+                    End If
                     msg_Information(str_informUpdate)
                     btnNew_Click(Nothing, Nothing)
                 End If
@@ -799,6 +834,8 @@ Public Class frmTicketOpening
                 dtpContractEndDate.Value = dt.Rows(0).Item("EndDate")
                 'rafay 12-4-22
                 ChkBatteriesIncluded.Checked = IsDBNull(dt.Rows(0).Item("ChkBoxBatteriesIncluded"))
+                'txtTicketHistory.Text = dt.Rows(0).Item("TicketHistory")
+                'chkPartUsed.Checked = IsDBNull(dt.Rows(0).Item("PartUsed"))
                 'Me.ChkBatteriesIncluded.Checked = cmbSerialNo.ActiveRow.Cells("BatteriesIncluded").Value.ToString
             End If
         Catch ex As Exception
@@ -930,7 +967,11 @@ Public Class frmTicketOpening
                 'End If
                 'If cmbSaleorderNo.SelectedValue > 0 And cmbStatus.Text = "Close" Then
                 UsersEmail = New List(Of String)
-                UsersEmail.Add("accounts@agriusit.com")
+                If Con.Database.Contains("Remms") Then
+                    UsersEmail.Add("accounts@remmsit.com")
+                Else
+                    UsersEmail.Add("accounts@agriusit.com")
+                End If
                 FormatStringBuilder(dtEmail)
                 For Each _email As String In UsersEmail
                     CreateOutLookMail(_email)
@@ -982,28 +1023,106 @@ Public Class frmTicketOpening
             Throw ex
         End Try
     End Sub
+    Private Sub SendPartNoEmail(Optional ByVal Activity As String = "")
+        Dim Dr As DataRow
+        Try
+            GetpartnoTemplate("Ticket")
+            If EmailTemplate.Length > 0 Then
+                'Approved = cmbapproval.Text
+
+                Dim str As String
+                Dim senderemail As String
+                str = "select * from ticketmastertable  where TicketNo ='" & txtTicketNo.Text & "'"
+                Dim dt As DataTable = GetDataTable(str)
+                For Each R1 As DataRow In dt.Rows
+                    If dt.Rows.Count > 0 Then
+                        EticketNo = R1.Item(0)
+                    End If
+                    Dim str1 As String
+                    str1 = "select TicketId,OnsiteEngineer,ActivityPerformed,PNUsed from TicketDetailTable where TicketId=" & EticketNo & " and ISNULL(PNUsed,'')<>'' "
+                    Dim dt1 As DataTable = GetDataTable(str1)
+                    For Each Row1 As DataRow In dt1.Rows
+                        Dr = dtEmail.NewRow
+                        For Each col As String In AllFields
+                            If Dr.Table.Columns.Contains(col) Then
+                                Dr.Item(col) = Row1.Item(col).ToString
+                            End If
+                        Next
+                        dtEmail.Rows.Add(Dr)
+                    Next
+                Next
+                If dtEmail.Rows.Count > 0 Then
+                    UsersEmail = New List(Of String)
+                    If Con.Database.Contains("Remms") Then
+                        UsersEmail.Add("m.fayyaz@remmsit.com")
+                    Else
+                        UsersEmail.Add("m.fayyaz@agriusit.com")
+                    End If
+                    For Each _email As String In UsersEmail
+                        FormatStringBuilder(dtEmail)
+                        CreateParnoOutLookMail(_email)
+                        SaveEmailLog(txtTicketNo.Text, _email, "frmTicketOpening", Activity)
+                    Next
+                Else
+                    Exit Sub
+                End If
+                End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Private Sub FormatStringBuilder(ByVal dt As DataTable)
         Try
             html = New StringBuilder
             html.Append(EmailTemplate)
             html.Append("<table border = '1'>")
+
+            'Building the Header row.
             html.Append("<tr bgcolor='#58ACFA'>")
             For Each column As DataColumn In dt.Columns
                 Dim ColumnName As String = ""
                 Dim Pattern = "([a-z?])[_ ]?([A-Z])"
-                If column.ColumnName = "SerialNo" Then
-                    ColumnName = "Sr#"
-                Else
-                    ColumnName = Regex.Replace(column.ColumnName, Pattern, "$1 $2")
-                End If
+                ColumnName = Regex.Replace(column.ColumnName, Pattern, "$1 $2")
                 html.Append("<th>")
                 html.Append(ColumnName)
                 html.Append("</th>")
             Next
             html.Append("</tr>")
 
+            'Building the Data rows.
+            For Each row As DataRow In dt.Rows
+                If row.Table.Columns.Contains("Alternate") Then
+                    If row.Item("Alternate") = "Yes" Then
+                        html.Append("<tr bgcolor='#A9F5BC'>")
+                        For Each column As DataColumn In dt.Columns
+                            html.Append("<td>")
+                            html.Append(row(column.ColumnName))
+                            html.Append("</td>")
+                        Next
+                        html.Append("</tr>")
+                    Else
+                        html.Append("<tr>")
+                        For Each column As DataColumn In dt.Columns
+                            html.Append("<td>")
+                            html.Append(row(column.ColumnName))
+                            html.Append("</td>")
+                        Next
+                        html.Append("</tr>")
+                    End If
+                Else
+                    html.Append("<tr>")
+                    For Each column As DataColumn In dt.Columns
+                        html.Append("<td>")
+                        html.Append(row(column.ColumnName))
+                        html.Append("</td>")
+                    Next
+                    html.Append("</tr>")
+                End If
+            Next
+            'Table end.
             html.Append("</table>")
             html.Append(AfterFieldsElement)
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -1036,6 +1155,29 @@ Public Class frmTicketOpening
             mailItem.Send()
             Application.DoEvents()
             'End If
+            mailItem = Nothing
+            oApp = Nothing
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub CreateParnoOutLookMail(ByVal Email As String)
+        Try
+            Dim oApp As Outlook.Application = New Outlook.Application
+            Dim mailItem As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
+            mailItem.Subject = "Ticket Closed Agrinst: " + txtTicketNo.Text
+
+            mailItem.To = Email
+            Email = String.Empty
+            mailItem.Importance = Outlook.OlImportance.olImportanceNormal
+            mailItem.Display(mailItem)
+            Dim myStr As String
+            'myStr = "Dear ," & "<br>" & "<br>" & "Please approve this for maintenance"
+            myStr = "Dear Fayyaz ," & "<br>" & "<br>" & "This Ticket (" & txtTicketNo.Text & ") has been closed using following parts please verify accordingly."
+            'mailItem.HTMLBody = myStr
+            mailItem.HTMLBody = myStr + html.ToString + mailItem.HTMLBody
+            EmailBody = html.ToString
+            mailItem.Send()
             mailItem = Nothing
             oApp = Nothing
         Catch ex As Exception
@@ -1101,6 +1243,40 @@ Public Class frmTicketOpening
                 AllFields = New List(Of String)
 
                 dtEmail.Columns.Clear()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub GetpartnoTemplate(ByVal Title As String)
+        Dim Fields As String = String.Empty
+        Try
+            dtEmail = New DataTable
+            EmailTemplate = EmailDAL.GetTemplate(Title)
+            If EmailTemplate.Length > 0 Then
+                Dim i, j As Integer
+                i = EmailTemplate.IndexOf("<Fields>") + "<Fields>".Length
+                j = EmailTemplate.IndexOf("</Fields>") - i
+
+                Dim Searched As String = "</Fields>"
+                AfterFieldsElement = EmailTemplate.Substring(EmailTemplate.IndexOf(Searched) + Searched.Length)
+                Fields = EmailTemplate.Substring(i, j)
+                Dim WOAtTheRate As String = Fields.Replace("@", "")
+                Dim WOSpace As String = WOAtTheRate.Replace(" ", "")
+                Dim IndexOfFieldElement As Integer = EmailTemplate.IndexOf("<Fields>")
+                If IndexOfFieldElement > 0 Then
+                    EmailTemplate = EmailTemplate.Remove(IndexOfFieldElement)
+                End If
+                AllFields = New List(Of String)
+
+                dtEmail.Columns.Clear()
+                For Each word As String In WOSpace.Split(",")
+                    Dim TrimSpace As String = word.Trim()
+                    ' If Me.grdHardware.RootTable.Columns.Contains(TrimSpace) Then
+                    dtEmail.Columns.Add(TrimSpace)
+                    AllFields.Add(TrimSpace)
+                    ' End If
+                Next
             End If
         Catch ex As Exception
             Throw ex

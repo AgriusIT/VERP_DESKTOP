@@ -44,6 +44,10 @@ Partial Class frmReceivingNote
         Dim Appearance18 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance19 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance20 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance12 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance13 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance14 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
+        Dim Appearance15 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance62 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance63 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance64 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
@@ -119,12 +123,10 @@ Partial Class frmReceivingNote
         Dim Appearance54 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance55 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Dim Appearance56 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance12 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance13 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance14 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
-        Dim Appearance15 As Infragistics.Win.Appearance = New Infragistics.Win.Appearance()
         Me.UltraTabPageControl1 = New Infragistics.Win.UltraWinTabControl.UltraTabPageControl()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label147 = New System.Windows.Forms.Label()
+        Me.lblRemainingBudget = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.txtPONo = New System.Windows.Forms.TextBox()
         Me.dtpPODate = New System.Windows.Forms.DateTimePicker()
@@ -158,6 +160,8 @@ Partial Class frmReceivingNote
         Me.Label16 = New System.Windows.Forms.Label()
         Me.txtTotalQuantity = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.lblCustom = New System.Windows.Forms.Label()
+        Me.cmbCustom = New Infragistics.Win.UltraWinGrid.UltraCombo()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cmbTransportationVendor = New Infragistics.Win.UltraWinGrid.UltraCombo()
         Me.Label28 = New System.Windows.Forms.Label()
@@ -200,6 +204,7 @@ Partial Class frmReceivingNote
         Me.cmbItem = New Infragistics.Win.UltraWinGrid.UltraCombo()
         Me.pnlHeader = New System.Windows.Forms.Panel()
         Me.lblHeader = New System.Windows.Forms.Label()
+        Me.CtrlGrdBar1 = New SimpleAccounts.CtrlGrdBar()
         Me.grd = New Janus.Windows.GridEX.GridEX()
         Me.txtDiscPercent = New System.Windows.Forms.TextBox()
         Me.txtCurrentRate = New System.Windows.Forms.TextBox()
@@ -237,6 +242,7 @@ Partial Class frmReceivingNote
         Me.txtReceivingID = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.UltraTabPageControl2 = New Infragistics.Win.UltraWinTabControl.UltraTabPageControl()
+        Me.CtrlGrdBar2 = New SimpleAccounts.CtrlGrdBar()
         Me.grdSaved = New Janus.Windows.GridEX.GridEX()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.btnSearchEdit = New System.Windows.Forms.ToolStripButton()
@@ -597,10 +603,6 @@ Partial Class frmReceivingNote
         Me.ComboBox20 = New System.Windows.Forms.ComboBox()
         Me.UltraTextEditor8 = New Infragistics.Win.UltraWinEditors.UltraTextEditor()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.cmbCustom = New Infragistics.Win.UltraWinGrid.UltraCombo()
-        Me.lblCustom = New System.Windows.Forms.Label()
-        Me.CtrlGrdBar1 = New SimpleAccounts.CtrlGrdBar()
-        Me.CtrlGrdBar2 = New SimpleAccounts.CtrlGrdBar()
         Me.CtrlGrdBar3 = New SimpleAccounts.CtrlGrdBar()
         Me.CtrlGrdBar4 = New SimpleAccounts.CtrlGrdBar()
         Me.CtrlGrdBar5 = New SimpleAccounts.CtrlGrdBar()
@@ -615,6 +617,7 @@ Partial Class frmReceivingNote
         CType(Me.txtRemarks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmbVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.cmbCustom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmbTransportationVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         CType(Me.cmbBatchNo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -667,7 +670,6 @@ Partial Class frmReceivingNote
         CType(Me.UltraTextEditor7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.UltraTextEditor8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cmbCustom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'UltraTabPageControl1
@@ -692,6 +694,8 @@ Partial Class frmReceivingNote
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.AutoScroll = True
+        Me.Panel1.Controls.Add(Me.Label147)
+        Me.Panel1.Controls.Add(Me.lblRemainingBudget)
         Me.Panel1.Controls.Add(Me.GroupBox2)
         Me.Panel1.Controls.Add(Me.grpCurrency)
         Me.Panel1.Controls.Add(Me.txtRate)
@@ -729,6 +733,31 @@ Partial Class frmReceivingNote
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1154, 339)
         Me.Panel1.TabIndex = 1
+        '
+        'Label147
+        '
+        Me.Label147.AutoSize = True
+        Me.Label147.BackColor = System.Drawing.Color.Transparent
+        Me.Label147.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label147.ForeColor = System.Drawing.Color.Black
+        Me.Label147.Location = New System.Drawing.Point(524, 199)
+        Me.Label147.Name = "Label147"
+        Me.Label147.Size = New System.Drawing.Size(156, 17)
+        Me.Label147.TabIndex = 9
+        Me.Label147.Text = "Remaining Budget:"
+        Me.Label147.Visible = False
+        '
+        'lblRemainingBudget
+        '
+        Me.lblRemainingBudget.AutoSize = True
+        Me.lblRemainingBudget.BackColor = System.Drawing.Color.Transparent
+        Me.lblRemainingBudget.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRemainingBudget.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.lblRemainingBudget.Location = New System.Drawing.Point(531, 219)
+        Me.lblRemainingBudget.Name = "lblRemainingBudget"
+        Me.lblRemainingBudget.Size = New System.Drawing.Size(0, 17)
+        Me.lblRemainingBudget.TabIndex = 10
+        Me.lblRemainingBudget.Visible = False
         '
         'GroupBox2
         '
@@ -1175,6 +1204,52 @@ Partial Class frmReceivingNote
         Me.GroupBox3.Size = New System.Drawing.Size(291, 189)
         Me.GroupBox3.TabIndex = 3
         Me.GroupBox3.TabStop = False
+        '
+        'lblCustom
+        '
+        Me.lblCustom.AutoSize = True
+        Me.lblCustom.Location = New System.Drawing.Point(6, 159)
+        Me.lblCustom.Name = "lblCustom"
+        Me.lblCustom.Size = New System.Drawing.Size(63, 17)
+        Me.lblCustom.TabIndex = 8
+        Me.lblCustom.Text = "Custom"
+        '
+        'cmbCustom
+        '
+        Me.cmbCustom.AutoCompleteMode = Infragistics.Win.AutoCompleteMode.Append
+        Me.cmbCustom.CheckedListSettings.CheckStateMember = ""
+        Me.cmbCustom.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.No
+        Me.cmbCustom.DisplayLayout.Override.AllowDelete = Infragistics.Win.DefaultableBoolean.[False]
+        Me.cmbCustom.DisplayLayout.Override.AllowUpdate = Infragistics.Win.DefaultableBoolean.[False]
+        Me.cmbCustom.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.None
+        Appearance12.BackColor = System.Drawing.Color.Transparent
+        Me.cmbCustom.DisplayLayout.Override.CardAreaAppearance = Appearance12
+        Me.cmbCustom.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.RowSelect
+        Me.cmbCustom.DisplayLayout.Override.CellPadding = 3
+        Me.cmbCustom.DisplayLayout.Override.ColumnAutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.AllRowsInBand
+        Appearance13.TextHAlignAsString = "Left"
+        Me.cmbCustom.DisplayLayout.Override.HeaderAppearance = Appearance13
+        Me.cmbCustom.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti
+        Appearance14.BorderColor = System.Drawing.Color.LightGray
+        Appearance14.TextVAlignAsString = "Middle"
+        Me.cmbCustom.DisplayLayout.Override.RowAppearance = Appearance14
+        Appearance15.BackColor = System.Drawing.Color.LightSteelBlue
+        Appearance15.BorderColor = System.Drawing.Color.Black
+        Appearance15.ForeColor = System.Drawing.Color.Black
+        Me.cmbCustom.DisplayLayout.Override.SelectedRowAppearance = Appearance15
+        Me.cmbCustom.DisplayLayout.Override.SelectTypeCell = Infragistics.Win.UltraWinGrid.SelectType.None
+        Me.cmbCustom.DisplayLayout.Override.SelectTypeCol = Infragistics.Win.UltraWinGrid.SelectType.None
+        Me.cmbCustom.DisplayLayout.Override.SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.[Single]
+        Me.cmbCustom.DisplayLayout.RowConnectorStyle = Infragistics.Win.UltraWinGrid.RowConnectorStyle.None
+        Me.cmbCustom.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill
+        Me.cmbCustom.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate
+        Me.cmbCustom.DisplayLayout.TabNavigation = Infragistics.Win.UltraWinGrid.TabNavigation.NextControl
+        Me.cmbCustom.DisplayLayout.ViewStyle = Infragistics.Win.UltraWinGrid.ViewStyle.SingleBand
+        Me.cmbCustom.LimitToList = True
+        Me.cmbCustom.Location = New System.Drawing.Point(96, 154)
+        Me.cmbCustom.Name = "cmbCustom"
+        Me.cmbCustom.Size = New System.Drawing.Size(189, 27)
+        Me.cmbCustom.TabIndex = 9
         '
         'Label9
         '
@@ -1709,6 +1784,19 @@ Partial Class frmReceivingNote
         Me.lblHeader.TabIndex = 0
         Me.lblHeader.Text = "Goods Receiving Note"
         '
+        'CtrlGrdBar1
+        '
+        Me.CtrlGrdBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CtrlGrdBar1.BackColor = System.Drawing.SystemColors.Control
+        Me.CtrlGrdBar1.Email = Nothing
+        Me.CtrlGrdBar1.FormName = Me
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1102, 0)
+        Me.CtrlGrdBar1.MyGrid = Me.grd
+        Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
+        Me.CtrlGrdBar1.Size = New System.Drawing.Size(33, 25)
+        Me.CtrlGrdBar1.TabIndex = 4
+        Me.CtrlGrdBar1.TabStop = False
+        '
         'grd
         '
         grd_DesignTimeLayout.LayoutString = resources.GetString("grd_DesignTimeLayout.LayoutString")
@@ -2036,6 +2124,18 @@ Partial Class frmReceivingNote
         Me.UltraTabPageControl2.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl2.Name = "UltraTabPageControl2"
         Me.UltraTabPageControl2.Size = New System.Drawing.Size(1154, 604)
+        '
+        'CtrlGrdBar2
+        '
+        Me.CtrlGrdBar2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CtrlGrdBar2.BackColor = System.Drawing.Color.Transparent
+        Me.CtrlGrdBar2.Email = Nothing
+        Me.CtrlGrdBar2.FormName = Me
+        Me.CtrlGrdBar2.Location = New System.Drawing.Point(1095, 1)
+        Me.CtrlGrdBar2.MyGrid = Me.grdSaved
+        Me.CtrlGrdBar2.Name = "CtrlGrdBar2"
+        Me.CtrlGrdBar2.Size = New System.Drawing.Size(38, 27)
+        Me.CtrlGrdBar2.TabIndex = 1
         '
         'grdSaved
         '
@@ -2621,7 +2721,7 @@ Partial Class frmReceivingNote
         Me.cmbVoucherType.Location = New System.Drawing.Point(135, 155)
         Me.cmbVoucherType.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbVoucherType.Name = "cmbVoucherType"
-        Me.cmbVoucherType.Size = New System.Drawing.Size(259, 24)
+        Me.cmbVoucherType.Size = New System.Drawing.Size(259, 25)
         Me.cmbVoucherType.TabIndex = 18
         Me.ToolTip1.SetToolTip(Me.cmbVoucherType, "Select Payment Method")
         '
@@ -2633,7 +2733,7 @@ Partial Class frmReceivingNote
         Me.cmbCashAccount.Location = New System.Drawing.Point(548, 155)
         Me.cmbCashAccount.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbCashAccount.Name = "cmbCashAccount"
-        Me.cmbCashAccount.Size = New System.Drawing.Size(253, 24)
+        Me.cmbCashAccount.Size = New System.Drawing.Size(253, 25)
         Me.cmbCashAccount.TabIndex = 31
         Me.ToolTip1.SetToolTip(Me.cmbCashAccount, "Select Payment Account")
         '
@@ -2782,7 +2882,7 @@ Partial Class frmReceivingNote
         Me.ComboBox3.Location = New System.Drawing.Point(135, 155)
         Me.ComboBox3.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox3.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox3.TabIndex = 18
         Me.ToolTip1.SetToolTip(Me.ComboBox3, "Select Payment Method")
         '
@@ -2794,7 +2894,7 @@ Partial Class frmReceivingNote
         Me.ComboBox4.Location = New System.Drawing.Point(548, 155)
         Me.ComboBox4.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(253, 24)
+        Me.ComboBox4.Size = New System.Drawing.Size(253, 25)
         Me.ComboBox4.TabIndex = 31
         Me.ToolTip1.SetToolTip(Me.ComboBox4, "Select Payment Account")
         '
@@ -2943,7 +3043,7 @@ Partial Class frmReceivingNote
         Me.ComboBox8.Location = New System.Drawing.Point(135, 155)
         Me.ComboBox8.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ComboBox8.Name = "ComboBox8"
-        Me.ComboBox8.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox8.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox8.TabIndex = 18
         Me.ToolTip1.SetToolTip(Me.ComboBox8, "Select Payment Method")
         '
@@ -2955,7 +3055,7 @@ Partial Class frmReceivingNote
         Me.ComboBox9.Location = New System.Drawing.Point(548, 155)
         Me.ComboBox9.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ComboBox9.Name = "ComboBox9"
-        Me.ComboBox9.Size = New System.Drawing.Size(253, 24)
+        Me.ComboBox9.Size = New System.Drawing.Size(253, 25)
         Me.ComboBox9.TabIndex = 31
         Me.ToolTip1.SetToolTip(Me.ComboBox9, "Select Payment Account")
         '
@@ -3104,7 +3204,7 @@ Partial Class frmReceivingNote
         Me.ComboBox13.Location = New System.Drawing.Point(135, 155)
         Me.ComboBox13.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ComboBox13.Name = "ComboBox13"
-        Me.ComboBox13.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox13.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox13.TabIndex = 18
         Me.ToolTip1.SetToolTip(Me.ComboBox13, "Select Payment Method")
         '
@@ -3116,7 +3216,7 @@ Partial Class frmReceivingNote
         Me.ComboBox14.Location = New System.Drawing.Point(548, 155)
         Me.ComboBox14.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ComboBox14.Name = "ComboBox14"
-        Me.ComboBox14.Size = New System.Drawing.Size(253, 24)
+        Me.ComboBox14.Size = New System.Drawing.Size(253, 25)
         Me.ComboBox14.TabIndex = 31
         Me.ToolTip1.SetToolTip(Me.ComboBox14, "Select Payment Account")
         '
@@ -3265,7 +3365,7 @@ Partial Class frmReceivingNote
         Me.ComboBox18.Location = New System.Drawing.Point(135, 155)
         Me.ComboBox18.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ComboBox18.Name = "ComboBox18"
-        Me.ComboBox18.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox18.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox18.TabIndex = 18
         Me.ToolTip1.SetToolTip(Me.ComboBox18, "Select Payment Method")
         '
@@ -3277,7 +3377,7 @@ Partial Class frmReceivingNote
         Me.ComboBox19.Location = New System.Drawing.Point(548, 155)
         Me.ComboBox19.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ComboBox19.Name = "ComboBox19"
-        Me.ComboBox19.Size = New System.Drawing.Size(253, 24)
+        Me.ComboBox19.Size = New System.Drawing.Size(253, 25)
         Me.ComboBox19.TabIndex = 31
         Me.ToolTip1.SetToolTip(Me.ComboBox19, "Select Payment Account")
         '
@@ -3330,7 +3430,7 @@ Partial Class frmReceivingNote
         Me.cmbCMFA.FormattingEnabled = True
         Me.cmbCMFA.Location = New System.Drawing.Point(135, 264)
         Me.cmbCMFA.Name = "cmbCMFA"
-        Me.cmbCMFA.Size = New System.Drawing.Size(259, 24)
+        Me.cmbCMFA.Size = New System.Drawing.Size(259, 25)
         Me.cmbCMFA.TabIndex = 26
         '
         'Label10
@@ -3363,7 +3463,7 @@ Partial Class frmReceivingNote
         Me.cmbCostCenter.FormattingEnabled = True
         Me.cmbCostCenter.Location = New System.Drawing.Point(135, 237)
         Me.cmbCostCenter.Name = "cmbCostCenter"
-        Me.cmbCostCenter.Size = New System.Drawing.Size(259, 24)
+        Me.cmbCostCenter.Size = New System.Drawing.Size(259, 25)
         Me.cmbCostCenter.TabIndex = 24
         '
         'Label27
@@ -3779,7 +3879,7 @@ Partial Class frmReceivingNote
         Me.cmbEmployee.FormattingEnabled = True
         Me.cmbEmployee.Location = New System.Drawing.Point(135, 210)
         Me.cmbEmployee.Name = "cmbEmployee"
-        Me.cmbEmployee.Size = New System.Drawing.Size(259, 24)
+        Me.cmbEmployee.Size = New System.Drawing.Size(259, 25)
         Me.cmbEmployee.TabIndex = 22
         '
         'txtMemo
@@ -3831,7 +3931,7 @@ Partial Class frmReceivingNote
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(135, 264)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox1.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox1.TabIndex = 26
         '
         'Label50
@@ -3864,7 +3964,7 @@ Partial Class frmReceivingNote
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Location = New System.Drawing.Point(135, 237)
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox2.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox2.TabIndex = 24
         '
         'Label52
@@ -4288,7 +4388,7 @@ Partial Class frmReceivingNote
         Me.ComboBox5.FormattingEnabled = True
         Me.ComboBox5.Location = New System.Drawing.Point(135, 210)
         Me.ComboBox5.Name = "ComboBox5"
-        Me.ComboBox5.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox5.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox5.TabIndex = 22
         '
         'UltraTextEditor2
@@ -4340,7 +4440,7 @@ Partial Class frmReceivingNote
         Me.ComboBox6.FormattingEnabled = True
         Me.ComboBox6.Location = New System.Drawing.Point(135, 264)
         Me.ComboBox6.Name = "ComboBox6"
-        Me.ComboBox6.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox6.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox6.TabIndex = 26
         '
         'Label73
@@ -4373,7 +4473,7 @@ Partial Class frmReceivingNote
         Me.ComboBox7.FormattingEnabled = True
         Me.ComboBox7.Location = New System.Drawing.Point(135, 237)
         Me.ComboBox7.Name = "ComboBox7"
-        Me.ComboBox7.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox7.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox7.TabIndex = 24
         '
         'Label75
@@ -4797,7 +4897,7 @@ Partial Class frmReceivingNote
         Me.ComboBox10.FormattingEnabled = True
         Me.ComboBox10.Location = New System.Drawing.Point(135, 210)
         Me.ComboBox10.Name = "ComboBox10"
-        Me.ComboBox10.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox10.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox10.TabIndex = 22
         '
         'UltraTextEditor4
@@ -4849,7 +4949,7 @@ Partial Class frmReceivingNote
         Me.ComboBox11.FormattingEnabled = True
         Me.ComboBox11.Location = New System.Drawing.Point(135, 264)
         Me.ComboBox11.Name = "ComboBox11"
-        Me.ComboBox11.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox11.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox11.TabIndex = 26
         '
         'Label96
@@ -4882,7 +4982,7 @@ Partial Class frmReceivingNote
         Me.ComboBox12.FormattingEnabled = True
         Me.ComboBox12.Location = New System.Drawing.Point(135, 237)
         Me.ComboBox12.Name = "ComboBox12"
-        Me.ComboBox12.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox12.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox12.TabIndex = 24
         '
         'Label98
@@ -5306,7 +5406,7 @@ Partial Class frmReceivingNote
         Me.ComboBox15.FormattingEnabled = True
         Me.ComboBox15.Location = New System.Drawing.Point(135, 210)
         Me.ComboBox15.Name = "ComboBox15"
-        Me.ComboBox15.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox15.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox15.TabIndex = 22
         '
         'UltraTextEditor6
@@ -5358,7 +5458,7 @@ Partial Class frmReceivingNote
         Me.ComboBox16.FormattingEnabled = True
         Me.ComboBox16.Location = New System.Drawing.Point(135, 264)
         Me.ComboBox16.Name = "ComboBox16"
-        Me.ComboBox16.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox16.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox16.TabIndex = 26
         '
         'Label119
@@ -5391,7 +5491,7 @@ Partial Class frmReceivingNote
         Me.ComboBox17.FormattingEnabled = True
         Me.ComboBox17.Location = New System.Drawing.Point(135, 237)
         Me.ComboBox17.Name = "ComboBox17"
-        Me.ComboBox17.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox17.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox17.TabIndex = 24
         '
         'Label121
@@ -5815,7 +5915,7 @@ Partial Class frmReceivingNote
         Me.ComboBox20.FormattingEnabled = True
         Me.ComboBox20.Location = New System.Drawing.Point(135, 210)
         Me.ComboBox20.Name = "ComboBox20"
-        Me.ComboBox20.Size = New System.Drawing.Size(259, 24)
+        Me.ComboBox20.Size = New System.Drawing.Size(259, 25)
         Me.ComboBox20.TabIndex = 22
         '
         'UltraTextEditor8
@@ -5828,77 +5928,6 @@ Partial Class frmReceivingNote
         'ErrorProvider1
         '
         Me.ErrorProvider1.ContainerControl = Me
-        '
-        'cmbCustom
-        '
-        Me.cmbCustom.AutoCompleteMode = Infragistics.Win.AutoCompleteMode.Append
-        Me.cmbCustom.CheckedListSettings.CheckStateMember = ""
-        Me.cmbCustom.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.No
-        Me.cmbCustom.DisplayLayout.Override.AllowDelete = Infragistics.Win.DefaultableBoolean.[False]
-        Me.cmbCustom.DisplayLayout.Override.AllowUpdate = Infragistics.Win.DefaultableBoolean.[False]
-        Me.cmbCustom.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.None
-        Appearance12.BackColor = System.Drawing.Color.Transparent
-        Me.cmbCustom.DisplayLayout.Override.CardAreaAppearance = Appearance12
-        Me.cmbCustom.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.RowSelect
-        Me.cmbCustom.DisplayLayout.Override.CellPadding = 3
-        Me.cmbCustom.DisplayLayout.Override.ColumnAutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.AllRowsInBand
-        Appearance13.TextHAlignAsString = "Left"
-        Me.cmbCustom.DisplayLayout.Override.HeaderAppearance = Appearance13
-        Me.cmbCustom.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti
-        Appearance14.BorderColor = System.Drawing.Color.LightGray
-        Appearance14.TextVAlignAsString = "Middle"
-        Me.cmbCustom.DisplayLayout.Override.RowAppearance = Appearance14
-        Appearance15.BackColor = System.Drawing.Color.LightSteelBlue
-        Appearance15.BorderColor = System.Drawing.Color.Black
-        Appearance15.ForeColor = System.Drawing.Color.Black
-        Me.cmbCustom.DisplayLayout.Override.SelectedRowAppearance = Appearance15
-        Me.cmbCustom.DisplayLayout.Override.SelectTypeCell = Infragistics.Win.UltraWinGrid.SelectType.None
-        Me.cmbCustom.DisplayLayout.Override.SelectTypeCol = Infragistics.Win.UltraWinGrid.SelectType.None
-        Me.cmbCustom.DisplayLayout.Override.SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.[Single]
-        Me.cmbCustom.DisplayLayout.RowConnectorStyle = Infragistics.Win.UltraWinGrid.RowConnectorStyle.None
-        Me.cmbCustom.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill
-        Me.cmbCustom.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate
-        Me.cmbCustom.DisplayLayout.TabNavigation = Infragistics.Win.UltraWinGrid.TabNavigation.NextControl
-        Me.cmbCustom.DisplayLayout.ViewStyle = Infragistics.Win.UltraWinGrid.ViewStyle.SingleBand
-        Me.cmbCustom.LimitToList = True
-        Me.cmbCustom.Location = New System.Drawing.Point(96, 154)
-        Me.cmbCustom.Name = "cmbCustom"
-        Me.cmbCustom.Size = New System.Drawing.Size(189, 27)
-        Me.cmbCustom.TabIndex = 9
-        '
-        'lblCustom
-        '
-        Me.lblCustom.AutoSize = True
-        Me.lblCustom.Location = New System.Drawing.Point(6, 159)
-        Me.lblCustom.Name = "lblCustom"
-        Me.lblCustom.Size = New System.Drawing.Size(63, 17)
-        Me.lblCustom.TabIndex = 8
-        Me.lblCustom.Text = "Custom"
-        '
-        'CtrlGrdBar1
-        '
-        Me.CtrlGrdBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CtrlGrdBar1.BackColor = System.Drawing.SystemColors.Control
-        Me.CtrlGrdBar1.Email = Nothing
-        Me.CtrlGrdBar1.FormName = Me
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1102, 0)
-        Me.CtrlGrdBar1.MyGrid = Me.grd
-        Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
-        Me.CtrlGrdBar1.Size = New System.Drawing.Size(33, 25)
-        Me.CtrlGrdBar1.TabIndex = 4
-        Me.CtrlGrdBar1.TabStop = False
-        '
-        'CtrlGrdBar2
-        '
-        Me.CtrlGrdBar2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CtrlGrdBar2.BackColor = System.Drawing.Color.Transparent
-        Me.CtrlGrdBar2.Email = Nothing
-        Me.CtrlGrdBar2.FormName = Me
-        Me.CtrlGrdBar2.Location = New System.Drawing.Point(1095, 1)
-        Me.CtrlGrdBar2.MyGrid = Me.grdSaved
-        Me.CtrlGrdBar2.Name = "CtrlGrdBar2"
-        Me.CtrlGrdBar2.Size = New System.Drawing.Size(38, 27)
-        Me.CtrlGrdBar2.TabIndex = 1
         '
         'CtrlGrdBar3
         '
@@ -5996,6 +6025,7 @@ Partial Class frmReceivingNote
         CType(Me.cmbVendor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.cmbCustom, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmbTransportationVendor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
@@ -6063,7 +6093,6 @@ Partial Class frmReceivingNote
         CType(Me.UltraTextEditor7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.UltraTextEditor8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmbCustom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -6552,5 +6581,7 @@ Partial Class frmReceivingNote
     Friend WithEvents Label146 As System.Windows.Forms.Label
     Friend WithEvents lblCustom As System.Windows.Forms.Label
     Friend WithEvents cmbCustom As Infragistics.Win.UltraWinGrid.UltraCombo
+    Friend WithEvents Label147 As System.Windows.Forms.Label
+    Friend WithEvents lblRemainingBudget As System.Windows.Forms.Label
 
 End Class

@@ -150,28 +150,81 @@ Public Class ArticleDAL
 
     End Function
 
-    Public Function AddInMultipleDB(ByVal objModel As Article) As Boolean
+    Public Function AddInAgriusMultipleDB(ByVal objModel As Article) As Boolean
         Dim Con As New SqlConnection(SQLHelper.CON_STR)
         Con.Open()
         Dim trans As SqlTransaction = Con.BeginTransaction()
         Try
-            
+
             objModel.CostPrice = objModel.PurchasePrice
-            
+
             Dim OtherDB As String = ""
-            For i As Double = 1 To 3
+            For i As Double = 1 To 4
                 If i = 1 Then
-                    OtherDB = "UAE_Demo.dbo."
+                    OtherDB = "SIRIUS_KSA_DB.dbo."
                 ElseIf i = 2 Then
-                    OtherDB = "SIRIUS1_DB.dbo."
+                    OtherDB = "SIRIUS_MY_DB.dbo."
                 ElseIf i = 3 Then
-                    OtherDB = "SIRIUS1_DB_Avg.dbo."
-                    'ElseIf i = 3 Then
-                    '    OtherDB = "UAE_Demo.dbo."
-                    'ElseIf i = 4 Then
-                    '    OtherDB = "RemmsPAK_DB.dbo."
-                    'ElseIf i = 5 Then
-                    '    OtherDB = "SIRIUS_KSA_DB.dbo."
+                    OtherDB = "SIRIUS_UAE_DB.dbo."
+                ElseIf i = 4 Then
+                    OtherDB = "SIRIUS_SL_DB.dbo."
+                End If
+                Dim strSQL As String = "insert into " & OtherDB & "ArticleDefTableMaster(ArticleCode,ArticleDescription,ArticleBARCode,ArticleGroupId," & _
+                                    " ArticleTypeId,ArticleGenderId,ArticleUnitId,ArticleLPOId,PurchasePrice,SalePrice,PackQty,StockLevel," & _
+                                    " StockLevelOpt,StockLevelMax,Active,SortOrder,IsDate, AccountID, Remarks, ServiceItem, ArticlePicture, TradePrice, Freight, MarketReturns, GST_Applicable, FlatRate_Applicable,FlatRate, ItemWeight, HS_Code, LargestPackQty,AutoCode,Cost_Price,ArticleCategoryId, ArticleStatusID,ArticleBrandId,ApplyAdjustmentFuelExp,MultiDimentionalItem , LogicalItem, CGSAccountId, ProductionProcessId,ArticleTaxId, IsIndividual,ArticleBARCodeDisable)" & _
+                                    " values(N'" & objModel.ArticleCode.Trim.Replace("'", "''") & "',N'" & objModel.ArticleDescription.Trim.Replace("'", "''") & "',N'" & objModel.ArticleBARCode.Trim.Replace("'", "''") & "'," & _
+                                    objModel.ArticleGroupID & "," & objModel.ArticleTypeID & "," & objModel.ArticleGenderID & "," & objModel.ArticleUnitID & "," & objModel.ArticleLPOID & "," & _
+                                    objModel.PurchasePrice & "," & objModel.SalePrice & "," & objModel.PackQty & "," & objModel.StockLevel & "," & _
+                                    objModel.StockLevelOpt & "," & objModel.StockLevelMax & "," & IIf(objModel.Active = True, 1, 0) & "," & objModel.SortOrder & ",N'" & _
+                                    objModel.IsDate.ToString("yyyy-M-d h:mm:ss tt") & "'," & objModel.AccountID & ",N'" & objModel.ArticleRemarks.ToString.Replace("'", "''") & "', " & IIf(objModel.ServiceItem = True, 1, 0) & ", N'" & objModel.ArticlePicture & "', " & objModel.TradePrice & ", " & objModel.Freight & ", " & objModel.MarketReturns & ", " & IIf(objModel.GST_Applicable = True, 1, 0) & ", " & IIf(objModel.FlatRate_Applicable = True, 1, 0) & ", " & objModel.FlatRate & ", " & objModel.ItemWeight & ", N'" & objModel.HS_Code.Replace("'", "''") & "', " & objModel.LargestPackQty & ", " & IIf(objModel.AutoCode = True, 1, 0) & ", " & objModel.CostPrice & "," & objModel.ArticleCategoryId & "," & objModel.ArticleStatusID & "," & objModel.ArticleBrandId & "," & IIf(objModel.ApplyAdjustmentFuelExp = True, 1, 0) & "," & IIf(objModel.MultiDimentionalItem = True, 1, 0) & "," & IIf(objModel.LogicalItem = True, 1, 0) & "," & objModel.CGSAccountId & ", " & IIf(objModel.ProductionProcessId > 0, objModel.ProductionProcessId, "NULL") & "," & objModel.ArticleTaxID & ", " & IIf(objModel.IsIndividual = True, 1, 0) & ", " & IIf(objModel.ArticleBARCodeDisable = True, 1, 0) & ") Select @@Identity"  ''TFS1772
+
+                objModel.ArticleID = Convert.ToInt32(SQLHelper.ExecuteScaler(trans, CommandType.Text, strSQL))
+                ArticleMasterId = objModel.ArticleID
+                ArticleDetailIdforAlternative = objModel.ArticleDetailIdforAlternative
+                strSQL = String.Empty
+                strSQL = "INSERT INTO " & OtherDB & "ArticleDefPackTable(ArticleMasterId, PackName, PackQty) Values(" & ArticleMasterId & ", 'Loose', 1)"
+                SQLHelper.ExecuteNonQuery(trans, CommandType.Text, strSQL)
+
+                strSQL = "INSERT INTO " & OtherDB & "ArticleDefPackTable(ArticleMasterId, PackName, PackQty) Values(" & ArticleMasterId & ", 'Pack', " & objModel.PackQty & ")"
+                SQLHelper.ExecuteNonQuery(trans, CommandType.Text, strSQL)
+
+                If Me.AddDetailInMultipleDB(objModel.ArticleID, objModel, trans, objModel.AccountID, OtherDB) Then
+
+                    objModel.ActivityLog.ActivityName = "Save"
+                    objModel.ActivityLog.RecordType = "Configuration"
+                    UtilityDAL.BuildActivityLog(objModel.ActivityLog, trans)
+                    ''TASK TFS1779
+                    SaveDocument(objModel.ArticleID, objModel.Source, objModel.AttachmentPath, objModel.ArrFile, objModel.IsDate, trans)
+                End If
+                OtherDB = ""
+            Next
+            trans.Commit()
+            Return True
+        Catch ex As SqlException
+            trans.Rollback()
+            Throw ex
+        Catch ex As Exception
+            trans.Rollback()
+            Throw ex
+        Finally
+            Con.Close()
+        End Try
+
+    End Function
+    Public Function AddInRemmsMultipleDB(ByVal objModel As Article) As Boolean
+        Dim Con As New SqlConnection(SQLHelper.CON_STR)
+        Con.Open()
+        Dim trans As SqlTransaction = Con.BeginTransaction()
+        Try
+
+            objModel.CostPrice = objModel.PurchasePrice
+
+            Dim OtherDB As String = ""
+            For i As Double = 1 To 2
+                If i = 1 Then
+                    OtherDB = "RemmsPAK_DB.dbo."
+                ElseIf i = 2 Then
+                    OtherDB = "RemmsTech_UAE_DB.dbo."
                 End If
                 Dim strSQL As String = "insert into " & OtherDB & "ArticleDefTableMaster(ArticleCode,ArticleDescription,ArticleBARCode,ArticleGroupId," & _
                                     " ArticleTypeId,ArticleGenderId,ArticleUnitId,ArticleLPOId,PurchasePrice,SalePrice,PackQty,StockLevel," & _
@@ -273,7 +326,7 @@ Public Class ArticleDAL
                 ''End TFS4395
                 Dim objDt As New DataTable
                 objDt = Nothing
-                objDt = UtilityDAL.GetDataTable(" select articleDefTable.ArticleId from rticleDefTable where MasterId=" & MasterID & " and SizeRangeId=" & objmodel.SizeRangeID & " and ArticleColorId=" & objmodel.ArticleColorID, trans)
+                objDt = UtilityDAL.GetDataTable(" select articleDefTable.ArticleId from ArticleDefTable where MasterId=" & MasterID & " and SizeRangeId=" & objmodel.SizeRangeID & " and ArticleColorId=" & objmodel.ArticleColorID, trans)
                 If objDt.Rows.Count > 0 Then objArticle.IncrementReduction.ArticleID = objDt.Rows(0).Item(0)
                 objArticle.IncrementReduction.New_Cost_Price = objmodel.CostPrice
                 objArticle.IncrementReduction.Old_Cost_Price = 0D
@@ -388,6 +441,92 @@ Public Class ArticleDAL
             Throw ex
         End Try
     End Function
+    'Private Function AddDetailInRemmsMultipleDB(ByVal MasterID As Integer, ByVal objArticle As Article, ByVal trans As SqlTransaction, ByVal COADetailID As Integer, ByVal OtherDB As String) As Boolean
+    '    Try
+
+    '        Dim strSQL As String = String.Empty
+    '        Dim objmodels As List(Of ArticleDetail) = objArticle.ArticleDetails
+
+    '        If objmodels Is Nothing Then Return False
+    '        If objmodels.Count = 0 Then Return False
+
+    '        For Each objmodel As ArticleDetail In objmodels
+    '            objmodel.CostPrice = objArticle.CostPrice
+    '            'strSQL = "insert into ArticleDefTable(ArticleCode,ArticleDescription,ArticleGroupId," & _
+    '            '                       " ArticleTypeId,ArticleGenderId,ArticleUnitId,ArticleLPOId,PurchasePrice,SalePrice,PackQty,StockLevel," & _
+    '            '                       " StockLevelOpt,StockLevelMax,Active,SortOrder,IsDate, AccountID,SizeRangeId,ArticleColorId, MasterID, Remarks, ServiceItem, TradePrice,Freight, MarketReturns, GST_Applicable, FlatRate_Applicable, FlatRate, ItemWeight, HS_Code, LargestPackQty,Cost_Price)" & _
+    '            '                       " values(N'" & objmodel.ArticleCode.Trim.Replace("'", "''") & "',N'" & objmodel.ArticleDescription.Trim.Replace("'", "''") & "'," & _
+    '            '                       objmodel.ArticleGroupID & "," & objmodel.ArticleTypeID & "," & objmodel.ArticleGenderID & "," & objmodel.ArticleUnitID & "," & objmodel.ArticleLPOID & "," & _
+    '            '                       objmodel.PurchasePrice & "," & objmodel.SalePrice & "," & objmodel.PackQty & "," & objmodel.StockLevel & "," & _
+    '            '                       objmodel.StockLevelOpt & "," & objmodel.StockLevelMax & "," & IIf(objmodel.Active = True, 1, 0) & "," & objmodel.SortOrder & ",N'" & _
+    '            '                       objmodel.IsDate.ToString("yyyy-M-d h:mm:ss tt") & "'," & COADetailID & "," & objmodel.SizeRangeID & "," & objmodel.ArticleColorID & "," & MasterID & ",'', " & IIf(objmodel.ServiceItem = True, 1, 0) & ", " & objmodel.TradePrice & ", " & objmodel.Freight & ", " & objmodel.MarketReturns & ", " & IIf(objmodel.GST_Applicable = True, 1, 0) & ", " & IIf(objmodel.FlatRate_Applicable = True, 1, 0) & "," & objmodel.FlatRate & ", " & objmodel.ItemWeight & ", N'" & objmodel.HS_Code.Replace("'", "''") & "', " & objmodel.LargestPackQty & "," & objmodel.CostPrice & ") select @@Identity"
+    '            'strSQL = "insert into ArticleDefTable(ArticleCode,ArticleDescription,ArticleGroupId," & _
+    '            '                      " ArticleTypeId,ArticleGenderId,ArticleUnitId,ArticleLPOId,PurchasePrice,SalePrice,PackQty,StockLevel," & _
+    '            '                      " StockLevelOpt,StockLevelMax,Active,SortOrder,IsDate, AccountID,SizeRangeId,ArticleColorId, MasterID, Remarks, ServiceItem, TradePrice,Freight, MarketReturns, GST_Applicable, FlatRate_Applicable, FlatRate, ItemWeight, HS_Code, LargestPackQty,Cost_Price)" & _
+    '            '                      " values(N'" & objmodel.ArticleCode.Trim.Replace("'", "''") & "',N'" & objmodel.ArticleDescription.Trim.Replace("'", "''") & "'," & _
+    '            '                      objmodel.ArticleGroupID & "," & objmodel.ArticleTypeID & "," & objmodel.ArticleGenderID & "," & objmodel.ArticleUnitID & "," & objmodel.ArticleLPOID & "," & _
+    '            '                      objmodel.PurchasePrice & "," & objmodel.SalePrice & "," & objmodel.PackQty & "," & objmodel.StockLevel & "," & _
+    '            '                      objmodel.StockLevelOpt & "," & objmodel.StockLevelMax & "," & IIf(objmodel.Active = True, 1, 0) & "," & objmodel.SortOrder & ",N'" & _
+    '            '                      objmodel.IsDate.ToString("yyyy-M-d h:mm:ss tt") & "'," & COADetailID & "," & objmodel.SizeRangeID & "," & objmodel.ArticleColorID & "," & MasterID & ",'', " & IIf(objmodel.ServiceItem = True, 1, 0) & ", " & objmodel.TradePrice & ", " & objmodel.Freight & ", " & objmodel.MarketReturns & ", " & IIf(objmodel.GST_Applicable = True, 1, 0) & ", " & IIf(objmodel.FlatRate_Applicable = True, 1, 0) & "," & objmodel.FlatRate & ", " & objmodel.ItemWeight & ", N'" & objmodel.HS_Code.Replace("'", "''") & "', " & objmodel.LargestPackQty & "," & objmodel.CostPrice & ") select @@Identity"
+
+    '            'strSQL = "insert into ArticleDefTable(ArticleCode,ArticleDescription,ArticleGroupId," & _
+    '            '                    " ArticleTypeId,ArticleGenderId,ArticleUnitId,ArticleLPOId,PurchasePrice,SalePrice,PackQty,StockLevel," & _
+    '            '                    " StockLevelOpt,StockLevelMax,Active,SortOrder,IsDate, AccountID,SizeRangeId,ArticleColorId, MasterID, Remarks, ServiceItem, TradePrice,Freight, MarketReturns, GST_Applicable, FlatRate_Applicable, FlatRate, ItemWeight, HS_Code, LargestPackQty,Cost_Price,ArticleCategoryId, ArticleStatusID)" & _
+    '            '                    " values(N'" & objmodel.ArticleCode.Trim.Replace("'", "''") & "',N'" & objmodel.ArticleDescription.Trim.Replace("'", "''") & "'," & _
+    '            '                    objmodel.ArticleGroupID & "," & objmodel.ArticleTypeID & "," & objmodel.ArticleGenderID & "," & objmodel.ArticleUnitID & "," & objmodel.ArticleLPOID & "," & _
+    '            '                    objmodel.PurchasePrice & "," & objmodel.SalePrice & "," & objmodel.PackQty & "," & objmodel.StockLevel & "," & _
+    '            '                    objmodel.StockLevelOpt & "," & objmodel.StockLevelMax & "," & IIf(objmodel.Active = True, 1, 0) & "," & objmodel.SortOrder & ",N'" & _
+    '            '                    objmodel.IsDate.ToString("yyyy-M-d h:mm:ss tt") & "'," & COADetailID & "," & objmodel.SizeRangeID & "," & objmodel.ArticleColorID & "," & MasterID & ",'', " & IIf(objmodel.ServiceItem = True, 1, 0) & ", " & objmodel.TradePrice & ", " & objmodel.Freight & ", " & objmodel.MarketReturns & ", " & IIf(objmodel.GST_Applicable = True, 1, 0) & ", " & IIf(objmodel.FlatRate_Applicable = True, 1, 0) & "," & objmodel.FlatRate & ", " & objmodel.ItemWeight & ", N'" & objmodel.HS_Code.Replace("'", "''") & "', " & objmodel.LargestPackQty & "," & objmodel.CostPrice & "," & objmodel.ArticleCategoryId & " ," & objmodel.ArticleStatusID & ") select @@Identity"
+
+    '            ''TFS1957 :Added Column Logical Item in the query
+    '            ''TFS1799 : Added column ArticleTaxId In the query
+    '            ''TFS3763 : Ayesha Rehman : Added column ArticleBARCodeDisable In the query
+    '            strSQL = "insert into " & OtherDB & "ArticleDefTable(ArticleCode,ArticleDescription,ArticleBARCode,ArticleGroupId," & _
+    '                             " ArticleTypeId,ArticleGenderId,ArticleUnitId,ArticleLPOId,PurchasePrice,SalePrice,PackQty,StockLevel," & _
+    '                             " StockLevelOpt,StockLevelMax,Active,SortOrder,IsDate, AccountID,SizeRangeId,ArticleColorId, MasterID, Remarks, ServiceItem, TradePrice,Freight, MarketReturns, GST_Applicable, FlatRate_Applicable, FlatRate, ItemWeight, HS_Code, LargestPackQty,Cost_Price,ArticleCategoryId, ArticleStatusID,ArticleBrandId,ApplyAdjustmentFuelExp,MultiDimentionalItem,LogicalItem,ArticleTaxId,ArticleBARCodeDisable)" & _
+    '                             " values(N'" & objmodel.ArticleCode.Trim.Replace("'", "''") & "',N'" & objmodel.ArticleDescription.Trim.Replace("'", "''") & "',N'" & objmodel.ArticleBARCode.Trim.Replace("'", "''") & "'," & _
+    '                             objmodel.ArticleGroupID & "," & objmodel.ArticleTypeID & "," & objmodel.ArticleGenderID & "," & objmodel.ArticleUnitID & "," & objmodel.ArticleLPOID & "," & _
+    '                             objmodel.PurchasePrice & "," & objmodel.SalePrice & "," & objmodel.PackQty & "," & objmodel.StockLevel & "," & _
+    '                             objmodel.StockLevelOpt & "," & objmodel.StockLevelMax & "," & IIf(objmodel.Active = True, 1, 0) & "," & objmodel.SortOrder & ",N'" & _
+    '                             objmodel.IsDate.ToString("yyyy-M-d h:mm:ss tt") & "'," & COADetailID & "," & objmodel.SizeRangeID & "," & objmodel.ArticleColorID & "," & MasterID & ",'', " & IIf(objmodel.ServiceItem = True, 1, 0) & ", " & objmodel.TradePrice & ", " & objmodel.Freight & ", " & objmodel.MarketReturns & ", " & IIf(objmodel.GST_Applicable = True, 1, 0) & ", " & IIf(objmodel.FlatRate_Applicable = True, 1, 0) & "," & objmodel.FlatRate & ", " & objmodel.ItemWeight & ", N'" & objmodel.HS_Code.Replace("'", "''") & "', " & objmodel.LargestPackQty & "," & objmodel.CostPrice & "," & objmodel.ArticleCategoryId & " ," & objmodel.ArticleStatusID & "," & objmodel.ArticleBrandId & "," & IIf(objmodel.ApplyAdjustmentFuelExp = True, 1, 0) & "," & IIf(objmodel.MultiDimentionalItem = True, 1, 0) & "," & IIf(objmodel.LogicalItem = True, 1, 0) & "," & objmodel.ArticleTaxID & ", " & IIf(objmodel.ArticleBARCodeDisable = True, 1, 0) & ") select @@Identity"
+
+    '            'SQLHelper.ExecuteNonQuery(trans, CommandType.Text, strSQL)
+    '            ArticleIdForArticleAlias = Convert.ToInt32(SQLHelper.ExecuteScaler(trans, CommandType.Text, strSQL))
+    '            ''Start TFS4395
+    '            strSQL = "Insert into " & OtherDB & "ArticleBarcodeDefTable (ArticleMasterID,ArticleId, ArticleBARCode,ArticleCode,ArticleName) values ( " & MasterID & "," & ArticleIdForArticleAlias & ",'" & objmodel.ArticleBARCode.Trim.Replace("'", "''") & "','" & objmodel.ArticleCode.Trim.Replace("'", "''") & "', '" & objmodel.ArticleDescription.Trim.Replace("'", "''") & "')Select @@Identity"
+    '            SQLHelper.ExecuteNonQuery(trans, CommandType.Text, strSQL)
+    '            ''End TFS4395
+    '            Dim objDt As New DataTable
+    '            objDt = Nothing
+    '            objDt = UtilityDAL.GetDataTable(" select articleDefTable.ArticleId from " & OtherDB & "articleDefTable where MasterId=" & MasterID & " and SizeRangeId=" & objmodel.SizeRangeID & " and ArticleColorId=" & objmodel.ArticleColorID, trans)
+    '            If objDt.Rows.Count > 0 Then objArticle.IncrementReduction.ArticleID = objDt.Rows(0).Item(0)
+    '            objArticle.IncrementReduction.New_Cost_Price = objmodel.CostPrice
+    '            objArticle.IncrementReduction.Old_Cost_Price = 0D
+    '            'Call New IncrementReductionDAL().Add(objArticle.IncrementReduction, trans)
+    '            'objmodel.ArticleID = ArticleIdForArticleAlias
+    '            'Call New ArticleModelsDAL().Insert(objmodel, MasterID, trans)
+    '        Next
+    '        Dim objALRList As List(Of ArticalLocationRank) = objArticle.ArticalLocationRank
+    '        For Each objALR As ArticalLocationRank In objALRList
+    '            strSQL = "Insert Into " & OtherDB & "ArticalDefLocation(ArticalID,LocationID,Ranks) Values (" & MasterID & "," & objALR.LocationID & ",N'" & objALR.Rank & "')"
+    '            SQLHelper.ExecuteNonQuery(trans, CommandType.Text, strSQL)
+    '        Next
+
+    '        ''TASK TFS1777
+    '        For Each _RelatedItem As RelatedItem In objArticle.RelatedItemList
+    '            If _RelatedItem.RelationId < 1 Then
+    '                strSQL = "Insert Into " & OtherDB & "tblRelatedItem(ArticleId, RelatedArticleId) Values (" & ArticleDetailIdforAlternative & ", " & _RelatedItem.RelatedArticleId & ")"
+    '                SQLHelper.ExecuteNonQuery(trans, CommandType.Text, strSQL)
+    '            End If
+    '        Next
+    '        ''END TASK TFS1777
+    '        Return True
+    '    Catch ex As SqlException
+    '        Throw ex
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Function
 
     Public Function Update(ByVal objModel As Article) As Boolean
 
@@ -527,7 +666,7 @@ Public Class ArticleDAL
         End Try
 
     End Function
-    Public Function UpdateInMultipleDB(ByVal objModel As Article) As Boolean
+    Public Function UpdateInAgriusMultipleDB(ByVal objModel As Article) As Boolean
 
         Dim Con As New SqlConnection(SQLHelper.CON_STR)
         Con.Open()
@@ -536,13 +675,94 @@ Public Class ArticleDAL
         Try
 
             Dim OtherDB As String = ""
-            For i As Double = 1 To 5
+            For i As Double = 1 To 4
                 If i = 1 Then
-                    OtherDB = "UAE_Demo.dbo."
+                    OtherDB = "SIRIUS_MY_DB.dbo."
                 ElseIf i = 2 Then
-                    OtherDB = "SIRIUS1_DB.dbo."
+                    OtherDB = "SIRIUS_KSA_DB.dbo."
                 ElseIf i = 3 Then
-                    OtherDB = "SIRIUS1_DB_Avg.dbo."
+                    OtherDB = "SIRIUS_UAE_DB.dbo."
+                ElseIf i = 4 Then
+                    OtherDB = "SIRIUS_SL_DB.dbo."
+                    'ElseIf i = 3 Then
+                    '    OtherDB = "SIRIUS_MY_DB.dbo."
+                    'ElseIf i = 4 Then
+                    '    OtherDB = "RemmsPAK_DB.dbo."
+                    'ElseIf i = 5 Then
+                    '    OtherDB = "SIRIUS_KSA_DB.dbo."
+                End If
+                Dim strQuery As String = String.Empty
+                Dim dblCostPrice As Double = 0D
+
+                strQuery = "Select  Case When IsNull(Qty,1) > 0 then (IsNull(Amount,0)/IsNull(Qty,1)) else 0 end as CostPrice From(Select SUM(IsNull(InQty,0)-IsNull(OutQty,0))+1 as Qty, SUM((IsNull(InQty,0)-IsNull(OutQty,0))*IsNull(Rate,0))+" & Val(objModel.PurchasePrice) & " as Amount From " & OtherDB & "StockDetailTable INNER JOIN " & OtherDB & "ArticleDefTable On " & OtherDB & "ArticleDefTable.ArticleId = " & OtherDB & "StockDetailTable.ArticleDefID WHERE " & OtherDB & "ArticleDefTable.MasterID=" & objModel.ArticleID & ") a"
+                Dim dtCostPrice As New DataTable
+                dtCostPrice = UtilityDAL.GetDataTable(strQuery, trans)
+                dtCostPrice.AcceptChanges()
+
+                If dtCostPrice.Rows.Count > 0 Then
+                    If Val(dtCostPrice.Rows(0).Item(0).ToString) > 0 Then
+                        dblCostPrice = Val(dtCostPrice.Rows(0).Item(0).ToString)
+                    Else
+                        dblCostPrice = objModel.PurchasePrice
+                    End If
+                Else
+                    dblCostPrice = objModel.PurchasePrice
+                End If
+
+                objModel.CostPrice = dblCostPrice
+                Dim strSQL As String = " update " & OtherDB & "ArticleDefTableMaster set ArticleCode=N'" & objModel.ArticleCode.Trim.Replace("'", "''") & "',ArticleBARCode = N'" & objModel.ArticleBARCode.Trim.Replace("'", "''") & _
+                                    "',ArticleDescription=N'" & objModel.ArticleDescription.Trim.Replace("'", "''") & _
+                                    "', ArticleGroupId=N'" & objModel.ArticleGroupID & "',ArticleTypeId=" & objModel.ArticleTypeID & _
+                                    ",ArticleGenderId=" & objModel.ArticleGenderID & ",ArticleUnitId=" & objModel.ArticleUnitID & ",ArticleTaxId=" & objModel.ArticleTaxID & ",ArticlelpoId=" & objModel.ArticleLPOID & _
+                                    ",PurchasePrice=" & objModel.PurchasePrice & ",SalePrice=" & objModel.SalePrice & _
+                                    ",PackQty=" & objModel.PackQty & ",StockLevel=" & objModel.StockLevel & _
+                                    ",StockLevelopt=" & objModel.StockLevelOpt & ",StockLevelMax=" & objModel.StockLevelMax & _
+                                    ",Active=" & IIf(objModel.Active = True, 1, 0) & ",SortOrder=" & objModel.SortOrder & ", Remarks=N'" & objModel.ArticleRemarks.ToString.Replace("'", "''") & "', ServiceItem=" & IIf(objModel.ServiceItem = True, 1, 0) & ", ArticlePicture=N'" & objModel.ArticlePicture & "' " & _
+                                    ",TradePrice = " & objModel.TradePrice & ", Freight=" & objModel.Freight & ", MarketReturns=" & objModel.MarketReturns & ", GST_Applicable=" & IIf(objModel.GST_Applicable = True, 1, 0) & ", FlatRate_Applicable=" & IIf(objModel.FlatRate_Applicable = True, 1, 0) & ", FlatRate=" & objModel.FlatRate & ", ItemWeight=" & objModel.ItemWeight & ", HS_Code=N'" & objModel.HS_Code.Replace("'", "''") & "', LargestPackQty=" & objModel.LargestPackQty & ", AutoCode=" & IIf(objModel.AutoCode = True, 1, 0) & ", Cost_Price=" & objModel.CostPrice & ",ArticleCategoryId=" & objModel.ArticleCategoryId & ", ArticleStatusID= " & objModel.ArticleStatusID & ",ArticleBrandId=" & objModel.ArticleBrandId & ", ApplyAdjustmentFuelExp=" & IIf(objModel.ApplyAdjustmentFuelExp = True, 1, 0) & ",CGSAccountId = " & objModel.CGSAccountId & ",LogicalItem= " & IIf(objModel.LogicalItem = True, 1, 0) & ", MultiDimentionalItem =" & IIf(objModel.MultiDimentionalItem = True, 1, 0) & ", ProductionProcessId= " & IIf(objModel.ProductionProcessId > 0, objModel.ProductionProcessId, "NULL") & " " & _
+                                    " , IsIndividual =" & IIf(objModel.IsIndividual = True, 1, 0) & ",ArticleBARCodeDisable = " & IIf(objModel.ArticleBARCodeDisable = True, 1, 0) & " where ArticleId=" & objModel.ArticleID
+
+                SQLHelper.ExecuteScaler(trans, CommandType.Text, strSQL)
+                ArticleMasterId = objModel.ArticleID
+                ''update deltail
+                ArticleDetailIdforAlternative = objModel.ArticleDetailIdforAlternative
+                ' If Me.UpdateDetail(objModel.ArticleID, objModel, trans, objModel.COADetail.COADetailID) Then
+                If Me.UpdateDetailInMultipleDB(objModel.ArticleID, objModel, trans, objModel.AccountID, OtherDB) Then
+
+                    objModel.ActivityLog.ActivityName = "Update"
+                    objModel.ActivityLog.RecordType = "Configuration"
+                    UtilityDAL.BuildActivityLog(objModel.ActivityLog, trans)
+                    ''TASK TFS1779
+                    SaveDocument(objModel.ArticleID, objModel.Source, objModel.AttachmentPath, objModel.ArrFile, objModel.IsDate, trans)
+                    ''END TASK TFS1779
+                End If
+            Next
+            trans.Commit()
+            Return True
+        Catch ex As SqlException
+            trans.Rollback()
+            Throw ex
+        Catch ex As Exception
+            trans.Rollback()
+            Throw ex
+        Finally
+            Con.Close()
+        End Try
+
+    End Function
+    Public Function UpdateInRemmsMultipleDB(ByVal objModel As Article) As Boolean
+
+        Dim Con As New SqlConnection(SQLHelper.CON_STR)
+        Con.Open()
+        Dim trans As SqlTransaction = Con.BeginTransaction()
+
+        Try
+
+            Dim OtherDB As String = ""
+            For i As Double = 1 To 2
+                If i = 1 Then
+                    OtherDB = "RemmsTech_UAE_DB.dbo."
+                ElseIf i = 2 Then
+                    OtherDB = "RemmsPAK_DB.dbo."
                     'ElseIf i = 3 Then
                     '    OtherDB = "SIRIUS_MY_DB.dbo."
                     'ElseIf i = 4 Then
@@ -886,6 +1106,9 @@ Public Class ArticleDAL
             strSQL = "Delete from tblRelatedItem WHERE ArticleId=" & objmodel.ArticleID
             SQLHelper.ExecuteNonQuery(trans, CommandType.Text, strSQL)
             ''END TASK TFS1777
+
+            strSQL = "Delete from ArticleDefLocation WHERE ArticalID=" & objmodel.ArticleID
+            SQLHelper.ExecuteNonQuery(trans, CommandType.Text, strSQL)
 
             ''add activity log
             objmodel.ActivityLog.ActivityName = "Delete"

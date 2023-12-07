@@ -517,7 +517,7 @@ Public Class frmSalesReturn
             Me.txtRate.Text = ""
             Me.txtPackRate.Text = ""
             'Rafay
-            companyinitials = ""
+            ''companyinitials = ""
             'Rafay
             'txtAmount.Text = ""
             txtTotal.Text = ""
@@ -1702,6 +1702,9 @@ Public Class frmSalesReturn
                     StockDetail.In_PackQty = Val(grd.GetRows(i).Cells("Qty").Value.ToString)
                     StockDetail.Out_PackQty = 0
                     ''End TASK-470
+                    StockDetail.BatchNo = grd.GetRows(i).Cells("BatchNo").Value.ToString
+                    ''StockDetail.ExpiryDate = CType(grd.GetRows(i).Cells("ExpiryDate").Value, Date).ToString("yyyy-M-d h:mm:ss tt") 'grd.GetRows(i).Cells(EnumGridDetail.ExpiryDate).Value.ToString
+                    'StockDetail.Origin = grd.GetRows(i).Cells("Origin").Value.ToString
                     StockList.Add(StockDetail)
 
 
@@ -3150,6 +3153,9 @@ Public Class frmSalesReturn
                     StockDetail.In_PackQty = Val(grd.GetRows(i).Cells("Qty").Value.ToString)
                     StockDetail.Out_PackQty = 0
                     ''End TASK-470
+                    StockDetail.BatchNo = grd.GetRows(i).Cells("BatchNo").Value.ToString
+                    ''StockDetail.ExpiryDate = CType(grd.GetRows(i).Cells("ExpiryDate").Value, Date).ToString("yyyy-M-d h:mm:ss tt") 'grd.GetRows(i).Cells(EnumGridDetail.ExpiryDate).Value.ToString
+                    'StockDetail.Origin = grd.GetRows(i).Cells("Origin").Value.ToString
                     StockList.Add(StockDetail)
 
                     'End If
@@ -3588,7 +3594,11 @@ Public Class frmSalesReturn
                 UsersEmail = New List(Of String)
                 'UsersEmail.Add("adil@agriusit.com")
                 ''UsersEmail.Add("ali@agriusit.com")
-                UsersEmail.Add("h.saeed@agriusit.com")
+                If Con.Database.Contains("Remms") Then
+                    UsersEmail.Add("r.ejaz@remmsit.com")
+                Else
+                    UsersEmail.Add("r.ejaz@agriusit.com")
+                End If
                 ''UsersEmail.Add("Bilal@siriussolution.com")
                 FormatStringBuilder(dtEmail)
                 For Each _email As String In UsersEmail
@@ -4795,7 +4805,7 @@ Public Class frmSalesReturn
                     'Return GetNextDocNo("SR" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "SalesReturnMasterTable", "SalesReturnNo") ''
                     Return GetSerialNo("SR" & "" & company.ToString + "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "SalesReturnMasterTable", "SalesReturnNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo("SR" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "SalesReturnMasterTable", "SalesReturnNo")
                 End If
             ElseIf getConfigValueByType("VoucherNo").ToString = "Monthly" Then
@@ -4804,7 +4814,8 @@ Public Class frmSalesReturn
                     Return GetNextDocNo("SR" & "-" & company.ToString & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "SalesReturnMasterTable", "SalesReturnNo") ''
                     'Return GetSerialNo("SR" & "" & company.ToString + "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "SalesReturnMasterTable", "SalesReturnNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
+                    ''Return GetNextDocNo("SR" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "SalesReturnMasterTable", "SalesReturnNo")
                     Return GetNextDocNo("SR" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "SalesReturnMasterTable", "SalesReturnNo")
                 End If
                 'Rafay:task End
@@ -6155,6 +6166,11 @@ Public Class frmSalesReturn
             If Not Me.cmbCurrency.SelectedItem Is Nothing Then
                 Dim dr As DataRowView = CType(cmbCurrency.SelectedItem, DataRowView)
                 If blnEditMode = True Then
+                Else
+                    Me.txtCurrencyRate.Text = Math.Round(Convert.ToDouble(dr.Row.Item("CurrencyRate").ToString), 4)
+                End If
+
+                If cmbPo.SelectedValue > 0 Then
                 Else
                     Me.txtCurrencyRate.Text = Math.Round(Convert.ToDouble(dr.Row.Item("CurrencyRate").ToString), 4)
                 End If

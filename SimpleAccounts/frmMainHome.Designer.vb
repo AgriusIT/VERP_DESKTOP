@@ -28,12 +28,13 @@ Partial Class frmMainHome
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.btnAddDock = New System.Windows.Forms.Button()
         Me.lblusername = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -66,7 +67,7 @@ Partial Class frmMainHome
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1232, 47)
+        Me.Panel3.Size = New System.Drawing.Size(1300, 47)
         Me.Panel3.TabIndex = 5
         Me.Panel3.Visible = False
         '
@@ -77,7 +78,7 @@ Partial Class frmMainHome
         Me.btnAddDock.BackgroundImage = CType(resources.GetObject("btnAddDock.BackgroundImage"), System.Drawing.Image)
         Me.btnAddDock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnAddDock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddDock.Location = New System.Drawing.Point(1187, 10)
+        Me.btnAddDock.Location = New System.Drawing.Point(1255, 10)
         Me.btnAddDock.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAddDock.Name = "btnAddDock"
         Me.btnAddDock.Size = New System.Drawing.Size(27, 25)
@@ -87,48 +88,49 @@ Partial Class frmMainHome
         '
         'lblusername
         '
+        Me.lblusername.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblusername.AutoSize = True
         Me.lblusername.Font = New System.Drawing.Font("Bahnschrift Condensed", 28.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblusername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblusername.Location = New System.Drawing.Point(851, 470)
+        Me.lblusername.Location = New System.Drawing.Point(26, 371)
         Me.lblusername.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblusername.Name = "lblusername"
         Me.lblusername.Size = New System.Drawing.Size(213, 57)
         Me.lblusername.TabIndex = 14
         Me.lblusername.Text = "@username"
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Bahnschrift Condensed", 28.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(689, 472)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(178, 57)
-        Me.Label1.TabIndex = 13
-        Me.Label1.Text = "WELCOME!"
-        '
         'PictureBox3
         '
+        Me.PictureBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox3.BackgroundImage = CType(resources.GetObject("PictureBox3.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox3.Location = New System.Drawing.Point(637, 108)
+        Me.PictureBox3.Location = New System.Drawing.Point(4, 4)
         Me.PictureBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(581, 428)
+        Me.PictureBox3.Size = New System.Drawing.Size(659, 434)
         Me.PictureBox3.TabIndex = 15
         Me.PictureBox3.TabStop = False
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.lblusername)
+        Me.Panel1.Controls.Add(Me.PictureBox3)
+        Me.Panel1.Location = New System.Drawing.Point(612, 190)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(670, 443)
+        Me.Panel1.TabIndex = 16
         '
         'frmMainHome
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1232, 630)
-        Me.Controls.Add(Me.lblusername)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.PictureBox3)
+        Me.ClientSize = New System.Drawing.Size(1300, 645)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.PictureBox1)
@@ -141,8 +143,9 @@ Partial Class frmMainHome
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
@@ -150,6 +153,6 @@ Partial Class frmMainHome
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents btnAddDock As System.Windows.Forms.Button
     Friend WithEvents lblusername As System.Windows.Forms.Label
-    Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
 End Class

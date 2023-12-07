@@ -130,6 +130,7 @@ Partial Class frmDefCustomer
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.CtrlGrdBar1 = New SimpleAccounts.CtrlGrdBar()
+        Me.chkHold = New System.Windows.Forms.CheckBox()
         Me.UltraTabPageControl1.SuspendLayout()
         Me.pnlHeader.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -155,9 +156,10 @@ Partial Class frmDefCustomer
         Me.UltraTabPageControl1.AutoScroll = True
         Me.UltraTabPageControl1.Controls.Add(Me.pnlHeader)
         Me.UltraTabPageControl1.Controls.Add(Me.TableLayoutPanel1)
-        Me.UltraTabPageControl1.Location = New System.Drawing.Point(-10000, -10000)
+        Me.UltraTabPageControl1.Location = New System.Drawing.Point(1, 1)
+        Me.UltraTabPageControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabPageControl1.Name = "UltraTabPageControl1"
-        Me.UltraTabPageControl1.Size = New System.Drawing.Size(914, 695)
+        Me.UltraTabPageControl1.Size = New System.Drawing.Size(1219, 862)
         '
         'pnlHeader
         '
@@ -166,8 +168,9 @@ Partial Class frmDefCustomer
         Me.pnlHeader.Controls.Add(Me.PictureBox1)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
+        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(914, 45)
+        Me.pnlHeader.Size = New System.Drawing.Size(1219, 55)
         Me.pnlHeader.TabIndex = 64
         '
         'lblHeader
@@ -175,9 +178,10 @@ Partial Class frmDefCustomer
         Me.lblHeader.AutoSize = True
         Me.lblHeader.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeader.ForeColor = System.Drawing.Color.Black
-        Me.lblHeader.Location = New System.Drawing.Point(61, 13)
+        Me.lblHeader.Location = New System.Drawing.Point(81, 16)
+        Me.lblHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(200, 22)
+        Me.lblHeader.Size = New System.Drawing.Size(250, 26)
         Me.lblHeader.TabIndex = 1
         Me.lblHeader.Text = "Customers Information"
         '
@@ -185,9 +189,10 @@ Partial Class frmDefCustomer
         '
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox1.Location = New System.Drawing.Point(3, 2)
+        Me.PictureBox1.Location = New System.Drawing.Point(4, 2)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(52, 53)
+        Me.PictureBox1.Size = New System.Drawing.Size(69, 65)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 63
         Me.PictureBox1.TabStop = False
@@ -203,11 +208,12 @@ Partial Class frmDefCustomer
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Panel8, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel9, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(2, 59)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 73)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(912, 633)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1216, 787)
         Me.TableLayoutPanel1.TabIndex = 2
         '
         'Panel8
@@ -218,9 +224,10 @@ Partial Class frmDefCustomer
         Me.Panel8.AutoScroll = True
         Me.Panel8.Controls.Add(Me.Panel2)
         Me.Panel8.Controls.Add(Me.Panel1)
-        Me.Panel8.Location = New System.Drawing.Point(3, 3)
+        Me.Panel8.Location = New System.Drawing.Point(4, 4)
+        Me.Panel8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(450, 627)
+        Me.Panel8.Size = New System.Drawing.Size(600, 779)
         Me.Panel8.TabIndex = 0
         '
         'Panel2
@@ -251,9 +258,10 @@ Partial Class frmDefCustomer
         Me.Panel2.Controls.Add(Me.txtNTNNo)
         Me.Panel2.Controls.Add(Me.lblSalesTax)
         Me.Panel2.Controls.Add(Me.lblNTNNo)
-        Me.Panel2.Location = New System.Drawing.Point(0, 101)
+        Me.Panel2.Location = New System.Drawing.Point(0, 124)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(467, 399)
+        Me.Panel2.Size = New System.Drawing.Size(623, 491)
         Me.Panel2.TabIndex = 1
         '
         'Panel4
@@ -263,18 +271,20 @@ Partial Class frmDefCustomer
         Me.Panel4.BackColor = System.Drawing.Color.White
         Me.Panel4.Controls.Add(Me.Label9)
         Me.Panel4.Controls.Add(Me.uitxtcomments)
-        Me.Panel4.Location = New System.Drawing.Point(23, 316)
+        Me.Panel4.Location = New System.Drawing.Point(31, 389)
+        Me.Panel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(392, 76)
+        Me.Panel4.Size = New System.Drawing.Size(523, 94)
         Me.Panel4.TabIndex = 22
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(3, 4)
+        Me.Label9.Location = New System.Drawing.Point(4, 5)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(59, 13)
+        Me.Label9.Size = New System.Drawing.Size(78, 17)
         Me.Label9.TabIndex = 0
         Me.Label9.Text = "Comments:"
         '
@@ -286,11 +296,12 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtcomments.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtcomments.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtcomments.Location = New System.Drawing.Point(93, 6)
+        Me.uitxtcomments.Location = New System.Drawing.Point(124, 7)
+        Me.uitxtcomments.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtcomments.Multiline = True
         Me.uitxtcomments.Name = "uitxtcomments"
         Me.uitxtcomments.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.uitxtcomments.Size = New System.Drawing.Size(283, 54)
+        Me.uitxtcomments.Size = New System.Drawing.Size(376, 66)
         Me.uitxtcomments.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.uitxtcomments, "Comments")
         '
@@ -301,18 +312,20 @@ Partial Class frmDefCustomer
         Me.Panel3.BackColor = System.Drawing.Color.White
         Me.Panel3.Controls.Add(Me.Label5)
         Me.Panel3.Controls.Add(Me.uitxtAddress)
-        Me.Panel3.Location = New System.Drawing.Point(23, 234)
+        Me.Panel3.Location = New System.Drawing.Point(31, 288)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(392, 76)
+        Me.Panel3.Size = New System.Drawing.Size(523, 94)
         Me.Panel3.TabIndex = 21
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(3, 12)
+        Me.Label5.Location = New System.Drawing.Point(4, 15)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(45, 13)
+        Me.Label5.Size = New System.Drawing.Size(60, 17)
         Me.Label5.TabIndex = 0
         Me.Label5.Text = "Address"
         '
@@ -324,11 +337,12 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtAddress.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtAddress.Location = New System.Drawing.Point(94, 9)
+        Me.uitxtAddress.Location = New System.Drawing.Point(125, 11)
+        Me.uitxtAddress.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtAddress.Multiline = True
         Me.uitxtAddress.Name = "uitxtAddress"
         Me.uitxtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.uitxtAddress.Size = New System.Drawing.Size(282, 54)
+        Me.uitxtAddress.Size = New System.Drawing.Size(375, 66)
         Me.uitxtAddress.TabIndex = 1
         Me.uitxtAddress.TabStop = False
         Me.ToolTip1.SetToolTip(Me.uitxtAddress, "Address")
@@ -337,9 +351,10 @@ Partial Class frmDefCustomer
         '
         Me.Label11.AutoSize = True
         Me.Label11.ForeColor = System.Drawing.Color.Black
-        Me.Label11.Location = New System.Drawing.Point(114, 4)
+        Me.Label11.Location = New System.Drawing.Point(152, 5)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(35, 13)
+        Me.Label11.Size = New System.Drawing.Size(45, 17)
         Me.Label11.TabIndex = 1
         Me.Label11.Text = "Name"
         '
@@ -347,9 +362,10 @@ Partial Class frmDefCustomer
         '
         Me.Label30.AutoSize = True
         Me.Label30.ForeColor = System.Drawing.Color.Black
-        Me.Label30.Location = New System.Drawing.Point(25, 77)
+        Me.Label30.Location = New System.Drawing.Point(33, 95)
+        Me.Label30.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(73, 13)
+        Me.Label30.Size = New System.Drawing.Size(94, 17)
         Me.Label30.TabIndex = 8
         Me.Label30.Text = "Contact No. 3"
         '
@@ -357,9 +373,10 @@ Partial Class frmDefCustomer
         '
         Me.Label29.AutoSize = True
         Me.Label29.ForeColor = System.Drawing.Color.Black
-        Me.Label29.Location = New System.Drawing.Point(25, 50)
+        Me.Label29.Location = New System.Drawing.Point(33, 62)
+        Me.Label29.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(73, 13)
+        Me.Label29.Size = New System.Drawing.Size(94, 17)
         Me.Label29.TabIndex = 5
         Me.Label29.Text = "Contact No. 2"
         '
@@ -367,9 +384,10 @@ Partial Class frmDefCustomer
         '
         Me.Label28.AutoSize = True
         Me.Label28.ForeColor = System.Drawing.Color.Black
-        Me.Label28.Location = New System.Drawing.Point(25, 23)
+        Me.Label28.Location = New System.Drawing.Point(33, 28)
+        Me.Label28.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(73, 13)
+        Me.Label28.Size = New System.Drawing.Size(94, 17)
         Me.Label28.TabIndex = 0
         Me.Label28.Text = "Contact No. 1"
         '
@@ -377,9 +395,10 @@ Partial Class frmDefCustomer
         '
         Me.Label2.AutoSize = True
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(25, 104)
+        Me.Label2.Location = New System.Drawing.Point(33, 128)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 13)
+        Me.Label2.Size = New System.Drawing.Size(49, 17)
         Me.Label2.TabIndex = 11
         Me.Label2.Text = "Phone"
         '
@@ -389,9 +408,10 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtEmail.Location = New System.Drawing.Point(116, 128)
+        Me.uitxtEmail.Location = New System.Drawing.Point(155, 158)
+        Me.uitxtEmail.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtEmail.Name = "uitxtEmail"
-        Me.uitxtEmail.Size = New System.Drawing.Size(298, 20)
+        Me.uitxtEmail.Size = New System.Drawing.Size(396, 22)
         Me.uitxtEmail.TabIndex = 14
         Me.ToolTip1.SetToolTip(Me.uitxtEmail, "Email Address")
         '
@@ -401,9 +421,10 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtCrditLimit.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtCrditLimit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtCrditLimit.Location = New System.Drawing.Point(116, 155)
+        Me.uitxtCrditLimit.Location = New System.Drawing.Point(155, 191)
+        Me.uitxtCrditLimit.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtCrditLimit.Name = "uitxtCrditLimit"
-        Me.uitxtCrditLimit.Size = New System.Drawing.Size(298, 20)
+        Me.uitxtCrditLimit.Size = New System.Drawing.Size(396, 22)
         Me.uitxtCrditLimit.TabIndex = 16
         Me.ToolTip1.SetToolTip(Me.uitxtCrditLimit, "Credit Limit")
         '
@@ -411,9 +432,10 @@ Partial Class frmDefCustomer
         '
         Me.Label8.AutoSize = True
         Me.Label8.ForeColor = System.Drawing.Color.Black
-        Me.Label8.Location = New System.Drawing.Point(25, 131)
+        Me.Label8.Location = New System.Drawing.Point(33, 161)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(36, 13)
+        Me.Label8.Size = New System.Drawing.Size(47, 17)
         Me.Label8.TabIndex = 13
         Me.Label8.Text = "E-Mail"
         '
@@ -421,9 +443,10 @@ Partial Class frmDefCustomer
         '
         Me.Label12.AutoSize = True
         Me.Label12.ForeColor = System.Drawing.Color.Black
-        Me.Label12.Location = New System.Drawing.Point(25, 158)
+        Me.Label12.Location = New System.Drawing.Point(33, 194)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(58, 13)
+        Me.Label12.Size = New System.Drawing.Size(78, 17)
         Me.Label12.TabIndex = 15
         Me.Label12.Text = "Credit Limit"
         '
@@ -432,9 +455,10 @@ Partial Class frmDefCustomer
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(295, 5)
+        Me.Label4.Location = New System.Drawing.Point(393, 6)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(38, 13)
+        Me.Label4.Size = New System.Drawing.Size(49, 17)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Mobile"
         '
@@ -443,9 +467,10 @@ Partial Class frmDefCustomer
         Me.uitxtMobile.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtMobile.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtMobile.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtMobile.Location = New System.Drawing.Point(298, 20)
+        Me.uitxtMobile.Location = New System.Drawing.Point(397, 25)
+        Me.uitxtMobile.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtMobile.Name = "uitxtMobile"
-        Me.uitxtMobile.Size = New System.Drawing.Size(117, 20)
+        Me.uitxtMobile.Size = New System.Drawing.Size(155, 22)
         Me.uitxtMobile.TabIndex = 4
         Me.ToolTip1.SetToolTip(Me.uitxtMobile, "Cell No")
         '
@@ -454,9 +479,10 @@ Partial Class frmDefCustomer
         Me.uitxtMobile2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtMobile2.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtMobile2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtMobile2.Location = New System.Drawing.Point(298, 47)
+        Me.uitxtMobile2.Location = New System.Drawing.Point(397, 58)
+        Me.uitxtMobile2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtMobile2.Name = "uitxtMobile2"
-        Me.uitxtMobile2.Size = New System.Drawing.Size(117, 20)
+        Me.uitxtMobile2.Size = New System.Drawing.Size(155, 22)
         Me.uitxtMobile2.TabIndex = 7
         '
         'uitxtMobile3
@@ -464,9 +490,10 @@ Partial Class frmDefCustomer
         Me.uitxtMobile3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtMobile3.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtMobile3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtMobile3.Location = New System.Drawing.Point(298, 75)
+        Me.uitxtMobile3.Location = New System.Drawing.Point(397, 92)
+        Me.uitxtMobile3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtMobile3.Name = "uitxtMobile3"
-        Me.uitxtMobile3.Size = New System.Drawing.Size(117, 20)
+        Me.uitxtMobile3.Size = New System.Drawing.Size(155, 22)
         Me.uitxtMobile3.TabIndex = 10
         '
         'uitxtContactNo3Name
@@ -475,9 +502,10 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtContactNo3Name.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtContactNo3Name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtContactNo3Name.Location = New System.Drawing.Point(117, 74)
+        Me.uitxtContactNo3Name.Location = New System.Drawing.Point(156, 91)
+        Me.uitxtContactNo3Name.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtContactNo3Name.Name = "uitxtContactNo3Name"
-        Me.uitxtContactNo3Name.Size = New System.Drawing.Size(175, 20)
+        Me.uitxtContactNo3Name.Size = New System.Drawing.Size(232, 22)
         Me.uitxtContactNo3Name.TabIndex = 9
         '
         'uitxtContactNo2Name
@@ -486,9 +514,10 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtContactNo2Name.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtContactNo2Name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtContactNo2Name.Location = New System.Drawing.Point(117, 47)
+        Me.uitxtContactNo2Name.Location = New System.Drawing.Point(156, 58)
+        Me.uitxtContactNo2Name.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtContactNo2Name.Name = "uitxtContactNo2Name"
-        Me.uitxtContactNo2Name.Size = New System.Drawing.Size(175, 20)
+        Me.uitxtContactNo2Name.Size = New System.Drawing.Size(232, 22)
         Me.uitxtContactNo2Name.TabIndex = 6
         '
         'uitxtContactNo1Name
@@ -497,9 +526,10 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtContactNo1Name.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtContactNo1Name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtContactNo1Name.Location = New System.Drawing.Point(116, 20)
+        Me.uitxtContactNo1Name.Location = New System.Drawing.Point(155, 25)
+        Me.uitxtContactNo1Name.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtContactNo1Name.Name = "uitxtContactNo1Name"
-        Me.uitxtContactNo1Name.Size = New System.Drawing.Size(175, 20)
+        Me.uitxtContactNo1Name.Size = New System.Drawing.Size(232, 22)
         Me.uitxtContactNo1Name.TabIndex = 2
         '
         'uitxtPhone
@@ -508,9 +538,10 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtPhone.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtPhone.Location = New System.Drawing.Point(117, 101)
+        Me.uitxtPhone.Location = New System.Drawing.Point(156, 124)
+        Me.uitxtPhone.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtPhone.Name = "uitxtPhone"
-        Me.uitxtPhone.Size = New System.Drawing.Size(298, 20)
+        Me.uitxtPhone.Size = New System.Drawing.Size(396, 22)
         Me.uitxtPhone.TabIndex = 12
         Me.ToolTip1.SetToolTip(Me.uitxtPhone, "Phone No")
         '
@@ -520,9 +551,10 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSalesTaxNo.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.txtSalesTaxNo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.txtSalesTaxNo.Location = New System.Drawing.Point(116, 208)
+        Me.txtSalesTaxNo.Location = New System.Drawing.Point(155, 256)
+        Me.txtSalesTaxNo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtSalesTaxNo.Name = "txtSalesTaxNo"
-        Me.txtSalesTaxNo.Size = New System.Drawing.Size(298, 20)
+        Me.txtSalesTaxNo.Size = New System.Drawing.Size(396, 22)
         Me.txtSalesTaxNo.TabIndex = 20
         Me.ToolTip1.SetToolTip(Me.txtSalesTaxNo, "Sales Tax No")
         '
@@ -532,9 +564,10 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtNTNNo.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.txtNTNNo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.txtNTNNo.Location = New System.Drawing.Point(116, 182)
+        Me.txtNTNNo.Location = New System.Drawing.Point(155, 224)
+        Me.txtNTNNo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtNTNNo.Name = "txtNTNNo"
-        Me.txtNTNNo.Size = New System.Drawing.Size(298, 20)
+        Me.txtNTNNo.Size = New System.Drawing.Size(396, 22)
         Me.txtNTNNo.TabIndex = 18
         Me.ToolTip1.SetToolTip(Me.txtNTNNo, "NTN No")
         '
@@ -542,9 +575,10 @@ Partial Class frmDefCustomer
         '
         Me.lblSalesTax.AutoSize = True
         Me.lblSalesTax.ForeColor = System.Drawing.Color.Black
-        Me.lblSalesTax.Location = New System.Drawing.Point(24, 211)
+        Me.lblSalesTax.Location = New System.Drawing.Point(32, 260)
+        Me.lblSalesTax.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblSalesTax.Name = "lblSalesTax"
-        Me.lblSalesTax.Size = New System.Drawing.Size(74, 13)
+        Me.lblSalesTax.Size = New System.Drawing.Size(96, 17)
         Me.lblSalesTax.TabIndex = 19
         Me.lblSalesTax.Text = "Sales Tax No."
         '
@@ -552,9 +586,10 @@ Partial Class frmDefCustomer
         '
         Me.lblNTNNo.AutoSize = True
         Me.lblNTNNo.ForeColor = System.Drawing.Color.Black
-        Me.lblNTNNo.Location = New System.Drawing.Point(25, 185)
+        Me.lblNTNNo.Location = New System.Drawing.Point(33, 228)
+        Me.lblNTNNo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblNTNNo.Name = "lblNTNNo"
-        Me.lblNTNNo.Size = New System.Drawing.Size(50, 13)
+        Me.lblNTNNo.Size = New System.Drawing.Size(63, 17)
         Me.lblNTNNo.TabIndex = 17
         Me.lblNTNNo.Text = "NTN No."
         '
@@ -569,18 +604,20 @@ Partial Class frmDefCustomer
         Me.Panel1.Controls.Add(Me.Label17)
         Me.Panel1.Controls.Add(Me.txtCustomerCode)
         Me.Panel1.Controls.Add(Me.Label18)
-        Me.Panel1.Location = New System.Drawing.Point(0, 3)
+        Me.Panel1.Location = New System.Drawing.Point(0, 4)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(467, 94)
+        Me.Panel1.Size = New System.Drawing.Size(623, 116)
         Me.Panel1.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(25, 12)
+        Me.Label1.Location = New System.Drawing.Point(33, 15)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(82, 13)
+        Me.Label1.Size = New System.Drawing.Size(109, 17)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Customer Name"
         '
@@ -590,9 +627,10 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.uitxtName.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtName.Location = New System.Drawing.Point(117, 9)
+        Me.uitxtName.Location = New System.Drawing.Point(156, 11)
+        Me.uitxtName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtName.Name = "uitxtName"
-        Me.uitxtName.Size = New System.Drawing.Size(298, 20)
+        Me.uitxtName.Size = New System.Drawing.Size(396, 22)
         Me.uitxtName.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.uitxtName, "Customer Name")
         '
@@ -603,9 +641,10 @@ Partial Class frmDefCustomer
         Me.CmbCustomerTypes.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.CmbCustomerTypes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.CmbCustomerTypes.FormattingEnabled = True
-        Me.CmbCustomerTypes.Location = New System.Drawing.Point(117, 61)
+        Me.CmbCustomerTypes.Location = New System.Drawing.Point(156, 75)
+        Me.CmbCustomerTypes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CmbCustomerTypes.Name = "CmbCustomerTypes"
-        Me.CmbCustomerTypes.Size = New System.Drawing.Size(298, 21)
+        Me.CmbCustomerTypes.Size = New System.Drawing.Size(396, 24)
         Me.CmbCustomerTypes.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.CmbCustomerTypes, "Select Any Customer Type")
         '
@@ -613,9 +652,10 @@ Partial Class frmDefCustomer
         '
         Me.Label17.AutoSize = True
         Me.Label17.ForeColor = System.Drawing.Color.Black
-        Me.Label17.Location = New System.Drawing.Point(25, 64)
+        Me.Label17.Location = New System.Drawing.Point(33, 79)
+        Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(78, 13)
+        Me.Label17.Size = New System.Drawing.Size(104, 17)
         Me.Label17.TabIndex = 4
         Me.Label17.Text = "Customer Type"
         '
@@ -625,9 +665,10 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCustomerCode.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.txtCustomerCode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.txtCustomerCode.Location = New System.Drawing.Point(117, 35)
+        Me.txtCustomerCode.Location = New System.Drawing.Point(156, 43)
+        Me.txtCustomerCode.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtCustomerCode.Name = "txtCustomerCode"
-        Me.txtCustomerCode.Size = New System.Drawing.Size(298, 20)
+        Me.txtCustomerCode.Size = New System.Drawing.Size(396, 22)
         Me.txtCustomerCode.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.txtCustomerCode, "Customer Name")
         '
@@ -635,9 +676,10 @@ Partial Class frmDefCustomer
         '
         Me.Label18.AutoSize = True
         Me.Label18.ForeColor = System.Drawing.Color.Black
-        Me.Label18.Location = New System.Drawing.Point(25, 38)
+        Me.Label18.Location = New System.Drawing.Point(33, 47)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(79, 13)
+        Me.Label18.Size = New System.Drawing.Size(105, 17)
         Me.Label18.TabIndex = 2
         Me.Label18.Text = "Customer Code"
         '
@@ -667,18 +709,20 @@ Partial Class frmDefCustomer
         Me.Panel9.Controls.Add(Me.Label15)
         Me.Panel9.Controls.Add(Me.Panel6)
         Me.Panel9.Controls.Add(Me.Panel7)
-        Me.Panel9.Location = New System.Drawing.Point(459, 3)
+        Me.Panel9.Location = New System.Drawing.Point(612, 4)
+        Me.Panel9.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(450, 627)
+        Me.Panel9.Size = New System.Drawing.Size(600, 779)
         Me.Panel9.TabIndex = 78
         '
         'lblEnd
         '
         Me.lblEnd.AutoSize = True
         Me.lblEnd.ForeColor = System.Drawing.Color.Black
-        Me.lblEnd.Location = New System.Drawing.Point(228, 326)
+        Me.lblEnd.Location = New System.Drawing.Point(304, 401)
+        Me.lblEnd.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblEnd.Name = "lblEnd"
-        Me.lblEnd.Size = New System.Drawing.Size(55, 13)
+        Me.lblEnd.Size = New System.Drawing.Size(71, 17)
         Me.lblEnd.TabIndex = 4
         Me.lblEnd.Text = "Maint End"
         '
@@ -686,9 +730,10 @@ Partial Class frmDefCustomer
         '
         Me.txtDiscPer.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.txtDiscPer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.txtDiscPer.Location = New System.Drawing.Point(133, 399)
+        Me.txtDiscPer.Location = New System.Drawing.Point(177, 491)
+        Me.txtDiscPer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtDiscPer.Name = "txtDiscPer"
-        Me.txtDiscPer.Size = New System.Drawing.Size(298, 20)
+        Me.txtDiscPer.Size = New System.Drawing.Size(396, 22)
         Me.txtDiscPer.TabIndex = 16
         Me.ToolTip1.SetToolTip(Me.txtDiscPer, "Discount Percent Age On Sale")
         '
@@ -711,18 +756,20 @@ Partial Class frmDefCustomer
         Me.Panel5.Controls.Add(Me.cmbZone)
         Me.Panel5.Controls.Add(Me.cmbRegion)
         Me.Panel5.Controls.Add(Me.Label25)
-        Me.Panel5.Location = New System.Drawing.Point(3, 101)
+        Me.Panel5.Location = New System.Drawing.Point(4, 124)
+        Me.Panel5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(553, 213)
+        Me.Panel5.Size = New System.Drawing.Size(737, 262)
         Me.Panel5.TabIndex = 0
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(19, 23)
+        Me.Label3.Location = New System.Drawing.Point(25, 28)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(43, 13)
+        Me.Label3.Size = New System.Drawing.Size(57, 17)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Country"
         '
@@ -730,9 +777,10 @@ Partial Class frmDefCustomer
         '
         Me.Label7.AutoSize = True
         Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(19, 158)
+        Me.Label7.Location = New System.Drawing.Point(25, 194)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(45, 13)
+        Me.Label7.Size = New System.Drawing.Size(62, 17)
         Me.Label7.TabIndex = 10
         Me.Label7.Text = "Territory"
         '
@@ -743,9 +791,10 @@ Partial Class frmDefCustomer
         Me.cmbTerritory.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.cmbTerritory.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbTerritory.FormattingEnabled = True
-        Me.cmbTerritory.Location = New System.Drawing.Point(130, 155)
+        Me.cmbTerritory.Location = New System.Drawing.Point(173, 191)
+        Me.cmbTerritory.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbTerritory.Name = "cmbTerritory"
-        Me.cmbTerritory.Size = New System.Drawing.Size(298, 21)
+        Me.cmbTerritory.Size = New System.Drawing.Size(396, 24)
         Me.cmbTerritory.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.cmbTerritory, "Select Any Territory")
         '
@@ -753,9 +802,10 @@ Partial Class frmDefCustomer
         '
         Me.Label6.AutoSize = True
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(19, 131)
+        Me.Label6.Location = New System.Drawing.Point(25, 161)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(55, 13)
+        Me.Label6.Size = New System.Drawing.Size(72, 17)
         Me.Label6.TabIndex = 8
         Me.Label6.Text = "City Name"
         '
@@ -766,9 +816,10 @@ Partial Class frmDefCustomer
         Me.cmbCity.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.cmbCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbCity.FormattingEnabled = True
-        Me.cmbCity.Location = New System.Drawing.Point(130, 128)
+        Me.cmbCity.Location = New System.Drawing.Point(173, 158)
+        Me.cmbCity.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbCity.Name = "cmbCity"
-        Me.cmbCity.Size = New System.Drawing.Size(298, 21)
+        Me.cmbCity.Size = New System.Drawing.Size(396, 24)
         Me.cmbCity.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.cmbCity, "Select Any City")
         '
@@ -780,9 +831,10 @@ Partial Class frmDefCustomer
         Me.cmbState.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.cmbState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbState.FormattingEnabled = True
-        Me.cmbState.Location = New System.Drawing.Point(130, 48)
+        Me.cmbState.Location = New System.Drawing.Point(173, 59)
+        Me.cmbState.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbState.Name = "cmbState"
-        Me.cmbState.Size = New System.Drawing.Size(298, 21)
+        Me.cmbState.Size = New System.Drawing.Size(396, 24)
         Me.cmbState.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbState, "Select Any State")
         '
@@ -793,9 +845,10 @@ Partial Class frmDefCustomer
         Me.cmbRootPlan.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.cmbRootPlan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbRootPlan.FormattingEnabled = True
-        Me.cmbRootPlan.Location = New System.Drawing.Point(130, 182)
+        Me.cmbRootPlan.Location = New System.Drawing.Point(173, 224)
+        Me.cmbRootPlan.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbRootPlan.Name = "cmbRootPlan"
-        Me.cmbRootPlan.Size = New System.Drawing.Size(298, 21)
+        Me.cmbRootPlan.Size = New System.Drawing.Size(396, 24)
         Me.cmbRootPlan.TabIndex = 13
         Me.ToolTip1.SetToolTip(Me.cmbRootPlan, "Select Any Territory")
         '
@@ -806,9 +859,10 @@ Partial Class frmDefCustomer
         Me.cmbBelt.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.cmbBelt.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbBelt.FormattingEnabled = True
-        Me.cmbBelt.Location = New System.Drawing.Point(130, 101)
+        Me.cmbBelt.Location = New System.Drawing.Point(173, 124)
+        Me.cmbBelt.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbBelt.Name = "cmbBelt"
-        Me.cmbBelt.Size = New System.Drawing.Size(298, 21)
+        Me.cmbBelt.Size = New System.Drawing.Size(396, 24)
         Me.cmbBelt.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.cmbBelt, "Select Any City")
         '
@@ -816,9 +870,10 @@ Partial Class frmDefCustomer
         '
         Me.Label19.AutoSize = True
         Me.Label19.ForeColor = System.Drawing.Color.Black
-        Me.Label19.Location = New System.Drawing.Point(19, 185)
+        Me.Label19.Location = New System.Drawing.Point(25, 228)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(60, 13)
+        Me.Label19.Size = New System.Drawing.Size(78, 17)
         Me.Label19.TabIndex = 12
         Me.Label19.Text = "Route Plan"
         '
@@ -826,9 +881,10 @@ Partial Class frmDefCustomer
         '
         Me.Label26.AutoSize = True
         Me.Label26.ForeColor = System.Drawing.Color.Black
-        Me.Label26.Location = New System.Drawing.Point(19, 104)
+        Me.Label26.Location = New System.Drawing.Point(25, 128)
+        Me.Label26.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(25, 13)
+        Me.Label26.Size = New System.Drawing.Size(32, 17)
         Me.Label26.TabIndex = 6
         Me.Label26.Text = "Belt"
         '
@@ -836,9 +892,10 @@ Partial Class frmDefCustomer
         '
         Me.Label24.AutoSize = True
         Me.Label24.ForeColor = System.Drawing.Color.Black
-        Me.Label24.Location = New System.Drawing.Point(19, 52)
+        Me.Label24.Location = New System.Drawing.Point(25, 64)
+        Me.Label24.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(37, 13)
+        Me.Label24.Size = New System.Drawing.Size(48, 17)
         Me.Label24.TabIndex = 2
         Me.Label24.Text = "States"
         '
@@ -849,9 +906,10 @@ Partial Class frmDefCustomer
         Me.cmbZone.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.cmbZone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbZone.FormattingEnabled = True
-        Me.cmbZone.Location = New System.Drawing.Point(130, 74)
+        Me.cmbZone.Location = New System.Drawing.Point(173, 91)
+        Me.cmbZone.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbZone.Name = "cmbZone"
-        Me.cmbZone.Size = New System.Drawing.Size(298, 21)
+        Me.cmbZone.Size = New System.Drawing.Size(396, 24)
         Me.cmbZone.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.cmbZone, "Select Any City")
         '
@@ -863,9 +921,10 @@ Partial Class frmDefCustomer
         Me.cmbRegion.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.cmbRegion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbRegion.FormattingEnabled = True
-        Me.cmbRegion.Location = New System.Drawing.Point(130, 22)
+        Me.cmbRegion.Location = New System.Drawing.Point(173, 27)
+        Me.cmbRegion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbRegion.Name = "cmbRegion"
-        Me.cmbRegion.Size = New System.Drawing.Size(298, 21)
+        Me.cmbRegion.Size = New System.Drawing.Size(396, 24)
         Me.cmbRegion.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.cmbRegion, "Select Any Country")
         '
@@ -873,9 +932,10 @@ Partial Class frmDefCustomer
         '
         Me.Label25.AutoSize = True
         Me.Label25.ForeColor = System.Drawing.Color.Black
-        Me.Label25.Location = New System.Drawing.Point(19, 77)
+        Me.Label25.Location = New System.Drawing.Point(25, 95)
+        Me.Label25.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(32, 13)
+        Me.Label25.Size = New System.Drawing.Size(41, 17)
         Me.Label25.TabIndex = 4
         Me.Label25.Text = "Zone"
         '
@@ -883,9 +943,10 @@ Partial Class frmDefCustomer
         '
         Me.lblStart.AutoSize = True
         Me.lblStart.ForeColor = System.Drawing.Color.Black
-        Me.lblStart.Location = New System.Drawing.Point(22, 326)
+        Me.lblStart.Location = New System.Drawing.Point(29, 401)
+        Me.lblStart.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblStart.Name = "lblStart"
-        Me.lblStart.Size = New System.Drawing.Size(58, 13)
+        Me.lblStart.Size = New System.Drawing.Size(76, 17)
         Me.lblStart.TabIndex = 2
         Me.lblStart.Text = "Maint Start"
         '
@@ -893,9 +954,10 @@ Partial Class frmDefCustomer
         '
         Me.TxtOtherExpn.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.TxtOtherExpn.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.TxtOtherExpn.Location = New System.Drawing.Point(133, 425)
+        Me.TxtOtherExpn.Location = New System.Drawing.Point(177, 523)
+        Me.TxtOtherExpn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtOtherExpn.Name = "TxtOtherExpn"
-        Me.TxtOtherExpn.Size = New System.Drawing.Size(298, 20)
+        Me.TxtOtherExpn.Size = New System.Drawing.Size(396, 22)
         Me.TxtOtherExpn.TabIndex = 18
         Me.ToolTip1.SetToolTip(Me.TxtOtherExpn, "Other Expense On Sale")
         '
@@ -903,9 +965,10 @@ Partial Class frmDefCustomer
         '
         Me.Label10.AutoSize = True
         Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(228, 376)
+        Me.Label10.Location = New System.Drawing.Point(304, 463)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(55, 13)
+        Me.Label10.Size = New System.Drawing.Size(75, 17)
         Me.Label10.TabIndex = 12
         Me.Label10.Text = "Sort Order"
         '
@@ -915,10 +978,11 @@ Partial Class frmDefCustomer
         Me.dtpStart.Cursor = System.Windows.Forms.Cursors.Default
         Me.dtpStart.CustomFormat = "dd/MMM/yyyy"
         Me.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpStart.Location = New System.Drawing.Point(83, 321)
+        Me.dtpStart.Location = New System.Drawing.Point(111, 395)
+        Me.dtpStart.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dtpStart.Name = "dtpStart"
         Me.dtpStart.ShowCheckBox = True
-        Me.dtpStart.Size = New System.Drawing.Size(139, 20)
+        Me.dtpStart.Size = New System.Drawing.Size(184, 22)
         Me.dtpStart.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.dtpStart, "Optional End Date")
         '
@@ -928,10 +992,11 @@ Partial Class frmDefCustomer
         Me.dtpExpiryDate.Cursor = System.Windows.Forms.Cursors.Default
         Me.dtpExpiryDate.CustomFormat = "dd/MMM/yyyy"
         Me.dtpExpiryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpExpiryDate.Location = New System.Drawing.Point(292, 321)
+        Me.dtpExpiryDate.Location = New System.Drawing.Point(389, 395)
+        Me.dtpExpiryDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dtpExpiryDate.Name = "dtpExpiryDate"
         Me.dtpExpiryDate.ShowCheckBox = True
-        Me.dtpExpiryDate.Size = New System.Drawing.Size(139, 20)
+        Me.dtpExpiryDate.Size = New System.Drawing.Size(184, 22)
         Me.dtpExpiryDate.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.dtpExpiryDate, "Optional End Date")
         '
@@ -939,9 +1004,10 @@ Partial Class frmDefCustomer
         '
         Me.TxtFuel.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.TxtFuel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.TxtFuel.Location = New System.Drawing.Point(83, 347)
+        Me.TxtFuel.Location = New System.Drawing.Point(111, 427)
+        Me.TxtFuel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtFuel.Name = "TxtFuel"
-        Me.TxtFuel.Size = New System.Drawing.Size(139, 20)
+        Me.TxtFuel.Size = New System.Drawing.Size(184, 22)
         Me.TxtFuel.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.TxtFuel, "Fuel Expense On Sale")
         '
@@ -951,9 +1017,10 @@ Partial Class frmDefCustomer
         Me.uichkActive.Checked = True
         Me.uichkActive.CheckState = System.Windows.Forms.CheckState.Checked
         Me.uichkActive.ForeColor = System.Drawing.Color.Black
-        Me.uichkActive.Location = New System.Drawing.Point(133, 478)
+        Me.uichkActive.Location = New System.Drawing.Point(177, 588)
+        Me.uichkActive.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uichkActive.Name = "uichkActive"
-        Me.uichkActive.Size = New System.Drawing.Size(56, 17)
+        Me.uichkActive.Size = New System.Drawing.Size(68, 21)
         Me.uichkActive.TabIndex = 14
         Me.uichkActive.Text = "Active"
         Me.ToolTip1.SetToolTip(Me.uichkActive, "Customer Status Active Or Inactive")
@@ -963,9 +1030,10 @@ Partial Class frmDefCustomer
         '
         Me.txtCNG.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.txtCNG.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.txtCNG.Location = New System.Drawing.Point(292, 347)
+        Me.txtCNG.Location = New System.Drawing.Point(389, 427)
+        Me.txtCNG.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtCNG.Name = "txtCNG"
-        Me.txtCNG.Size = New System.Drawing.Size(139, 20)
+        Me.txtCNG.Size = New System.Drawing.Size(184, 22)
         Me.txtCNG.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.txtCNG, "Fuel Expense On Sale")
         '
@@ -973,9 +1041,10 @@ Partial Class frmDefCustomer
         '
         Me.Label13.AutoSize = True
         Me.Label13.ForeColor = System.Drawing.Color.Black
-        Me.Label13.Location = New System.Drawing.Point(22, 402)
+        Me.Label13.Location = New System.Drawing.Point(29, 495)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(78, 13)
+        Me.Label13.Size = New System.Drawing.Size(103, 17)
         Me.Label13.TabIndex = 15
         Me.Label13.Text = "Discount %age"
         '
@@ -983,9 +1052,10 @@ Partial Class frmDefCustomer
         '
         Me.Label27.AutoSize = True
         Me.Label27.ForeColor = System.Drawing.Color.Black
-        Me.Label27.Location = New System.Drawing.Point(22, 376)
+        Me.Label27.Location = New System.Drawing.Point(29, 463)
+        Me.Label27.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(61, 13)
+        Me.Label27.Size = New System.Drawing.Size(81, 17)
         Me.Label27.TabIndex = 10
         Me.Label27.Text = "Credit Days"
         '
@@ -993,9 +1063,10 @@ Partial Class frmDefCustomer
         '
         Me.Label16.AutoSize = True
         Me.Label16.ForeColor = System.Drawing.Color.Black
-        Me.Label16.Location = New System.Drawing.Point(22, 428)
+        Me.Label16.Location = New System.Drawing.Point(29, 527)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(82, 13)
+        Me.Label16.Size = New System.Drawing.Size(109, 17)
         Me.Label16.TabIndex = 17
         Me.Label16.Text = "Other Expenses"
         '
@@ -1003,19 +1074,21 @@ Partial Class frmDefCustomer
         '
         Me.txtCreditDays.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.txtCreditDays.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.txtCreditDays.Location = New System.Drawing.Point(83, 373)
+        Me.txtCreditDays.Location = New System.Drawing.Point(111, 459)
+        Me.txtCreditDays.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtCreditDays.Name = "txtCreditDays"
-        Me.txtCreditDays.Size = New System.Drawing.Size(139, 20)
+        Me.txtCreditDays.Size = New System.Drawing.Size(184, 22)
         Me.txtCreditDays.TabIndex = 11
         '
         'uitxtSortOrder
         '
         Me.uitxtSortOrder.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.uitxtSortOrder.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.uitxtSortOrder.Location = New System.Drawing.Point(292, 373)
+        Me.uitxtSortOrder.Location = New System.Drawing.Point(389, 459)
+        Me.uitxtSortOrder.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.uitxtSortOrder.MaxLength = 50
         Me.uitxtSortOrder.Name = "uitxtSortOrder"
-        Me.uitxtSortOrder.Size = New System.Drawing.Size(139, 20)
+        Me.uitxtSortOrder.Size = New System.Drawing.Size(184, 22)
         Me.uitxtSortOrder.TabIndex = 13
         Me.uitxtSortOrder.Text = "1"
         Me.ToolTip1.SetToolTip(Me.uitxtSortOrder, "Sort Order")
@@ -1024,9 +1097,10 @@ Partial Class frmDefCustomer
         '
         Me.Label20.AutoSize = True
         Me.Label20.ForeColor = System.Drawing.Color.Black
-        Me.Label20.Location = New System.Drawing.Point(228, 350)
+        Me.Label20.Location = New System.Drawing.Point(304, 431)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(30, 13)
+        Me.Label20.Size = New System.Drawing.Size(38, 17)
         Me.Label20.TabIndex = 8
         Me.Label20.Text = "CNG"
         '
@@ -1034,9 +1108,10 @@ Partial Class frmDefCustomer
         '
         Me.Label15.AutoSize = True
         Me.Label15.ForeColor = System.Drawing.Color.Black
-        Me.Label15.Location = New System.Drawing.Point(22, 350)
+        Me.Label15.Location = New System.Drawing.Point(29, 431)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(30, 13)
+        Me.Label15.Size = New System.Drawing.Size(39, 17)
         Me.Label15.TabIndex = 6
         Me.Label15.Text = "Fuel "
         '
@@ -1051,18 +1126,20 @@ Partial Class frmDefCustomer
         Me.Panel6.Controls.Add(Me.cmbSaleman)
         Me.Panel6.Controls.Add(Me.cmbDirector)
         Me.Panel6.Controls.Add(Me.Label21)
-        Me.Panel6.Location = New System.Drawing.Point(3, 3)
+        Me.Panel6.Location = New System.Drawing.Point(4, 4)
+        Me.Panel6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(553, 94)
+        Me.Panel6.Size = New System.Drawing.Size(737, 116)
         Me.Panel6.TabIndex = 1
         '
         'Label22
         '
         Me.Label22.AutoSize = True
         Me.Label22.ForeColor = System.Drawing.Color.Black
-        Me.Label22.Location = New System.Drawing.Point(19, 12)
+        Me.Label22.Location = New System.Drawing.Point(25, 15)
+        Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(48, 13)
+        Me.Label22.Size = New System.Drawing.Size(63, 17)
         Me.Label22.TabIndex = 0
         Me.Label22.Text = "Saleman"
         '
@@ -1070,9 +1147,10 @@ Partial Class frmDefCustomer
         '
         Me.Label23.AutoSize = True
         Me.Label23.ForeColor = System.Drawing.Color.Black
-        Me.Label23.Location = New System.Drawing.Point(19, 38)
+        Me.Label23.Location = New System.Drawing.Point(25, 47)
+        Me.Label23.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(96, 13)
+        Me.Label23.Size = New System.Drawing.Size(127, 17)
         Me.Label23.TabIndex = 2
         Me.Label23.Text = "Report to Manager"
         '
@@ -1083,9 +1161,10 @@ Partial Class frmDefCustomer
         Me.cmbManager.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.cmbManager.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbManager.FormattingEnabled = True
-        Me.cmbManager.Location = New System.Drawing.Point(130, 34)
+        Me.cmbManager.Location = New System.Drawing.Point(173, 42)
+        Me.cmbManager.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbManager.Name = "cmbManager"
-        Me.cmbManager.Size = New System.Drawing.Size(298, 21)
+        Me.cmbManager.Size = New System.Drawing.Size(396, 24)
         Me.cmbManager.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.cmbManager, "Select Any Territory")
         '
@@ -1096,9 +1175,10 @@ Partial Class frmDefCustomer
         Me.cmbSaleman.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.cmbSaleman.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbSaleman.FormattingEnabled = True
-        Me.cmbSaleman.Location = New System.Drawing.Point(130, 7)
+        Me.cmbSaleman.Location = New System.Drawing.Point(173, 9)
+        Me.cmbSaleman.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbSaleman.Name = "cmbSaleman"
-        Me.cmbSaleman.Size = New System.Drawing.Size(298, 21)
+        Me.cmbSaleman.Size = New System.Drawing.Size(396, 24)
         Me.cmbSaleman.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbSaleman, "Select Any City")
         '
@@ -1109,9 +1189,10 @@ Partial Class frmDefCustomer
         Me.cmbDirector.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.cmbDirector.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbDirector.FormattingEnabled = True
-        Me.cmbDirector.Location = New System.Drawing.Point(130, 61)
+        Me.cmbDirector.Location = New System.Drawing.Point(173, 75)
+        Me.cmbDirector.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbDirector.Name = "cmbDirector"
-        Me.cmbDirector.Size = New System.Drawing.Size(298, 21)
+        Me.cmbDirector.Size = New System.Drawing.Size(396, 24)
         Me.cmbDirector.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.cmbDirector, "Select Any Territory")
         '
@@ -1119,9 +1200,10 @@ Partial Class frmDefCustomer
         '
         Me.Label21.AutoSize = True
         Me.Label21.ForeColor = System.Drawing.Color.Black
-        Me.Label21.Location = New System.Drawing.Point(19, 66)
+        Me.Label21.Location = New System.Drawing.Point(25, 81)
+        Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(91, 13)
+        Me.Label21.Size = New System.Drawing.Size(121, 17)
         Me.Label21.TabIndex = 4
         Me.Label21.Text = "Report to Director"
         '
@@ -1132,9 +1214,11 @@ Partial Class frmDefCustomer
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel7.Controls.Add(Me.cmbUnBuildAccount)
         Me.Panel7.Controls.Add(Me.Label31)
-        Me.Panel7.Location = New System.Drawing.Point(3, 320)
+        Me.Panel7.Controls.Add(Me.chkHold)
+        Me.Panel7.Location = New System.Drawing.Point(4, 394)
+        Me.Panel7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(451, 277)
+        Me.Panel7.Size = New System.Drawing.Size(601, 348)
         Me.Panel7.TabIndex = 19
         '
         'cmbUnBuildAccount
@@ -1143,9 +1227,10 @@ Partial Class frmDefCustomer
         Me.cmbUnBuildAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbUnBuildAccount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbUnBuildAccount.FormattingEnabled = True
-        Me.cmbUnBuildAccount.Location = New System.Drawing.Point(130, 136)
+        Me.cmbUnBuildAccount.Location = New System.Drawing.Point(173, 167)
+        Me.cmbUnBuildAccount.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbUnBuildAccount.Name = "cmbUnBuildAccount"
-        Me.cmbUnBuildAccount.Size = New System.Drawing.Size(298, 21)
+        Me.cmbUnBuildAccount.Size = New System.Drawing.Size(396, 24)
         Me.cmbUnBuildAccount.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.cmbUnBuildAccount, "Select Any Customer Type")
         '
@@ -1153,18 +1238,20 @@ Partial Class frmDefCustomer
         '
         Me.Label31.AutoSize = True
         Me.Label31.ForeColor = System.Drawing.Color.Black
-        Me.Label31.Location = New System.Drawing.Point(19, 139)
+        Me.Label31.Location = New System.Drawing.Point(25, 171)
+        Me.Label31.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(69, 13)
+        Me.Label31.Size = New System.Drawing.Size(87, 17)
         Me.Label31.TabIndex = 6
         Me.Label31.Text = "Un Build A/C"
         '
         'UltraTabPageControl2
         '
         Me.UltraTabPageControl2.Controls.Add(Me.DataGridView1)
-        Me.UltraTabPageControl2.Location = New System.Drawing.Point(1, 1)
+        Me.UltraTabPageControl2.Location = New System.Drawing.Point(-13333, -12308)
+        Me.UltraTabPageControl2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabPageControl2.Name = "UltraTabPageControl2"
-        Me.UltraTabPageControl2.Size = New System.Drawing.Size(914, 695)
+        Me.UltraTabPageControl2.Size = New System.Drawing.Size(1219, 862)
         '
         'DataGridView1
         '
@@ -1178,9 +1265,10 @@ Partial Class frmDefCustomer
         Me.DataGridView1.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DataGridView1.GroupByBoxVisible = False
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RecordNavigator = True
-        Me.DataGridView1.Size = New System.Drawing.Size(914, 695)
+        Me.DataGridView1.Size = New System.Drawing.Size(1219, 862)
         Me.DataGridView1.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.DataGridView1, "Define Customers")
         Me.DataGridView1.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -1188,15 +1276,16 @@ Partial Class frmDefCustomer
         'toolStripSeparator
         '
         Me.toolStripSeparator.Name = "toolStripSeparator"
-        Me.toolStripSeparator.Size = New System.Drawing.Size(6, 25)
+        Me.toolStripSeparator.Size = New System.Drawing.Size(6, 28)
         '
         'ToolStrip1
         '
         Me.ToolStrip1.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnNew, Me.BtnEdit, Me.BtnSave, Me.BtnDelete, Me.btnNewCustomr, Me.BtnPrint, Me.btnPrintCustomerWelcome, Me.toolStripSeparator, Me.btnAttachments, Me.btnRefresh, Me.HelpToolStripButton, Me.ToolStripLabel1, Me.ToolStripComboBox1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(916, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1221, 28)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -1205,7 +1294,7 @@ Partial Class frmDefCustomer
         Me.BtnNew.Image = CType(resources.GetObject("BtnNew.Image"), System.Drawing.Image)
         Me.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnNew.Name = "BtnNew"
-        Me.BtnNew.Size = New System.Drawing.Size(50, 22)
+        Me.BtnNew.Size = New System.Drawing.Size(60, 25)
         Me.BtnNew.Text = "&New"
         '
         'BtnEdit
@@ -1213,7 +1302,7 @@ Partial Class frmDefCustomer
         Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
         Me.BtnEdit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(47, 22)
+        Me.BtnEdit.Size = New System.Drawing.Size(56, 25)
         Me.BtnEdit.Text = "&Edit"
         '
         'BtnSave
@@ -1221,7 +1310,7 @@ Partial Class frmDefCustomer
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
         Me.BtnSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(50, 22)
+        Me.BtnSave.Size = New System.Drawing.Size(61, 25)
         Me.BtnSave.Text = "&Save"
         '
         'BtnDelete
@@ -1229,7 +1318,7 @@ Partial Class frmDefCustomer
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.RightToLeftAutoMirrorImage = True
-        Me.BtnDelete.Size = New System.Drawing.Size(60, 22)
+        Me.BtnDelete.Size = New System.Drawing.Size(72, 25)
         Me.BtnDelete.Text = "&Delete"
         '
         'btnNewCustomr
@@ -1237,7 +1326,7 @@ Partial Class frmDefCustomer
         Me.btnNewCustomr.Image = Global.SimpleAccounts.My.Resources.Resources.subsubaccount
         Me.btnNewCustomr.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnNewCustomr.Name = "btnNewCustomr"
-        Me.btnNewCustomr.Size = New System.Drawing.Size(102, 22)
+        Me.btnNewCustomr.Size = New System.Drawing.Size(124, 25)
         Me.btnNewCustomr.Text = "&New Customer"
         '
         'BtnPrint
@@ -1245,7 +1334,7 @@ Partial Class frmDefCustomer
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
         Me.BtnPrint.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(51, 22)
+        Me.BtnPrint.Size = New System.Drawing.Size(62, 25)
         Me.BtnPrint.Text = "&Print"
         '
         'btnPrintCustomerWelcome
@@ -1253,7 +1342,7 @@ Partial Class frmDefCustomer
         Me.btnPrintCustomerWelcome.Image = CType(resources.GetObject("btnPrintCustomerWelcome.Image"), System.Drawing.Image)
         Me.btnPrintCustomerWelcome.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnPrintCustomerWelcome.Name = "btnPrintCustomerWelcome"
-        Me.btnPrintCustomerWelcome.Size = New System.Drawing.Size(106, 22)
+        Me.btnPrintCustomerWelcome.Size = New System.Drawing.Size(128, 25)
         Me.btnPrintCustomerWelcome.Text = "&Welcome Letter"
         '
         'btnAttachments
@@ -1261,7 +1350,7 @@ Partial Class frmDefCustomer
         Me.btnAttachments.Image = Global.SimpleAccounts.My.Resources.Resources.attachment
         Me.btnAttachments.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnAttachments.Name = "btnAttachments"
-        Me.btnAttachments.Size = New System.Drawing.Size(86, 22)
+        Me.btnAttachments.Size = New System.Drawing.Size(105, 25)
         Me.btnAttachments.Text = "Attachment"
         '
         'btnRefresh
@@ -1269,7 +1358,7 @@ Partial Class frmDefCustomer
         Me.btnRefresh.Image = Global.SimpleAccounts.My.Resources.Resources.Refresh
         Me.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(66, 22)
+        Me.btnRefresh.Size = New System.Drawing.Size(78, 25)
         Me.btnRefresh.Text = "Refresh"
         '
         'HelpToolStripButton
@@ -1278,20 +1367,20 @@ Partial Class frmDefCustomer
         Me.HelpToolStripButton.Image = CType(resources.GetObject("HelpToolStripButton.Image"), System.Drawing.Image)
         Me.HelpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.HelpToolStripButton.Name = "HelpToolStripButton"
-        Me.HelpToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.HelpToolStripButton.Size = New System.Drawing.Size(24, 25)
         Me.HelpToolStripButton.Text = "He&lp"
         '
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(32, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(39, 25)
         Me.ToolStripLabel1.Text = "Load"
         '
         'ToolStripComboBox1
         '
         Me.ToolStripComboBox1.Items.AddRange(New Object() {"Customer"})
         Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
-        Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 25)
+        Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 28)
         '
         'UltraTabControl1
         '
@@ -1299,10 +1388,11 @@ Partial Class frmDefCustomer
         Me.UltraTabControl1.Controls.Add(Me.UltraTabSharedControlsPage1)
         Me.UltraTabControl1.Controls.Add(Me.UltraTabPageControl2)
         Me.UltraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.UltraTabControl1.Location = New System.Drawing.Point(0, 25)
+        Me.UltraTabControl1.Location = New System.Drawing.Point(0, 28)
+        Me.UltraTabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabControl1.Name = "UltraTabControl1"
         Me.UltraTabControl1.SharedControlsPage = Me.UltraTabSharedControlsPage1
-        Me.UltraTabControl1.Size = New System.Drawing.Size(916, 716)
+        Me.UltraTabControl1.Size = New System.Drawing.Size(1221, 884)
         Me.UltraTabControl1.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel
         Me.UltraTabControl1.TabIndex = 2
         Me.UltraTabControl1.TabOrientation = Infragistics.Win.UltraWinTabs.TabOrientation.BottomLeft
@@ -1319,8 +1409,9 @@ Partial Class frmDefCustomer
         'UltraTabSharedControlsPage1
         '
         Me.UltraTabSharedControlsPage1.Location = New System.Drawing.Point(-10000, -10000)
+        Me.UltraTabSharedControlsPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabSharedControlsPage1.Name = "UltraTabSharedControlsPage1"
-        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(914, 695)
+        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(1219, 862)
         '
         'ToolTip1
         '
@@ -1338,23 +1429,37 @@ Partial Class frmDefCustomer
         Me.CtrlGrdBar1.BackColor = System.Drawing.Color.Transparent
         Me.CtrlGrdBar1.Email = Nothing
         Me.CtrlGrdBar1.FormName = Me
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(878, 0)
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1171, 0)
+        Me.CtrlGrdBar1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CtrlGrdBar1.MyGrid = Me.DataGridView1
         Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
-        Me.CtrlGrdBar1.Size = New System.Drawing.Size(38, 25)
+        Me.CtrlGrdBar1.Size = New System.Drawing.Size(51, 31)
         Me.CtrlGrdBar1.TabIndex = 1
+        '
+        'chkHold
+        '
+        Me.chkHold.AutoSize = True
+        Me.chkHold.ForeColor = System.Drawing.Color.Black
+        Me.chkHold.Location = New System.Drawing.Point(249, 194)
+        Me.chkHold.Margin = New System.Windows.Forms.Padding(4)
+        Me.chkHold.Name = "chkHold"
+        Me.chkHold.Size = New System.Drawing.Size(59, 21)
+        Me.chkHold.TabIndex = 14
+        Me.chkHold.Text = "Hold"
+        Me.chkHold.UseVisualStyleBackColor = True
         '
         'frmDefCustomer
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(916, 741)
+        Me.ClientSize = New System.Drawing.Size(1221, 912)
         Me.Controls.Add(Me.CtrlGrdBar1)
         Me.Controls.Add(Me.UltraTabControl1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmDefCustomer"
         Me.Text = "Customers"
         Me.UltraTabPageControl1.ResumeLayout(False)
@@ -1494,4 +1599,5 @@ Partial Class frmDefCustomer
     Friend WithEvents btnAttachments As System.Windows.Forms.ToolStripButton
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents pnlHeader As System.Windows.Forms.Panel
+    Friend WithEvents chkHold As System.Windows.Forms.CheckBox
 End Class

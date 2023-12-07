@@ -44,14 +44,16 @@ Partial Class frmTicketOpening
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.txtTicketHistory = New System.Windows.Forms.TextBox()
         Me.txtapproval = New System.Windows.Forms.Label()
         Me.cmbapproval = New System.Windows.Forms.ComboBox()
         Me.cmbSaleorderNo = New System.Windows.Forms.ComboBox()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.chkTroubleShoot = New System.Windows.Forms.CheckBox()
+        Me.chkPartUsed = New System.Windows.Forms.CheckBox()
         Me.ChkBatteriesIncluded = New System.Windows.Forms.CheckBox()
         Me.cmbSerialNo = New Infragistics.Win.UltraWinGrid.UltraCombo()
-        Me.lstEngineerAssigned = New SimpleAccounts.uiListControl()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.txtfaultypartsn = New System.Windows.Forms.TextBox()
@@ -62,8 +64,6 @@ Partial Class frmTicketOpening
         Me.Label37 = New System.Windows.Forms.Label()
         Me.txtserialpartno = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.lstOnsiteEngineer = New SimpleAccounts.uiListControl()
-        Me.lstPNUsed = New SimpleAccounts.uiListControl()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.cmbEscalation = New System.Windows.Forms.ComboBox()
@@ -148,10 +148,14 @@ Partial Class frmTicketOpening
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.UltraTabControl1 = New Infragistics.Win.UltraWinTabControl.UltraTabControl()
         Me.UltraTabSharedControlsPage1 = New Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage()
+        Me.lstEngineerAssigned = New SimpleAccounts.uiListControl()
+        Me.lstOnsiteEngineer = New SimpleAccounts.uiListControl()
+        Me.lstPNUsed = New SimpleAccounts.uiListControl()
         Me.CtrlGrdBar3 = New SimpleAccounts.CtrlGrdBar()
         Me.UltraTabPageControl1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         CType(Me.cmbSerialNo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.grdCreditDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,11 +204,13 @@ Partial Class frmTicketOpening
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.GroupBox2)
         Me.Panel1.Controls.Add(Me.txtapproval)
         Me.Panel1.Controls.Add(Me.cmbapproval)
         Me.Panel1.Controls.Add(Me.cmbSaleorderNo)
         Me.Panel1.Controls.Add(Me.Label43)
         Me.Panel1.Controls.Add(Me.chkTroubleShoot)
+        Me.Panel1.Controls.Add(Me.chkPartUsed)
         Me.Panel1.Controls.Add(Me.ChkBatteriesIncluded)
         Me.Panel1.Controls.Add(Me.cmbSerialNo)
         Me.Panel1.Controls.Add(Me.lstEngineerAssigned)
@@ -274,6 +280,35 @@ Partial Class frmTicketOpening
         Me.Panel1.Size = New System.Drawing.Size(2486, 708)
         Me.Panel1.TabIndex = 0
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.txtTicketHistory)
+        Me.GroupBox2.Location = New System.Drawing.Point(779, 457)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox2.Size = New System.Drawing.Size(1036, 180)
+        Me.GroupBox2.TabIndex = 54
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Ticket History"
+        '
+        'txtTicketHistory
+        '
+        Me.txtTicketHistory.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtTicketHistory.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.txtTicketHistory.Location = New System.Drawing.Point(4, 19)
+        Me.txtTicketHistory.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTicketHistory.Multiline = True
+        Me.txtTicketHistory.Name = "txtTicketHistory"
+        Me.txtTicketHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtTicketHistory.Size = New System.Drawing.Size(1028, 157)
+        Me.txtTicketHistory.TabIndex = 0
+        '
         'txtapproval
         '
         Me.txtapproval.AutoSize = True
@@ -300,7 +335,7 @@ Partial Class frmTicketOpening
         '
         Me.cmbSaleorderNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSaleorderNo.FormattingEnabled = True
-        Me.cmbSaleorderNo.Location = New System.Drawing.Point(561, 562)
+        Me.cmbSaleorderNo.Location = New System.Drawing.Point(561, 587)
         Me.cmbSaleorderNo.Name = "cmbSaleorderNo"
         Me.cmbSaleorderNo.Size = New System.Drawing.Size(197, 24)
         Me.cmbSaleorderNo.TabIndex = 66
@@ -308,7 +343,7 @@ Partial Class frmTicketOpening
         'Label43
         '
         Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(413, 566)
+        Me.Label43.Location = New System.Drawing.Point(413, 591)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(95, 17)
         Me.Label43.TabIndex = 65
@@ -317,17 +352,27 @@ Partial Class frmTicketOpening
         'chkTroubleShoot
         '
         Me.chkTroubleShoot.AutoSize = True
-        Me.chkTroubleShoot.Location = New System.Drawing.Point(416, 518)
+        Me.chkTroubleShoot.Location = New System.Drawing.Point(416, 543)
         Me.chkTroubleShoot.Name = "chkTroubleShoot"
         Me.chkTroubleShoot.Size = New System.Drawing.Size(114, 21)
         Me.chkTroubleShoot.TabIndex = 64
         Me.chkTroubleShoot.Text = "Troubleshoot"
         Me.chkTroubleShoot.UseVisualStyleBackColor = True
         '
+        'chkPartUsed
+        '
+        Me.chkPartUsed.AutoSize = True
+        Me.chkPartUsed.Location = New System.Drawing.Point(675, 462)
+        Me.chkPartUsed.Name = "chkPartUsed"
+        Me.chkPartUsed.Size = New System.Drawing.Size(93, 21)
+        Me.chkPartUsed.TabIndex = 64
+        Me.chkPartUsed.Text = "Part Used"
+        Me.chkPartUsed.UseVisualStyleBackColor = True
+        '
         'ChkBatteriesIncluded
         '
         Me.ChkBatteriesIncluded.AutoSize = True
-        Me.ChkBatteriesIncluded.Location = New System.Drawing.Point(416, 540)
+        Me.ChkBatteriesIncluded.Location = New System.Drawing.Point(416, 565)
         Me.ChkBatteriesIncluded.Name = "ChkBatteriesIncluded"
         Me.ChkBatteriesIncluded.Size = New System.Drawing.Size(143, 21)
         Me.ChkBatteriesIncluded.TabIndex = 64
@@ -400,29 +445,10 @@ Partial Class frmTicketOpening
         Me.cmbSerialNo.Size = New System.Drawing.Size(203, 27)
         Me.cmbSerialNo.TabIndex = 45
         '
-        'lstEngineerAssigned
-        '
-        Me.lstEngineerAssigned.AddWhichConfiguration = SBUtility.Utility.EnumProjectForms.ForAllForms
-        Me.lstEngineerAssigned.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange
-        Me.lstEngineerAssigned.BackColor = System.Drawing.Color.Transparent
-        Me.lstEngineerAssigned.disableWhenChecked = False
-        Me.lstEngineerAssigned.HeadingLabelName = "lstEmployee"
-        Me.lstEngineerAssigned.HeadingText = "Engineer"
-        Me.lstEngineerAssigned.Location = New System.Drawing.Point(200, 436)
-        Me.lstEngineerAssigned.Margin = New System.Windows.Forms.Padding(5)
-        Me.lstEngineerAssigned.Name = "lstEngineerAssigned"
-        Me.lstEngineerAssigned.ShowAddNewButton = False
-        Me.lstEngineerAssigned.ShowInverse = True
-        Me.lstEngineerAssigned.ShowMagnifierButton = False
-        Me.lstEngineerAssigned.ShowNoCheck = False
-        Me.lstEngineerAssigned.ShowResetAllButton = False
-        Me.lstEngineerAssigned.ShowSelectall = True
-        Me.lstEngineerAssigned.Size = New System.Drawing.Size(199, 110)
-        Me.lstEngineerAssigned.TabIndex = 42
-        Me.lstEngineerAssigned.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
-        '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.Label41)
         Me.GroupBox1.Controls.Add(Me.txtfaultypartsn)
         Me.GroupBox1.Controls.Add(Me.Label40)
@@ -549,49 +575,6 @@ Partial Class frmTicketOpening
         Me.Label9.TabIndex = 43
         Me.Label9.Text = "PN Search"
         Me.ToolTip1.SetToolTip(Me.Label9, "employee search")
-        '
-        'lstOnsiteEngineer
-        '
-        Me.lstOnsiteEngineer.AddWhichConfiguration = SBUtility.Utility.EnumProjectForms.ForAllForms
-        Me.lstOnsiteEngineer.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange
-        Me.lstOnsiteEngineer.BackColor = System.Drawing.Color.Transparent
-        Me.lstOnsiteEngineer.disableWhenChecked = False
-        Me.lstOnsiteEngineer.HeadingLabelName = "lstEmployee"
-        Me.lstOnsiteEngineer.HeadingText = "Onsite Engineer"
-        Me.lstOnsiteEngineer.Location = New System.Drawing.Point(624, 14)
-        Me.lstOnsiteEngineer.Margin = New System.Windows.Forms.Padding(5)
-        Me.lstOnsiteEngineer.Name = "lstOnsiteEngineer"
-        Me.lstOnsiteEngineer.ShowAddNewButton = False
-        Me.lstOnsiteEngineer.ShowInverse = True
-        Me.lstOnsiteEngineer.ShowMagnifierButton = False
-        Me.lstOnsiteEngineer.ShowNoCheck = False
-        Me.lstOnsiteEngineer.ShowResetAllButton = False
-        Me.lstOnsiteEngineer.ShowSelectall = True
-        Me.lstOnsiteEngineer.Size = New System.Drawing.Size(173, 198)
-        Me.lstOnsiteEngineer.TabIndex = 42
-        Me.lstOnsiteEngineer.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
-        '
-        'lstPNUsed
-        '
-        Me.lstPNUsed.AddWhichConfiguration = SBUtility.Utility.EnumProjectForms.ForAllForms
-        Me.lstPNUsed.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange
-        Me.lstPNUsed.BackColor = System.Drawing.Color.Transparent
-        Me.lstPNUsed.disableWhenChecked = False
-        Me.lstPNUsed.HeadingLabelName = "lstEmployee"
-        Me.lstPNUsed.HeadingText = "PN Used"
-        Me.lstPNUsed.Location = New System.Drawing.Point(810, 14)
-        Me.lstPNUsed.Margin = New System.Windows.Forms.Padding(5)
-        Me.lstPNUsed.Name = "lstPNUsed"
-        Me.lstPNUsed.ShowAddNewButton = False
-        Me.lstPNUsed.ShowInverse = True
-        Me.lstPNUsed.ShowMagnifierButton = False
-        Me.lstPNUsed.ShowNoCheck = False
-        Me.lstPNUsed.ShowResetAllButton = False
-        Me.lstPNUsed.ShowSelectall = True
-        Me.lstPNUsed.Size = New System.Drawing.Size(173, 198)
-        Me.lstPNUsed.TabIndex = 42
-        Me.ToolTip1.SetToolTip(Me.lstPNUsed, "employee  list")
-        Me.lstPNUsed.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
         '
         'txtSearch
         '
@@ -828,8 +811,7 @@ Partial Class frmTicketOpening
         'grdCreditDetail
         '
         Me.grdCreditDetail.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
-        Me.grdCreditDetail.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.grdCreditDetail.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grdCreditDetail.ColumnAutoResize = True
         grdCreditDetail_DesignTimeLayout.LayoutString = "<GridEXLayoutData><RootTable><GroupCondition /></RootTable></GridEXLayoutData>"
@@ -842,7 +824,7 @@ Partial Class frmTicketOpening
         Me.grdCreditDetail.Margin = New System.Windows.Forms.Padding(4)
         Me.grdCreditDetail.Name = "grdCreditDetail"
         Me.grdCreditDetail.RecordNavigator = True
-        Me.grdCreditDetail.Size = New System.Drawing.Size(1036, 367)
+        Me.grdCreditDetail.Size = New System.Drawing.Size(1036, 172)
         Me.grdCreditDetail.TabIndex = 22
         Me.grdCreditDetail.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005
         '
@@ -871,7 +853,7 @@ Partial Class frmTicketOpening
         'Label3
         '
         Me.Label3.BackColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(413, 468)
+        Me.Label3.Location = New System.Drawing.Point(413, 493)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(97, 37)
@@ -1241,7 +1223,7 @@ Partial Class frmTicketOpening
         '
         'txtInitialProblem
         '
-        Me.txtInitialProblem.Location = New System.Drawing.Point(561, 465)
+        Me.txtInitialProblem.Location = New System.Drawing.Point(561, 490)
         Me.txtInitialProblem.Margin = New System.Windows.Forms.Padding(4)
         Me.txtInitialProblem.Multiline = True
         Me.txtInitialProblem.Name = "txtInitialProblem"
@@ -1465,6 +1447,70 @@ Partial Class frmTicketOpening
         Me.UltraTabSharedControlsPage1.Name = "UltraTabSharedControlsPage1"
         Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(1830, 701)
         '
+        'lstEngineerAssigned
+        '
+        Me.lstEngineerAssigned.AddWhichConfiguration = SBUtility.Utility.EnumProjectForms.ForAllForms
+        Me.lstEngineerAssigned.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange
+        Me.lstEngineerAssigned.BackColor = System.Drawing.Color.Transparent
+        Me.lstEngineerAssigned.disableWhenChecked = False
+        Me.lstEngineerAssigned.HeadingLabelName = "lstEmployee"
+        Me.lstEngineerAssigned.HeadingText = "Engineer"
+        Me.lstEngineerAssigned.Location = New System.Drawing.Point(200, 436)
+        Me.lstEngineerAssigned.Margin = New System.Windows.Forms.Padding(5)
+        Me.lstEngineerAssigned.Name = "lstEngineerAssigned"
+        Me.lstEngineerAssigned.ShowAddNewButton = False
+        Me.lstEngineerAssigned.ShowInverse = True
+        Me.lstEngineerAssigned.ShowMagnifierButton = False
+        Me.lstEngineerAssigned.ShowNoCheck = False
+        Me.lstEngineerAssigned.ShowResetAllButton = False
+        Me.lstEngineerAssigned.ShowSelectall = True
+        Me.lstEngineerAssigned.Size = New System.Drawing.Size(199, 110)
+        Me.lstEngineerAssigned.TabIndex = 42
+        Me.lstEngineerAssigned.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
+        '
+        'lstOnsiteEngineer
+        '
+        Me.lstOnsiteEngineer.AddWhichConfiguration = SBUtility.Utility.EnumProjectForms.ForAllForms
+        Me.lstOnsiteEngineer.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange
+        Me.lstOnsiteEngineer.BackColor = System.Drawing.Color.Transparent
+        Me.lstOnsiteEngineer.disableWhenChecked = False
+        Me.lstOnsiteEngineer.HeadingLabelName = "lstEmployee"
+        Me.lstOnsiteEngineer.HeadingText = "Onsite Engineer"
+        Me.lstOnsiteEngineer.Location = New System.Drawing.Point(624, 14)
+        Me.lstOnsiteEngineer.Margin = New System.Windows.Forms.Padding(5)
+        Me.lstOnsiteEngineer.Name = "lstOnsiteEngineer"
+        Me.lstOnsiteEngineer.ShowAddNewButton = False
+        Me.lstOnsiteEngineer.ShowInverse = True
+        Me.lstOnsiteEngineer.ShowMagnifierButton = False
+        Me.lstOnsiteEngineer.ShowNoCheck = False
+        Me.lstOnsiteEngineer.ShowResetAllButton = False
+        Me.lstOnsiteEngineer.ShowSelectall = True
+        Me.lstOnsiteEngineer.Size = New System.Drawing.Size(173, 198)
+        Me.lstOnsiteEngineer.TabIndex = 42
+        Me.lstOnsiteEngineer.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
+        '
+        'lstPNUsed
+        '
+        Me.lstPNUsed.AddWhichConfiguration = SBUtility.Utility.EnumProjectForms.ForAllForms
+        Me.lstPNUsed.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange
+        Me.lstPNUsed.BackColor = System.Drawing.Color.Transparent
+        Me.lstPNUsed.disableWhenChecked = False
+        Me.lstPNUsed.HeadingLabelName = "lstEmployee"
+        Me.lstPNUsed.HeadingText = "PN Used"
+        Me.lstPNUsed.Location = New System.Drawing.Point(810, 14)
+        Me.lstPNUsed.Margin = New System.Windows.Forms.Padding(5)
+        Me.lstPNUsed.Name = "lstPNUsed"
+        Me.lstPNUsed.ShowAddNewButton = False
+        Me.lstPNUsed.ShowInverse = True
+        Me.lstPNUsed.ShowMagnifierButton = False
+        Me.lstPNUsed.ShowNoCheck = False
+        Me.lstPNUsed.ShowResetAllButton = False
+        Me.lstPNUsed.ShowSelectall = True
+        Me.lstPNUsed.Size = New System.Drawing.Size(173, 198)
+        Me.lstPNUsed.TabIndex = 42
+        Me.ToolTip1.SetToolTip(Me.lstPNUsed, "employee  list")
+        Me.lstPNUsed.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
+        '
         'CtrlGrdBar3
         '
         Me.CtrlGrdBar3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1494,6 +1540,8 @@ Partial Class frmTicketOpening
         Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         CType(Me.cmbSerialNo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -1617,6 +1665,9 @@ Partial Class frmTicketOpening
     Friend WithEvents txtapproval As System.Windows.Forms.Label
     Friend WithEvents cmbapproval As System.Windows.Forms.ComboBox
     Friend WithEvents chkTroubleShoot As System.Windows.Forms.CheckBox
+    Friend WithEvents chkPartUsed As System.Windows.Forms.CheckBox
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents txtTicketHistory As System.Windows.Forms.TextBox
 
     
 End Class

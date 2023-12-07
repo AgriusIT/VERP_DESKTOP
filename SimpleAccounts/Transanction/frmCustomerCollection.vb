@@ -528,7 +528,7 @@ Public Class frmCustomerCollection
                         '   Return GetSerialNo(VType + "-" & companyinitials & "-" + Microsoft.VisualBasic.Right(Me.dtVoucherDate.Value.Year, 2) + "-", "tblVoucher", "voucher_no")
                     End If
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     'Agar tou date 30 june say less ho tou wo puranay walay serial no show karay warna naye serial no ka format use karain
                     If dtVoucherDate.Value.ToString("yyyy-M-d 00:00:00") <= date1 Then
                         'Return GetNextDocNo(VType & "-" & Format(Me.dtVoucherDate.Value, "yy") & Me.dtVoucherDate.Value.Month.ToString("00"), 4, "tblVoucher", "voucher_no")
@@ -558,7 +558,7 @@ Public Class frmCustomerCollection
                                 'Return GetSerialNo(VType + "-" & companyinitials & "-" + Microsoft.VisualBasic.Right(Me.dtVoucherDate.Value.Year, 2) + "-", "tblVoucher", "voucher_no")
                             End If
                         Else
-                            companyinitials = "PK"
+                            ''companyinitials = "PK"
                             'Agar tou date 30 june say less ho tou wo puranay walay serial no show karay warna naye serial no ka format use karain
                             If dtVoucherDate.Value.ToString("yyyy-M-d 00:00:00") <= date1 Then
                                 'Return GetNextDocNo(VType & "-" & Format(Me.dtVoucherDate.Value, "yy") & Me.dtVoucherDate.Value.Month.ToString("00"), 4, "tblVoucher", "voucher_no")
@@ -2130,7 +2130,11 @@ Public Class frmCustomerCollection
                 GetAutoEmailData()
                 UsersEmail = New List(Of String)
                 'UsersEmail.Add("adil@agriusit.com")
-                UsersEmail.Add("h.saeed@agriusit.com")
+                If Con.Database.Contains("Remms") Then
+                    UsersEmail.Add("r.ejaz@remmsit.com")
+                Else
+                    UsersEmail.Add("r.ejaz@agriusit.com")
+                End If
                 FormatStringBuilder(dtEmail)
                 For Each _email As String In UsersEmail
                     CreateOutLookMail(_email)

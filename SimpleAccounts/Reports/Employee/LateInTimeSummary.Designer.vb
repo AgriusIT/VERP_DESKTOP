@@ -90,10 +90,10 @@ Partial Class LateInTimeSummary
         Me.UltraTabPageControl1.Controls.Add(Me.pnlLstBox)
         Me.UltraTabPageControl1.Controls.Add(Me.pnlPeriod)
         Me.UltraTabPageControl1.Controls.Add(Me.pnlMinutes)
-        Me.UltraTabPageControl1.Location = New System.Drawing.Point(-10000, -10000)
-        Me.UltraTabPageControl1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.UltraTabPageControl1.Location = New System.Drawing.Point(1, 1)
+        Me.UltraTabPageControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabPageControl1.Name = "UltraTabPageControl1"
-        Me.UltraTabPageControl1.Size = New System.Drawing.Size(1116, 783)
+        Me.UltraTabPageControl1.Size = New System.Drawing.Size(992, 625)
         '
         'pnlLstBox
         '
@@ -110,19 +110,19 @@ Partial Class LateInTimeSummary
         Me.pnlLstBox.Controls.Add(Me.lstEmpShiftGroup)
         Me.pnlLstBox.Controls.Add(Me.lstEmpCity)
         Me.pnlLstBox.Controls.Add(Me.txtSearch)
-        Me.pnlLstBox.Location = New System.Drawing.Point(4, 203)
-        Me.pnlLstBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.pnlLstBox.Location = New System.Drawing.Point(4, 162)
+        Me.pnlLstBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlLstBox.Name = "pnlLstBox"
-        Me.pnlLstBox.Size = New System.Drawing.Size(1100, 546)
+        Me.pnlLstBox.Size = New System.Drawing.Size(978, 437)
         Me.pnlLstBox.TabIndex = 115
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(4, 509)
+        Me.Label7.Location = New System.Drawing.Point(4, 407)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(97, 20)
+        Me.Label7.Size = New System.Drawing.Size(85, 17)
         Me.Label7.TabIndex = 7
         Me.Label7.Text = "Emp Search"
         Me.ToolTip1.SetToolTip(Me.Label7, "employee search")
@@ -135,8 +135,8 @@ Partial Class LateInTimeSummary
         Me.lstCostCenter.disableWhenChecked = False
         Me.lstCostCenter.HeadingLabelName = "lstCostCenter"
         Me.lstCostCenter.HeadingText = "Cost Center"
-        Me.lstCostCenter.Location = New System.Drawing.Point(828, 258)
-        Me.lstCostCenter.Margin = New System.Windows.Forms.Padding(6, 8, 6, 8)
+        Me.lstCostCenter.Location = New System.Drawing.Point(736, 206)
+        Me.lstCostCenter.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstCostCenter.Name = "lstCostCenter"
         Me.lstCostCenter.ShowAddNewButton = False
         Me.lstCostCenter.ShowInverse = True
@@ -144,17 +144,17 @@ Partial Class LateInTimeSummary
         Me.lstCostCenter.ShowNoCheck = False
         Me.lstCostCenter.ShowResetAllButton = False
         Me.lstCostCenter.ShowSelectall = True
-        Me.lstCostCenter.Size = New System.Drawing.Size(228, 245)
+        Me.lstCostCenter.Size = New System.Drawing.Size(203, 196)
         Me.lstCostCenter.TabIndex = 6
         Me.ToolTip1.SetToolTip(Me.lstCostCenter, "employee cost center list")
         Me.lstCostCenter.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
         '
         'btnShow
         '
-        Me.btnShow.Location = New System.Drawing.Point(912, 505)
-        Me.btnShow.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnShow.Location = New System.Drawing.Point(811, 404)
+        Me.btnShow.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnShow.Name = "btnShow"
-        Me.btnShow.Size = New System.Drawing.Size(100, 35)
+        Me.btnShow.Size = New System.Drawing.Size(89, 28)
         Me.btnShow.TabIndex = 5
         Me.btnShow.Text = "Show"
         Me.ToolTip1.SetToolTip(Me.btnShow, "Show")
@@ -168,8 +168,8 @@ Partial Class LateInTimeSummary
         Me.lstHeadCostCenter.disableWhenChecked = False
         Me.lstHeadCostCenter.HeadingLabelName = "lstHeadCostCenter"
         Me.lstHeadCostCenter.HeadingText = "Head Cost Center"
-        Me.lstHeadCostCenter.Location = New System.Drawing.Point(560, 258)
-        Me.lstHeadCostCenter.Margin = New System.Windows.Forms.Padding(6, 8, 6, 8)
+        Me.lstHeadCostCenter.Location = New System.Drawing.Point(498, 206)
+        Me.lstHeadCostCenter.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstHeadCostCenter.Name = "lstHeadCostCenter"
         Me.lstHeadCostCenter.ShowAddNewButton = False
         Me.lstHeadCostCenter.ShowInverse = True
@@ -177,7 +177,7 @@ Partial Class LateInTimeSummary
         Me.lstHeadCostCenter.ShowNoCheck = False
         Me.lstHeadCostCenter.ShowResetAllButton = False
         Me.lstHeadCostCenter.ShowSelectall = True
-        Me.lstHeadCostCenter.Size = New System.Drawing.Size(228, 245)
+        Me.lstHeadCostCenter.Size = New System.Drawing.Size(203, 196)
         Me.lstHeadCostCenter.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.lstHeadCostCenter, "employee head cost center list")
         Me.lstHeadCostCenter.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
@@ -190,8 +190,8 @@ Partial Class LateInTimeSummary
         Me.lstEmployee.disableWhenChecked = False
         Me.lstEmployee.HeadingLabelName = "lstEmployee"
         Me.lstEmployee.HeadingText = "Employee"
-        Me.lstEmployee.Location = New System.Drawing.Point(14, 258)
-        Me.lstEmployee.Margin = New System.Windows.Forms.Padding(6, 8, 6, 8)
+        Me.lstEmployee.Location = New System.Drawing.Point(12, 206)
+        Me.lstEmployee.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstEmployee.Name = "lstEmployee"
         Me.lstEmployee.ShowAddNewButton = False
         Me.lstEmployee.ShowInverse = True
@@ -199,7 +199,7 @@ Partial Class LateInTimeSummary
         Me.lstEmployee.ShowNoCheck = False
         Me.lstEmployee.ShowResetAllButton = False
         Me.lstEmployee.ShowSelectall = True
-        Me.lstEmployee.Size = New System.Drawing.Size(502, 245)
+        Me.lstEmployee.Size = New System.Drawing.Size(446, 196)
         Me.lstEmployee.TabIndex = 4
         Me.ToolTip1.SetToolTip(Me.lstEmployee, "employee name list")
         Me.lstEmployee.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
@@ -212,8 +212,8 @@ Partial Class LateInTimeSummary
         Me.lstEmpDepartment.disableWhenChecked = False
         Me.lstEmpDepartment.HeadingLabelName = "lstEmpDepartment"
         Me.lstEmpDepartment.HeadingText = "Department"
-        Me.lstEmpDepartment.Location = New System.Drawing.Point(18, 5)
-        Me.lstEmpDepartment.Margin = New System.Windows.Forms.Padding(6, 8, 6, 8)
+        Me.lstEmpDepartment.Location = New System.Drawing.Point(16, 4)
+        Me.lstEmpDepartment.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstEmpDepartment.Name = "lstEmpDepartment"
         Me.lstEmpDepartment.ShowAddNewButton = False
         Me.lstEmpDepartment.ShowInverse = True
@@ -221,7 +221,7 @@ Partial Class LateInTimeSummary
         Me.lstEmpDepartment.ShowNoCheck = False
         Me.lstEmpDepartment.ShowResetAllButton = False
         Me.lstEmpDepartment.ShowSelectall = True
-        Me.lstEmpDepartment.Size = New System.Drawing.Size(228, 245)
+        Me.lstEmpDepartment.Size = New System.Drawing.Size(203, 196)
         Me.lstEmpDepartment.TabIndex = 0
         Me.ToolTip1.SetToolTip(Me.lstEmpDepartment, "employee department list")
         Me.lstEmpDepartment.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
@@ -234,8 +234,8 @@ Partial Class LateInTimeSummary
         Me.lstEmpDesignation.disableWhenChecked = False
         Me.lstEmpDesignation.HeadingLabelName = "lstDesignation"
         Me.lstEmpDesignation.HeadingText = "Designation"
-        Me.lstEmpDesignation.Location = New System.Drawing.Point(290, 5)
-        Me.lstEmpDesignation.Margin = New System.Windows.Forms.Padding(6, 8, 6, 8)
+        Me.lstEmpDesignation.Location = New System.Drawing.Point(258, 4)
+        Me.lstEmpDesignation.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstEmpDesignation.Name = "lstEmpDesignation"
         Me.lstEmpDesignation.ShowAddNewButton = False
         Me.lstEmpDesignation.ShowInverse = True
@@ -243,7 +243,7 @@ Partial Class LateInTimeSummary
         Me.lstEmpDesignation.ShowNoCheck = False
         Me.lstEmpDesignation.ShowResetAllButton = False
         Me.lstEmpDesignation.ShowSelectall = True
-        Me.lstEmpDesignation.Size = New System.Drawing.Size(228, 245)
+        Me.lstEmpDesignation.Size = New System.Drawing.Size(203, 196)
         Me.lstEmpDesignation.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.lstEmpDesignation, "employee designation list")
         Me.lstEmpDesignation.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
@@ -256,8 +256,8 @@ Partial Class LateInTimeSummary
         Me.lstEmpShiftGroup.disableWhenChecked = False
         Me.lstEmpShiftGroup.HeadingLabelName = "lstShiftGroup"
         Me.lstEmpShiftGroup.HeadingText = "Shift Group"
-        Me.lstEmpShiftGroup.Location = New System.Drawing.Point(560, 5)
-        Me.lstEmpShiftGroup.Margin = New System.Windows.Forms.Padding(6, 8, 6, 8)
+        Me.lstEmpShiftGroup.Location = New System.Drawing.Point(498, 4)
+        Me.lstEmpShiftGroup.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstEmpShiftGroup.Name = "lstEmpShiftGroup"
         Me.lstEmpShiftGroup.ShowAddNewButton = False
         Me.lstEmpShiftGroup.ShowInverse = True
@@ -265,7 +265,7 @@ Partial Class LateInTimeSummary
         Me.lstEmpShiftGroup.ShowNoCheck = False
         Me.lstEmpShiftGroup.ShowResetAllButton = False
         Me.lstEmpShiftGroup.ShowSelectall = True
-        Me.lstEmpShiftGroup.Size = New System.Drawing.Size(228, 245)
+        Me.lstEmpShiftGroup.Size = New System.Drawing.Size(203, 196)
         Me.lstEmpShiftGroup.TabIndex = 2
         Me.ToolTip1.SetToolTip(Me.lstEmpShiftGroup, "employee shift group list")
         Me.lstEmpShiftGroup.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
@@ -278,8 +278,8 @@ Partial Class LateInTimeSummary
         Me.lstEmpCity.disableWhenChecked = False
         Me.lstEmpCity.HeadingLabelName = "lblCity"
         Me.lstEmpCity.HeadingText = "City"
-        Me.lstEmpCity.Location = New System.Drawing.Point(828, 5)
-        Me.lstEmpCity.Margin = New System.Windows.Forms.Padding(6, 8, 6, 8)
+        Me.lstEmpCity.Location = New System.Drawing.Point(736, 4)
+        Me.lstEmpCity.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstEmpCity.Name = "lstEmpCity"
         Me.lstEmpCity.ShowAddNewButton = False
         Me.lstEmpCity.ShowInverse = True
@@ -287,7 +287,7 @@ Partial Class LateInTimeSummary
         Me.lstEmpCity.ShowNoCheck = False
         Me.lstEmpCity.ShowResetAllButton = False
         Me.lstEmpCity.ShowSelectall = True
-        Me.lstEmpCity.Size = New System.Drawing.Size(228, 245)
+        Me.lstEmpCity.Size = New System.Drawing.Size(203, 196)
         Me.lstEmpCity.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.lstEmpCity, "employee city list")
         Me.lstEmpCity.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
@@ -295,10 +295,10 @@ Partial Class LateInTimeSummary
         'txtSearch
         '
         Me.txtSearch.BackColor = System.Drawing.Color.White
-        Me.txtSearch.Location = New System.Drawing.Point(104, 505)
-        Me.txtSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtSearch.Location = New System.Drawing.Point(92, 404)
+        Me.txtSearch.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(370, 26)
+        Me.txtSearch.Size = New System.Drawing.Size(329, 22)
         Me.txtSearch.TabIndex = 8
         Me.ToolTip1.SetToolTip(Me.txtSearch, "search employee by name or code")
         '
@@ -317,19 +317,19 @@ Partial Class LateInTimeSummary
         Me.pnlPeriod.Controls.Add(Me.dtpFromDate)
         Me.pnlPeriod.Controls.Add(Me.Label2)
         Me.pnlPeriod.Controls.Add(Me.dtpToDate)
-        Me.pnlPeriod.Location = New System.Drawing.Point(3, 8)
-        Me.pnlPeriod.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.pnlPeriod.Location = New System.Drawing.Point(3, 6)
+        Me.pnlPeriod.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlPeriod.Name = "pnlPeriod"
-        Me.pnlPeriod.Size = New System.Drawing.Size(1102, 106)
+        Me.pnlPeriod.Size = New System.Drawing.Size(980, 85)
         Me.pnlPeriod.TabIndex = 3
         '
         'rbtnNightShift
         '
         Me.rbtnNightShift.AutoSize = True
-        Me.rbtnNightShift.Location = New System.Drawing.Point(622, 55)
-        Me.rbtnNightShift.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.rbtnNightShift.Location = New System.Drawing.Point(553, 44)
+        Me.rbtnNightShift.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.rbtnNightShift.Name = "rbtnNightShift"
-        Me.rbtnNightShift.Size = New System.Drawing.Size(108, 24)
+        Me.rbtnNightShift.Size = New System.Drawing.Size(94, 21)
         Me.rbtnNightShift.TabIndex = 35
         Me.rbtnNightShift.Text = "Night Shift"
         Me.ToolTip1.SetToolTip(Me.rbtnNightShift, "employee night working shift")
@@ -339,10 +339,10 @@ Partial Class LateInTimeSummary
         '
         Me.rbtnNormalShift.AutoSize = True
         Me.rbtnNormalShift.Checked = True
-        Me.rbtnNormalShift.Location = New System.Drawing.Point(490, 55)
-        Me.rbtnNormalShift.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.rbtnNormalShift.Location = New System.Drawing.Point(436, 44)
+        Me.rbtnNormalShift.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.rbtnNormalShift.Name = "rbtnNormalShift"
-        Me.rbtnNormalShift.Size = New System.Drawing.Size(121, 24)
+        Me.rbtnNormalShift.Size = New System.Drawing.Size(106, 21)
         Me.rbtnNormalShift.TabIndex = 34
         Me.rbtnNormalShift.TabStop = True
         Me.rbtnNormalShift.Text = "Normal Shift"
@@ -354,10 +354,10 @@ Partial Class LateInTimeSummary
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Red
-        Me.Label9.Location = New System.Drawing.Point(261, 52)
+        Me.Label9.Location = New System.Drawing.Point(232, 42)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(24, 29)
+        Me.Label9.Size = New System.Drawing.Size(18, 24)
         Me.Label9.TabIndex = 6
         Me.Label9.Text = "*"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -367,10 +367,10 @@ Partial Class LateInTimeSummary
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.Red
-        Me.Label8.Location = New System.Drawing.Point(2, 55)
+        Me.Label8.Location = New System.Drawing.Point(2, 44)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(24, 29)
+        Me.Label8.Size = New System.Drawing.Size(18, 24)
         Me.Label8.TabIndex = 3
         Me.Label8.Text = "*"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -380,20 +380,20 @@ Partial Class LateInTimeSummary
         Me.cmbPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbPeriod.FormattingEnabled = True
         Me.cmbPeriod.Items.AddRange(New Object() {"Today", "Yesterday", "Current Week", "Current Month", "Current Year"})
-        Me.cmbPeriod.Location = New System.Drawing.Point(92, 11)
-        Me.cmbPeriod.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.cmbPeriod.Location = New System.Drawing.Point(82, 9)
+        Me.cmbPeriod.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbPeriod.Name = "cmbPeriod"
-        Me.cmbPeriod.Size = New System.Drawing.Size(388, 28)
+        Me.cmbPeriod.Size = New System.Drawing.Size(345, 24)
         Me.cmbPeriod.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbPeriod, "Period")
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(15, 15)
+        Me.Label3.Location = New System.Drawing.Point(13, 12)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(54, 20)
+        Me.Label3.Size = New System.Drawing.Size(49, 17)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Period"
         Me.ToolTip1.SetToolTip(Me.Label3, "period")
@@ -401,10 +401,10 @@ Partial Class LateInTimeSummary
         'lblFrom
         '
         Me.lblFrom.AutoSize = True
-        Me.lblFrom.Location = New System.Drawing.Point(20, 65)
+        Me.lblFrom.Location = New System.Drawing.Point(18, 52)
         Me.lblFrom.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblFrom.Name = "lblFrom"
-        Me.lblFrom.Size = New System.Drawing.Size(46, 20)
+        Me.lblFrom.Size = New System.Drawing.Size(40, 17)
         Me.lblFrom.TabIndex = 2
         Me.lblFrom.Text = "From"
         '
@@ -412,20 +412,20 @@ Partial Class LateInTimeSummary
         '
         Me.dtpFromDate.CustomFormat = "dd/MMM/yyyy"
         Me.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpFromDate.Location = New System.Drawing.Point(92, 55)
-        Me.dtpFromDate.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpFromDate.Location = New System.Drawing.Point(82, 44)
+        Me.dtpFromDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dtpFromDate.Name = "dtpFromDate"
-        Me.dtpFromDate.Size = New System.Drawing.Size(158, 26)
+        Me.dtpFromDate.Size = New System.Drawing.Size(141, 22)
         Me.dtpFromDate.TabIndex = 4
         Me.ToolTip1.SetToolTip(Me.dtpFromDate, "From Date")
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(278, 62)
+        Me.Label2.Location = New System.Drawing.Point(247, 50)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(27, 20)
+        Me.Label2.Size = New System.Drawing.Size(25, 17)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "To"
         '
@@ -433,10 +433,10 @@ Partial Class LateInTimeSummary
         '
         Me.dtpToDate.CustomFormat = "dd/MMM/yyyy"
         Me.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpToDate.Location = New System.Drawing.Point(320, 54)
-        Me.dtpToDate.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpToDate.Location = New System.Drawing.Point(284, 43)
+        Me.dtpToDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dtpToDate.Name = "dtpToDate"
-        Me.dtpToDate.Size = New System.Drawing.Size(160, 26)
+        Me.dtpToDate.Size = New System.Drawing.Size(143, 22)
         Me.dtpToDate.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.dtpToDate, "To Date")
         '
@@ -452,10 +452,10 @@ Partial Class LateInTimeSummary
         Me.pnlMinutes.Controls.Add(Me.Label5)
         Me.pnlMinutes.Controls.Add(Me.txtMinFrom)
         Me.pnlMinutes.Controls.Add(Me.Label1)
-        Me.pnlMinutes.Location = New System.Drawing.Point(4, 123)
-        Me.pnlMinutes.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.pnlMinutes.Location = New System.Drawing.Point(4, 98)
+        Me.pnlMinutes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlMinutes.Name = "pnlMinutes"
-        Me.pnlMinutes.Size = New System.Drawing.Size(1100, 71)
+        Me.pnlMinutes.Size = New System.Drawing.Size(978, 57)
         Me.pnlMinutes.TabIndex = 4
         '
         'Label11
@@ -463,10 +463,10 @@ Partial Class LateInTimeSummary
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.Red
-        Me.Label11.Location = New System.Drawing.Point(260, 25)
+        Me.Label11.Location = New System.Drawing.Point(231, 20)
         Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(24, 29)
+        Me.Label11.Size = New System.Drawing.Size(18, 24)
         Me.Label11.TabIndex = 5
         Me.Label11.Text = "*"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -476,10 +476,10 @@ Partial Class LateInTimeSummary
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Red
-        Me.Label10.Location = New System.Drawing.Point(18, 22)
+        Me.Label10.Location = New System.Drawing.Point(16, 18)
         Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(24, 29)
+        Me.Label10.Size = New System.Drawing.Size(18, 24)
         Me.Label10.TabIndex = 2
         Me.Label10.Text = "*"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -487,19 +487,19 @@ Partial Class LateInTimeSummary
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(279, 29)
+        Me.Label6.Location = New System.Drawing.Point(248, 23)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(27, 20)
+        Me.Label6.Size = New System.Drawing.Size(25, 17)
         Me.Label6.TabIndex = 4
         Me.Label6.Text = "To"
         '
         'txtMinTo
         '
-        Me.txtMinTo.Location = New System.Drawing.Point(318, 26)
-        Me.txtMinTo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtMinTo.Location = New System.Drawing.Point(283, 21)
+        Me.txtMinTo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtMinTo.Name = "txtMinTo"
-        Me.txtMinTo.Size = New System.Drawing.Size(160, 26)
+        Me.txtMinTo.Size = New System.Drawing.Size(143, 22)
         Me.txtMinTo.TabIndex = 6
         Me.txtMinTo.Text = "360"
         Me.txtMinTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -508,19 +508,19 @@ Partial Class LateInTimeSummary
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(40, 29)
+        Me.Label5.Location = New System.Drawing.Point(36, 23)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(46, 20)
+        Me.Label5.Size = New System.Drawing.Size(40, 17)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "From"
         '
         'txtMinFrom
         '
-        Me.txtMinFrom.Location = New System.Drawing.Point(90, 25)
-        Me.txtMinFrom.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtMinFrom.Location = New System.Drawing.Point(80, 20)
+        Me.txtMinFrom.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtMinFrom.Name = "txtMinFrom"
-        Me.txtMinFrom.Size = New System.Drawing.Size(158, 26)
+        Me.txtMinFrom.Size = New System.Drawing.Size(141, 22)
         Me.txtMinFrom.TabIndex = 3
         Me.txtMinFrom.Text = "0"
         Me.txtMinFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -530,20 +530,20 @@ Partial Class LateInTimeSummary
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(6, 2)
+        Me.Label1.Location = New System.Drawing.Point(5, 2)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(59, 20)
+        Me.Label1.Size = New System.Drawing.Size(50, 17)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Minute"
         '
         'UltraTabPageControl2
         '
         Me.UltraTabPageControl2.Controls.Add(Me.grd)
-        Me.UltraTabPageControl2.Location = New System.Drawing.Point(1, 1)
-        Me.UltraTabPageControl2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.UltraTabPageControl2.Location = New System.Drawing.Point(-6667, -6400)
+        Me.UltraTabPageControl2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabPageControl2.Name = "UltraTabPageControl2"
-        Me.UltraTabPageControl2.Size = New System.Drawing.Size(1116, 783)
+        Me.UltraTabPageControl2.Size = New System.Drawing.Size(992, 625)
         '
         'grd
         '
@@ -557,10 +557,10 @@ Partial Class LateInTimeSummary
         Me.grd.Font = New System.Drawing.Font("Verdana", 8.25!)
         Me.grd.GroupByBoxVisible = False
         Me.grd.Location = New System.Drawing.Point(0, 0)
-        Me.grd.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.grd.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.grd.Name = "grd"
         Me.grd.RecordNavigator = True
-        Me.grd.Size = New System.Drawing.Size(1116, 783)
+        Me.grd.Size = New System.Drawing.Size(992, 625)
         Me.grd.TabIndex = 6
         Me.grd.TotalRow = Janus.Windows.GridEX.InheritableBoolean.[True]
         Me.grd.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
@@ -617,7 +617,7 @@ Partial Class LateInTimeSummary
         Me.cmbEmployee.Location = New System.Drawing.Point(81, 39)
         Me.cmbEmployee.MaxDropDownItems = 20
         Me.cmbEmployee.Name = "cmbEmployee"
-        Me.cmbEmployee.Size = New System.Drawing.Size(270, 29)
+        Me.cmbEmployee.Size = New System.Drawing.Size(270, 25)
         Me.cmbEmployee.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.cmbEmployee, "Select Employee")
         '
@@ -627,11 +627,11 @@ Partial Class LateInTimeSummary
         Me.UltraTabControl1.Controls.Add(Me.UltraTabPageControl1)
         Me.UltraTabControl1.Controls.Add(Me.UltraTabPageControl2)
         Me.UltraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.UltraTabControl1.Location = New System.Drawing.Point(0, 65)
-        Me.UltraTabControl1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.UltraTabControl1.Location = New System.Drawing.Point(0, 52)
+        Me.UltraTabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabControl1.Name = "UltraTabControl1"
         Me.UltraTabControl1.SharedControlsPage = Me.UltraTabSharedControlsPage1
-        Me.UltraTabControl1.Size = New System.Drawing.Size(1118, 810)
+        Me.UltraTabControl1.Size = New System.Drawing.Size(994, 648)
         Me.UltraTabControl1.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel
         Me.UltraTabControl1.TabIndex = 7
         Me.UltraTabControl1.TabOrientation = Infragistics.Win.UltraWinTabs.TabOrientation.BottomLeft
@@ -644,20 +644,20 @@ Partial Class LateInTimeSummary
         '
         'UltraTabSharedControlsPage1
         '
-        Me.UltraTabSharedControlsPage1.Location = New System.Drawing.Point(-10000, -10000)
-        Me.UltraTabSharedControlsPage1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.UltraTabSharedControlsPage1.Location = New System.Drawing.Point(-6667, -6400)
+        Me.UltraTabSharedControlsPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabSharedControlsPage1.Name = "UltraTabSharedControlsPage1"
-        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(1116, 783)
+        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(992, 625)
         '
         'lblHeader
         '
         Me.lblHeader.AutoSize = True
         Me.lblHeader.Font = New System.Drawing.Font("Times New Roman", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeader.ForeColor = System.Drawing.Color.Black
-        Me.lblHeader.Location = New System.Drawing.Point(4, 14)
+        Me.lblHeader.Location = New System.Drawing.Point(4, 11)
         Me.lblHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(438, 36)
+        Me.lblHeader.Size = New System.Drawing.Size(375, 31)
         Me.lblHeader.TabIndex = 0
         Me.lblHeader.Text = "Late In Time Summary Report"
         '
@@ -669,10 +669,10 @@ Partial Class LateInTimeSummary
         Me.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
-        Me.btnClose.Location = New System.Drawing.Point(998, 9)
-        Me.btnClose.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnClose.Location = New System.Drawing.Point(887, 7)
+        Me.btnClose.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(54, 46)
+        Me.btnClose.Size = New System.Drawing.Size(48, 37)
         Me.btnClose.TabIndex = 1
         Me.btnClose.UseVisualStyleBackColor = False
         Me.btnClose.Visible = False
@@ -683,11 +683,11 @@ Partial Class LateInTimeSummary
         Me.CtrlGrdBar1.BackColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.CtrlGrdBar1.Email = Nothing
         Me.CtrlGrdBar1.FormName = Me
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1060, 11)
-        Me.CtrlGrdBar1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(942, 9)
+        Me.CtrlGrdBar1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CtrlGrdBar1.MyGrid = Me.grd
         Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
-        Me.CtrlGrdBar1.Size = New System.Drawing.Size(57, 38)
+        Me.CtrlGrdBar1.Size = New System.Drawing.Size(51, 30)
         Me.CtrlGrdBar1.TabIndex = 2
         '
         'pnlHeader
@@ -698,20 +698,20 @@ Partial Class LateInTimeSummary
         Me.pnlHeader.Controls.Add(Me.lblHeader)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
-        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1118, 65)
+        Me.pnlHeader.Size = New System.Drawing.Size(994, 52)
         Me.pnlHeader.TabIndex = 0
         '
         'LateInTimeSummary
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1118, 875)
+        Me.ClientSize = New System.Drawing.Size(994, 700)
         Me.Controls.Add(Me.UltraTabControl1)
         Me.Controls.Add(Me.pnlHeader)
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "LateInTimeSummary"
         Me.Text = "Late In Time Summary Report"
         Me.UltraTabPageControl1.ResumeLayout(False)

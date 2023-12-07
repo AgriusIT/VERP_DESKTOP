@@ -116,6 +116,9 @@ Public Class frmPurchaseOrderNew
     Dim EmailBody As String = String.Empty
     Dim PurchaseOrderNo As String
     Dim PurchaseOrderId As Integer
+    Dim BudgetAmount As Double = 0D
+    Dim IsPurchaseDemand As Boolean = False
+    Dim BudgetExceeds As Boolean = False
     Enum GrdEnum
         'Category
         SerialNo
@@ -143,6 +146,8 @@ Public Class frmPurchaseOrderNew
         Total
         TaxPercent
         TaxAmount
+        Custom_Charges
+        Transportation_Charges
         CurrencyTaxAmount
         AdTax_Percent
         AdTax_Amount
@@ -518,15 +523,19 @@ Public Class frmPurchaseOrderNew
             FillCombo("Item")
             IsEditMode = False
             txtPONo.Text = ""
+            IsPurchaseDemand = False
             dtpPODate.Value = Now
             Me.dtpPODate.Enabled = True
             txtRemarks.Text = ""
             txtPaid.Text = ""
+            BudgetExceeds = False
             'Rafay:TAsk Start
-            companyinitials = ""
+            ''companyinitials = ""
             'rafay:task End
             Me.txtRate.Text = ""
             Me.txtPackRate.Text = ""
+            lblRemainingBudget.Text = ""
+            BudgetAmount = 0D
             'txtAmount.Text = ""
             'txtTotal.Text = "" 'Before ''27-Dec-2013   ReqId-954   M Ijaz Javed    Item rate against generate Total
             Me.txtTotal.Text = 0 'After ''27-Dec-2013   ReqId-954   M Ijaz Javed    Item rate against generate Total
@@ -578,7 +587,6 @@ Public Class frmPurchaseOrderNew
             If ApprovalProcessId = 0 Then
                 Me.chkPost.Visible = True
                 Me.chkPost.Enabled = True
-
             Else
                 Me.chkPost.Visible = False
                 Me.chkPost.Enabled = False
@@ -712,6 +720,11 @@ Public Class frmPurchaseOrderNew
         'Change by murtaza default currency rate(10/26/2022)
         If Me.cmbItem.ActiveRow Is Nothing Then
             msg_Error("Invalide item")
+            Me.cmbItem.Focus() : Validate_AddToGrid = False : Exit Function
+        End If
+
+        If IsPurchaseDemand = True Then
+            msg_Error("You cannot an other item because you load a Purchase Demand")
             Me.cmbItem.Focus() : Validate_AddToGrid = False : Exit Function
         End If
 
@@ -927,6 +940,8 @@ Public Class frmPurchaseOrderNew
             ''''''''''''''''''''''''''''''
             drGrd.Item(GrdEnum.TaxPercent) = Val(Me.txtTax.Text)
             drGrd.Item(GrdEnum.TaxAmount) = Val(taxamnt)
+            drGrd.Item(GrdEnum.Custom_Charges) = Val(0)
+            drGrd.Item(GrdEnum.Transportation_Charges) = Val(0)
             drGrd.Item(GrdEnum.CategoryId) = IIf(Me.cmbCategory.SelectedValue = Nothing, 0, Me.cmbCategory.SelectedValue)
             drGrd.Item(GrdEnum.ItemId) = Me.cmbItem.ActiveRow.Cells(0).Value
             drGrd.Item(GrdEnum.PackQty) = Val(Me.txtPackQty.Text)
@@ -1338,7 +1353,7 @@ Public Class frmPurchaseOrderNew
             'Task:2856
             FillDropDown(Me.cmbCMFADoc, strQuery)
         ElseIf strCondition = "CostCenter" Then
-            FillDropDown(Me.cmbProject, "Select * From tblDefCostCenter ORDER BY Name ASC")
+            FillDropDown(Me.cmbProject, "select * from tblDefCostCenter where  (ISNULL(SOBudget,0) = 1 AND ISNULL(SalaryBudget,0) = 0 AND ISNULL(DepartmentBudget,0) = 0 AND Active = 1) OR  (ISNULL(PurchaseDemand,0) = 1 AND ISNULL(SOBudget,0) = 0 AND ISNULL(SalaryBudget,0) = 0 AND ISNULL(DepartmentBudget,0) = 0 AND Active = 1) ORDER BY Name ASC")
         ElseIf strCondition = "Demand" Then
             'FillDropDown(Me.cmbPurchaseDemand, "Select PurchaseDemandId, PurchaseDemandNo From PurchaseDemandMasterTable WHERE Status <> 'Close'")
 
@@ -1434,6 +1449,10 @@ Public Class frmPurchaseOrderNew
             'Ali Faisal : TFS1300 : End
             'End Task#117062015
             getVoucher_Id = objCommand.ExecuteScalar 'objCommand.ExecuteNonQuery()
+
+
+            objCommand.CommandText = "UPDATE tblDefCostCenter SET RemainingAmount = ISNULL(RemainingAmount,0) + " & ((Me.grd.GetTotal(Me.grd.RootTable.Columns("Price"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Custom_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Transportation_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum)) * Val(txtCurrencyRate.Text)) & " WHERE name = '" & cmbProject.Text & "'"
+            objCommand.ExecuteNonQuery()
             'Marked Against Task#2015060001 Ali Ansari
             'Altered Against Task#2015060001 Ali Ansari
             If arrFile.Count > 0 Then
@@ -1463,9 +1482,9 @@ Public Class frmPurchaseOrderNew
                 '                        & " " & IIf(grd.GetRows(i).Cells(GrdEnum.Unit).Value = "Loose", Val(grd.GetRows(i).Cells(GrdEnum.Qty).Value), (Val(grd.GetRows(i).Cells(GrdEnum.Qty).Value) * Val(grd.GetRows(i).Cells(GrdEnum.PackQty).Value))) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.Rate).Value) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.PackQty).Value) & "  , " & Val(grd.GetRows(i).Cells(GrdEnum.CurrentPrice).Value) & "," & Val(Me.grd.GetRows(i).Cells(GrdEnum.PackPrice).Value.ToString) & ", N'" & grd.GetRows(i).Cells(GrdEnum.Pack_Desc).Value.ToString.Replace("'", "''") & "', " & Val(grd.GetRows(i).Cells("TaxPercent").Value.ToString) & ", N'" & grd.GetRows(i).Cells("Comments").Value.ToString.Replace("'", "''") & "'," & Val(grd.GetRows(i).Cells("PurchaseDemandId").Value.ToString) & ") "
 
                 'TASK-TFS-51 Added Fields AdTax_Percent, AdTax_Amount
-                objCommand.CommandText = "Insert into PurchaseOrderDetailTable (PurchaseOrderId, LocationId, ArticleDefId,ArticleSize,Warranty,Status, Sz1,Qty,Price,Sz7,CurrentPrice,PackPrice, Pack_Desc,TaxPercent, Comments,DemandID, AdTax_Percent, AdTax_Amount, PurchaseDemandDetailId, BaseCurrencyId, BaseCurrencyRate, CurrencyId, CurrencyRate, CurrencyAmount, SerialNo) values( " _
+                objCommand.CommandText = "Insert into PurchaseOrderDetailTable (PurchaseOrderId, LocationId, ArticleDefId,ArticleSize,Warranty,Status, Sz1,Qty,Price,Sz7,CurrentPrice,PackPrice, Pack_Desc,TaxPercent, Comments,DemandID, AdTax_Percent, AdTax_Amount, PurchaseDemandDetailId, BaseCurrencyId, BaseCurrencyRate, CurrencyId, CurrencyRate, CurrencyAmount, SerialNo, Custom_Charges, Transportation_Charges, SO_ID, SOD_ID) values( " _
                                     & " ident_current('PurchaseOrderMasterTable'), " & Val(grd.GetRows(i).Cells(GrdEnum.LocationId).Value) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.ItemId).Value) & ",N'" & (grd.GetRows(i).Cells(GrdEnum.Unit).Value) & "',N'" & (grd.GetRows(i).Cells("Warranty").Value) & "',N'" & (grd.GetRows(i).Cells("Status").Value.ToString) & "'," & Val(grd.GetRows(i).Cells(GrdEnum.Qty).Value) & ", " _
-                                    & " " & Val(grd.GetRows(i).Cells(GrdEnum.TotalQty).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.Rate).Value) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.PackQty).Value) & "  , " & Val(grd.GetRows(i).Cells(GrdEnum.CurrentPrice).Value) & "," & Val(Me.grd.GetRows(i).Cells(GrdEnum.PackPrice).Value.ToString) & ", N'" & grd.GetRows(i).Cells(GrdEnum.Pack_Desc).Value.ToString.Replace("'", "''") & "', " & Val(grd.GetRows(i).Cells("TaxPercent").Value.ToString) & ", N'" & grd.GetRows(i).Cells("Comments").Value.ToString.Replace("'", "''") & "'," & Val(grd.GetRows(i).Cells("PurchaseDemandId").Value.ToString) & ", " & Val(Me.grd.GetRows(i).Cells("AdTax_Percent").Value.ToString) & ", " & Val(Me.grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("PurchaseDemandDetailId").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(grd.GetRows(i).Cells("CurrencyAmount").Value.ToString) & ", N'" & grd.GetRows(i).Cells("SerialNo").Value.ToString.Replace("'", "''") & "') "
+                                    & " " & Val(grd.GetRows(i).Cells(GrdEnum.TotalQty).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.Rate).Value) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.PackQty).Value) & "  , " & Val(grd.GetRows(i).Cells(GrdEnum.CurrentPrice).Value) & "," & Val(Me.grd.GetRows(i).Cells(GrdEnum.PackPrice).Value.ToString) & ", N'" & grd.GetRows(i).Cells(GrdEnum.Pack_Desc).Value.ToString.Replace("'", "''") & "', " & Val(grd.GetRows(i).Cells("TaxPercent").Value.ToString) & ", N'" & grd.GetRows(i).Cells("Comments").Value.ToString.Replace("'", "''") & "'," & Val(grd.GetRows(i).Cells("PurchaseDemandId").Value.ToString) & ", " & Val(Me.grd.GetRows(i).Cells("AdTax_Percent").Value.ToString) & ", " & Val(Me.grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("PurchaseDemandDetailId").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(grd.GetRows(i).Cells("CurrencyAmount").Value.ToString) & ", N'" & grd.GetRows(i).Cells("SerialNo").Value.ToString.Replace("'", "''") & "', " & Val(grd.GetRows(i).Cells("Custom_Charges").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("Transportation_Charges").Value.ToString) & ", " & Val(Me.grd.GetRows(i).Cells("SO_ID").Value) & ", " & Val(Me.grd.GetRows(i).Cells("SOD_ID").Value) & ") "
                 'END TASK-TFS-51
                 objCommand.ExecuteNonQuery()
                 ''End ReqId-928
@@ -1479,6 +1498,12 @@ Public Class frmPurchaseOrderNew
                 objCommand.ExecuteNonQuery()
                 '' 14-11-2016
 
+                If Val(Me.grd.GetRows(i).Cells("SO_ID").Value) > 0 Then
+                    objCommand.CommandText = "UPDATE  SalesOrderDetailTable " _
+                                           & " SET              POQty = isnull(POQty,0) +  " & Val(grd.GetRows(i).Cells(GrdEnum.Qty).Value) & ", TotalPOQty= IsNull(TotalPOQty,0) + " & Val(Me.grd.GetRows(i).Cells(GrdEnum.TotalQty).Value) & " " _
+                                           & " WHERE     (SalesOrderID = " & Val(Me.grd.GetRows(i).Cells("SO_ID").Value) & ") AND (ArticleDefId = " & Val(grd.GetRows(i).Cells(GrdEnum.ItemId).Value) & ") And (SalesOrderDetailId =" & Val(grd.GetRows(i).Cells("SOD_ID").Value.ToString) & ")"
+                    objCommand.ExecuteNonQuery()
+                End If
 
             Next
 
@@ -1682,8 +1707,34 @@ Public Class frmPurchaseOrderNew
             End If
         End If
         ''End TFS2988
-        Return True
+        Dim strBudget As String
+        Dim dtBudget As DataTable
+        strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, Amount from tbldefCostCenter where CostCenterID = " & cmbProject.SelectedValue & ""
+        dtBudget = GetDataTable(strBudget)
+        If dtBudget.Rows.Count > 0 Then
+            If dtBudget.Rows(0).Item(0) = "True" Then
+                If Val(lblRemainingBudget.Text) < ((Me.grd.GetTotal(Me.grd.RootTable.Columns("Price"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Custom_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Transportation_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum)) * Val(txtCurrencyRate.Text)) Then
+                    If Not msg_Confirm("Amount exceeds from SO Budget. Do you still want to proceed?") = True Then Exit Function
+                    BudgetExceeds = True
+                    'msg_Error("Amount exceeds from SO Budget.") : Return False : Exit Function
+                End If
+            End If
+        End If
 
+        For Each jRow As Janus.Windows.GridEX.GridEXRow In Me.grd.GetRows
+            Dim strCheckPrevious As String
+            Dim dtCheckPrevious As DataTable
+            strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, Amount from tbldefCostCenter where CostCenterID = " & cmbProject.SelectedValue & ""
+            dtBudget = GetDataTable(strBudget)
+
+            If (Val(jRow.Cells("Price").Value.ToString) = 0 Or Val(jRow.Cells("Qty").Value.ToString) = 0) Then
+                msg_Error("Rate or Qty is not greater than 0")
+                Return False
+                Exit For
+            End If
+        Next
+
+        Return True
     End Function
     Public Function ValidateCMFATotalAmount() As Boolean
         Try
@@ -1747,7 +1798,10 @@ Public Class frmPurchaseOrderNew
                 If Not msg_Confirm(str_ConfirmGridClear) = True Then Exit Sub
             End If
             'Me.FillCombo("SOComplete") 'R933 Commented
+
             Me.BtnSave.Text = "&Update"
+            lblRemainingBudget.Text = "0"
+            cmbProject.SelectedIndex = 0
             txtPONo.Text = grdSaved.CurrentRow.Cells(0).Value.ToString
             Me.GetSecurityRights()
             'Task 1592
@@ -1774,13 +1828,28 @@ Public Class frmPurchaseOrderNew
             If ApprovalProcessId = 0 Then
                 Me.btnApprovalHistory.Visible = False
                 Me.btnApprovalHistory.Enabled = False
+                If Me.grdSaved.GetRow.Cells("Post").Value = "Post" Then
+                    Me.chkPost.Checked = True
+                Else
+                    Me.chkPost.Checked = False
+                End If
             Else
                 Me.btnApprovalHistory.Visible = True
                 Me.btnApprovalHistory.Enabled = True
                 Me.chkPost.Visible = False
+                If Me.grdSaved.GetRow.Cells("Post").Value = "Post" Then
+                    Me.chkPost.Checked = True
+                Else
+                    Me.chkPost.Checked = False
+                End If
             End If
+            'Me.chkPost.Checked = Me.grdSaved.GetRow.Cells("Posted").Value
             ''Ayesha Rehman :TFS2375 :End
-
+            If chkPost.Checked = False Then
+                BtnPrint.Enabled = False
+            Else
+                BtnPrint.Enabled = True
+            End If
             '26-Feb-2018: Task TFS2377: Ayesha Rehman: Verify Check box value in system configuration(purchase) for Disable/Enable Print Button
             'Start Task:
             If getConfigValueByType("POPrintAfterApproval") = "True" Then
@@ -1814,10 +1883,12 @@ Public Class frmPurchaseOrderNew
             Call DisplayDetail(grdSaved.CurrentRow.Cells("PurchaseOrderId").Value)
             FillInwardExpense(grdSaved.CurrentRow.Cells("PurchaseOrderId").Value, "PO")
             Previouse_Amount = Me.grd.GetTotal(Me.grd.RootTable.Columns("Total"), Janus.Windows.GridEX.AggregateFunction.Sum)
+            BudgetAmount = ((Me.grd.GetTotal(Me.grd.RootTable.Columns("Price"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Custom_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Transportation_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum)) * Val(txtCurrencyRate.Text))
             Me.cmbLC.Value = grdSaved.CurrentRow.Cells("LcId").Value.ToString
 
             'Task:2673 Check Status CMFA Document
             Me.cmbProject.SelectedValue = Val(Me.grdSaved.GetRow.Cells("CostCenterId").Value.ToString)
+            lblRemainingBudget.Text = Val(lblRemainingBudget.Text) + ((Me.grd.GetTotal(Me.grd.RootTable.Columns("Price"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Custom_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Transportation_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum)) * Val(txtCurrencyRate.Text))
             If Val(Me.grdSaved.GetRow.Cells("RefCMFADocId").Value.ToString) > 0 Then
                 Dim objDt As DataTable = CType(Me.cmbCMFADoc.DataSource, DataTable)
                 objDt.AcceptChanges()
@@ -2032,7 +2103,7 @@ Public Class frmPurchaseOrderNew
         '& " Where(Recv_D.PurchaseDemandId = " & ReceivingID & ") AND (IsNull(Recv_D.Sz1,0)-IsNull(DeliveredQty,0)) > 0"
         'END TASKT-TFS-51
         str = "SELECT '' As SerialNo, Recv_D.LocationId, Article.ArticleCode, Article.ArticleDescription AS item, Article.ArticleColorName as Color, Article.ArticleSizeName as Size, Article.ArticleUnitName as UOM,Recv_D.ArticleSize AS unit, (IsNull(Recv_D.Sz1,0)-IsNull(DeliveredQty,0)) AS Qty, Recv_D.CurrentPrice,Case When IsNull(Recv_D.CurrentPrice,0) > IsNull(Recv_D.CurrentPrice,0) then ((IsNull(Recv_D.CurrentPrice,0)-IsNull(Recv_D.CurrentPrice,0))/IsNull(Recv_D.CurrentPrice,0))*100 else 0 end as RateDiscPercent, Recv_D.CurrentPrice as Price, 0 As BaseCurrencyId, 0 As BaseCurrencyRate, 0 As CurrencyId, 0 As CurrencyRate, 0 As CurrencyAmount, 0 As CurrencyTotalAmount, " _
-& " CASE WHEN recv_d.articlesize = 'Loose' THEN Recv_D.Sz1 * Recv_D.CurrentPrice ELSE ((Recv_D.Sz1 * Recv_D.CurrentPrice) * Article.PackQty) END AS Total, Convert(Float,0) as TaxPercent, 0 as TaxAmount, 0 as CurrencyTaxAmount, 0 as AdTax_Percent, 0 as AdTax_Amount, 0 as CurrencyAdTaxAmount, Convert(float,0) as TotalAmount,  " _
+& " CASE WHEN recv_d.articlesize = 'Loose' THEN Recv_D.Sz1 * Recv_D.CurrentPrice ELSE ((Recv_D.Sz1 * Recv_D.CurrentPrice) * Article.PackQty) END AS Total, Convert(Float,0) as TaxPercent, 0 as TaxAmount, 0 as Custom_Charges, 0 as Tranportation_Charges, 0 as CurrencyTaxAmount, 0 as AdTax_Percent, 0 as AdTax_Amount, 0 as CurrencyAdTaxAmount, Convert(float,0) as TotalAmount,  " _
 & " Article.ArticleGroupId, Recv_D.ArticleDefId,Recv_D.Sz7 as PackQty, isnull(Recv_D.CurrentPrice,0) as PackPrice,Isnull(Recv_D.Pack_Desc,Recv_D.ArticleSize) as Pack_Desc, Recv_D.Comments,IsNull(Recv_D.PurchaseDemandId,0) as PurchaseDemandId,  Recv_D.PurchaseDemandDetailId,0 as PurchaseOrderDetailId, IsNull(Recv_D.Qty, 0) - IsNull(Recv_D.DeliveredTotalQty, 0) As TotalQty  FROM dbo.PurchaseDemandDetailTable Recv_D INNER JOIN  " _
 & " dbo.ArticleDefView Article ON Recv_D.ArticleDefId = Article.ArticleId  " _
 & " Where(Recv_D.PurchaseDemandId = " & ReceivingID & ") AND (IsNull(Recv_D.Sz1,0)-IsNull(DeliveredQty,0)) > 0"
@@ -2084,6 +2155,7 @@ Public Class frmPurchaseOrderNew
                         Me.txtQty.Text = Val(dRow.Item("Qty").ToString)
                         Me.txtTotalQuantity.Text = Val(dRow.Item("TotalQty").ToString)
                         Me.txtRate.Text = IIf(Val(dRow.Item("CurrentPrice").ToString) = 0, 1, Val(dRow.Item("CurrentPrice").ToString))
+                        Me.txtTax.Text = 0
                         PurchaseDemandID = Val(dRow.Item("PurchaseDemandId").ToString)
                         PurchaseDemandDetailId = Val(dRow.Item("PurchaseDemandDetailId").ToString)
                         strComments = dRow.Item("Comments").ToString
@@ -2156,8 +2228,8 @@ Public Class frmPurchaseOrderNew
             '  & " ArticleDefView Article ON Recv_D.ArticleDefId = Article.ArticleId " _
             '  & " Where Recv_D.PurchaseOrderID =" & ReceivingID & ""
             str = "SELECT Recv_D.SerialNo, Recv_D.LocationId, Article.ArticleCode, Article.ArticleDescription AS item, Article.ArticleColorName as Color, Article.ArticleSizeName as Size, Article.ArticleUnitName as UOM, Recv_D.ArticleSize AS unit,Recv_D.Warranty AS Warranty,Recv_D.Status AS Status, Recv_D.Sz1 AS Qty, Recv_D.CurrentPrice,  Case When IsNull(Recv_D.CurrentPrice,0) > IsNull(Price,0) then ((IsNull(Recv_D.CurrentPrice,0)-IsNull(Price,0))/IsNull(Recv_D.CurrentPrice,0))*100 else 0 end as RateDiscPercent,Recv_D.Price, IsNull(Recv_D.BaseCurrencyId, 0) As BaseCurrencyId, IsNull(Recv_D.BaseCurrencyRate, 0) As BaseCurrencyRate, IsNull(Recv_D.CurrencyId, 0) As CurrencyId, Case When IsNull(Recv_D.CurrencyRate, 0) = 0 Then 1 Else Recv_D.CurrencyRate End As CurrencyRate, IsNull(Recv_D.CurrencyAmount, 0) As CurrencyAmount, Convert(float, 0) As CurrencyTotalAmount, " _
-          & " (IsNull(Recv_D.Qty, 0)*IsNull(Recv_D.Price, 0)* Case When IsNull(Recv_D.CurrencyRate, 0)=0 Then 1 Else Recv_D.CurrencyRate End) AS Total, Isnull(Recv_D.TaxPercent,0) as TaxPercent, 0 as TaxAmount, Convert(float, 0) As CurrencyTaxAmount, IsNull(Recv_D.AdTax_Percent,0) as AdTax_Percent, IsNull(Recv_D.AdTax_Amount,0) as AdTax_Amount,  Convert(float, 0) As CurrencyAdTaxAmount, Convert(float,0) as TotalAmount, " _
-          & " Article.ArticleGroupId, Recv_D.ArticleDefId,Recv_D.Sz7 as PackQty, isnull(Recv_D.PackPrice,0) as PackPrice,Isnull(Recv_D.Pack_Desc,Recv_D.ArticleSize) as Pack_Desc, Recv_D.Comments, IsNull(Recv_D.DemandId,0) as PurchaseDemandId, Recv_D.PurchaseDemandDetailId, IsNull(Recv_D.PurchaseOrderDetailId,0) as PurchaseOrderDetailId, IsNull(Recv_D.Qty, 0) As TotalQty  FROM dbo.PurchaseOrderDetailTable Recv_D INNER JOIN " _
+          & " (IsNull(Recv_D.Qty, 0)*IsNull(Recv_D.Price, 0)* Case When IsNull(Recv_D.CurrencyRate, 0)=0 Then 1 Else Recv_D.CurrencyRate End) AS Total, Isnull(Recv_D.TaxPercent,0) as TaxPercent, 0 as TaxAmount,ISNULL(Recv_D.Custom_Charges,0) as Custom_Charges,ISNULL(Recv_D.Transportation_Charges,0) as Transportation_Charges, Convert(float, 0) As CurrencyTaxAmount, IsNull(Recv_D.AdTax_Percent,0) as AdTax_Percent, IsNull(Recv_D.AdTax_Amount,0) as AdTax_Amount,  Convert(float, 0) As CurrencyAdTaxAmount, Convert(float,0) as TotalAmount, " _
+          & " Article.ArticleGroupId, Recv_D.ArticleDefId,Recv_D.Sz7 as PackQty, isnull(Recv_D.PackPrice,0) as PackPrice,Isnull(Recv_D.Pack_Desc,Recv_D.ArticleSize) as Pack_Desc, Recv_D.Comments, IsNull(Recv_D.DemandId,0) as PurchaseDemandId, Recv_D.PurchaseDemandDetailId, IsNull(Recv_D.PurchaseOrderDetailId,0) as PurchaseOrderDetailId, IsNull(Recv_D.Qty, 0) As TotalQty, 0 as SO_ID, 0 as SOD_ID  FROM dbo.PurchaseOrderDetailTable Recv_D INNER JOIN " _
           & " ArticleDefView Article ON Recv_D.ArticleDefId = Article.ArticleId " _
           & " Where Recv_D.PurchaseOrderID =" & ReceivingID & ""
         ElseIf Condition = "LoadSalesOrder" Then
@@ -2212,8 +2284,8 @@ Public Class frmPurchaseOrderNew
             End If
             ' TASK TFS4646 ON 17-10-18 to get rate and tax from vendor quotation. Done by Muhammad Amin 
             str = "SELECT Recv_D.SerialNo, Recv_D.LocationId, Article.ArticleCode, Article.ArticleDescription AS item, Article.ArticleColorName as Color, Article.ArticleSizeName as Size, Article.ArticleUnitName as UOM, Recv_D.ArticleSize AS unit, Recv_D.Sz1 AS Qty, Isnull(Recv_D.PurchasePrice,0) as CurrentPrice, Case When IsNull(Recv_D.CurrentPrice,0) > IsNull(Recv_D.Price,0) then ((IsNull(Recv_D.CurrentPrice,0)-IsNull(Recv_D.Price,0))/IsNull(Recv_D.CurrentPrice,0))*100 else 0 end as RateDiscPercent, CASE WHEN ISNULL(QuotationDetailTable.VendorQuotationDetailId, 0) > 0 AND ISNULL(VendorQuotationDetail.Price, 0) > 0 THEN ISNULL(VendorQuotationDetail.Price, 0) ELSE IsNull(Recv_D.Price, 0) END as Price, IsNull(Recv_D.BaseCurrencyId, 0) As BaseCurrencyId, IsNull(Recv_D.BaseCurrencyRate, 0) As BaseCurrencyRate, IsNull(Recv_D.CurrencyId, 0) As CurrencyId, Case When IsNull(Recv_D.CurrencyRate, 0) = 0 Then 1 Else Recv_D.CurrencyRate End As CurrencyRate, IsNull(Recv_D.CurrencyAmount, 0) As CurrencyAmount, Convert(float, 0) As CurrencyTotalAmount, " _
-          & " (IsNull(Recv_D.Qty, 0) * CASE WHEN ISNULL(QuotationDetailTable.VendorQuotationDetailId, 0) > 0 AND ISNULL(VendorQuotationDetail.Price, 0) > 0 THEN ISNULL(VendorQuotationDetail.Price, 0) ELSE IsNull(Recv_D.Price, 0) END * Case When IsNull(Recv_D.CurrencyRate, 0)=0 Then 1 Else Recv_D.CurrencyRate End) AS Total, CASE WHEN ISNULL(QuotationDetailTable.VendorQuotationDetailId, 0) > 0 AND ISNULL(VendorQuotationDetail.SalesTaxPer, 0) > 0 THEN ISNULL(VendorQuotationDetail.SalesTaxPer, 0) ELSE  ISNULL(Recv_D.SalesTax_Percentage,0) END AS TaxPercent, 0 as TaxAmount, Convert(float, 0) As CurrencyTaxAmount, 0 as AdTax_Percent, 0 as AdTax_Amount, Convert(float, 0) As CurrencyAdTaxAmount, Convert(float,0) as TotalAmount, " _
-             & " Article.ArticleGroupId, Recv_D.ArticleDefId,Recv_D.Sz7 as PackQty,  Isnull(Recv_D.PackPrice,0) as PackPrice, Isnull(Recv_D.Pack_Desc,Recv_D.ArticleSize) as Pack_Desc, '' as Comments, 0 as PurchaseDemandId, 0 As PurchaseDemandDetailId, 0 as PurchaseOrderDetailId, IsNull(Recv_D.Qty, 0) As TotalQty FROM dbo.SalesOrderDetailTable Recv_D INNER JOIN " _
+          & " (IsNull(Recv_D.Qty, 0) * CASE WHEN ISNULL(QuotationDetailTable.VendorQuotationDetailId, 0) > 0 AND ISNULL(VendorQuotationDetail.Price, 0) > 0 THEN ISNULL(VendorQuotationDetail.Price, 0) ELSE IsNull(Recv_D.Price, 0) END * Case When IsNull(Recv_D.CurrencyRate, 0)=0 Then 1 Else Recv_D.CurrencyRate End) AS Total, CASE WHEN ISNULL(QuotationDetailTable.VendorQuotationDetailId, 0) > 0 AND ISNULL(VendorQuotationDetail.SalesTaxPer, 0) > 0 THEN ISNULL(VendorQuotationDetail.SalesTaxPer, 0) ELSE  ISNULL(Recv_D.SalesTax_Percentage,0) END AS TaxPercent, 0 as TaxAmount,0 as Custom_Charges,0 as Transportation_Charges, Convert(float, 0) As CurrencyTaxAmount, 0 as AdTax_Percent, 0 as AdTax_Amount, Convert(float, 0) As CurrencyAdTaxAmount, Convert(float,0) as TotalAmount, " _
+             & " Article.ArticleGroupId, Recv_D.ArticleDefId,Recv_D.Sz7 as PackQty,  Isnull(Recv_D.PackPrice,0) as PackPrice, Isnull(Recv_D.Pack_Desc,Recv_D.ArticleSize) as Pack_Desc, '' as Comments, 0 as PurchaseDemandId, 0 As PurchaseDemandDetailId, 0 as PurchaseOrderDetailId, IsNull(Recv_D.Qty, 0) As TotalQty, Recv_D.SalesOrderId as SO_ID, Recv_D.SalesOrderDetailId as SOD_ID FROM dbo.SalesOrderDetailTable Recv_D INNER JOIN " _
              & " dbo.ArticleDefView Article ON Recv_D.ArticleDefId = Article.ArticleId  " _
           & " LEFT OUTER JOIN QuotationDetailTable ON Recv_D.QuotationDetailId = QuotationDetailTable.QuotationDetailId " _
           & " LEFT OUTER JOIN VendorQuotationDetail ON QuotationDetailTable.VendorQuotationDetailId = VendorQuotationDetail.VendorQuotationDetailId " _
@@ -2243,7 +2315,7 @@ Public Class frmPurchaseOrderNew
             '    & " Where Recv_D.DocId =" & ReceivingID & " AND Recv_D.VendorId=" & Me.cmbVendor.Value & ""
             str = " SELECT '' As SerialNo, Recv_D.LocationId, Article.ArticleCode, Article.ArticleDescription AS item, Article.ArticleColorName as Color, Article.ArticleSizeName as Size, Article.ArticleUnitName as UOM, Recv_D.ArticleSize AS unit, (IsNull(Recv_D.Sz1,0)-IsNull(Recv_D.POQty,0)) AS Qty,  Isnull(Recv_D.Current_Price,0) as CurrentPrice, Case When IsNull(Recv_D.CurrentPrice,0) > IsNull(Recv_D.Price,0) then ((IsNull(Recv_D.CurrentPrice,0)-IsNull(Recv_D.Price,0))/IsNull(Recv_D.CurrentPrice,0))*100 else 0 end as RateDiscPercent, Isnull(Recv_D.Price,0) as Price, 0 As BaseCurrencyId, 0 As BaseCurrencyRate, 0 As CurrencyId, 0 As CurrencyRate, 0 As CurrencyAmount, 0 As CurrencyTotalAmount, " _
         & " CASE WHEN recv_d.articlesize = 'Loose' THEN Recv_D.Sz1 * Recv_D.Price ELSE Recv_D.Sz1 * Recv_D.Price * Article.PackQty END AS Total, 0 as TaxPercent, 0 as TaxAmount, 0 As CurrencyTaxAmount, 0 AS AdTax_Percent, 0 AS AdTax_Amount, 0 As CurrencyAdTaxAmount, Convert(float,0) as TotalAmount, " _
-        & " Article.ArticleGroupId, Recv_D.ArticleDefId,Recv_D.Sz7 as PackQty, 0 as PackPrice, Isnull(Recv_D.PackDesc,Recv_D.ArticleSize) as Pack_Desc, '' as Comments, 0 as PurchaseDemandId,0 as PurchaseOrderDetailId, IsNull(Recv_D.Qty, 0) As TotalQty FROM dbo.CMFADetailTable Recv_D INNER JOIN  " _
+        & " Article.ArticleGroupId, Recv_D.ArticleDefId,Recv_D.Sz7 as PackQty, 0 as PackPrice, Isnull(Recv_D.PackDesc,Recv_D.ArticleSize) as Pack_Desc, '' as Comments, 0 as PurchaseDemandId,0 as PurchaseOrderDetailId, IsNull(Recv_D.Qty, 0) As TotalQty, 0 as SO_ID, 0 as SOD_ID  FROM dbo.CMFADetailTable Recv_D INNER JOIN  " _
         & " dbo.ArticleDefView Article ON Recv_D.ArticleDefId = Article.ArticleId  " _
         & " Where Recv_D.DocId =" & ReceivingID & " AND Recv_D.VendorId=" & Me.cmbVendor.Value & ""
             FillInwardExpense(-1, "PO")
@@ -2332,11 +2404,10 @@ Public Class frmPurchaseOrderNew
     End Sub
     Private Function Update_Record() As Boolean
         If ApprovalProcessId = 0 Then
-            'R:913 added Feasibility Post Rights
+            'Start TFS3113 :Abubakar Siddiq
             If Me.chkPost.Visible = False Then
                 Me.chkPost.Checked = False
             End If
-            'End R:970
         Else
             Me.chkPost.Visible = False
         End If
@@ -2383,6 +2454,15 @@ Public Class frmPurchaseOrderNew
                        & " PurchaseOrderQty=" & Me.grd.GetTotal(Me.grd.RootTable.Columns("TotalQty"), Janus.Windows.GridEX.AggregateFunction.Sum) & ",PurchaseOrderAmount=" & Me.grd.GetTotal(Me.grd.RootTable.Columns("Total"), Janus.Windows.GridEX.AggregateFunction.Sum) & ", CashPaid=" & Val(txtPaid.Text) & ", Remarks=N'" & txtRemarks.Text.Replace("'", "''") & "',UpdateUserName=N'" & LoginUserName & "', LCID=" & Val(Me.cmbLC.Value) & ", CurrencyType=" & IIf(Me.grpCurrency.Visible = True, "" & Me.cmbCurrency.SelectedValue & "", "NULL") & ", CurrencyRate=" & IIf(Me.grpCurrency.Visible = True, "" & Val(Me.txtCurrencyRate.Text) & "", "NULL") & ", Receiving_Date=" & IIf(Me.dtpReceivingDate.Checked = True, "N'" & Me.dtpReceivingDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "'", "NULL") & ", Terms_And_Condition=N'" & ReplaceNewLine(Me.txtTerms_And_Condition.Text, False).Replace("'", "''") & "', Post=" & IIf(Me.chkPost.Checked = True, 1, 0) & ",RefCMFADocId=" & IIf(Me.cmbCMFADoc.SelectedIndex = -1, 0, Me.cmbCMFADoc.SelectedValue) & ",CostCenterId=" & Me.cmbProject.SelectedValue & ",POType='" & Me.cmbPOType.SelectedItem.ToString & "',POStockDispatchStatus='" & Me.cmbStockDispatchStatus.Value & "',TotalInwardExpenses = '" & Me.grdInwardExpDetail.GetTotal(Me.grdInwardExpDetail.RootTable.Columns("Exp_Amount"), Janus.Windows.GridEX.AggregateFunction.Sum) & "',PayTypeId = " & Me.cmbPaymentTypes.SelectedValue & "  Where PurchaseOrderID= " & txtReceivingID.Text & ""
             'Ali Faisal : TFS1300 : End
             'End Task:2673
+            objCommand.ExecuteNonQuery()
+
+            Dim UpdatedAmount As Double
+            If ((Me.grd.GetTotal(Me.grd.RootTable.Columns("Price"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Custom_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Transportation_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum)) * Val(txtCurrencyRate.Text)) = BudgetAmount Then
+            Else
+                UpdatedAmount = ((Me.grd.GetTotal(Me.grd.RootTable.Columns("Price"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Custom_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Transportation_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum)) * Val(txtCurrencyRate.Text)) - BudgetAmount
+            End If
+            objCommand.CommandText = ""
+            objCommand.CommandText = "UPDATE tblDefCostCenter SET RemainingAmount = ISNULL(RemainingAmount,0) + (" & UpdatedAmount & ") WHERE name = '" & cmbProject.Text & "'"
             objCommand.ExecuteNonQuery()
 
 
@@ -2478,9 +2558,9 @@ Public Class frmPurchaseOrderNew
                 'objCommand.CommandText = "Insert into PurchaseOrderDetailTable (PurchaseOrderId, LocationId, ArticleDefId,ArticleSize, Sz1,Qty,Price, Sz7,CurrentPrice,PackPrice, Pack_Desc,TaxPercent, Comments,DemandId,AdTax_Percent,AdTax_Amount, PurchaseDemandDetailId, BaseCurrencyId, BaseCurrencyRate, CurrencyId, CurrencyRate, CurrencyAmount, SerialNo) values( " _
                 '                       & " " & txtReceivingID.Text & ", " & Val(Me.grd.GetRows(i).Cells(GrdEnum.LocationId).Value) & " ," & Val(grd.GetRows(i).Cells(GrdEnum.ItemId).Value) & ",N'" & (grd.GetRows(i).Cells(GrdEnum.Unit).Value) & "'," & Val(grd.GetRows(i).Cells(GrdEnum.Qty).Value) & ", " _
                 '                       & " " & Val(grd.GetRows(i).Cells(GrdEnum.TotalQty).Value) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.Rate).Value) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.PackQty).Value) & "  , " & Val(grd.GetRows(i).Cells(GrdEnum.CurrentPrice).Value) & ", " & Val(Me.grd.GetRows(i).Cells(GrdEnum.PackPrice).Value.ToString) & ", N'" & grd.GetRows(i).Cells(GrdEnum.Pack_Desc).Value.ToString.Replace("'", "''") & "',  " & Val(grd.GetRows(i).Cells("TaxPercent").Value.ToString) & ", N'" & grd.GetRows(i).Cells("Comments").Value.ToString.Replace("'", "''") & "'," & Val(Me.grd.GetRows(i).Cells("PurchaseDemandId").Value.ToString) & "," & Val(Me.grd.GetRows(i).Cells("AdTax_Percent").Value.ToString) & "," & Val(Me.grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & "," & Val(Me.grd.GetRows(i).Cells("PurchaseDemandDetailId").Value.ToString) & ", N'" & grd.GetRows(i).Cells("SerialNo").Value.ToString.Replace("'", "''") & "') Select @@Identity"
-                objCommand.CommandText = "Insert into PurchaseOrderDetailTable (PurchaseOrderId, LocationId, ArticleDefId,ArticleSize,Warranty,Status, Sz1,Qty,Price,Sz7,CurrentPrice,PackPrice, Pack_Desc,TaxPercent, Comments,DemandID, AdTax_Percent, AdTax_Amount, PurchaseDemandDetailId, BaseCurrencyId, BaseCurrencyRate, CurrencyId, CurrencyRate, CurrencyAmount, SerialNo) values( " _
+                objCommand.CommandText = "Insert into PurchaseOrderDetailTable (PurchaseOrderId, LocationId, ArticleDefId,ArticleSize,Warranty,Status, Sz1,Qty,Price,Sz7,CurrentPrice,PackPrice, Pack_Desc,TaxPercent, Comments,DemandID, AdTax_Percent, AdTax_Amount, PurchaseDemandDetailId, BaseCurrencyId, BaseCurrencyRate, CurrencyId, CurrencyRate, CurrencyAmount, SerialNo, Custom_Charges, Transportation_Charges) values( " _
                                   & " " & txtReceivingID.Text & ", " & Val(grd.GetRows(i).Cells(GrdEnum.LocationId).Value) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.ItemId).Value) & ",N'" & (grd.GetRows(i).Cells(GrdEnum.Unit).Value) & "',N'" & (grd.GetRows(i).Cells("Warranty").Value) & "',N'" & (grd.GetRows(i).Cells("Status").Value.ToString) & "'," & Val(grd.GetRows(i).Cells(GrdEnum.Qty).Value) & ", " _
-                                  & " " & Val(grd.GetRows(i).Cells(GrdEnum.TotalQty).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.Rate).Value) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.PackQty).Value) & "  , " & Val(grd.GetRows(i).Cells(GrdEnum.CurrentPrice).Value) & "," & Val(Me.grd.GetRows(i).Cells(GrdEnum.PackPrice).Value.ToString) & ", N'" & grd.GetRows(i).Cells(GrdEnum.Pack_Desc).Value.ToString.Replace("'", "''") & "', " & Val(grd.GetRows(i).Cells("TaxPercent").Value.ToString) & ", N'" & grd.GetRows(i).Cells("Comments").Value.ToString.Replace("'", "''") & "'," & Val(grd.GetRows(i).Cells("PurchaseDemandId").Value.ToString) & ", " & Val(Me.grd.GetRows(i).Cells("AdTax_Percent").Value.ToString) & ", " & Val(Me.grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("PurchaseDemandDetailId").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("CurrencyId").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("CurrencyRate").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("CurrencyAmount").Value.ToString) & ", N'" & grd.GetRows(i).Cells("SerialNo").Value.ToString.Replace("'", "''") & "') Select @@Identity"
+                                  & " " & Val(grd.GetRows(i).Cells(GrdEnum.TotalQty).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.Rate).Value) & ", " & Val(grd.GetRows(i).Cells(GrdEnum.PackQty).Value) & "  , " & Val(grd.GetRows(i).Cells(GrdEnum.CurrentPrice).Value) & "," & Val(Me.grd.GetRows(i).Cells(GrdEnum.PackPrice).Value.ToString) & ", N'" & grd.GetRows(i).Cells(GrdEnum.Pack_Desc).Value.ToString.Replace("'", "''") & "', " & Val(grd.GetRows(i).Cells("TaxPercent").Value.ToString) & ", N'" & grd.GetRows(i).Cells("Comments").Value.ToString.Replace("'", "''") & "'," & Val(grd.GetRows(i).Cells("PurchaseDemandId").Value.ToString) & ", " & Val(Me.grd.GetRows(i).Cells("AdTax_Percent").Value.ToString) & ", " & Val(Me.grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("PurchaseDemandDetailId").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("CurrencyId").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("CurrencyRate").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("CurrencyAmount").Value.ToString) & ", N'" & grd.GetRows(i).Cells("SerialNo").Value.ToString.Replace("'", "''") & "', " & Val(grd.GetRows(i).Cells("Custom_Charges").Value.ToString) & ", " & Val(grd.GetRows(i).Cells("Transportation_Charges").Value.ToString) & ") Select @@Identity"
                 'END TASK-TFS-51
 
                 'END TASK-TFS-51
@@ -2752,7 +2832,21 @@ Public Class frmPurchaseOrderNew
                 UsersEmail = New List(Of String)
                 'UsersEmail.Add("adil@agriusit.com")
                 ''UsersEmail.Add("ali@agriusit.com")
-                UsersEmail.Add("h.saeed@agriusit.com")
+                If Con.Database.Contains("Remms") Then
+                    If BudgetExceeds = True Then
+                        UsersEmail.Add("Adil@remmsit.com")
+                    Else
+                        UsersEmail.Add("r.ejaz@remmsit.com")
+                    End If
+
+                Else
+                    If BudgetExceeds = True Then
+                        UsersEmail.Add("Adil@agriusit.com")
+                    Else
+                        UsersEmail.Add("r.ejaz@agriusit.com")
+                    End If
+
+                End If
                 ''UsersEmail.Add("a.rafay@agriusit.com")
                 FormatStringBuilder(dtEmail)
                 'CreateOutLookMail()
@@ -3530,7 +3624,7 @@ Public Class frmPurchaseOrderNew
         Try
             '' ReqId-928 Added Index For Editable Comments Field
             For Each col As Janus.Windows.GridEX.GridEXColumn In Me.grd.RootTable.Columns
-                If col.Index <> GrdEnum.LocationId AndAlso col.Index <> GrdEnum.Qty AndAlso col.Index <> GrdEnum.Warranty AndAlso col.Index <> GrdEnum.Status AndAlso col.Index <> GrdEnum.Rate AndAlso col.Index <> GrdEnum.TaxPercent AndAlso col.Index <> GrdEnum.Comments AndAlso col.Index <> GrdEnum.AdTax_Percent AndAlso col.Index <> GrdEnum.CurrentPrice AndAlso col.Index <> GrdEnum.RateDiscPercent AndAlso col.Index <> GrdEnum.SerialNo Then
+                If col.Index <> GrdEnum.LocationId AndAlso col.Index <> GrdEnum.Qty AndAlso col.Index <> GrdEnum.Warranty AndAlso col.Index <> GrdEnum.Status AndAlso col.Index <> GrdEnum.Rate AndAlso col.Index <> GrdEnum.TaxPercent AndAlso col.Index <> GrdEnum.Custom_Charges AndAlso col.Index <> GrdEnum.Transportation_Charges AndAlso col.Index <> GrdEnum.Comments AndAlso col.Index <> GrdEnum.AdTax_Percent AndAlso col.Index <> GrdEnum.CurrentPrice AndAlso col.Index <> GrdEnum.RateDiscPercent AndAlso col.Index <> GrdEnum.SerialNo Then
                     col.EditType = Janus.Windows.GridEX.EditType.NoEdit
                 End If
             Next
@@ -3679,7 +3773,7 @@ Public Class frmPurchaseOrderNew
                     'companyinitials = "UE"
                     Return GetSerialNo("PO" + "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "PurchaseOrderMasterTable", "PurchaseOrderNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo("PO" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "PurchaseOrderMasterTable", "PurchaseOrderNo")
                 End If
                 ' Return GetNextDocNo(PreFix & CompanyPrefix & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "ReceivingMasterTable", "ReceivingNo")
@@ -3689,7 +3783,7 @@ Public Class frmPurchaseOrderNew
                     'companyinitials = "UE"
                     Return GetSerialNo("PO" + "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "PurchaseOrderMasterTable", "PurchaseOrderNo")
                 Else
-                    companyinitials = "PK"
+                    'companyinitials = "PK"
                     Return GetNextDocNo("PO" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "PurchaseOrderMasterTable", "PurchaseOrderNo")
                 End If
                 'Rafay :Task End
@@ -4082,6 +4176,7 @@ Public Class frmPurchaseOrderNew
                     DisplayDetail(-1)
                 End If
                 IsSOLoad = True
+                cmbProject.Text = frm.SalesOrderNo
                 DisplayDetail(frm.ReceivingID, "LoadSalesOrder")
             End If
 
@@ -4570,9 +4665,10 @@ Public Class frmPurchaseOrderNew
                 Me.cmbVendor.Value = Val(Me.cmbPurchaseDemand.SelectedRow.Cells("VendorId").Value.ToString)             'Val(CType(Me.cmbPurchaseDemand.Value, DataRowView).Row.Item("VendorId").ToString)
                 Me.txtRemarks.Text = Me.cmbPurchaseDemand.SelectedRow.Cells("Remarks").Value.ToString      'CType(Me.cmbPurchaseDemand.Value, DataRowView).Row.Item("Remarks").ToString
                 Me.dtpPODate.Value = Me.cmbPurchaseDemand.SelectedRow.Cells("PurchaseDemandDate").Value.ToString ' CType(Me.cmbPurchaseDemand.Value, DataRowView).Row.Item("PurchaseDemandDate").ToString
-                Me.cmbProject.SelectedValue = Val(Me.cmbPurchaseDemand.SelectedRow.Cells("CostCenterId").Value.ToString)
+                Me.cmbProject.Text = cmbPurchaseDemand.Text
             End If
             DisplayPODetail(Me.cmbPurchaseDemand.Value)
+            IsPurchaseDemand = True
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -5070,7 +5166,8 @@ Public Class frmPurchaseOrderNew
 
     Private Sub cmbPurchaseDemand_ValueChanged(sender As Object, e As EventArgs) Handles cmbPurchaseDemand.ValueChanged
         Try
-            Me.cmbProject.SelectedValue = Val(Me.cmbPurchaseDemand.SelectedRow.Cells("CostCenterId").Value.ToString)
+            Me.cmbProject.SelectedValue = 0
+            Me.cmbProject.Text = cmbPurchaseDemand.Text
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -5323,6 +5420,7 @@ Public Class frmPurchaseOrderNew
                 ''TASK TFS1474
                 If Me.cmbCurrency.SelectedValue = BaseCurrencyId Then
                     Me.txtCurrencyRate.Enabled = False
+                    Me.txtCurrencyRate.Text = 1
                 Else
                     Me.txtCurrencyRate.Enabled = True
                 End If
@@ -6166,5 +6264,55 @@ Public Class frmPurchaseOrderNew
 
     Private Sub UltraTabControl1_SelectedTabChanged(sender As Object, e As Win.UltraWinTabControl.SelectedTabChangedEventArgs) Handles UltraTabControl1.SelectedTabChanged
 
+    End Sub
+    Public Function GetAccountBalance(ByVal AccountId As Integer, Optional DocNo As String = "") As Long
+        Dim strQuery As String
+        strQuery = "SELECT isnull(sum(debit_amount),0) from tblvoucherdetail INNER JOIN tblVoucher On tblVoucher.Voucher_Id = tblVoucherDetail.Voucher_Id where IsNull(Post,0)=1 AND tblvoucherdetail.CostCenterID=" & AccountId & " " & IIf(DocNo.Length > 0, " AND tblVoucher.Voucher_Code <> N'" & DocNo.Replace("'", "''") & "'", "")
+        Dim dt As New DataTable
+        Dim adp As New OleDbDataAdapter
+        Try
+            adp = New OleDbDataAdapter(strQuery, Con)
+            adp.Fill(dt)
+            dt.AcceptChanges()
+            If dt.Rows.Count > 0 Then
+                Return dt.Rows(0).Item(0)
+            Else
+                Return 0
+            End If
+            'lngVoucherTypeId = objCommand.ExecuteScalar
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+    Private Sub cmbProject_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbProject.SelectedIndexChanged
+        Try
+            Dim Budget As String
+            Dim strBudget As String
+            Dim dtSObudget As DataTable
+            Dim dtbudget As DataTable
+            Dim BudgetValue As Double
+            If cmbProject.SelectedValue > 0 Then
+                strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, (ISNULL(Amount,0) - ISNULL(RemainingAmount,0)) as Amount from tbldefCostCenter where CostCenterID = " & cmbProject.SelectedValue & ""
+                dtSObudget = GetDataTable(strBudget)
+                If dtSObudget.Rows.Count > 0 Then
+                    If dtSObudget.Rows(0).Item(0) = "True" Then
+                        'If BtnSave.Text = "&Save" Then
+                        '    Budget = "SELECT (ISNULL(Amount,0) - ISNULL(RemainingAmount,0)) as Amount from tbldefCostCenter where CostCenterID =" & cmbProject.SelectedValue & ""
+                        '    dtbudget = GetDataTable(Budget)
+                        '    If dtbudget.Rows.Count > 0 Then
+                        lblRemainingBudget.Text = dtSObudget.Rows(0).Item(1)
+                    Else
+                        lblRemainingBudget.Text = ""
+                        'End If
+                        'lblRemainingBudget.Text = dtbudget.Rows(0).Item(0)
+                    End If
+                End If
+            End If
+            'End If
+
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
     End Sub
 End Class

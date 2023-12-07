@@ -1,6 +1,7 @@
 Public Class frmSalesOrderList
     Dim flgCompanyRights As Boolean = False
     Public ReceivingID As Integer = 0
+    Public SalesOrderNo As String = ""
 
     Private Sub frmSalesOrderList_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.F4 Then
@@ -15,7 +16,7 @@ Public Class frmSalesOrderList
             End If
 
 
-            Dim Str As String = "Select SalesOrderID, SalesOrderNo + ' ~ ' + Convert(varchar(12), SalesOrderMasterTable.SalesOrderDate,113) as SalesOrderNo from SalesOrderMasterTable where salesorderId not in(select PoId from salesMasterTable) " & IIf(flgCompanyRights = True, " AND LocationId=" & MyCompanyId & "", "") & " ORDER BY 1 ASC"
+            Dim Str As String = "Select SalesOrderID, SalesOrderNo as SalesOrderNo from SalesOrderMasterTable where salesorderId not in(select PoId from salesMasterTable) " & IIf(flgCompanyRights = True, " AND LocationId=" & MyCompanyId & "", "") & " ORDER BY 1 ASC"
             FillDropDown(Me.cmbSalesOrder, Str)
             Me.cmbSalesOrder.Focus()
         Catch ex As Exception
@@ -30,6 +31,7 @@ Public Class frmSalesOrderList
             Application.DoEvents()
             If Me.cmbSalesOrder.SelectedIndex = -1 Then Exit Sub
             ReceivingID = Me.cmbSalesOrder.SelectedValue
+            SalesOrderNo = Me.cmbSalesOrder.Text
             DialogResult = Windows.Forms.DialogResult.Yes
         Catch ex As Exception
             ShowErrorMessage(ex.Message)

@@ -193,7 +193,7 @@ Public Class frmContractOpening
             txtPaymentTems.Text = ""
             'rafay reset attachment when click new 
             ToolStripButton1.Text = "Attachment (" & arrFile.Count & ")"
-            companyinitials = ""
+            ''companyinitials = ""
             'If Me.cmbRenew.Items.Count > 1 Then Me.cmbRenew.SelectedIndex = 1 Else Me.cmbRenew.SelectedIndex = 0
             'If Me.cmbStatus.Items.Count > 1 Then Me.cmbStatus.SelectedIndex = 1 Else Me.cmbStatus.SelectedIndex = 0
             'cmbRenew.SelectedIndex = 0
@@ -239,14 +239,14 @@ Public Class frmContractOpening
                 'companyinitials = "UE"
                 Return GetNextDocNo("MC-" & Format(Me.dtpFromDate.Value, "yy") & Me.dtpFromDate.Value.Month.ToString("00") & Me.dtpFromDate.Value.Day.ToString("00"), 4, "ContractMasterTable", "ContractNo")
             Else
-                companyinitials = "PK"
+                ''companyinitials = "PK"
                 Return GetNextDocNo("MC-" & companyinitials & "-" & Format(Me.dtpFromDate.Value, "yy") & Me.dtpFromDate.Value.Month.ToString("00") & Me.dtpFromDate.Value.Day.ToString("00"), 4, "ContractMasterTable", "ContractNo")
             End If
             If CompanyPrefix = "V-ERP (UAE)" Then
                 'companyinitials = "UE"
                 Return GetNextDocNo("MC-" & Format(Me.dtpFromDate.Value, "yy") & Me.dtpFromDate.Value.Month.ToString("00") & Me.dtpFromDate.Value.Day.ToString("00"), 4, "ContractMasterTable", "ContractNo")
             Else
-                companyinitials = "PK"
+                ''companyinitials = "PK"
                 Return GetNextDocNo("MC-" & companyinitials & "-" & Format(Me.dtpFromDate.Value, "yy") & Me.dtpFromDate.Value.Month.ToString("00") & Me.dtpFromDate.Value.Day.ToString("00"), 4, "ContractMasterTable", "ContractNo")
             End If
         Catch ex As Exception
@@ -547,7 +547,7 @@ Public Class frmContractOpening
             '    GetAllRecords()
             'End If
             objCommand.Transaction = trans
-            Dim DaysAddInStartDate As Double
+            Dim DaysAddInStartDate As Double = 0
             Dim PreviousDate As Double
             Dim NumberOfLoop As Decimal
             Dim Amount As Double
@@ -555,9 +555,9 @@ Public Class frmContractOpening
                 If btnSave.Text = "&Save" Then
                     'Rafay": Modify query add these field to save (Terminated,PreviousContracts,cmbStatus,cmbhold,othersdescription,ChkBoxBatteriesIncluded)
                     objCommand.CommandText = "Insert into ContractMasterTable(ContractNo,StartDate,EndDate,SLAType,PreventionMaintenance,CustomerId,OpportunityId, Status, EndCustomer, PONumber, ContactofNotification, Site, InvoicingFrequency, PaymentTerms, Comments, Employee, Currency, Amount, TerminateStatus, ContractStatus, PreviousContracts, HoldReason, OthersDescription, HoldCheckBox, ChkBoxBatteriesIncluded, DurationofMonth, InvoicePattern, ArticleId, Tax) values( " _
-                  & "N'" & txtContractNo.Text & "',N'" & dtpFromDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "',N'" & dtpToDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "',N'" & cmbSLAType.Text & "',N'" & cmbPreventionMaintenance.Text & "', N'" & cmbCustomer.Text & "', N'" & cmbOpportunity.Text & "', N'" & cmbOpportunityStatus.Text & "', N'" & txtEndCustomer.Text & "', N'" & txtPONumber.Text & "', N'" & txtContactofNotifictaion.Text & "', N'" & cmbSite.Text & "', N'" & cmbInvoiceFrequency.Text & "', N'" & cmbPaymentTerms.Text & "', N'" & txtComments.Text & "', N'" & cmbEmployee.Text & "', N'" & cmbCurrency.Text & "', N'" & txtAmount.Text & "', N'" & cmbterminate.Text & "', N'" & cmbStatus.Text & "', N'" & cmbRenew.Text & "' , N'" & cmbHold.Text & "', N'" & txtOthersDescription.Text & "'," & IIf(Me.HoldCheckbox.Checked = True, 1, 0) & "," & IIf(Me.ChkBatteriesIncluded.Checked = True, 1, 0) & " , N'" & cmbDurationofMonth.Text & "', N'" & cmbInvoicePattern.Text & "', " & cmbItem.Value & ", " & txtTax.Text & ")SELECT @@IDENTITY"
+                  & "N'" & txtContractNo.Text & "',N'" & dtpFromDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "',N'" & dtpToDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "',N'" & cmbSLAType.Text & "',N'" & cmbPreventionMaintenance.Text & "', N'" & cmbCustomer.Text & "', N'" & cmbOpportunity.Text & "', N'" & cmbOpportunityStatus.Text & "', N'" & txtEndCustomer.Text & "', N'" & txtPONumber.Text & "', N'" & txtContactofNotifictaion.Text & "', N'" & cmbSite.Text & "', N'" & cmbInvoiceFrequency.Text & "', N'" & cmbPaymentTerms.Text & "', N'" & txtComments.Text & "', N'" & cmbEmployee.Text & "', N'" & cmbCurrency.Text & "', N'" & txtAmount.Text & "', N'" & cmbterminate.Text & "', N'" & cmbStatus.Text & "', N'" & cmbRenew.Text & "' , N'" & cmbHold.Text & "', N'" & txtOthersDescription.Text & "'," & IIf(Me.HoldCheckbox.Checked = True, 1, 0) & "," & IIf(Me.ChkBatteriesIncluded.Checked = True, 1, 0) & " , N'" & cmbDurationofMonth.Text & "', N'" & cmbInvoicePattern.Text & "', " & cmbItem.Value & ", " & Val(txtTax.Text) & ")SELECT @@IDENTITY"
                     Dim CId As Integer = objCommand.ExecuteScalar
-                    objCommand.CommandText = "insert into tblDefCostCenter(Name,Code,sortorder, CostCenterGroup, Active, OutwardGatepass, DayShift, IsLogical) values(N'" & txtContractNo.Text.Replace("'", "''") & "','" & txtContractNo.Text.Replace("'", "''") & "',1,'', 1, 0, 0, 0)"
+                    objCommand.CommandText = "insert into tblDefCostCenter(Name,Code,sortorder, CostCenterGroup, Active, OutwardGatepass, DayShift, IsLogical, Contract) values(N'" & txtContractNo.Text.Replace("'", "''") & "','" & txtContractNo.Text.Replace("'", "''") & "',1,'', 1, 0, 0, 0,1)"
                     objCommand.ExecuteNonQuery()
                     If Me.cmbRenew.SelectedValue > 0 Then
                         objCommand.CommandText = ""
@@ -640,10 +640,10 @@ Public Class frmContractOpening
                                 ElseIf cmbInvoiceFrequency.Text = "Yearly" Then
                                     FrequencyDays = 12
                                     If cmbInvoicePattern.Text = "Arrears" Then
-                                        DaysAddInStartDate = 364
+                                        DaysAddInStartDate = DaysAddInStartDate + 364
                                         PreviousDate = 0
                                     Else
-                                        DaysAddInStartDate = 0
+                                        DaysAddInStartDate = DaysAddInStartDate + 0
                                         PreviousDate = 0
                                     End If
                                     Dim str As String = "select datediff(mm,'" & fromdate & "','" & todate & "') as DateDiffrence, datediff(dd,'" & fromdate & "','" & todate & "') as DateDiffrenceDays "
@@ -743,7 +743,7 @@ Public Class frmContractOpening
                                     PreviousDate = 0
                                 End If
 
-                                Dim str As String = "select datediff(mm,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrence, datediff(dd,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrenceDays "
+                                Dim str As String = "select datediff(mm,'" & dtpFromDate.Value & "'," & "DATEADD(day, " & 1 & ", '" & dtpToDate.Value & "')" & ") as DateDiffrence, datediff(dd,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrenceDays "
                                 Dim dt As DataTable = GetDataTable(str)
                                 If dt.Rows.Count > 0 Then
                                     NumberOfLoop = dt.Rows(0).Item("DateDiffrence") / 1
@@ -759,7 +759,7 @@ Public Class frmContractOpening
                                     PreviousDate = 0
                                 End If
 
-                                Dim str As String = "select datediff(mm,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrence, datediff(dd,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrenceDays "
+                                Dim str As String = "select datediff(mm,'" & dtpFromDate.Value & "'," & "DATEADD(day, " & 1 & ", '" & dtpToDate.Value & "')" & ") as DateDiffrence, datediff(dd,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrenceDays "
                                 Dim dt As DataTable = GetDataTable(str)
                                 If dt.Rows.Count > 0 Then
                                     NumberOfLoop = dt.Rows(0).Item("DateDiffrence") / 3
@@ -774,7 +774,7 @@ Public Class frmContractOpening
                                     DaysAddInStartDate = 0
                                     PreviousDate = 0
                                 End If
-                                Dim str As String = "select datediff(mm,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrence, datediff(dd,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrenceDays "
+                                Dim str As String = "select datediff(mm,'" & dtpFromDate.Value & "'," & "DATEADD(day, " & 1 & ", '" & dtpToDate.Value & "')" & ") as DateDiffrence, datediff(dd,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrenceDays "
                                 Dim dt As DataTable = GetDataTable(str)
                                 If dt.Rows.Count > 0 Then
                                     NumberOfLoop = dt.Rows(0).Item("DateDiffrence") / 6
@@ -789,7 +789,7 @@ Public Class frmContractOpening
                                     DaysAddInStartDate = 0
                                     PreviousDate = 0
                                 End If
-                                Dim str As String = "select datediff(mm,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrence, datediff(dd,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrenceDays "
+                                Dim str As String = "select datediff(mm,'" & dtpFromDate.Value & "'," & "DATEADD(day, " & 1 & ", '" & dtpToDate.Value & "')" & ") as DateDiffrence, datediff(dd,'" & dtpFromDate.Value & "','" & dtpToDate.Value & "') as DateDiffrenceDays "
                                 Dim dt As DataTable = GetDataTable(str)
                                 If dt.Rows.Count > 0 Then
                                     NumberOfLoop = dt.Rows(0).Item("DateDiffrence") / 12
@@ -797,9 +797,32 @@ Public Class frmContractOpening
                                 End If
                             End If
                             For j As Double = 1.0 To NumberOfLoop
+                                Dim strpreviousdays As String
+                                Dim dtpreviousdays As DataTable
+                                If cmbInvoicePattern.Text = "Advance" Then
+                                    strpreviousdays = "SELECT CASE WHEN  (SELECT DATEADD(day, 1 ,  '" & Date.Now & "' )) >= (SELECT DATEADD(day, " & DaysAddInStartDate & " ,  '" & dtpFromDate.Value & "' )) THEN  (SELECT DATEADD(day, 1 ,  '" & Date.Now & "' )) ELSE (SELECT DATEADD(day, " & DaysAddInStartDate & " ,  '" & dtpFromDate.Value & "' )) END"
+                                    dtpreviousdays = GetDataTable(strpreviousdays)
+                                    If dtpreviousdays.Rows.Count > 0 Then
+                                        objCommand.CommandText = "Insert into ContractInvoiceDetailTable(ContractId,InvoiceDate,InvoiceAmount, PreviousDate) Values(" & CId & ",'" & dtpreviousdays.Rows(0).Item(0) & "', " & Amount * FrequencyDays & ",(SELECT DATEADD(day, " & PreviousDate & ", '" & dtpFromDate.Value & "')))"
+                                        objCommand.ExecuteNonQuery()
+                                    End If
+                                    'if 
 
-                                objCommand.CommandText = "Insert into ContractInvoiceDetailTable(ContractId,InvoiceDate,InvoiceAmount, PreviousDate) Values(" & CId & "," & IIf(cmbInvoicePattern.Text = "Advance", IIf(j = 1, "(SELECT DATEADD(day, " & 1 & ", '" & Date.Now & "'))", "(SELECT DATEADD(day, " & DaysAddInStartDate & ", '" & dtpFromDate.Value & "'))"), "(SELECT DATEADD(day, " & DaysAddInStartDate & ", '" & dtpFromDate.Value & "'))") & ", " & Amount * FrequencyDays & ",(SELECT DATEADD(day, " & PreviousDate & ", '" & dtpFromDate.Value & "')))"
-                                objCommand.ExecuteNonQuery()
+                                    'Else
+                                    '    objCommand.CommandText = "Insert into ContractInvoiceDetailTable(ContractId,InvoiceDate,InvoiceAmount, PreviousDate) Values(" & CId & "," & IIf(cmbInvoicePattern.Text = "Advance", IIf(j = 1, "(SELECT DATEADD(day, " & 1 & ", '" & Date.Now & "'))", "(SELECT DATEADD(day, " & DaysAddInStartDate & ", '" & dtpFromDate.Value & "'))"), "(SELECT DATEADD(day, " & DaysAddInStartDate & ", '" & dtpFromDate.Value & "'))") & ", " & Amount * FrequencyDays & ",(SELECT DATEADD(day, " & PreviousDate & ", '" & dtpFromDate.Value & "')))"
+                                    '    objCommand.ExecuteNonQuery()
+                                    'End If
+                                    'ElseIf cmbInvoicePattern.Text = "Arrears" Then
+                                    '    strpreviousdays = "SELECT CASE WHEN  (SELECT DATEADD(day, 1 ,  '" & Date.Now & "' )) > (SELECT DATEADD(day, " & DaysAddInStartDate & " ,  '" & dtpFromDate.Value & "' )) THEN  (SELECT DATEADD(day, 1 ,  '" & Date.Now & "' )) ELSE (SELECT DATEADD(day, " & DaysAddInStartDate & " ,  '" & dtpFromDate.Value & "' )) END"
+                                    '    dtpreviousdays = GetDataTable(strpreviousdays)
+                                    '    If dtpreviousdays.Rows.Count > 0 Then
+                                    '        objCommand.CommandText = "Insert into ContractInvoiceDetailTable(ContractId,InvoiceDate,InvoiceAmount, PreviousDate) Values(" & CId & ",'" & dtpreviousdays.Rows(0).Item(0) & "', " & Amount * FrequencyDays & ",(SELECT DATEADD(day, " & PreviousDate & ", '" & dtpFromDate.Value & "')))"
+                                    '        objCommand.ExecuteNonQuery()
+                                    '    End If
+                                End If
+
+                                'objCommand.CommandText = "Insert into ContractInvoiceDetailTable(ContractId,InvoiceDate,InvoiceAmount, PreviousDate) Values(" & CId & "," & IIf(cmbInvoicePattern.Text = "Advance", IIf(j = 1, "(SELECT DATEADD(day, " & 1 & ", '" & Date.Now & "'))", "(SELECT DATEADD(day, " & DaysAddInStartDate & ", '" & dtpFromDate.Value & "'))"), "(SELECT DATEADD(day, " & DaysAddInStartDate & ", '" & dtpFromDate.Value & "'))") & ", " & Amount * FrequencyDays & ",(SELECT DATEADD(day, " & PreviousDate & ", '" & dtpFromDate.Value & "')))"
+                                'objCommand.ExecuteNonQuery()
                                 If NumberOfLoop - j < 1 And NumberOfLoop - j > 0 Then
                                     If cmbInvoiceFrequency.Text = "Monthly" And cmbInvoicePattern.Text = "Advance" Then
                                         DaysAddInStartDate = DaysAddInStartDate + 30
@@ -886,7 +909,7 @@ Public Class frmContractOpening
                 ElseIf btnSave.Text = "&Update" Then
                             If msg_Confirm(str_ConfirmUpdate) = False Then Exit Sub
                             'Rafay": Modify query add these field to save (TerminateStatus,PreviousContracts,cmbStatus,cmbHold,OthersDescription,HoldCHeckBox,ChkBoxBatteriesIncluded)
-                    objCommand.CommandText = "Update ContractMasterTable set ContractNo = N'" & txtContractNo.Text & "', StartDate = N'" & dtpFromDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "',EndDate = N'" & dtpToDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "',SLAType = N'" & cmbSLAType.Text & "',PreventionMaintenance = N'" & cmbPreventionMaintenance.Text & "',CustomerId = N'" & cmbCustomer.Text & "',OpportunityId = N'" & cmbOpportunity.Text & "', Status = N'" & cmbOpportunityStatus.Text & "', EndCustomer = N'" & txtEndCustomer.Text & "', PONumber = N'" & txtPONumber.Text & "', ContactofNotification = N'" & txtContactofNotifictaion.Text & "', Site = N'" & cmbSite.Text & "', InvoicingFrequency = N'" & cmbInvoiceFrequency.Text & "', PaymentTerms = N'" & cmbPaymentTerms.Text & "', Comments = N'" & txtComments.Text & "', Employee = N'" & cmbEmployee.Text & "', Currency = N'" & cmbCurrency.Text & "', Amount = N'" & txtAmount.Text & "', TerminateStatus= N'" & cmbterminate.Text & "', ContractStatus = N'" & cmbStatus.Text & "', PreviousContracts = N'" & cmbRenew.Text & "' , HoldReason = N'" & cmbHold.Text & "',OthersDescription = N'" & txtOthersDescription.Text & "', HoldCheckBox=" & IIf(Me.HoldCheckbox.Checked = True, 1, 0) & ", ChkBoxBatteriesIncluded=" & IIf(Me.ChkBatteriesIncluded.Checked = True, 1, 0) & ",DurationofMonth = N'" & cmbDurationofMonth.Text & "',InvoicePattern = N'" & cmbInvoicePattern.Text & "',ArticleId = " & cmbItem.Value & ", Amount = " & txtTax.Text & "   Where ContractId = " & ContractId
+                    objCommand.CommandText = "Update ContractMasterTable set ContractNo = N'" & txtContractNo.Text & "', StartDate = N'" & dtpFromDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "',EndDate = N'" & dtpToDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "',SLAType = N'" & cmbSLAType.Text & "',PreventionMaintenance = N'" & cmbPreventionMaintenance.Text & "',CustomerId = N'" & cmbCustomer.Text & "',OpportunityId = N'" & cmbOpportunity.Text & "', Status = N'" & cmbOpportunityStatus.Text & "', EndCustomer = N'" & txtEndCustomer.Text & "', PONumber = N'" & txtPONumber.Text & "', ContactofNotification = N'" & txtContactofNotifictaion.Text & "', Site = N'" & cmbSite.Text & "', InvoicingFrequency = N'" & cmbInvoiceFrequency.Text & "', PaymentTerms = N'" & cmbPaymentTerms.Text & "', Comments = N'" & txtComments.Text & "', Employee = N'" & cmbEmployee.Text & "', Currency = N'" & cmbCurrency.Text & "', Amount = N'" & Val(txtAmount.Text) & "', TerminateStatus= N'" & cmbterminate.Text & "', ContractStatus = N'" & cmbStatus.Text & "', PreviousContracts = N'" & cmbRenew.Text & "' , HoldReason = N'" & cmbHold.Text & "',OthersDescription = N'" & txtOthersDescription.Text & "', HoldCheckBox=" & IIf(Me.HoldCheckbox.Checked = True, 1, 0) & ", ChkBoxBatteriesIncluded=" & IIf(Me.ChkBatteriesIncluded.Checked = True, 1, 0) & ",DurationofMonth = N'" & cmbDurationofMonth.Text & "',InvoicePattern = N'" & cmbInvoicePattern.Text & "',ArticleId = " & Val(cmbItem.Value) & ", tax = " & Val(txtTax.Text) & "   Where ContractId = " & ContractId
                             objCommand.ExecuteNonQuery()
                             objCommand.CommandText = ""
                             objCommand.CommandText = "Delete from ContractDetailTable where ContractId = " & ContractId

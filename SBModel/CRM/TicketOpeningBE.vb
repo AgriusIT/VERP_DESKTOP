@@ -25,6 +25,8 @@
     Public Property ModelNo As String
 
     Public Property ChkBoxBatteriesIncluded As Boolean
+    Public Property TicketHistory As String
+    Public Property PartUsed As Boolean
     'rafay
     Public Property Detail As List(Of TicketOpeningDetailBE)
 End Class

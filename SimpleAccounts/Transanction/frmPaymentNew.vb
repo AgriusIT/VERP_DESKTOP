@@ -80,6 +80,11 @@ Public Class frmPaymentNew
     Dim EmailDAL As New EmailTemplateDAL
     Dim html As StringBuilder
     Dim VendorEmails As String = String.Empty
+    Dim ExchangeGainLossAccountId As Integer = 0I
+    Public InvoiceCurrencyRate As Double
+    Public InvoiceTotalAmount As Double
+    Dim ObjMod As InvoicesBasedPaymentMaster
+    Public InvoicesBasedReceiptDAL As InvoicesBasedPaymentDAL = New InvoicesBasedPaymentDAL()
     Enum grdEnm
         Voucher_Id
         coa_detail_id
@@ -115,6 +120,7 @@ Public Class frmPaymentNew
         CostCenterId
         Employee
         InvoiceId
+        InvoiceCurrencyRate
         ' LoanRequestId
     End Enum
 
@@ -187,7 +193,7 @@ Public Class frmPaymentNew
 
             If Mode = "Normal" Then
 
-                strSql = "SELECT DISTINCT " & IIf(strCondition.ToString = "All", "", "Top 50") & "   tblVoucher.voucher_id, voucher_no, voucher_date, CASE WHEN (voucher_Type_ID = 4) THEN 'Bank' ELSE 'Cash' END AS [Payment Method], tblVoucher.Cheque_No, tblVoucher.Remarks,isnull(PaymentAmount.Amount,0) as Amount, IsNull(Post,0) as Post, Case When IsNull(Post,0)=1 then 'Posted' else 'UnPosted' end as Status, CASE WHEN ISNULL(printLog.Cont,0)=0 then 'Print Pending' ELSE 'Printed' end as [Print Status],IsNull(tblVoucher.Checked,0) as Checked, ISNULL(tblVoucher.CashRequestId,0) as CashRequestId, CRH.RequestNo + '~' + Convert(varchar,Convert(varchar, CRH.RequestDate,102)) as RequestNo, IsNull([No Of Attachment],0) as [No Of Attachment],tblVoucher.username as 'User Name',CompanyDefTable.CompanyName, tblVoucher.Posted_UserName AS PostedUser, CheckedByUser AS CheckedUser  " _
+                strSql = "SELECT DISTINCT " & IIf(strCondition.ToString = "All", "", "Top 50") & "   tblVoucher.voucher_id, voucher_no, voucher_date, CASE WHEN (voucher_Type_ID = 4) THEN 'Bank' ELSE 'Cash' END AS [Payment Method], tblVoucher.Cheque_No, tblVoucher.Remarks,isnull(PaymentAmount.Amount,0) as Amount, IsNull(Post,0) as Post, Case When IsNull(Post,0)=1 then 'Posted' else 'UnPosted' end as Status, CASE WHEN ISNULL(printLog.Cont,0)=0 then 'Print Pending' ELSE 'Printed' end as [Print Status],IsNull(tblVoucher.Checked,0) as Checked, ISNULL(tblVoucher.CashRequestId,0) as CashRequestId, CRH.RequestNo + '~' + Convert(varchar,Convert(varchar, CRH.RequestDate,102)) as RequestNo, IsNull([No Of Attachment],0) as [No Of Attachment],tblVoucher.username as 'User Name',CompanyDefTable.CompanyName, tblVoucher.Posted_UserName AS PostedUser, CheckedByUser AS CheckedUser, tblVoucher.flgInvoice  " _
               & " FROM tblVoucher INNER JOIN tblVoucherDetail ON tblVoucher.Voucher_Id = tblVoucherDetail.Voucher_Id LEFT OUTER JOIN vwCOADetail ON vwCOADetail.coa_detail_id = tblVoucherDetail.coa_detail_id Left Outer join  CompanyDefTable on tblVoucher.location_id=CompanyDefTable.CompanyId LEFT OUTER JOIN(Select Count(Id) as Cont, DocumentNo From tblPrint_Log Group By DocumentNo) PrintLog On PrintLog.DocumentNo = voucher_no INNER JOIN(Select voucher_id, SUM(ISNULL(credit_amount,0)) as Amount From tblVoucherDetail Group By Voucher_Id) PaymentAmount On PaymentAmount.Voucher_Id = tblVoucher.Voucher_Id LEFT OUTER JOIN CashRequestHead CRH ON CRH.RequestID=dbo.tblVoucher.CashRequestId LEFT OUTER JOIN(Select Count(*) as [No Of Attachment], DocId From DocumentAttachment WHERE Source=N'" & Me.Name & "' Group By DocId) Att On Att.DocId=  tblVoucher.Voucher_Id  " _
               & " WHERE   source in ( N'" & Me.Name & "', N'frmVendorPayment') " & IIf(PreviouseRecordShow = True, "", " AND (Convert(varchar, voucher_date,102) > Convert(Datetime, N'" & ClosingDate & "',102))") & ""
 
@@ -253,7 +259,7 @@ Public Class frmPaymentNew
 
             grdVouchers.RootTable.Columns(0).Visible = False  'Voucher ID
             grdVouchers.RootTable.Columns("Post").Visible = False
-
+            grdVouchers.RootTable.Columns("flgInvoice").Visible = False
             grdVouchers.RootTable.Columns("CashRequestId").Visible = False
             grdVouchers.RootTable.Columns("PostedUser").Visible = False
             grdVouchers.RootTable.Columns("CheckedUser").Visible = False
@@ -293,6 +299,10 @@ Public Class frmPaymentNew
                 Me.txtSalesTaxAmount.Text = "0"
                 Me.txtWithHolding.Text = "0"
                 Me.txtWithHoldingTaxAmount.Text = "0"
+                txtPartialAmount.Text = "0"
+                'Me.cmbInvoice.Rows(0).Activate()
+                InvoiceCurrencyRate = 0
+                InvoiceTotalAmount = 0
                 Me.cmbAccounts.Rows(0).Activate()
                 Me.cmbAccounts.Focus()
                 FillCombo("CostCenter")
@@ -341,6 +351,7 @@ Public Class frmPaymentNew
             Me.cmbCashRequest.Enabled = True
             Me.cmbCashRequest.SelectedIndex = 0
             If condition.Length = 0 Then
+                flgPurchaseInvoice = False
                 Me.dtVoucherDate.Focus()
                 Me.dtVoucherDate.Enabled = True
                 Me.BtnSave.Text = "&Save"
@@ -355,6 +366,8 @@ Public Class frmPaymentNew
                 Me.txtChequeNo.Enabled = True
                 Me.dtChequeDate.Enabled = True
                 Me.chkAllAccounts.Checked = False
+                txtPartialAmount.Text = "0"
+                'Me.cmbInvoice.Rows(0).Activate()
                 Me.cmbBank.Text = String.Empty
                 If Not Me.cmbBank.SelectedIndex = -1 Then Me.cmbBank.Text = String.Empty
                 'Me.chkAll.Checked = False
@@ -458,7 +471,6 @@ Public Class frmPaymentNew
                     Me.lblCheckedBy.Visible = False
                 End If
                 ''Ayesha Rehman :TFS2700 :End
-                flgPurchaseInvoice = False
                 lblInvoice.Visible = False
                 cmbInvoice.Visible = False
             End If
@@ -470,12 +482,16 @@ Public Class frmPaymentNew
             Me.chkPost.Text = "Posted"
             Me.lblPostedBy.Text = ""
             Me.lblCheckedBy.Text = ""
+            Me.chkLinkInvoice.Checked = False
             ''END TASK TFS2018
             'TASK TFS3111
             If Not getConfigValueByType("RestrictEntryInParentDetailAC").ToString = "Error" Then
                 RestrictEntryInParentDetailAC = CBool(getConfigValueByType("RestrictEntryInParentDetailAC"))
             End If
             ''END TASK TFS3111
+            If Not getConfigValueByType("ExchangeGainLossAccount").ToString = "Error" Then
+                ExchangeGainLossAccountId = Convert.ToInt32(getConfigValueByType("ExchangeGainLossAccount").ToString)
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -515,7 +531,7 @@ Public Class frmPaymentNew
                         '                        Return GetSerialNo(VType + "-" & companyinitials & "-" + Microsoft.VisualBasic.Right(Me.dtVoucherDate.Value.Year, 2) + "-", "tblVoucher", "voucher_no")
                     End If
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     'Agar tou date 30 june say less ho tou wo puranay walay serial no show karay warna naye serial no ka format use karain
                     If dtVoucherDate.Value.ToString("yyyy-M-d 00:00:00") <= date1 Then
                         Return GetNextDocNo(VType & "-" & Format(Me.dtVoucherDate.Value, "yy"), 4, "tblVoucher", "voucher_no")
@@ -541,7 +557,7 @@ Public Class frmPaymentNew
                                 'Return GetSerialNo(VType + "-" & companyinitials & "-" + Microsoft.VisualBasic.Right(Me.dtVoucherDate.Value.Year, 2) + "-", "tblVoucher", "voucher_no")
                             End If
                         Else
-                            companyinitials = "PK"
+                            ''companyinitials = "PK"
                             'Agar tou date 30 june say less ho tou wo puranay walay serial no show karay warna naye serial no ka format use karain
                             If dtVoucherDate.Value.ToString("yyyy-M-d 00:00:00") <= date1 Then
                                 Return GetNextDocNo(VType & "-" & Format(Me.dtVoucherDate.Value, "yy"), 4, "tblVoucher", "voucher_no")
@@ -599,7 +615,9 @@ Public Class frmPaymentNew
             If Not getConfigValueByType("taxpayableACid").ToString = "Errro" Then
                 TaxPayableAccountId = Val(getConfigValueByType("taxpayableACid").ToString)
             End If
-
+            If Not getConfigValueByType("ExchangeGainLossAccount").ToString = "Error" Then
+                ExchangeGainLossAccountId = Convert.ToInt32(getConfigValueByType("ExchangeGainLossAccount").ToString)
+            End If
 
             ''TASK : TFS1265
             If Not getConfigValueByType("MemoRemarks").ToString = "Error" Then
@@ -666,7 +684,7 @@ Public Class frmPaymentNew
                 For Each r As Janus.Windows.GridEX.GridEXRow In Me.grd.GetRows
                     If flgPurchaseInvoice = True Then
                         Dim str As String
-                        str = "select voucher_id from tblvoucher where voucher_no = (SELECT SalesNo from salesmastertable where salesid = " & Val(r.Cells("InvoiceId").Value.ToString()) & ")"
+                        str = "select voucher_id from tblvoucher where voucher_no = (SELECT receivingno from Receivingmastertable where receivingid = " & Val(r.Cells("InvoiceId").Value.ToString()) & ")"
                         Dim dt As DataTable = GetDataTable(str)
                         Dim sid As Integer
                         If dt.Rows.Count > 0 Then
@@ -679,9 +697,9 @@ Public Class frmPaymentNew
 
                     objCommand.CommandText = String.Empty
                     objCommand.CommandText = "INSERT INTO tblVoucher(location_id, finiancial_year_id, voucher_type_id, voucher_no, voucher_date, " _
-                                            & " post,source, coa_detail_id, UserName,Posted_UserName,CashRequestId, Employee_Id,Checked, CheckedByUser,Remarks)" _
+                                            & " post,source, coa_detail_id, UserName,Posted_UserName,CashRequestId, Employee_Id,Checked, CheckedByUser,Remarks,flgInvoice)" _
                                             & " VALUES(" & IIf(flgCompanyRights = True, "" & MyCompanyId & "", Me.cmbCompany.SelectedValue.ToString) & ", 1, " & cmbVoucherType.SelectedValue & ", N'" & txtVoucherNo.Text & "', N'" & dtVoucherDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "', " _
-                                            & " " & IIf(Me.chkPost.Checked = True, 1, 0) & ", N'" & Me.Name & "', " & coaID & ", N'" & LoginUserName & "', " & IIf(Me.chkPost.Checked = True, "N'" & LoginUserName & "'", "NULL") & ", " & IIf(Me.cmbCashRequest.SelectedIndex > 0, Me.cmbCashRequest.SelectedValue, 0) & ", " & Me.cmbSaleman.SelectedValue & "," & IIf(Me.chkChecked.Checked = True, 1, 0) & ", " & IIf(Me.chkChecked.Checked = True, "N'" & LoginUserName.Replace("'", "''") & "'", "NULL") & ",N'" & Me.txtMemo.Text.Replace("'", "''") & "') " _
+                                            & " " & IIf(Me.chkPost.Checked = True, 1, 0) & ", N'" & Me.Name & "', " & coaID & ", N'" & LoginUserName & "', " & IIf(Me.chkPost.Checked = True, "N'" & LoginUserName & "'", "NULL") & ", " & IIf(Me.cmbCashRequest.SelectedIndex > 0, Me.cmbCashRequest.SelectedValue, 0) & ", " & Me.cmbSaleman.SelectedValue & "," & IIf(Me.chkChecked.Checked = True, 1, 0) & ", " & IIf(Me.chkChecked.Checked = True, "N'" & LoginUserName.Replace("'", "''") & "'", "NULL") & ",N'" & Me.txtMemo.Text.Replace("'", "''") & "'," & IIf(Me.flgPurchaseInvoice = True, 1, 0) & ") " _
                                             & " SELECT @@IDENTITY"
                     lngVoucherMasterId = objCommand.ExecuteScalar
                     If arrFile.Count > 0 Then
@@ -728,6 +746,8 @@ Public Class frmPaymentNew
                     objCommand.CommandText = "DELETE FROM tblVoucherDetail WHERE voucher_id = " & lngSelectedVoucherId
                     objCommand.ExecuteNonQuery()
 
+
+
                 End If
 
 
@@ -768,30 +788,298 @@ Public Class frmPaymentNew
                     objCommand = New OleDbCommand
                     objCommand.Connection = Con
                     objCommand.Transaction = objTrans
+                    Dim objId As Object
+                    If flgPurchaseInvoice = True Then
+                        If Val(r.Cells("InvoiceCurrencyRate").Value.ToString) <> Val(r.Cells("CurrencyRate").Value.ToString) Then
+                            If Val(r.Cells("InvoiceAmount").Value.ToString) - Val(r.Cells("Amount").Value) > 0 Then
+                                objCommand.CommandText = String.Empty
+                                objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId, InvoiceCurrencyRate, InvoiceAmount) " _
+                                                      & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & r.Cells("coa_detail_id").Value & ", " & Val(r.Cells("InvoiceAmount").Value.ToString) & ",  " & 0 & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & Val(r.Cells("NetAmount").Value.ToString) & "," _
+                                                      & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(r.Cells("InvoiceAmount").Value.ToString) / Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ", 0, '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & ", " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ", " & Val(r.Cells("InvoiceAmount").Value.ToString) & ") Select @@Identity"
+                                objCommand.Transaction = objTrans
+                                objId = objCommand.ExecuteScalar()
 
-                    objCommand.CommandText = String.Empty
-                    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId) " _
-                                          & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & r.Cells("coa_detail_id").Value & ",  " & Val(r.Cells("Amount").Value) & ", 0 , N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & "," & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & IIf(r.Cells("NetAmount").Value.ToString = "", Val(r.Cells("Amount").Value), "N'" & r.Cells("NetAmount").Value.ToString.Replace("'", "''") & "'") & "," _
-                                          & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value) & ",  0, '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & " )Select @@Identity"
-                    objCommand.Transaction = objTrans
-                    Dim objId As Object = objCommand.ExecuteScalar()
+                                objCommand.CommandText = String.Empty
+                                objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId, InvoiceCurrencyRate, InvoiceAmount) " _
+                                                      & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & ExchangeGainLossAccountId & ", " & 0 & ",  " & Val(r.Cells("InvoiceAmount").Value.ToString) - Val(r.Cells("Amount").Value.ToString) & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & Val(r.Cells("NetAmount").Value.ToString) & "," _
+                                                      & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", " & 0 & ", " & 0 & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & ", " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ", " & Val(r.Cells("InvoiceAmount").Value.ToString) & ") Select @@Identity"
+                                objCommand.Transaction = objTrans
+                                objId = objCommand.ExecuteScalar()
 
-                    If Val(r.Cells("VoucherDetailId").Value.ToString) > 0 Then
-                        objCommand.CommandText = ""
-                        objCommand.CommandText = "Update InvoiceAdjustmentTable Set VoucherDetailId=" & objId & " WHERE VoucherDetailId=" & Val(r.Cells("VoucherDetailId").Value.ToString) & ""
-                        objCommand.ExecuteNonQuery()
-                    End If
+                            ElseIf Val(r.Cells("InvoiceAmount").Value.ToString) - Val(r.Cells("Amount").Value) < 0 Then
+                                objCommand.CommandText = String.Empty
+                                objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId, InvoiceCurrencyRate, InvoiceAmount) " _
+                                                      & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & r.Cells("coa_detail_id").Value & ", " & Val(r.Cells("InvoiceAmount").Value.ToString) & ",  " & 0 & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & Val(r.Cells("NetAmount").Value.ToString) & "," _
+                                                      & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(r.Cells("InvoiceAmount").Value.ToString) / Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ", 0, '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & ", " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ", " & Val(r.Cells("InvoiceAmount").Value.ToString) & ") Select @@Identity"
+                                objCommand.Transaction = objTrans
+                                objId = objCommand.ExecuteScalar()
+
+                                objCommand.CommandText = String.Empty
+                                objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId, InvoiceCurrencyRate, InvoiceAmount) " _
+                                                      & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & ExchangeGainLossAccountId & ", " & Val(r.Cells("Amount").Value.ToString) - Val(r.Cells("InvoiceAmount").Value.ToString) & ",  " & 0 & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & Val(r.Cells("NetAmount").Value.ToString) & "," _
+                                                      & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", " & 0 & ", " & 0 & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & ", " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ", " & Val(r.Cells("InvoiceAmount").Value.ToString) & ") Select @@Identity"
+                                objCommand.Transaction = objTrans
+                                objId = objCommand.ExecuteScalar()
+                            End If
+                        Else
+                            'objCommand.CommandText = String.Empty
+                            'objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId, InvoiceCurrencyRate) " _
+                            '                      & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & r.Cells("coa_detail_id").Value & ", " & 0 & ",  " & Val(r.Cells("Amount").Value) & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & Val(r.Cells("NetAmount").Value.ToString) & "," _
+                            '                      & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", 0, " & Val(r.Cells("CurrencyAmount").Value) & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & ", " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ") Select @@Identity"
+                            'objCommand.Transaction = objTrans
+                            'objId = objCommand.ExecuteScalar()
+                            objCommand.CommandText = String.Empty
+                            objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId, InvoiceCurrencyRate,InvoiceAmount) " _
+                                                  & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & r.Cells("coa_detail_id").Value & ", " & Val(r.Cells("Amount").Value) & ",  " & 0 & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & Val(r.Cells("NetAmount").Value.ToString) & "," _
+                                                  & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value) & ", 0, '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & ", " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ", " & Val(r.Cells("InvoiceAmount").Value.ToString) & ") Select @@Identity"
+                            objCommand.Transaction = objTrans
+                            objId = objCommand.ExecuteScalar()
+                            'If Val(r.Cells("VoucherDetailId").Value.ToString) > 0 Then
+                            '    objCommand.CommandText = ""
+                            '    objCommand.CommandText = "Update InvoiceAdjustmentTable Set VoucherDetailId=" & objId & " WHERE VoucherDetailId=" & Val(r.Cells("VoucherDetailId").Value.ToString) & ""
+                            '    objCommand.ExecuteNonQuery()
+                            'End If
+                            'If blnCashOptionDetail = True Then
+                            '    objCommand.CommandText = String.Empty
+                            '    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId) " _
+                            '                      & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("Net_Amount").Value.ToString) * Val(r.Cells("CurrencyRate").Value.ToString) & ",  " & 0 & ", N'" & IIf(flgMemoRemarks = False, r.Cells("Reference").Value.ToString.Trim.Replace("'", "''"), Me.txtMemo.Text.Replace("'", "''")) & " Party Name. " & r.Cells("detail_title").Value.ToString & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("Discount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & Val(r.Cells("NetAmount").Value.ToString) & "," _
+                            '                      & Val(r.Cells("coa_detail_id").Value.ToString) & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(r.Cells("Net_Amount").Value.ToString) & ",0 , '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & ") Select @@Identity"
+                            '    objCommand.Transaction = objTrans
+                            '    objId = objCommand.ExecuteScalar()
+                            'End If
+                        End If
+                        'objCommand.CommandText = String.Empty
+                        'objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId) " _
+                        '                      & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & r.Cells("coa_detail_id").Value & ", " & 0 & ",  " & Val(r.Cells("Amount").Value.ToString) & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & Val(r.Cells("NetAmount").Value.ToString) & "," _
+                        '                      & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", 0, " & Val(r.Cells("CurrencyAmount").Value) & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & ") Select @@Identity"
+                        'objCommand.Transaction = objTrans
+                        'objId = objCommand.ExecuteScalar()
 
 
-                    '-Me.cmbCashAccount.SelectedValue
-                    If blnCashOptionDetail = True Then
+
+                        If Val(r.Cells("VoucherDetailId").Value.ToString) > 0 Then
+                            objCommand.CommandText = ""
+                            objCommand.CommandText = "Update InvoiceAdjustmentTable Set VoucherDetailId=" & objId & " WHERE VoucherDetailId=" & Val(r.Cells("VoucherDetailId").Value.ToString) & ""
+                            objCommand.ExecuteNonQuery()
+                        End If
+
+                        If blnCashOptionDetail = True Then
+                            objCommand.CommandText = String.Empty
+                            objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, InvoiceCurrencyRate, InvoiceAmount) " _
+                                                   & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbCashAccount.SelectedValue & ", 0," & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("Net_Amount"), Janus.Windows.GridEX.AggregateFunction.Sum)) * Val(r.Cells("CurrencyRate").Value.ToString) & ", N'" & Me.txtMemo.Text.Replace("'", "''") & "', " & Val(Me.cmbCostCenter.SelectedValue) & ", " & Val(Me.cmbSaleman.SelectedValue) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(strChequeNo.Length > 0, "N'" & strChequeNo.Replace("'", "''") & "'", "NULL") & ", " & IIf(strChequeNo.Length = 0, "NULL", "N'" & Cheque_Date.ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(strChequeNo.Length > 0, "N'" & strBankDescription.Replace("'", "''") & "'", "NULL") & ", " _
+                                                   & Val(Me.cmbCurrency.SelectedValue) & ", " & Val(Me.grd.GetTotal(grd.RootTable.Columns("CurrencyAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", " & Me.txtCurrencyRate.Text & ", " & Me.BaseCurrencyId & ", 1 ,  0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("Net_Amount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ", " & Val(r.Cells("InvoiceAmount").Value.ToString) & ")"
+
+                            objCommand.Transaction = objTrans
+                            objCommand.ExecuteNonQuery()
+                            'End Task:2728
+                        End If
+                        'objCommand.CommandText = String.Empty
+                        'objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId) " _
+                        '                      & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & r.Cells("coa_detail_id").Value & ", " & 0 & ",  " & InvoiceTotalAmount & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & Val(r.Cells("NetAmount").Value.ToString) & "," _
+                        '                      & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", 0, " & InvoiceTotalAmount / InvoiceCurrencyRate & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & ") Select @@Identity"
+                        'objCommand.Transaction = objTrans
+                        'objId = objCommand.ExecuteScalar()
+                        ObjMod = New InvoicesBasedPaymentMaster 'With New Variable Invoice Based Receipt Master Class 
+                        With ObjMod
+                            If BtnSave.Text = "&Save" Then
+                                .PaymentID = 0
+                            ElseIf BtnSave.Text = "&Update" Then
+                                Dim strSQL = "Select PaymentId From InvoiceBasedPayments WHERE PaymentNo=N'" & txtVoucherNo.Text & "'"
+                                Dim Da As DataTable = GetDataTable(strSQL)
+                                If Da.Rows.Count > 0 Then
+                                    .PaymentID = Da.Rows(0).Item(0).ToString 'Get Voucher Id from Invoice Based Receipts
+                                End If
+                            End If
+                            ''.ReceiptID = MasterID
+                            .PaymentNo = txtVoucherNo.Text 'Me.GetVoucherNo
+                            .PaymentDate = Me.dtVoucherDate.Value.ToString("yyyy-M-d h:mm:ss tt")
+                            .Reference = r.Cells("Reference").Value.ToString.Trim.Replace("'", "''")
+                            .PaymentAccountId = Me.cmbCashAccount.SelectedValue
+                            '.PaymentMethod = Me.cmbVoucherType.SelectedValue
+                            'Task#4082015 Fill model for CompanyName added  by Ahmad Sharif
+                            .CompanyName = IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1")
+                            'End Task#04082015
+                            'Task No 2537 Append One cODE Line For Assigning The Checked Value Of Check Box To Prperty
+                            .Post = Me.chkPost.Checked
+                            .VendorCode = r.Cells("coa_detail_id").Value
+                            .ChequeNo = IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'")
+                            '.ChequeDate = IIf(Me.DtpChequeDate.Visible = True, "'" & Me.DtpChequeDate.Value & "'", Nothing) 'before task:2375
+                            .ChequeDate = CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") 'Task:2375 Change DataType
+                            .UserName = LoginUserName
+                            .PVNo = txtVoucherNo.Text 'Me.txtVoucherNo.Text
+                            .ProjectId = Val(r.Cells("CostCenterId").Value.ToString())
+                            .UserID = LoginUserId
+                            .InvoiceBasedPaymentDetail = New List(Of InvoicesBasedPaymentDetail)
+                            .VoucherMaster = New VouchersMaster
+                            Dim InvoiceDetail As InvoicesBasedPaymentDetail
+                            InvoiceDetail = New InvoicesBasedPaymentDetail 'With New Variable Invoice Based Receipt Detail Class
+                            With InvoiceDetail
+                                .InvoiceId = Val(r.Cells("InvoiceId").Value.ToString())
+                                '.InvoiceNo = Dr.Item(enmGrdReceiptDetail.SalesNo).ToString
+                                '.InvoiceDate = Dr.Item(enmGrdReceiptDetail.SalesDate).ToString
+                                .Remarks = r.Cells("Reference").Value.ToString.Trim.Replace("'", "''")
+                                '.Gst_Percentage = Val(Dr.Item(enmGrdReceiptDetail.Gst_Percentage).ToString) 'Tax Receiveable Here... 
+                                '.InvoiceAmount = Val(Dr.Item(enmGrdReceiptDetail.SalesAmount).ToString) 'Invoice Amount Here... 
+                                'If rbtCustomer.Checked = True Then
+                                '    .PaymentAmount = Val(r.Cells("InvoiceAmount").Value.ToString) + ((Val(r.Cells("Tax_Currency_Amount").Value.ToString) * Val(r.Cells("InvoiceCurrencyRate").Value.ToString)) + (Val(r.Cells("WH_Tax").Value.ToString) * Val(r.Cells("InvoiceCurrencyRate").Value.ToString))) 'Receitp Amount From Customer Account Or Other Receiveables
+                                'Else
+                                .PaymentAmount = Val(r.Cells("InvoiceAmount").Value.ToString) ''+ ((Val(r.Cells("Tax_Currency_Amount").Value.ToString) * Val(r.Cells("InvoiceCurrencyRate").Value.ToString)) + (Val(r.Cells("WH_Tax").Value.ToString) * Val(r.Cells("InvoiceCurrencyRate").Value.ToString))) 'Receitp Amount From Customer Account Or Other Receiveables
+                                'End If
+                                ''.PaymentAmount = Val(r.Cells("Amount").Value.ToString) + ((Val(r.Cells("Tax_Currency_Amount").Value.ToString) * Val(r.Cells("InvoiceCurrencyRate").Value.ToString)) + (Val(r.Cells("WH_Tax").Value.ToString) * Val(r.Cells("InvoiceCurrencyRate").Value.ToString))) 'Receitp Amount From Customer Account Or Other Receiveables
+                                '+.InvoiceBalance = Dr.Item(enmGrdReceiptDetail.BalanceAmount).ToString ' Due Balance of Customer Account 
+                                ''NetReceipt = NetReceipt + Dr.Item(enmGrdReceiptDetail.ReceiptAmount).ToString 'Net Receipt Amount From Customer Account 
+                                ' Task 3198 Add CostCenter in Receipt Detail
+                                .CostCenter = Val(r.Cells("CostCenterId").Value.ToString())
+                                'Task:2370 Set Value in SalesTaxAmount, OtherTaxAmount, OtherTaxAccountId
+                                '.SalesTaxAmount = Val(Dr.Item(enmGrdReceiptDetail.SalesTaxAmount).ToString)
+                                '.OtherTaxAmount = Val(Dr.Item(enmGrdReceiptDetail.OtherTaxAmount).ToString)
+                                '.OtherTaxAccountId = Val(Dr.Item(enmGrdReceiptDetail.OtherTaxAccountId).ToString)
+                                'End Task:2370
+                                ''.Description = Dr.Item(enmGrdReceiptDetail.Description).ToString 'Task:2470 Set Description Value
+                            End With
+                            .InvoiceBasedPaymentDetail.Add(InvoiceDetail)
+                        End With
+                        If BtnSave.Text = "&Save" Then
+                            InvoicesBasedReceiptDAL.Add(ObjMod)
+                        ElseIf BtnSave.Text = "&Update" Then
+                            InvoicesBasedReceiptDAL.Update(ObjMod)
+                        End If
+                    Else
+
                         objCommand.CommandText = String.Empty
-                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, credit_amount,debit_amount,  comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,contra_coa_detail_id,  CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol) " _
-                                           & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbCashAccount.SelectedValue & ",   " & Val(r.Cells("NetAmount").Value) & ",  0 , N'" & IIf(flgMemoRemarks = False, r.Cells("Reference").Value.ToString.Trim.Replace("'", "''"), Me.txtMemo.Text.Replace("'", "''")) & " Party Name. " & r.Cells("detail_title").Value.ToString & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("Discount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("coa_detail_id").Value.ToString) & ", " _
-                                           & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString()) & ",  0, " & Val(r.Cells("Net_Amount").Value) & ", '" & Me.cmbCurrency.Text & "')Select @@Identity"
+                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId, InvoiceCurrencyRate) " _
+                                              & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & r.Cells("coa_detail_id").Value & ", " & Val(r.Cells("Amount").Value) & ",  " & 0 & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & Val(r.Cells("NetAmount").Value.ToString) & "," _
+                                              & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value) & ", 0 , '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & ", " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ") Select @@Identity"
                         objCommand.Transaction = objTrans
                         objCommand.ExecuteNonQuery()
+                        'objId = objCommand.ExecuteScalar()
+
+                        'objCommand.CommandText = String.Empty
+                        'objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId, InvoiceCurrencyRate) " _
+                        '                      & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & r.Cells("coa_detail_id").Value & ",  " & Val(r.Cells("Amount").Value) & ", 0 , N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & "," & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & IIf(r.Cells("NetAmount").Value.ToString = "", Val(r.Cells("Amount").Value), "N'" & r.Cells("NetAmount").Value.ToString.Replace("'", "''") & "'") & "," _
+                        '                      & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value) & ",  0, '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & " , " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ")Select @@Identity"
+                        'objCommand.Transaction = objTrans
+                        ''Dim objId As Object = objCommand.ExecuteScalar()
+
+                        If Val(r.Cells("VoucherDetailId").Value.ToString) > 0 Then
+                            objCommand.CommandText = ""
+                            objCommand.CommandText = "Update InvoiceAdjustmentTable Set VoucherDetailId=" & objId & " WHERE VoucherDetailId=" & Val(r.Cells("VoucherDetailId").Value.ToString) & ""
+                            objCommand.ExecuteNonQuery()
+                        End If
+
+
+                        '-Me.cmbCashAccount.SelectedValue
+                        If blnCashOptionDetail = True Then
+                            objCommand.CommandText = String.Empty
+                            objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, InvoiceCurrencyRate) " _
+                                                   & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbCashAccount.SelectedValue & ", 0," & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("NetAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", N'" & Me.txtMemo.Text.Replace("'", "''") & "', " & Val(Me.cmbCostCenter.SelectedValue) & ", " & Val(Me.cmbSaleman.SelectedValue) & "," & IIf(flgPurchaseInvoice = True, InvoiceId, 0) & ", " & IIf(strChequeNo.Length > 0, "N'" & strChequeNo.Replace("'", "''") & "'", "NULL") & ", " & IIf(strChequeNo.Length = 0, "NULL", "N'" & Cheque_Date.ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(strChequeNo.Length > 0, "N'" & strBankDescription.Replace("'", "''") & "'", "NULL") & ", " _
+                                                   & Val(Me.cmbCurrency.SelectedValue) & ", " & Val(Me.grd.GetTotal(grd.RootTable.Columns("CurrencyAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", " & Me.txtCurrencyRate.Text & ", " & Me.BaseCurrencyId & ", 1 ,  0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("Net_Amount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ")"
+
+                            objCommand.Transaction = objTrans
+                            objCommand.ExecuteNonQuery()
+                            'End Task:2728
+                        End If
+
+                        ObjMod = New InvoicesBasedPaymentMaster 'With New Variable Invoice Based Receipt Master Class 
+                        With ObjMod
+                            ''.ReceiptID = MasterID
+                            .PaymentNo = txtVoucherNo.Text 'Me.GetVoucherNo
+                            .PaymentDate = Me.dtVoucherDate.Value.ToString("yyyy-M-d h:mm:ss tt")
+                            .Reference = r.Cells("Reference").Value.ToString.Trim.Replace("'", "''")
+                            .PaymentAccountId = Me.cmbCashAccount.SelectedValue
+                            '.PaymentMethod = Me.cmbVoucherType.SelectedValue
+                            'Task#4082015 Fill model for CompanyName added  by Ahmad Sharif
+                            .CompanyName = IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1")
+                            'End Task#04082015
+                            'Task No 2537 Append One cODE Line For Assigning The Checked Value Of Check Box To Prperty
+                            .Post = Me.chkPost.Checked
+                            .VendorCode = r.Cells("coa_detail_id").Value
+                            .ChequeNo = IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'")
+                            '.ChequeDate = IIf(Me.DtpChequeDate.Visible = True, "'" & Me.DtpChequeDate.Value & "'", Nothing) 'before task:2375
+                            .ChequeDate = CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") 'Task:2375 Change DataType
+                            .UserName = LoginUserName
+                            .PVNo = txtVoucherNo.Text 'Me.txtVoucherNo.Text
+                            .ProjectId = Val(r.Cells("CostCenterId").Value.ToString())
+                            .UserID = LoginUserId
+                            .InvoiceBasedPaymentDetail = New List(Of InvoicesBasedPaymentDetail)
+                            .VoucherMaster = New VouchersMaster
+                            Dim InvoiceDetail As InvoicesBasedPaymentDetail
+                            InvoiceDetail = New InvoicesBasedPaymentDetail 'With New Variable Invoice Based Receipt Detail Class
+                            With InvoiceDetail
+                                .InvoiceId = Val(r.Cells("InvoiceId").Value.ToString())
+                                '.InvoiceNo = Dr.Item(enmGrdReceiptDetail.SalesNo).ToString
+                                '.InvoiceDate = Dr.Item(enmGrdReceiptDetail.SalesDate).ToString
+                                .Remarks = r.Cells("Reference").Value.ToString.Trim.Replace("'", "''")
+                                '.Gst_Percentage = Val(Dr.Item(enmGrdReceiptDetail.Gst_Percentage).ToString) 'Tax Receiveable Here... 
+                                '.InvoiceAmount = Val(Dr.Item(enmGrdReceiptDetail.SalesAmount).ToString) 'Invoice Amount Here... 
+                                .PaymentAmount = Val(r.Cells("Amount").Value.ToString) '' + ((Val(r.Cells("Tax_Currency_Amount").Value.ToString) * Val(r.Cells("CurrencyRate").Value.ToString)) + (Val(r.Cells("WH_Tax").Value.ToString) * Val(r.Cells("CurrencyRate").Value.ToString))) 'Receitp Amount From Customer Account Or Other Receiveables
+                                '+.InvoiceBalance = Dr.Item(enmGrdReceiptDetail.BalanceAmount).ToString ' Due Balance of Customer Account 
+                                ''NetReceipt = NetReceipt + Dr.Item(enmGrdReceiptDetail.ReceiptAmount).ToString 'Net Receipt Amount From Customer Account 
+                                ' Task 3198 Add CostCenter in Receipt Detail
+                                .CostCenter = Val(r.Cells("CostCenterId").Value.ToString())
+                                'Task:2370 Set Value in SalesTaxAmount, OtherTaxAmount, OtherTaxAccountId
+                                '.SalesTaxAmount = Val(Dr.Item(enmGrdReceiptDetail.SalesTaxAmount).ToString)
+                                '.OtherTaxAmount = Val(Dr.Item(enmGrdReceiptDetail.OtherTaxAmount).ToString)
+                                '.OtherTaxAccountId = Val(Dr.Item(enmGrdReceiptDetail.OtherTaxAccountId).ToString)
+                                'End Task:2370
+                                ''.Description = Dr.Item(enmGrdReceiptDetail.Description).ToString 'Task:2470 Set Description Value
+                            End With
+                            .InvoiceBasedPaymentDetail.Add(InvoiceDetail)
+                        End With
+                        If BtnSave.Text = "&Save" Then
+                            InvoicesBasedReceiptDAL.Add(ObjMod)
+                        ElseIf BtnSave.Text = "&Update" Then
+                            InvoicesBasedReceiptDAL.Update(ObjMod)
+                        End If
                     End If
+
+
+
+
+
+
+
+
+
+
+
+
+                    'objCommand.CommandText = String.Empty
+                    'objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,SalesTaxPer,SalesTaxAmount,WHTaxPer,WHTaxAmount,NetAmount,contra_coa_detail_id, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_debit_amount, Currency_credit_amount, Currency_Symbol,AccountId,IncomeAccountId) " _
+                    '                      & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & r.Cells("coa_detail_id").Value & ",  " & Val(r.Cells("Amount").Value) & ", 0 , N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("CurrencyDiscount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & "," & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("SalesTaxPer").Value.ToString) & "," & Val(r.Cells("SalesTaxAmount").Value.ToString) & "," & Val(r.Cells("WHTaxPer").Value.ToString) & "," & Val(r.Cells("WHTaxAmount").Value.ToString) & "," & IIf(r.Cells("NetAmount").Value.ToString = "", Val(r.Cells("Amount").Value), "N'" & r.Cells("NetAmount").Value.ToString.Replace("'", "''") & "'") & "," _
+                    '                      & Me.cmbCashAccount.SelectedValue & ", " & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value) & ",  0, '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("IncomeAccountId").Value) & " )Select @@Identity"
+                    'objCommand.Transaction = objTrans
+                    'Dim objId As Object = objCommand.ExecuteScalar()
+
+                    'If Val(r.Cells("VoucherDetailId").Value.ToString) > 0 Then
+                    '    objCommand.CommandText = ""
+                    '    objCommand.CommandText = "Update InvoiceAdjustmentTable Set VoucherDetailId=" & objId & " WHERE VoucherDetailId=" & Val(r.Cells("VoucherDetailId").Value.ToString) & ""
+                    '    objCommand.ExecuteNonQuery()
+                    'End If
+
+
+                    ''-Me.cmbCashAccount.SelectedValue
+                    'If blnCashOptionDetail = True Then
+                    '    objCommand.CommandText = String.Empty
+                    '    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, credit_amount,debit_amount,  comments, ChequeDescription,Adjustment, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, Tax_Percent,Tax_Amount,contra_coa_detail_id,  CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol) " _
+                    '                       & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbCashAccount.SelectedValue & ",   " & Val(r.Cells("NetAmount").Value) & ",  0 , N'" & IIf(flgMemoRemarks = False, r.Cells("Reference").Value.ToString.Trim.Replace("'", "''"), Me.txtMemo.Text.Replace("'", "''")) & " Party Name. " & r.Cells("detail_title").Value.ToString & "', N'" & GetComments(r).Replace("Party Name.", "").Replace("" & r.Cells("detail_title").Value.ToString & "", "").Replace("'", "''") & "', " & Val(r.Cells("Discount").Value) & ", " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " & Val(r.Cells("Tax").Value.ToString) & "," & Val(r.Cells("Tax_Amount").Value.ToString) & "," & Val(r.Cells("coa_detail_id").Value.ToString) & ", " _
+                    '                       & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString()) & ",  0, " & Val(r.Cells("Net_Amount").Value) & ", '" & Me.cmbCurrency.Text & "')Select @@Identity"
+                    '    objCommand.Transaction = objTrans
+                    '    objCommand.ExecuteNonQuery()
+                    'End If
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     If enableChequeBook = True Then
                         objCommand.Transaction = objTrans
@@ -804,9 +1092,9 @@ Public Class frmPaymentNew
                         'Discount Voucher ...................
                         objCommand.Transaction = objTrans
                         objCommand.CommandText = String.Empty
-                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, EmpID, InvoiceId, Cheque_No,Cheque_Date,BankDescription,CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol) " _
+                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, EmpID, InvoiceId, Cheque_No,Cheque_Date,BankDescription,CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, InvoiceCurrencyRate) " _
                                                & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Val(DiscountAccountId) & ", " & 0 & ", " & Val(r.Cells("Discount").Value) & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', " & Val(r.Cells("CostCenterId").Value.ToString()) & ",  " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & ", " _
-                                               & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString()) & ",  0 , " & Val(r.Cells("CurrencyDiscount").Value) & ", '" & Me.cmbCurrency.Text & "')"
+                                               & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString()) & ",  0 , " & Val(r.Cells("CurrencyDiscount").Value) & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ")"
                         objCommand.ExecuteNonQuery()
                     End If
                     'added by zainab Task1608
@@ -814,9 +1102,9 @@ Public Class frmPaymentNew
                     If Val(r.Cells("WHTaxAmount").Value) > 0 Then
                         objCommand.Transaction = objTrans
                         objCommand.CommandText = ""
-                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments,CostCenterId, EmpID, InvoiceId, Cheque_No,Cheque_Date,BankDescription,WHTaxPer,WHTaxAmount, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, AccountId) " _
+                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments,CostCenterId, EmpID, InvoiceId, Cheque_No,Cheque_Date,BankDescription,WHTaxPer,WHTaxAmount, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, AccountId, InvoiceCurrencyRate) " _
                                                    & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Val(r.Cells("AccountId").Value) & ",  " & 0 & "," & Val(r.Cells("WHTaxAmount").Value) & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & "," & Val(r.Cells("WHTaxPer").Value.ToString) & ", " & Val(r.Cells("WHTaxAmount").Value.ToString) & ",  " _
-                                                   & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString()) & ", 0, " & Val(r.Cells("WH_Tax").Value) & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ")"
+                                                   & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString()) & ", 0, " & Val(r.Cells("WH_Tax").Value) & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("AccountId").Value) & ", " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ")"
                         objCommand.ExecuteNonQuery()
 
                     End If
@@ -824,9 +1112,9 @@ Public Class frmPaymentNew
                     If Val(r.Cells("IncomeAccountId").Value) > 0 Then
                         objCommand.Transaction = objTrans
                         objCommand.CommandText = String.Empty
-                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, EmpID, InvoiceId, Cheque_No,Cheque_Date,BankDescription,Tax_Percent,Tax_Amount, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol,IncomeAccountId) " _
-                                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Val(r.Cells("IncomeAccountId").Value) & ", " & 0 & ", " & Val(r.Cells("Tax_Amount").Value) & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & "," & Val(r.Cells("Tax").Value.ToString) & ", " & Val(r.Cells("Tax_Amount").Value.ToString) & ", " _
-                                               & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString()) & ", 0, " & Val(r.Cells("Tax_Currency_Amount").Value) & ", '" & Me.cmbCurrency.Text & "'," & Val(r.Cells("IncomeAccountId").Value) & ")"
+                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, EmpID, InvoiceId, Cheque_No,Cheque_Date,BankDescription,Tax_Percent,Tax_Amount, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol,IncomeAccountId, InvoiceCurrencyRate) " _
+                                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Val(r.Cells("IncomeAccountId").Value) & ", " & 0 & ", " & Val(r.Cells("Tax_Amount").Value) * Val(r.Cells("CurrencyRate").Value.ToString) & ", N'" & r.Cells("Reference").Value.ToString.Trim.Replace("'", "''") & "', " & Val(r.Cells("CostCenterId").Value.ToString()) & ", " & Val(r.Cells("Employee").Value.ToString()) & "," & Val(r.Cells("InvoiceId").Value.ToString()) & ", " & IIf(r.Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & r.Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(r.Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(r.Cells("Cheque_Date").Value), Now, r.Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(r.Cells("BankDescription").Value.ToString = "", "NULL", "N'" & r.Cells("BankDescription").Value.ToString.Replace("'", "''") & "'") & "," & Val(r.Cells("Tax").Value.ToString) & ", " & Val(r.Cells("Tax_Amount").Value.ToString) & ", " _
+                                               & Val(r.Cells("CurrencyId").Value.ToString) & ", " & Val(r.Cells("CurrencyAmount").Value.ToString) & ", " & Val(r.Cells("CurrencyRate").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyId").Value.ToString) & ", " & Val(r.Cells("BaseCurrencyRate").Value.ToString()) & ", 0, " & Val(r.Cells("Tax_Currency_Amount").Value) & ", '" & Me.cmbCurrency.Text & "'," & Val(r.Cells("IncomeAccountId").Value) & ", " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ")"
                         objCommand.ExecuteNonQuery()
 
                     End If
@@ -835,7 +1123,7 @@ Public Class frmPaymentNew
                     If flgPurchaseInvoice = True Then
                         Dim adapter As New OleDbDataAdapter()
                         'Dim str As String
-                        objCommand.CommandText = "select voucher_id from tblvoucher where voucher_no = (SELECT SalesNo from salesmastertable where salesid = " & Val(r.Cells("InvoiceId").Value.ToString()) & ")"
+                        objCommand.CommandText = "select voucher_id from tblvoucher where voucher_no = (SELECT receivingNo from receivingmastertable where receivingid = " & Val(r.Cells("InvoiceId").Value.ToString()) & ")"
                         adapter.SelectCommand = objCommand
                         Dim dt As New DataTable
                         adapter.Fill(dt)
@@ -871,9 +1159,9 @@ Public Class frmPaymentNew
 
                 If blnCashOptionDetail = False Then
                     objCommand.CommandText = String.Empty
-                    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol) " _
+                    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, EmpID, InvoiceId, Cheque_No, Cheque_Date, BankDescription, CurrencyId, CurrencyAmount, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, InvoiceCurrencyRate) " _
                                            & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbCashAccount.SelectedValue & ", 0," & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("NetAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", N'" & Me.txtMemo.Text.Replace("'", "''") & "', " & Val(Me.cmbCostCenter.SelectedValue) & ", " & Val(Me.cmbSaleman.SelectedValue) & "," & IIf(flgPurchaseInvoice = True, InvoiceId, 0) & ", " & IIf(strChequeNo.Length > 0, "N'" & strChequeNo.Replace("'", "''") & "'", "NULL") & ", " & IIf(strChequeNo.Length = 0, "NULL", "N'" & Cheque_Date.ToString("yyyy-M-d h:mm:ss tt") & "'") & ", " & IIf(strChequeNo.Length > 0, "N'" & strBankDescription.Replace("'", "''") & "'", "NULL") & ", " _
-                                           & Val(Me.cmbCurrency.SelectedValue) & ", " & Val(Me.grd.GetTotal(grd.RootTable.Columns("CurrencyAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", " & Me.txtCurrencyRate.Text & ", " & Me.BaseCurrencyId & ", 1 ,  0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("Net_Amount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", '" & Me.cmbCurrency.Text & "')"
+                                           & Val(Me.cmbCurrency.SelectedValue) & ", " & Val(Me.grd.GetTotal(grd.RootTable.Columns("CurrencyAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", " & Me.txtCurrencyRate.Text & ", " & Me.BaseCurrencyId & ", 1 ,  0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("Net_Amount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", '" & Me.cmbCurrency.Text & "', " & Val(r.Cells("InvoiceCurrencyRate").Value.ToString) & ")"
 
                     objCommand.Transaction = objTrans
                     objCommand.ExecuteNonQuery()
@@ -1072,7 +1360,7 @@ Public Class frmPaymentNew
                 ' Me.cmbCashAccount.Enabled = True
                 'Me.cmbVoucherType.Enabled = True
             End If
-
+            flgPurchaseInvoice = grdVouchers.CurrentRow.Cells("flgInvoice").Value
 
             ' Me.chkAll.Checked = True
             Me.chkChecked.Checked = grdVouchers.CurrentRow.Cells("Checked").Value
@@ -1378,6 +1666,7 @@ Public Class frmPaymentNew
                 RestrictEntryInParentDetailAC = CBool(getConfigValueByType("RestrictEntryInParentDetailAC"))
             End If
             ''END TASK TFS3111
+            
             Me.FillPaymentMethod()
             FillCombo("SM")
             FillCombo("Customer")
@@ -1625,7 +1914,7 @@ Public Class frmPaymentNew
 
             If cmbVoucherType.Text.Equals("Bank") Then
                 Me.txtVoucherNo.Text = GetVoucherNo()
-                Me.Panel2.Size = New Size(676, 284)
+                'Me.Panel2.Size = New Size(676, 284)
                 Me.pnlBank.Visible = True
                 Me.pnlBank.Enabled = True
                 Me.pnlDetail.Size = New Size(903, 449)
@@ -1794,7 +2083,11 @@ Public Class frmPaymentNew
                 UsersEmail = New List(Of String)
                 'UsersEmail.Add("adil@agriusit.com")
                 ''UsersEmail.Add("ali@agriusit.com")
-                UsersEmail.Add("h.saeed@agriusit.com")
+                If Con.Database.Contains("Remms") Then
+                    UsersEmail.Add("r.ejaz@remmsit.com")
+                Else
+                    UsersEmail.Add("r.ejaz@agriusit.com")
+                End If
                 FormatStringBuilder(dtEmail)
                 For Each _email As String In UsersEmail
                     CreateOutLookMail(_email)
@@ -2089,13 +2382,20 @@ Public Class frmPaymentNew
 
                 drGrd.Item(grdEnm.CurrencyDiscount) = Val(Me.txtDiscount.Text)
                 drGrd.Item(grdEnm.Tax) = Val(Me.txtTax.Text)
-                drGrd.Item(grdEnm.TaxAmount) = Format(Math.Round(Val(Me.txtTaxAmount.Text), TotalAmountRounding), "0.00")
+                'Waqar Commented RoundOff working Because of Raja Ejaaz
+                'drGrd.Item(grdEnm.TaxAmount) = Format(Math.Round(Val(Me.txtTaxAmount.Text), TotalAmountRounding), "0.00")
+                drGrd.Item(grdEnm.TaxAmount) = (Val(Me.txtTaxAmount.Text))
                 drGrd.Item(grdEnm.SalesTaxPer) = Val(Me.txtSalesTax.Text)
-                drGrd.Item(grdEnm.Sales_Tax) = Format(Math.Round(Val(Me.txtSalesTaxAmount.Text), TotalAmountRounding), "0.00")
+                'Waqar Commented RoundOff working Because of Raja Ejaaz
+                'drGrd.Item(grdEnm.Sales_Tax) = Format(Math.Round(Val(Me.txtSalesTaxAmount.Text), TotalAmountRounding), "0.00")
+                drGrd.Item(grdEnm.Sales_Tax) = (Val(Me.txtSalesTaxAmount.Text))
                 drGrd.Item(grdEnm.WHTaxPer) = Val(Me.txtWithHolding.Text)
-                drGrd.Item(grdEnm.WHTaxAmount) = Format((Me.txtWithHoldingTaxAmount.Text), "0.00")
-                drGrd.Item(grdEnm.NetAmount) = Format(Val(Me.txtNetAmount.Text), "0.00")
-
+                'Waqar Commented RoundOff working Because of Raja Ejaaz
+                'drGrd.Item(grdEnm.WHTaxAmount) = Format((Me.txtWithHoldingTaxAmount.Text), "0.00")
+                drGrd.Item(grdEnm.WHTaxAmount) = (Me.txtWithHoldingTaxAmount.Text)
+                'Waqar Commented RoundOff working Because of Raja Ejaaz
+                'drGrd.Item(grdEnm.NetAmount) = Format(Val(Me.txtNetAmount.Text), "0.00")
+                drGrd.Item(grdEnm.NetAmount) = Val(Me.txtNetAmount.Text)
 
 
                 'rafay:Task End
@@ -2118,11 +2418,23 @@ Public Class frmPaymentNew
                 'drGrd.Item(grdEnm.LoanRequestId) = IIf(Me.cmbLoanRequest.SelectedIndex = -1, 0, Me.cmbLoanRequest.SelectedValue)
                 If flgPurchaseInvoice = True Then
                     drGrd.Item(grdEnm.InvoiceId) = cmbInvoice.Value
-                    drGrd.Item("InvoiceNo") = cmbInvoice.Text
+                    drGrd.Item("InvoiceNo") = Me.cmbInvoice.ActiveRow.Cells("ReceivingNo").Value.ToString
+                    drGrd.Item("InvoiceCurrencyRate") = Me.cmbInvoice.ActiveRow.Cells("CurrencyRate").Value.ToString
+                    If rbtAll.Checked = True Then
+                        ''Me.txtAmount.Text = Math.Round(Val(Me.cmbInvoice.ActiveRow.Cells("Price").Value.ToString), TotalAmountRounding)
+                        drGrd.Item("InvoiceAmount") = Val(Me.cmbInvoice.ActiveRow.Cells("Price").Value.ToString) * Me.cmbInvoice.ActiveRow.Cells("CurrencyRate").Value.ToString
+                    Else
+                        ''Me.txtAmount.Text = Math.Round(Val(txtPartialAmount.Text), TotalAmountRounding)
+                        drGrd.Item("InvoiceAmount") = Val(txtPartialAmount.Text) * Me.cmbInvoice.ActiveRow.Cells("CurrencyRate").Value.ToString
+                    End If
                 Else
                     drGrd.Item(grdEnm.InvoiceId) = 0
                     drGrd.Item("InvoiceNo") = ""
+                    drGrd.Item("InvoiceCurrencyRate") = 0
+                    drGrd.Item("InvoiceAmount") = 0
                 End If
+
+
 
 
                 drGrd.Item(grdEnm.Phone) = Me.cmbAccounts.ActiveRow.Cells("Mobile").Value.ToString
@@ -2152,14 +2464,14 @@ Public Class frmPaymentNew
     Private Sub DisplayDetail(ByVal VoucherID As Integer)
         Dim str As String
         Try
-            str = " SELECT  tblVoucherDetail.voucher_id, tblVoucherDetail.coa_detail_id, vwCOADetail.detail_title, vwCOADetail.detail_code, IsNull(tblVoucherDetail.CurrencyId, 0) As CurrencyId, IsNull(tblVoucherDetail.CurrencyAmount, tblVoucherDetail.credit_amount) As CurrencyAmount, IsNull(tblVoucherDetail.CurrencyRate, 0) As CurrencyRate, IsNull(tblVoucherDetail.BaseCurrencyId, 0) As BaseCurrencyId, IsNull(tblVoucherDetail.BaseCurrencyRate, 0) As BaseCurrencyRate, tblVoucherDetail.credit_amount as Amount, tblVoucherDetail.Adjustment as CurrencyDiscount, 0 as Discount, isnull(tblVoucherDetail.IncomeAccountId,0) as  IncomeAccountId , isnull(tblVoucherDetail.Tax_Percent,0) as Tax, isnull(tblVoucherDetail.Tax_Amount,0) as Tax_Currency_Amount, isnull(tblVoucherDetail.Tax_Amount,0) as Tax_Amount, isnull(tblVoucherDetail.AccountId,0) as AccountId, isnull(tblVoucherDetail.SalesTaxPer,0) as SalesTaxPer , isnull(tblVoucherDetail.SalesTaxAmount,0) as SalesTaxAmount,isnull(tblVoucherDetail.SalesTaxAmount,0) as Sales_Tax,isnull(tblVoucherDetail.WHTaxPer,0) as WHTaxPer,isnull(tblVoucherDetail.WHTaxAmount,0) as WHTaxAmount,isnull(tblVoucherDetail.WHTaxAmount,0) as WH_Tax, isnull(tblVoucherDetail.NetAmount,0) as NetAmount,isnull(tblVoucherDetail.NetAmount,0) as Net_Amount, tblVoucherDetail.comments as Reference, tblVoucherDetail.Cheque_No, isnull(tblVoucherDetail.Cheque_Date,getDate()) as Cheque_Date, tblVoucherDetail.BankDescription, Cust.Mobile, vwCOADetail.Account_Type as Type, Isnull(tblVoucherDetail.CostCenterId,0) as CostCenterId , Isnull(tblVoucherDetail.EmpID,0) as Employee , ISNULL(tblVoucherDetail.InvoiceId, 0) AS InvoiceId,IsNull(InvAdj.VoucherDetailId,0) as VoucherDetailId, ReceivingMasterTable.ReceivingNo as InvoiceNo " _
+            str = " SELECT  tblVoucherDetail.voucher_id, tblVoucherDetail.coa_detail_id, vwCOADetail.detail_title, vwCOADetail.detail_code, IsNull(tblVoucherDetail.CurrencyId, 0) As CurrencyId, IsNull(tblVoucherDetail.CurrencyAmount, tblVoucherDetail.credit_amount) As CurrencyAmount, IsNull(tblVoucherDetail.CurrencyRate, 0) As CurrencyRate, IsNull(tblVoucherDetail.BaseCurrencyId, 0) As BaseCurrencyId, IsNull(tblVoucherDetail.BaseCurrencyRate, 0) As BaseCurrencyRate, tblVoucherDetail.credit_amount as Amount, tblVoucherDetail.Adjustment as CurrencyDiscount, 0 as Discount, isnull(tblVoucherDetail.IncomeAccountId,0) as  IncomeAccountId , isnull(tblVoucherDetail.Tax_Percent,0) as Tax, isnull(tblVoucherDetail.Tax_Amount,0) as Tax_Currency_Amount, isnull(tblVoucherDetail.Tax_Amount,0) as Tax_Amount, isnull(tblVoucherDetail.AccountId,0) as AccountId, isnull(tblVoucherDetail.SalesTaxPer,0) as SalesTaxPer , isnull(tblVoucherDetail.SalesTaxAmount,0) as SalesTaxAmount,isnull(tblVoucherDetail.SalesTaxAmount,0) as Sales_Tax,isnull(tblVoucherDetail.WHTaxPer,0) as WHTaxPer,isnull(tblVoucherDetail.WHTaxAmount,0) as WHTaxAmount,isnull(tblVoucherDetail.WHTaxAmount,0) as WH_Tax, isnull(tblVoucherDetail.NetAmount,0) as NetAmount,isnull(tblVoucherDetail.NetAmount,0) as Net_Amount, tblVoucherDetail.comments as Reference, tblVoucherDetail.Cheque_No, isnull(tblVoucherDetail.Cheque_Date,getDate()) as Cheque_Date, tblVoucherDetail.BankDescription, Cust.Mobile, vwCOADetail.Account_Type as Type, Isnull(tblVoucherDetail.CostCenterId,0) as CostCenterId , Isnull(tblVoucherDetail.EmpID,0) as Employee , ISNULL(tblVoucherDetail.InvoiceId, 0) AS InvoiceId,IsNull(InvAdj.VoucherDetailId,0) as VoucherDetailId, ReceivingMasterTable.ReceivingNo as InvoiceNo, ISNULL(tblVoucherDetail.InvoiceCurrencyRate, 0) AS InvoiceCurrencyRate, ISNULL(tblVoucherDetail.InvoiceAmount, 0) AS InvoiceAmount " _
               & " FROM         tblVoucherDetail INNER JOIN " _
               & " vwCOADetail ON tblVoucherDetail.coa_detail_id = vwCOADetail.coa_detail_id LEFT OUTER JOIN ReceivingMasterTable ON tblVoucherDetail.InvoiceId = ReceivingMasterTable.ReceivingId LEFT OUTER JOIN tblCustomer Cust On Cust.AccountId = vwCOADetail.coa_detail_id LEFT OUTER JOIN (Select Distinct VoucherDetailId From InvoiceAdjustmentTable) as InvAdj on InvAdj.VoucherDetailId = tblVoucherDetail.Voucher_Detail_Id  " _
-              & " Where voucher_id =" & VoucherID & " AND (tblVoucherDetail.debit_amount > 0) Order By tblVoucherDetail.Voucher_Detail_Id ASC "
+              & " Where voucher_id =" & VoucherID & " AND (tblVoucherDetail.debit_amount > 0) AND (tblVoucherDetail.coa_detail_id <> " & ExchangeGainLossAccountId & ") Order By tblVoucherDetail.Voucher_Detail_Id ASC "
             Dim dtDisplayDetail As DataTable = GetDataTable(str)
             dtDisplayDetail.Columns("Amount").Expression = "(CurrencyAmount*CurrencyRate)"
+            dtDisplayDetail.Columns("InvoiceAmount").Expression = "(CurrencyAmount*InvoiceCurrencyRate)"
 
-            ''dtDisplayDetail.Columns("Tax_Amount").Expression = "(((Amount-Discount)*Tax)/100)"
             ' ''dtDisplayDetail.Columns("Tax").Expression = "((Tax_Amount/(Amount-Discount))*100)"
             ' ''dtDisplayDetail.Columns("Tax_Currency_Amount").Expression = "(((CurrencyAmount-CurrencyDiscount)*Tax)/100)"
             ' ''dtDisplayDetail.Columns("Discount").Expression = "(CurrencyDiscount) * (CurrencyRate)"
@@ -2172,8 +2484,10 @@ Public Class frmPaymentNew
             ' ''dtDisplayDetail.Columns("WH_Tax").Expression = "(Sales_Tax*WHTaxPer/100)"
             ' ''dtDisplayDetail.Columns("NetAmount").Expression = "((Amount-Discount)-Tax_Amount-WHTaxAmount)"
             ' ''dtDisplayDetail.Columns("Net_Amount").Expression = "((CurrencyAmount-CurrencyDiscount)-Tax_Currency_Amount-WH_Tax)"
-            dtDisplayDetail.Columns("Tax").Expression = "((Tax_Amount/(CurrencyAmount-Discount))*100)"
+            dtDisplayDetail.Columns("Tax_Amount").Expression = "(((CurrencyAmount-CurrencyDiscount)*Tax)/100) * (CurrencyRate)"
+            'dtDisplayDetail.Columns("Tax").Expression = "((Tax_Amount/(CurrencyAmount-Discount))*100)"
             dtDisplayDetail.Columns("Tax_Currency_Amount").Expression = "(((CurrencyAmount-CurrencyDiscount)*Tax)/100)"
+            'dtDisplayDetail.Columns("Tax_Amount").Expression = "(((CurrencyAmount-CurrencyDiscount)*Tax)/100) * (CurrencyRate)"
             dtDisplayDetail.Columns("Discount").Expression = "(CurrencyDiscount) * (CurrencyRate)"
             dtDisplayDetail.Columns("SalesTaxPer").Expression = "((Sales_Tax/(CurrencyAmount-Discount))*100)"
             ''dtDisplayDetail.Columns("Sales_Tax").Expression = "((CurrencyAmount-CurrencyDiscount)*(SalesTaxPer)/100)"
@@ -2534,18 +2848,19 @@ Public Class frmPaymentNew
     Public Sub ApplyGridSettings(Optional ByVal Condition As String = "") Implements IGeneral.ApplyGridSettings
         Try
             For Each col As Janus.Windows.GridEX.GridEXColumn In Me.grd.RootTable.Columns
-                If col.Index <> grdEnm.Reference AndAlso col.Index <> grdEnm.CurrencyDiscount AndAlso col.Index <> grdEnm.Cheque_No AndAlso col.Index <> grdEnm.Cheque_Date AndAlso col.Index <> grdEnm.BankDescription AndAlso col.Index <> grdEnm.Tax AndAlso col.Index <> grdEnm.TaxAmount AndAlso col.Index <> grdEnm.SalesTaxPer AndAlso col.Index <> grdEnm.SalesTaxAmount AndAlso col.Index <> grdEnm.WHTaxPer AndAlso col.Index <> grdEnm.WHTaxAmount AndAlso col.Index <> grdEnm.NetAmount AndAlso col.Index <> grdEnm.CostCenterId AndAlso col.Index <> grdEnm.Employee AndAlso col.Index <> grdEnm.InvoiceId AndAlso col.Index <> grdEnm.CurrencyAmount AndAlso col.Index <> grdEnm.IncomeAccountId AndAlso col.Index <> grdEnm.AccountId Then
+                If col.Index <> grdEnm.Reference AndAlso col.Index <> grdEnm.CurrencyDiscount AndAlso col.Index <> grdEnm.Cheque_No AndAlso col.Index <> grdEnm.Cheque_Date AndAlso col.Index <> grdEnm.BankDescription AndAlso col.Index <> grdEnm.Tax AndAlso col.Index <> grdEnm.TaxAmount AndAlso col.Index <> grdEnm.TaxCurrencyAmount AndAlso col.Index <> grdEnm.SalesTaxPer AndAlso col.Index <> grdEnm.SalesTaxAmount AndAlso col.Index <> grdEnm.WHTaxPer AndAlso col.Index <> grdEnm.WHTaxAmount AndAlso col.Index <> grdEnm.NetAmount AndAlso col.Index <> grdEnm.CostCenterId AndAlso col.Index <> grdEnm.Employee AndAlso col.Index <> grdEnm.InvoiceId AndAlso col.Index <> grdEnm.CurrencyAmount AndAlso col.Index <> grdEnm.IncomeAccountId AndAlso col.Index <> grdEnm.AccountId Then
                     col.EditType = Janus.Windows.GridEX.EditType.NoEdit
                 End If
             Next
             'Task:2762 Set Rounding Format
-            Me.grd.RootTable.Columns("Tax_Amount").FormatString = "N" & DecimalPointInValue
-            Me.grd.RootTable.Columns("Tax_Amount").FormatString = "N" & TotalAmountRounding
-            Me.grd.RootTable.Columns("Tax_Amount").TotalFormatString = "N" & TotalAmountRounding ''27-Jul-2014 Task:2762 Imran Ali Total Amount Rounding configuration
-
-            Me.grd.RootTable.Columns(grdEnm.TaxCurrencyAmount).FormatString = "N" & DecimalPointInValue 'Task:2647 Set Rounding Format
-            Me.grd.RootTable.Columns(grdEnm.TaxCurrencyAmount).FormatString = "N" & TotalAmountRounding
-            Me.grd.RootTable.Columns(grdEnm.TaxCurrencyAmount).TotalFormatString = "N" & TotalAmountRounding
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.grd.RootTable.Columns("Tax_Amount").FormatString = "N" & DecimalPointInValue
+            'Me.grd.RootTable.Columns("Tax_Amount").FormatString = "N" & TotalAmountRounding
+            'Me.grd.RootTable.Columns("Tax_Amount").TotalFormatString = "N" & TotalAmountRounding ''27-Jul-2014 Task:2762 Imran Ali Total Amount Rounding configuration
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.grd.RootTable.Columns(grdEnm.TaxCurrencyAmount).FormatString = "N" & DecimalPointInValue 'Task:2647 Set Rounding Format
+            'Me.grd.RootTable.Columns(grdEnm.TaxCurrencyAmount).FormatString = "N" & TotalAmountRounding
+            'Me.grd.RootTable.Columns(grdEnm.TaxCurrencyAmount).TotalFormatString = "N" & TotalAmountRounding
 
             Me.grd.RootTable.Columns(grdEnm.Amount).FormatString = "N"
             Me.grd.RootTable.Columns(grdEnm.Amount).TotalFormatString = "N"
@@ -2559,18 +2874,22 @@ Public Class frmPaymentNew
             Me.grd.RootTable.Columns(grdEnm.NetAmount).FormatString = "N"
             Me.grd.RootTable.Columns(grdEnm.NetAmount).TotalFormatString = "N"
 
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.grd.RootTable.Columns("Amount").FormatString = "N" & DecimalPointInValue
+            'Me.grd.RootTable.Columns("Amount").FormatString = "N" & TotalAmountRounding
+            'Me.grd.RootTable.Columns("Amount").TotalFormatString = "N" & TotalAmountRounding ''27-Jul-2014 Task:2762 Imran Ali Total Amount Rounding configuration
 
-            Me.grd.RootTable.Columns("Amount").FormatString = "N" & DecimalPointInValue
-            Me.grd.RootTable.Columns("Amount").FormatString = "N" & TotalAmountRounding
-            Me.grd.RootTable.Columns("Amount").TotalFormatString = "N" & TotalAmountRounding ''27-Jul-2014 Task:2762 Imran Ali Total Amount Rounding configuration
 
-            Me.grd.RootTable.Columns("CurrencyDiscount").FormatString = "N" & DecimalPointInValue
-            Me.grd.RootTable.Columns("CurrencyDiscount").FormatString = "N" & TotalAmountRounding
-            Me.grd.RootTable.Columns("CurrencyDiscount").TotalFormatString = "N" & TotalAmountRounding ''27-Jul-2014 Task:2762 Imran Ali Total Amount Rounding configuration
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.grd.RootTable.Columns("CurrencyDiscount").FormatString = "N" & DecimalPointInValue
+            'Me.grd.RootTable.Columns("CurrencyDiscount").FormatString = "N" & TotalAmountRounding
+            'Me.grd.RootTable.Columns("CurrencyDiscount").TotalFormatString = "N" & TotalAmountRounding ''27-Jul-2014 Task:2762 Imran Ali Total Amount Rounding configuration
 
-            Me.grd.RootTable.Columns("Discount").FormatString = "N" & DecimalPointInValue
-            Me.grd.RootTable.Columns("Discount").FormatString = "N" & TotalAmountRounding
-            Me.grd.RootTable.Columns("Discount").TotalFormatString = "N" & TotalAmountRounding ''27-Jul-2014 Task:2762 Imran Ali Total Amount Rounding configuration
+
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.grd.RootTable.Columns("Discount").FormatString = "N" & DecimalPointInValue
+            'Me.grd.RootTable.Columns("Discount").FormatString = "N" & TotalAmountRounding
+            'Me.grd.RootTable.Columns("Discount").TotalFormatString = "N" & TotalAmountRounding ''27-Jul-2014 Task:2762 Imran Ali Total Amount Rounding configuration
             'End Task:2762
             Me.grd.RootTable.Columns(grdEnm.CurrencyRate).Visible = False
             'Me.grd.RootTable.Columns("SalesTaxPer").FormatStyle.ForeColor = Color.Blue
@@ -3011,7 +3330,9 @@ Public Class frmPaymentNew
                 Throw New Exception("Amount is not valid.")
             End If
             'End Task:2491
-            Me.txtTaxAmount.Text = Math.Round((((Val(Me.txtAmount.Text) - Val(Me.txtDiscount.Text)) * Val(Me.txtTax.Text)) / 100), TotalAmountRounding)
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.txtTaxAmount.Text = Math.Round((((Val(Me.txtAmount.Text) - Val(Me.txtDiscount.Text)) * Val(Me.txtTax.Text)) / 100), TotalAmountRounding)
+            Me.txtTaxAmount.Text = (((Val(Me.txtAmount.Text) - Val(Me.txtDiscount.Text)) * Val(Me.txtTax.Text)) / 100)
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -3064,9 +3385,9 @@ Public Class frmPaymentNew
                 Throw New Exception("Amount is not valid.")
             End If
             'End Task:2491
-
-            Me.txtGrossAmount.Text = Math.Round((((Val(Me.txtAmount.Text) - Val(Me.txtDiscount.Text)))), TotalAmountRounding)
-
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.txtGrossAmount.Text = Math.Round((((Val(Me.txtAmount.Text) - Val(Me.txtDiscount.Text)))), TotalAmountRounding)
+            Me.txtGrossAmount.Text = (((Val(Me.txtAmount.Text) - Val(Me.txtDiscount.Text))))
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -3093,8 +3414,11 @@ Public Class frmPaymentNew
                 Throw New Exception("Amount is not valid.")
             End If
             'End Task:2491
-            Me.txtGrossAmount.Text = Math.Round((Val(Me.txtAmount.Text) - Val(Me.txtDiscount.Text)), TotalAmountRounding)
-            txtGrossAmount.Text = Format(Val(txtGrossAmount.Text), "0")
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.txtGrossAmount.Text = Math.Round((Val(Me.txtAmount.Text) - Val(Me.txtDiscount.Text)), TotalAmountRounding)
+            Me.txtGrossAmount.Text = (Val(Me.txtAmount.Text) - Val(Me.txtDiscount.Text))
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'txtGrossAmount.Text = Format(Val(txtGrossAmount.Text), "0")
             ' Me.txtGrossAmount.Text = Math.Round(((Val(Me.txtAmount.Text) - Val(Me.txtDiscount.Text) / 100)), DecimalPointInValue)
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
@@ -3759,7 +4083,13 @@ Public Class frmPaymentNew
 
             If Not Me.cmbCurrency.SelectedItem Is Nothing Then
                 Dim dr As DataRowView = CType(cmbCurrency.SelectedItem, DataRowView)
-                Me.txtCurrencyRate.Text = Math.Round(Convert.ToDouble(dr.Row.Item("CurrencyRate").ToString), 4)
+                'Waqar Commented RoundOff working Because of Raja Ejaaz
+                'Me.txtCurrencyRate.Text = Math.Round(Convert.ToDouble(dr.Row.Item("CurrencyRate").ToString), 4)
+                If blnEditMode = True Then
+                Else
+                    Me.txtCurrencyRate.Text = Convert.ToDouble(dr.Row.Item("CurrencyRate").ToString)
+                End If
+
                 ''TASK TFS1474
                 If Me.cmbCurrency.SelectedValue = BaseCurrencyId Then
                     Me.txtCurrencyRate.Enabled = False
@@ -3890,7 +4220,7 @@ Public Class frmPaymentNew
             Dim PreviouseRecordShow As Boolean = Convert.ToBoolean(getConfigValueByType("PreviouseRecordShow").ToString)
             Dim strSql As String = String.Empty
             If Mode = "Normal" Then
-                strSql = "SELECT  DISTINCT tblvoucher.voucher_id, voucher_no, voucher_date, CASE WHEN (voucher_Type_ID = 4) THEN 'Bank' ELSE 'Cash' END AS [Payment Method], tblVoucher.Cheque_No,tblVoucher.Remarks, isnull(ReceiptAmount.Amount,0) as Amount, Post, Case When Post=1 then 'Posted' else 'UnPosted' end as Status,IsNull(tblVoucher.Checked,0) as Checked,Isnull(tblVoucher.Employee_Id,0) as Employee_Id, CASE WHEN ISNULL(PrintLog.cont,0)=0 THEN 'Print Pending' ELSE 'Printed' end as [Print Status], IsNull([No Of Attachment],0) as  [No Of Attachment],tblVoucher.USERNAME  AS 'User Name',CompanyDefTable.CompanyName " _
+                strSql = "SELECT  DISTINCT tblvoucher.voucher_id, voucher_no, voucher_date, CASE WHEN (voucher_Type_ID = 4) THEN 'Bank' ELSE 'Cash' END AS [Payment Method], tblVoucher.Cheque_No,tblVoucher.Remarks, isnull(ReceiptAmount.Amount,0) as Amount, Post, Case When Post=1 then 'Posted' else 'UnPosted' end as Status,IsNull(tblVoucher.Checked,0) as Checked,Isnull(tblVoucher.Employee_Id,0) as Employee_Id, CASE WHEN ISNULL(PrintLog.cont,0)=0 THEN 'Print Pending' ELSE 'Printed' end as [Print Status], IsNull([No Of Attachment],0) as  [No Of Attachment],tblVoucher.USERNAME  AS 'User Name',CompanyDefTable.CompanyName, tblVoucher.flgInvoice " _
                      & " FROM tblVoucher INNER JOIN tblVoucherDetail ON tblVoucher.Voucher_Id = tblVoucherDetail.Voucher_Id LEFT OUTER JOIN vwCOADetail ON vwCOADetail.coa_detail_id = tblVoucherDetail.coa_detail_id Left Outer join  CompanyDefTable on tblVoucher.location_id=CompanyDefTable.CompanyId    LEFT OUTER JOIN(Select Count(Id) as Cont, DocumentNo From tblPrint_Log Group By DocumentNo) PrintLog On PrintLog.DocumentNo = voucher_no INNER JOIN(Select voucher_id, SUM(ISNULL(credit_amount,0)) as Amount From tblVoucherDetail Group By Voucher_Id) ReceiptAmount On ReceiptAmount.Voucher_Id = tblVoucher.Voucher_Id LEFT OUTER JOIN (Select Count(*) as [No Of Attachment],DocId From DocumentAttachment WHERE (source = N'" & Me.Name & "') Group By DocId, Source) Doc_Att on Doc_Att.DocId = tblVoucher.Voucher_Id " _
                      & " WHERE     (source = N'" & Me.Name & "')  " & IIf(PreviouseRecordShow = True, "", " AND (Convert(varchar, voucher_date,102) > Convert(datetime, N'" & ClosingDate & "', 102))") & ""
                 If flgCompanyRights = True Then
@@ -3943,6 +4273,7 @@ Public Class frmPaymentNew
             Me.grdVouchers.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
             grdVouchers.RootTable.Columns(0).Visible = False  'Voucher ID
             grdVouchers.RootTable.Columns("Post").Visible = False 'Voucher Post 
+            grdVouchers.RootTable.Columns("flgInvoice").Visible = False
             grdVouchers.RootTable.Columns("Employee_Id").Visible = False
             Me.grdVouchers.RootTable.Columns("voucher_no").Caption = "Vouchr No"
             Me.grdVouchers.RootTable.Columns("voucher_date").Caption = "Date"
@@ -4518,10 +4849,13 @@ Public Class frmPaymentNew
             End If
             'Me.txtSalesTaxAmount.Text = Math.Round((Val(Me.txtGrossAmount.Text) * (Val(Me.txtSalesTax.Text) / 100)), DecimalPointInValue)
             ''Me.txtSalesTaxAmount.Text = Math.Round((Val(Me.txtGrossAmount.Text) / (Val(Me.txtSalesTax.Text) + 100) * Val(Me.txtSalesTax.Text)), TotalAmountRounding)
-            Me.txtWithHoldingTaxAmount.Text = Math.Round(((Val(Me.txtSalesTaxAmount.Text) * Val(Me.txtWithHolding.Text)) / 100), TotalAmountRounding)
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.txtWithHoldingTaxAmount.Text = Math.Round(((Val(Me.txtSalesTaxAmount.Text) * Val(Me.txtWithHolding.Text)) / 100), TotalAmountRounding)
+            Me.txtWithHoldingTaxAmount.Text = ((Val(Me.txtSalesTaxAmount.Text) * Val(Me.txtWithHolding.Text)) / 100)
             ''txtSalesTax.Text = Val(txtGrossAmount.Text) / Val(txtSalesTaxAmount.Text)
             ''txtSalesTaxAmount.Text = Format(Val(txtSalesTaxAmount.Text), "0")
-            txtWithHoldingTaxAmount.Text = Format(Val(txtWithHoldingTaxAmount.Text), "0")
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'txtWithHoldingTaxAmount.Text = Format(Val(txtWithHoldingTaxAmount.Text), "0")
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -4533,8 +4867,11 @@ Public Class frmPaymentNew
             If CheckNumericValue(Me.txtWithHolding.Text, Me.txtWithHolding) = False Then
                 Throw New Exception("Amount is not valid.")
             End If
-            Me.txtWithHoldingTaxAmount.Text = Math.Round(((Val(Me.txtSalesTaxAmount.Text) * Val(Me.txtWithHolding.Text)) / 100), TotalAmountRounding)
-            txtWithHoldingTaxAmount.Text = Format(Val(txtWithHoldingTaxAmount.Text), "0")
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.txtWithHoldingTaxAmount.Text = Math.Round(((Val(Me.txtSalesTaxAmount.Text) * Val(Me.txtWithHolding.Text)) / 100), TotalAmountRounding)
+            Me.txtWithHoldingTaxAmount.Text = ((Val(Me.txtSalesTaxAmount.Text) * Val(Me.txtWithHolding.Text)) / 100)
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'txtWithHoldingTaxAmount.Text = Format(Val(txtWithHoldingTaxAmount.Text), "0")
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -4563,13 +4900,20 @@ Public Class frmPaymentNew
             If CheckNumericValue(Me.txtGrossAmount.Text, Me.txtGrossAmount) = False Then
                 Throw New Exception("Amount is not valid.")
             End If
-            Me.txtNetAmount.Text = Math.Round(Val(Me.txtGrossAmount.Text) - Val(Me.txtTaxAmount.Text) - Val(Me.txtWithHoldingTaxAmount.Text), TotalAmountRounding)
-            Me.txtTaxAmount.Text = Math.Round((Val(Me.txtGrossAmount.Text) * (Val(Me.txtTax.Text) / 100)), TotalAmountRounding)
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.txtNetAmount.Text = Math.Round(Val(Me.txtGrossAmount.Text) - Val(Me.txtTaxAmount.Text) - Val(Me.txtWithHoldingTaxAmount.Text), TotalAmountRounding)
+            'Me.txtTaxAmount.Text = Math.Round((Val(Me.txtGrossAmount.Text) * (Val(Me.txtTax.Text) / 100)), TotalAmountRounding)
+            Me.txtNetAmount.Text = Val(Me.txtGrossAmount.Text) - Val(Me.txtTaxAmount.Text) - Val(Me.txtWithHoldingTaxAmount.Text)
+            Me.txtTaxAmount.Text = (Val(Me.txtGrossAmount.Text) * (Val(Me.txtTax.Text) / 100))
             'Me.txtSalesTaxAmount.Text = Math.Round((Val(Me.txtGrossAmount.Text) * (Val(Me.txtSalesTax.Text) / 100)), DecimalPointInValue)
-            Me.txtSalesTaxAmount.Text = Math.Round((Val(Me.txtGrossAmount.Text) / (Val(Me.txtSalesTax.Text) + 100) * Val(Me.txtSalesTax.Text)), TotalAmountRounding)
-            txtNetAmount.Text = Format(Val(txtNetAmount.Text), "0")
-            txtTaxAmount.Text = Format(Val(txtTaxAmount.Text), "0")
-            txtSalesTaxAmount.Text = Format(Val(txtSalesTaxAmount.Text), "0")
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.txtSalesTaxAmount.Text = Math.Round((Val(Me.txtGrossAmount.Text) / (Val(Me.txtSalesTax.Text) + 100) * Val(Me.txtSalesTax.Text)), TotalAmountRounding)
+            Me.txtSalesTaxAmount.Text = (Val(Me.txtGrossAmount.Text) / (Val(Me.txtSalesTax.Text) + 100) * Val(Me.txtSalesTax.Text))
+
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'txtNetAmount.Text = Format(Val(txtNetAmount.Text), "0")
+            'txtTaxAmount.Text = Format(Val(txtTaxAmount.Text), "0")
+            'txtSalesTaxAmount.Text = Format(Val(txtSalesTaxAmount.Text), "0")
 
 
         Catch ex As Exception
@@ -4587,8 +4931,11 @@ Public Class frmPaymentNew
             If CheckNumericValue(Me.txtTaxAmount.Text, Me.txtTaxAmount) = False Then
                 Throw New Exception("Amount is not valid.")
             End If
-            Me.txtNetAmount.Text = Math.Round(Val(Me.txtGrossAmount.Text) - Val(Me.txtTaxAmount.Text) - Val(Me.txtWithHoldingTaxAmount.Text), TotalAmountRounding)
-            txtNetAmount.Text = Format(Val(txtNetAmount.Text), "0")
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.txtNetAmount.Text = Math.Round(Val(Me.txtGrossAmount.Text) - Val(Me.txtTaxAmount.Text) - Val(Me.txtWithHoldingTaxAmount.Text), TotalAmountRounding)
+            Me.txtNetAmount.Text = Val(Me.txtGrossAmount.Text) - Val(Me.txtTaxAmount.Text) - Val(Me.txtWithHoldingTaxAmount.Text)
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'txtNetAmount.Text = Format(Val(txtNetAmount.Text), "0")
             txtTax.Text = ((Val(Me.txtTaxAmount.Text) / Val(Me.txtGrossAmount.Text)) * 100)
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
@@ -4605,8 +4952,11 @@ Public Class frmPaymentNew
             If CheckNumericValue(Me.txtWithHoldingTaxAmount.Text, Me.txtWithHoldingTaxAmount) = False Then
                 Throw New Exception("Amount is not valid.")
             End If
-            Me.txtNetAmount.Text = Math.Round(Val(Me.txtGrossAmount.Text) - Val(Me.txtTaxAmount.Text) - Val(Me.txtWithHoldingTaxAmount.Text), TotalAmountRounding)
-            txtNetAmount.Text = Format(Val(txtNetAmount.Text), "0")
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'Me.txtNetAmount.Text = Math.Round(Val(Me.txtGrossAmount.Text) - Val(Me.txtTaxAmount.Text) - Val(Me.txtWithHoldingTaxAmount.Text), TotalAmountRounding)
+            Me.txtNetAmount.Text = Val(Me.txtGrossAmount.Text) - Val(Me.txtTaxAmount.Text) - Val(Me.txtWithHoldingTaxAmount.Text)
+            'Waqar Commented RoundOff working Because of Raja Ejaaz
+            'txtNetAmount.Text = Format(Val(txtNetAmount.Text), "0")
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -4725,7 +5075,12 @@ Public Class frmPaymentNew
             'addd comma sperators on all numeric text
             'txtSalesTaxAmount.Text = CDbl(txtSalesTaxAmount.Text).ToString("N")
             'txtSalesTaxAmount.SelectionStart = txtSalesTaxAmount.Text.IndexOf(".")
-            txtSalesTax.Text = Val(txtGrossAmount.Text) / Val(txtSalesTaxAmount.Text)
+            If Val(txtSalesTaxAmount.Text) > 0 Then
+                txtSalesTax.Text = Val(txtGrossAmount.Text) / Val(txtSalesTaxAmount.Text)
+            Else
+                txtSalesTax.Text = Format(Val(0), "0.00")
+            End If
+
             If CheckNumericValue(Me.txtSalesTaxAmount.Text, Me.txtSalesTaxAmount) = False Then
                 Throw New Exception("Amount is not valid.")
             End If
@@ -4896,6 +5251,11 @@ Public Class frmPaymentNew
             Me.cmbCostCenter.Text = Me.grd.GetRow.Cells(grdEnm.CostCenterId).Text.ToString()
             Me.txtReference.Text = Me.grd.GetRow.Cells(grdEnm.Reference).Text.ToString()
             Me.cmbSaleman.SelectedValue = Me.grd.GetRow.Cells(grdEnm.Employee).Value
+            If flgPurchaseInvoice = True Then
+                chkLinkInvoice.Checked = True
+                cmbInvoice.Value = Me.grd.GetRow.Cells("InvoiceId").Value
+                txtPartialAmount.Text = Me.grd.GetRow.Cells(grdEnm.CurrencyAmount).Value
+            End If
             Dim rowCol As New Janus.Windows.GridEX.GridEXFormatStyle
             rowCol.BackColor = Color.AntiqueWhite
             Me.grd.CurrentRow.RowStyle = rowCol
@@ -4931,12 +5291,23 @@ Public Class frmPaymentNew
             dr.Item(grdEnm.Amount) = Val(Me.txtAmount.Text) * Val(txtCurrencyRate.Text)
             dr.Item(grdEnm.CurrencyDiscount) = Val(Me.txtDiscount.Text)
             'Rafay:Task Start
-            dr.Item(grdEnm.Tax) = Format(Val(Me.txtTax.Text), "0.00")
+            'dr.Item(grdEnm.Tax) = Format(Val(Me.txtTax.Text), "0.00")
+            ''Waqar Commented RoundOff working Because of Raja Ejaaz
+            ''dr.Item(grdEnm.TaxAmount) = Format(Math.Round(Val(Me.txtTaxAmount.Text), TotalAmountRounding), "0.00")
+            'dr.Item(grdEnm.TaxAmount) = Val(Me.txtTaxAmount.Text)
+            'dr.Item(grdEnm.SalesTaxPer) = Format(Val(Me.txtSalesTax.Text), "0.00")
+            ''Waqar Commented RoundOff working Because of Raja Ejaaz
+            ''dr.Item(grdEnm.SalesTaxAmount) = Format(Math.Round(Val(Me.txtSalesTaxAmount.Text), TotalAmountRounding), "0.00")
+            'dr.Item(grdEnm.SalesTaxAmount) = Val(Me.txtSalesTaxAmount.Text)
+            'dr.Item(grdEnm.WHTaxPer) = Format(Val(Me.txtWithHolding.Text), "0.00")
+            'dr.Item(grdEnm.WHTaxAmount) = Format(Val(Me.txtWithHoldingTaxAmount.Text), "0.00")
+
+            dr.Item(grdEnm.Tax) = Val(Me.txtTax.Text)
             dr.Item(grdEnm.TaxAmount) = Format(Math.Round(Val(Me.txtTaxAmount.Text), TotalAmountRounding), "0.00")
-            dr.Item(grdEnm.SalesTaxPer) = Format(Val(Me.txtSalesTax.Text), "0.00")
-            dr.Item(grdEnm.SalesTaxAmount) = Format(Math.Round(Val(Me.txtSalesTaxAmount.Text), TotalAmountRounding), "0.00")
-            dr.Item(grdEnm.WHTaxPer) = Format(Val(Me.txtWithHolding.Text), "0.00")
-            dr.Item(grdEnm.WHTaxAmount) = Format(Val(Me.txtWithHoldingTaxAmount.Text), "0.00")
+            dr.Item(grdEnm.SalesTaxPer) = Val(Me.txtSalesTax.Text)
+            dr.Item(grdEnm.Sales_Tax) = Format(Math.Round(Val(Me.txtSalesTaxAmount.Text), TotalAmountRounding), "0.00")
+            dr.Item(grdEnm.WHTaxPer) = Val(Me.txtWithHolding.Text)
+            dr.Item(grdEnm.WHTaxAmount) = Format((Me.txtWithHoldingTaxAmount.Text), "0.00")
             dr.Item(grdEnm.NetAmount) = Format(Val(Me.txtNetAmount.Text), "0.00")
             'rafay :Task End
             dr.Item(grdEnm.AccountId) = Val(CType(Me.cmbSalesTax.SelectedItem, DataRowView).Row.Item("AccountId").ToString)
@@ -4949,6 +5320,25 @@ Public Class frmPaymentNew
             dr.Item(grdEnm.CostCenterId) = Me.cmbCostCenter.SelectedValue
             dr.Item(grdEnm.Employee) = Me.cmbSaleman.SelectedValue
             dr.Item(grdEnm.Phone) = Me.cmbAccounts.ActiveRow.Cells("Mobile").Value.ToString
+
+            If flgPurchaseInvoice = True Then
+                dr.Item(grdEnm.InvoiceId) = cmbInvoice.Value
+                dr.Item("InvoiceNo") = Me.cmbInvoice.ActiveRow.Cells("ReceivingNo").Value.ToString
+                dr.Item("InvoiceCurrencyRate") = Me.cmbInvoice.ActiveRow.Cells("CurrencyRate").Value.ToString
+                If rbtAll.Checked = True Then
+                    ''Me.txtAmount.Text = Math.Round(Val(Me.cmbInvoice.ActiveRow.Cells("Price").Value.ToString), TotalAmountRounding)
+                    dr.Item("InvoiceAmount") = Val(Me.cmbInvoice.ActiveRow.Cells("Price").Value.ToString) * Me.cmbInvoice.ActiveRow.Cells("CurrencyRate").Value.ToString
+                Else
+                    ''Me.txtAmount.Text = Math.Round(Val(txtPartialAmount.Text), TotalAmountRounding)
+                    dr.Item("InvoiceAmount") = Val(txtPartialAmount.Text) * Me.cmbInvoice.ActiveRow.Cells("CurrencyRate").Value.ToString
+                End If
+            Else
+                dr.Item(grdEnm.InvoiceId) = 0
+                dr.Item("InvoiceNo") = ""
+                dr.Item("InvoiceCurrencyRate") = 0
+                dr.Item("InvoiceAmount") = 0
+            End If
+
             dtGrd.Rows.InsertAt(dr, Row_Index)
             SelectedMode = True
             Me.ClearFields("Detail")
@@ -4992,10 +5382,21 @@ Public Class frmPaymentNew
 
     Private Sub cmbAccounts_ValueChanged(sender As Object, e As EventArgs) Handles cmbAccounts.ValueChanged
         Try
-            If flgPurchaseInvoice = True Then
-                Dim str As String
-                str = "select SalesId, SalesNo from SalesMasterTable where CustomerCode = " & cmbAccounts.Value & "AND SalesmasterTable.SalesId not in (select isnull(InvoiceId,0) from tblVoucherDetail)"
-                FillUltraDropDown(cmbInvoice, str)
+            If cmbAccounts.Value > 0 Then
+                If flgPurchaseInvoice = True Then
+                    Dim str As String
+                    'str = "select SalesId, SalesNo from SalesMasterTable where CustomerCode = " & cmbAccounts.Value & "AND SalesmasterTable.SalesId not in (select isnull(InvoiceId,0) from tblVoucherDetail)"
+                    str = "Select ReceivingId, a.ReceivingNo, a.ReceivingDate, a.Qty-a.ReturnQty as Qty, a.PurchaseAmount-a.[Return Amount] as PurchaseAmount , a.Tax ,a.CurrencyId, a.[Return Amount], a.CurrencyRate,   (Isnull(ReceiptAmount,0)+IsNull(Adj.Adj_Amount,0)) As ReceivedAmount, a.ConvertedSalesAmount,  (((Isnull(a.PurchaseAmount,0)*a.CurrencyRate)-(Isnull(ReceiptAmount,0)+IsNull(Adj.Adj_Amount,0)+ISNULL([Return Amount],0)))) as [Converted Price] ,  (((Isnull(a.PurchaseAmount,0)*a.CurrencyRate)-(Isnull(ReceiptAmount,0)+IsNull(Adj.Adj_Amount,0)+ISNULL([Return Amount],0))))/a.CurrencyRate as [Price]   From ( SELECT ReceivingDetailTable.ReceivingId,ReceivingMasterTable.ReceivingNo, ReceivingMasterTable.ReceivingDate,  SUM(ISNULL(ReceivingDetailTable.Qty, 0)) AS Qty, SUM(isnull(srdt.Qty,0))as ReturnQty, SUM((ISNULL(TaxPercent, 0) / 100) * (ISNULL(ReceivingDetailTable.Qty, 0) * ISNULL(ReceivingDetailTable.Price, 0))) AS TaxAmount,  Sum(ReceivingDetailTable.Price*ReceivingDetailTable.Qty) + ((ReceivingDetailTable.TaxPercent/100)*Sum(ReceivingDetailTable.Price*ReceivingDetailTable.Qty)) as PurchaseAmount, Sum(ReceivingDetailTable.Price*ReceivingDetailTable.Qty*ReceivingDetailTable.CurrencyRate) + ((ReceivingDetailTable.TaxPercent/100)*Sum(ReceivingDetailTable.Price*ReceivingDetailTable.Qty*ReceivingDetailTable.CurrencyRate)) as ConvertedSalesAmount , (SUM(ISNULL(ReceivingDetailTable.TaxPercent, 0))) / COUNT(ISNULL(ReceivingDetailTable.TaxPercent, 0)) AS Tax,  ISNULL(ReceivingDetailTable.CurrencyId, 1) as CurrencyId, ISNULL(ReceivingDetailTable.CurrencyRate, 1) as CurrencyRate  , Sum(SRDT.Price*SRDT.Qty) + ((SRDT.Tax_Percent/100)*Sum(SRDT.Price*SRDT.Qty)) as [Return Amount] , Sum(SRDT.Price*SRDT.Qty*SRDT.CurrencyRate) + ((SRDT.Tax_Percent/100)*Sum(SRDT.Price*SRDT.Qty*SRDT.CurrencyRate)) as [Converted Return Amount]   FROM ReceivingDetailTable INNER JOIN ReceivingMasterTable on ReceivingMasterTable.ReceivingId = ReceivingDetailTable.ReceivingId  LEFT JOIN  PurchaseReturnMasterTable SRMT ON SRMT.PurchaseOrderID=ReceivingMasterTable.ReceivingId  LEFT JOIN PurchaseReturnDetailTable SRDT on SRDT.PurchaseReturnId=SRMT.PurchaseReturnId WHERE ReceivingMasterTable.VendorId =  " & cmbAccounts.Value & "   GROUP BY ReceivingDetailTable.ReceivingId,ReceivingNo,ReceivingDate,ReceivingDetailTable.CurrencyId,ReceivingDetailTable.CurrencyRate,Isnull(ReceivingAmount,0),ReceivingDetailTable.TaxPercent ,  srdt.Tax_Percent  HAVING   (IsNull(ReceivingAmount,0) <> 0)) a   LEFT JOIN (SELECT     InvoiceId, IsNull(IsNull(SUM(PaymentAmount),0),0) AS ReceiptAmount  FROM  dbo.InvoiceBasedPaymentsDetail   GROUP BY InvoiceId ) Receipt on Receipt.InvoiceId = a.ReceivingId   LEFT JOIN  (SELECT     InvoiceId, IsNull(IsNull(SUM(NetAmount),0),0) AS VocherAmount FROM  dbo.tblVoucherDetail   GROUP BY InvoiceId ) Vocher on Vocher.InvoiceId = a.ReceivingId  LEFT JOIN(Select InvoiceId, coa_detail_id, IsNull(SUM(IsNull(AdjustmentAmount,0)),0) as Adj_Amount from InvoiceAdjustmentTable WHERE InvoiceType='Purchase'  Group By InvoiceId, coa_detail_id)  Adj on Adj.InvoiceId = a.ReceivingId  where a.ConvertedSalesAmount > (Isnull(ReceiptAmount, 0) + IsNull(Adj.Adj_Amount, 0))  Order By  a.ReceivingId desc "
+                    'If Me.dtpFromDate.Checked = True Then
+                    '    str += " AND a.ReceivingDate >= Convert(Datetime, N'" & Me.dtpFromDate.Value.ToString("yyyy-M-d 00:00:00") & "', 102)"
+                    'End If
+                    'If Me.dtpToDate.Checked = True Then
+                    '    str += " AND a.ReceivingDate <= Convert(Datetime, N'" & Me.dtpToDate.Value.ToString("yyyy-M-d 23:59:59") & "', 102)"
+                    'End If
+                    'str += "Order By  a.ReceivingId desc"
+                    FillUltraDropDown(cmbInvoice, str)
+                    Me.cmbInvoice.Rows(0).Activate()
+                End If
             End If
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
@@ -5087,4 +5488,80 @@ Public Class frmPaymentNew
         End Try
     End Sub
     'Change by Murtaza for txtcurrencyrate text change (11/09/2022)
+
+    Private Sub chkLinkInvoice_CheckedChanged(sender As Object, e As EventArgs) Handles chkLinkInvoice.CheckedChanged
+        Try
+            If chkLinkInvoice.Checked = True Then
+                flgPurchaseInvoice = True
+                grdPaymentType.visible = True
+                lblInvoice.Visible = True
+                cmbInvoice.Visible = True
+                'lblPartialAmount.Visible = True
+                'txtPartialAmount.Visible = True
+                rbtAll.Checked = True
+                cmbAccounts_ValueChanged(Nothing, Nothing)
+            Else
+                'flgPurchaseInvoice = False
+                grdPaymentType.visible = False
+                lblInvoice.Visible = False
+                cmbInvoice.Visible = False
+                lblPartialAmount.Visible = False
+                txtPartialAmount.Visible = False
+            End If
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
+    Private Sub rbtCustomer_CheckedChanged(sender As Object, e As EventArgs) Handles rbtCustomer.CheckedChanged, rbtAll.CheckedChanged
+        Try
+            If rbtCustomer.Checked = True Then
+                lblPartialAmount.Visible = True
+                txtPartialAmount.Visible = True
+                If cmbInvoice.Value > 0 Then
+                    txtPartialAmount.Text = Me.cmbInvoice.ActiveRow.Cells("Price").Value.ToString
+                Else
+                    txtPartialAmount.Text = 0
+                End If
+
+            Else
+                lblPartialAmount.Visible = False
+                txtPartialAmount.Visible = False
+            End If
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub cmbInvoice_ValueChanged(sender As Object, e As EventArgs) Handles cmbInvoice.ValueChanged
+        Try
+            If cmbInvoice.Value > 0 Then
+                If rbtAll.Checked = True Then
+                    Me.txtAmount.Text = Val(Me.cmbInvoice.ActiveRow.Cells("Price").Value.ToString)
+                    'txtPartialAmount.Text = Me.cmbInvoice.ActiveRow.Cells("Price").Value.ToString
+                    ''drGrd.Item("InvoiceAmount") = Math.Round(Val(Me.cmbInvoice.ActiveRow.Cells("Price").Value.ToString), TotalAmountRounding) * Me.cmbInvoice.ActiveRow.Cells("CurrencyRate").Value.ToString
+                Else
+                    Me.txtAmount.Text = Val(txtPartialAmount.Text)
+                    txtPartialAmount.Text = Me.cmbInvoice.ActiveRow.Cells("Price").Value.ToString
+                    ''drGrd.Item("InvoiceAmount") = Math.Round(Val(txtPartialAmount.Text), TotalAmountRounding) * Me.cmbInvoice.ActiveRow.Cells("CurrencyRate").Value.ToString
+                End If
+                cmbCurrency.SelectedValue = cmbInvoice.ActiveRow.Cells("CurrencyId").Value.ToString
+                Me.txtCurrencyRate.Text = Me.cmbInvoice.ActiveRow.Cells("CurrencyRate").Value.ToString
+                txtReference.Text = "Payment submit against Invoice No. " & cmbInvoice.ActiveRow.Cells("ReceivingNo").Value.ToString & ""
+            End If
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub txtPartialAmount_TextChanged(sender As Object, e As EventArgs) Handles txtPartialAmount.TextChanged
+        Try
+            If txtPartialAmount.Text = "" Then
+                txtPartialAmount.Text = 0
+            ElseIf txtPartialAmount.Text > 0 Then
+                txtAmount.Text = Val(txtPartialAmount.Text)
+            End If
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
 End Class

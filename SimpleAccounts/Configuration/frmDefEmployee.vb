@@ -124,6 +124,8 @@ Public Class frmDefEmployee
         ShiftGroupName
         ShiftName
         NoOfAttachments
+        ReportingTo
+        OfficialEmail
     End Enum
     ''' <summary>
     ''' Ali Faisal : Exception handling on 05-Nov-2018
@@ -232,6 +234,8 @@ Public Class frmDefEmployee
                 FillDropDown(Me.cmbBelt, "select * from tblListBelt")
             ElseIf Condition = "City" Then
                 FillDropDown(Me.ddlCity, "select * from tblListCity")
+            ElseIf Condition = "ReportingTo" Then
+                FillDropDown(Me.cmbReportingTo, "SELECT Employee_ID, Employee_Name, Employee_Code, EmployeeDeptName, EmployeeDesignationName, Gender, CityName, Phone FROM EmployeesView WHERE Active = 1")
                 'Altered Against Task#201506014 Call Fill Combo of EmployeeType Ali Ansari
             ElseIf Condition = "EmployeeType" Then
                 FillDropDown(Me.CmbEmployeeType, "select EmployeeTypeId,EmployeeTypeName from tblEmployeeType order by EmployeeTypeName")
@@ -343,7 +347,7 @@ Public Class frmDefEmployee
             str = "SELECT Emp.Employee_ID,emp.prefix, Emp.Employee_Name, Emp.Employee_Code, Emp.Father_Name, Emp.NIC, Emp.NTN, Emp.Gender, Emp.Martial_Status, " _
              & " Emp.Religion, Emp.DOB, emp.City_ID, emp.CityName,isnull(emp.stateid,0) as StateId,emp.statename,isnull(emp.regionid,0) as RegionId,emp.RegionName,isnull(emp.zoneid,0) as ZoneId,emp.Zonename,isnull(emp.beltid,0) as BeltId,tblListBelt.Beltname, " _
              & " Emp.Address, Emp.Phone, Emp.Mobile, Emp.Email, Emp.Joining_Date,emp.ConfirmationDate,emp.EmployeeTypeId,tblemployeetype.EmployeeTypeName, emp.Dept_ID, Emp.EmployeeDesignationName, Emp.EmployeeDeptName, tblDefDivision.Division_Name, tblDefPayRollDivision.PayRollDivisionName, " _
-             & " emp.Desig_ID,  Emp.Salary, Emp.Active, Emp.Leaving_Date, Emp.Comments,Emp.SalePerson, IsNull(Emp.EmpSalaryAccountId,0) as EmpSalaryAccountId, COA.detail_title, Emp.Reference, Emp.PessiNo, Emp.EobiNo, Emp.EmpPicture, ISNULL(Emp.ShiftGroupId,0) as ShiftGroupId, ISNULL(Emp.ReceiveableAccountId,0) as ReceiveableAccountId, COA1.detail_title as ReceiveableAccountDesc, ISNULL(Emp.Sale_Order_Person,0) as Sale_Order_Person, Emp.AlternateEmpNo, Emp.AttendanceDate, Emp.ContractEndingDate, Family_Code,ID_Remark,Qualification,Blood_Group,Language,Social_Security_No,Insurance_No,Emergency_No,Passport_No,BankAccount_No,NIC_Place,Domicile,Relation,InReplacementNewCode,Previous_Code,Last_Update,JobType,ISNULL(Dept_Division,0) as Dept_Divisin,ISNULL(PayRoll_Division,0) as Payroll_Division, IsNull(Emp.RefEmployeeId,0) as RefEmployeeId, Emp.Bank_Ac_Name,Emp.ShiftGroupName as [Shift Group], Emp.ShiftName as [Shift], Emp.CostCentre, dbo.tbldefcostcenter.Name As CostCentreName, Emp.IsDailyWages, Emp.CNICExpiryDate , IsNull([No_of_Attachment],0) as [No_of_Attachment] " _
+             & " emp.Desig_ID,  Emp.Salary, Emp.Active, Emp.Leaving_Date, Emp.Comments,Emp.SalePerson, IsNull(Emp.EmpSalaryAccountId,0) as EmpSalaryAccountId, COA.detail_title, Emp.Reference, Emp.PessiNo, Emp.EobiNo, Emp.EmpPicture, ISNULL(Emp.ShiftGroupId,0) as ShiftGroupId, ISNULL(Emp.ReceiveableAccountId,0) as ReceiveableAccountId, COA1.detail_title as ReceiveableAccountDesc, ISNULL(Emp.Sale_Order_Person,0) as Sale_Order_Person, Emp.AlternateEmpNo, Emp.AttendanceDate, Emp.ContractEndingDate, Family_Code,ID_Remark,Qualification,Blood_Group,Language,Social_Security_No,Insurance_No,Emergency_No,Passport_No,BankAccount_No,NIC_Place,Domicile,Relation,InReplacementNewCode,Previous_Code,Last_Update,JobType,ISNULL(Dept_Division,0) as Dept_Divisin,ISNULL(PayRoll_Division,0) as Payroll_Division, IsNull(Emp.RefEmployeeId,0) as RefEmployeeId, Emp.Bank_Ac_Name,Emp.ShiftGroupName as [Shift Group], Emp.ShiftName as [Shift], Emp.CostCentre, dbo.tbldefcostcenter.Name As CostCentreName, Emp.IsDailyWages, Emp.CNICExpiryDate , IsNull([No_of_Attachment],0) as [No_of_Attachment], Emp.ReportingTo,Emp.OfficialEmail " _
              & " FROM dbo.EmployeesView Emp LEFT OUTER JOIN " _
              & " VWCOADETAIL COA ON COA.coa_detail_id = emp.EmpSalaryAccountId  LEFT OUTER JOIN " _
              & " VWCOADETAIL COA1 ON COA1.coa_detail_id = Emp.ReceiveableAccountId LEFT OUTER JOIN " _
@@ -464,6 +468,7 @@ Public Class frmDefEmployee
             Me.BtnSave.Text = "&Save"
             txtReligion.Text = ""
             txtName.Text = ""
+            txtOfficialEmail.Text = ""
             txtCode.Text = ""
             txtFather.Text = ""
             txtNIC.Text = ""
@@ -548,6 +553,7 @@ Public Class frmDefEmployee
             If Not Me.cmbRegion.SelectedIndex = -1 Then Me.CmbPrefix.SelectedIndex = 0 ' Reseting Region
             If Not Me.cmbZone.SelectedIndex = -1 Then Me.CmbPrefix.SelectedIndex = 0 ' Reseting Zone
             If Not Me.cmbBelt.SelectedIndex = -1 Then Me.CmbPrefix.SelectedIndex = 0 ' Reseting Belt
+
             'Altered Against 20150505 Reset State,Region,Zone,belt Combos
             'Altered Against 201506014 Reset Employee Type Combo
             If Not Me.CmbEmployeeType.SelectedIndex = -1 Then Me.CmbEmployeeType.SelectedIndex = 0 'Task#20150614  Reseting Employee Type
@@ -555,6 +561,7 @@ Public Class frmDefEmployee
             'Altered Against 201506014 Reset Employee Type Combo
             Me.cmbShiftGroup.SelectedIndex = 0      'Task#1 13-Jun-2015 resetting Shift Group
             Me.cmbState.SelectedIndex = 0           'Task#1 13-Jun-2015 resetting State
+            Me.cmbReportingTo.SelectedIndex = 0
             'Me.txtFactorRate.Text = String.Empty    'Task#18082015 empty factor rate textbox by Ahmad Sharif
             Me.cbDailyWages.Checked = False
             'Ali Faisal : TFS1250 : Reset to default value
@@ -602,13 +609,13 @@ Public Class frmDefEmployee
             'Ali Faisal : TFS1250 : Altered to save CNIC Expiry Date
             'Ayesha Rehman : TFS2645: Altered to save Contract Ending Date
             objCommand.CommandText = "Insert into tblDefEmployee (Employee_Name, Employee_Code, Father_Name, NIC, NTN, Gender, Martial_Status, Religion, DOB, City_ID, Address, Phone, Mobile, Email, " _
-                                            & " Joining_Date, Dept_ID, Desig_ID, Salary, Active, Leaving_Date, Comments, SalePerson, EmpSalaryAccountId, Reference,PessiNo,EobiNo,EmpPicture, ShiftGroupId,ReceiveableAccountId, Sale_Order_Person, AlternateEmpNo, AttendanceDate,ContractEndingDate,Family_Code,ID_Remark,Qualification,Blood_Group,Language,Social_Security_No,Insurance_No,Emergency_No,Passport_No,BankAccount_No,NIC_Place,Domicile,Relation,InReplacementNewCode,Previous_Code,Last_Update,JobType,Dept_Division,PayRoll_Division,RefEmployeeId,Bank_Ac_Name,prefix,Stateid,regionid,zoneid,beltid,EmployeeTypeId,ConfirmationDate, IsDailyWages, CostCentre, CNICExpiryDate) values( " _
+                                            & " Joining_Date, Dept_ID, Desig_ID, Salary, Active, Leaving_Date, Comments, SalePerson, EmpSalaryAccountId, Reference,PessiNo,EobiNo,EmpPicture, ShiftGroupId,ReceiveableAccountId, Sale_Order_Person, AlternateEmpNo, AttendanceDate,ContractEndingDate,Family_Code,ID_Remark,Qualification,Blood_Group,Language,Social_Security_No,Insurance_No,Emergency_No,Passport_No,BankAccount_No,NIC_Place,Domicile,Relation,InReplacementNewCode,Previous_Code,Last_Update,JobType,Dept_Division,PayRoll_Division,RefEmployeeId,Bank_Ac_Name,prefix,Stateid,regionid,zoneid,beltid,EmployeeTypeId,ConfirmationDate, IsDailyWages, CostCentre, CNICExpiryDate, ReportingTo, OfficialEmail) values( " _
                                            & " N'" & txtName.Text.Replace("'", "''") & "',N'" & txtCode.Text.Replace("'", "''") & "',N'" & txtFather.Text.Replace("'", "''") & "',N'" & txtNIC.Text & "',N'" & txtNTN.Text & "',N'" & ddlGender.SelectedItem.ToString & "',N'" & ddlMaritalStatus.SelectedItem.ToString & "', " _
                                            & " N'" & txtReligion.Text & "',N'" & dtpDOB.Value.ToString("yyyy-M-d h:mm:ss tt") & "'," & IIf(ddlCity.SelectedIndex = 0, "Null", ddlCity.SelectedValue) & ",N'" & txtAddress.Text.Replace("'", "''") & "',N'" & txtPhone.Text.Replace("'", "''") & "',N'" & txtMobile.Text.Replace("'", "''") & "',N'" & txtEmail.Text.Replace("'", "''") & "', " _
                                            & " N'" & dtpJoining.Value.ToString("yyyy-M-d h:mm:ss tt") & "'," & IIf(ddlDept.SelectedIndex = 0, "Null", ddlDept.SelectedValue) & "," & IIf(ddlDesignation.SelectedIndex = 0, "Null", ddlDesignation.SelectedValue) & ", " & Val(txtSalary.Text) & "," & Abs(Val(chkActive.Checked)) & ", " _
                                            & " " & IIf(chkActive.Checked = True, "NULL", IIf(chkActive.Checked = True, "NULL", IIf(dtpLeaving.Checked = True, "'" & dtpLeaving.Value.ToString("yyyy-M-d h:mm:ss tt") & "'", "NULL"))) & ", N'" & txtComments.Text & "', " & IIf(Me.chkSalePerson.Checked = False, 0, 1) & ", " & EmpSalaryAccountId & ", N'" & Me.txtrefrance.Text & "', N'" & Me.txtpessiNo.Text & "',N'" & Me.txtEobiNo.Text & "',N'" & _strImagePath & "', " & Val(Me.cmbShiftGroup.SelectedValue) & ", " & Val(Me.EmpReceiveableAccountId) & ", " & IIf(Me.chkSaleOrderPerson.Checked = True, 1, 0) & ", " & Val(Me.txtAlternateEmpNo.Text) & ", " & IIf(Me.dtpAttendanceDate.Checked = False, "NULL", "N'" & dtpAttendanceDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "'") & "," & IIf(Me.dtpContractEndingDate.Checked = False, "NULL", "N'" & dtpContractEndingDate.Value.ToString("yyyy-M-d h:mm:ss tt") & "'") & ",N'" & txtFamilyCode.Text.Replace("'", "''") & "', " _
                                            & " N'" & txtIdRemark.Text.Replace("'", "''") & "'," & IIf(cmbQualification.Text.Length = 0, "NULL", "N'" & cmbQualification.Text.Replace("'", "''") & "'") & "," & IIf(cmbBloodGroup.Text.Length = 0, "NULL", "N'" & cmbBloodGroup.Text.Replace("'", "''") & "'") & "," & IIf(cmbLanguage.Text.Length = 0, "NULL", "N'" & cmbLanguage.Text.Replace("'", "''") & "'") & ",N'" & txtSocialSecurityNo.Text.Replace("'", "''") & "',N'" & txtInsuranceNo.Text.Replace("'", "''") & "',N'" & txtEmergencyNo.Text.Replace("'", "''") & "',N'" & txtPassportNo.Text.Replace("'", "''") & "',N'" & txtBankAccountNo.Text & "',N'" & txtNicPlace.Text.Replace("'", "''") & "'," & IIf(cmbDomicile.Text.Length = 0, "NULL", "N'" & cmbDomicile.Text.Replace("'", "''") & "'") & "," & IIf(cmbRelation.Text.Length = 0, "NULL", "N'" & cmbRelation.Text.Replace("'", "''") & "'") & ",N'" & txtReplacementNewCode.Text.Replace("'", "''") & "',N'" & txtPreviousCode.Text.Replace("'", "''") & "',N'" & dtpLastUpdate.Value.ToString("yyyy-M-d h:mm:ss tt") & "'," & IIf(cmbJobType.Text.Length = 0, "NULL", "N'" & cmbJobType.Text.Replace("'", "''") & "'") & "," & IIf(cmbDivision.SelectedIndex = 0, 0, cmbDivision.SelectedValue) & "," & IIf(cmbPayrollDivision.SelectedIndex = 0, 0, cmbPayrollDivision.SelectedValue) & ", " & IIf(Me.cmbReferenceEmployee.SelectedIndex > 0, Me.cmbReferenceEmployee.SelectedValue, "NULL") & ", " & IIf(cmbBankAcName.Text.Length > 0, "N'" & Me.cmbBankAcName.Text.Replace("'", "''") & "'", "NULL") & ",'" & CmbPrefix.Text & "'," & IIf(cmbState.SelectedIndex = 0, "Null", cmbState.SelectedValue) & "," & IIf(cmbRegion.SelectedIndex = 0, "Null", cmbRegion.SelectedValue) & "," & IIf(cmbZone.SelectedIndex = 0, "Null", cmbZone.SelectedValue) & "," & IIf(cmbBelt.SelectedIndex = 0, "Null", cmbBelt.SelectedValue) & "," _
-                                           & " " & IIf(CmbEmployeeType.SelectedIndex = 0, "Null", CmbEmployeeType.SelectedValue) & "," & IIf(Me.DtpConfirmation.Checked = False, "NULL", "N'" & DtpConfirmation.Value.ToString("yyyy-M-d h:mm:ss tt") & "'") & " , " & IIf(Me.cbDailyWages.Checked = False, 0, 1) & ", " & IIf(Me.cmbCostCentre.SelectedIndex <= 0, 0, Me.cmbCostCentre.SelectedValue) & ", '" & dtpCNICExpiry.Value.ToString("yyyy-M-d h:mm:ss tt") & "') Select @@Identity"
+                                           & " " & IIf(CmbEmployeeType.SelectedIndex = 0, "Null", CmbEmployeeType.SelectedValue) & "," & IIf(Me.DtpConfirmation.Checked = False, "NULL", "N'" & DtpConfirmation.Value.ToString("yyyy-M-d h:mm:ss tt") & "'") & " , " & IIf(Me.cbDailyWages.Checked = False, 0, 1) & ", " & IIf(Me.cmbCostCentre.SelectedIndex <= 0, 0, Me.cmbCostCentre.SelectedValue) & ", '" & dtpCNICExpiry.Value.ToString("yyyy-M-d h:mm:ss tt") & "'," & IIf(cmbReportingTo.SelectedIndex = 0, "Null", cmbReportingTo.SelectedValue) & ",N'" & txtOfficialEmail.Text.Replace("'", "''") & "') Select @@Identity"
             'Altered Against Task#201506014 Save Employee Type and Leaving Date Ali Ansari
             identity = Convert.ToInt32(objCommand.ExecuteScalar())
 
@@ -861,30 +868,29 @@ Public Class frmDefEmployee
                 FillDropDown(cmbRelation, str, False)
                 'End If
 
-                'Altered Against Task#20150511 fill combo of state
-                'State
                 str = String.Empty
                 str = "select stateid,statename from tblliststate where active = 1 order by sortorder"
                 FillDropDown(cmbState, str, True)
                 'Altered Against Task#20150511 fill combo of state
+                str = String.Empty
+                str = "SELECT Employee_ID, Employee_Name, Employee_Code, EmployeeDeptName, EmployeeDesignationName, Gender, CityName, Phone FROM EmployeesView WHERE Active = 1"
+                FillDropDown(cmbReportingTo, str, True)
 
-
-
-            ElseIf strCondition = "division" Then
-                FillDropDown(cmbDivision, "Select Division_Id,Division_Name from tblDefDivision Where Dept_Id = " & Me.ddlDept.SelectedValue & " ")
-            ElseIf strCondition = "payrolldividion" Then
-                FillDropDown(cmbPayrollDivision, "Select PayRollDivision_Id,PayRollDivisionName from tblDefPayRollDivision Where Division_Id = " & Me.cmbDivision.SelectedValue & " ")
-            ElseIf strCondition = "RefEmployee" Then
-                FillDropDown(Me.cmbReferenceEmployee, "Select Employee_Id, Employee_Name, Employee_Code From tblDefEmployee Where Active = 1 ORDER BY 2 ASC") ''TASKTFS75 added and set active =1
-            ElseIf strCondition = "CostCentre" Then
-                ''Start TFS3566
-                If flgCostCenterRights = False Then
-                    FillDropDown(Me.cmbCostCentre, "Select CostCenterID, Name, Code, SortOrder From tblDefCostCenter Where Active = 1 ORDER BY 2 ASC") ''TASKTFS75 added and set active =1
-                Else
-                    FillDropDown(Me.cmbCostCentre, " SELECT  CostCenterID,Name,Code , SortOrder FROM tblDefCostCenter  where ISNULL(CostCenterID, 0) in (select ISNULL(CostCentre_Id, 0) AS CostCenterId FROM tblUserCostCentreRights where UserID = " & LoginUserId & " ) And Active = 1 ORDER BY 2 ASC ") ''TASKTFS75 added and set active =1
+                ElseIf strCondition = "division" Then
+                    FillDropDown(cmbDivision, "Select Division_Id,Division_Name from tblDefDivision Where Dept_Id = " & Me.ddlDept.SelectedValue & " ")
+                ElseIf strCondition = "payrolldividion" Then
+                    FillDropDown(cmbPayrollDivision, "Select PayRollDivision_Id,PayRollDivisionName from tblDefPayRollDivision Where Division_Id = " & Me.cmbDivision.SelectedValue & " ")
+                ElseIf strCondition = "RefEmployee" Then
+                    FillDropDown(Me.cmbReferenceEmployee, "Select Employee_Id, Employee_Name, Employee_Code From tblDefEmployee Where Active = 1 ORDER BY 2 ASC") ''TASKTFS75 added and set active =1
+                ElseIf strCondition = "CostCentre" Then
+                    ''Start TFS3566
+                    If flgCostCenterRights = False Then
+                        FillDropDown(Me.cmbCostCentre, "Select CostCenterID, Name, Code, SortOrder From tblDefCostCenter Where Active = 1 ORDER BY 2 ASC") ''TASKTFS75 added and set active =1
+                    Else
+                        FillDropDown(Me.cmbCostCentre, " SELECT  CostCenterID,Name,Code , SortOrder FROM tblDefCostCenter  where ISNULL(CostCenterID, 0) in (select ISNULL(CostCentre_Id, 0) AS CostCenterId FROM tblUserCostCentreRights where UserID = " & LoginUserId & " ) And Active = 1 ORDER BY 2 ASC ") ''TASKTFS75 added and set active =1
+                    End If
+                    ''End TFS3566
                 End If
-                ''End TFS3566
-            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -906,23 +912,33 @@ Public Class frmDefEmployee
                 txtName.Focus() : FormValidate = False : Exit Function
             End If
 
+            If txtOfficialEmail.Text = "" Then
+                msg_Error("Please Enter Official Email")
+                txtOfficialEmail.Focus() : FormValidate = False : Exit Function
+            End If
+
             If txtCode.Text = "" Then
                 msg_Error("Please Enter Employee Code")
                 txtCode.Focus() : FormValidate = False : Exit Function
             End If
-
-            If Not Me.ddlCity.SelectedIndex > 0 Then
-                msg_Error("Please select a city") : ddlCity.Focus() : Return False : Exit Function
+            If Not Me.CmbEmployeeType.SelectedIndex > 0 Then
+                msg_Error("Please select a Employee Type") : CmbEmployeeType.Focus() : Return (False) : Exit Function
             End If
+            If Not Me.cmbReportingTo.SelectedIndex > 0 Then
+                msg_Error("Please select Reporting To") : cmbReportingTo.Focus() : Return (False) : Exit Function
+            End If
+            'If Not Me.ddlCity.SelectedIndex > 0 Then
+            '    msg_Error("Please select a city") : ddlCity.Focus() : Return False : Exit Function
+            'End If
             If Not Me.ddlDept.SelectedIndex > 0 Then
                 msg_Error("Please select a Department") : ddlDept.Focus() : Return (False) : Exit Function
             End If
             If Not Me.ddlDesignation.SelectedIndex > 0 Then
                 msg_Error("Please select a Designation") : ddlDesignation.Focus() : Return False : Exit Function
             End If
-            If Not Me.cmbShiftGroup.SelectedIndex > 0 Then
-                msg_Error("Please select a Shift Group") : Me.cmbShiftGroup.Focus() : Return False : Exit Function
-            End If
+            'If Not Me.cmbShiftGroup.SelectedIndex > 0 Then
+            '    msg_Error("Please select a Shift Group") : Me.cmbShiftGroup.Focus() : Return False : Exit Function
+            'End If
             ''Start TFS3566
             If flgCostCenterRights = True Then
                 If Not Me.cmbCostCentre.SelectedIndex > 0 Then
@@ -1115,7 +1131,7 @@ Public Class frmDefEmployee
                               & " Family_Code=N'" & txtFamilyCode.Text.Replace("'", "''") & "', ID_Remark= N'" & txtIdRemark.Text & "',Qualification=" & IIf(cmbQualification.Text.Length = 0, "NULL", "N'" & cmbQualification.Text.Replace("'", "''") & "'") & ",Blood_Group=" & IIf(cmbBloodGroup.Text.Length = 0, "NULL", "N'" & cmbBloodGroup.Text & "'") & ",Language=" & IIf(cmbLanguage.Text.Length = 0, "NULL", "N'" & cmbLanguage.Text.Replace("'", "''") & "'") & ",Social_Security_No=N'" & txtSocialSecurityNo.Text.Replace("'", "''") & "',Insurance_No=N'" & txtInsuranceNo.Text.Replace("'", "''") & "',Emergency_No=N'" & txtEmergencyNo.Text.Replace("'", "''") & "',Passport_No=N'" & txtPassportNo.Text.Replace("'", "''") & "',BankAccount_No=N'" & txtBankAccountNo.Text.Replace("'", "''") & "',NIC_Place=N'" & txtNicPlace.Text.Replace("'", "''") & "',Domicile=" & IIf(cmbDomicile.Text.Length = 0, "NULL", "N'" & cmbDomicile.Text.Replace("'", "''") & "'") & ",Relation=" & IIf(cmbRelation.Text.Length = 0, "NULL", "N'" & cmbRelation.Text.Replace("'", "''") & "'") & ",InReplacementNewCode=N'" & txtReplacementNewCode.Text.Replace("'", "''") & "',Previous_Code=N'" & txtPreviousCode.Text.Replace("'", "''") & "',Last_Update=N'" & dtpLastUpdate.Value.ToString("yyyy-M-d h:mm:ss tt") & "',JobType=" & IIf(cmbJobType.Text.Length = 0, "NULL", "N'" & cmbJobType.Text.Replace("'", "''") & "'") & ",Dept_Division= " & IIf(cmbDivision.SelectedIndex = 0, 0, cmbDivision.SelectedValue) & ",PayRoll_Division= " & IIf(cmbPayrollDivision.SelectedIndex = 0, 0, cmbPayrollDivision.SelectedValue) & ", RefEmployeeId=" & IIf(Me.cmbReferenceEmployee.SelectedIndex > 0, Me.cmbReferenceEmployee.SelectedValue, "NULL") & ", Bank_Ac_Name=" & IIf(cmbBankAcName.Text.Length > 0, "'" & Me.cmbBankAcName.Text.Replace("'", "''") & "'", "NULL") & ", " _
                               & " EmployeeTypeId = " & IIf(CmbEmployeeType.SelectedIndex = 0, "Null", CmbEmployeeType.SelectedValue) & ", " _
                               & " ConfirmationDate = " & IIf(Me.DtpConfirmation.Checked = False, "NULL", "N'" & DtpConfirmation.Value.ToString("yyyy-M-d h:mm:ss tt") & "'") & "," _
-                              & " Prefix = '" & CmbPrefix.Text & "',stateid = " & IIf(cmbState.SelectedIndex = 0, "Null", cmbState.SelectedValue) & ",RegionId = " & IIf(cmbRegion.SelectedIndex = 0, "Null", cmbRegion.SelectedValue) & ",zoneid = " & IIf(cmbZone.SelectedIndex = 0, "Null", cmbZone.SelectedValue) & ",beltid = " & IIf(cmbBelt.SelectedIndex = 0, "Null", cmbBelt.SelectedValue) & ", IsDailyWages= " & IIf(Me.cbDailyWages.Checked = True, 1, 0) & ", CostCentre = " & IIf(Me.cmbCostCentre.SelectedIndex <= 0, 0, Me.cmbCostCentre.SelectedValue) & ", CNICExpiryDate = '" & dtpCNICExpiry.Value.ToString("yyyy-M-d h:mm:ss tt") & "' Where Employee_ID= " & txtEmpID.Text & ""
+                              & " Prefix = '" & CmbPrefix.Text & "',stateid = " & IIf(cmbState.SelectedIndex = 0, "Null", cmbState.SelectedValue) & ",RegionId = " & IIf(cmbRegion.SelectedIndex = 0, "Null", cmbRegion.SelectedValue) & ",zoneid = " & IIf(cmbZone.SelectedIndex = 0, "Null", cmbZone.SelectedValue) & ",beltid = " & IIf(cmbBelt.SelectedIndex = 0, "Null", cmbBelt.SelectedValue) & ", IsDailyWages= " & IIf(Me.cbDailyWages.Checked = True, 1, 0) & ", CostCentre = " & IIf(Me.cmbCostCentre.SelectedIndex <= 0, 0, Me.cmbCostCentre.SelectedValue) & ", CNICExpiryDate = '" & dtpCNICExpiry.Value.ToString("yyyy-M-d h:mm:ss tt") & "',ReportingTo = " & IIf(cmbReportingTo.SelectedIndex = 0, "Null", cmbReportingTo.SelectedValue) & ", OfficialEmail=N'" & txtOfficialEmail.Text.Replace("'", "''") & "' Where Employee_ID= " & txtEmpID.Text & ""
 
             '
             'EmployeeTypeId = " & IIf(CmbEmployeeType.SelectedIndex = 0, "Null", CmbEmployeeType.SelectedValue) & "
@@ -1401,7 +1417,13 @@ Public Class frmDefEmployee
             Else
                 cmbState.SelectedIndex = 0
             End If
+            If grdSaved.CurrentRow.Cells("ReportingTo").Value & "" <> "" Then
+                cmbReportingTo.SelectedValue = Val(grdSaved.CurrentRow.Cells("ReportingTo").Value)
+            Else
+                cmbReportingTo.SelectedIndex = 0
+            End If
 
+            txtOfficialEmail.Text = grdSaved.CurrentRow.Cells("OfficialEmail").Value.ToString
             If grdSaved.CurrentRow.Cells(enmEmployee.RegionID).Value & "" <> "" Then
                 cmbRegion.SelectedValue = Val(grdSaved.CurrentRow.Cells(enmEmployee.RegionID).Value)
             Else
@@ -1462,6 +1484,7 @@ Public Class frmDefEmployee
                     Me.btnAttachments.Text = "Attachment (" & intCountAttachedFiles & ")"
                 End If
             End If
+
             ''End TFS4433
             GetSecurityRights()
             Me.TABHISTORY.SelectedTab = Me.TABHISTORY.Tabs(0).TabPage.Tab
@@ -1676,7 +1699,7 @@ Public Class frmDefEmployee
                 Me.btnSalaryType.Enabled = True
                 CtrlGrdBar1.mGridPrint.Enabled = True
                 CtrlGrdBar1.mGridExport.Enabled = True
-                CtrlGrdBar1.mGridChooseFielder.Enabled = True
+9:              CtrlGrdBar1.mGridChooseFielder.Enabled = True
                 'Exit Sub
                 'End If
             Else
@@ -1846,6 +1869,7 @@ Public Class frmDefEmployee
                     If dt.Rows.Count > 0 Then
                         txtEmpID.Text = dt.Rows(0).Item("Employee_Id").ToString
                         txtName.Text = dt.Rows(0).Item("Employee_Name").ToString
+                        txtOfficialEmail.Text = dt.Rows(0).Item("OfficialEmail").ToString
                         txtCode.Text = dt.Rows(0).Item("Employee_Code").ToString
                         txtFather.Text = dt.Rows(0).Item("Father_Name").ToString
                         txtNIC.Text = dt.Rows(0).Item("NIC").ToString
@@ -1964,6 +1988,11 @@ Public Class frmDefEmployee
                             cmbState.SelectedValue = Val(dt.Rows(0).Item("StateID"))
                         Else
                             cmbState.SelectedIndex = 0
+                        End If
+                        If dt.Rows(0).Item("ReportingTo") <> "" Then
+                            cmbReportingTo.SelectedValue = Val(dt.Rows(0).Item("ReportingTo"))
+                        Else
+                            cmbReportingTo.SelectedIndex = 0
                         End If
                         If dt.Rows(0).Item("RegionId") <> "" Then
                             cmbRegion.SelectedValue = Val(dt.Rows(0).Item("RegionId"))

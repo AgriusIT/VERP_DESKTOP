@@ -10,11 +10,12 @@ Public Class frmRelatedItems
         ' Add any initialization after the InitializeComponent() call.
         GetAll()
     End Sub
-    Sub New(ByVal MasterArticleId As Integer)
+    Sub New(ByRef fname As String, ByVal MasterArticleId As Integer)
 
 
         ' This call is required by the designer.
         InitializeComponent()
+        formname = fname
         ' Add any initialization after the InitializeComponent() call.
         GetAll(MasterArticleId)
         'GetAll()
@@ -27,7 +28,7 @@ Public Class frmRelatedItems
             Dim dtRelatedItems As DataTable = GetDataTable(Strng)
             For Each Row As DataRow In dtRelatedItems.Rows
                 Strng = String.Empty
-                Strng = "SELECT ArticleId, ArticleCode AS Code, ArticleDescription AS Description, ArticleTypeName as Type , ArticleCompanyName + ' > ' + ArticleLpoName AS [Category > Sub Category] , SalePrice , ArticleSizeName AS Size, ArticleUnitName AS Unit, ArticleColorName AS Color FROM ArticleDefView WHERE MasterId = " & Row.Item("RelatedArticleId") & ""
+                Strng = "SELECT ArticleId as Id, ArticleCode AS Code, ArticleDescription AS Description, ArticleTypeName as Type , ArticleCompanyName + ' > ' + ArticleLpoName AS [Category > Sub Category] , SalePrice , ArticleSizeName AS Size, ArticleUnitName AS Unit, ArticleColorName AS Color FROM ArticleDefView WHERE ArticleId = " & Row.Item("RelatedArticleId") & ""
                 Dim dt As DataTable = GetDataTable(Strng)
                 If dtChildItems.Rows.Count < 1 Then
                     dtChildItems = dt.Clone()
@@ -39,7 +40,7 @@ Public Class frmRelatedItems
             If dtChildItems.Rows.Count > 0 Then
                 Me.GridEX1.DataSource = dtChildItems
                 Me.GridEX1.RetrieveStructure()
-                Me.GridEX1.RootTable.Columns("ArticleId").Visible = False
+                Me.GridEX1.RootTable.Columns("Id").Visible = False
             End If
         Catch ex As Exception
             Throw ex

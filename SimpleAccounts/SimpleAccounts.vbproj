@@ -1363,6 +1363,12 @@
     <Compile Include="Graph Charts\OpportunityQuarterlyChart.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HRM\frmApproveLeaveApplication.Designer.vb">
+      <DependentUpon>frmApproveLeaveApplication.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HRM\frmApproveLeaveApplication.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Production\frmProduction.Designer.vb">
       <DependentUpon>frmProduction.vb</DependentUpon>
     </Compile>
@@ -8284,6 +8290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Graph Charts\OpportunityQuarterlyChart.resx">
       <DependentUpon>OpportunityQuarterlyChart.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HRM\frmApproveLeaveApplication.resx">
+      <DependentUpon>frmApproveLeaveApplication.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Production\frmProduction.resx">
       <DependentUpon>frmProduction.vb</DependentUpon>

@@ -162,6 +162,8 @@ Partial Class frmPurchaseNew
         Me.cmbMethod = New System.Windows.Forms.ComboBox()
         Me.UltraTabPageControl1 = New Infragistics.Win.UltraWinTabControl.UltraTabPageControl()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label76 = New System.Windows.Forms.Label()
+        Me.lblRemainingBudget = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.txtPONo = New System.Windows.Forms.TextBox()
         Me.dtpPODate = New System.Windows.Forms.DateTimePicker()
@@ -230,6 +232,7 @@ Partial Class frmPurchaseNew
         Me.Label29 = New System.Windows.Forms.Label()
         Me.cmbCurrency = New System.Windows.Forms.ComboBox()
         Me.pnlHeader = New System.Windows.Forms.Panel()
+        Me.CtrlGrdBar3 = New SimpleAccounts.CtrlGrdBar()
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.cmbBatchNo = New Infragistics.Win.UltraWinGrid.UltraCombo()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -270,10 +273,12 @@ Partial Class frmPurchaseNew
         Me.HelpToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.tsbTask1 = New System.Windows.Forms.ToolStripButton()
         Me.tsbConfig = New System.Windows.Forms.ToolStripButton()
+        Me.CtrlGrdBar1 = New SimpleAccounts.CtrlGrdBar()
         Me.cmbSalesMan = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.txtReceivingID = New System.Windows.Forms.TextBox()
         Me.UltraTabPageControl2 = New Infragistics.Win.UltraWinTabControl.UltraTabPageControl()
+        Me.CtrlGrdBar2 = New SimpleAccounts.CtrlGrdBar()
         Me.grdSaved = New Janus.Windows.GridEX.GridEX()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.btnUpdateAll = New System.Windows.Forms.ToolStripButton()
@@ -327,9 +332,6 @@ Partial Class frmPurchaseNew
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.CtrlGrdBar3 = New SimpleAccounts.CtrlGrdBar()
-        Me.CtrlGrdBar1 = New SimpleAccounts.CtrlGrdBar()
-        Me.CtrlGrdBar2 = New SimpleAccounts.CtrlGrdBar()
         Me.UltraTabPageControl3.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.grpItem.SuspendLayout()
@@ -1172,6 +1174,8 @@ Partial Class frmPurchaseNew
         'Panel2
         '
         Me.Panel2.AutoScroll = True
+        Me.Panel2.Controls.Add(Me.Label76)
+        Me.Panel2.Controls.Add(Me.lblRemainingBudget)
         Me.Panel2.Controls.Add(Me.GroupBox2)
         Me.Panel2.Controls.Add(Me.GroupBox8)
         Me.Panel2.Controls.Add(Me.lblProgress)
@@ -1190,6 +1194,31 @@ Partial Class frmPurchaseNew
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1204, 256)
         Me.Panel2.TabIndex = 1
+        '
+        'Label76
+        '
+        Me.Label76.AutoSize = True
+        Me.Label76.BackColor = System.Drawing.Color.Transparent
+        Me.Label76.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label76.ForeColor = System.Drawing.Color.Black
+        Me.Label76.Location = New System.Drawing.Point(534, 182)
+        Me.Label76.Name = "Label76"
+        Me.Label76.Size = New System.Drawing.Size(156, 17)
+        Me.Label76.TabIndex = 19
+        Me.Label76.Text = "Remaining Budget:"
+        Me.Label76.Visible = False
+        '
+        'lblRemainingBudget
+        '
+        Me.lblRemainingBudget.AutoSize = True
+        Me.lblRemainingBudget.BackColor = System.Drawing.Color.Transparent
+        Me.lblRemainingBudget.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRemainingBudget.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.lblRemainingBudget.Location = New System.Drawing.Point(541, 202)
+        Me.lblRemainingBudget.Name = "lblRemainingBudget"
+        Me.lblRemainingBudget.Size = New System.Drawing.Size(0, 17)
+        Me.lblRemainingBudget.TabIndex = 20
+        Me.lblRemainingBudget.Visible = False
         '
         'GroupBox2
         '
@@ -1314,7 +1343,7 @@ Partial Class frmPurchaseNew
         '
         Me.lblProgress.BackColor = System.Drawing.Color.LightYellow
         Me.lblProgress.ForeColor = System.Drawing.Color.Navy
-        Me.lblProgress.Location = New System.Drawing.Point(537, 194)
+        Me.lblProgress.Location = New System.Drawing.Point(820, 200)
         Me.lblProgress.Name = "lblProgress"
         Me.lblProgress.Size = New System.Drawing.Size(263, 52)
         Me.lblProgress.TabIndex = 18
@@ -2009,6 +2038,18 @@ Partial Class frmPurchaseNew
         Me.pnlHeader.Size = New System.Drawing.Size(1204, 44)
         Me.pnlHeader.TabIndex = 0
         '
+        'CtrlGrdBar3
+        '
+        Me.CtrlGrdBar3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CtrlGrdBar3.BackColor = System.Drawing.SystemColors.Control
+        Me.CtrlGrdBar3.Email = Nothing
+        Me.CtrlGrdBar3.FormName = Me
+        Me.CtrlGrdBar3.Location = New System.Drawing.Point(1170, 1)
+        Me.CtrlGrdBar3.MyGrid = Me.grd
+        Me.CtrlGrdBar3.Name = "CtrlGrdBar3"
+        Me.CtrlGrdBar3.Size = New System.Drawing.Size(34, 24)
+        Me.CtrlGrdBar3.TabIndex = 6
+        '
         'lblHeader
         '
         Me.lblHeader.AutoSize = True
@@ -2388,6 +2429,19 @@ Partial Class frmPurchaseNew
         Me.tsbConfig.Size = New System.Drawing.Size(77, 28)
         Me.tsbConfig.Text = "Config"
         '
+        'CtrlGrdBar1
+        '
+        Me.CtrlGrdBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CtrlGrdBar1.BackColor = System.Drawing.SystemColors.Control
+        Me.CtrlGrdBar1.Email = Nothing
+        Me.CtrlGrdBar1.FormName = Me
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1172, 0)
+        Me.CtrlGrdBar1.MyGrid = Me.grd
+        Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
+        Me.CtrlGrdBar1.Size = New System.Drawing.Size(33, 29)
+        Me.CtrlGrdBar1.TabIndex = 4
+        Me.CtrlGrdBar1.TabStop = False
+        '
         'cmbSalesMan
         '
         Me.cmbSalesMan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -2425,6 +2479,18 @@ Partial Class frmPurchaseNew
         Me.UltraTabPageControl2.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabPageControl2.Name = "UltraTabPageControl2"
         Me.UltraTabPageControl2.Size = New System.Drawing.Size(1204, 698)
+        '
+        'CtrlGrdBar2
+        '
+        Me.CtrlGrdBar2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CtrlGrdBar2.BackColor = System.Drawing.Color.Transparent
+        Me.CtrlGrdBar2.Email = Nothing
+        Me.CtrlGrdBar2.FormName = Me
+        Me.CtrlGrdBar2.Location = New System.Drawing.Point(1160, 0)
+        Me.CtrlGrdBar2.MyGrid = Me.grdSaved
+        Me.CtrlGrdBar2.Name = "CtrlGrdBar2"
+        Me.CtrlGrdBar2.Size = New System.Drawing.Size(38, 31)
+        Me.CtrlGrdBar2.TabIndex = 1
         '
         'grdSaved
         '
@@ -2915,43 +2981,6 @@ Partial Class frmPurchaseNew
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'CtrlGrdBar3
-        '
-        Me.CtrlGrdBar3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CtrlGrdBar3.BackColor = System.Drawing.SystemColors.Control
-        Me.CtrlGrdBar3.Email = Nothing
-        Me.CtrlGrdBar3.FormName = Me
-        Me.CtrlGrdBar3.Location = New System.Drawing.Point(1170, 1)
-        Me.CtrlGrdBar3.MyGrid = Me.grd
-        Me.CtrlGrdBar3.Name = "CtrlGrdBar3"
-        Me.CtrlGrdBar3.Size = New System.Drawing.Size(34, 24)
-        Me.CtrlGrdBar3.TabIndex = 6
-        '
-        'CtrlGrdBar1
-        '
-        Me.CtrlGrdBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CtrlGrdBar1.BackColor = System.Drawing.SystemColors.Control
-        Me.CtrlGrdBar1.Email = Nothing
-        Me.CtrlGrdBar1.FormName = Me
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1172, 0)
-        Me.CtrlGrdBar1.MyGrid = Me.grd
-        Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
-        Me.CtrlGrdBar1.Size = New System.Drawing.Size(33, 29)
-        Me.CtrlGrdBar1.TabIndex = 4
-        Me.CtrlGrdBar1.TabStop = False
-        '
-        'CtrlGrdBar2
-        '
-        Me.CtrlGrdBar2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CtrlGrdBar2.BackColor = System.Drawing.Color.Transparent
-        Me.CtrlGrdBar2.Email = Nothing
-        Me.CtrlGrdBar2.FormName = Me
-        Me.CtrlGrdBar2.Location = New System.Drawing.Point(1160, 0)
-        Me.CtrlGrdBar2.MyGrid = Me.grdSaved
-        Me.CtrlGrdBar2.Name = "CtrlGrdBar2"
-        Me.CtrlGrdBar2.Size = New System.Drawing.Size(38, 31)
-        Me.CtrlGrdBar2.TabIndex = 1
-        '
         'frmPurchaseNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
@@ -3277,5 +3306,7 @@ Partial Class frmPurchaseNew
     Friend WithEvents lnkRelatedItems As System.Windows.Forms.LinkLabel
     Friend WithEvents lblCustomVendor As System.Windows.Forms.Label
     Friend WithEvents cmbCustomVendor As Infragistics.Win.UltraWinGrid.UltraCombo
+    Friend WithEvents Label76 As System.Windows.Forms.Label
+    Friend WithEvents lblRemainingBudget As System.Windows.Forms.Label
 
 End Class

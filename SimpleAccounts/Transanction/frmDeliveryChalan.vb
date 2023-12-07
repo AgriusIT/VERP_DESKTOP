@@ -411,7 +411,7 @@ Public Class frmDeliveryChalan
             FillCombo("Discount Type") 'Task2827
             'Me.DisplayRecord()
             'ServicesItem = GetConfigValue("ServiceItem").ToString
-            Me.IsFormOpend = True
+
 
             'If frmModProperty.blnListSeachStartWith = True Then
             '    cmbItem.AutoCompleteMode = Win.AutoCompleteMode.Suggest
@@ -439,7 +439,7 @@ Public Class frmDeliveryChalan
             'TFS3360
             UltraDropDownSearching(cmbVendor, frmModProperty.blnListSeachStartWith, frmModProperty.blnListSeachContains)
             UltraDropDownSearching(cmbItem, frmModProperty.blnListSeachStartWith, frmModProperty.blnListSeachContains)
-
+            Me.IsFormOpend = True
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         Finally
@@ -458,7 +458,7 @@ Public Class frmDeliveryChalan
             'rafay :modified query to add PO_NO in history grid
             'rafay :modified query to add Amount US and currency column in history grid
             str = "SELECT " & IIf(StrCondition.ToString = "All", "", "Top 50") & "   Recv.DeliveryNo, Recv.DeliveryDate AS Date,V.SalesOrderNo, V.SalesOrderDate, vwCOADetail.detail_title as CustomerName, Pack.Packs, (Recv.DeliveryQty) As DeliveryQty,dbo.tblcurrency.currency_code As currency_code, Recv.DeliveryAmount,Recv.AmountUS, Recv.DeliveryId, Recv.Arrival_Time , Recv.Departure_Time, " & _
-                          "Recv.CustomerCode, tbldefEmployee.Employee_Name, Recv.Remarks,Recv.PO_NO,Currency.CurrencyRate, CONVERT(varchar, Recv.CashPaid) AS CashPaid, Recv.EmployeeCode, Recv.PoId, Recv.BiltyNo,isnull(Recv.TransporterId ,0) as TransporterId, Recv.LocationId, Recv.FuelExpense as Fuel, Recv.OtherExpense as Expense ,recv.Adjustment,  isnull(recv.TransitInsurance,0) as TransitInsurance, IsNull(Recv.Post,0) as Post, Case When IsNull(Recv.Post,0)=1 then 'Posted' else 'UnPosted' end As Status, ISNULL(Recv.ServiceItemDelivery,0) as ServiceItemDelivery, Recv.DcDate, ISNULL(Recv.Delivered,0) as Delivered, CASE WHEN ISNULL(PrintLog.Cont,0)=0 THEN 'Print Pending' ELSE 'Printed' end as [Print Status], vwCOADetail.Contact_Email as Email, IsNull([No Of Attachment],0) as  [No Of Attachment], Recv.Driver_Name, Recv.Vehicle_No,Recv.Other_Company,Recv.UserName as 'User Name', Recv.UpdateUserName as [Modified By], IsNull(Recv.JobCardId, 0) As JobCardId " & _
+                          "Recv.CustomerCode, tbldefEmployee.Employee_Name, Recv.Remarks,Recv.PO_NO,Currency.CurrencyId,Currency.CurrencyRate, CONVERT(varchar, Recv.CashPaid) AS CashPaid, Recv.EmployeeCode, Recv.PoId, Recv.BiltyNo,isnull(Recv.TransporterId ,0) as TransporterId, Recv.LocationId, Recv.FuelExpense as Fuel, Recv.OtherExpense as Expense ,recv.Adjustment,  isnull(recv.TransitInsurance,0) as TransitInsurance, IsNull(Recv.Post,0) as Post, Case When IsNull(Recv.Post,0)=1 then 'Posted' else 'UnPosted' end As Status, ISNULL(Recv.ServiceItemDelivery,0) as ServiceItemDelivery, Recv.DcDate, ISNULL(Recv.Delivered,0) as Delivered, CASE WHEN ISNULL(PrintLog.Cont,0)=0 THEN 'Print Pending' ELSE 'Printed' end as [Print Status], vwCOADetail.Contact_Email as Email, IsNull([No Of Attachment],0) as  [No Of Attachment], Recv.Driver_Name, Recv.Vehicle_No,Recv.Other_Company,Recv.UserName as 'User Name', Recv.UpdateUserName as [Modified By], IsNull(Recv.JobCardId, 0) As JobCardId " & _
                           "FROM DeliveryChalanMasterTable Recv INNER JOIN " & _
                           "vwCOADetail ON Recv.CustomerCode = vwCOADetail.coa_detail_id LEFT OUTER JOIN (Select DeliveryId, Sum(IsNull(Sz7, 0)) As Packs From DeliveryChalanDetailTable Group By DeliveryId) As Pack ON Recv.DeliveryId = Pack.DeliveryId LEFT OUTER JOIN " & _
                           "tblDefEmployee ON Recv.EmployeeCode = tblDefEmployee.Employee_Id LEFT OUTER JOIN " & _
@@ -669,7 +669,7 @@ Public Class frmDeliveryChalan
                 ItemFilterByName = Convert.ToBoolean(getConfigValueByType("ItemFilterByName").ToString)
             End If
             'Rafay
-            companyinitials = ""
+            ''companyinitials = ""
             'Rafay
             'END TFS4544
             FillCombo("Item")
@@ -1052,32 +1052,33 @@ Public Class frmDeliveryChalan
             'End If
 
 
+            ''Waqar Raza: Minus Stock check before Adding Item into Grid
+            'If Val(txtQty.Text) > Val(txtStock.Text) Then
+            '    If Mode = "Normal" Then
+            '        If Not IsMinus = True Then
+            '            If Val(Me.txtStock.Text) <> Val(Me.txtTotalQuantity.Text) Then
+            '                If Val(Me.txtStock.Text) - Val(totalQuantity) < 0 Then
+            '                    msg_Error(Me.cmbItem.ActiveRow.Cells("Item").Value.ToString & str_ErrorStockNotEnough)
+            '                    cmbItem.Focus() : Validate_AddToGrid = False : Exit Function
+            '                End If
+            '            End If
 
-            If Val(txtQty.Text) > Val(txtStock.Text) Then
-                If Mode = "Normal" Then
-                    If Not IsMinus = True Then
-                        If Val(Me.txtStock.Text) <> Val(Me.txtTotalQuantity.Text) Then
-                            If Val(Me.txtStock.Text) - Val(totalQuantity) < 0 Then
-                                msg_Error(Me.cmbItem.ActiveRow.Cells("Item").Value.ToString & str_ErrorStockNotEnough)
-                                cmbItem.Focus() : Validate_AddToGrid = False : Exit Function
-                            End If
-                        End If
+            '        End If
+            '        If Not Me.cmbCategory.SelectedIndex = -1 Then
+            '            If CType(Me.cmbCategory.SelectedItem, DataRowView).Row.Item("AllowMinusStock").ToString = "False" AndAlso IsMinus = True Then
+            '                '--
+            '                If Val(Me.txtStock.Text) <> Val(Me.txtTotalQuantity.Text) Then
+            '                    If Val(Me.txtStock.Text) - Val(totalQuantity) < 0 Then
+            '                        msg_Error(Me.cmbItem.ActiveRow.Cells("Item").Value.ToString & str_ErrorStockNotEnough)
+            '                        cmbItem.Focus() : Validate_AddToGrid = False : Exit Function
+            '                    End If
+            '                End If
 
-                    End If
-                    If Not Me.cmbCategory.SelectedIndex = -1 Then
-                        If CType(Me.cmbCategory.SelectedItem, DataRowView).Row.Item("AllowMinusStock").ToString = "False" AndAlso IsMinus = True Then
-                            '--
-                            If Val(Me.txtStock.Text) <> Val(Me.txtTotalQuantity.Text) Then
-                                If Val(Me.txtStock.Text) - Val(totalQuantity) < 0 Then
-                                    msg_Error(Me.cmbItem.ActiveRow.Cells("Item").Value.ToString & str_ErrorStockNotEnough)
-                                    cmbItem.Focus() : Validate_AddToGrid = False : Exit Function
-                                End If
-                            End If
-
-                        End If
-                    End If
-                End If
-            End If
+            '            End If
+            '        End If
+            '    End If
+            'End If
+            ''Waqar Raza: Minus Stock check before Adding Item into Grid
         End If
         Validate_AddToGrid = True
     End Function
@@ -1497,7 +1498,7 @@ Public Class frmDeliveryChalan
                 drNewItem(EnumGridDetail.LogicalItem) = Me.cmbItem.ActiveRow.Cells("LogicalItem").Value
                 'Ali Faisal : UDL : Changes for Reports and other for UDL on 14-16 Nov 2018.
                 drNewItem(EnumGridDetail.AdditionalItem) = 0
-
+                drNewItem(EnumGridDetail.AlternativeItemId) = 0
 
                 dtGrid.Rows.Add(drNewItem)
             End If
@@ -1598,6 +1599,7 @@ Public Class frmDeliveryChalan
                 drNewItem(EnumGridDetail.LogicalItem) = Me.cmbItem.ActiveRow.Cells("LogicalItem").Value
                 'Ali Faisal : UDL : Changes for Reports and other for UDL on 14-16 Nov 2018.
                 drNewItem(EnumGridDetail.AdditionalItem) = 0
+                drNewItem(EnumGridDetail.AlternativeItemId) = 0
                 dtGrid.Rows.Add(drNewItem)
             End If
             If Val(Me.txtStock.Text) > 0 AndAlso Val(totalQuantity) <= Val(Me.txtStock.Text) Then
@@ -1680,6 +1682,7 @@ Public Class frmDeliveryChalan
                 drNewItem(EnumGridDetail.LogicalItem) = Me.cmbItem.ActiveRow.Cells("LogicalItem").Value
                 'Ali Faisal : UDL : Changes for Reports and other for UDL on 14-16 Nov 2018.
                 drNewItem(EnumGridDetail.AdditionalItem) = 0
+                drNewItem(EnumGridDetail.AlternativeItemId) = 0
                 dtGrid.Rows.Add(drNewItem)
             End If
 
@@ -1853,6 +1856,7 @@ Public Class frmDeliveryChalan
                 drNewItem(EnumGridDetail.LogicalItem) = Me.cmbItem.ActiveRow.Cells("LogicalItem").Value
                 'Ali Faisal : UDL : Changes for Reports and other for UDL on 14-16 Nov 2018.
                 drNewItem(EnumGridDetail.AdditionalItem) = 0
+                drNewItem(EnumGridDetail.AlternativeItemId) = 0
                 dtGrid.Rows.Add(drNewItem)
             End If
 
@@ -1935,6 +1939,7 @@ Public Class frmDeliveryChalan
                 drNewItem(EnumGridDetail.LogicalItem) = Me.cmbItem.ActiveRow.Cells("LogicalItem").Value
                 'Ali Faisal : UDL : Changes for Reports and other for UDL on 14-16 Nov 2018.
                 drNewItem(EnumGridDetail.AdditionalItem) = 1
+                drNewItem(EnumGridDetail.AlternativeItemId) = 0
                 dtGrid.Rows.Add(drNewItem)
             End If
             'Ali Faisal : UDL : Changes for Reports and other for UDL on 14-16 Nov 2018.
@@ -2015,6 +2020,7 @@ Public Class frmDeliveryChalan
 
                 drNewItem(EnumGridDetail.LogicalItem) = Me.cmbItem.ActiveRow.Cells("LogicalItem").Value
                 drNewItem(EnumGridDetail.AdditionalItem) = 1
+                drNewItem(EnumGridDetail.AlternativeItemId) = 0
                 dtGrid.Rows.Add(drNewItem)
             End If
             'End If
@@ -2107,6 +2113,7 @@ Public Class frmDeliveryChalan
                 drGrd(EnumGridDetail.LogicalItem) = Me.cmbItem.ActiveRow.Cells("LogicalItem").Value
                 'Ali Faisal : UDL : Changes for Reports and other for UDL on 14-16 Nov 2018.
                 drGrd(EnumGridDetail.AdditionalItem) = 0
+                drGrd(EnumGridDetail.AlternativeItemId) = 0
 
 
                 'dtGrid.Rows.Add(drNewItem)
@@ -4109,6 +4116,27 @@ Public Class frmDeliveryChalan
                 Exit For
             End If
         Next
+        Dim AvailableStock As Double
+        For Each r As Janus.Windows.GridEX.GridEXRow In Me.grd.GetRows
+            ''If r.Cells("AlternativeItem").Value.ToString = "" Then
+            ''If IsEditMode = True Then
+            AvailableStock = Convert.ToDouble(GetStockById(IIf(r.Cells("AlternativeItemId").Value.ToString <> 0, r.Cells("AlternativeItemId").Value, r.Cells("ArticleDefId").Value), r.Cells("LocationId").Value, IIf(r.Cells("unit").ToString = "Loose", "Loose", "Pack")))
+            If AvailableStock - r.Cells("Qty").Value < 0 Then
+                msg_Error(IIf(r.Cells("AlternativeItemId").Value.ToString <> 0, r.Cells("AlternativeItem").Value.ToString, r.Cells("Item").Value.ToString) & str_ErrorStockNotEnough)
+                Return False
+                Exit For
+            End If
+            ''Else
+            'AvailableStock = Convert.ToDouble(GetStockById(IIf(r.Cells("AlternativeItemId").Value.ToString <> "", r.Cells("AlternativeItemId").Value, r.Cells("ArticleDefId").Value), r.Cells("LocationId").Value, IIf(r.Cells("unit").ToString = "Loose", "Loose", "Pack")))
+            'If AvailableStock - r.Cells("Qty").Value < 0 Then
+            '    msg_Error(IIf(r.Cells("AlternativeItemId").Value.ToString <> "", r.Cells("AlternativeItem").Value.ToString, r.Cells("Item").Value.ToString) & str_ErrorStockNotEnough)
+            '    Return False
+            '    Exit For
+            'End If
+            'End If
+
+            ''End If
+        Next
         'End Task:1596
 
         Return True
@@ -4266,6 +4294,7 @@ Public Class frmDeliveryChalan
                     Me.btnAttachment.Text = "Attachment (" & intCountAttachedFiles & ")"
                 End If
             End If
+            
             ''Hide Buttons Edit,Delete and Print on Load Form
             Me.BtnDelete.Visible = True
 
@@ -4905,19 +4934,25 @@ Public Class frmDeliveryChalan
         FillCombo("GrdOrigin")
         ApplyGridSettings()
         CtrlGrdBar2_Load_1(Nothing, Nothing)
-        If objDataSet.Tables(0).Rows.Count > 0 Then
-            If IsDBNull(objDataSet.Tables(0).Rows.Item(0).Item("CurrencyId")) Or Val(objDataSet.Tables(0).Rows.Item(0).Item("CurrencyId").ToString) = 0 Then
-                'Me.cmbCurrency.SelectedValue = Nothing
-                Me.cmbCurrency.Enabled = False
-            Else
-                'IsCurrencyEdit = True
-                'IsNotCurrencyRateToAll = True
-                FillCombo("Currency")
-                Me.CurrencyRate = Val(objDataSet.Tables(0).Rows.Item(0).Item("CurrencyRate").ToString)
-                Me.cmbCurrency.SelectedValue = Val(objDataSet.Tables(0).Rows.Item(0).Item("CurrencyId").ToString)
-                Me.cmbCurrency.Enabled = False
+        If IsEditMode = False Then
+            If objDataSet.Tables(0).Rows.Count > 0 Then
+                If IsDBNull(objDataSet.Tables(0).Rows.Item(0).Item("CurrencyId")) Or Val(objDataSet.Tables(0).Rows.Item(0).Item("CurrencyId").ToString) = 0 Then
+                    'Me.cmbCurrency.SelectedValue = Nothing
+                    Me.cmbCurrency.Enabled = False
+                Else
+                    'IsCurrencyEdit = True
+                    'IsNotCurrencyRateToAll = True
+                    FillCombo("Currency")
+                    Me.CurrencyRate = Val(objDataSet.Tables(0).Rows.Item(0).Item("CurrencyRate").ToString)
+                    Me.cmbCurrency.SelectedValue = Val(objDataSet.Tables(0).Rows.Item(0).Item("CurrencyId").ToString)
+                    Me.cmbCurrency.Enabled = False
+                End If
+                'cmbCurrency_SelectedIndexChanged(Nothing, Nothing)
             End If
-            'cmbCurrency_SelectedIndexChanged(Nothing, Nothing)
+        Else
+            FillCombo("Currency")
+            Me.cmbCurrency.SelectedValue = Val(Me.grdSaved.GetRow.Cells("CurrencyId").Text.ToString)
+            Me.txtCurrencyRate.Text = Val(Me.grdSaved.GetRow.Cells("CurrencyRate").Text.ToString)
         End If
         'grd1.Rows.Clear()
         'For i = 0 To objDataSet.Tables(0).Rows.Count - 1
@@ -5938,11 +5973,11 @@ Public Class frmDeliveryChalan
             Exit Sub
         End If
 
-        If e.KeyCode = Keys.Delete Then
-            If Me.grdSaved.RowCount <= 0 Then Exit Sub
-            DeleteToolStripButton_Click(BtnDelete, Nothing)
-            Exit Sub
-        End If
+        'If e.KeyCode = Keys.Delete Then
+        '    If Me.grdSaved.RowCount <= 0 Then Exit Sub
+        '    DeleteToolStripButton_Click(BtnDelete, Nothing)
+        '    Exit Sub
+        'End If
     End Sub
 
     Private Sub grdSaved_LinkClicked(ByVal sender As Object, ByVal e As Janus.Windows.GridEX.ColumnActionEventArgs) Handles grdSaved.LinkClicked
@@ -8126,7 +8161,7 @@ Public Class frmDeliveryChalan
 
                     'Return GetSerialNo("DC" & "-" & companyinitials & "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "DeliveryChalanMasterTable", "DeliveryNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo("DC" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "DeliveryChalanMasterTable", "DeliveryNo")
                 End If
 
@@ -8137,7 +8172,7 @@ Public Class frmDeliveryChalan
                     '  Return GetNextDocNo("DC" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "DeliveryChalanMasterTable", "DeliveryNo")
                     Return GetSerialNo("DC1" & "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "DeliveryChalanMasterTable", "DeliveryNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo("DC" & "-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "DeliveryChalanMasterTable", "DeliveryNo")
                 End If
                 'rafay:task end
@@ -9094,7 +9129,7 @@ Public Class frmDeliveryChalan
                 'frmRelatedItems.formname = Me.Name
                 'frmRelatedItems.ShowDialog()
                 ''frmRelatedItems.formname = "frmReceivingNote"
-                Dim frmRelItems As New frmRelatedItems(Me.Name)
+                Dim frmRelItems As New frmRelatedItems(Me.Name, Val(grd.CurrentRow.Cells("ArticleDefId").Value))
                 frmRelItems.ShowDialog()
             End If
         End If
@@ -9620,7 +9655,7 @@ Public Class frmDeliveryChalan
                 Select Case e.Column.Key
                     Case "Qty"
                         Dim str As String
-                        str = "SELECT Engine_No, Chassis_No, Sum(InQty) InQty, Sum(OutQty) OutQty, Sum(InQty)-Sum(OutQty) Qty FROM StockDetailTable WHERE Engine_No <> '' And ArticleDefId = " & Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString) & " GROUP BY Engine_No, Chassis_No HAVING Sum(InQty)-Sum(OutQty) > 0"
+                        str = "SELECT Engine_No, Chassis_No, Sum(InQty) InQty, Sum(OutQty) OutQty, Sum(InQty)-Sum(OutQty) Qty FROM StockDetailTable WHERE Engine_No <> '' And ArticleDefId = " & IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString)) & " GROUP BY Engine_No, Chassis_No HAVING Sum(InQty)-Sum(OutQty) > 0"
                         Dim dt As DataTable = GetDataTable(str)
                         If dt.Rows.Count > 0 Then
                             If Val(grd.GetRow.Cells("TotalQty").Value) > dt.Rows(0).Item("Qty") Then
@@ -9635,7 +9670,7 @@ Public Class frmDeliveryChalan
             If Not IsDBNull(Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value) Then
                 Dim str As String = String.Empty
                 str = " Select   ExpiryDate, Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx') And BatchNo ='" & Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString & "'" _
-                     & " And ArticledefId = " & Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & "  And (isnull(InQty, 0) - isnull(OutQty, 0)) > 0 Group by BatchNo,ExpiryDate,Origin ORDER BY ExpiryDate  Asc "
+                     & " And ArticledefId = " & IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString)) & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & "  Group by BatchNo,ExpiryDate,Origin Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0 ORDER BY ExpiryDate  Asc "
                 Dim dtExpiry As DataTable = GetDataTable(str)
                 If dtExpiry.Rows.Count > 0 Then
                     If IsDBNull(dtExpiry.Rows(0).Item("ExpiryDate")) = False Then
@@ -9658,7 +9693,7 @@ Public Class frmDeliveryChalan
             Dim dblPurchasePrice As Double = 0D
             Dim dblCostPrice As Double = 0D
 
-            Dim strPriceData() As String = GetRateByItem(Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString)).Split(",")
+            Dim strPriceData() As String = GetRateByItem(IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString))).Split(",")
 
             If strPriceData.Length > 1 Then
                 dblCostPrice = Val(strPriceData(0).ToString)
@@ -9669,7 +9704,7 @@ Public Class frmDeliveryChalan
             End If
 
             If flgAvgRate = True And getConfigValueByType("CostImplementationLotWiseOnStockMovement") = "True" Then
-                If Convert.ToDouble(GetItemRateByBatch(Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString)) > 0 Then
+                If Convert.ToDouble(GetItemRateByBatch(IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString)), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString)) > 0 Then
                     Me.grd.GetRow.Cells("CostPrice").Value = Convert.ToDouble(GetItemRateByBatch(Val(Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value.ToString), Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString))
                 Else
                     Me.grd.GetRow.Cells("CostPrice").Value = dblPurchasePrice
@@ -9903,6 +9938,7 @@ Public Class frmDeliveryChalan
     Private Sub cmbCurrency_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCurrency.SelectedIndexChanged
         Try
             If IsSOLoaded = True Then Exit Sub
+            If IsFormOpend = False Then Exit Sub
             If Not Me.cmbCurrency.SelectedItem Is Nothing Then
                 Dim dr As DataRowView = CType(cmbCurrency.SelectedItem, DataRowView)
                 If IsEditMode = True Then
@@ -10600,7 +10636,7 @@ Public Class frmDeliveryChalan
             End If
             If Me.grd.RowCount > 0 AndAlso Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value IsNot Nothing Then
                 Dim str As String = ""
-                str = " Select  BatchNo,BatchNo,ExpiryDate,Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx')  And ArticledefId = " & Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & " Group by BatchNo,ExpiryDate,Origin Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0  ORDER BY ExpiryDate Asc"
+                str = " Select  BatchNo,BatchNo,ExpiryDate,Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx')  And ArticledefId = " & IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString)) & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & " Group by BatchNo,ExpiryDate,Origin Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0  ORDER BY ExpiryDate Asc"
                 Dim dt As DataTable = GetDataTable(str)
                 Me.grd.RootTable.Columns(EnumGridDetail.BatchNo).ValueList.PopulateValueList(dt.DefaultView, "BatchNo", "BatchNo")
                 If Not dt.Rows.Count > 0 Then
@@ -10613,7 +10649,7 @@ Public Class frmDeliveryChalan
                 If dt.Rows.Count > 0 Then
                     If Not IsDBNull(dt.Rows(0).Item("BatchNo").ToString) Then
                         str = " Select   ExpiryDate, Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx') And BatchNo ='" & Me.grd.GetRow.Cells(EnumGridDetail.BatchNo).Value.ToString & "'" _
-                             & " And ArticledefId = " & Me.grd.GetRow.Cells(EnumGridDetail.ArticleID).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & "  And (isnull(InQty, 0) - isnull(OutQty, 0)) > 0 Group by BatchNo,ExpiryDate,Origin ORDER BY ExpiryDate  Asc "
+                             & " And ArticledefId = " & IIf(Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString) <> 0, Val(Me.grd.GetRow.Cells(EnumGridDetail.AlternativeItemId).Value.ToString), Val(Me.grd.GetRow.Cells("ArticleDefId").Value.ToString)) & "  And LocationId = " & Val(Me.grd.GetRow.Cells(EnumGridDetail.LocationID).Value.ToString) & "  And (isnull(InQty, 0) - isnull(OutQty, 0)) > 0 Group by BatchNo,ExpiryDate,Origin ORDER BY ExpiryDate  Asc "
                         Dim dtExpiry As DataTable = GetDataTable(str)
                         If dtExpiry.Rows.Count > 0 Then
                             If IsDBNull(dtExpiry.Rows(0).Item("ExpiryDate")) = False Then
@@ -10659,6 +10695,7 @@ Public Class frmDeliveryChalan
     'Change by Murtaza for txtcurrencyrate text change (11/09/2022) 
     Private Sub txtCurrencyRate_TextChanged(sender As Object, e As EventArgs) Handles txtCurrencyRate.TextChanged
         Try
+            If IsFormOpend = False Then Exit Sub
             If Not Me.cmbCurrency.SelectedItem Is Nothing Then
                 Dim dr As DataRowView = CType(cmbCurrency.SelectedItem, DataRowView)
                 If Me.cmbCurrency.SelectedValue = BaseCurrencyId Then

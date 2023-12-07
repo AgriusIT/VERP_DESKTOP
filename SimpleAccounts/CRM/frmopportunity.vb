@@ -651,7 +651,7 @@ Public Class frmopportunity
             Me.txtDurationInMonths.Text = String.Empty
             Me.dtpStartDate.Value = Now
             'Rafay
-            companyinitials = ""
+            ''companyinitials = ""
             If ChkBatteriesIncluded.Checked = True Then
                 ChkBatteriesIncluded.Checked = False
             End If
@@ -844,15 +844,15 @@ Public Class frmopportunity
                 If CompanyPrefix = "V-ERP (UAE)" Then
                     'companyinitials = "UE"
                     StandardNo = GetSerialNo("OP" & "-" + Microsoft.VisualBasic.Right(dtpDocDate.Value.Year, 2) + "-", "tblDefOpportunity", "DocNo")
-                ElseIf CompanyPrefix = "V-ERP (PAK)" Then
-                    companyinitials = "PK"
+                Else
+                    ''companyinitials = "PK"
                     StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
-                ElseIf CompanyPrefix = "V-ERP (KSA)" Then
-                    companyinitials = "KSA"
-                    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
-                ElseIf CompanyPrefix = "V-ERP (MY)" Then
-                    companyinitials = "MY"
-                    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                    'ElseIf CompanyPrefix = "V-ERP (KSA)" Then
+                    '    companyinitials = "KSA"
+                    '    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                    'ElseIf CompanyPrefix = "V-ERP (MY)" Then
+                    '    companyinitials = "MY"
+                    '    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
                     'ElseIf CompanyPrefix = "V-ERP (Remms-PAK)" Then
                     '    companyinitials = "RPK"
                     '    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
@@ -866,15 +866,15 @@ Public Class frmopportunity
                 If CompanyPrefix = "V-ERP (UAE)" Then
                     'companyinitials = "UE"
                     StandardNo = GetSerialNo("OP" & "-" + Microsoft.VisualBasic.Right(dtpDocDate.Value.Year, 2) + "-", "tblDefOpportunity", "DocNo")
-                ElseIf CompanyPrefix = "V-ERP (PAK)" Then
-                    companyinitials = "PK"
+                Else
+                    ''companyinitials = "PK"
                     StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
-                ElseIf CompanyPrefix = "V-ERP (KSA)" Then
-                    companyinitials = "KSA"
-                    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
-                ElseIf CompanyPrefix = "V-ERP (MY)" Then
-                    companyinitials = "MY"
-                    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                    'ElseIf CompanyPrefix = "V-ERP (KSA)" Then
+                    '    companyinitials = "KSA"
+                    '    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
+                    'ElseIf CompanyPrefix = "V-ERP (MY)" Then
+                    '    companyinitials = "MY"
+                    '    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
                     'ElseIf CompanyPrefix = "V-ERP (Remms-PAK)" Then
                     '    companyinitials = "RPK"
                     '    StandardNo = GetNextDocNo("OP" & "-" & companyinitials & "-" & Format(dtpDocDate.Value, "yy"), 4, "tblDefOpportunity", "DocNo")
@@ -1918,7 +1918,7 @@ Public Class frmopportunity
                 GetAutoEmailData()
                 UsersEmail = New List(Of String)
                 'Added by murtaza (01/05/2023) for Remms email
-                If Con.Database = "RemmsTech_UAE_DB" Then
+                If Con.Database.Contains("Remms") Then
                     UsersEmail.Add("purchase@remmsit.com")
                 Else
                     UsersEmail.Add("purchase@agriusit.com")
@@ -1948,7 +1948,7 @@ Public Class frmopportunity
                 UsersEmail = New List(Of String)
                 UsersEmail = New List(Of String)
                 'Added by murtaza (01/05/2023) for Remms email
-                If Con.Database = "RemmsTech_UAE_DB" Then
+                If Con.Database.Contains("Remms") Then
                     UsersEmail.Add("purchase@remmsit.com")
                 Else
                     UsersEmail.Add("purchase@agriusit.com")
@@ -2307,7 +2307,7 @@ Public Class frmopportunity
             '        '    ShowErrorMessage("Serial name already exists.")
             '        '    Me.txtOpportunityName.Focus()
             '        '    'Return False
-
+3226980299:
             '        'Else
             '    Next
             'Next

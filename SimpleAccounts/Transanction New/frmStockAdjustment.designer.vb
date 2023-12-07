@@ -45,6 +45,7 @@ Partial Class frmStockAdjustment
         Me.lblStock = New System.Windows.Forms.Label()
         Me.txtStock = New System.Windows.Forms.TextBox()
         Me.pnlHeader = New System.Windows.Forms.Panel()
+        Me.CtrlGrdBar1 = New SimpleAccounts.CtrlGrdBar()
         Me.grd = New Janus.Windows.GridEX.GridEX()
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.toolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -91,6 +92,7 @@ Partial Class frmStockAdjustment
         Me.Label2 = New System.Windows.Forms.Label()
         Me.UltraTabPageControl2 = New Infragistics.Win.UltraWinTabControl.UltraTabPageControl()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.CtrlGrdBar2 = New SimpleAccounts.CtrlGrdBar()
         Me.grdDataHistory = New Janus.Windows.GridEX.GridEX()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -112,8 +114,6 @@ Partial Class frmStockAdjustment
         Me.UltraTabSharedControlsPage1 = New Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.CtrlGrdBar1 = New SimpleAccounts.CtrlGrdBar()
-        Me.CtrlGrdBar2 = New SimpleAccounts.CtrlGrdBar()
         Me.UltraTabPageControl1.SuspendLayout()
         Me.pnlHeader.SuspendLayout()
         CType(Me.grd, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -239,6 +239,19 @@ Partial Class frmStockAdjustment
         Me.pnlHeader.Name = "pnlHeader"
         Me.pnlHeader.Size = New System.Drawing.Size(1127, 45)
         Me.pnlHeader.TabIndex = 0
+        '
+        'CtrlGrdBar1
+        '
+        Me.CtrlGrdBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CtrlGrdBar1.BackColor = System.Drawing.SystemColors.Control
+        Me.CtrlGrdBar1.Email = Nothing
+        Me.CtrlGrdBar1.FormName = Nothing
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1088, 1)
+        Me.CtrlGrdBar1.MyGrid = Me.grd
+        Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
+        Me.CtrlGrdBar1.Size = New System.Drawing.Size(33, 25)
+        Me.CtrlGrdBar1.TabIndex = 1
+        Me.CtrlGrdBar1.TabStop = False
         '
         'grd
         '
@@ -709,6 +722,19 @@ Partial Class frmStockAdjustment
         Me.Panel1.Size = New System.Drawing.Size(1127, 32)
         Me.Panel1.TabIndex = 19
         '
+        'CtrlGrdBar2
+        '
+        Me.CtrlGrdBar2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CtrlGrdBar2.BackColor = System.Drawing.SystemColors.Control
+        Me.CtrlGrdBar2.Email = Nothing
+        Me.CtrlGrdBar2.FormName = Me
+        Me.CtrlGrdBar2.Location = New System.Drawing.Point(1090, 3)
+        Me.CtrlGrdBar2.MyGrid = Me.grdDataHistory
+        Me.CtrlGrdBar2.Name = "CtrlGrdBar2"
+        Me.CtrlGrdBar2.Size = New System.Drawing.Size(33, 25)
+        Me.CtrlGrdBar2.TabIndex = 21
+        Me.CtrlGrdBar2.TabStop = False
+        '
         'grdDataHistory
         '
         Me.grdDataHistory.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
@@ -881,32 +907,6 @@ Partial Class frmStockAdjustment
         'ErrorProvider1
         '
         Me.ErrorProvider1.ContainerControl = Me
-        '
-        'CtrlGrdBar1
-        '
-        Me.CtrlGrdBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CtrlGrdBar1.BackColor = System.Drawing.SystemColors.Control
-        Me.CtrlGrdBar1.Email = Nothing
-        Me.CtrlGrdBar1.FormName = Nothing
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1088, 1)
-        Me.CtrlGrdBar1.MyGrid = Me.grd
-        Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
-        Me.CtrlGrdBar1.Size = New System.Drawing.Size(33, 25)
-        Me.CtrlGrdBar1.TabIndex = 1
-        Me.CtrlGrdBar1.TabStop = False
-        '
-        'CtrlGrdBar2
-        '
-        Me.CtrlGrdBar2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CtrlGrdBar2.BackColor = System.Drawing.SystemColors.Control
-        Me.CtrlGrdBar2.Email = Nothing
-        Me.CtrlGrdBar2.FormName = Me
-        Me.CtrlGrdBar2.Location = New System.Drawing.Point(1090, 3)
-        Me.CtrlGrdBar2.MyGrid = Me.grdDataHistory
-        Me.CtrlGrdBar2.Name = "CtrlGrdBar2"
-        Me.CtrlGrdBar2.Size = New System.Drawing.Size(33, 25)
-        Me.CtrlGrdBar2.TabIndex = 21
-        Me.CtrlGrdBar2.TabStop = False
         '
         'frmStockAdjustment
         '

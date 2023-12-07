@@ -38,7 +38,7 @@ Public Class frmDefArticleDepartment
     Public Sub FillCombos(Optional ByVal Condition As String = "") Implements IGeneral.FillCombos
         Try
             'FillDropDown(Me.cmbDepartment, "Select main_sub_sub_id, sub_sub_title From tblCOAMainSubSub WHERE Account_Type='Inventory'")
-            FillDropDown(Me.cmbDepartment, "SELECT  v.coa_detail_Id as sub_sub_Id,  v.detail_title FROM  dbo.vwCOADetail v WHERE (v.account_type = 'Inventory') AND v.detail_title <> ''")
+            FillDropDown(Me.cmbDepartment, "SELECT  v.coa_detail_Id as sub_sub_Id,  v.detail_title FROM  dbo.vwCOADetail v WHERE (v.account_type = 'Inventory') AND v.detail_title <> '' or (v.main_type = 'Assets') AND v.detail_title <> ''")
             FillDropDown(Me.cmbSalesAccount, "SELECT  v.coa_detail_Id as sub_sub_Id,  v.detail_title FROM  dbo.vwCOADetail v WHERE (v.main_type = 'Income') AND v.detail_title <> ''")
             FillDropDown(Me.cmbCSG, "SELECT  v.coa_detail_Id as sub_sub_Id,  v.detail_title FROM  dbo.vwCOADetail v WHERE (v.main_type = 'Expense') AND v.detail_title <> ''")
 
@@ -321,7 +321,7 @@ Public Class frmDefArticleDepartment
             Dim id As Integer = 0I
             id = Me.cmbDepartment.SelectedValue
             'FillDropDown(Me.cmbDepartment, "Select main_sub_sub_id, sub_sub_title From tblCOAMainSubSub WHERE Account_Type='Inventory'")
-            FillDropDown(Me.cmbDepartment, "SELECT  v.coa_detail_Id as sub_sub_Id,  v.detail_title FROM  dbo.vwCOADetail v WHERE (v.account_type = 'Inventory')")
+            FillDropDown(Me.cmbDepartment, "SELECT  v.coa_detail_Id as sub_sub_Id,  v.detail_title FROM  dbo.vwCOADetail v WHERE (v.account_type = 'Inventory') AND v.detail_title <> '' or (v.main_type = 'Assets') AND v.detail_title <> ''")
             Me.cmbDepartment.SelectedValue = id
 
             id = Me.cmbSalesAccount.SelectedIndex

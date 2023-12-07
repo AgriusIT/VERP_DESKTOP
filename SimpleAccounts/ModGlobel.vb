@@ -89,11 +89,12 @@ Module ModGlobel
     Public str_Company3 As String = "V-ERP (Remms-UAE)"
     Public str_Company4 As String = "V-ERP (KSA)"
     Public str_Company5 As String = "V-ERP (MY)"
+    Public str_Company6 As String = "V-ERP (SL)"
     Public companycountry As String = ""
     Public companyinitials As String
     Public CompanyPrefix As String = ""
     'Rafay : Task End
-    Public str_Support_Email As String = "v@agriusit.com"
+    Public str_Support_Email As String = "v.erp@agriusit.com"
     Public str_Support_Phone As String = ""
 
     Public str_MessageHeader As String = "Agriusit"
@@ -1983,7 +1984,7 @@ Module ModGlobel
             adp.Fill(dt)
             dt.AcceptChanges()
             If dt.Rows.Count > 0 Then
-                Return dt.Rows(0).Item(0).ToString
+                Return dt.Rows(0).Item(0)
             Else
                 Return 0
             End If

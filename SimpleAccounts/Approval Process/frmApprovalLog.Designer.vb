@@ -62,7 +62,7 @@ Partial Class frmApprovalLog
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Padding = New System.Windows.Forms.Padding(0, 0, 2, 0)
-        Me.ToolStrip1.Size = New System.Drawing.Size(1236, 32)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1099, 31)
         Me.ToolStrip1.TabIndex = 2
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -71,7 +71,7 @@ Partial Class frmApprovalLog
         Me.btnNew.Image = Global.SimpleAccounts.My.Resources.Resources.BtnNew_Image
         Me.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(75, 29)
+        Me.btnNew.Size = New System.Drawing.Size(67, 28)
         Me.btnNew.Text = "&New"
         '
         'BtnRefresh
@@ -79,7 +79,7 @@ Partial Class frmApprovalLog
         Me.BtnRefresh.Image = Global.SimpleAccounts.My.Resources.Resources.Refresh
         Me.BtnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnRefresh.Name = "BtnRefresh"
-        Me.BtnRefresh.Size = New System.Drawing.Size(98, 29)
+        Me.BtnRefresh.Size = New System.Drawing.Size(86, 28)
         Me.BtnRefresh.Text = "Refresh"
         Me.BtnRefresh.Visible = False
         '
@@ -88,7 +88,7 @@ Partial Class frmApprovalLog
         Me.btnRejectRequest.Image = Global.SimpleAccounts.My.Resources.Resources.cross_icon
         Me.btnRejectRequest.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnRejectRequest.Name = "btnRejectRequest"
-        Me.btnRejectRequest.Size = New System.Drawing.Size(86, 29)
+        Me.btnRejectRequest.Size = New System.Drawing.Size(78, 28)
         Me.btnRejectRequest.Text = "&Reject"
         Me.btnRejectRequest.Visible = False
         '
@@ -97,15 +97,15 @@ Partial Class frmApprovalLog
         Me.btnApproveRequest.Image = Global.SimpleAccounts.My.Resources.Resources._20604_24_button_ok_icon
         Me.btnApproveRequest.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnApproveRequest.Name = "btnApproveRequest"
-        Me.btnApproveRequest.Size = New System.Drawing.Size(109, 29)
+        Me.btnApproveRequest.Size = New System.Drawing.Size(94, 28)
         Me.btnApproveRequest.Text = "&Approve"
         Me.btnApproveRequest.Visible = False
         '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 32)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 31)
+        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -117,19 +117,19 @@ Partial Class frmApprovalLog
         Me.SplitContainer1.Panel1.Controls.Add(Me.pnlHeader)
         Me.SplitContainer1.Panel1.Controls.Add(Me.grdLoandRequests)
         Me.SplitContainer1.Panel2Collapsed = True
-        Me.SplitContainer1.Size = New System.Drawing.Size(1236, 859)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1099, 682)
         Me.SplitContainer1.SplitterDistance = 399
-        Me.SplitContainer1.SplitterWidth = 6
+        Me.SplitContainer1.SplitterWidth = 5
         Me.SplitContainer1.TabIndex = 5
         '
         'lblProgress
         '
         Me.lblProgress.BackColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(212, Byte), Integer), CType(CType(232, Byte), Integer))
         Me.lblProgress.ForeColor = System.Drawing.Color.Navy
-        Me.lblProgress.Location = New System.Drawing.Point(416, 355)
+        Me.lblProgress.Location = New System.Drawing.Point(370, 284)
         Me.lblProgress.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblProgress.Name = "lblProgress"
-        Me.lblProgress.Size = New System.Drawing.Size(394, 69)
+        Me.lblProgress.Size = New System.Drawing.Size(350, 55)
         Me.lblProgress.TabIndex = 27
         Me.lblProgress.Text = "Processing please wait ..."
         Me.lblProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -145,11 +145,11 @@ Partial Class frmApprovalLog
         Me.grdLog.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown
         Me.grdLog.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges
         Me.grdLog.GroupByBoxVisible = False
-        Me.grdLog.Location = New System.Drawing.Point(0, 202)
-        Me.grdLog.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.grdLog.Location = New System.Drawing.Point(0, 162)
+        Me.grdLog.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.grdLog.Name = "grdLog"
         Me.grdLog.RecordNavigator = True
-        Me.grdLog.Size = New System.Drawing.Size(1236, 658)
+        Me.grdLog.Size = New System.Drawing.Size(1099, 521)
         Me.grdLog.TabIndex = 26
         Me.grdLog.TotalRow = Janus.Windows.GridEX.InheritableBoolean.[True]
         Me.grdLog.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005
@@ -169,19 +169,19 @@ Partial Class frmApprovalLog
         Me.Panel2.Controls.Add(Me.btnShow)
         Me.Panel2.Controls.Add(Me.Label4)
         Me.Panel2.Controls.Add(Me.dtpFromDate)
-        Me.Panel2.Location = New System.Drawing.Point(0, 98)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Panel2.Location = New System.Drawing.Point(0, 78)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1235, 94)
+        Me.Panel2.Size = New System.Drawing.Size(1098, 75)
         Me.Panel2.TabIndex = 25
         '
         'RdoRejected
         '
         Me.RdoRejected.AutoSize = True
-        Me.RdoRejected.Location = New System.Drawing.Point(969, 63)
-        Me.RdoRejected.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RdoRejected.Location = New System.Drawing.Point(861, 50)
+        Me.RdoRejected.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.RdoRejected.Name = "RdoRejected"
-        Me.RdoRejected.Size = New System.Drawing.Size(98, 24)
+        Me.RdoRejected.Size = New System.Drawing.Size(85, 21)
         Me.RdoRejected.TabIndex = 29
         Me.RdoRejected.Text = "Rejected"
         Me.RdoRejected.UseVisualStyleBackColor = True
@@ -189,10 +189,10 @@ Partial Class frmApprovalLog
         'RdoApproved
         '
         Me.RdoApproved.AutoSize = True
-        Me.RdoApproved.Location = New System.Drawing.Point(854, 63)
-        Me.RdoApproved.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RdoApproved.Location = New System.Drawing.Point(759, 50)
+        Me.RdoApproved.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.RdoApproved.Name = "RdoApproved"
-        Me.RdoApproved.Size = New System.Drawing.Size(102, 24)
+        Me.RdoApproved.Size = New System.Drawing.Size(90, 21)
         Me.RdoApproved.TabIndex = 8
         Me.RdoApproved.Text = "Approved"
         Me.RdoApproved.UseVisualStyleBackColor = True
@@ -201,10 +201,10 @@ Partial Class frmApprovalLog
         '
         Me.RdoUnApproved.AutoSize = True
         Me.RdoUnApproved.Checked = True
-        Me.RdoUnApproved.Location = New System.Drawing.Point(720, 63)
-        Me.RdoUnApproved.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RdoUnApproved.Location = New System.Drawing.Point(640, 50)
+        Me.RdoUnApproved.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.RdoUnApproved.Name = "RdoUnApproved"
-        Me.RdoUnApproved.Size = New System.Drawing.Size(123, 24)
+        Me.RdoUnApproved.Size = New System.Drawing.Size(108, 21)
         Me.RdoUnApproved.TabIndex = 7
         Me.RdoUnApproved.TabStop = True
         Me.RdoUnApproved.Text = "UnApproved"
@@ -215,10 +215,10 @@ Partial Class frmApprovalLog
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(28, 29)
+        Me.Label1.Location = New System.Drawing.Point(25, 23)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(89, 20)
+        Me.Label1.Size = New System.Drawing.Size(74, 17)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "From Date"
         '
@@ -228,20 +228,20 @@ Partial Class frmApprovalLog
         Me.cmbVtype.ForeColor = System.Drawing.Color.FromArgb(CType(CType(12, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.cmbVtype.FormattingEnabled = True
         Me.cmbVtype.Items.AddRange(New Object() {"......Select Any........", "Voucher", "Purchase", "Purchase Return", "Purchase Demand", "Purchase Order", "Receiving Note", "Vendor Quotation", "Purchase Inquiry", "Sales Inquiry", "Sales Quotation", "Sales", "Sales Order", "Delivery Challan", "Sales Return", "Sales Invoice Transfer", "Cash Request", "Employee Request"})
-        Me.cmbVtype.Location = New System.Drawing.Point(720, 22)
-        Me.cmbVtype.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.cmbVtype.Location = New System.Drawing.Point(640, 18)
+        Me.cmbVtype.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbVtype.Name = "cmbVtype"
-        Me.cmbVtype.Size = New System.Drawing.Size(332, 28)
+        Me.cmbVtype.Size = New System.Drawing.Size(296, 24)
         Me.cmbVtype.TabIndex = 7
         '
         'dtpToDate
         '
         Me.dtpToDate.CustomFormat = "dd/MMM/yyyy"
         Me.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpToDate.Location = New System.Drawing.Point(422, 23)
-        Me.dtpToDate.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpToDate.Location = New System.Drawing.Point(375, 18)
+        Me.dtpToDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dtpToDate.Name = "dtpToDate"
-        Me.dtpToDate.Size = New System.Drawing.Size(184, 26)
+        Me.dtpToDate.Size = New System.Drawing.Size(164, 22)
         Me.dtpToDate.TabIndex = 5
         '
         'Label2
@@ -249,10 +249,10 @@ Partial Class frmApprovalLog
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(344, 29)
+        Me.Label2.Location = New System.Drawing.Point(306, 23)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 20)
+        Me.Label2.Size = New System.Drawing.Size(59, 17)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "To Date"
         '
@@ -262,10 +262,10 @@ Partial Class frmApprovalLog
         Me.btnShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnShow.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnShow.ForeColor = System.Drawing.Color.Black
-        Me.btnShow.Location = New System.Drawing.Point(1064, 22)
-        Me.btnShow.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnShow.Location = New System.Drawing.Point(946, 18)
+        Me.btnShow.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnShow.Name = "btnShow"
-        Me.btnShow.Size = New System.Drawing.Size(108, 38)
+        Me.btnShow.Size = New System.Drawing.Size(96, 30)
         Me.btnShow.TabIndex = 11
         Me.btnShow.Text = "Show"
         Me.btnShow.UseVisualStyleBackColor = False
@@ -275,10 +275,10 @@ Partial Class frmApprovalLog
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(616, 29)
+        Me.Label4.Location = New System.Drawing.Point(548, 23)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(97, 20)
+        Me.Label4.Size = New System.Drawing.Size(83, 17)
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Transaction"
         '
@@ -288,10 +288,10 @@ Partial Class frmApprovalLog
         Me.dtpFromDate.CalendarMonthBackground = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.dtpFromDate.CustomFormat = "dd/MMM/yyyy"
         Me.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpFromDate.Location = New System.Drawing.Point(148, 23)
-        Me.dtpFromDate.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.dtpFromDate.Location = New System.Drawing.Point(132, 18)
+        Me.dtpFromDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dtpFromDate.Name = "dtpFromDate"
-        Me.dtpFromDate.Size = New System.Drawing.Size(184, 26)
+        Me.dtpFromDate.Size = New System.Drawing.Size(164, 22)
         Me.dtpFromDate.TabIndex = 3
         '
         'pnlHeader
@@ -300,9 +300,9 @@ Partial Class frmApprovalLog
         Me.pnlHeader.Controls.Add(Me.lblHeader)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
-        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1236, 85)
+        Me.pnlHeader.Size = New System.Drawing.Size(1099, 68)
         Me.pnlHeader.TabIndex = 24
         '
         'lblHeader
@@ -310,10 +310,10 @@ Partial Class frmApprovalLog
         Me.lblHeader.AutoSize = True
         Me.lblHeader.Font = New System.Drawing.Font("Times New Roman", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeader.ForeColor = System.Drawing.Color.Black
-        Me.lblHeader.Location = New System.Drawing.Point(39, 20)
+        Me.lblHeader.Location = New System.Drawing.Point(35, 16)
         Me.lblHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(205, 36)
+        Me.lblHeader.Size = New System.Drawing.Size(177, 31)
         Me.lblHeader.TabIndex = 1
         Me.lblHeader.Text = "Approval Log"
         '
@@ -326,11 +326,11 @@ Partial Class frmApprovalLog
         Me.grdLoandRequests.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown
         Me.grdLoandRequests.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges
         Me.grdLoandRequests.GroupByBoxVisible = False
-        Me.grdLoandRequests.Location = New System.Drawing.Point(3, 102)
-        Me.grdLoandRequests.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.grdLoandRequests.Location = New System.Drawing.Point(3, 82)
+        Me.grdLoandRequests.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.grdLoandRequests.Name = "grdLoandRequests"
         Me.grdLoandRequests.RecordNavigator = True
-        Me.grdLoandRequests.Size = New System.Drawing.Size(1232, 658)
+        Me.grdLoandRequests.Size = New System.Drawing.Size(1095, 521)
         Me.grdLoandRequests.TabIndex = 28
         Me.grdLoandRequests.TotalRow = Janus.Windows.GridEX.InheritableBoolean.[True]
         Me.grdLoandRequests.Visible = False
@@ -342,23 +342,23 @@ Partial Class frmApprovalLog
         Me.CtrlGrdBar1.BackColor = System.Drawing.Color.Transparent
         Me.CtrlGrdBar1.Email = Nothing
         Me.CtrlGrdBar1.FormName = Me
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1179, 0)
-        Me.CtrlGrdBar1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1048, 0)
+        Me.CtrlGrdBar1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CtrlGrdBar1.MyGrid = Me.grdLog
         Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
-        Me.CtrlGrdBar1.Size = New System.Drawing.Size(57, 38)
+        Me.CtrlGrdBar1.Size = New System.Drawing.Size(51, 30)
         Me.CtrlGrdBar1.TabIndex = 4
         '
         'frmApprovalLog
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1236, 891)
+        Me.ClientSize = New System.Drawing.Size(1099, 713)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.CtrlGrdBar1)
         Me.Controls.Add(Me.ToolStrip1)
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmApprovalLog"
         Me.Text = "Approval Log"
         Me.ToolStrip1.ResumeLayout(False)

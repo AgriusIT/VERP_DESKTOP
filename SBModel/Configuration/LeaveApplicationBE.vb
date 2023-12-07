@@ -13,4 +13,10 @@
     Public Property PeriodId As Integer
     Public Property NoOfDays As Double
     Public Property Description As String
+    Public Property Status As Boolean
+    Public Property ApprovedBy As String
+    Public Property ScheduledLeave As DateTime
+    Public Property CompensatoryLeave As DateTime
+    Public Property Difference As String
+    Public Property JoiningDate As DateTime
 End Class

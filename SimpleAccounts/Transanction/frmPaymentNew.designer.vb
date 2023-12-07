@@ -99,13 +99,19 @@ Partial Class frmPaymentNew
         Me.lblRecieveIn = New System.Windows.Forms.Label()
         Me.lblVoucherNo = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.txtPartialAmount = New System.Windows.Forms.TextBox()
+        Me.grdPaymentType = New System.Windows.Forms.GroupBox()
+        Me.rbtCustomer = New System.Windows.Forms.RadioButton()
+        Me.rbtAll = New System.Windows.Forms.RadioButton()
         Me.chkAllAccounts = New System.Windows.Forms.CheckBox()
         Me.cmbInvoice = New Infragistics.Win.UltraWinGrid.UltraCombo()
-        Me.lblInvoice = New System.Windows.Forms.Label()
         Me.lblNetAmountNumberConvertor = New System.Windows.Forms.Label()
         Me.lblAmountNumberConvertor = New System.Windows.Forms.Label()
+        Me.lblPartialAmount = New System.Windows.Forms.Label()
+        Me.lblInvoice = New System.Windows.Forms.Label()
         Me.lblPayment = New System.Windows.Forms.Label()
         Me.txtCustomerBalance = New System.Windows.Forms.TextBox()
+        Me.chkLinkInvoice = New System.Windows.Forms.CheckBox()
         Me.txtTax = New System.Windows.Forms.TextBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.txtTaxAmount = New System.Windows.Forms.TextBox()
@@ -170,6 +176,7 @@ Partial Class frmPaymentNew
         Me.btnAttachment = New System.Windows.Forms.ToolStripSplitButton()
         Me.btnPreviewAttachment = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
+        Me.btnPurchaseInvoiceSearch = New System.Windows.Forms.ToolStripButton()
         Me.btnSMSTemplate = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
         Me.HelpToolStripButton = New System.Windows.Forms.ToolStripButton()
@@ -181,7 +188,6 @@ Partial Class frmPaymentNew
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.cmbLayout = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator()
-        Me.btnPurchaseInvoiceSearch = New System.Windows.Forms.ToolStripButton()
         Me.grdVoucher = New Infragistics.Win.UltraWinTabControl.UltraTabPageControl()
         Me.CtrlGrdBar10 = New SimpleAccounts.CtrlGrdBar()
         Me.grdVouchers = New Janus.Windows.GridEX.GridEX()
@@ -242,6 +248,7 @@ Partial Class frmPaymentNew
         Me.Panel1.SuspendLayout()
         CType(Me.txtMemo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        Me.grdPaymentType.SuspendLayout()
         CType(Me.cmbInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmbAccounts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowLayoutPanel1.SuspendLayout()
@@ -271,7 +278,7 @@ Partial Class frmPaymentNew
         Me.UltraTabPageControl1.Controls.Add(Me.ToolStrip1)
         Me.UltraTabPageControl1.Location = New System.Drawing.Point(1, 1)
         Me.UltraTabPageControl1.Name = "UltraTabPageControl1"
-        Me.UltraTabPageControl1.Size = New System.Drawing.Size(1282, 668)
+        Me.UltraTabPageControl1.Size = New System.Drawing.Size(1282, 665)
         '
         'CtrlGrdBar4
         '
@@ -298,7 +305,7 @@ Partial Class frmPaymentNew
         Me.grd.Location = New System.Drawing.Point(0, 4)
         Me.grd.Name = "grd"
         Me.grd.RecordNavigator = True
-        Me.grd.Size = New System.Drawing.Size(1285, 206)
+        Me.grd.Size = New System.Drawing.Size(1285, 203)
         Me.grd.TabIndex = 0
         Me.grd.TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ControlNavigation
         Me.grd.TabStop = False
@@ -313,7 +320,7 @@ Partial Class frmPaymentNew
         Me.lblPrintStatus.AutoSize = True
         Me.lblPrintStatus.Location = New System.Drawing.Point(1113, 36)
         Me.lblPrintStatus.Name = "lblPrintStatus"
-        Me.lblPrintStatus.Size = New System.Drawing.Size(161, 13)
+        Me.lblPrintStatus.Size = New System.Drawing.Size(200, 17)
         Me.lblPrintStatus.TabIndex = 3
         Me.lblPrintStatus.Text = "Print Status : Print Pending"
         '
@@ -324,7 +331,7 @@ Partial Class frmPaymentNew
         Me.pnlGrd.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlGrd.Location = New System.Drawing.Point(0, 458)
         Me.pnlGrd.Name = "pnlGrd"
-        Me.pnlGrd.Size = New System.Drawing.Size(1282, 210)
+        Me.pnlGrd.Size = New System.Drawing.Size(1282, 207)
         Me.pnlGrd.TabIndex = 2
         '
         'lblProgress
@@ -368,7 +375,7 @@ Partial Class frmPaymentNew
         Me.lblHeader.Location = New System.Drawing.Point(15, 5)
         Me.lblHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(105, 23)
+        Me.lblHeader.Size = New System.Drawing.Size(132, 29)
         Me.lblHeader.TabIndex = 0
         Me.lblHeader.Text = "Payment"
         '
@@ -411,7 +418,7 @@ Partial Class frmPaymentNew
         Me.lblCashRequest.Location = New System.Drawing.Point(490, 45)
         Me.lblCashRequest.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCashRequest.Name = "lblCashRequest"
-        Me.lblCashRequest.Size = New System.Drawing.Size(86, 13)
+        Me.lblCashRequest.Size = New System.Drawing.Size(106, 17)
         Me.lblCashRequest.TabIndex = 65
         Me.lblCashRequest.Text = "Cash Request"
         '
@@ -420,7 +427,7 @@ Partial Class frmPaymentNew
         Me.cmbCashRequest.FormattingEnabled = True
         Me.cmbCashRequest.Location = New System.Drawing.Point(495, 60)
         Me.cmbCashRequest.Name = "cmbCashRequest"
-        Me.cmbCashRequest.Size = New System.Drawing.Size(167, 21)
+        Me.cmbCashRequest.Size = New System.Drawing.Size(167, 25)
         Me.cmbCashRequest.TabIndex = 66
         '
         'lblPostedBy
@@ -428,16 +435,16 @@ Partial Class frmPaymentNew
         Me.lblPostedBy.AutoSize = True
         Me.lblPostedBy.Location = New System.Drawing.Point(334, 86)
         Me.lblPostedBy.Name = "lblPostedBy"
-        Me.lblPostedBy.Size = New System.Drawing.Size(14, 13)
+        Me.lblPostedBy.Size = New System.Drawing.Size(17, 17)
         Me.lblPostedBy.TabIndex = 64
         Me.lblPostedBy.Text = "p"
         '
         'chkEnableDepositAc
         '
         Me.chkEnableDepositAc.AutoSize = True
-        Me.chkEnableDepositAc.Location = New System.Drawing.Point(691, 23)
+        Me.chkEnableDepositAc.Location = New System.Drawing.Point(670, 23)
         Me.chkEnableDepositAc.Name = "chkEnableDepositAc"
-        Me.chkEnableDepositAc.Size = New System.Drawing.Size(71, 17)
+        Me.chkEnableDepositAc.Size = New System.Drawing.Size(85, 21)
         Me.chkEnableDepositAc.TabIndex = 5
         Me.chkEnableDepositAc.TabStop = False
         Me.chkEnableDepositAc.Text = "Enabled"
@@ -449,7 +456,7 @@ Partial Class frmPaymentNew
         Me.lblCheckedBy.AutoSize = True
         Me.lblCheckedBy.Location = New System.Drawing.Point(100, 86)
         Me.lblCheckedBy.Name = "lblCheckedBy"
-        Me.lblCheckedBy.Size = New System.Drawing.Size(13, 13)
+        Me.lblCheckedBy.Size = New System.Drawing.Size(15, 17)
         Me.lblCheckedBy.TabIndex = 63
         Me.lblCheckedBy.Text = "c"
         '
@@ -462,7 +469,7 @@ Partial Class frmPaymentNew
         Me.txtDepositBeforeBalance.Location = New System.Drawing.Point(559, 4)
         Me.txtDepositBeforeBalance.Name = "txtDepositBeforeBalance"
         Me.txtDepositBeforeBalance.ReadOnly = True
-        Me.txtDepositBeforeBalance.Size = New System.Drawing.Size(104, 14)
+        Me.txtDepositBeforeBalance.Size = New System.Drawing.Size(104, 17)
         Me.txtDepositBeforeBalance.TabIndex = 10
         Me.txtDepositBeforeBalance.TabStop = False
         Me.txtDepositBeforeBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -473,7 +480,7 @@ Partial Class frmPaymentNew
         Me.txtCurrencyRate.Location = New System.Drawing.Point(323, 21)
         Me.txtCurrencyRate.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtCurrencyRate.Name = "txtCurrencyRate"
-        Me.txtCurrencyRate.Size = New System.Drawing.Size(71, 21)
+        Me.txtCurrencyRate.Size = New System.Drawing.Size(71, 24)
         Me.txtCurrencyRate.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.txtCurrencyRate, "Enter Currency Rate")
         '
@@ -484,7 +491,7 @@ Partial Class frmPaymentNew
         Me.lblCurrencyRate.Location = New System.Drawing.Point(320, 5)
         Me.lblCurrencyRate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCurrencyRate.Name = "lblCurrencyRate"
-        Me.lblCurrencyRate.Size = New System.Drawing.Size(63, 13)
+        Me.lblCurrencyRate.Size = New System.Drawing.Size(76, 17)
         Me.lblCurrencyRate.TabIndex = 4
         Me.lblCurrencyRate.Text = "Curr Rate"
         Me.ToolTip1.SetToolTip(Me.lblCurrencyRate, "Currency Rate")
@@ -497,7 +504,7 @@ Partial Class frmPaymentNew
         Me.txtMemo.ImageTransparentColor = System.Drawing.Color.Gainsboro
         Me.txtMemo.Location = New System.Drawing.Point(249, 60)
         Me.txtMemo.Name = "txtMemo"
-        Me.txtMemo.Size = New System.Drawing.Size(241, 22)
+        Me.txtMemo.Size = New System.Drawing.Size(241, 26)
         Me.txtMemo.TabIndex = 18
         Me.ToolTip1.SetToolTip(Me.txtMemo, "Enter reference")
         '
@@ -509,7 +516,7 @@ Partial Class frmPaymentNew
         Me.cmbCashAccount.Location = New System.Drawing.Point(495, 21)
         Me.cmbCashAccount.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbCashAccount.Name = "cmbCashAccount"
-        Me.cmbCashAccount.Size = New System.Drawing.Size(168, 21)
+        Me.cmbCashAccount.Size = New System.Drawing.Size(168, 25)
         Me.cmbCashAccount.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.cmbCashAccount, "Select Deposit Account")
         '
@@ -520,7 +527,7 @@ Partial Class frmPaymentNew
         Me.lblCompany.Location = New System.Drawing.Point(2, 5)
         Me.lblCompany.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCompany.Name = "lblCompany"
-        Me.lblCompany.Size = New System.Drawing.Size(62, 13)
+        Me.lblCompany.Size = New System.Drawing.Size(74, 17)
         Me.lblCompany.TabIndex = 0
         Me.lblCompany.Text = "Company"
         Me.ToolTip1.SetToolTip(Me.lblCompany, "Company")
@@ -533,7 +540,7 @@ Partial Class frmPaymentNew
         Me.cmbVoucherType.Location = New System.Drawing.Point(403, 21)
         Me.cmbVoucherType.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbVoucherType.Name = "cmbVoucherType"
-        Me.cmbVoucherType.Size = New System.Drawing.Size(87, 21)
+        Me.cmbVoucherType.Size = New System.Drawing.Size(87, 25)
         Me.cmbVoucherType.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.cmbVoucherType, "Select Pay Method")
         '
@@ -544,7 +551,7 @@ Partial Class frmPaymentNew
         Me.lblDocDate.Location = New System.Drawing.Point(117, 45)
         Me.lblDocDate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDocDate.Name = "lblDocDate"
-        Me.lblDocDate.Size = New System.Drawing.Size(65, 13)
+        Me.lblDocDate.Size = New System.Drawing.Size(79, 17)
         Me.lblDocDate.TabIndex = 15
         Me.lblDocDate.Text = "Doc Date:"
         Me.ToolTip1.SetToolTip(Me.lblDocDate, "Document Date")
@@ -556,7 +563,7 @@ Partial Class frmPaymentNew
         Me.dtVoucherDate.Location = New System.Drawing.Point(120, 61)
         Me.dtVoucherDate.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.dtVoucherDate.Name = "dtVoucherDate"
-        Me.dtVoucherDate.Size = New System.Drawing.Size(122, 21)
+        Me.dtVoucherDate.Size = New System.Drawing.Size(122, 24)
         Me.dtVoucherDate.TabIndex = 16
         Me.ToolTip1.SetToolTip(Me.dtVoucherDate, "Voucher Date")
         '
@@ -567,7 +574,7 @@ Partial Class frmPaymentNew
         Me.chkPost.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkPost.Location = New System.Drawing.Point(249, 86)
         Me.chkPost.Name = "chkPost"
-        Me.chkPost.Size = New System.Drawing.Size(64, 17)
+        Me.chkPost.Size = New System.Drawing.Size(78, 21)
         Me.chkPost.TabIndex = 14
         Me.chkPost.Text = "Posted"
         Me.ToolTip1.SetToolTip(Me.chkPost, "Posted Voucher If Check On")
@@ -578,7 +585,7 @@ Partial Class frmPaymentNew
         Me.chkChecked.AutoSize = True
         Me.chkChecked.Location = New System.Drawing.Point(5, 85)
         Me.chkChecked.Name = "chkChecked"
-        Me.chkChecked.Size = New System.Drawing.Size(76, 17)
+        Me.chkChecked.Size = New System.Drawing.Size(89, 21)
         Me.chkChecked.TabIndex = 13
         Me.chkChecked.Text = "Checked"
         Me.ToolTip1.SetToolTip(Me.chkChecked, "Posted Voucher If Check On")
@@ -592,7 +599,7 @@ Partial Class frmPaymentNew
         Me.cmbCompany.Location = New System.Drawing.Point(4, 21)
         Me.cmbCompany.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbCompany.Name = "cmbCompany"
-        Me.cmbCompany.Size = New System.Drawing.Size(238, 21)
+        Me.cmbCompany.Size = New System.Drawing.Size(238, 25)
         Me.cmbCompany.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbCompany, "Select Company")
         '
@@ -603,7 +610,7 @@ Partial Class frmPaymentNew
         Me.cmbCurrency.FormattingEnabled = True
         Me.cmbCurrency.Location = New System.Drawing.Point(249, 21)
         Me.cmbCurrency.Name = "cmbCurrency"
-        Me.cmbCurrency.Size = New System.Drawing.Size(67, 21)
+        Me.cmbCurrency.Size = New System.Drawing.Size(67, 25)
         Me.cmbCurrency.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.cmbCurrency, "Select Currency")
         '
@@ -614,7 +621,7 @@ Partial Class frmPaymentNew
         Me.lblCurrency.Location = New System.Drawing.Point(246, 5)
         Me.lblCurrency.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCurrency.Name = "lblCurrency"
-        Me.lblCurrency.Size = New System.Drawing.Size(60, 13)
+        Me.lblCurrency.Size = New System.Drawing.Size(71, 17)
         Me.lblCurrency.TabIndex = 2
         Me.lblCurrency.Text = "Currency"
         Me.ToolTip1.SetToolTip(Me.lblCurrency, "Currency")
@@ -624,7 +631,7 @@ Partial Class frmPaymentNew
         Me.lblReference.AutoSize = True
         Me.lblReference.Location = New System.Drawing.Point(246, 45)
         Me.lblReference.Name = "lblReference"
-        Me.lblReference.Size = New System.Drawing.Size(70, 13)
+        Me.lblReference.Size = New System.Drawing.Size(83, 17)
         Me.lblReference.TabIndex = 17
         Me.lblReference.Text = "Reference:"
         Me.ToolTip1.SetToolTip(Me.lblReference, "Refernece")
@@ -634,7 +641,7 @@ Partial Class frmPaymentNew
         Me.lblPayMethod.AutoSize = True
         Me.lblPayMethod.Location = New System.Drawing.Point(400, 5)
         Me.lblPayMethod.Name = "lblPayMethod"
-        Me.lblPayMethod.Size = New System.Drawing.Size(73, 13)
+        Me.lblPayMethod.Size = New System.Drawing.Size(89, 17)
         Me.lblPayMethod.TabIndex = 6
         Me.lblPayMethod.Text = "Pay Method"
         Me.ToolTip1.SetToolTip(Me.lblPayMethod, "Pay Method")
@@ -645,7 +652,7 @@ Partial Class frmPaymentNew
         Me.txtVoucherNo.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtVoucherNo.Name = "txtVoucherNo"
         Me.txtVoucherNo.ReadOnly = True
-        Me.txtVoucherNo.Size = New System.Drawing.Size(107, 21)
+        Me.txtVoucherNo.Size = New System.Drawing.Size(107, 24)
         Me.txtVoucherNo.TabIndex = 12
         Me.txtVoucherNo.TabStop = False
         Me.ToolTip1.SetToolTip(Me.txtVoucherNo, "Voucher No:")
@@ -655,7 +662,7 @@ Partial Class frmPaymentNew
         Me.lblRecieveIn.AutoSize = True
         Me.lblRecieveIn.Location = New System.Drawing.Point(494, 5)
         Me.lblRecieveIn.Name = "lblRecieveIn"
-        Me.lblRecieveIn.Size = New System.Drawing.Size(66, 13)
+        Me.lblRecieveIn.Size = New System.Drawing.Size(79, 17)
         Me.lblRecieveIn.TabIndex = 8
         Me.lblRecieveIn.Text = "Pay From:"
         Me.ToolTip1.SetToolTip(Me.lblRecieveIn, "Pay From:")
@@ -667,20 +674,24 @@ Partial Class frmPaymentNew
         Me.lblVoucherNo.Location = New System.Drawing.Point(2, 45)
         Me.lblVoucherNo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblVoucherNo.Name = "lblVoucherNo"
-        Me.lblVoucherNo.Size = New System.Drawing.Size(102, 13)
+        Me.lblVoucherNo.Size = New System.Drawing.Size(125, 17)
         Me.lblVoucherNo.TabIndex = 11
         Me.lblVoucherNo.Text = "Voucher Number"
         Me.ToolTip1.SetToolTip(Me.lblVoucherNo, "Voucher No")
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.txtPartialAmount)
+        Me.Panel2.Controls.Add(Me.grdPaymentType)
         Me.Panel2.Controls.Add(Me.chkAllAccounts)
         Me.Panel2.Controls.Add(Me.cmbInvoice)
-        Me.Panel2.Controls.Add(Me.lblInvoice)
         Me.Panel2.Controls.Add(Me.lblNetAmountNumberConvertor)
         Me.Panel2.Controls.Add(Me.lblAmountNumberConvertor)
+        Me.Panel2.Controls.Add(Me.lblPartialAmount)
+        Me.Panel2.Controls.Add(Me.lblInvoice)
         Me.Panel2.Controls.Add(Me.lblPayment)
         Me.Panel2.Controls.Add(Me.txtCustomerBalance)
+        Me.Panel2.Controls.Add(Me.chkLinkInvoice)
         Me.Panel2.Controls.Add(Me.txtTax)
         Me.Panel2.Controls.Add(Me.Label30)
         Me.Panel2.Controls.Add(Me.txtTaxAmount)
@@ -713,12 +724,55 @@ Partial Class frmPaymentNew
         Me.Panel2.Size = New System.Drawing.Size(944, 294)
         Me.Panel2.TabIndex = 2
         '
+        'txtPartialAmount
+        '
+        Me.txtPartialAmount.Location = New System.Drawing.Point(672, 134)
+        Me.txtPartialAmount.Name = "txtPartialAmount"
+        Me.txtPartialAmount.Size = New System.Drawing.Size(185, 24)
+        Me.txtPartialAmount.TabIndex = 54
+        Me.txtPartialAmount.Text = "0"
+        Me.txtPartialAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.ToolTip1.SetToolTip(Me.txtPartialAmount, "Enter With Holding Percentage")
+        '
+        'grdPaymentType
+        '
+        Me.grdPaymentType.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grdPaymentType.Controls.Add(Me.rbtCustomer)
+        Me.grdPaymentType.Controls.Add(Me.rbtAll)
+        Me.grdPaymentType.Location = New System.Drawing.Point(782, 41)
+        Me.grdPaymentType.Name = "grdPaymentType"
+        Me.grdPaymentType.Size = New System.Drawing.Size(138, 46)
+        Me.grdPaymentType.TabIndex = 53
+        Me.grdPaymentType.TabStop = False
+        Me.grdPaymentType.Text = "Payment Type"
+        '
+        'rbtCustomer
+        '
+        Me.rbtCustomer.AutoSize = True
+        Me.rbtCustomer.Location = New System.Drawing.Point(64, 18)
+        Me.rbtCustomer.Name = "rbtCustomer"
+        Me.rbtCustomer.Size = New System.Drawing.Size(71, 21)
+        Me.rbtCustomer.TabIndex = 1
+        Me.rbtCustomer.Text = "Partial"
+        Me.rbtCustomer.UseVisualStyleBackColor = True
+        '
+        'rbtAll
+        '
+        Me.rbtAll.AutoSize = True
+        Me.rbtAll.Location = New System.Drawing.Point(9, 18)
+        Me.rbtAll.Name = "rbtAll"
+        Me.rbtAll.Size = New System.Drawing.Size(52, 21)
+        Me.rbtAll.TabIndex = 0
+        Me.rbtAll.Text = "Full"
+        Me.rbtAll.UseVisualStyleBackColor = True
+        '
         'chkAllAccounts
         '
         Me.chkAllAccounts.AutoSize = True
         Me.chkAllAccounts.Location = New System.Drawing.Point(148, 35)
         Me.chkAllAccounts.Name = "chkAllAccounts"
-        Me.chkAllAccounts.Size = New System.Drawing.Size(95, 17)
+        Me.chkAllAccounts.Size = New System.Drawing.Size(116, 21)
         Me.chkAllAccounts.TabIndex = 40
         Me.chkAllAccounts.TabStop = False
         Me.chkAllAccounts.Text = "All Accounts"
@@ -773,26 +827,17 @@ Partial Class frmPaymentNew
         Me.cmbInvoice.DisplayLayout.TabNavigation = Infragistics.Win.UltraWinGrid.TabNavigation.NextControl
         Me.cmbInvoice.DisplayLayout.ViewStyle = Infragistics.Win.UltraWinGrid.ViewStyle.SingleBand
         Me.cmbInvoice.LimitToList = True
-        Me.cmbInvoice.Location = New System.Drawing.Point(101, 165)
+        Me.cmbInvoice.Location = New System.Drawing.Point(671, 93)
         Me.cmbInvoice.Name = "cmbInvoice"
-        Me.cmbInvoice.Size = New System.Drawing.Size(141, 23)
+        Me.cmbInvoice.Size = New System.Drawing.Size(186, 27)
         Me.cmbInvoice.TabIndex = 32
-        '
-        'lblInvoice
-        '
-        Me.lblInvoice.AutoSize = True
-        Me.lblInvoice.Location = New System.Drawing.Point(3, 171)
-        Me.lblInvoice.Name = "lblInvoice"
-        Me.lblInvoice.Size = New System.Drawing.Size(95, 13)
-        Me.lblInvoice.TabIndex = 33
-        Me.lblInvoice.Text = "Sales Invoices:"
         '
         'lblNetAmountNumberConvertor
         '
         Me.lblNetAmountNumberConvertor.AutoSize = True
         Me.lblNetAmountNumberConvertor.Location = New System.Drawing.Point(405, 188)
         Me.lblNetAmountNumberConvertor.Name = "lblNetAmountNumberConvertor"
-        Me.lblNetAmountNumberConvertor.Size = New System.Drawing.Size(12, 13)
+        Me.lblNetAmountNumberConvertor.Size = New System.Drawing.Size(15, 17)
         Me.lblNetAmountNumberConvertor.TabIndex = 31
         Me.lblNetAmountNumberConvertor.Text = "-"
         '
@@ -801,9 +846,27 @@ Partial Class frmPaymentNew
         Me.lblAmountNumberConvertor.AutoSize = True
         Me.lblAmountNumberConvertor.Location = New System.Drawing.Point(251, 80)
         Me.lblAmountNumberConvertor.Name = "lblAmountNumberConvertor"
-        Me.lblAmountNumberConvertor.Size = New System.Drawing.Size(12, 13)
+        Me.lblAmountNumberConvertor.Size = New System.Drawing.Size(15, 17)
         Me.lblAmountNumberConvertor.TabIndex = 30
         Me.lblAmountNumberConvertor.Text = "-"
+        '
+        'lblPartialAmount
+        '
+        Me.lblPartialAmount.AutoSize = True
+        Me.lblPartialAmount.Location = New System.Drawing.Point(667, 118)
+        Me.lblPartialAmount.Name = "lblPartialAmount"
+        Me.lblPartialAmount.Size = New System.Drawing.Size(117, 17)
+        Me.lblPartialAmount.TabIndex = 33
+        Me.lblPartialAmount.Text = "Partial Amount:"
+        '
+        'lblInvoice
+        '
+        Me.lblInvoice.AutoSize = True
+        Me.lblInvoice.Location = New System.Drawing.Point(668, 73)
+        Me.lblInvoice.Name = "lblInvoice"
+        Me.lblInvoice.Size = New System.Drawing.Size(71, 17)
+        Me.lblInvoice.TabIndex = 33
+        Me.lblInvoice.Text = "Invoices:"
         '
         'lblPayment
         '
@@ -812,9 +875,9 @@ Partial Class frmPaymentNew
         Me.lblPayment.ForeColor = System.Drawing.Color.Navy
         Me.lblPayment.Location = New System.Drawing.Point(3, 13)
         Me.lblPayment.Name = "lblPayment"
-        Me.lblPayment.Size = New System.Drawing.Size(667, 18)
+        Me.lblPayment.Size = New System.Drawing.Size(924, 25)
         Me.lblPayment.TabIndex = 0
-        Me.lblPayment.Text = "Payment Details: ______________________________________________"
+        Me.lblPayment.Text = "Payment Details: ___________________________________________________"
         Me.ToolTip1.SetToolTip(Me.lblPayment, "Payment Detail")
         '
         'txtCustomerBalance
@@ -826,18 +889,31 @@ Partial Class frmPaymentNew
         Me.txtCustomerBalance.Location = New System.Drawing.Point(139, 38)
         Me.txtCustomerBalance.Name = "txtCustomerBalance"
         Me.txtCustomerBalance.ReadOnly = True
-        Me.txtCustomerBalance.Size = New System.Drawing.Size(104, 14)
+        Me.txtCustomerBalance.Size = New System.Drawing.Size(104, 17)
         Me.txtCustomerBalance.TabIndex = 3
         Me.txtCustomerBalance.TabStop = False
         Me.txtCustomerBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtCustomerBalance, "Current Cash Balance")
+        '
+        'chkLinkInvoice
+        '
+        Me.chkLinkInvoice.AutoSize = True
+        Me.chkLinkInvoice.Checked = True
+        Me.chkLinkInvoice.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkLinkInvoice.Location = New System.Drawing.Point(670, 41)
+        Me.chkLinkInvoice.Name = "chkLinkInvoice"
+        Me.chkLinkInvoice.Size = New System.Drawing.Size(112, 21)
+        Me.chkLinkInvoice.TabIndex = 5
+        Me.chkLinkInvoice.TabStop = False
+        Me.chkLinkInvoice.Text = "Link Invoice"
+        Me.chkLinkInvoice.UseVisualStyleBackColor = True
         '
         'txtTax
         '
         Me.txtTax.Location = New System.Drawing.Point(405, 94)
         Me.txtTax.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtTax.Name = "txtTax"
-        Me.txtTax.Size = New System.Drawing.Size(87, 21)
+        Me.txtTax.Size = New System.Drawing.Size(87, 24)
         Me.txtTax.TabIndex = 13
         Me.txtTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtTax, "Enter Tax Percentage")
@@ -849,7 +925,7 @@ Partial Class frmPaymentNew
         Me.Label30.Location = New System.Drawing.Point(402, 81)
         Me.Label30.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(44, 13)
+        Me.Label30.Size = New System.Drawing.Size(53, 17)
         Me.Label30.TabIndex = 12
         Me.Label30.Text = "Tax%:"
         Me.ToolTip1.SetToolTip(Me.Label30, "Tax%")
@@ -859,7 +935,7 @@ Partial Class frmPaymentNew
         Me.txtTaxAmount.Location = New System.Drawing.Point(499, 94)
         Me.txtTaxAmount.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtTaxAmount.Name = "txtTaxAmount"
-        Me.txtTaxAmount.Size = New System.Drawing.Size(167, 21)
+        Me.txtTaxAmount.Size = New System.Drawing.Size(167, 24)
         Me.txtTaxAmount.TabIndex = 15
         Me.txtTaxAmount.TabStop = False
         Me.txtTaxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -872,7 +948,7 @@ Partial Class frmPaymentNew
         Me.Label31.Location = New System.Drawing.Point(496, 81)
         Me.Label31.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(80, 13)
+        Me.Label31.Size = New System.Drawing.Size(99, 17)
         Me.Label31.TabIndex = 14
         Me.Label31.Text = "Tax Amount:"
         Me.ToolTip1.SetToolTip(Me.Label31, "Tax Amount")
@@ -882,7 +958,7 @@ Partial Class frmPaymentNew
         Me.txtAmount.Location = New System.Drawing.Point(249, 55)
         Me.txtAmount.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtAmount.Name = "txtAmount"
-        Me.txtAmount.Size = New System.Drawing.Size(149, 21)
+        Me.txtAmount.Size = New System.Drawing.Size(149, 24)
         Me.txtAmount.TabIndex = 5
         Me.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtAmount, "Enter Amount")
@@ -894,7 +970,7 @@ Partial Class frmPaymentNew
         Me.txtNetAmount.Location = New System.Drawing.Point(405, 161)
         Me.txtNetAmount.Name = "txtNetAmount"
         Me.txtNetAmount.ReadOnly = True
-        Me.txtNetAmount.Size = New System.Drawing.Size(261, 24)
+        Me.txtNetAmount.Size = New System.Drawing.Size(261, 28)
         Me.txtNetAmount.TabIndex = 27
         Me.txtNetAmount.TabStop = False
         Me.txtNetAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -907,7 +983,7 @@ Partial Class frmPaymentNew
         Me.Label3.Location = New System.Drawing.Point(246, 39)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(56, 13)
+        Me.Label3.Size = New System.Drawing.Size(70, 17)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Amount:"
         Me.ToolTip1.SetToolTip(Me.Label3, "Amount")
@@ -917,7 +993,7 @@ Partial Class frmPaymentNew
         Me.txtWithHoldingTaxAmount.BackColor = System.Drawing.SystemColors.Control
         Me.txtWithHoldingTaxAmount.Location = New System.Drawing.Point(498, 134)
         Me.txtWithHoldingTaxAmount.Name = "txtWithHoldingTaxAmount"
-        Me.txtWithHoldingTaxAmount.Size = New System.Drawing.Size(167, 21)
+        Me.txtWithHoldingTaxAmount.Size = New System.Drawing.Size(167, 24)
         Me.txtWithHoldingTaxAmount.TabIndex = 25
         Me.txtWithHoldingTaxAmount.TabStop = False
         Me.txtWithHoldingTaxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -928,7 +1004,7 @@ Partial Class frmPaymentNew
         Me.lblWH.AutoSize = True
         Me.lblWH.Location = New System.Drawing.Point(402, 118)
         Me.lblWH.Name = "lblWH"
-        Me.lblWH.Size = New System.Drawing.Size(43, 13)
+        Me.lblWH.Size = New System.Drawing.Size(54, 17)
         Me.lblWH.TabIndex = 22
         Me.lblWH.Text = "WH%:"
         Me.ToolTip1.SetToolTip(Me.lblWH, "With Holding Percentage")
@@ -937,7 +1013,7 @@ Partial Class frmPaymentNew
         '
         Me.txtWithHolding.Location = New System.Drawing.Point(405, 134)
         Me.txtWithHolding.Name = "txtWithHolding"
-        Me.txtWithHolding.Size = New System.Drawing.Size(87, 21)
+        Me.txtWithHolding.Size = New System.Drawing.Size(87, 24)
         Me.txtWithHolding.TabIndex = 23
         Me.txtWithHolding.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtWithHolding, "Enter With Holding Percentage")
@@ -948,7 +1024,7 @@ Partial Class frmPaymentNew
         Me.lblNetAmount.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNetAmount.Location = New System.Drawing.Point(315, 165)
         Me.lblNetAmount.Name = "lblNetAmount"
-        Me.lblNetAmount.Size = New System.Drawing.Size(84, 14)
+        Me.lblNetAmount.Size = New System.Drawing.Size(107, 18)
         Me.lblNetAmount.TabIndex = 26
         Me.lblNetAmount.Text = "Net Amount"
         Me.ToolTip1.SetToolTip(Me.lblNetAmount, "Net Amount")
@@ -960,7 +1036,7 @@ Partial Class frmPaymentNew
         Me.Label1.Location = New System.Drawing.Point(4, 39)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(99, 13)
+        Me.Label1.Size = New System.Drawing.Size(121, 17)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Pay To Account:"
         Me.ToolTip1.SetToolTip(Me.Label1, "Pay To Vendor")
@@ -970,7 +1046,7 @@ Partial Class frmPaymentNew
         Me.txtSalesTaxAmount.BackColor = System.Drawing.SystemColors.Control
         Me.txtSalesTaxAmount.Location = New System.Drawing.Point(311, 134)
         Me.txtSalesTaxAmount.Name = "txtSalesTaxAmount"
-        Me.txtSalesTaxAmount.Size = New System.Drawing.Size(87, 21)
+        Me.txtSalesTaxAmount.Size = New System.Drawing.Size(87, 24)
         Me.txtSalesTaxAmount.TabIndex = 21
         Me.txtSalesTaxAmount.TabStop = False
         Me.txtSalesTaxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1026,7 +1102,7 @@ Partial Class frmPaymentNew
         Me.cmbAccounts.LimitToList = True
         Me.cmbAccounts.Location = New System.Drawing.Point(6, 55)
         Me.cmbAccounts.Name = "cmbAccounts"
-        Me.cmbAccounts.Size = New System.Drawing.Size(238, 23)
+        Me.cmbAccounts.Size = New System.Drawing.Size(238, 27)
         Me.cmbAccounts.TabIndex = 2
         Me.ToolTip1.SetToolTip(Me.cmbAccounts, "Select account for payment")
         '
@@ -1035,7 +1111,7 @@ Partial Class frmPaymentNew
         Me.txtDiscount.Location = New System.Drawing.Point(405, 55)
         Me.txtDiscount.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtDiscount.Name = "txtDiscount"
-        Me.txtDiscount.Size = New System.Drawing.Size(87, 21)
+        Me.txtDiscount.Size = New System.Drawing.Size(87, 24)
         Me.txtDiscount.TabIndex = 7
         Me.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtDiscount, "Enter Discount")
@@ -1044,7 +1120,7 @@ Partial Class frmPaymentNew
         '
         Me.txtSalesTax.Location = New System.Drawing.Point(249, 134)
         Me.txtSalesTax.Name = "txtSalesTax"
-        Me.txtSalesTax.Size = New System.Drawing.Size(56, 21)
+        Me.txtSalesTax.Size = New System.Drawing.Size(56, 24)
         Me.txtSalesTax.TabIndex = 19
         Me.txtSalesTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTip1.SetToolTip(Me.txtSalesTax, "Enter Sales Tax Percentage")
@@ -1056,7 +1132,7 @@ Partial Class frmPaymentNew
         Me.Label29.Location = New System.Drawing.Point(402, 39)
         Me.Label29.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(61, 13)
+        Me.Label29.Size = New System.Drawing.Size(76, 17)
         Me.Label29.TabIndex = 6
         Me.Label29.Text = "Discount:"
         Me.ToolTip1.SetToolTip(Me.Label29, "Discount")
@@ -1066,7 +1142,7 @@ Partial Class frmPaymentNew
         Me.lblWHTaxAmount.AutoSize = True
         Me.lblWHTaxAmount.Location = New System.Drawing.Point(496, 118)
         Me.lblWHTaxAmount.Name = "lblWHTaxAmount"
-        Me.lblWHTaxAmount.Size = New System.Drawing.Size(103, 13)
+        Me.lblWHTaxAmount.Size = New System.Drawing.Size(129, 17)
         Me.lblWHTaxAmount.TabIndex = 24
         Me.lblWHTaxAmount.Text = "WH Tax Amount:"
         Me.ToolTip1.SetToolTip(Me.lblWHTaxAmount, "WH Tax amount")
@@ -1076,7 +1152,7 @@ Partial Class frmPaymentNew
         Me.lblSalesTax.AutoSize = True
         Me.lblSalesTax.Location = New System.Drawing.Point(246, 118)
         Me.lblSalesTax.Name = "lblSalesTax"
-        Me.lblSalesTax.Size = New System.Drawing.Size(56, 13)
+        Me.lblSalesTax.Size = New System.Drawing.Size(68, 17)
         Me.lblSalesTax.TabIndex = 18
         Me.lblSalesTax.Text = "S.Tax%:"
         Me.ToolTip1.SetToolTip(Me.lblSalesTax, "Sales Tax Percentage")
@@ -1086,7 +1162,7 @@ Partial Class frmPaymentNew
         Me.lblSalesTaxAmount.AutoSize = True
         Me.lblSalesTaxAmount.Location = New System.Drawing.Point(309, 118)
         Me.lblSalesTaxAmount.Name = "lblSalesTaxAmount"
-        Me.lblSalesTaxAmount.Size = New System.Drawing.Size(92, 13)
+        Me.lblSalesTaxAmount.Size = New System.Drawing.Size(114, 17)
         Me.lblSalesTaxAmount.TabIndex = 20
         Me.lblSalesTaxAmount.Text = "S.Tax Amount:"
         Me.ToolTip1.SetToolTip(Me.lblSalesTaxAmount, "Sales Tax Amount")
@@ -1096,7 +1172,7 @@ Partial Class frmPaymentNew
         Me.lblGrossAmount.AutoSize = True
         Me.lblGrossAmount.Location = New System.Drawing.Point(496, 39)
         Me.lblGrossAmount.Name = "lblGrossAmount"
-        Me.lblGrossAmount.Size = New System.Drawing.Size(93, 13)
+        Me.lblGrossAmount.Size = New System.Drawing.Size(117, 17)
         Me.lblGrossAmount.TabIndex = 8
         Me.lblGrossAmount.Text = "Gross Amount:"
         Me.ToolTip1.SetToolTip(Me.lblGrossAmount, "Gross Amount")
@@ -1106,7 +1182,7 @@ Partial Class frmPaymentNew
         Me.txtGrossAmount.Location = New System.Drawing.Point(499, 55)
         Me.txtGrossAmount.Name = "txtGrossAmount"
         Me.txtGrossAmount.ReadOnly = True
-        Me.txtGrossAmount.Size = New System.Drawing.Size(166, 21)
+        Me.txtGrossAmount.Size = New System.Drawing.Size(166, 24)
         Me.txtGrossAmount.TabIndex = 9
         Me.txtGrossAmount.TabStop = False
         Me.txtGrossAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1118,7 +1194,7 @@ Partial Class frmPaymentNew
         Me.cmbSalesTax.FormattingEnabled = True
         Me.cmbSalesTax.Location = New System.Drawing.Point(6, 134)
         Me.cmbSalesTax.Name = "cmbSalesTax"
-        Me.cmbSalesTax.Size = New System.Drawing.Size(238, 21)
+        Me.cmbSalesTax.Size = New System.Drawing.Size(238, 25)
         Me.cmbSalesTax.TabIndex = 17
         Me.ToolTip1.SetToolTip(Me.cmbSalesTax, "select any sales tax ")
         '
@@ -1127,7 +1203,7 @@ Partial Class frmPaymentNew
         Me.lblIncomeTaxAccount.AutoSize = True
         Me.lblIncomeTaxAccount.Location = New System.Drawing.Point(3, 81)
         Me.lblIncomeTaxAccount.Name = "lblIncomeTaxAccount"
-        Me.lblIncomeTaxAccount.Size = New System.Drawing.Size(128, 13)
+        Me.lblIncomeTaxAccount.Size = New System.Drawing.Size(156, 17)
         Me.lblIncomeTaxAccount.TabIndex = 10
         Me.lblIncomeTaxAccount.Text = "Income Tax Account:"
         Me.ToolTip1.SetToolTip(Me.lblIncomeTaxAccount, "Income Tax Account:")
@@ -1137,7 +1213,7 @@ Partial Class frmPaymentNew
         Me.lblSales.AutoSize = True
         Me.lblSales.Location = New System.Drawing.Point(4, 118)
         Me.lblSales.Name = "lblSales"
-        Me.lblSales.Size = New System.Drawing.Size(116, 13)
+        Me.lblSales.Size = New System.Drawing.Size(142, 17)
         Me.lblSales.TabIndex = 16
         Me.lblSales.Text = "Sales Tax Account:"
         Me.ToolTip1.SetToolTip(Me.lblSales, "Select Sales Tax Account")
@@ -1148,7 +1224,7 @@ Partial Class frmPaymentNew
         Me.cmbIncomeTaxAccount.FormattingEnabled = True
         Me.cmbIncomeTaxAccount.Location = New System.Drawing.Point(6, 97)
         Me.cmbIncomeTaxAccount.Name = "cmbIncomeTaxAccount"
-        Me.cmbIncomeTaxAccount.Size = New System.Drawing.Size(238, 21)
+        Me.cmbIncomeTaxAccount.Size = New System.Drawing.Size(238, 25)
         Me.cmbIncomeTaxAccount.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.cmbIncomeTaxAccount, "Select Income Tax Account")
         '
@@ -1158,7 +1234,7 @@ Partial Class frmPaymentNew
         Me.FlowLayoutPanel1.Controls.Add(Me.pnlCost)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 202)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(812, 99)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(944, 99)
         Me.FlowLayoutPanel1.TabIndex = 29
         '
         'pnlBank
@@ -1184,7 +1260,7 @@ Partial Class frmPaymentNew
         Me.Label36.Location = New System.Drawing.Point(1, 0)
         Me.Label36.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(89, 13)
+        Me.Label36.Size = New System.Drawing.Size(108, 17)
         Me.Label36.TabIndex = 6
         Me.Label36.Text = "Cheque Book:"
         '
@@ -1196,7 +1272,7 @@ Partial Class frmPaymentNew
         Me.cmbChequeBook.Location = New System.Drawing.Point(3, 16)
         Me.cmbChequeBook.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbChequeBook.Name = "cmbChequeBook"
-        Me.cmbChequeBook.Size = New System.Drawing.Size(127, 21)
+        Me.cmbChequeBook.Size = New System.Drawing.Size(127, 25)
         Me.cmbChequeBook.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbChequeBook, "Select Cheque Book")
         '
@@ -1207,7 +1283,7 @@ Partial Class frmPaymentNew
         Me.Label4.Location = New System.Drawing.Point(374, 0)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(47, 13)
+        Me.Label4.Size = New System.Drawing.Size(54, 17)
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "Payee:"
         Me.ToolTip1.SetToolTip(Me.Label4, "Bank Description")
@@ -1217,7 +1293,7 @@ Partial Class frmPaymentNew
         Me.cmbBank.FormattingEnabled = True
         Me.cmbBank.Location = New System.Drawing.Point(377, 16)
         Me.cmbBank.Name = "cmbBank"
-        Me.cmbBank.Size = New System.Drawing.Size(286, 21)
+        Me.cmbBank.Size = New System.Drawing.Size(286, 25)
         Me.cmbBank.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.cmbBank, "Bank Description")
         '
@@ -1226,7 +1302,7 @@ Partial Class frmPaymentNew
         Me.txtChequeNo.Location = New System.Drawing.Point(134, 16)
         Me.txtChequeNo.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtChequeNo.Name = "txtChequeNo"
-        Me.txtChequeNo.Size = New System.Drawing.Size(110, 21)
+        Me.txtChequeNo.Size = New System.Drawing.Size(110, 24)
         Me.txtChequeNo.TabIndex = 2
         Me.ToolTip1.SetToolTip(Me.txtChequeNo, "Cheque No")
         '
@@ -1237,7 +1313,7 @@ Partial Class frmPaymentNew
         Me.dtChequeDate.Location = New System.Drawing.Point(249, 16)
         Me.dtChequeDate.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.dtChequeDate.Name = "dtChequeDate"
-        Me.dtChequeDate.Size = New System.Drawing.Size(121, 21)
+        Me.dtChequeDate.Size = New System.Drawing.Size(121, 24)
         Me.dtChequeDate.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.dtChequeDate, "Cheque Date")
         '
@@ -1248,7 +1324,7 @@ Partial Class frmPaymentNew
         Me.Label5.Location = New System.Drawing.Point(131, 0)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(100, 13)
+        Me.Label5.Size = New System.Drawing.Size(121, 17)
         Me.Label5.TabIndex = 0
         Me.Label5.Text = "Cheque Number"
         Me.ToolTip1.SetToolTip(Me.Label5, "Cheque Number")
@@ -1260,7 +1336,7 @@ Partial Class frmPaymentNew
         Me.Label17.Location = New System.Drawing.Point(246, 0)
         Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(39, 13)
+        Me.Label17.Size = New System.Drawing.Size(47, 17)
         Me.Label17.TabIndex = 2
         Me.Label17.Text = "Date:"
         Me.ToolTip1.SetToolTip(Me.Label17, "Cheque Date")
@@ -1279,7 +1355,7 @@ Partial Class frmPaymentNew
         Me.pnlCost.Location = New System.Drawing.Point(3, 43)
         Me.pnlCost.Margin = New System.Windows.Forms.Padding(3, 0, 3, 3)
         Me.pnlCost.Name = "pnlCost"
-        Me.pnlCost.Size = New System.Drawing.Size(808, 43)
+        Me.pnlCost.Size = New System.Drawing.Size(938, 43)
         Me.pnlCost.TabIndex = 1
         '
         'lblCostCenter
@@ -1289,7 +1365,7 @@ Partial Class frmPaymentNew
         Me.lblCostCenter.Location = New System.Drawing.Point(1, 0)
         Me.lblCostCenter.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCostCenter.Name = "lblCostCenter"
-        Me.lblCostCenter.Size = New System.Drawing.Size(81, 13)
+        Me.lblCostCenter.Size = New System.Drawing.Size(99, 17)
         Me.lblCostCenter.TabIndex = 0
         Me.lblCostCenter.Text = "Cost Center:"
         Me.ToolTip1.SetToolTip(Me.lblCostCenter, "cost center")
@@ -1306,9 +1382,9 @@ Partial Class frmPaymentNew
         '
         'btnReplace
         '
-        Me.btnReplace.Location = New System.Drawing.Point(656, 14)
+        Me.btnReplace.Location = New System.Drawing.Point(669, 16)
         Me.btnReplace.Name = "btnReplace"
-        Me.btnReplace.Size = New System.Drawing.Size(64, 23)
+        Me.btnReplace.Size = New System.Drawing.Size(70, 23)
         Me.btnReplace.TabIndex = 4
         Me.btnReplace.Text = "Replace"
         Me.btnReplace.UseVisualStyleBackColor = True
@@ -1328,7 +1404,7 @@ Partial Class frmPaymentNew
         '
         Me.txtReference.Location = New System.Drawing.Point(136, 17)
         Me.txtReference.Name = "txtReference"
-        Me.txtReference.Size = New System.Drawing.Size(234, 22)
+        Me.txtReference.Size = New System.Drawing.Size(234, 26)
         Me.txtReference.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.txtReference, "Enter Description")
         '
@@ -1337,7 +1413,7 @@ Partial Class frmPaymentNew
         Me.cmbCostCenter.FormattingEnabled = True
         Me.cmbCostCenter.Location = New System.Drawing.Point(3, 16)
         Me.cmbCostCenter.Name = "cmbCostCenter"
-        Me.cmbCostCenter.Size = New System.Drawing.Size(127, 21)
+        Me.cmbCostCenter.Size = New System.Drawing.Size(127, 25)
         Me.cmbCostCenter.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.cmbCostCenter, "Select Cost Center")
         '
@@ -1346,7 +1422,7 @@ Partial Class frmPaymentNew
         Me.lblDescription.AutoSize = True
         Me.lblDescription.Location = New System.Drawing.Point(133, 1)
         Me.lblDescription.Name = "lblDescription"
-        Me.lblDescription.Size = New System.Drawing.Size(76, 13)
+        Me.lblDescription.Size = New System.Drawing.Size(93, 17)
         Me.lblDescription.TabIndex = 2
         Me.lblDescription.Text = "Description:"
         Me.ToolTip1.SetToolTip(Me.lblDescription, "Description")
@@ -1358,7 +1434,7 @@ Partial Class frmPaymentNew
         Me.lblSaleman.Location = New System.Drawing.Point(374, 1)
         Me.lblSaleman.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblSaleman.Name = "lblSaleman"
-        Me.lblSaleman.Size = New System.Drawing.Size(63, 13)
+        Me.lblSaleman.Size = New System.Drawing.Size(75, 17)
         Me.lblSaleman.TabIndex = 19
         Me.lblSaleman.Text = "Employee"
         Me.ToolTip1.SetToolTip(Me.lblSaleman, "Sales Man")
@@ -1370,14 +1446,15 @@ Partial Class frmPaymentNew
         Me.cmbSaleman.FormattingEnabled = True
         Me.cmbSaleman.Location = New System.Drawing.Point(377, 17)
         Me.cmbSaleman.Name = "cmbSaleman"
-        Me.cmbSaleman.Size = New System.Drawing.Size(225, 21)
+        Me.cmbSaleman.Size = New System.Drawing.Size(225, 25)
         Me.cmbSaleman.TabIndex = 20
         Me.ToolTip1.SetToolTip(Me.cmbSaleman, "Select Sales Man")
         '
         'ToolStrip1
         '
         Me.ToolStrip1.AutoSize = False
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnNew, Me.BtnEdit, Me.BtnSave, Me.BtnDelete, Me.BtnPrint, Me.toolStripSeparator1, Me.btnUpdateTimes, Me.btnReminder, Me.BtnRefresh, Me.ToolStripSeparator3, Me.btnApprovalHistory, Me.btnAttachment, Me.ToolStripSeparator8, Me.btnSMSTemplate, Me.ToolStripSeparator9, Me.HelpToolStripButton, Me.ToolStripSeparator2, Me.TaxConfiguration, Me.ToolStripSeparator14, Me.btnBackToOldReciept, Me.ToolStripSeparator11, Me.ToolStripButton1, Me.cmbLayout, Me.ToolStripSeparator12, Me.btnPurchaseInvoiceSearch})
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnNew, Me.BtnEdit, Me.BtnSave, Me.BtnDelete, Me.BtnPrint, Me.toolStripSeparator1, Me.btnUpdateTimes, Me.btnReminder, Me.BtnRefresh, Me.ToolStripSeparator3, Me.btnApprovalHistory, Me.btnAttachment, Me.ToolStripSeparator8, Me.btnPurchaseInvoiceSearch, Me.btnSMSTemplate, Me.ToolStripSeparator9, Me.HelpToolStripButton, Me.ToolStripSeparator2, Me.TaxConfiguration, Me.ToolStripSeparator14, Me.btnBackToOldReciept, Me.ToolStripSeparator11, Me.ToolStripButton1, Me.cmbLayout, Me.ToolStripSeparator12})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1282, 25)
@@ -1389,7 +1466,7 @@ Partial Class frmPaymentNew
         Me.BtnNew.Image = Global.SimpleAccounts.My.Resources.Resources.BtnNew_Image
         Me.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnNew.Name = "BtnNew"
-        Me.BtnNew.Size = New System.Drawing.Size(51, 22)
+        Me.BtnNew.Size = New System.Drawing.Size(63, 22)
         Me.BtnNew.Text = "&New"
         Me.BtnNew.ToolTipText = "New record mode (escape)"
         '
@@ -1398,7 +1475,7 @@ Partial Class frmPaymentNew
         Me.BtnEdit.Image = Global.SimpleAccounts.My.Resources.Resources.BtnEdit_Image
         Me.BtnEdit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(47, 22)
+        Me.BtnEdit.Size = New System.Drawing.Size(59, 22)
         Me.BtnEdit.Text = "&Edit"
         Me.BtnEdit.ToolTipText = "Edit record (Alt+E)"
         '
@@ -1407,7 +1484,7 @@ Partial Class frmPaymentNew
         Me.BtnSave.Image = Global.SimpleAccounts.My.Resources.Resources.BtnSave_Image
         Me.BtnSave.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(51, 22)
+        Me.BtnSave.Size = New System.Drawing.Size(64, 22)
         Me.BtnSave.Text = "&Save"
         Me.BtnSave.ToolTipText = "Save (F4)"
         '
@@ -1416,7 +1493,7 @@ Partial Class frmPaymentNew
         Me.BtnDelete.Image = Global.SimpleAccounts.My.Resources.Resources.BtnDelete_Image
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.RightToLeftAutoMirrorImage = True
-        Me.BtnDelete.Size = New System.Drawing.Size(60, 22)
+        Me.BtnDelete.Size = New System.Drawing.Size(77, 22)
         Me.BtnDelete.Text = "&Delete"
         Me.BtnDelete.ToolTipText = "Delete (Alt+D)"
         '
@@ -1426,26 +1503,26 @@ Partial Class frmPaymentNew
         Me.BtnPrint.Image = Global.SimpleAccounts.My.Resources.Resources.print
         Me.BtnPrint.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(64, 22)
+        Me.BtnPrint.Size = New System.Drawing.Size(78, 22)
         Me.BtnPrint.Text = "&Print"
         Me.BtnPrint.ToolTipText = "Print (Ctrl+P)"
         '
         'PrintReceiptToolStripMenuItem
         '
         Me.PrintReceiptToolStripMenuItem.Name = "PrintReceiptToolStripMenuItem"
-        Me.PrintReceiptToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.PrintReceiptToolStripMenuItem.Size = New System.Drawing.Size(252, 26)
         Me.PrintReceiptToolStripMenuItem.Text = "Print Payment"
         '
         'PrintAttachmentVoucherToolStripMenuItem
         '
         Me.PrintAttachmentVoucherToolStripMenuItem.Name = "PrintAttachmentVoucherToolStripMenuItem"
-        Me.PrintAttachmentVoucherToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.PrintAttachmentVoucherToolStripMenuItem.Size = New System.Drawing.Size(252, 26)
         Me.PrintAttachmentVoucherToolStripMenuItem.Text = "Print Attachment Voucher"
         '
         'PrintUpdatedVoucherToolStripMenuItem
         '
         Me.PrintUpdatedVoucherToolStripMenuItem.Name = "PrintUpdatedVoucherToolStripMenuItem"
-        Me.PrintUpdatedVoucherToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.PrintUpdatedVoucherToolStripMenuItem.Size = New System.Drawing.Size(252, 26)
         Me.PrintUpdatedVoucherToolStripMenuItem.Text = "Print Updated Voucher"
         '
         'toolStripSeparator1
@@ -1457,7 +1534,7 @@ Partial Class frmPaymentNew
         '
         Me.btnUpdateTimes.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnUpdateTimes.Name = "btnUpdateTimes"
-        Me.btnUpdateTimes.Size = New System.Drawing.Size(125, 22)
+        Me.btnUpdateTimes.Size = New System.Drawing.Size(157, 22)
         Me.btnUpdateTimes.Text = "No of update times"
         Me.btnUpdateTimes.ToolTipText = "Record update history"
         '
@@ -1466,7 +1543,7 @@ Partial Class frmPaymentNew
         Me.btnReminder.Image = Global.SimpleAccounts.My.Resources.Resources.bell_icon
         Me.btnReminder.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnReminder.Name = "btnReminder"
-        Me.btnReminder.Size = New System.Drawing.Size(78, 22)
+        Me.btnReminder.Size = New System.Drawing.Size(97, 22)
         Me.btnReminder.Text = "Reminder"
         Me.btnReminder.ToolTipText = "Add a reminder (Ctrl+R)"
         '
@@ -1475,7 +1552,7 @@ Partial Class frmPaymentNew
         Me.BtnRefresh.Image = Global.SimpleAccounts.My.Resources.Resources.Refresh
         Me.BtnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnRefresh.Name = "BtnRefresh"
-        Me.BtnRefresh.Size = New System.Drawing.Size(66, 22)
+        Me.BtnRefresh.Size = New System.Drawing.Size(82, 22)
         Me.BtnRefresh.Text = "Refresh"
         Me.BtnRefresh.ToolTipText = "Refresh data (F5)"
         '
@@ -1489,7 +1566,7 @@ Partial Class frmPaymentNew
         Me.btnApprovalHistory.Image = Global.SimpleAccounts.My.Resources.Resources.Copy
         Me.btnApprovalHistory.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnApprovalHistory.Name = "btnApprovalHistory"
-        Me.btnApprovalHistory.Size = New System.Drawing.Size(116, 22)
+        Me.btnApprovalHistory.Size = New System.Drawing.Size(145, 22)
         Me.btnApprovalHistory.Text = "Approval History"
         '
         'btnAttachment
@@ -1498,14 +1575,14 @@ Partial Class frmPaymentNew
         Me.btnAttachment.Image = Global.SimpleAccounts.My.Resources.Resources._1483443165_attachment_add
         Me.btnAttachment.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnAttachment.Name = "btnAttachment"
-        Me.btnAttachment.Size = New System.Drawing.Size(102, 22)
+        Me.btnAttachment.Size = New System.Drawing.Size(125, 22)
         Me.btnAttachment.Text = "Attachment"
         Me.btnAttachment.ToolTipText = "Attach document (F6)"
         '
         'btnPreviewAttachment
         '
         Me.btnPreviewAttachment.Name = "btnPreviewAttachment"
-        Me.btnPreviewAttachment.Size = New System.Drawing.Size(181, 22)
+        Me.btnPreviewAttachment.Size = New System.Drawing.Size(216, 26)
         Me.btnPreviewAttachment.Text = "Preview Attachment"
         '
         'ToolStripSeparator8
@@ -1513,12 +1590,21 @@ Partial Class frmPaymentNew
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
         Me.ToolStripSeparator8.Size = New System.Drawing.Size(6, 25)
         '
+        'btnPurchaseInvoiceSearch
+        '
+        Me.btnPurchaseInvoiceSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.btnPurchaseInvoiceSearch.Image = Global.SimpleAccounts.My.Resources.Resources.back
+        Me.btnPurchaseInvoiceSearch.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnPurchaseInvoiceSearch.Name = "btnPurchaseInvoiceSearch"
+        Me.btnPurchaseInvoiceSearch.Size = New System.Drawing.Size(122, 22)
+        Me.btnPurchaseInvoiceSearch.Text = "Purchase Invoice"
+        '
         'btnSMSTemplate
         '
         Me.btnSMSTemplate.Image = Global.SimpleAccounts.My.Resources.Resources.Attach
         Me.btnSMSTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSMSTemplate.Name = "btnSMSTemplate"
-        Me.btnSMSTemplate.Size = New System.Drawing.Size(140, 22)
+        Me.btnSMSTemplate.Size = New System.Drawing.Size(177, 24)
         Me.btnSMSTemplate.Text = "SMS template Setting"
         Me.btnSMSTemplate.ToolTipText = "SMS template(F8)"
         '
@@ -1533,7 +1619,7 @@ Partial Class frmPaymentNew
         Me.HelpToolStripButton.Image = Global.SimpleAccounts.My.Resources.Resources.HelpToolStripButton_Image
         Me.HelpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.HelpToolStripButton.Name = "HelpToolStripButton"
-        Me.HelpToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.HelpToolStripButton.Size = New System.Drawing.Size(24, 24)
         Me.HelpToolStripButton.Text = "He&lp"
         '
         'ToolStripSeparator2
@@ -1546,7 +1632,7 @@ Partial Class frmPaymentNew
         Me.TaxConfiguration.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.TaxConfiguration.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TaxConfiguration.Name = "TaxConfiguration"
-        Me.TaxConfiguration.Size = New System.Drawing.Size(105, 22)
+        Me.TaxConfiguration.Size = New System.Drawing.Size(129, 24)
         Me.TaxConfiguration.Text = "Tax Configuration"
         '
         'ToolStripSeparator14
@@ -1560,7 +1646,7 @@ Partial Class frmPaymentNew
         Me.btnBackToOldReciept.Image = Global.SimpleAccounts.My.Resources.Resources.back
         Me.btnBackToOldReciept.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnBackToOldReciept.Name = "btnBackToOldReciept"
-        Me.btnBackToOldReciept.Size = New System.Drawing.Size(123, 22)
+        Me.btnBackToOldReciept.Size = New System.Drawing.Size(152, 24)
         Me.btnBackToOldReciept.Text = "Back To Old Payment"
         Me.btnBackToOldReciept.ToolTipText = "Switch payment screen (Alt+O)"
         '
@@ -1574,7 +1660,7 @@ Partial Class frmPaymentNew
         Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(103, 19)
+        Me.ToolStripButton1.Size = New System.Drawing.Size(130, 24)
         Me.ToolStripButton1.Text = "Add New Vendor "
         '
         'cmbLayout
@@ -1582,21 +1668,12 @@ Partial Class frmPaymentNew
         Me.cmbLayout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbLayout.Items.AddRange(New Object() {"... Select Layout ...", "ABL", "HBL", "UBL", "Bank Al-Habib", "Bank Al-Falah", "Askari Bank", "Faysal Bank", "Meezan Bank", "Saadiq Standard Chartered", "MCB", "NBP", "Soneri Bank", "BIP", "Habib Metro", "NIB", "Kasab", "Silk Bank"})
         Me.cmbLayout.Name = "cmbLayout"
-        Me.cmbLayout.Size = New System.Drawing.Size(121, 23)
+        Me.cmbLayout.Size = New System.Drawing.Size(121, 28)
         '
         'ToolStripSeparator12
         '
         Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
         Me.ToolStripSeparator12.Size = New System.Drawing.Size(6, 25)
-        '
-        'btnPurchaseInvoiceSearch
-        '
-        Me.btnPurchaseInvoiceSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.btnPurchaseInvoiceSearch.Image = Global.SimpleAccounts.My.Resources.Resources.back
-        Me.btnPurchaseInvoiceSearch.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnPurchaseInvoiceSearch.Name = "btnPurchaseInvoiceSearch"
-        Me.btnPurchaseInvoiceSearch.Size = New System.Drawing.Size(100, 19)
-        Me.btnPurchaseInvoiceSearch.Text = "Purchase Invoice"
         '
         'grdVoucher
         '
@@ -1605,7 +1682,7 @@ Partial Class frmPaymentNew
         Me.grdVoucher.Controls.Add(Me.SplitContainer1)
         Me.grdVoucher.Location = New System.Drawing.Point(-10000, -10000)
         Me.grdVoucher.Name = "grdVoucher"
-        Me.grdVoucher.Size = New System.Drawing.Size(1282, 668)
+        Me.grdVoucher.Size = New System.Drawing.Size(1282, 665)
         '
         'CtrlGrdBar10
         '
@@ -1632,7 +1709,7 @@ Partial Class frmPaymentNew
         Me.grdVouchers.Name = "grdVouchers"
         Me.grdVouchers.RecordNavigator = True
         Me.grdVouchers.ScrollBars = Janus.Windows.GridEX.ScrollBars.Both
-        Me.grdVouchers.Size = New System.Drawing.Size(1282, 483)
+        Me.grdVouchers.Size = New System.Drawing.Size(1282, 469)
         Me.grdVouchers.TabIndex = 2
         Me.ToolTip1.SetToolTip(Me.grdVouchers, "Saved Record Detail")
         Me.grdVouchers.TotalRow = Janus.Windows.GridEX.InheritableBoolean.[True]
@@ -1641,6 +1718,7 @@ Partial Class frmPaymentNew
         'ToolStrip2
         '
         Me.ToolStrip2.AutoSize = False
+        Me.ToolStrip2.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnHisotryEdit, Me.ToolStripSeparator6, Me.btnSearchDelete, Me.ToolStripSeparator7, Me.btnHistoryPrint, Me.ToolStripSeparator10, Me.btnPrintUpdatedVoucher, Me.toolStripSeparator, Me.btnHistoryLoadAll, Me.btnHistorySearch, Me.ToolStripSeparator5, Me.btnReminder1, Me.Btn_SaveAttachment, Me.ToolStripSeparator4, Me.HelpToolStripButton1, Me.btnGetAllRecord})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
@@ -1653,7 +1731,7 @@ Partial Class frmPaymentNew
         Me.btnHisotryEdit.Image = Global.SimpleAccounts.My.Resources.Resources.BtnEdit_Image
         Me.btnHisotryEdit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnHisotryEdit.Name = "btnHisotryEdit"
-        Me.btnHisotryEdit.Size = New System.Drawing.Size(47, 25)
+        Me.btnHisotryEdit.Size = New System.Drawing.Size(59, 25)
         Me.btnHisotryEdit.Text = "&Edit"
         Me.btnHisotryEdit.ToolTipText = "(Alt+E)"
         '
@@ -1667,7 +1745,7 @@ Partial Class frmPaymentNew
         Me.btnSearchDelete.Image = Global.SimpleAccounts.My.Resources.Resources.BtnDelete_Image
         Me.btnSearchDelete.Name = "btnSearchDelete"
         Me.btnSearchDelete.RightToLeftAutoMirrorImage = True
-        Me.btnSearchDelete.Size = New System.Drawing.Size(60, 25)
+        Me.btnSearchDelete.Size = New System.Drawing.Size(77, 25)
         Me.btnSearchDelete.Text = "&Delete"
         Me.btnSearchDelete.ToolTipText = "(Alt+D)"
         '
@@ -1682,26 +1760,26 @@ Partial Class frmPaymentNew
         Me.btnHistoryPrint.Image = Global.SimpleAccounts.My.Resources.Resources.print
         Me.btnHistoryPrint.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnHistoryPrint.Name = "btnHistoryPrint"
-        Me.btnHistoryPrint.Size = New System.Drawing.Size(64, 25)
+        Me.btnHistoryPrint.Size = New System.Drawing.Size(78, 25)
         Me.btnHistoryPrint.Text = "&Print"
         Me.btnHistoryPrint.ToolTipText = "(Ctrl+P)"
         '
         'PrintReceiptToolStripMenuItem1
         '
         Me.PrintReceiptToolStripMenuItem1.Name = "PrintReceiptToolStripMenuItem1"
-        Me.PrintReceiptToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
+        Me.PrintReceiptToolStripMenuItem1.Size = New System.Drawing.Size(252, 26)
         Me.PrintReceiptToolStripMenuItem1.Text = "Print Payment"
         '
         'PrintSelectedVouchersToolStripMenuItem
         '
         Me.PrintSelectedVouchersToolStripMenuItem.Name = "PrintSelectedVouchersToolStripMenuItem"
-        Me.PrintSelectedVouchersToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.PrintSelectedVouchersToolStripMenuItem.Size = New System.Drawing.Size(252, 26)
         Me.PrintSelectedVouchersToolStripMenuItem.Text = "Print Selected Vouchers"
         '
         'PrintAttachmentVoucherToolStripMenuItem1
         '
         Me.PrintAttachmentVoucherToolStripMenuItem1.Name = "PrintAttachmentVoucherToolStripMenuItem1"
-        Me.PrintAttachmentVoucherToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
+        Me.PrintAttachmentVoucherToolStripMenuItem1.Size = New System.Drawing.Size(252, 26)
         Me.PrintAttachmentVoucherToolStripMenuItem1.Text = "Print Attachment Voucher"
         '
         'ToolStripSeparator10
@@ -1714,7 +1792,7 @@ Partial Class frmPaymentNew
         Me.btnPrintUpdatedVoucher.Image = Global.SimpleAccounts.My.Resources.Resources.print
         Me.btnPrintUpdatedVoucher.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnPrintUpdatedVoucher.Name = "btnPrintUpdatedVoucher"
-        Me.btnPrintUpdatedVoucher.Size = New System.Drawing.Size(146, 25)
+        Me.btnPrintUpdatedVoucher.Size = New System.Drawing.Size(182, 25)
         Me.btnPrintUpdatedVoucher.Text = "Print Updated Voucher"
         Me.btnPrintUpdatedVoucher.ToolTipText = "(Ctrl+P+V)"
         '
@@ -1728,7 +1806,7 @@ Partial Class frmPaymentNew
         Me.btnHistoryLoadAll.Image = Global.SimpleAccounts.My.Resources.Resources.sendcontactdetails
         Me.btnHistoryLoadAll.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnHistoryLoadAll.Name = "btnHistoryLoadAll"
-        Me.btnHistoryLoadAll.Size = New System.Drawing.Size(70, 25)
+        Me.btnHistoryLoadAll.Size = New System.Drawing.Size(88, 25)
         Me.btnHistoryLoadAll.Text = "Load All"
         Me.btnHistoryLoadAll.ToolTipText = "(Ctrl+L)"
         '
@@ -1737,7 +1815,7 @@ Partial Class frmPaymentNew
         Me.btnHistorySearch.Image = Global.SimpleAccounts.My.Resources.Resources.search_32
         Me.btnHistorySearch.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnHistorySearch.Name = "btnHistorySearch"
-        Me.btnHistorySearch.Size = New System.Drawing.Size(62, 25)
+        Me.btnHistorySearch.Size = New System.Drawing.Size(77, 25)
         Me.btnHistorySearch.Text = "Search"
         Me.btnHistorySearch.ToolTipText = "(Ctrl+F)"
         '
@@ -1751,7 +1829,7 @@ Partial Class frmPaymentNew
         Me.btnReminder1.Image = Global.SimpleAccounts.My.Resources.Resources.bell_icon
         Me.btnReminder1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnReminder1.Name = "btnReminder1"
-        Me.btnReminder1.Size = New System.Drawing.Size(78, 25)
+        Me.btnReminder1.Size = New System.Drawing.Size(97, 25)
         Me.btnReminder1.Text = "Reminder"
         Me.btnReminder1.ToolTipText = "(Ctrl+R)"
         '
@@ -1760,7 +1838,7 @@ Partial Class frmPaymentNew
         Me.Btn_SaveAttachment.Image = Global.SimpleAccounts.My.Resources.Resources.BtnSave_Image
         Me.Btn_SaveAttachment.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Btn_SaveAttachment.Name = "Btn_SaveAttachment"
-        Me.Btn_SaveAttachment.Size = New System.Drawing.Size(123, 25)
+        Me.Btn_SaveAttachment.Size = New System.Drawing.Size(153, 25)
         Me.Btn_SaveAttachment.Text = "Save Attachement"
         Me.Btn_SaveAttachment.ToolTipText = "(Ctrl+F6)"
         '
@@ -1773,7 +1851,7 @@ Partial Class frmPaymentNew
         '
         Me.HelpToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.HelpToolStripButton1.Name = "HelpToolStripButton1"
-        Me.HelpToolStripButton1.Size = New System.Drawing.Size(36, 25)
+        Me.HelpToolStripButton1.Size = New System.Drawing.Size(45, 25)
         Me.HelpToolStripButton1.Text = "He&lp"
         Me.HelpToolStripButton1.Visible = False
         '
@@ -1781,7 +1859,7 @@ Partial Class frmPaymentNew
         '
         Me.btnGetAllRecord.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnGetAllRecord.Name = "btnGetAllRecord"
-        Me.btnGetAllRecord.Size = New System.Drawing.Size(86, 25)
+        Me.btnGetAllRecord.Size = New System.Drawing.Size(109, 25)
         Me.btnGetAllRecord.Text = "Get All Record"
         Me.btnGetAllRecord.Visible = False
         '
@@ -1804,7 +1882,7 @@ Partial Class frmPaymentNew
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.grdVouchers)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1282, 637)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1282, 623)
         Me.SplitContainer1.SplitterDistance = 150
         Me.SplitContainer1.TabIndex = 2
         '
@@ -1856,7 +1934,7 @@ Partial Class frmPaymentNew
         Me.dtpSearchChequeDate.Location = New System.Drawing.Point(318, 51)
         Me.dtpSearchChequeDate.Name = "dtpSearchChequeDate"
         Me.dtpSearchChequeDate.ShowCheckBox = True
-        Me.dtpSearchChequeDate.Size = New System.Drawing.Size(120, 21)
+        Me.dtpSearchChequeDate.Size = New System.Drawing.Size(120, 24)
         Me.dtpSearchChequeDate.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.dtpSearchChequeDate, "Cheque Date")
         '
@@ -1865,7 +1943,7 @@ Partial Class frmPaymentNew
         Me.Label27.AutoSize = True
         Me.Label27.Location = New System.Drawing.Point(227, 55)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(82, 13)
+        Me.Label27.Size = New System.Drawing.Size(99, 17)
         Me.Label27.TabIndex = 10
         Me.Label27.Text = "Cheque Date"
         '
@@ -1874,7 +1952,7 @@ Partial Class frmPaymentNew
         Me.Label26.AutoSize = True
         Me.Label26.Location = New System.Drawing.Point(227, 105)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(112, 13)
+        Me.Label26.Size = New System.Drawing.Size(141, 17)
         Me.Label26.TabIndex = 14
         Me.Label26.Text = "Less Than Amount"
         '
@@ -1882,7 +1960,7 @@ Partial Class frmPaymentNew
         '
         Me.txtFromAmount.Location = New System.Drawing.Point(359, 77)
         Me.txtFromAmount.Name = "txtFromAmount"
-        Me.txtFromAmount.Size = New System.Drawing.Size(79, 21)
+        Me.txtFromAmount.Size = New System.Drawing.Size(79, 24)
         Me.txtFromAmount.TabIndex = 13
         Me.ToolTip1.SetToolTip(Me.txtFromAmount, "Larger Than Amount")
         '
@@ -1891,7 +1969,7 @@ Partial Class frmPaymentNew
         Me.Label25.AutoSize = True
         Me.Label25.Location = New System.Drawing.Point(227, 80)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(124, 13)
+        Me.Label25.Size = New System.Drawing.Size(154, 17)
         Me.Label25.TabIndex = 12
         Me.Label25.Text = "Larger Than Amount"
         '
@@ -1899,7 +1977,7 @@ Partial Class frmPaymentNew
         '
         Me.txtToAmount.Location = New System.Drawing.Point(359, 102)
         Me.txtToAmount.Name = "txtToAmount"
-        Me.txtToAmount.Size = New System.Drawing.Size(79, 21)
+        Me.txtToAmount.Size = New System.Drawing.Size(79, 24)
         Me.txtToAmount.TabIndex = 15
         Me.ToolTip1.SetToolTip(Me.txtToAmount, "Less Than Amount")
         '
@@ -1908,7 +1986,7 @@ Partial Class frmPaymentNew
         Me.Label24.AutoSize = True
         Me.Label24.Location = New System.Drawing.Point(227, 27)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(70, 13)
+        Me.Label24.Size = New System.Drawing.Size(85, 17)
         Me.Label24.TabIndex = 8
         Me.Label24.Text = "Cheque No"
         '
@@ -1916,7 +1994,7 @@ Partial Class frmPaymentNew
         '
         Me.txtSearchChequeNo.Location = New System.Drawing.Point(318, 24)
         Me.txtSearchChequeNo.Name = "txtSearchChequeNo"
-        Me.txtSearchChequeNo.Size = New System.Drawing.Size(120, 21)
+        Me.txtSearchChequeNo.Size = New System.Drawing.Size(120, 24)
         Me.txtSearchChequeNo.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.txtSearchChequeNo, "Cheque No")
         '
@@ -1925,7 +2003,7 @@ Partial Class frmPaymentNew
         Me.Label23.AutoSize = True
         Me.Label23.Location = New System.Drawing.Point(457, 81)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(69, 13)
+        Me.Label23.Size = New System.Drawing.Size(84, 17)
         Me.Label23.TabIndex = 18
         Me.Label23.Text = "Comments"
         '
@@ -1933,7 +2011,7 @@ Partial Class frmPaymentNew
         '
         Me.txtSearchComments.Location = New System.Drawing.Point(543, 78)
         Me.txtSearchComments.Name = "txtSearchComments"
-        Me.txtSearchComments.Size = New System.Drawing.Size(220, 21)
+        Me.txtSearchComments.Size = New System.Drawing.Size(220, 24)
         Me.txtSearchComments.TabIndex = 19
         Me.ToolTip1.SetToolTip(Me.txtSearchComments, "Comments")
         '
@@ -1942,7 +2020,7 @@ Partial Class frmPaymentNew
         Me.Label22.AutoSize = True
         Me.Label22.Location = New System.Drawing.Point(11, 104)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(72, 13)
+        Me.Label22.Size = New System.Drawing.Size(89, 17)
         Me.Label22.TabIndex = 6
         Me.Label22.Text = "Voucher No"
         '
@@ -1950,7 +2028,7 @@ Partial Class frmPaymentNew
         '
         Me.txtSearchVoucherNo.Location = New System.Drawing.Point(101, 101)
         Me.txtSearchVoucherNo.Name = "txtSearchVoucherNo"
-        Me.txtSearchVoucherNo.Size = New System.Drawing.Size(120, 21)
+        Me.txtSearchVoucherNo.Size = New System.Drawing.Size(120, 24)
         Me.txtSearchVoucherNo.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.txtSearchVoucherNo, "Voucher No")
         '
@@ -1959,7 +2037,7 @@ Partial Class frmPaymentNew
         Me.Label21.AutoSize = True
         Me.Label21.Location = New System.Drawing.Point(457, 54)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(80, 13)
+        Me.Label21.Size = New System.Drawing.Size(99, 17)
         Me.Label21.TabIndex = 16
         Me.Label21.Text = "Account Title"
         '
@@ -2011,7 +2089,7 @@ Partial Class frmPaymentNew
         Me.cmbSearchAccount.LimitToList = True
         Me.cmbSearchAccount.Location = New System.Drawing.Point(543, 50)
         Me.cmbSearchAccount.Name = "cmbSearchAccount"
-        Me.cmbSearchAccount.Size = New System.Drawing.Size(220, 23)
+        Me.cmbSearchAccount.Size = New System.Drawing.Size(220, 27)
         Me.cmbSearchAccount.TabIndex = 17
         Me.ToolTip1.SetToolTip(Me.cmbSearchAccount, "Select Any Account")
         '
@@ -2020,7 +2098,7 @@ Partial Class frmPaymentNew
         Me.Label20.AutoSize = True
         Me.Label20.Location = New System.Drawing.Point(11, 77)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(84, 13)
+        Me.Label20.Size = New System.Drawing.Size(103, 17)
         Me.Label20.TabIndex = 4
         Me.Label20.Text = "Voucher Type"
         '
@@ -2032,7 +2110,7 @@ Partial Class frmPaymentNew
         Me.dtpFrom.Location = New System.Drawing.Point(102, 20)
         Me.dtpFrom.Name = "dtpFrom"
         Me.dtpFrom.ShowCheckBox = True
-        Me.dtpFrom.Size = New System.Drawing.Size(120, 21)
+        Me.dtpFrom.Size = New System.Drawing.Size(120, 24)
         Me.dtpFrom.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.dtpFrom, "From Date")
         '
@@ -2041,7 +2119,7 @@ Partial Class frmPaymentNew
         Me.Label19.AutoSize = True
         Me.Label19.Location = New System.Drawing.Point(11, 50)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(51, 13)
+        Me.Label19.Size = New System.Drawing.Size(62, 17)
         Me.Label19.TabIndex = 2
         Me.Label19.Text = "Date To"
         '
@@ -2053,7 +2131,7 @@ Partial Class frmPaymentNew
         Me.dtpTo.Location = New System.Drawing.Point(101, 46)
         Me.dtpTo.Name = "dtpTo"
         Me.dtpTo.ShowCheckBox = True
-        Me.dtpTo.Size = New System.Drawing.Size(120, 21)
+        Me.dtpTo.Size = New System.Drawing.Size(120, 24)
         Me.dtpTo.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.dtpTo, "To Date")
         '
@@ -2062,7 +2140,7 @@ Partial Class frmPaymentNew
         Me.Label18.AutoSize = True
         Me.Label18.Location = New System.Drawing.Point(11, 24)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(67, 13)
+        Me.Label18.Size = New System.Drawing.Size(82, 17)
         Me.Label18.TabIndex = 0
         Me.Label18.Text = "Date From"
         '
@@ -2071,7 +2149,7 @@ Partial Class frmPaymentNew
         Me.cmbSearchVoucherType.FormattingEnabled = True
         Me.cmbSearchVoucherType.Location = New System.Drawing.Point(101, 74)
         Me.cmbSearchVoucherType.Name = "cmbSearchVoucherType"
-        Me.cmbSearchVoucherType.Size = New System.Drawing.Size(121, 21)
+        Me.cmbSearchVoucherType.Size = New System.Drawing.Size(121, 25)
         Me.cmbSearchVoucherType.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.cmbSearchVoucherType, "Voucher Type")
         '
@@ -2101,7 +2179,7 @@ Partial Class frmPaymentNew
         '
         Me.UltraTabSharedControlsPage1.Location = New System.Drawing.Point(-10000, -10000)
         Me.UltraTabSharedControlsPage1.Name = "UltraTabSharedControlsPage1"
-        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(1282, 668)
+        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(1282, 665)
         '
         'BackgroundWorker1
         '
@@ -2140,6 +2218,8 @@ Partial Class frmPaymentNew
         CType(Me.txtMemo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.grdPaymentType.ResumeLayout(False)
+        Me.grdPaymentType.PerformLayout()
         CType(Me.cmbInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmbAccounts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FlowLayoutPanel1.ResumeLayout(False)
@@ -2339,5 +2419,12 @@ Partial Class frmPaymentNew
     Friend WithEvents btnPurchaseInvoiceSearch As System.Windows.Forms.ToolStripButton
     Friend WithEvents chkAllAccounts As System.Windows.Forms.CheckBox
     Friend WithEvents lblProgress As System.Windows.Forms.Label
+    Friend WithEvents chkLinkInvoice As System.Windows.Forms.CheckBox
+    Friend WithEvents txtPartialAmount As System.Windows.Forms.TextBox
+    Friend WithEvents grpPayemntType As System.Windows.Forms.GroupBox
+    Friend WithEvents rbtCustomer As System.Windows.Forms.RadioButton
+    Friend WithEvents rbtAll As System.Windows.Forms.RadioButton
+    Friend WithEvents lblPartialAmount As System.Windows.Forms.Label
+    Friend WithEvents grdPaymentType As System.Windows.Forms.GroupBox
     'Friend WithEvents Panel3 As System.Windows.Forms.Panel
 End Class

@@ -174,7 +174,7 @@ Public Class frmGrdRptEmployeeMonthlyAttendance
                     & "  FROM  dbo.tblDefEmployee INNER JOIN " _
                     & "  dbo.EmployeeDesignationDefTable ON dbo.tblDefEmployee.Desig_ID = dbo.EmployeeDesignationDefTable.EmployeeDesignationId INNER JOIN " _
                     & "  dbo.EmployeeDeptDefTable ON dbo.tblDefEmployee.Dept_ID = dbo.EmployeeDeptDefTable.EmployeeDeptId LEFT JOIN tblDefCostCenter ON dbo.tblDefEmployee.CostCentre = tblDefCostCenter.CostCenterID " _
-                    & " INNER JOIN (SELECT ShiftGroupId FROM ShiftScheduleTable INNER JOIN ShiftTable ON  ShiftScheduleTable.ShiftId = ShiftTable.ShiftId " & IIf(rbtnNightShift.Checked = True, " WHERE ISNULL(ShiftTable.NightShift, 0)=1", " WHERE ISNULL(ShiftTable.NightShift, 0)=0 ") & ") AS Shift ON tblDefEmployee.ShiftGroupId = Shift.ShiftGroupId WHERE Employee_Code <> ''"
+                    & " INNER JOIN (SELECT ShiftGroupId FROM ShiftScheduleTable INNER JOIN ShiftTable ON  ShiftScheduleTable.ShiftId = ShiftTable.ShiftId " & IIf(rbtnNightShift.Checked = True, " WHERE ISNULL(ShiftTable.NightShift, 0)=1", " WHERE ISNULL(ShiftTable.NightShift, 0)=0 ") & ") AS Shift ON tblDefEmployee.ShiftGroupId = Shift.ShiftGroupId WHERE Employee_Code <> '' AND tblDefEmployee.active = 1"
             If Me.lstEmployee.SelectedIDs.Length > 0 Then
                 strSQL += " AND Employee_Id in (" & Me.lstEmployee.SelectedIDs & ")"
             End If
@@ -238,7 +238,7 @@ Public Class frmGrdRptEmployeeMonthlyAttendance
             For Each r As DataRow In dt.Rows
                 For c As Integer = enmEmp.Count To dt.Columns.Count - 4 Step 4
                     r.BeginEdit()
-                    r(c + 1) = "R"
+                    r(c + 1) = "A"
                     r(c + 2) = ":0"
                     r(c + 3) = ":0"
                     r.EndEdit()

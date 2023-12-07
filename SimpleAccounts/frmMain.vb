@@ -709,7 +709,7 @@ Public Class frmMain
     'End Sub
     Public Sub frmMain_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            ''GetInvoiceData()
+
             'LoginForm4.BringToFront()
             'LoginForm4.ShowDialog()
             ''frmmainlogin.BringToFront()
@@ -831,26 +831,36 @@ Public Class frmMain
                 'ElseIf Con.Database = "RemmsTech_UAE_DB" Then
                 CompanyPrefix = str_Company1
                 str_MessageHeader = str_MessageHeader
+                companyinitials = "PK"
                 ''Me.Text = str_Company1
             ElseIf Con.Database = "RemmsPAK_DB" Then
                 CompanyPrefix = str_Company2
                 str_MessageHeader = str_MessageHeader
+                companyinitials = "RPK"
             ElseIf Con.Database = "RemmsTech_UAE_DB" Then
                 CompanyPrefix = str_Company3
                 str_MessageHeader = str_MessageHeader
-            ElseIf Con.Database = "SIRIUS_MY_DB" Then
-                CompanyPrefix = str_Company5
-                str_MessageHeader = str_MessageHeader
+                companyinitials = "RUAE"
             ElseIf Con.Database = "SIRIUS_KSA_DB" Then
                 CompanyPrefix = str_Company4
                 str_MessageHeader = str_MessageHeader
+                companyinitials = "KSA"
+            ElseIf Con.Database = "SIRIUS_MY_DB" Then
+                CompanyPrefix = str_Company5
+                str_MessageHeader = str_MessageHeader
+                companyinitials = "MY"
+            ElseIf Con.Database = "SIRIUS_SL_DB" Then
+                CompanyPrefix = str_Company6
+                str_MessageHeader = str_MessageHeader
+                companyinitials = "SL"
             Else
                 CompanyPrefix = str_Company
                 str_MessageHeader = str_MessageHeader
                 ''Me.Text = str_Company
             End If
             Me.Text = CompanyPrefix
-
+            
+            ''GetInvoiceData()
             If Me.Text.Contains("UAE") Then
                 companycountry = "(UAE)"
             ElseIf Me.Text.Contains("PAK") Then
@@ -863,7 +873,10 @@ Public Class frmMain
                 companycountry = "(Remms-UAE)"
             ElseIf Me.Text.Contains("MY") Then
                 companycountry = "(MY)"
+            ElseIf Me.Text.Contains("SL") Then
+                companycountry = "(SL)"
             End If
+            ''GetInvoiceData()
             'Rafay:Task End
             'If ConUserId <> "" Then
             '    Con = New OleDbConnection("Provider=SQLOLEDB.1;Password=" & ConPassword & ";Persist Security Info=True;User ID=" & ConUserId & ";Initial Catalog=" & ConDBName & ";Data Source=" & ConServerName & ";Connect TimeOut=120")
@@ -1786,6 +1799,10 @@ Public Class frmMain
             ControlName = frmFineDeduction
         ElseIf key = "frmNewLeaveApplication" Then
             ControlName = frmNewLeaveApplication
+        ElseIf key = "frmApproveLeaveApplication" Then
+            ControlName = frmApproveLeaveApplication
+        ElseIf key = "frmLeaveApplication" Then
+            ControlName = frmLeaveApplication
         ElseIf key = "frmLeaveAdjustment" Then
             ControlName = frmLeaveAdjustment
         ElseIf key = "frmDefLeaveTypes" Then
@@ -1896,7 +1913,7 @@ Public Class frmMain
             ControlName = frmGrdRptEngineWiseStock
         ElseIf key = "frmReconciliation" Then
             ControlName = frmReconciliation
-        ElseIf key = "Employee Leave Request" Then
+        ElseIf key = "frmLeaveApplication" Then
             ControlName = frmLeaveApplication
         ElseIf key = "UpdateCurrencyRates" Then
             ControlName = frmUpdateCurrency
@@ -5036,13 +5053,13 @@ Public Class frmMain
         'end task 2640
     End Sub
     Private Sub BackgroundWorker23_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker23.DoWork
-        Try
-            If Birthdate() = True Then
-                SendAutoEmail()
-            End If
-        Catch ex As Exception
-            ShowErrorNotification(ex.Message)
-        End Try
+        'Try
+        '    If Birthdate() = True Then
+        '        SendAutoEmail()
+        '    End If
+        'Catch ex As Exception
+        '    ShowErrorNotification(ex.Message)
+        'End Try
         'Try
         '    Call GetSMSSchedule()
         '    'Commented Against Request No. RM6
@@ -5065,10 +5082,10 @@ Public Class frmMain
 
             'End If
 
-            GetExpiredEmailData()
-            '' ''End If
-            SendContractExpiryEmail()
-            GetInvoiceData()
+            'GetExpiredEmailData()
+            ' '' ''End If
+            'SendContractExpiryEmail()
+            'GetInvoiceData()
         Catch ex As Exception
             ShowErrorNotification(ex.Message)
         End Try
@@ -6656,7 +6673,11 @@ Public Class frmMain
                 If dt.Rows.Count > 0 Then
                     If dt.Rows(0).Item(0) > 0 Then
                     Else
-                        UsersEmail = "everyone@agriusit.com"
+                        If Con.Database.Contains("Remms") Then
+                            UsersEmail = "everyone@remmsit.com"
+                        Else
+                            UsersEmail = "everyone@agriusit.com"
+                        End If
                         FormatStringBuilder(dtEmail)
                         CreateOutLookMail(UsersEmail)
                         'SaveEmailLog(VoucherNo, UsersEmail, "frmCustomerCollection", Activity)
@@ -6664,7 +6685,7 @@ Public Class frmMain
                 Else
                     ShowErrorMessage("No email template is found for Receipt.")
                 End If
-            End If
+                End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -6907,8 +6928,13 @@ Public Class frmMain
             'End If
             mailItem.Subject = "Contract Expiry Notification " & ContractNo & " (" & CustomerId & ")"
             mailItem.To = Email
-            mailItem.CC = "adil@agriusit.com"
-            mailItem.CC = "m.khan@agriusit.com"
+            If Con.Database.Contains("Remms") Then
+                mailItem.CC = "adil@remmsit.com"
+                mailItem.CC = "m.khan@remmsit.com"
+            Else
+                mailItem.CC = "adil@agriusit.com"
+                mailItem.CC = "m.khan@agriusit.com"
+            End If
             mailItem.Importance = Outlook.OlImportance.olImportanceNormal
             mailItem.Display(mailItem)
             Dim myStr As String
@@ -6939,8 +6965,13 @@ Public Class frmMain
             End If
             mailItem.Subject = "Contract Expiry Notification " & ContractNo & " (" & CustomerId & ")"
             mailItem.To = Email
-            mailItem.CC = "adil@agriusit.com"
-            mailItem.CC = "m.khan@agriusit.com"
+            If Con.Database.Contains("Remms") Then
+                mailItem.CC = "adil@remmsit.com"
+                mailItem.CC = "m.khan@remmsit.com"
+            Else
+                mailItem.CC = "adil@agriusit.com"
+                mailItem.CC = "m.khan@agriusit.com"
+            End If
             mailItem.Importance = Outlook.OlImportance.olImportanceNormal
             mailItem.Display(mailItem)
             Dim myStr As String
@@ -6971,8 +7002,13 @@ Public Class frmMain
             End If
             mailItem.Subject = "Contract Expiry Notification " & ContractNo & " (" & CustomerId & ")"
             mailItem.To = Email
-            mailItem.CC = "adil@agriusit.com"
-            mailItem.CC = "m.khan@agriusit.com"
+            If Con.Database.Contains("Remms") Then
+                mailItem.CC = "adil@remmsit.com"
+                mailItem.CC = "m.khan@remmsit.com"
+            Else
+                mailItem.CC = "adil@agriusit.com"
+                mailItem.CC = "m.khan@agriusit.com"
+            End If
             mailItem.Importance = Outlook.OlImportance.olImportanceNormal
             mailItem.Display(mailItem)
             Dim myStr As String
@@ -7003,8 +7039,13 @@ Public Class frmMain
             End If
             mailItem.Subject = "Contract Expiry Notification " & ContractNo & " (" & CustomerId & ")"
             mailItem.To = Email
-            mailItem.CC = "adil@agriusit.com"
-            mailItem.CC = "m.khan@agriusit.com"
+            If Con.Database.Contains("Remms") Then
+                mailItem.CC = "adil@remmsit.com"
+                mailItem.CC = "m.khan@remmsit.com"
+            Else
+                mailItem.CC = "adil@agriusit.com"
+                mailItem.CC = "m.khan@agriusit.com"
+            End If
             mailItem.Importance = Outlook.OlImportance.olImportanceNormal
             mailItem.Display(mailItem)
             Dim myStr As String
@@ -7035,8 +7076,13 @@ Public Class frmMain
             End If
             mailItem.Subject = "Contract Expiry Notification " & ContractNo & " (" & CustomerId & ")"
             mailItem.To = Email
-            mailItem.CC = "adil@agriusit.com"
-            mailItem.CC = "m.khan@agriusit.com"
+            If Con.Database.Contains("Remms") Then
+                mailItem.CC = "adil@remmsit.com"
+                mailItem.CC = "m.khan@remmsit.com"
+            Else
+                mailItem.CC = "adil@agriusit.com"
+                mailItem.CC = "m.khan@agriusit.com"
+            End If
             mailItem.Importance = Outlook.OlImportance.olImportanceNormal
             mailItem.Display(mailItem)
             Dim myStr As String
@@ -7067,8 +7113,13 @@ Public Class frmMain
             End If
             mailItem.Subject = "Contract Expiry Notification " & ContractNo & " (" & CustomerId & ")"
             mailItem.To = Email
-            mailItem.CC = "adil@agriusit.com"
-            mailItem.CC = "m.khan@agriusit.com"
+            If Con.Database.Contains("Remms") Then
+                mailItem.CC = "adil@remmsit.com"
+                mailItem.CC = "m.khan@remmsit.com"
+            Else
+                mailItem.CC = "adil@agriusit.com"
+                mailItem.CC = "m.khan@agriusit.com"
+            End If
             mailItem.Importance = Outlook.OlImportance.olImportanceNormal
             mailItem.Display(mailItem)
             Dim myStr As String
@@ -7703,6 +7754,7 @@ Public Class frmMain
                             Dim VoucherNo As String = String.Empty
                             Dim ArticleId As Integer = 0
                             Dim Tax As Double = 0
+                            Dim PONumber As String = String.Empty
                             ContractNo = C.Item(1)
                             StartDate = C.Item(2)
                             EndDate = C.Item(3)
@@ -7710,6 +7762,7 @@ Public Class frmMain
                             OpportunityId = C.Item(7)
                             Status = C.Item(8)
                             EndCustomer = C.Item(9)
+                            PONumber = C.Item(10)
                             Site = C.Item(12)
                             InvoicingFrequency = C.Item(13)
                             Dim strWords As String() = C.Item(14).Split(" ")
@@ -7839,7 +7892,7 @@ Public Class frmMain
                             Dim trans As OleDbTransaction = objCon.BeginTransaction
                             objCommand.CommandType = CommandType.Text
                             objCommand.Transaction = trans
-                            objCommand.CommandText = "Insert into SalesMasterTable (LocationId,SalesNo,InvoiceType,SalesDate,DueDays,InvoiceParty,CostCenterId,SalesAmount,Post,CustomerCode,EmployeeCode) values('1',N'" & InvoiceNo & "','Credit',N'" & InvoiceDate & "',N'" & IIf(PaymentTerms = "Pre-Payment", "0", PaymentTerms) & "',N'" & CustomerId & "',N'" & COSTCenterID & "',N'" & CurrencyRate * Invoiceamount & "','1',N'" & SalesCustomerID & "',N'" & SalespersonID & "')SELECT @@IDENTITY"
+                            objCommand.CommandText = "Insert into SalesMasterTable (LocationId,SalesNo,InvoiceType,SalesDate,DueDays,InvoiceParty,CostCenterId,SalesAmount,Post,CustomerCode,EmployeeCode,POId,PO_NO) values('1',N'" & InvoiceNo & "','Credit',N'" & InvoiceDate & "',N'" & IIf(PaymentTerms = "Pre-Payment", "0", PaymentTerms) & "',N'" & CustomerId & "',N'" & COSTCenterID & "',N'" & CurrencyRate * Invoiceamount & "','1',N'" & SalesCustomerID & "',N'" & SalespersonID & "',0,N'" & PONumber & "')SELECT @@IDENTITY"
                             Dim CId As Integer = objCommand.ExecuteScalar
                             objCommand.CommandText = "Insert into SalesDetailTable (SalesId,LocationId,ArticleDefId,ArticleSize,Sz1,Sz7,Qty,Price,CurrentPrice,TaxPercent,PurchasePrice,Comments,BaseCurrencyId,BaseCurrencyRate,CurrencyId,CurrencyRate,CurrencyAmount,PostDiscountPrice, BatchID, SampleQty) VALUES ( " & CId & ",N'" & LocationID & "',N'" & ArticleId & "','Loose',1,1,1,N'" & Invoiceamount & "',N'" & Invoiceamount & "',N'" & Tax & "',0,N'" & InvoiceMonths & "',N'" & BaseCurrencyId & "',1,N'" & CurrencyID & "',N'" & CurrencyRate & "',N'" & CurrencyRate * Invoiceamount & "',N'" & Invoiceamount & "',0,0)"
                             objCommand.ExecuteNonQuery()
@@ -7869,7 +7922,11 @@ Public Class frmMain
     Private Sub SendAutoInvoiceEmail(Optional ByVal Activity As String = "")
         Try
             GetTemplate("Receipt")
-            UsersEmail = "r.ejaz@agriusit.com"
+            If Con.Database.Contains("Remms") Then
+                UsersEmail = "r.ejaz@remmsit.com"
+            Else
+                UsersEmail = "r.ejaz@agriusit.com"
+            End If
             FormatStringBuilder(dtEmail)
             CreateInvoiceOutLookMail(UsersEmail)
         Catch ex As Exception
@@ -7890,10 +7947,14 @@ Public Class frmMain
                 OutAccount = oApp.Session.Accounts(senderemail)
                 mailItem.SendUsingAccount = OutAccount
             End If
-            mailItem.Subject = "Notification of invoice ( " & InvoiceNo + companycountry & " ) Generation"
+            mailItem.Subject = "Notification of invoice " & companycountry & "( " & InvoiceNo & " ) Generation"
             mailItem.To = Email
-            mailItem.CC = "Adil@agriusit.com"
-            mailItem.CC = "w.raza@agriusit.com"
+            'If Con.Database.Contains("Remms") Then
+            '    mailItem.CC = "Adil@remmsit.com"
+            'Else
+            '    mailItem.CC = "Adil@agriusit.com"
+            '    mailItem.CC = "w.raza@agriusit.com"
+            'End If
             'Email = String.Empty
             mailItem.Importance = Outlook.OlImportance.olImportanceNormal
             mailItem.Display(mailItem)
@@ -8091,11 +8152,11 @@ Public Class frmMain
 
     Private Sub BackgroundWorker25_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker25.DoWork
         'Try
-        Try
-            GetLiveCurrencyRate()
-        Catch ex As Exception
-            MessageBox.Show("An error occurred: " & ex.Message)
-        End Try
+        'Try
+        '    GetLiveCurrencyRate()
+        'Catch ex As Exception
+        '    MessageBox.Show("An error occurred: " & ex.Message)
+        'End Try
     End Sub
     Function GetDocumentNo(ByVal InvoiceDate As Date) As String
         Dim DocNo As String = String.Empty
@@ -8107,7 +8168,7 @@ Public Class frmMain
                     If CompanyPrefix = "V-ERP (UAE)" Then
                         DocNo = GetSerialNo("SI1" & "-" + Microsoft.VisualBasic.Right(Me.InvoiceDate.Year, 2) + "-", "SalesMasterTable", "SalesNo")
                     Else
-                        companyinitials = "PK"
+                        'companyinitials = "PK"
                         DocNo = GetNextDocNo("SI" & "-" & companyinitials & "-" & Format(Me.InvoiceDate, "yy"), 4, "SalesMasterTable", "SalesNo")
                     End If
                 End If
@@ -8118,7 +8179,7 @@ Public Class frmMain
                     If CompanyPrefix = "V-ERP (UAE)" Then
                         DocNo = GetNextDocNo("SI1" & "" & "-" & Format(Me.InvoiceDate, "yy") & Me.InvoiceDate.Month.ToString("00"), 2, "SalesMasterTable", "SalesNo")
                     Else
-                        companyinitials = "PK"
+                        'companyinitials = "PK"
                         DocNo = GetNextDocNo("SI" & "-" & companyinitials & "-" & Format(Me.InvoiceDate, "yy"), 4, "SalesMasterTable", "SalesNo")
                     End If
                 End If

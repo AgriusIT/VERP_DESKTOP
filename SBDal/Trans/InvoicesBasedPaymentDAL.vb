@@ -21,11 +21,11 @@ Public Class InvoicesBasedPaymentDAL
         Try
 
 
-            objMod.PaymentNo = GetVoucherNo(objMod.PaymentNo.Substring(0, objMod.PaymentNo.IndexOf("-")), objMod.PaymentDate, objMod.CompanyName, trans)
+            'objMod.PaymentNo = GetVoucherNo(objMod.PaymentNo.Substring(0, objMod.PaymentNo.IndexOf("-")), objMod.PaymentDate, objMod.CompanyName, trans)
             objMod.PVNo = objMod.PaymentNo
-            objMod.VoucherMaster.VoucherCode = objMod.PaymentNo
-            objMod.VoucherMaster.VoucherNo = objMod.PaymentNo
-            objMod.VoucherMaster.VNo = objMod.PaymentNo
+            'objMod.VoucherMaster.VoucherCode = objMod.PaymentNo
+            'objMod.VoucherMaster.VoucherNo = objMod.PaymentNo
+            'objMod.VoucherMaster.VNo = objMod.PaymentNo
 
             'Before against task:2375
             'Dim str As String = "Insert Into InvoiceBasedPayments(PaymentNo, PaymentDate, Remarks, PaymentAmount, PaymentMethod, PaymentAccountID, VendorCode, ChequeNo, ChequeDate, UserName, CostCenterId) " _
@@ -49,20 +49,20 @@ Public Class InvoicesBasedPaymentDAL
             ' objMod.PaymentID = Convert.ToInt32(SQLHelper.ExecuteScaler(trans, CommandType.Text, str))
             ' 'Call ADD Detail Function 
             'Task No 2537 Updating THe Query For Checkbox Post Updation 
-            Dim str As String = "Insert Into InvoiceBasedPayments(PaymentNo, PaymentDate, Remarks, PaymentAmount, PaymentMethod, PaymentAccountID, VendorCode, ChequeNo, ChequeDate, UserName, CostCenterId, PayeeTitle,Post,ChequeLayoutIndex,DueDate) " _
-          & " Values (N'" & objMod.PaymentNo & "', N'" & objMod.PaymentDate.ToString("yyyy-M-d h:mm:ss tt") & "', N'" & objMod.Reference.ToString & "', " & objMod.NetPayment & ", " & objMod.PaymentMethod & ", " & objMod.PaymentAccountId & ", " & objMod.VendorCode & ", " & IIf(objMod.ChequeNo.ToString = "", "NULL", "" & objMod.ChequeNo & "") & ", " & IIf(objMod.ChequeNo.ToString = "", "NULL", IIf(objMod.ChequeDate = "#12:00:00 AM#", "NULL", "N'" & objMod.ChequeDate.ToString("yyyy-M-d h:mm:ss tt") & "'")) & ", N'" & objMod.UserName & "', " & objMod.ProjectId & ", " & IIf(objMod.PayeeTitle.ToString = "", "NULL", "N'" & objMod.PayeeTitle.Replace("'", "''") & "'") & " ," & IIf(objMod.Post = True, 1, 0) & ", " & objMod.ChequeLayoutIndex & ", " & IIf(objMod.DueDate = "#12:00:00 AM#", "Null", "N'" & objMod.DueDate.ToString("yyyy-M-d h:mm:ss tt") & "'") & ") Select @@Identity "
+            Dim str As String = "Insert Into InvoiceBasedPayments(PaymentNo, PaymentDate, Remarks, PaymentAmount, PaymentMethod, PaymentAccountID, VendorCode, ChequeNo, ChequeDate, UserName, CostCenterId,Post,ChequeLayoutIndex,DueDate) " _
+          & " Values (N'" & objMod.PaymentNo & "', N'" & objMod.PaymentDate.ToString("yyyy-M-d h:mm:ss tt") & "', N'" & objMod.Reference.ToString & "', " & objMod.NetPayment & ", " & objMod.PaymentMethod & ", " & objMod.PaymentAccountId & ", " & objMod.VendorCode & ", " & IIf(objMod.ChequeNo.ToString = "", "NULL", "" & objMod.ChequeNo & "") & ", " & IIf(objMod.ChequeNo.ToString = "", "NULL", IIf(objMod.ChequeDate = "#12:00:00 AM#", "NULL", "N'" & objMod.ChequeDate.ToString("yyyy-M-d h:mm:ss tt") & "'")) & ", N'" & objMod.UserName & "', " & objMod.ProjectId & "," & IIf(objMod.Post = True, 1, 0) & ", " & objMod.ChequeLayoutIndex & ", " & IIf(objMod.DueDate = "#12:00:00 AM#", "Null", "N'" & objMod.DueDate.ToString("yyyy-M-d h:mm:ss tt") & "'") & ") Select @@Identity "
             objMod.PaymentID = Convert.ToInt32(SQLHelper.ExecuteScaler(trans, CommandType.Text, str))
             'Call ADD Detail Function 
             Call Me.AddDt(objMod.PaymentID, objMod, trans)
             'Call Add Function From Voucher DAL Class
-            VoucherDAL = New VouchersDAL
-            VoucherDAL.Add(objMod.VoucherMaster, trans)
+            'VoucherDAL = New VouchersDAL
+            'VoucherDAL.Add(objMod.VoucherMaster, trans)
             'Activity Log Detail Below
-            objMod.ActivityLog.ActivityName = "Save"
-            objMod.ActivityLog.RecordType = "Accounts"
-            objMod.ActivityLog.RefNo = objMod.PaymentNo
-            'Call ActivityBuldFunction in UtilityDAL 
-            Call UtilityDAL.BuildActivityLog(objMod.ActivityLog, trans)
+            'objMod.ActivityLog.ActivityName = "Save"
+            'objMod.ActivityLog.RecordType = "Accounts"
+            'objMod.ActivityLog.RefNo = objMod.PaymentNo
+            ''Call ActivityBuldFunction in UtilityDAL 
+            'Call UtilityDAL.BuildActivityLog(objMod.ActivityLog, trans)
             trans.Commit()
             Return True
         Catch ex As SqlClient.SqlException
@@ -91,7 +91,7 @@ Public Class InvoicesBasedPaymentDAL
             'Task:2382 Added Column Payee Title
             'Task 2537 Updating The query of Update 
             'str = "Update InvoiceBasedPayments Set PaymentNo=N'" & objMod.PVNo & "', PaymentDate=N'" & objMod.PaymentDate.ToString("yyyy-M-d h:mm:ss tt") & "', Remarks=N'" & objMod.Reference.ToString & "', PaymentAmount=" & objMod.NetPayment & ", PaymentMethod=" & objMod.PaymentMethod & ", PaymentAccountId=" & objMod.PaymentAccountId & ", VendorCode=" & objMod.VendorCode & ", ChequeNo=" & IIf(objMod.ChequeNo = "", "NULL", "" & objMod.ChequeNo & "") & ", ChequeDate=" & IIf(objMod.ChequeDate = "#12:00:00 AM#", "NULL", "N'" & objMod.ChequeDate.ToString("yyyy-M-d h:mm:ss tt") & "'") & ", CostCenterId=" & objMod.ProjectId & ", PayeeTitle=" & IIf(objMod.PayeeTitle.ToString = "", "NULL", "N'" & objMod.PayeeTitle.Replace("'", "''") & "'") & " WHERE PaymentId=" & objMod.PaymentID & ""
-            str = "Update InvoiceBasedPayments Set PaymentNo=N'" & objMod.PVNo & "', PaymentDate=N'" & objMod.PaymentDate.ToString("yyyy-M-d h:mm:ss tt") & "', Remarks=N'" & objMod.Reference.ToString & "', PaymentAmount=" & objMod.NetPayment & ", PaymentMethod=" & objMod.PaymentMethod & ", PaymentAccountId=" & objMod.PaymentAccountId & ", VendorCode=" & objMod.VendorCode & ", ChequeNo=" & IIf(objMod.ChequeNo = "", "NULL", "" & objMod.ChequeNo & "") & ", ChequeDate=" & IIf(objMod.ChequeDate = "#12:00:00 AM#", "NULL", "N'" & objMod.ChequeDate.ToString("yyyy-M-d h:mm:ss tt") & "'") & ", CostCenterId=" & objMod.ProjectId & ", PayeeTitle=" & IIf(objMod.PayeeTitle.ToString = "", "NULL", "N'" & objMod.PayeeTitle.Replace("'", "''") & "'") & ", Post =" & IIf(objMod.Post = True, 1, 0) & ",ChequeLayoutIndex=" & objMod.ChequeLayoutIndex & ",DueDate=" & IIf(objMod.DueDate = "#12:00:00 AM#", "NULL", "N'" & objMod.DueDate.ToString("yyyy-M-d h:mm:ss tt") & "'") & " WHERE PaymentId=" & objMod.PaymentID & ""
+            str = "Update InvoiceBasedPayments Set PaymentNo=N'" & objMod.PVNo & "', PaymentDate=N'" & objMod.PaymentDate.ToString("yyyy-M-d h:mm:ss tt") & "', Remarks=N'" & objMod.Reference.ToString & "', PaymentAmount=" & objMod.NetPayment & ", PaymentMethod=" & objMod.PaymentMethod & ", PaymentAccountId=" & objMod.PaymentAccountId & ", VendorCode=" & objMod.VendorCode & ", ChequeDate=" & IIf(objMod.ChequeDate = "#12:00:00 AM#", "NULL", "N'" & objMod.ChequeDate.ToString("yyyy-M-d h:mm:ss tt") & "'") & ", CostCenterId=" & objMod.ProjectId & ", Post =" & IIf(objMod.Post = True, 1, 0) & " WHERE PaymentId=" & objMod.PaymentID & ""
             'End Task:2382
             SQLHelper.ExecuteNonQuery(trans, CommandType.Text, str)
             'Delete From Invoice Base Payment Detail
@@ -101,14 +101,14 @@ Public Class InvoicesBasedPaymentDAL
             'Call Add Detail Function 
             Call AddDt(objMod.PaymentID, objMod, trans)
             'Call Add Function From Voucher DAL Class
-            VoucherDAL = New VouchersDAL
-            VoucherDAL.Update(objMod.VoucherMaster, trans)
+            'VoucherDAL = New VouchersDAL
+            'VoucherDAL.Update(objMod.VoucherMaster, trans)
             'Activity Log Detail Below 
-            objMod.ActivityLog.ActivityName = "Update"
-            objMod.ActivityLog.RecordType = "Accounts"
-            objMod.ActivityLog.RefNo = objMod.PaymentNo
-            'Call ActivityBuldFunction in UtilityDAL 
-            Call UtilityDAL.BuildActivityLog(objMod.ActivityLog, trans)
+            'objMod.ActivityLog.ActivityName = "Update"
+            'objMod.ActivityLog.RecordType = "Accounts"
+            'objMod.ActivityLog.RefNo = objMod.PaymentNo
+            ''Call ActivityBuldFunction in UtilityDAL 
+            'Call UtilityDAL.BuildActivityLog(objMod.ActivityLog, trans)
 
             trans.Commit()
             Return True
@@ -150,8 +150,8 @@ Public Class InvoicesBasedPaymentDAL
             str1 = "Delete From InvoiceBasedPayments WHERE PaymentId=" & VoucherId & ""
             SQLHelper.ExecuteNonQuery(trans, CommandType.Text, str1)
             'Call Delete Function From Voucher Dal
-            VoucherDAL = New VouchersDAL
-            Call VoucherDAL.Delete(objMod.VoucherMaster, trans)
+            'VoucherDAL = New VouchersDAL
+            'Call VoucherDAL.Delete(objMod.VoucherMaster, trans)
             'Activit Log Below 
             objMod.ActivityLog.ActivityName = "Delete"
             objMod.ActivityLog.RecordType = "Accounts"
@@ -185,8 +185,8 @@ Public Class InvoicesBasedPaymentDAL
                 '& " Values(" & MasterID & ", " & ObjMod.InvoiceId & ", N'" & ObjMod.InvoiceNo & "', " & ObjMod.InvoiceAmount & ", " & ObjMod.PaymentAmount & ", " & ObjMod.InvoiceBalance & ", N'" & ObjMod.Remarks.Trim.Replace("'", "''") & "', " & ObjMod.Gst_Percentage & ", N'" & ObjMod.Vendor_Invoice_No & "', " & ObjMod.SalesTaxAmount & ", " & ObjMod.OtherTaxAmount & ", " & ObjMod.OtherTaxAccountId & ", N'" & ObjMod.Description.Replace("'", "''") & "'," & ObjMod.OtherPayment & ")"
                 'End Task:2470
 
-                str = "Insert INTO InvoiceBasedPaymentsDetail(PaymentId, InvoiceId, InvoiceNo, InvoiceAmount, PaymentAmount, BalanceAmount, Comments, Gst_Percentage, Vendor_Invoice_No, SalesTaxAmount,OtherTaxAmount, OtherTaxAccountId, Description,OtherPayment,Invoice_Tax,CostCenterId)" _
-               & " Values(" & MasterID & ", " & ObjMod.InvoiceId & ", N'" & ObjMod.InvoiceNo & "', " & ObjMod.InvoiceAmount & ", " & ObjMod.PaymentAmount & ", " & ObjMod.InvoiceBalance & ", N'" & ObjMod.Remarks.Trim.Replace("'", "''") & "', " & ObjMod.Gst_Percentage & ", N'" & ObjMod.Vendor_Invoice_No & "', " & ObjMod.SalesTaxAmount & ", " & ObjMod.OtherTaxAmount & ", " & ObjMod.OtherTaxAccountId & ", N'" & ObjMod.Description.Replace("'", "''") & "'," & ObjMod.OtherPayment & "," & Val(ObjMod.InvoiceTax) & " , " & ObjMod.CostCenter & ")"
+                str = "Insert INTO InvoiceBasedPaymentsDetail(PaymentId, InvoiceId, InvoiceAmount, PaymentAmount, BalanceAmount, Comments, Gst_Percentage, SalesTaxAmount,OtherTaxAmount, OtherTaxAccountId,OtherPayment,Invoice_Tax,CostCenterId)" _
+               & " Values(" & MasterID & ", " & ObjMod.InvoiceId & ", " & ObjMod.InvoiceAmount & ", " & ObjMod.PaymentAmount & ", " & ObjMod.InvoiceBalance & ", N'" & ObjMod.Remarks.Trim.Replace("'", "''") & "', " & ObjMod.Gst_Percentage & ", " & ObjMod.SalesTaxAmount & ", " & ObjMod.OtherTaxAmount & ", " & ObjMod.OtherTaxAccountId & "," & ObjMod.OtherPayment & "," & Val(ObjMod.InvoiceTax) & " , " & ObjMod.CostCenter & ")"
                 SQLHelper.ExecuteNonQuery(trans, CommandType.Text, str)
                 ''End Task:2370
             Next

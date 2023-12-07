@@ -528,7 +528,7 @@ Public Class frmPurchaseReturn
         txtBalance.Text = ""
         txtPackQty.Text = 1
         'RAfay:task Start
-        companyinitials = ""
+        ''companyinitials = ""
         'Rafay:task end
         Me.BtnSave.Text = "&Save"
         'Me.txtPONo.Text = GetNextDocNo("PR", 6, "PurchaseReturnMasterTable", "PurchaseReturnNo")
@@ -1727,39 +1727,106 @@ Public Class frmPurchaseReturn
 
 
                 If Val(grd.GetRows(i).Cells("AdTax_Percent").Value.ToString) > 0 Then
-                    objCommand.CommandText = ""
-                    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, direction,CostCenterId, ArticleDefId) " _
-                                           & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 0, 'Ref:Additional Tax Against " & Me.cmbVendor.Text.Replace("'", "''") & ", " & Me.txtPONo.Text.Replace("'", "''") & "', " & grd.GetRows(i).Cells("ArticleDefId").Value & ", " & Me.cmbCostCenter.SelectedValue & ", " & Val(grd.GetRows(i).Cells("ArticleDefId").Value) & ")"
-                    objCommand.ExecuteNonQuery()
+                    Dim strBudget As String
+                    Dim dtBudget As DataTable
+                    strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, Amount from tbldefCostCenter where CostCenterID = " & cmbCostCenter.SelectedValue & ""
+                    dtBudget = GetDataTable(strBudget)
+                    If dtBudget.Rows.Count > 0 Then
+                        If dtBudget.Rows(0).Item(0) = "True" Then
+                            objCommand.CommandText = ""
+                            objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, direction,CostCenterId, ArticleDefId) " _
+                                                   & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 0, 'Ref:Additional Tax Against " & Me.cmbVendor.Text.Replace("'", "''") & ", " & Me.txtPONo.Text.Replace("'", "''") & "', " & grd.GetRows(i).Cells("ArticleDefId").Value & ", " & 1 & ", " & Val(grd.GetRows(i).Cells("ArticleDefId").Value) & ")"
+                            objCommand.ExecuteNonQuery()
 
 
 
-                    objCommand.CommandText = ""
-                    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, direction, CostCenterId,ArticleDefId) " _
-                                           & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & intAdditionalTaxAcId & ", " & 0 & ",  " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 'Ref:Additional Tax Againt " & Me.txtPONo.Text.Replace("'", "''") & "', " & grd.GetRows(i).Cells("ArticleDefId").Value & ", " & Me.cmbCostCenter.SelectedValue & ", " & Val(Me.grd.GetRows(i).Cells("ArticleDefId").Value.ToString) & ")"
-                    objCommand.ExecuteNonQuery()
+                            objCommand.CommandText = ""
+                            objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, direction, CostCenterId,ArticleDefId) " _
+                                                   & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & intAdditionalTaxAcId & ", " & 0 & ",  " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 'Ref:Additional Tax Againt " & Me.txtPONo.Text.Replace("'", "''") & "', " & grd.GetRows(i).Cells("ArticleDefId").Value & ", " & 1 & ", " & Val(Me.grd.GetRows(i).Cells("ArticleDefId").Value.ToString) & ")"
+                            objCommand.ExecuteNonQuery()
+                        Else
+                            objCommand.CommandText = ""
+                            objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, direction,CostCenterId, ArticleDefId) " _
+                                                   & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 0, 'Ref:Additional Tax Against " & Me.cmbVendor.Text.Replace("'", "''") & ", " & Me.txtPONo.Text.Replace("'", "''") & "', " & grd.GetRows(i).Cells("ArticleDefId").Value & ", " & Me.cmbCostCenter.SelectedValue & ", " & Val(grd.GetRows(i).Cells("ArticleDefId").Value) & ")"
+                            objCommand.ExecuteNonQuery()
+
+
+
+                            objCommand.CommandText = ""
+                            objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, direction, CostCenterId,ArticleDefId) " _
+                                                   & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & intAdditionalTaxAcId & ", " & 0 & ",  " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 'Ref:Additional Tax Againt " & Me.txtPONo.Text.Replace("'", "''") & "', " & grd.GetRows(i).Cells("ArticleDefId").Value & ", " & Me.cmbCostCenter.SelectedValue & ", " & Val(Me.grd.GetRows(i).Cells("ArticleDefId").Value.ToString) & ")"
+                            objCommand.ExecuteNonQuery()
+                        End If
+                    Else
+                        objCommand.CommandText = ""
+                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, direction,CostCenterId, ArticleDefId) " _
+                                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 0, 'Ref:Additional Tax Against " & Me.cmbVendor.Text.Replace("'", "''") & ", " & Me.txtPONo.Text.Replace("'", "''") & "', " & grd.GetRows(i).Cells("ArticleDefId").Value & ", " & Me.cmbCostCenter.SelectedValue & ", " & Val(grd.GetRows(i).Cells("ArticleDefId").Value) & ")"
+                        objCommand.ExecuteNonQuery()
+
+
+
+                        objCommand.CommandText = ""
+                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, direction, CostCenterId,ArticleDefId) " _
+                                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & intAdditionalTaxAcId & ", " & 0 & ",  " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 'Ref:Additional Tax Againt " & Me.txtPONo.Text.Replace("'", "''") & "', " & grd.GetRows(i).Cells("ArticleDefId").Value & ", " & Me.cmbCostCenter.SelectedValue & ", " & Val(Me.grd.GetRows(i).Cells("ArticleDefId").Value.ToString) & ")"
+                        objCommand.ExecuteNonQuery()
+                    End If
                 End If
-
-
 
 
 
             Next
 
+            'If (Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) > 0 Then
+
+            '    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId) " _
+            '                                           & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0, 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & " )"
+            '    objCommand.ExecuteNonQuery()
+
+
+            '    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId) " _
+            '                           & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & PurchaseTaxAccountId & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & ")"
+            '    objCommand.ExecuteNonQuery()
+
+
+            'End If
+
             If (Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) > 0 Then
+                'Insert Debit Amount
+                Dim strBudget As String
+                Dim dtBudget As DataTable
+                strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, Amount from tbldefCostCenter where CostCenterID = " & cmbCostCenter.SelectedValue & ""
+                dtBudget = GetDataTable(strBudget)
+                If dtBudget.Rows.Count > 0 Then
+                    If dtBudget.Rows(0).Item(0) = "True" Then
+                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, CurrencyId, CurrencyRate, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                                                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0, 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & 1 & ", " & cmbCurrency.SelectedValue & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0)"
+                        objCommand.ExecuteNonQuery()
 
-                objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId) " _
-                                                       & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0, 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & " )"
-                objCommand.ExecuteNonQuery()
+                        'Insert Credit Amount
+                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, CurrencyId, CurrencyRate, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                                                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & PurchaseTaxAccountId & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & 1 & ", " & cmbCurrency.SelectedValue & ", " & Val(txtCurrencyRate.Text) & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ")"
+                        objCommand.ExecuteNonQuery()
+                    Else
+                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, CurrencyId, CurrencyRate, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                                                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0, 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & ", " & cmbCurrency.SelectedValue & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0)"
+                        objCommand.ExecuteNonQuery()
 
+                        'Insert Credit Amount
+                        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, CurrencyId, CurrencyRate, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                                                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & PurchaseTaxAccountId & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & ", " & cmbCurrency.SelectedValue & ", " & Val(txtCurrencyRate.Text) & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ")"
+                        objCommand.ExecuteNonQuery()
+                    End If
+                Else
+                    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, CurrencyId, CurrencyRate, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                                                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0, 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & ", " & cmbCurrency.SelectedValue & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0)"
+                    objCommand.ExecuteNonQuery()
 
-                objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId) " _
-                                       & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & PurchaseTaxAccountId & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & ")"
-                objCommand.ExecuteNonQuery()
-
-
+                    'Insert Credit Amount
+                    objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, CurrencyId, CurrencyRate, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                                                           & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & PurchaseTaxAccountId & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & ", " & cmbCurrency.SelectedValue & ", " & Val(txtCurrencyRate.Text) & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ")"
+                    objCommand.ExecuteNonQuery()
+                End If
             End If
-
             Call AdjustmentPurchaseReturn(Val(GetPurchaseReturnId), trans)
 
             If Not Me.cmbPo.SelectedIndex = -1 And Me.cmbPo.SelectedIndex >= 0 Then
@@ -2818,13 +2885,13 @@ Public Class frmPurchaseReturn
 
             If (Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) > 0 Then
                 'Insert Debit Amount
-                objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId) " _
-                                                       & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0, 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & ")"
+                objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, CurrencyId, CurrencyRate, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                                                       & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0, 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & ", " & Val(Me.grd.GetRows(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 0)"
                 objCommand.ExecuteNonQuery()
 
                 'Insert Credit Amount
-                objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId) " _
-                                       & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & PurchaseTaxAccountId & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & ")"
+                objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, CostCenterId, CurrencyId, CurrencyRate, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                                                       & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & PurchaseTaxAccountId & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 'Ref Purchase Return Tax:" & Me.txtPONo.Text & "', " & Me.cmbCostCenter.SelectedValue & ", " & Val(Me.grd.GetRows(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", 0, " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ")"
                 objCommand.ExecuteNonQuery()
 
             End If
@@ -3044,7 +3111,11 @@ Public Class frmPurchaseReturn
                 UsersEmail = New List(Of String)
                 'UsersEmail.Add("adil@agriusit.com")
                 ''UsersEmail.Add("ali@agriusit.com")
-                UsersEmail.Add("h.saeed@agriusit.com")
+                If Con.Database.Contains("Remms") Then
+                    UsersEmail.Add("r.ejaz@remmsit.com")
+                Else
+                    UsersEmail.Add("r.ejaz@agriusit.com")
+                End If
                 ''UsersEmail.Add("Bilal@siriussolution.com")
                 FormatStringBuilder(dtEmail)
                 'CreateOutLookMail()
@@ -4454,7 +4525,7 @@ Public Class frmPurchaseReturn
                     Return GetSerialNo("PR" + "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "PurchaseReturnMasterTable", "PurchaseReturnNo")
                     'Return GetNextDocNo(PreFix & Format(Me.dtpPODate.Value, "yy"), 4, "PurchaseReturnMasterTable", "PurchaseReturnNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo(PreFix & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "PurchaseReturnMasterTable", "PurchaseReturnNo")
                 End If
                 ' Return GetNextDocNo(PreFix & CompanyPrefix & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "PurchaseReturnMasterTable", "PurchaseReturnNo")
@@ -4464,7 +4535,7 @@ Public Class frmPurchaseReturn
                     Return GetSerialNo("PR" + "-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "PurchaseReturnMasterTable", "PurchaseReturnNo")
                     'Return GetNextDocNo(PreFix & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "PurchaseReturnMasterTable", "PurchaseReturnNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo(PreFix & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "PurchaseReturnMasterTable", "PurchaseReturnNo")
                 End If
                 'Rafay : Task End
@@ -5559,6 +5630,11 @@ Public Class frmPurchaseReturn
             If Not Me.cmbCurrency.SelectedItem Is Nothing Then
                 Dim dr As DataRowView = CType(cmbCurrency.SelectedItem, DataRowView)
                 If blEditMode = True Then
+                Else
+                    Me.txtCurrencyRate.Text = Math.Round(Convert.ToDouble(dr.Row.Item("CurrencyRate").ToString), 4)
+                End If
+
+                If cmbPo.SelectedValue > 0 Then
                 Else
                     Me.txtCurrencyRate.Text = Math.Round(Convert.ToDouble(dr.Row.Item("CurrencyRate").ToString), 4)
                 End If

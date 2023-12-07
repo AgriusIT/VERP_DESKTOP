@@ -57,9 +57,15 @@ Partial Class frmPurchaseInvoiceSearch
         Me.Label2 = New System.Windows.Forms.Label()
         Me.grdItems = New Janus.Windows.GridEX.GridEX()
         Me.dtpToDate = New System.Windows.Forms.DateTimePicker()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.rbtCustomer = New System.Windows.Forms.RadioButton()
+        Me.rbtAll = New System.Windows.Forms.RadioButton()
+        Me.txtPartialAmount = New System.Windows.Forms.TextBox()
+        Me.lblPartialAmount = New System.Windows.Forms.Label()
         Me.pnlHeader.SuspendLayout()
         CType(Me.cmbCustomer, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdItems, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlHeader
@@ -77,16 +83,18 @@ Partial Class frmPurchaseInvoiceSearch
         Me.pnlHeader.Controls.Add(Me.lblHeader)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
+        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(902, 42)
+        Me.pnlHeader.Size = New System.Drawing.Size(1203, 52)
         Me.pnlHeader.TabIndex = 18
         '
         'btnSearch
         '
         Me.btnSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(500, 7)
+        Me.btnSearch.Location = New System.Drawing.Point(667, 9)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(72, 25)
+        Me.btnSearch.Size = New System.Drawing.Size(96, 31)
         Me.btnSearch.TabIndex = 23
         Me.btnSearch.Text = "Search"
         Me.btnSearch.UseVisualStyleBackColor = True
@@ -98,9 +106,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.btnHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.btnHeader.FlatAppearance.BorderSize = 0
         Me.btnHeader.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnHeader.Location = New System.Drawing.Point(3, 10)
+        Me.btnHeader.Location = New System.Drawing.Point(4, 12)
+        Me.btnHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnHeader.Name = "btnHeader"
-        Me.btnHeader.Size = New System.Drawing.Size(21, 23)
+        Me.btnHeader.Size = New System.Drawing.Size(28, 28)
         Me.btnHeader.TabIndex = 0
         Me.btnHeader.UseVisualStyleBackColor = True
         Me.btnHeader.Visible = False
@@ -112,9 +121,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.Button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Button8.FlatAppearance.BorderSize = 0
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Location = New System.Drawing.Point(749, 9)
+        Me.Button8.Location = New System.Drawing.Point(999, 11)
+        Me.Button8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(25, 23)
+        Me.Button8.Size = New System.Drawing.Size(33, 28)
         Me.Button8.TabIndex = 3
         Me.Button8.UseVisualStyleBackColor = True
         Me.Button8.Visible = False
@@ -126,9 +136,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.Button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Button6.FlatAppearance.BorderSize = 0
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Location = New System.Drawing.Point(859, 6)
+        Me.Button6.Location = New System.Drawing.Point(1145, 7)
+        Me.Button6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(27, 30)
+        Me.Button6.Size = New System.Drawing.Size(36, 37)
         Me.Button6.TabIndex = 8
         Me.Button6.UseVisualStyleBackColor = True
         Me.Button6.Visible = False
@@ -140,9 +151,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(835, 8)
+        Me.Button1.Location = New System.Drawing.Point(1113, 10)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(30, 26)
+        Me.Button1.Size = New System.Drawing.Size(40, 32)
         Me.Button1.TabIndex = 7
         Me.Button1.UseVisualStyleBackColor = True
         '
@@ -153,9 +165,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(813, 9)
+        Me.Button4.Location = New System.Drawing.Point(1084, 11)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(28, 24)
+        Me.Button4.Size = New System.Drawing.Size(37, 30)
         Me.Button4.TabIndex = 6
         Me.Button4.UseVisualStyleBackColor = True
         Me.Button4.Visible = False
@@ -168,9 +181,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.Button7.FlatAppearance.BorderSize = 0
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.ForeColor = System.Drawing.SystemColors.Control
-        Me.Button7.Location = New System.Drawing.Point(728, 10)
+        Me.Button7.Location = New System.Drawing.Point(971, 12)
+        Me.Button7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(20, 22)
+        Me.Button7.Size = New System.Drawing.Size(27, 27)
         Me.Button7.TabIndex = 2
         Me.Button7.UseVisualStyleBackColor = True
         Me.Button7.Visible = False
@@ -182,9 +196,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(792, 9)
+        Me.Button3.Location = New System.Drawing.Point(1056, 11)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(25, 23)
+        Me.Button3.Size = New System.Drawing.Size(33, 28)
         Me.Button3.TabIndex = 5
         Me.Button3.UseVisualStyleBackColor = True
         Me.Button3.Visible = False
@@ -196,9 +211,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(772, 9)
+        Me.Button2.Location = New System.Drawing.Point(1029, 11)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(25, 23)
+        Me.Button2.Size = New System.Drawing.Size(33, 28)
         Me.Button2.TabIndex = 4
         Me.Button2.UseVisualStyleBackColor = True
         Me.Button2.Visible = False
@@ -208,18 +224,20 @@ Partial Class frmPurchaseInvoiceSearch
         Me.lblHeader.AutoSize = True
         Me.lblHeader.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeader.ForeColor = System.Drawing.Color.White
-        Me.lblHeader.Location = New System.Drawing.Point(29, 9)
+        Me.lblHeader.Location = New System.Drawing.Point(39, 11)
+        Me.lblHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(171, 23)
+        Me.lblHeader.Size = New System.Drawing.Size(213, 29)
         Me.lblHeader.TabIndex = 1
         Me.lblHeader.Text = "Invoice Search"
         '
         'BtnLoad
         '
         Me.BtnLoad.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnLoad.Location = New System.Drawing.Point(439, 92)
+        Me.BtnLoad.Location = New System.Drawing.Point(585, 113)
+        Me.BtnLoad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtnLoad.Name = "BtnLoad"
-        Me.BtnLoad.Size = New System.Drawing.Size(72, 29)
+        Me.BtnLoad.Size = New System.Drawing.Size(96, 36)
         Me.BtnLoad.TabIndex = 6
         Me.BtnLoad.Text = "Load"
         Me.ToolTip1.SetToolTip(Me.BtnLoad, "Load")
@@ -233,10 +251,11 @@ Partial Class frmPurchaseInvoiceSearch
         Me.dtpFromDate.Checked = False
         Me.dtpFromDate.CustomFormat = "dd/MMM/yyyy"
         Me.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpFromDate.Location = New System.Drawing.Point(123, 60)
+        Me.dtpFromDate.Location = New System.Drawing.Point(164, 74)
+        Me.dtpFromDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dtpFromDate.Name = "dtpFromDate"
         Me.dtpFromDate.ShowCheckBox = True
-        Me.dtpFromDate.Size = New System.Drawing.Size(164, 20)
+        Me.dtpFromDate.Size = New System.Drawing.Size(217, 22)
         Me.dtpFromDate.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.dtpFromDate, "Sale Date")
         '
@@ -299,9 +318,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.cmbCustomer.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate
         Me.cmbCustomer.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy
         Me.cmbCustomer.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbCustomer.Location = New System.Drawing.Point(123, 93)
+        Me.cmbCustomer.Location = New System.Drawing.Point(164, 114)
+        Me.cmbCustomer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbCustomer.Name = "cmbCustomer"
-        Me.cmbCustomer.Size = New System.Drawing.Size(310, 27)
+        Me.cmbCustomer.Size = New System.Drawing.Size(413, 32)
         Me.cmbCustomer.TabIndex = 5
         '
         'lblCustomer
@@ -309,9 +329,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.lblCustomer.AutoSize = True
         Me.lblCustomer.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCustomer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblCustomer.Location = New System.Drawing.Point(49, 98)
+        Me.lblCustomer.Location = New System.Drawing.Point(65, 121)
+        Me.lblCustomer.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCustomer.Name = "lblCustomer"
-        Me.lblCustomer.Size = New System.Drawing.Size(64, 17)
+        Me.lblCustomer.Size = New System.Drawing.Size(84, 23)
         Me.lblCustomer.TabIndex = 4
         Me.lblCustomer.Text = "Customer"
         '
@@ -320,9 +341,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.lblFromDate.AutoSize = True
         Me.lblFromDate.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFromDate.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblFromDate.Location = New System.Drawing.Point(49, 60)
+        Me.lblFromDate.Location = New System.Drawing.Point(65, 74)
+        Me.lblFromDate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblFromDate.Name = "lblFromDate"
-        Me.lblFromDate.Size = New System.Drawing.Size(69, 17)
+        Me.lblFromDate.Size = New System.Drawing.Size(90, 23)
         Me.lblFromDate.TabIndex = 0
         Me.lblFromDate.Text = "From Date"
         '
@@ -331,9 +353,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(293, 60)
+        Me.Label2.Location = New System.Drawing.Point(391, 74)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(53, 17)
+        Me.Label2.Size = New System.Drawing.Size(68, 23)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "To Date"
         '
@@ -347,13 +370,14 @@ Partial Class frmPurchaseInvoiceSearch
         Me.grdItems.DesignTimeLayout = grdItems_DesignTimeLayout
         Me.grdItems.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown
         Me.grdItems.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges
-        Me.grdItems.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grdItems.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
         Me.grdItems.GroupByBoxVisible = False
-        Me.grdItems.Location = New System.Drawing.Point(0, 127)
+        Me.grdItems.Location = New System.Drawing.Point(0, 156)
+        Me.grdItems.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.grdItems.Name = "grdItems"
         Me.grdItems.NewRowEnterKeyBehavior = Janus.Windows.GridEX.NewRowEnterKeyBehavior.AddRowAndMoveToFirstCellInNewRow
         Me.grdItems.RecordNavigator = True
-        Me.grdItems.Size = New System.Drawing.Size(902, 372)
+        Me.grdItems.Size = New System.Drawing.Size(1203, 458)
         Me.grdItems.TabIndex = 49
         Me.grdItems.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -364,21 +388,82 @@ Partial Class frmPurchaseInvoiceSearch
         Me.dtpToDate.Checked = False
         Me.dtpToDate.CustomFormat = "dd/MMM/yyyy"
         Me.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpToDate.Location = New System.Drawing.Point(352, 60)
+        Me.dtpToDate.Location = New System.Drawing.Point(469, 74)
+        Me.dtpToDate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dtpToDate.Name = "dtpToDate"
         Me.dtpToDate.ShowCheckBox = True
-        Me.dtpToDate.Size = New System.Drawing.Size(159, 20)
+        Me.dtpToDate.Size = New System.Drawing.Size(211, 22)
         Me.dtpToDate.TabIndex = 3
         '
-        'frmInvoiceSearch
+        'GroupBox3
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox3.Controls.Add(Me.rbtCustomer)
+        Me.GroupBox3.Controls.Add(Me.rbtAll)
+        Me.GroupBox3.Location = New System.Drawing.Point(687, 59)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(138, 46)
+        Me.GroupBox3.TabIndex = 50
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Payment Type"
+        '
+        'rbtCustomer
+        '
+        Me.rbtCustomer.AutoSize = True
+        Me.rbtCustomer.Location = New System.Drawing.Point(64, 18)
+        Me.rbtCustomer.Name = "rbtCustomer"
+        Me.rbtCustomer.Size = New System.Drawing.Size(69, 21)
+        Me.rbtCustomer.TabIndex = 1
+        Me.rbtCustomer.Text = "Partial"
+        Me.rbtCustomer.UseVisualStyleBackColor = True
+        '
+        'rbtAll
+        '
+        Me.rbtAll.AutoSize = True
+        Me.rbtAll.Checked = True
+        Me.rbtAll.Location = New System.Drawing.Point(9, 18)
+        Me.rbtAll.Name = "rbtAll"
+        Me.rbtAll.Size = New System.Drawing.Size(51, 21)
+        Me.rbtAll.TabIndex = 0
+        Me.rbtAll.TabStop = True
+        Me.rbtAll.Text = "Full"
+        Me.rbtAll.UseVisualStyleBackColor = True
+        '
+        'txtPartialAmount
+        '
+        Me.txtPartialAmount.Location = New System.Drawing.Point(818, 121)
+        Me.txtPartialAmount.Name = "txtPartialAmount"
+        Me.txtPartialAmount.Size = New System.Drawing.Size(134, 22)
+        Me.txtPartialAmount.TabIndex = 51
+        Me.txtPartialAmount.Text = "0"
+        Me.txtPartialAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.ToolTip1.SetToolTip(Me.txtPartialAmount, "Enter With Holding Percentage")
+        '
+        'lblPartialAmount
+        '
+        Me.lblPartialAmount.AutoSize = True
+        Me.lblPartialAmount.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPartialAmount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lblPartialAmount.Location = New System.Drawing.Point(695, 120)
+        Me.lblPartialAmount.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPartialAmount.Name = "lblPartialAmount"
+        Me.lblPartialAmount.Size = New System.Drawing.Size(124, 23)
+        Me.lblPartialAmount.TabIndex = 2
+        Me.lblPartialAmount.Text = "Partial Amount"
+        '
+        'frmPurchaseInvoiceSearch
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(902, 499)
+        Me.ClientSize = New System.Drawing.Size(1203, 614)
+        Me.Controls.Add(Me.txtPartialAmount)
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.dtpToDate)
         Me.Controls.Add(Me.dtpFromDate)
         Me.Controls.Add(Me.grdItems)
         Me.Controls.Add(Me.cmbCustomer)
+        Me.Controls.Add(Me.lblPartialAmount)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.lblFromDate)
         Me.Controls.Add(Me.lblCustomer)
@@ -386,9 +471,10 @@ Partial Class frmPurchaseInvoiceSearch
         Me.Controls.Add(Me.pnlHeader)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmInvoiceSearch"
+        Me.Name = "frmPurchaseInvoiceSearch"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Invoice Search"
@@ -396,6 +482,8 @@ Partial Class frmPurchaseInvoiceSearch
         Me.pnlHeader.PerformLayout()
         CType(Me.cmbCustomer, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdItems, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -420,4 +508,9 @@ Partial Class frmPurchaseInvoiceSearch
     Friend WithEvents grdItems As Janus.Windows.GridEX.GridEX
     Friend WithEvents dtpFromDate As System.Windows.Forms.DateTimePicker
     Friend WithEvents dtpToDate As System.Windows.Forms.DateTimePicker
+    Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
+    Friend WithEvents rbtCustomer As System.Windows.Forms.RadioButton
+    Friend WithEvents rbtAll As System.Windows.Forms.RadioButton
+    Friend WithEvents txtPartialAmount As System.Windows.Forms.TextBox
+    Friend WithEvents lblPartialAmount As System.Windows.Forms.Label
 End Class

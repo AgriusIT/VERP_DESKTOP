@@ -150,16 +150,18 @@ Partial Class frmGrdRptAgingReceiveables
         Me.UltraTabPageControl3.Controls.Add(Me.chkIncludeUnPosted)
         Me.UltraTabPageControl3.Controls.Add(Me.lnkRefresh)
         Me.UltraTabPageControl3.Location = New System.Drawing.Point(1, 1)
+        Me.UltraTabPageControl3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabPageControl3.Name = "UltraTabPageControl3"
-        Me.UltraTabPageControl3.Size = New System.Drawing.Size(911, 466)
+        Me.UltraTabPageControl3.Size = New System.Drawing.Size(1215, 576)
         '
         'chkShowWithOutCostCenter
         '
         Me.chkShowWithOutCostCenter.AutoSize = True
         Me.chkShowWithOutCostCenter.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.chkShowWithOutCostCenter.Location = New System.Drawing.Point(502, 357)
+        Me.chkShowWithOutCostCenter.Location = New System.Drawing.Point(669, 439)
+        Me.chkShowWithOutCostCenter.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.chkShowWithOutCostCenter.Name = "chkShowWithOutCostCenter"
-        Me.chkShowWithOutCostCenter.Size = New System.Drawing.Size(146, 17)
+        Me.chkShowWithOutCostCenter.Size = New System.Drawing.Size(186, 21)
         Me.chkShowWithOutCostCenter.TabIndex = 38
         Me.chkShowWithOutCostCenter.Text = "Show without cost center"
         Me.chkShowWithOutCostCenter.UseVisualStyleBackColor = False
@@ -172,8 +174,8 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstBelt.disableWhenChecked = False
         Me.lstBelt.HeadingLabelName = "lstBelt"
         Me.lstBelt.HeadingText = "Belt"
-        Me.lstBelt.Location = New System.Drawing.Point(338, 245)
-        Me.lstBelt.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.lstBelt.Location = New System.Drawing.Point(451, 302)
+        Me.lstBelt.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstBelt.Name = "lstBelt"
         Me.lstBelt.ShowAddNewButton = False
         Me.lstBelt.ShowInverse = True
@@ -181,7 +183,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstBelt.ShowNoCheck = False
         Me.lstBelt.ShowResetAllButton = False
         Me.lstBelt.ShowSelectall = True
-        Me.lstBelt.Size = New System.Drawing.Size(152, 159)
+        Me.lstBelt.Size = New System.Drawing.Size(203, 196)
         Me.lstBelt.TabIndex = 37
         Me.lstBelt.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
         '
@@ -193,8 +195,8 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstRegion.disableWhenChecked = False
         Me.lstRegion.HeadingLabelName = "lstRegion"
         Me.lstRegion.HeadingText = "Region"
-        Me.lstRegion.Location = New System.Drawing.Point(22, 245)
-        Me.lstRegion.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.lstRegion.Location = New System.Drawing.Point(29, 302)
+        Me.lstRegion.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstRegion.Name = "lstRegion"
         Me.lstRegion.ShowAddNewButton = False
         Me.lstRegion.ShowInverse = True
@@ -202,7 +204,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstRegion.ShowNoCheck = False
         Me.lstRegion.ShowResetAllButton = False
         Me.lstRegion.ShowSelectall = True
-        Me.lstRegion.Size = New System.Drawing.Size(152, 159)
+        Me.lstRegion.Size = New System.Drawing.Size(203, 196)
         Me.lstRegion.TabIndex = 37
         Me.lstRegion.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
         '
@@ -214,8 +216,8 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstZone.disableWhenChecked = False
         Me.lstZone.HeadingLabelName = "lstZone"
         Me.lstZone.HeadingText = "Zone"
-        Me.lstZone.Location = New System.Drawing.Point(180, 245)
-        Me.lstZone.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.lstZone.Location = New System.Drawing.Point(240, 302)
+        Me.lstZone.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstZone.Name = "lstZone"
         Me.lstZone.ShowAddNewButton = False
         Me.lstZone.ShowInverse = True
@@ -223,7 +225,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstZone.ShowNoCheck = False
         Me.lstZone.ShowResetAllButton = False
         Me.lstZone.ShowSelectall = True
-        Me.lstZone.Size = New System.Drawing.Size(152, 159)
+        Me.lstZone.Size = New System.Drawing.Size(203, 196)
         Me.lstZone.TabIndex = 36
         Me.lstZone.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
         '
@@ -235,8 +237,8 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstCostCenter.disableWhenChecked = False
         Me.lstCostCenter.HeadingLabelName = "lstCostCenter"
         Me.lstCostCenter.HeadingText = "Cost Center"
-        Me.lstCostCenter.Location = New System.Drawing.Point(180, 58)
-        Me.lstCostCenter.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.lstCostCenter.Location = New System.Drawing.Point(240, 71)
+        Me.lstCostCenter.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstCostCenter.Name = "lstCostCenter"
         Me.lstCostCenter.ShowAddNewButton = False
         Me.lstCostCenter.ShowInverse = True
@@ -244,7 +246,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstCostCenter.ShowNoCheck = False
         Me.lstCostCenter.ShowResetAllButton = False
         Me.lstCostCenter.ShowSelectall = True
-        Me.lstCostCenter.Size = New System.Drawing.Size(152, 159)
+        Me.lstCostCenter.Size = New System.Drawing.Size(203, 196)
         Me.lstCostCenter.TabIndex = 37
         Me.ToolTip1.SetToolTip(Me.lstCostCenter, "Employee Cost Center list")
         Me.lstCostCenter.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
@@ -257,8 +259,8 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstSubSubAccount.disableWhenChecked = False
         Me.lstSubSubAccount.HeadingLabelName = "lstSubSubAccount"
         Me.lstSubSubAccount.HeadingText = "Sub Sub Account"
-        Me.lstSubSubAccount.Location = New System.Drawing.Point(338, 58)
-        Me.lstSubSubAccount.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.lstSubSubAccount.Location = New System.Drawing.Point(451, 71)
+        Me.lstSubSubAccount.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstSubSubAccount.Name = "lstSubSubAccount"
         Me.lstSubSubAccount.ShowAddNewButton = False
         Me.lstSubSubAccount.ShowInverse = True
@@ -266,7 +268,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstSubSubAccount.ShowNoCheck = False
         Me.lstSubSubAccount.ShowResetAllButton = False
         Me.lstSubSubAccount.ShowSelectall = True
-        Me.lstSubSubAccount.Size = New System.Drawing.Size(310, 159)
+        Me.lstSubSubAccount.Size = New System.Drawing.Size(413, 196)
         Me.lstSubSubAccount.TabIndex = 36
         Me.lstSubSubAccount.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
         '
@@ -278,8 +280,8 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstHeadCostCenter.disableWhenChecked = False
         Me.lstHeadCostCenter.HeadingLabelName = "lstHeadCostCenter"
         Me.lstHeadCostCenter.HeadingText = "Head Cost Center"
-        Me.lstHeadCostCenter.Location = New System.Drawing.Point(22, 58)
-        Me.lstHeadCostCenter.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.lstHeadCostCenter.Location = New System.Drawing.Point(29, 71)
+        Me.lstHeadCostCenter.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.lstHeadCostCenter.Name = "lstHeadCostCenter"
         Me.lstHeadCostCenter.ShowAddNewButton = False
         Me.lstHeadCostCenter.ShowInverse = True
@@ -287,7 +289,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lstHeadCostCenter.ShowNoCheck = False
         Me.lstHeadCostCenter.ShowResetAllButton = False
         Me.lstHeadCostCenter.ShowSelectall = True
-        Me.lstHeadCostCenter.Size = New System.Drawing.Size(152, 159)
+        Me.lstHeadCostCenter.Size = New System.Drawing.Size(203, 196)
         Me.lstHeadCostCenter.TabIndex = 36
         Me.ToolTip1.SetToolTip(Me.lstHeadCostCenter, "Employee Head Cost Center list")
         Me.lstHeadCostCenter.WhichHelp = SimpleAccounts.uiListControl.enumWhichHelpForm._ProductSearchHelp
@@ -299,8 +301,9 @@ Partial Class frmGrdRptAgingReceiveables
         Me.pnlHeader.Controls.Add(Me.lblHeader)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
+        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(911, 35)
+        Me.pnlHeader.Size = New System.Drawing.Size(1215, 43)
         Me.pnlHeader.TabIndex = 35
         '
         'btnLoadOld
@@ -310,9 +313,10 @@ Partial Class frmGrdRptAgingReceiveables
         Me.btnLoadOld.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLoadOld.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLoadOld.ForeColor = System.Drawing.Color.Black
-        Me.btnLoadOld.Location = New System.Drawing.Point(833, 6)
+        Me.btnLoadOld.Location = New System.Drawing.Point(1111, 7)
+        Me.btnLoadOld.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnLoadOld.Name = "btnLoadOld"
-        Me.btnLoadOld.Size = New System.Drawing.Size(75, 23)
+        Me.btnLoadOld.Size = New System.Drawing.Size(100, 28)
         Me.btnLoadOld.TabIndex = 2
         Me.btnLoadOld.Text = "Old"
         Me.btnLoadOld.UseVisualStyleBackColor = False
@@ -323,9 +327,10 @@ Partial Class frmGrdRptAgingReceiveables
         Me.lblHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(212, Byte), Integer), CType(CType(232, Byte), Integer))
         Me.lblHeader.Font = New System.Drawing.Font("Times New Roman", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHeader.ForeColor = System.Drawing.Color.Black
-        Me.lblHeader.Location = New System.Drawing.Point(18, 4)
+        Me.lblHeader.Location = New System.Drawing.Point(24, 5)
+        Me.lblHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(199, 26)
+        Me.lblHeader.Size = New System.Drawing.Size(245, 35)
         Me.lblHeader.TabIndex = 1
         Me.lblHeader.Text = "Aging Receivables"
         '
@@ -333,9 +338,10 @@ Partial Class frmGrdRptAgingReceiveables
         '
         Me.lblPropertyType.AutoSize = True
         Me.lblPropertyType.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.lblPropertyType.Location = New System.Drawing.Point(499, 278)
+        Me.lblPropertyType.Location = New System.Drawing.Point(665, 342)
+        Me.lblPropertyType.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblPropertyType.Name = "lblPropertyType"
-        Me.lblPropertyType.Size = New System.Drawing.Size(73, 13)
+        Me.lblPropertyType.Size = New System.Drawing.Size(98, 17)
         Me.lblPropertyType.TabIndex = 32
         Me.lblPropertyType.Text = "Property Type"
         '
@@ -343,9 +349,10 @@ Partial Class frmGrdRptAgingReceiveables
         '
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(710, 454)
+        Me.Label6.Location = New System.Drawing.Point(947, 559)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(32, 13)
+        Me.Label6.Size = New System.Drawing.Size(41, 17)
         Me.Label6.TabIndex = 32
         Me.Label6.Text = "Zone"
         Me.Label6.Visible = False
@@ -354,9 +361,10 @@ Partial Class frmGrdRptAgingReceiveables
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(443, 454)
+        Me.Label4.Location = New System.Drawing.Point(591, 559)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(41, 13)
+        Me.Label4.Size = New System.Drawing.Size(53, 17)
         Me.Label4.TabIndex = 33
         Me.Label4.Text = "Region"
         Me.Label4.Visible = False
@@ -364,9 +372,10 @@ Partial Class frmGrdRptAgingReceiveables
         'cmbPropertyType
         '
         Me.cmbPropertyType.FormattingEnabled = True
-        Me.cmbPropertyType.Location = New System.Drawing.Point(502, 294)
+        Me.cmbPropertyType.Location = New System.Drawing.Point(669, 362)
+        Me.cmbPropertyType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbPropertyType.Name = "cmbPropertyType"
-        Me.cmbPropertyType.Size = New System.Drawing.Size(145, 21)
+        Me.cmbPropertyType.Size = New System.Drawing.Size(192, 24)
         Me.cmbPropertyType.TabIndex = 31
         Me.cmbPropertyType.Visible = False
         '
@@ -374,9 +383,10 @@ Partial Class frmGrdRptAgingReceiveables
         '
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(443, 481)
+        Me.Label3.Location = New System.Drawing.Point(591, 592)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(25, 13)
+        Me.Label3.Size = New System.Drawing.Size(32, 17)
         Me.Label3.TabIndex = 34
         Me.Label3.Text = "Belt"
         Me.Label3.Visible = False
@@ -384,9 +394,10 @@ Partial Class frmGrdRptAgingReceiveables
         'cmbZone
         '
         Me.cmbZone.FormattingEnabled = True
-        Me.cmbZone.Location = New System.Drawing.Point(778, 451)
+        Me.cmbZone.Location = New System.Drawing.Point(1037, 555)
+        Me.cmbZone.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbZone.Name = "cmbZone"
-        Me.cmbZone.Size = New System.Drawing.Size(145, 21)
+        Me.cmbZone.Size = New System.Drawing.Size(192, 24)
         Me.cmbZone.TabIndex = 31
         Me.ToolTip1.SetToolTip(Me.cmbZone, "Zone")
         Me.cmbZone.Visible = False
@@ -394,9 +405,10 @@ Partial Class frmGrdRptAgingReceiveables
         'cmbBelt
         '
         Me.cmbBelt.FormattingEnabled = True
-        Me.cmbBelt.Location = New System.Drawing.Point(494, 478)
+        Me.cmbBelt.Location = New System.Drawing.Point(659, 588)
+        Me.cmbBelt.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbBelt.Name = "cmbBelt"
-        Me.cmbBelt.Size = New System.Drawing.Size(201, 21)
+        Me.cmbBelt.Size = New System.Drawing.Size(267, 24)
         Me.cmbBelt.TabIndex = 29
         Me.ToolTip1.SetToolTip(Me.cmbBelt, "Blet")
         Me.cmbBelt.Visible = False
@@ -404,9 +416,10 @@ Partial Class frmGrdRptAgingReceiveables
         'cmbRegion
         '
         Me.cmbRegion.FormattingEnabled = True
-        Me.cmbRegion.Location = New System.Drawing.Point(494, 451)
+        Me.cmbRegion.Location = New System.Drawing.Point(659, 555)
+        Me.cmbRegion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbRegion.Name = "cmbRegion"
-        Me.cmbRegion.Size = New System.Drawing.Size(201, 21)
+        Me.cmbRegion.Size = New System.Drawing.Size(267, 24)
         Me.cmbRegion.TabIndex = 30
         Me.ToolTip1.SetToolTip(Me.cmbRegion, "Region")
         Me.cmbRegion.Visible = False
@@ -415,9 +428,10 @@ Partial Class frmGrdRptAgingReceiveables
         '
         Me.lblCostCenter.AutoSize = True
         Me.lblCostCenter.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.lblCostCenter.Location = New System.Drawing.Point(710, 427)
+        Me.lblCostCenter.Location = New System.Drawing.Point(947, 526)
+        Me.lblCostCenter.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCostCenter.Name = "lblCostCenter"
-        Me.lblCostCenter.Size = New System.Drawing.Size(62, 13)
+        Me.lblCostCenter.Size = New System.Drawing.Size(82, 17)
         Me.lblCostCenter.TabIndex = 28
         Me.lblCostCenter.Text = "Cost Centre"
         Me.lblCostCenter.Visible = False
@@ -470,10 +484,11 @@ Partial Class frmGrdRptAgingReceiveables
         Me.cmbCostCenter.DisplayLayout.ViewStyle = Infragistics.Win.UltraWinGrid.ViewStyle.SingleBand
         Me.cmbCostCenter.DisplayStyle = Infragistics.Win.EmbeddableElementDisplayStyle.VisualStudio2005
         Me.cmbCostCenter.LimitToList = True
-        Me.cmbCostCenter.Location = New System.Drawing.Point(778, 423)
+        Me.cmbCostCenter.Location = New System.Drawing.Point(1037, 521)
+        Me.cmbCostCenter.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbCostCenter.MaxDropDownItems = 16
         Me.cmbCostCenter.Name = "cmbCostCenter"
-        Me.cmbCostCenter.Size = New System.Drawing.Size(144, 22)
+        Me.cmbCostCenter.Size = New System.Drawing.Size(192, 25)
         Me.cmbCostCenter.TabIndex = 27
         Me.cmbCostCenter.Visible = False
         '
@@ -481,18 +496,20 @@ Partial Class frmGrdRptAgingReceiveables
         '
         Me.lblSubSub.AutoSize = True
         Me.lblSubSub.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.lblSubSub.Location = New System.Drawing.Point(443, 427)
+        Me.lblSubSub.Location = New System.Drawing.Point(591, 526)
+        Me.lblSubSub.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblSubSub.Name = "lblSubSub"
-        Me.lblSubSub.Size = New System.Drawing.Size(48, 13)
+        Me.lblSubSub.Size = New System.Drawing.Size(62, 17)
         Me.lblSubSub.TabIndex = 26
         Me.lblSubSub.Text = "Sub Sub"
         Me.lblSubSub.Visible = False
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(576, 380)
+        Me.btnSearch.Location = New System.Drawing.Point(768, 468)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(75, 23)
+        Me.btnSearch.Size = New System.Drawing.Size(100, 28)
         Me.btnSearch.TabIndex = 25
         Me.btnSearch.Text = "Show"
         Me.btnSearch.UseVisualStyleBackColor = True
@@ -552,10 +569,11 @@ Partial Class frmGrdRptAgingReceiveables
         Me.cmbSubSub.DisplayLayout.TabNavigation = Infragistics.Win.UltraWinGrid.TabNavigation.NextControl
         Me.cmbSubSub.DisplayLayout.ViewStyle = Infragistics.Win.UltraWinGrid.ViewStyle.SingleBand
         Me.cmbSubSub.LimitToList = True
-        Me.cmbSubSub.Location = New System.Drawing.Point(494, 423)
+        Me.cmbSubSub.Location = New System.Drawing.Point(659, 521)
+        Me.cmbSubSub.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbSubSub.MaxDropDownItems = 20
         Me.cmbSubSub.Name = "cmbSubSub"
-        Me.cmbSubSub.Size = New System.Drawing.Size(201, 22)
+        Me.cmbSubSub.Size = New System.Drawing.Size(268, 25)
         Me.cmbSubSub.TabIndex = 24
         Me.cmbSubSub.Visible = False
         '
@@ -565,9 +583,10 @@ Partial Class frmGrdRptAgingReceiveables
         Me.chkIncludeUnPosted.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
         Me.chkIncludeUnPosted.Checked = True
         Me.chkIncludeUnPosted.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkIncludeUnPosted.Location = New System.Drawing.Point(502, 337)
+        Me.chkIncludeUnPosted.Location = New System.Drawing.Point(669, 415)
+        Me.chkIncludeUnPosted.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.chkIncludeUnPosted.Name = "chkIncludeUnPosted"
-        Me.chkIncludeUnPosted.Size = New System.Drawing.Size(153, 17)
+        Me.chkIncludeUnPosted.Size = New System.Drawing.Size(197, 21)
         Me.chkIncludeUnPosted.TabIndex = 23
         Me.chkIncludeUnPosted.Text = "Include Unposted Voucher"
         Me.chkIncludeUnPosted.UseVisualStyleBackColor = False
@@ -576,9 +595,10 @@ Partial Class frmGrdRptAgingReceiveables
         '
         Me.lnkRefresh.AutoSize = True
         Me.lnkRefresh.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(211, Byte), Integer))
-        Me.lnkRefresh.Location = New System.Drawing.Point(499, 318)
+        Me.lnkRefresh.Location = New System.Drawing.Point(665, 391)
+        Me.lnkRefresh.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lnkRefresh.Name = "lnkRefresh"
-        Me.lnkRefresh.Size = New System.Drawing.Size(44, 13)
+        Me.lnkRefresh.Size = New System.Drawing.Size(58, 17)
         Me.lnkRefresh.TabIndex = 22
         Me.lnkRefresh.TabStop = True
         Me.lnkRefresh.Text = "Refresh"
@@ -593,9 +613,10 @@ Partial Class frmGrdRptAgingReceiveables
         Me.UltraTabPageControl1.Controls.Add(Me.ToolStrip1)
         Me.UltraTabPageControl1.Controls.Add(Me.grd)
         Me.UltraTabPageControl1.Controls.Add(Me.pnlFollowUp)
-        Me.UltraTabPageControl1.Location = New System.Drawing.Point(-10000, -10000)
+        Me.UltraTabPageControl1.Location = New System.Drawing.Point(-13333, -12308)
+        Me.UltraTabPageControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabPageControl1.Name = "UltraTabPageControl1"
-        Me.UltraTabPageControl1.Size = New System.Drawing.Size(911, 466)
+        Me.UltraTabPageControl1.Size = New System.Drawing.Size(1215, 576)
         '
         'CtrlGrdBar3
         '
@@ -603,10 +624,11 @@ Partial Class frmGrdRptAgingReceiveables
         Me.CtrlGrdBar3.BackColor = System.Drawing.Color.Transparent
         Me.CtrlGrdBar3.Email = Nothing
         Me.CtrlGrdBar3.FormName = Me
-        Me.CtrlGrdBar3.Location = New System.Drawing.Point(874, 0)
+        Me.CtrlGrdBar3.Location = New System.Drawing.Point(1165, 0)
+        Me.CtrlGrdBar3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CtrlGrdBar3.MyGrid = Me.grd
         Me.CtrlGrdBar3.Name = "CtrlGrdBar3"
-        Me.CtrlGrdBar3.Size = New System.Drawing.Size(38, 25)
+        Me.CtrlGrdBar3.Size = New System.Drawing.Size(51, 31)
         Me.CtrlGrdBar3.TabIndex = 24
         '
         'grd
@@ -622,10 +644,11 @@ Partial Class frmGrdRptAgingReceiveables
         Me.grd.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges
         Me.grd.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
         Me.grd.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always
-        Me.grd.Location = New System.Drawing.Point(0, 28)
+        Me.grd.Location = New System.Drawing.Point(0, 34)
+        Me.grd.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.grd.Name = "grd"
         Me.grd.RecordNavigator = True
-        Me.grd.Size = New System.Drawing.Size(911, 343)
+        Me.grd.Size = New System.Drawing.Size(1215, 427)
         Me.grd.TabIndex = 2
         Me.grd.TotalRow = Janus.Windows.GridEX.InheritableBoolean.[True]
         Me.grd.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
@@ -634,17 +657,19 @@ Partial Class frmGrdRptAgingReceiveables
         'cmbFormate
         '
         Me.cmbFormate.FormattingEnabled = True
-        Me.cmbFormate.Location = New System.Drawing.Point(570, 3)
+        Me.cmbFormate.Location = New System.Drawing.Point(760, 4)
+        Me.cmbFormate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbFormate.Name = "cmbFormate"
-        Me.cmbFormate.Size = New System.Drawing.Size(201, 21)
+        Me.cmbFormate.Size = New System.Drawing.Size(267, 24)
         Me.cmbFormate.TabIndex = 22
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(519, 6)
+        Me.Label2.Location = New System.Drawing.Point(692, 7)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(39, 13)
+        Me.Label2.Size = New System.Drawing.Size(51, 17)
         Me.Label2.TabIndex = 23
         Me.Label2.Text = "Layout"
         '
@@ -654,10 +679,11 @@ Partial Class frmGrdRptAgingReceiveables
         Me.CtrlGrdBar1.BackColor = System.Drawing.Color.Transparent
         Me.CtrlGrdBar1.Email = Nothing
         Me.CtrlGrdBar1.FormName = Me
-        Me.CtrlGrdBar1.Location = New System.Drawing.Point(955, -1)
+        Me.CtrlGrdBar1.Location = New System.Drawing.Point(1273, -1)
+        Me.CtrlGrdBar1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CtrlGrdBar1.MyGrid = Me.grd
         Me.CtrlGrdBar1.Name = "CtrlGrdBar1"
-        Me.CtrlGrdBar1.Size = New System.Drawing.Size(38, 25)
+        Me.CtrlGrdBar1.Size = New System.Drawing.Size(51, 31)
         Me.CtrlGrdBar1.TabIndex = 8
         '
         'ToolStrip1
@@ -666,7 +692,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnRefresh, Me.btnPrint, Me.ToolStripSeparator1, Me.btnAddTemplate, Me.btnSMSTempSettings, Me.btnSendSMS})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(911, 31)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1215, 31)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -675,7 +701,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.btnRefresh.Image = Global.SimpleAccounts.My.Resources.Resources.Refresh
         Me.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(74, 28)
+        Me.btnRefresh.Size = New System.Drawing.Size(86, 28)
         Me.btnRefresh.Text = "Refresh"
         '
         'btnPrint
@@ -683,7 +709,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.btnPrint.Image = Global.SimpleAccounts.My.Resources.Resources.print
         Me.btnPrint.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnPrint.Name = "btnPrint"
-        Me.btnPrint.Size = New System.Drawing.Size(60, 28)
+        Me.btnPrint.Size = New System.Drawing.Size(67, 28)
         Me.btnPrint.Text = "Print"
         '
         'ToolStripSeparator1
@@ -696,7 +722,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.btnAddTemplate.Image = Global.SimpleAccounts.My.Resources.Resources.addIcon
         Me.btnAddTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnAddTemplate.Name = "btnAddTemplate"
-        Me.btnAddTemplate.Size = New System.Drawing.Size(126, 28)
+        Me.btnAddTemplate.Size = New System.Drawing.Size(152, 28)
         Me.btnAddTemplate.Text = "Add aging layout"
         '
         'btnSMSTempSettings
@@ -704,7 +730,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.btnSMSTempSettings.Image = Global.SimpleAccounts.My.Resources.Resources.Attach
         Me.btnSMSTempSettings.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSMSTempSettings.Name = "btnSMSTempSettings"
-        Me.btnSMSTempSettings.Size = New System.Drawing.Size(147, 28)
+        Me.btnSMSTempSettings.Size = New System.Drawing.Size(179, 28)
         Me.btnSMSTempSettings.Text = "SMS template setting"
         '
         'btnSendSMS
@@ -712,7 +738,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.btnSendSMS.Image = CType(resources.GetObject("btnSendSMS.Image"), System.Drawing.Image)
         Me.btnSendSMS.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnSendSMS.Name = "btnSendSMS"
-        Me.btnSendSMS.Size = New System.Drawing.Size(87, 28)
+        Me.btnSendSMS.Size = New System.Drawing.Size(103, 28)
         Me.btnSendSMS.Text = "Send SMS"
         '
         'pnlFollowUp
@@ -724,16 +750,18 @@ Partial Class frmGrdRptAgingReceiveables
         Me.pnlFollowUp.Controls.Add(Me.lblFollowUpRemakrs)
         Me.pnlFollowUp.Controls.Add(Me.txtFollowUpRemarks)
         Me.pnlFollowUp.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.pnlFollowUp.Location = New System.Drawing.Point(0, 369)
+        Me.pnlFollowUp.Location = New System.Drawing.Point(0, 457)
+        Me.pnlFollowUp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlFollowUp.Name = "pnlFollowUp"
-        Me.pnlFollowUp.Size = New System.Drawing.Size(911, 97)
+        Me.pnlFollowUp.Size = New System.Drawing.Size(1215, 119)
         Me.pnlFollowUp.TabIndex = 15
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(679, 55)
+        Me.btnSave.Location = New System.Drawing.Point(905, 68)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(75, 27)
+        Me.btnSave.Size = New System.Drawing.Size(100, 33)
         Me.btnSave.TabIndex = 4
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
@@ -741,9 +769,10 @@ Partial Class frmGrdRptAgingReceiveables
         'lbldtpFollowUp
         '
         Me.lbldtpFollowUp.AutoSize = True
-        Me.lbldtpFollowUp.Location = New System.Drawing.Point(550, 13)
+        Me.lbldtpFollowUp.Location = New System.Drawing.Point(733, 16)
+        Me.lbldtpFollowUp.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lbldtpFollowUp.Name = "lbldtpFollowUp"
-        Me.lbldtpFollowUp.Size = New System.Drawing.Size(77, 13)
+        Me.lbldtpFollowUp.Size = New System.Drawing.Size(99, 17)
         Me.lbldtpFollowUp.TabIndex = 3
         Me.lbldtpFollowUp.Text = "FollowUp Date"
         '
@@ -751,27 +780,30 @@ Partial Class frmGrdRptAgingReceiveables
         '
         Me.dtpFollowUp.CustomFormat = "dd/MM/yyyy"
         Me.dtpFollowUp.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpFollowUp.Location = New System.Drawing.Point(553, 29)
+        Me.dtpFollowUp.Location = New System.Drawing.Point(737, 36)
+        Me.dtpFollowUp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dtpFollowUp.Name = "dtpFollowUp"
-        Me.dtpFollowUp.Size = New System.Drawing.Size(200, 20)
+        Me.dtpFollowUp.Size = New System.Drawing.Size(265, 22)
         Me.dtpFollowUp.TabIndex = 2
         '
         'lblFollowUpRemakrs
         '
         Me.lblFollowUpRemakrs.AutoSize = True
-        Me.lblFollowUpRemakrs.Location = New System.Drawing.Point(3, 13)
+        Me.lblFollowUpRemakrs.Location = New System.Drawing.Point(4, 16)
+        Me.lblFollowUpRemakrs.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblFollowUpRemakrs.Name = "lblFollowUpRemakrs"
-        Me.lblFollowUpRemakrs.Size = New System.Drawing.Size(96, 13)
+        Me.lblFollowUpRemakrs.Size = New System.Drawing.Size(125, 17)
         Me.lblFollowUpRemakrs.TabIndex = 1
         Me.lblFollowUpRemakrs.Text = "FollowUp Remarks"
         '
         'txtFollowUpRemarks
         '
-        Me.txtFollowUpRemarks.Location = New System.Drawing.Point(105, 10)
+        Me.txtFollowUpRemarks.Location = New System.Drawing.Point(140, 12)
+        Me.txtFollowUpRemarks.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtFollowUpRemarks.Multiline = True
         Me.txtFollowUpRemarks.Name = "txtFollowUpRemarks"
         Me.txtFollowUpRemarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtFollowUpRemarks.Size = New System.Drawing.Size(433, 72)
+        Me.txtFollowUpRemarks.Size = New System.Drawing.Size(576, 88)
         Me.txtFollowUpRemarks.TabIndex = 0
         '
         'UltraTabPageControl2
@@ -782,15 +814,17 @@ Partial Class frmGrdRptAgingReceiveables
         Me.UltraTabPageControl2.Controls.Add(Me.CtrlGrdBar2)
         Me.UltraTabPageControl2.Controls.Add(Me.GridEX1)
         Me.UltraTabPageControl2.Controls.Add(Me.ToolStrip3)
-        Me.UltraTabPageControl2.Location = New System.Drawing.Point(-10000, -10000)
+        Me.UltraTabPageControl2.Location = New System.Drawing.Point(-13333, -12308)
+        Me.UltraTabPageControl2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabPageControl2.Name = "UltraTabPageControl2"
-        Me.UltraTabPageControl2.Size = New System.Drawing.Size(911, 466)
+        Me.UltraTabPageControl2.Size = New System.Drawing.Size(1215, 576)
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(267, 28)
+        Me.Button1.Location = New System.Drawing.Point(356, 34)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.Size = New System.Drawing.Size(100, 28)
         Me.Button1.TabIndex = 10
         Me.Button1.Text = "Show"
         Me.Button1.UseVisualStyleBackColor = True
@@ -799,18 +833,20 @@ Partial Class frmGrdRptAgingReceiveables
         '
         Me.DateTimePicker2.CustomFormat = "dd/MMM/yyyy"
         Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DateTimePicker2.Location = New System.Drawing.Point(139, 31)
+        Me.DateTimePicker2.Location = New System.Drawing.Point(185, 38)
+        Me.DateTimePicker2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(122, 20)
+        Me.DateTimePicker2.Size = New System.Drawing.Size(161, 22)
         Me.DateTimePicker2.TabIndex = 9
         '
         'DateTimePicker1
         '
         Me.DateTimePicker1.CustomFormat = "dd/MMM/yyyy"
         Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DateTimePicker1.Location = New System.Drawing.Point(11, 31)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(15, 38)
+        Me.DateTimePicker1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(122, 20)
+        Me.DateTimePicker1.Size = New System.Drawing.Size(161, 22)
         Me.DateTimePicker1.TabIndex = 8
         '
         'CtrlGrdBar2
@@ -819,10 +855,11 @@ Partial Class frmGrdRptAgingReceiveables
         Me.CtrlGrdBar2.BackColor = System.Drawing.Color.Transparent
         Me.CtrlGrdBar2.Email = Nothing
         Me.CtrlGrdBar2.FormName = Nothing
-        Me.CtrlGrdBar2.Location = New System.Drawing.Point(870, 0)
+        Me.CtrlGrdBar2.Location = New System.Drawing.Point(1160, 0)
+        Me.CtrlGrdBar2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CtrlGrdBar2.MyGrid = Me.GridEX1
         Me.CtrlGrdBar2.Name = "CtrlGrdBar2"
-        Me.CtrlGrdBar2.Size = New System.Drawing.Size(38, 25)
+        Me.CtrlGrdBar2.Size = New System.Drawing.Size(51, 31)
         Me.CtrlGrdBar2.TabIndex = 1
         '
         'GridEX1
@@ -838,10 +875,11 @@ Partial Class frmGrdRptAgingReceiveables
         Me.GridEX1.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges
         Me.GridEX1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
         Me.GridEX1.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always
-        Me.GridEX1.Location = New System.Drawing.Point(0, 57)
+        Me.GridEX1.Location = New System.Drawing.Point(0, 70)
+        Me.GridEX1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GridEX1.Name = "GridEX1"
         Me.GridEX1.RecordNavigator = True
-        Me.GridEX1.Size = New System.Drawing.Size(903, 490)
+        Me.GridEX1.Size = New System.Drawing.Size(1204, 608)
         Me.GridEX1.TabIndex = 2
         Me.GridEX1.TotalRow = Janus.Windows.GridEX.InheritableBoolean.[True]
         Me.GridEX1.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
@@ -854,7 +892,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnBack, Me.ToolStripButton2})
         Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
-        Me.ToolStrip3.Size = New System.Drawing.Size(911, 25)
+        Me.ToolStrip3.Size = New System.Drawing.Size(1215, 31)
         Me.ToolStrip3.TabIndex = 0
         Me.ToolStrip3.Text = "ToolStrip3"
         '
@@ -863,7 +901,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.btnBack.Image = Global.SimpleAccounts.My.Resources.Resources.back
         Me.btnBack.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(60, 22)
+        Me.btnBack.Size = New System.Drawing.Size(68, 28)
         Me.btnBack.Text = "Back"
         '
         'ToolStripButton2
@@ -871,7 +909,7 @@ Partial Class frmGrdRptAgingReceiveables
         Me.ToolStripButton2.Image = Global.SimpleAccounts.My.Resources.Resources.print
         Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(60, 22)
+        Me.ToolStripButton2.Size = New System.Drawing.Size(67, 28)
         Me.ToolStripButton2.Text = "Print"
         '
         'BackgroundWorker1
@@ -893,9 +931,10 @@ Partial Class frmGrdRptAgingReceiveables
         Me.UltraTabControl1.Controls.Add(Me.UltraTabPageControl3)
         Me.UltraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.UltraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.UltraTabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabControl1.Name = "UltraTabControl1"
         Me.UltraTabControl1.SharedControlsPage = Me.UltraTabSharedControlsPage1
-        Me.UltraTabControl1.Size = New System.Drawing.Size(913, 487)
+        Me.UltraTabControl1.Size = New System.Drawing.Size(1217, 599)
         Me.UltraTabControl1.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel
         Me.UltraTabControl1.TabIndex = 13
         Me.UltraTabControl1.TabOrientation = Infragistics.Win.UltraWinTabs.TabOrientation.BottomLeft
@@ -911,16 +950,18 @@ Partial Class frmGrdRptAgingReceiveables
         'UltraTabSharedControlsPage1
         '
         Me.UltraTabSharedControlsPage1.Location = New System.Drawing.Point(-10000, -10000)
+        Me.UltraTabSharedControlsPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UltraTabSharedControlsPage1.Name = "UltraTabSharedControlsPage1"
-        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(911, 466)
+        Me.UltraTabSharedControlsPage1.Size = New System.Drawing.Size(1215, 576)
         '
         'frmGrdRptAgingReceiveables
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(913, 487)
+        Me.ClientSize = New System.Drawing.Size(1217, 599)
         Me.Controls.Add(Me.UltraTabControl1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmGrdRptAgingReceiveables"
         Me.Text = "Aging Receivable"
         Me.UltraTabPageControl3.ResumeLayout(False)

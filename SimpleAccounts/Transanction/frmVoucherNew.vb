@@ -70,6 +70,8 @@ Public Class frmVoucherNew
         EmpName
         RequestId
         SalesOrderID
+        RemainingBudget
+        PreviousDebit
         Delete
         'Change by Murtaza for txtcurrencyrate text change (11/09/2022)
         CurrencyAmount
@@ -156,6 +158,10 @@ Public Class frmVoucherNew
     Dim EmailDAL As New EmailTemplateDAL
     Dim html As StringBuilder
     Dim VendorEmails As String = String.Empty
+    Dim EditSOBudget As Double = 0D
+    Dim EditSalaryBudget As Double = 0D
+    Dim EditDepartmentBudget As Double = 0D
+    Dim PreviousDebit As Double = 0D
 
     ''' <summary>
     ''' Ali Faisal : TFS3677 : Exception handling on Voucher entry, Payment and Receipt screen.
@@ -560,6 +566,8 @@ Public Class frmVoucherNew
             '31-Jul-2017        TFS1111       R@! Shahid      Deactivated Account should not display on Trial Balance Screen
             'Removed Voucher type deslection
             'cmbVoucherType.SelectedIndex = 0
+            cmbProjectType.SelectedIndex = 0
+            lblRemainingBudget.Text = ""
             txtTotalCredit.Text = 0
             txtTotalDebit.Text = 0
             txtChequeNo.Text = ""
@@ -576,7 +584,7 @@ Public Class frmVoucherNew
             Me.cmbsalesorderId.SelectedIndex = 0
             Me.BtnSave.Text = "&Save"
             'Rafay
-            companyinitials = ""
+            ''companyinitials = ""
             'Rafay
             'chkSearch.Checked = False
             Me.dtpfrom.Value = Date.Today.AddMonths(-1)
@@ -876,7 +884,7 @@ Public Class frmVoucherNew
                 msg_Error(str_ErrorNoRecordFound)
                 cmbAccount.Focus() : FormValidate = False : Exit Function
             End If
-
+            
             If Me.grd.GetTotal(Me.grd.RootTable.Columns("CurrencyDr"), Janus.Windows.GridEX.AggregateFunction.Sum) <> Me.grd.GetTotal(Me.grd.RootTable.Columns("CurrencyCr"), Janus.Windows.GridEX.AggregateFunction.Sum) Then 'Val(txtTotalCredit.Text) <> Val(txtTotalDebit.Text) Then
                 msg_Error("Debit and credit must be equal")
                 cmbAccount.Focus() : FormValidate = False : Exit Function
@@ -889,6 +897,87 @@ Public Class frmVoucherNew
                     Return False
                 End If
             End If
+            'If Me.BtnSave.Text = "&Save" Then
+            Dim SOBudgetAmount As Double = 0D
+            Dim SalaryBudgetAmount As Double = 0D
+            Dim DepartmentBudgetAmount As Double = 0D
+            For Each jRow As Janus.Windows.GridEX.GridEXRow In Me.grd.GetRows
+                Dim strBudget As String
+                Dim dtBudget As DataTable
+                strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, ISNULL(SalaryBudget,0) as SalaryBudget, ISNULL(DepartmentBudget,0) as DepartmentBudget from tbldefCostCenter where CostCenterID = " & Val(jRow.Cells("CostCenterId").Value.ToString) & ""
+                dtBudget = GetDataTable(strBudget)
+                If dtBudget.Rows.Count > 0 Then
+                    If dtBudget.Rows(0).Item(0) = "False" And dtBudget.Rows(0).Item(1) = "False" And dtBudget.Rows(0).Item(2) = "False" Then
+
+                    Else
+                        If dtBudget.Rows(0).Item(0) = "True" Then
+                            Dim strCurrentBudget As String
+                            Dim dtCurrentBudget As DataTable
+                            Dim CurrentBudget As Double = 0D
+                            strCurrentBudget = "SELECT (ISNULL(Amount,0) - ISNULL(RemainingAmount,0)) as Amount from tbldefCostCenter where CostCenterID =  " & Val(jRow.Cells("CostCenterId").Value.ToString) & ""
+                            dtCurrentBudget = GetDataTable(strCurrentBudget)
+                            If dtCurrentBudget.Rows.Count > 0 Then
+                                SOBudgetAmount = SOBudgetAmount + Val(jRow.Cells("Debit").Value.ToString)
+                                CurrentBudget = dtCurrentBudget.Rows(0).Item(0)
+                                If CurrentBudget < SOBudgetAmount Then
+                                    msg_Error("Amount exceeds from SO Budget.") : Return False : Exit Function
+                                End If
+                            End If
+                            
+                        ElseIf dtBudget.Rows(0).Item(1) = "True" Then
+
+                            If Val(jRow.Cells("Debit").Value.ToString) > 0 Then
+                                Dim strCurrentBudget As String
+                                Dim dtCurrentBudget As DataTable
+                                Dim CurrentBudget As Double = 0D
+                                strCurrentBudget = "SELECT ISNULL(Amount,0) as Amount from tbldefCostCenter where CostCenterID =" & Val(jRow.Cells("CostCenterId").Value.ToString) & ""
+                                dtCurrentBudget = GetDataTable(strCurrentBudget)
+                                If dtCurrentBudget.Rows.Count > 0 Then
+                                    SalaryBudgetAmount = SalaryBudgetAmount + Val(jRow.Cells("Debit").Value.ToString)
+                                    CurrentBudget = dtCurrentBudget.Rows(0).Item(0)
+                                    If BtnSave.Text = "&Save" Then
+                                        If CurrentBudget < (CDbl(GetAccountBalance(Val(jRow.Cells("CostCenterId").Value.ToString))) + SalaryBudgetAmount) Then
+                                            msg_Error("Amount exceeds from Salary Budget.") : Return False : Exit Function
+                                        End If
+                                    Else
+                                        If CurrentBudget < (CDbl(GetAccountBalance(Val(jRow.Cells("CostCenterId").Value.ToString), txtVoucherNo.Text)) + SalaryBudgetAmount) Then
+                                            msg_Error("Amount exceeds from Salary Budget.") : Return False : Exit Function
+                                        End If
+                                    End If
+                                End If
+                            End If
+
+
+                        ElseIf dtBudget.Rows(0).Item(2) = "True" Then
+
+                            If Val(jRow.Cells("Debit").Value.ToString) > 0 Then
+                                Dim strCurrentBudget As String
+                                Dim dtCurrentBudget As DataTable
+                                Dim CurrentBudget As Double = 0D
+                                strCurrentBudget = "SELECT ISNULL(Amount,0) as Amount from tbldefCostCenter where CostCenterID =" & Val(jRow.Cells("CostCenterId").Value.ToString) & ""
+                                dtCurrentBudget = GetDataTable(strCurrentBudget)
+                                If dtCurrentBudget.Rows.Count > 0 Then
+                                    DepartmentBudgetAmount = DepartmentBudgetAmount + Val(jRow.Cells("Debit").Value.ToString)
+                                    CurrentBudget = dtCurrentBudget.Rows(0).Item(0).value
+                                    If BtnSave.Text = "&Save" Then
+                                        If CurrentBudget < (CDbl(GetAccountBalance(Val(jRow.Cells("CostCenterId").Value.ToString))) + DepartmentBudgetAmount) Then
+                                            msg_Error("Amount exceeds from Department Budget.") : Return False : Exit Function
+                                        End If
+                                    Else
+                                        If CurrentBudget < (CDbl(GetAccountBalance(Val(jRow.Cells("CostCenterId").Value.ToString), txtVoucherNo.Text)) + DepartmentBudgetAmount) Then
+                                            msg_Error("Amount exceeds from Department Budget.") : Return False : Exit Function
+                                        End If
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+                End If
+            Next
+            SOBudgetAmount = 0D
+            SalaryBudgetAmount = 0D
+            DepartmentBudgetAmount = 0D
+            'End If
             ''Start TFS2988
             If blnEditMode = True Then
                 If ValidateApprovalProcessMapped(Me.txtVoucherNo.Text.Trim, Me.Name) Then
@@ -968,7 +1057,14 @@ Public Class frmVoucherNew
                 End If
             End If
             'Altered Against Task#201506026 Ali Ansari to block payments exceeding available balanace
-
+            If cmbProjectType.SelectedIndex > 0 Then
+                If cmbCostCenter.SelectedValue > 0 Then
+                    If Val(lblRemainingBudget.Text) < Val(txtDebit.Text) Then
+                        msg_Error("Amount exceeds from remaining budget.")
+                        txtDebit.Focus() : Validate_AddToGrid = False : Exit Function
+                    End If
+                End If
+            End If
 
             ''''''''''''''''''''''''''''''
             If cmbAccount.ActiveRow.Cells(0).Value <= 0 Then
@@ -1070,6 +1166,14 @@ Public Class frmVoucherNew
             dr.Item(EnumGrid.SalesOrderID) = IIf(Me.cmbsalesorderId.SelectedValue > 0, Me.cmbsalesorderId.SelectedValue, 0)
             dr.Item(EnumGrid.RequestId) = IIf(Me.cmbAdvanceRequest.SelectedIndex > 0, Me.cmbAdvanceRequest.SelectedValue, 0)
             dr.Item(EnumGrid.EmpName) = 0 'Me.cmbEmployee.Text
+            If cmbProjectType.Text <> "All" Then
+                dr.Item(EnumGrid.RemainingBudget) = Val(lblRemainingBudget.Text)
+                dr.Item(EnumGrid.PreviousDebit) = PreviousDebit
+            Else
+                dr.Item(EnumGrid.RemainingBudget) = Val(0)
+                dr.Item(EnumGrid.PreviousDebit) = 0
+            End If
+
             dtGrd.Rows.InsertAt(dr, 0)
 
             CostCenterGrdCombo()
@@ -1374,14 +1478,30 @@ Public Class frmVoucherNew
                 ''End Task:2745
 
                 ' Added 2 new columns Currency_debit_amount, Currency_Credit_Amount
-                objCommand.CommandText = "Insert into tblVoucherDetail (voucher_id, location_id,coa_detail_id, comments,debit_amount,credit_amount, CostCenterID, Cheque_No, Cheque_Date,ChequeDescription, CurrencyId, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, EmpID, RequestId,SalesOrderId) values( " _
+                objCommand.CommandText = "Insert into tblVoucherDetail (voucher_id, location_id,coa_detail_id, comments,debit_amount,credit_amount, CostCenterID, Cheque_No, Cheque_Date,ChequeDescription, CurrencyId, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, EmpID, RequestId,SalesOrderId, RemainingBudget) values( " _
                                    & " ident_current('tblVoucher'), " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Val(grd.GetRows(i).Cells(EnumGrid.AccountID).Value) & ",N'" & (grd.GetRows(i).Cells(EnumGrid.Description).Value.ToString.Replace("'", "''")) & "'," & Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value) & ", " _
-                                   & " " & Val(grd.GetRows(i).Cells(EnumGrid.Credit).Value) & ", " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & grd.GetRows(i).Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(grd.GetRows(i).Cells("Cheque_Date").Value), Now, grd.GetRows(i).Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", N'" & GetComments(grd.GetRows(i)).Replace("'", "''") & "', " & Val(grd.GetRow(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("currencyDr").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("CurrencyCr").Value.ToString) & ", '" & Me.cmbCurrency.Text & "', " & Val(grd.GetRows(i).Cells(EnumGrid.EmpID).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RequestId).Value.ToString) & "," & Val(grd.GetRows(i).Cells(EnumGrid.SalesOrderID).Value) & ")Select @@Identity"
+                                   & " " & Val(grd.GetRows(i).Cells(EnumGrid.Credit).Value) & ", " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & grd.GetRows(i).Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(grd.GetRows(i).Cells("Cheque_Date").Value), Now, grd.GetRows(i).Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", N'" & GetComments(grd.GetRows(i)).Replace("'", "''") & "', " & Val(grd.GetRow(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("currencyDr").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("CurrencyCr").Value.ToString) & ", '" & Me.cmbCurrency.Text & "', " & Val(grd.GetRows(i).Cells(EnumGrid.EmpID).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RequestId).Value.ToString) & "," & Val(grd.GetRows(i).Cells(EnumGrid.SalesOrderID).Value) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RemainingBudget).Value) & ")Select @@Identity"
 
                 objCommand.ExecuteScalar()
                 'Val(grd.Rows(i).Cells(5).Value)
 
+                If grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value > 0 Then
 
+                    Dim strBudget As String = ""
+                    Dim dtBudget As New DataTable
+                    strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, ISNULL(SalaryBudget,0) as SalaryBudget, ISNULL(DepartmentBudget,0) as DepartmentBudget from tbldefCostCenter where CostCenterID = " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ""
+                    dtBudget = GetDataTable(strBudget, trans)
+                    If dtBudget.Rows.Count > 0 Then
+                        If dtBudget.Rows(0).Item(0) = "True" Then
+
+                            objCommand.CommandText = "UPDATE tblDefCostCenter SET RemainingAmount = ISNULL(RemainingAmount,0) + " & Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value) & " WHERE CostCenterID = " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ""
+                            objCommand.ExecuteNonQuery()
+
+                        End If
+                    End If
+
+                End If
+                
                 'Task:2443  e.g Multi Cheque Detail Value Store 
                 If grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length > 0 Then
                     If strMultiChequeDetail.Length > 0 Then
@@ -1632,14 +1752,69 @@ Public Class frmVoucherNew
                 ''End Task:2745
 
                 ' Added 2 new columns Currency_debit_amount, Currency_Credit_Amount
-                objCommand.CommandText = "Insert into tblVoucherDetail (voucher_id, location_id,coa_detail_id, comments,debit_amount,credit_amount, CostCenterID, Cheque_No, Cheque_Date,ChequeDescription, CurrencyId, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, EmpID, RequestId,SalesOrderId) values( " _
+                objCommand.CommandText = "Insert into tblVoucherDetail (voucher_id, location_id,coa_detail_id, comments,debit_amount,credit_amount, CostCenterID, Cheque_No, Cheque_Date,ChequeDescription, CurrencyId, CurrencyRate, BaseCurrencyId, BaseCurrencyRate, Currency_Debit_Amount, Currency_Credit_Amount, Currency_Symbol, EmpID, RequestId,SalesOrderId,RemainingBudget) values( " _
                                    & txtVoucherID.Text & " , " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Val(grd.GetRows(i).Cells(EnumGrid.AccountID).Value) & ",N'" & (grd.GetRows(i).Cells(EnumGrid.Description).Value.ToString.Replace("'", "''")) & "'," & Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value) & ", " _
-                                   & " " & Val(grd.GetRows(i).Cells(EnumGrid.Credit).Value) & ", " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & grd.GetRows(i).Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(grd.GetRows(i).Cells("Cheque_Date").Value), Now, grd.GetRows(i).Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", N'" & GetComments(grd.GetRows(i)).Replace("'", "''") & "', " & Val(grd.GetRow(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("currencyDr").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("CurrencyCr").Value.ToString) & ", '" & Me.cmbCurrency.Text & "', " & Val(grd.GetRows(i).Cells(EnumGrid.EmpID).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RequestId).Value.ToString) & "," & Val(grd.GetRows(i).Cells(EnumGrid.SalesOrderID).Value) & ")Select @@Identity"
-
-
+                                   & " " & Val(grd.GetRows(i).Cells(EnumGrid.Credit).Value) & ", " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString = "", "NULL", "N'" & grd.GetRows(i).Cells("Cheque_No").Value.ToString.Replace("'", "''") & "'") & ", " & IIf(grd.GetRows(i).Cells("Cheque_No").Value.ToString.Length = 0, "NULL", "N'" & CDate(IIf(IsDBNull(grd.GetRows(i).Cells("Cheque_Date").Value), Now, grd.GetRows(i).Cells("Cheque_Date").Value)).ToString("yyyy-M-d h:mm:ss tt") & "'") & ", N'" & GetComments(grd.GetRows(i)).Replace("'", "''") & "', " & Val(grd.GetRow(i).Cells("CurrencyId").Value.ToString) & ", " & Val(txtCurrencyRate.Text) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyId").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("BaseCurrencyRate").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("currencyDr").Value.ToString) & ", " & Val(Me.grd.GetRow(i).Cells("CurrencyCr").Value.ToString) & ", '" & Me.cmbCurrency.Text & "', " & Val(grd.GetRows(i).Cells(EnumGrid.EmpID).Value.ToString) & ", " & Val(grd.GetRows(i).Cells(EnumGrid.RequestId).Value.ToString) & "," & Val(grd.GetRows(i).Cells(EnumGrid.SalesOrderID).Value) & "," & Val(grd.GetRows(i).Cells(EnumGrid.RemainingBudget).Value) & ")Select @@Identity"
+                
 
                 Dim objId As Object = objCommand.ExecuteScalar()
                 'Marked Against Task#2015060001 Ali Ansari
+
+
+
+
+
+
+                Dim UpdatedSOAmount As Double
+                Dim UpdatedSalaryAmount As Double
+                Dim UpdatedDepartmentAmount As Double
+                If Val(grd.GetRows(i).Cells("CostCenterId").Value.ToString) > 0 Then
+                    Dim strBudget As String = ""
+                    Dim dtBudget As DataTable
+                    strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, ISNULL(SalaryBudget,0) as SalaryBudget, ISNULL(DepartmentBudget,0) as DepartmentBudget from tbldefCostCenter where CostCenterID = " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ""
+                    dtBudget = GetDataTable(strBudget, trans)
+                    If dtBudget.Rows.Count > 0 Then
+                        If dtBudget.Rows(0).Item(0) = "True" Then
+
+
+                            If Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value) = Val(grd.GetRows(i).Cells("PreviousDebit").Value) Then
+
+                            Else
+                                UpdatedSOAmount = Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value) - Val(grd.GetRows(i).Cells("PreviousDebit").Value)
+                                objCommand.CommandText = ""
+                                objCommand.CommandText = "UPDATE tblDefCostCenter SET RemainingAmount = ISNULL(RemainingAmount,0) + (" & UpdatedSOAmount & ") WHERE CostCenterID = " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ""
+                                objCommand.ExecuteNonQuery()
+                            End If
+
+                            
+
+                            'ElseIf dtBudget.Rows(0).Item(1) = "True" Then
+
+                            '    UpdatedSalaryAmount = Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value) - EditSalaryBudget
+                            '    objCommand.CommandText = ""
+                            '    objCommand.CommandText = "UPDATE tblDefCostCenter SET RemainingAmount = ISNULL(RemainingAmount,0) + (" & UpdatedSalaryAmount & ") WHERE CostCenterID = " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ""
+                            '    objCommand.ExecuteNonQuery()
+
+                            'ElseIf dtBudget.Rows(0).Item(2) = "True" Then
+
+                            '    UpdatedDepartmentAmount = Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value) - EditDepartmentBudget
+                            '    objCommand.CommandText = ""
+                            '    objCommand.CommandText = "UPDATE tblDefCostCenter SET RemainingAmount = ISNULL(RemainingAmount,0) + (" & UpdatedDepartmentAmount & ") WHERE CostCenterID = " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ""
+                            '    objCommand.ExecuteNonQuery()
+
+                        End If
+                        End If
+                End If
+
+                'If ((Me.grd.GetTotal(Me.grd.RootTable.Columns("Price"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Custom_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Transportation_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum)) * Val(txtCurrencyRate.Text)) = BudgetAmount Then
+                'Else
+                '    UpdatedAmount = ((Me.grd.GetTotal(Me.grd.RootTable.Columns("Price"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Custom_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Transportation_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum)) * Val(txtCurrencyRate.Text)) - BudgetAmount
+                'End If
+                
+
+
+
+
 
 
                 If Val(Me.grd.GetRows(i).Cells("VoucherDetailId").Value.ToString) > 0 Then
@@ -1872,6 +2047,25 @@ Public Class frmVoucherNew
             'Me.BtnDelete.Visible = True
             'Me.BtnPrint.Visible = True
 
+            Dim i As Integer
+            For i = 0 To grd.RowCount - 1
+                If Val(grd.GetRows(i).Cells("CostCenterId").Value.ToString) > 0 Then
+                    Dim strBudget As String
+                    Dim dtBudget As DataTable
+                    strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, ISNULL(SalaryBudget,0) as SalaryBudget, ISNULL(DepartmentBudget,0) as DepartmentBudget from tbldefCostCenter where CostCenterID = " & grd.GetRows(i).Cells(EnumGrid.CostCenterID).Value & ""
+                    dtBudget = GetDataTable(strBudget)
+                    If dtBudget.Rows.Count > 0 Then
+                        If dtBudget.Rows(0).Item(0) = "True" Then
+                            EditSOBudget = EditSOBudget + Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value)
+                        ElseIf dtBudget.Rows(0).Item(1) = "True" Then
+                            EditSalaryBudget = EditSalaryBudget + Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value)
+                        ElseIf dtBudget.Rows(0).Item(2) = "True" Then
+                            EditDepartmentBudget = EditDepartmentBudget + Val(grd.GetRows(i).Cells(EnumGrid.Debit).Value)
+                        End If
+                    End If
+                End If
+            Next
+
             If getConfigValueByType("EnabledDuplicateVoucherLog").ToString.ToUpper = "TRUE" Then
 
                 Dim intCountVouchers As Integer = 0
@@ -1913,7 +2107,7 @@ Public Class frmVoucherNew
             Dim str As String
             Dim i As Integer = 0
 
-            str = " SELECT ACDetail.sub_sub_title As [Head], ACDetail.detail_title As [Account], ACDetail.detail_code As AccountCode, VD.comments as [Description], IsNull(VD.CostCenterID,0) as CostCenterId, VD.Cheque_No, Isnull(VD.Cheque_Date,GetDate()) as Cheque_Date, IsNull(VD.CurrencyId, 0) As CurrencyId,  IsNull(VD.Currency_Debit_Amount, debit_amount)  as CurrencyDr,  IsNull(VD.Currency_Credit_Amount, Credit_amount)  as CurrencyCr, IsNull(VD.CurrencyRate, 1) As CurrencyRate, IsNull(VD.BaseCurrencyId, 0) As BaseCurrencyId, IsNull(VD.BaseCurrencyRate, 0) As BaseCurrencyRate, convert(money,VD.debit_amount) as Debit, convert(money,VD.credit_amount) as Credit, VD.coa_detail_id  as [AccountId], ACDetail.Account_Type as Type,IsNull(InvAdj.VoucherDetailId,0) as VoucherDetailId, 0 As DetailId, 0 AS EmpID, 0 as RequestId, '' AS EmpName " _
+            str = " SELECT ACDetail.sub_sub_title As [Head], ACDetail.detail_title As [Account], ACDetail.detail_code As AccountCode, VD.comments as [Description], IsNull(VD.CostCenterID,0) as CostCenterId, VD.Cheque_No, Isnull(VD.Cheque_Date,GetDate()) as Cheque_Date, IsNull(VD.CurrencyId, 0) As CurrencyId,  IsNull(VD.Currency_Debit_Amount, debit_amount)  as CurrencyDr,  IsNull(VD.Currency_Credit_Amount, Credit_amount)  as CurrencyCr, IsNull(VD.CurrencyRate, 1) As CurrencyRate, IsNull(VD.BaseCurrencyId, 0) As BaseCurrencyId, IsNull(VD.BaseCurrencyRate, 0) As BaseCurrencyRate, convert(money,VD.debit_amount) as Debit, convert(money,VD.credit_amount) as Credit, VD.coa_detail_id  as [AccountId], ACDetail.Account_Type as Type,IsNull(InvAdj.VoucherDetailId,0) as VoucherDetailId, 0 As DetailId, 0 AS EmpID, 0 as RequestId, '' AS EmpName, 0 as RemainingBudget " _
                        & " FROM dbo.tblVoucherTemplate V INNER JOIN  dbo.tblVoucherTemplateDetail VD ON V.voucher_id = VD.voucher_id INNER JOIN " _
                        & " dbo.vwCOADetail ACDetail ON VD.coa_detail_id = ACDetail.coa_detail_id left outer join " _
                        & " tblDefCostCenter on vd.CostCenterID =  tblDefCostCenter.CostCenterID LEFT OUTER JOIN (Select Distinct VoucherDetailId From InvoiceAdjustmentTable) as InvAdj on InvAdj.VoucherDetailId = VD.Voucher_Detail_Id " _
@@ -1993,7 +2187,7 @@ Public Class frmVoucherNew
             '// Adding 2 new columns of CurrencyDr, CurrecnyCr after Currency id
             ''TFS4650 : 27-09-2018 : Ayesha Rehman : Added a new column Account Code 
             ''TASK TFS4913 : removed the GetDate() function from Cheque_Date field in case field is null to have the null value instead of GetDate() value. done on 14-11-2016
-            str = " SELECT     ACDetail.sub_sub_title AS Head, ACDetail.detail_title AS Account , ACDetail.detail_code As AccountCode, VD.comments AS Description, ISNULL(VD.CostCenterID, 0) AS CostCenterId, VD.Cheque_No, VD.Cheque_Date AS Cheque_Date, ISNULL(VD.CurrencyId, 0) AS CurrencyId, ISNULL(VD.Currency_debit_amount, VD.debit_amount) AS CurrencyDr, ISNULL(VD.Currency_Credit_Amount, VD.credit_amount) AS CurrencyCr, ISNULL(VD.CurrencyRate, 1) AS CurrencyRate, ISNULL(VD.BaseCurrencyId, 0) AS BaseCurrencyId, ISNULL(VD.BaseCurrencyRate, 0) AS BaseCurrencyRate, CONVERT(money, VD.debit_amount) AS Debit, CONVERT(money, VD.credit_amount) AS Credit, VD.coa_detail_id AS AccountId, ACDetail.account_type AS Type, ISNULL(InvAdj.VoucherDetailId, 0) AS VoucherDetailId, VD.voucher_detail_id AS DetailId, VD.EmpID, tblDefEmployee.Employee_Name as EmpName, ISNULL(VD.RequestId, 0) as RequestId,ISNULL(VD.SalesOrderId,0) FROM tblVoucher AS V INNER JOIN tblVoucherDetail AS VD ON V.voucher_id = VD.voucher_id INNER JOIN vwCOADetail AS ACDetail ON VD.coa_detail_id = ACDetail.coa_detail_id LEFT OUTER JOIN tblDefEmployee ON VD.EmpID = tblDefEmployee.Employee_ID LEFT OUTER JOIN tblDefCostCenter ON VD.CostCenterID = tblDefCostCenter.CostCenterID LEFT OUTER JOIN (SELECT DISTINCT VoucherDetailId FROM InvoiceAdjustmentTable) AS InvAdj ON InvAdj.VoucherDetailId = VD.voucher_detail_id " _
+            str = " SELECT     ACDetail.sub_sub_title AS Head, ACDetail.detail_title AS Account , ACDetail.detail_code As AccountCode, VD.comments AS Description, ISNULL(VD.CostCenterID, 0) AS CostCenterId, VD.Cheque_No, VD.Cheque_Date AS Cheque_Date, ISNULL(VD.CurrencyId, 0) AS CurrencyId, ISNULL(VD.Currency_debit_amount, VD.debit_amount) AS CurrencyDr, ISNULL(VD.Currency_Credit_Amount, VD.credit_amount) AS CurrencyCr, ISNULL(VD.CurrencyRate, 1) AS CurrencyRate, ISNULL(VD.BaseCurrencyId, 0) AS BaseCurrencyId, ISNULL(VD.BaseCurrencyRate, 0) AS BaseCurrencyRate, CONVERT(money, VD.debit_amount) AS Debit, CONVERT(money, VD.credit_amount) AS Credit, VD.coa_detail_id AS AccountId, ACDetail.account_type AS Type, ISNULL(InvAdj.VoucherDetailId, 0) AS VoucherDetailId, VD.voucher_detail_id AS DetailId, VD.EmpID, tblDefEmployee.Employee_Name as EmpName, ISNULL(VD.RequestId, 0) as RequestId,ISNULL(VD.SalesOrderId,0), ISNULL(RemainingBudget,0) as RemainingBudget, CONVERT(money, VD.debit_amount) AS PreviousDebit FROM tblVoucher AS V INNER JOIN tblVoucherDetail AS VD ON V.voucher_id = VD.voucher_id INNER JOIN vwCOADetail AS ACDetail ON VD.coa_detail_id = ACDetail.coa_detail_id LEFT OUTER JOIN tblDefEmployee ON VD.EmpID = tblDefEmployee.Employee_ID LEFT OUTER JOIN tblDefCostCenter ON VD.CostCenterID = tblDefCostCenter.CostCenterID LEFT OUTER JOIN (SELECT DISTINCT VoucherDetailId FROM InvoiceAdjustmentTable) AS InvAdj ON InvAdj.VoucherDetailId = VD.voucher_detail_id " _
                         & " Where VD.Voucher_ID =" & VoucherID & " order by VD.Voucher_Detail_Id ASC "
 
             Dim objCommand As New OleDbCommand
@@ -2180,7 +2374,7 @@ Public Class frmVoucherNew
                             Return GetNextDocNo(compWisePrefix & "-" & Format(Me.dtpVoucherDate.Value, "yy") & "-" & Me.dtpVoucherDate.Value.Month.ToString("00"), 4, "tblVoucher", "voucher_no")
                         End If
                     Else
-                        companyinitials = "PK"
+                        ''companyinitials = "PK"
                         'rafay Agar tou date 30 june say less ho tou wo puranay walay serial no show karay warna naye serial no ka format use karain
                         If dtpVoucherDate.Value.ToString("yyyy-M-d 00:00:00") <= date1 Then
                             Return GetNextDocNo(compWisePrefix & "-" & Format(Me.dtpVoucherDate.Value, "yy"), 4, "tblVoucher", "voucher_no")
@@ -2204,7 +2398,7 @@ Public Class frmVoucherNew
                                     'Return GetSerialNo(compWisePrefix.ToString + "-" & companyinitials & "-" + Microsoft.VisualBasic.Right(Me.dtpVoucherDate.Value.Year, 2) + "-", "tblVoucher", "voucher_no")
                                 End If
                             Else
-                                companyinitials = "PK"
+                                ''companyinitials = "PK"
                                 If dtpVoucherDate.Value.ToString("yyyy-M-d 00:00:00") <= date2 Then
                                     Return GetNextDocNo(compWisePrefix & "-" & Format(Me.dtpVoucherDate.Value, "yy") & Me.dtpVoucherDate.Value.Month.ToString("00"), 4, "tblVoucher", "voucher_no")
                                 Else
@@ -2431,8 +2625,12 @@ Public Class frmVoucherNew
                 UsersEmail = New List(Of String)
                 'UsersEmail.Add("adil@agriusit.com")
                 ''UsersEmail.Add("ali@agriusit.com")
-                UsersEmail.Add("r.ejaz@agriusit.com")
-                UsersEmail.Add("h.saeed@agriusit.com")
+                If Con.Database.Contains("Remms") Then
+                    UsersEmail.Add("r.ejaz@remmsit.com")
+                Else
+                    UsersEmail.Add("r.ejaz@agriusit.com")
+                End If
+                'UsersEmail.Add("r.ejaz@agriusit.com")
                 FormatStringBuilder(dtEmail)
                 For Each _email As String In UsersEmail
                     CreateOutLookMail(_email)
@@ -3318,6 +3516,7 @@ Public Class frmVoucherNew
             'Me.txtCredit.Text = Val(Me.grd.GetRow.Cells("Credit").Value)
             Me.txtDebit.Text = Val(Me.grd.GetRow.Cells("CurrencyDr").Value)
             Me.txtCredit.Text = Val(Me.grd.GetRow.Cells("CurrencyCr").Value)
+            PreviousDebit = Val(Me.grd.GetRow.Cells("PreviousDebit").Value)
             Dim rowCol As New Janus.Windows.GridEX.GridEXFormatStyle
             rowCol.BackColor = Color.AntiqueWhite
             Me.grd.CurrentRow.RowStyle = rowCol
@@ -3351,6 +3550,7 @@ Public Class frmVoucherNew
             dr.Item(EnumGrid.EmpID) = IIf(Me.cmbEmployee.SelectedIndex > 0, Me.cmbEmployee.SelectedValue, 0)
             dr.Item(EnumGrid.EmpName) = IIf(Me.cmbEmployee.SelectedIndex > 0, Me.cmbEmployee.Text, "")
             dr.Item(EnumGrid.RequestId) = IIf(Me.cmbAdvanceRequest.SelectedIndex > 0, Me.cmbAdvanceRequest.SelectedValue, 0)
+            dr.Item(EnumGrid.PreviousDebit) = PreviousDebit
             dtGrd.Rows.InsertAt(dr, Row_Index)
             CostCenterGrdCombo()
             GetTotal()
@@ -4354,11 +4554,11 @@ Public Class frmVoucherNew
                 Exit Sub
             End If
 
-            If e.KeyCode = Keys.Delete Then
-                If Me.grdSaved.RowCount <= 0 Then Exit Sub
-                DeleteToolStripButton_Click(Nothing, Nothing)
-                Exit Sub
-            End If
+            'If e.KeyCode = Keys.Delete Then
+            '    If Me.grdSaved.RowCount <= 0 Then Exit Sub
+            '    DeleteToolStripButton_Click(Nothing, Nothing)
+            '    Exit Sub
+            'End If
         Catch ex As Exception
             ShowErrorMessage(ex.Message)
         End Try
@@ -5392,7 +5592,7 @@ Public Class frmVoucherNew
         Try
             Dim str As String
             Dim i As Integer = 0
-            str = " SELECT ACDetail.sub_sub_title As [Head], ACDetail.detail_title As [Account], ACDetail.detail_code As AccountCode, VD.comments as [Description], IsNull(VD.CostCenterID,0) as CostCenterId, VD.Cheque_No, Isnull(VD.Cheque_Date,GetDate()) as Cheque_Date, IsNull(VD.CurrencyId, 0) As CurrencyId, ISNULL(VD.Currency_Credit_Amount, VD.credit_amount) AS CurrencyDr, ISNULL(VD.Currency_debit_amount, VD.debit_amount) AS CurrencyCr, IsNull(VD.CurrencyRate, 1) As CurrencyRate, IsNull(VD.BaseCurrencyId, 0) As BaseCurrencyId, IsNull(VD.BaseCurrencyRate, 0) As BaseCurrencyRate, CONVERT(money, VD.credit_amount) AS Debit, CONVERT(money, VD.debit_amount) AS Credit, VD.coa_detail_id  as [AccountId], ACDetail.Account_Type as Type,IsNull(InvAdj.VoucherDetailId,0) as VoucherDetailId, 0 As DetailId, VD.EmpID, VD.RequestId " _
+            str = " SELECT ACDetail.sub_sub_title As [Head], ACDetail.detail_title As [Account], ACDetail.detail_code As AccountCode, VD.comments as [Description], IsNull(VD.CostCenterID,0) as CostCenterId, VD.Cheque_No, Isnull(VD.Cheque_Date,GetDate()) as Cheque_Date, IsNull(VD.CurrencyId, 0) As CurrencyId, ISNULL(VD.Currency_Credit_Amount, VD.credit_amount) AS CurrencyDr, ISNULL(VD.Currency_debit_amount, VD.debit_amount) AS CurrencyCr, IsNull(VD.CurrencyRate, 1) As CurrencyRate, IsNull(VD.BaseCurrencyId, 0) As BaseCurrencyId, IsNull(VD.BaseCurrencyRate, 0) As BaseCurrencyRate, CONVERT(money, VD.credit_amount) AS Debit, CONVERT(money, VD.debit_amount) AS Credit, VD.coa_detail_id  as [AccountId], ACDetail.Account_Type as Type,IsNull(InvAdj.VoucherDetailId,0) as VoucherDetailId, 0 As DetailId, VD.EmpID, VD.RequestId, 0 as RemainingBudget " _
                         & " FROM dbo.tblVoucher V INNER JOIN  dbo.tblVoucherDetail VD ON V.voucher_id = VD.voucher_id INNER JOIN " _
                         & " dbo.vwCOADetail ACDetail ON VD.coa_detail_id = ACDetail.coa_detail_id left outer join " _
                         & " tblDefCostCenter on vd.CostCenterID =  tblDefCostCenter.CostCenterID LEFT OUTER JOIN (Select Distinct VoucherDetailId From InvoiceAdjustmentTable) as InvAdj on InvAdj.VoucherDetailId = VD.Voucher_Detail_Id " _
@@ -5615,4 +5815,86 @@ Public Class frmVoucherNew
     End Sub
     'Change by Murtaza for txtcurrencyrate text change (11/09/2022)
 
+    Private Sub cmbCostCenter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCostCenter.SelectedIndexChanged
+        Try
+            Dim Budget As String
+            Dim dtbudget As DataTable
+            Dim BudgetValue As Double
+            If cmbProjectType.Text <> "All" Then
+                If cmbProjectType.Text = "Sales Order" Then
+                    If cmbCostCenter.SelectedValue > 0 Then
+                        Budget = "SELECT (ISNULL(Amount,0) - ISNULL(RemainingAmount,0)) as Amount from tbldefCostCenter where CostCenterID = " & cmbCostCenter.SelectedValue & ""
+                        dtbudget = GetDataTable(Budget)
+                        If dtbudget.Rows.Count > 0 Then
+                            BudgetValue = dtbudget.Rows(0).Item(0).ToString
+                        End If
+                        lblRemainingBudget.Text = BudgetValue
+                    End If
+                ElseIf cmbProjectType.Text = "Salary Budget" Or cmbProjectType.Text = "Department Budget" Then
+                    If cmbCostCenter.SelectedValue > 0 Then
+                        If BtnSave.Text = "&Save" Then
+                            Budget = "SELECT ISNULL(Amount,0) as Amount from tbldefCostCenter where CostCenterID =" & cmbCostCenter.SelectedValue & ""
+                            dtbudget = GetDataTable(Budget)
+                            If dtbudget.Rows.Count > 0 Then
+                                BudgetValue = dtbudget.Rows(0).Item(0).ToString
+                            End If
+                            lblRemainingBudget.Text = BudgetValue - CDbl(GetAccountBalance(Me.cmbCostCenter.SelectedValue))
+                        Else
+                            lblRemainingBudget.Text = BudgetValue - CDbl(GetAccountBalance(Me.cmbCostCenter.SelectedValue, txtVoucherNo.Text))
+                        End If
+                    Else
+                        lblRemainingBudget.Text = ""
+                    End If
+                End If
+            ElseIf cmbProjectType.Text = "All" Then
+            lblRemainingBudget.Text = ""
+            End If
+
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
+
+    Public Function GetAccountBalance(ByVal AccountId As Integer, Optional DocNo As String = "") As Long
+
+        Dim strQuery As String
+        strQuery = "SELECT isnull(sum(debit_amount) - sum(credit_amount),0) from tblvoucherdetail INNER JOIN tblVoucher On tblVoucher.Voucher_Id = tblVoucherDetail.Voucher_Id where IsNull(Post,0)=1 AND tblvoucherdetail.CostCenterID=" & AccountId & " " & IIf(DocNo.Length > 0, " AND tblVoucher.Voucher_no <> N'" & DocNo.Replace("'", "''") & "'", "")
+        Dim dt As New DataTable
+        Dim adp As New OleDbDataAdapter
+        Try
+            adp = New OleDbDataAdapter(strQuery, Con)
+            adp.Fill(dt)
+            dt.AcceptChanges()
+            If dt.Rows.Count > 0 Then
+                Return dt.Rows(0).Item(0).ToString
+            Else
+                Return 0
+            End If
+            'lngVoucherTypeId = objCommand.ExecuteScalar
+
+        Catch ex As Exception
+            Return 0
+        End Try
+
+    End Function
+
+    Private Sub cmbProjectType_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles cmbProjectType.SelectedIndexChanged
+        Try
+            Dim str As String
+            str = "select * from tbldefCostCenter WHERE Active=1"
+            If cmbProjectType.SelectedIndex = 1 Then
+                str += " AND SalaryBudget = 1"
+            ElseIf cmbProjectType.SelectedIndex = 2 Then
+                str += " AND DepartmentBudget = 1"
+            ElseIf cmbProjectType.SelectedIndex = 3 Then
+                str += " AND SOBudget = 1"
+            ElseIf cmbProjectType.SelectedIndex = 4 Then
+                str += " AND CommissionBudget = 1"
+            End If
+            str += " order by sortorder, name"
+            FillDropDown(Me.cmbCostCenter, str)
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
 End Class

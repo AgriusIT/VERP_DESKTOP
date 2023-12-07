@@ -413,7 +413,7 @@ Public Class frmLeadProfile2
             Me.txtWebsite.Text = String.Empty
             Me.txtAddress.Text = ""
             'RAfay
-            companyinitials = ""
+            ''companyinitials = ""
             'Rafay
             Me.lstBrandFocus.DeSelect()
             Me.cmbBrandFocus.Rows(0).Activate()
@@ -747,7 +747,7 @@ Public Class frmLeadProfile2
                     'companyinitials = "UE"
                     StandardNo = GetSerialNo("LP" + "-" + Microsoft.VisualBasic.Right(Now.Year, 2) + "-", "tblDefLeadProfile", "DocNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     StandardNo = GetNextDocNo("LP" & "-" & companyinitials & "-" & Format(Now, "yy"), 4, "tblDefLeadProfile", "DocNo")
                 End If
             ElseIf getConfigValueByType("VoucherNo").ToString = "Monthly" Then
@@ -756,7 +756,7 @@ Public Class frmLeadProfile2
                     'companyinitials = "UE"
                     StandardNo = GetSerialNo("LP" + "-" + Microsoft.VisualBasic.Right(Now.Year, 2) + "-", "tblDefLeadProfile", "DocNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     StandardNo = GetNextDocNo("LP" & "-" & companyinitials & "-" & Format(Now, "yy"), 4, "tblDefLeadProfile", "DocNo")
                 End If
                 'Rafay

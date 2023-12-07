@@ -14,6 +14,13 @@ Public Class frmCostCenter
         OutwardGatepass
         DayShift
         Logical
+        Amount
+        SalariedBudget
+        DepartmentBudget
+        SOBudget
+        Contract
+        PurchaseDemand
+        RemainingAmount
     End Enum
     Private Sub GrdCostCenter_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles GrdCostCenter.DoubleClick
         EditRecord()
@@ -22,11 +29,18 @@ Public Class frmCostCenter
         txtID.Text = ""
         TxtName.Text = ""
         TxtCode.Text = ""
+        txtAmount.Text = "0"
+        txtRemainingAmount.Text = "0"
         Me.GetRecored()
         FillDropDown(Me.cmbHead, "select DISTINCT 0, CostCenterGroup From tblDefCostCenter WHERE CostCenterGroup Is Not Null", False)
         cmbHead.Text = String.Empty
         Me.chkActive.Checked = True
         Me.chkOuwardgatepass.Checked = False
+        Me.chkSalariedBudget.Checked = False
+        Me.chkDepartmentBudget.Checked = False
+        Me.chkSOBudget.Checked = False
+        Me.chkContract.Checked = False
+        Me.chkPurchaseDemand.Checked = False
         TxtSortOrder.Text = 1
         BtnSave.Text = "&Save"
         Me.chkShift.Checked = False
@@ -35,10 +49,10 @@ Public Class frmCostCenter
     End Sub
     Private Sub GetRecored()
         Try
-            Me.GrdCostCenter.DataSource = SBDal.UtilityDAL.GetDataTable("SELECT  CostCenterID, Name, Code, SortOrder, CostCenterGroup, Active, Isnull(OutwardGatepass,0) as OutwardGatepass, isnull(DayShift,0) as DayShift, IsNull(IsLogical, 0) AS Logical FROM dbo.tblDefCostCenter order by sortorder")
+            Me.GrdCostCenter.DataSource = SBDal.UtilityDAL.GetDataTable("SELECT  CostCenterID, Name, Code, SortOrder, CostCenterGroup, Active, Isnull(OutwardGatepass,0) as OutwardGatepass, isnull(DayShift,0) as DayShift, IsNull(IsLogical, 0) AS Logical, Isnull(Amount,0) as Amount, Isnull(SalaryBudget,0) as SalaryBudget, Isnull(DepartmentBudget,0) as DepartmentBudget, Isnull(SOBudget,0) as SOBudget, Isnull(Contract,0) as Contract, Isnull(PurchaseDemand,0) as PurchaseDemand, Isnull(CommissionBudget,0) as CommissionBudget  FROM dbo.tblDefCostCenter order by sortorder")
             Me.GrdCostCenter.RetrieveStructure()
-            GrdCostCenter.RootTable.Columns(CostCenter.CostCenterID).Visible = False
-            GrdCostCenter.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False
+            Me.GrdCostCenter.RootTable.Columns(CostCenter.CostCenterID).Visible = False
+            Me.GrdCostCenter.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False
             Me.GrdCostCenter.RootTable.Columns(CostCenter.CostCenterGroup).Caption = "Group"
         Catch ex As Exception
             Throw ex
@@ -104,7 +118,7 @@ Public Class frmCostCenter
 
             Dim cm As New OleDb.OleDbCommand
             '   Dim con As New OleDb.OleDbConnection(con.ConnectionString)
-            cm.CommandText = "insert into tblDefCostCenter(Name,Code,sortorder, CostCenterGroup, Active, OutwardGatepass, DayShift, IsLogical) values(N'" & TxtName.Text.Replace("'", "''") & "','" & TxtCode.Text.Replace("'", "''") & "','" & TxtSortOrder.Text & "', N'" & Me.cmbHead.Text.Replace("'", "''") & "', " & IIf(Me.chkActive.Checked = True, 1, 0) & ", " & IIf(Me.chkOuwardgatepass.Checked = True, 1, 0) & ", " & IIf(Me.chkShift.Checked = True, 1, 0) & ", " & IIf(Me.cbLogical.Checked = True, 1, 0) & ")"
+            cm.CommandText = "insert into tblDefCostCenter(Name,Code,sortorder, CostCenterGroup, Active, OutwardGatepass, DayShift, IsLogical, Amount, SOBudget, SalaryBudget, DepartmentBudget, Contract, PurchaseDemand, RemainingAmount) values(N'" & TxtName.Text.Replace("'", "''") & "','" & TxtCode.Text.Replace("'", "''") & "','" & TxtSortOrder.Text & "', N'" & Me.cmbHead.Text.Replace("'", "''") & "', " & IIf(Me.chkActive.Checked = True, 1, 0) & ", " & IIf(Me.chkOuwardgatepass.Checked = True, 1, 0) & ", " & IIf(Me.chkShift.Checked = True, 1, 0) & ", " & IIf(Me.cbLogical.Checked = True, 1, 0) & ",'" & txtAmount.Text.Replace("'", "''") & "', " & IIf(Me.chkSOBudget.Checked = True, 1, 0) & ", " & IIf(Me.chkSalariedBudget.Checked = True, 1, 0) & ", " & IIf(Me.chkDepartmentBudget.Checked = True, 1, 0) & ", " & IIf(Me.chkContract.Checked = True, 1, 0) & ", " & IIf(Me.chkPurchaseDemand.Checked = True, 1, 0) & ",'" & txtRemainingAmount.Text.Replace("'", "''") & "')"
             cm.Connection = Con
             If Not Con.State = ConnectionState.Open Then Con.Open()
             cm.ExecuteNonQuery()
@@ -132,7 +146,7 @@ Public Class frmCostCenter
             Application.DoEvents()
             Dim cm As New OleDb.OleDbCommand
             'Dim cn As New OleDb.OleDbConnection(My.Settings.Database1ConnectionString)
-            cm.CommandText = " update tblDefCostCenter set  name=N'" & TxtName.Text.Replace("'", "''") & "', code= '" & TxtCode.Text.Replace("'", "''") & "', sortorder= '" & TxtSortOrder.Text & "', CostCenterGroup =N'" & Me.cmbHead.Text.Replace("'", "''") & "', Active=" & IIf(Me.chkActive.Checked = True, 1, 0) & ", OutwardGatepass=" & IIf(Me.chkOuwardgatepass.Checked = True, 1, 0) & ", DayShift=" & IIf(Me.chkShift.Checked = True, 1, 0) & ", IsLogical=" & IIf(Me.cbLogical.Checked = True, 1, 0) & "  where costcenterid = " & txtID.Text
+            cm.CommandText = " update tblDefCostCenter set  name=N'" & TxtName.Text.Replace("'", "''") & "', code= '" & TxtCode.Text.Replace("'", "''") & "', sortorder= '" & TxtSortOrder.Text & "', CostCenterGroup =N'" & Me.cmbHead.Text.Replace("'", "''") & "', Active=" & IIf(Me.chkActive.Checked = True, 1, 0) & ", OutwardGatepass=" & IIf(Me.chkOuwardgatepass.Checked = True, 1, 0) & ", DayShift=" & IIf(Me.chkShift.Checked = True, 1, 0) & ", IsLogical=" & IIf(Me.cbLogical.Checked = True, 1, 0) & ", Amount= '" & txtAmount.Text.Replace("'", "''") & "', SoBudget = " & IIf(Me.chkSOBudget.Checked = True, 1, 0) & ", SalaryBudget = " & IIf(Me.chkSalariedBudget.Checked = True, 1, 0) & ", DepartmentBudget = " & IIf(Me.chkDepartmentBudget.Checked = True, 1, 0) & ", Contract = " & IIf(Me.chkContract.Checked = True, 1, 0) & ", PurchaseDemand = " & IIf(Me.chkPurchaseDemand.Checked = True, 1, 0) & ", RemainingAmount= '" & txtRemainingAmount.Text.Replace("'", "''") & "' where costcenterid = " & txtID.Text
             cm.Connection = Con
             If Not Con.State = ConnectionState.Open Then Con.Open()
             cm.ExecuteNonQuery()
@@ -170,13 +184,38 @@ Public Class frmCostCenter
         Else
             Me.chkOuwardgatepass.Checked = False
         End If
-
         If Not IsDBNull(Me.GrdCostCenter.GetRow.Cells(CostCenter.Logical).Value) Then
             Me.cbLogical.Checked = Me.GrdCostCenter.GetRow.Cells(CostCenter.Logical).Value
         Else
             Me.cbLogical.Checked = False
         End If
-
+        Me.txtAmount.Text = GrdCostCenter.GetRow.Cells(CostCenter.Amount).Text
+        If Not IsDBNull(Me.GrdCostCenter.GetRow.Cells(CostCenter.SalariedBudget).Value) Then
+            Me.chkSalariedBudget.Checked = Me.GrdCostCenter.GetRow.Cells(CostCenter.SalariedBudget).Value
+        Else
+            Me.chkSalariedBudget.Checked = False
+        End If
+        If Not IsDBNull(Me.GrdCostCenter.GetRow.Cells(CostCenter.DepartmentBudget).Value) Then
+            Me.chkDepartmentBudget.Checked = Me.GrdCostCenter.GetRow.Cells(CostCenter.DepartmentBudget).Value
+        Else
+            Me.chkDepartmentBudget.Checked = False
+        End If
+        If Not IsDBNull(Me.GrdCostCenter.GetRow.Cells(CostCenter.SOBudget).Value) Then
+            Me.chkSOBudget.Checked = Me.GrdCostCenter.GetRow.Cells(CostCenter.SOBudget).Value
+        Else
+            Me.chkSOBudget.Checked = False
+        End If
+        If Not IsDBNull(Me.GrdCostCenter.GetRow.Cells(CostCenter.Contract).Value) Then
+            Me.chkContract.Checked = Me.GrdCostCenter.GetRow.Cells(CostCenter.Contract).Value
+        Else
+            Me.chkContract.Checked = False
+        End If
+        If Not IsDBNull(Me.GrdCostCenter.GetRow.Cells(CostCenter.Purchasedemand).Value) Then
+            Me.chkPurchaseDemand.Checked = Me.GrdCostCenter.GetRow.Cells(CostCenter.Purchasedemand).Value
+        Else
+            Me.chkPurchaseDemand.Checked = False
+        End If
+        Me.txtRemainingAmount.Text = GrdCostCenter.GetRow.Cells(CostCenter.RemainingAmount).Text
         GetSecurityRights()
         BtnSave.Text = "&Update"
         TxtName.Focus()
@@ -283,7 +322,7 @@ Public Class frmCostCenter
 
     End Sub
 
-    Private Sub chkActive_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkActive.CheckedChanged
+    Private Sub chkActive_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkActive.CheckedChanged, chkSOBudget.CheckedChanged, chkSalariedBudget.CheckedChanged, chkDepartmentBudget.CheckedChanged, chkContract.CheckedChanged, chkPurchaseDemand.CheckedChanged
 
     End Sub
     Private Sub GetSecurityRights()
@@ -334,6 +373,8 @@ Public Class frmCostCenter
                     If dt.Rows.Count > 0 Then
                         Me.TxtName.Text = dt.Rows(0).Item("Name").ToString
                         Me.TxtCode.Text = dt.Rows(0).Item("Code").ToString
+                        Me.txtAmount.Text = dt.Rows(0).Item("Amount").ToString
+                        Me.txtRemainingAmount.Text = dt.Rows(0).Item("RemainingAmount").ToString
                         Me.cmbHead.Text = dt.Rows(0).Item("CostCenterGroup").ToString
                         Me.TxtSortOrder.Text = dt.Rows(0).Item("SortOrder").ToString
                         Me.chkShift.Checked = Convert.ToBoolean(dt.Rows(0).Item("DayShift").ToString)

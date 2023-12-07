@@ -89,7 +89,7 @@ Public Class frmPurchaseNew
     Dim StockMaster As StockMaster
     Dim StockDetail As StockDetail
     'rafay task start
-    Dim companyinitials As String
+    ''Dim companyinitials As String
     'rafay task end
     Dim RecQtyBeforePOAccess As Double
     Dim Email As Email
@@ -174,6 +174,7 @@ Public Class frmPurchaseNew
     'Ali Faisal : UDL : Changes for Reports and other for UDL on 14-16 Nov 2018.
     Dim PurchaseDiscountAccountId As Integer = 0
     Dim closingdate As String
+    
     Enum grdEnm
         LocationId
         ArticleCode
@@ -819,6 +820,7 @@ Public Class frmPurchaseNew
             Me.txtPackRate.Text = ""
             txtRemarks.Text = ""
             txtPaid.Text = ""
+            lblRemainingBudget.Text = ""
             'txtAmount.Text = ""
             txtTotal.Text = ""
             'txtTotalQty.Text = ""
@@ -830,7 +832,7 @@ Public Class frmPurchaseNew
             txtVhNo.Text = ""
             txtDriverName.Text = ""
             'rafay
-            Me.companyinitials = ""
+            ''Me.companyinitials = ""
             'rafay
             Me.txtPackRate.Text = ""
             Me.txtInvoiceNo.Text = String.Empty
@@ -1390,7 +1392,7 @@ Public Class frmPurchaseNew
             If Me.cmbCurrency.SelectedValue = Me.BaseCurrencyId Then
                 drGrd.Item(grdEnm.CurrencyAmount) = Val(1)
             Else
-                drGrd.Item(grdEnm.CurrencyAmount) = Math.Round(Val(Me.txtTotalQuantity.Text) * Val(Me.txtRate.Text), TotalAmountRounding)
+                drGrd.Item(grdEnm.CurrencyAmount) = Val(Me.txtTotalQuantity.Text) * Val(Me.txtRate.Text)
             End If
             drGrd.Item(grdEnm.CurrencyRate) = Val(Me.txtCurrencyRate.Text)
             Dim ConfigCurrencyVal As String = getConfigValueByType("Currency").ToString
@@ -1849,10 +1851,11 @@ Public Class frmPurchaseNew
             dtCountry.AcceptChanges()
             Me.grd.RootTable.Columns("Origin").ValueList.PopulateValueList(dtCountry.DefaultView, "CountryName", "CountryName")
         ElseIf strCondition = "CostCenter" Then
-            str = "If  exists(select CostCentre_Id FROM tblUserCostCentreRights where UserID = " & LoginUserId & " and ISNULL(CostCentre_Id, 0) > 0) " _
-                    & "Select CostCenterID, Name from tblDefCostCenter where CostCenterID in (select CostCentre_Id FROM tblUserCostCentreRights where UserID = " & LoginUserId & ") order by SortOrder " _
-                    & "Else " _
-                    & "Select CostCenterID, Name from tblDefCostCenter where Active = 1 order by SortOrder"
+            'str = "If  exists(select CostCentre_Id FROM tblUserCostCentreRights where UserID = " & LoginUserId & " and ISNULL(CostCentre_Id, 0) > 0) " _
+            '        & "Select CostCenterID, Name from tblDefCostCenter where CostCenterID in (select CostCentre_Id FROM tblUserCostCentreRights where UserID = " & LoginUserId & ") order by SortOrder " _
+            '        & "Else " _
+            '        & "Select CostCenterID, Name from tblDefCostCenter where Active = 1 order by SortOrder"
+            str = "select * from tblDefCostCenter where  (ISNULL(SOBudget,0) = 1 AND ISNULL(SalaryBudget,0) = 0 AND ISNULL(DepartmentBudget,0) = 0 AND Active = 1) OR  (ISNULL(PurchaseDemand,0) = 1 AND ISNULL(SOBudget,0) = 0 AND ISNULL(SalaryBudget,0) = 0 AND ISNULL(DepartmentBudget,0) = 0 AND Active = 1) ORDER BY Name ASC"
             FillDropDown(Me.cmbProject, str)
             'ElseIf strCondition = "Company" Then
             '    str = "Select CompanyId, CompanyName From CompanyDefTable"
@@ -2905,7 +2908,34 @@ Public Class frmPurchaseNew
                 'End If
                 'TASK-TFS-51 Additioanl Tax Voucher 
                 If Val(grd.GetRows(i).Cells("AdTax_Amount").Value) > 0 Then
+                    'Dim strBudget As String
+                    'Dim dtBudget As DataTable
+                    'strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, Amount from tbldefCostCenter where CostCenterID = " & cmbProject.SelectedValue & ""
+                    'dtBudget = GetDataTable(strBudget)
+                    'If dtBudget.Rows.Count > 0 Then
+                    '    If dtBudget.Rows(0).Item(0) = "True" Then
+                    '        objCommand.CommandText = ""
+                    '        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId, direction, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                    '                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & intAdditionalTaxAcId & ", " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ",0, 'Ref:Additional Tax Against " & Me.cmbVendor.Text.Replace("'", "''") & ", " & Me.txtPONo.Text.Replace("'", "''") & "" & "', N'" & Me.txtInvoiceNo.Text.Replace("'", "''").Replace("'", "''") & "', " & 1 & ", " & grd.GetRows(i).Cells("ItemId").Value & "," & Val(grd.GetRows(i).Cells("CurrencyAdTaxAmount").Value.ToString()) & ", " & Val(0) & ")"
+                    '        objCommand.ExecuteNonQuery()
 
+                    '        objCommand.CommandText = ""
+                    '        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId, direction, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                    '                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", 0, " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 'Ref:Additional Tax Against " & Me.txtPONo.Text.Replace("'", "''") & "',N'" & Me.txtInvoiceNo.Text.Replace("'", "''").Replace("'", "''") & "', " & 1 & "," & grd.GetRows(i).Cells("ItemId").Value & ", " & Val(0) & "," & Val(grd.GetRows(i).Cells("CurrencyAdTaxAmount").Value.ToString()) & ")"
+                    '        objCommand.ExecuteNonQuery()
+                    '    Else
+                    '        objCommand.CommandText = ""
+                    '        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId, direction, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                    '                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & intAdditionalTaxAcId & ", " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ",0, 'Ref:Additional Tax Against " & Me.cmbVendor.Text.Replace("'", "''") & ", " & Me.txtPONo.Text.Replace("'", "''") & "" & "', N'" & Me.txtInvoiceNo.Text.Replace("'", "''").Replace("'", "''") & "', " & IIf(Me.cmbProject.SelectedValue = Nothing, 0, Me.cmbProject.SelectedValue) & ", " & grd.GetRows(i).Cells("ItemId").Value & "," & Val(grd.GetRows(i).Cells("CurrencyAdTaxAmount").Value.ToString()) & ", " & Val(0) & ")"
+                    '        objCommand.ExecuteNonQuery()
+
+                    '        objCommand.CommandText = ""
+                    '        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId, direction, Currency_Debit_Amount,Currency_Credit_Amount) " _
+                    '                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", 0, " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 'Ref:Additional Tax Against " & Me.txtPONo.Text.Replace("'", "''") & "',N'" & Me.txtInvoiceNo.Text.Replace("'", "''").Replace("'", "''") & "', " & IIf(Me.cmbProject.SelectedValue = Nothing, 0, Me.cmbProject.SelectedValue) & "," & grd.GetRows(i).Cells("ItemId").Value & ", " & Val(0) & "," & Val(grd.GetRows(i).Cells("CurrencyAdTaxAmount").Value.ToString()) & ")"
+                    '        objCommand.ExecuteNonQuery()
+                    '    End If
+                    '    'END TASK TSK-TFS-51
+                    'Else
                     objCommand.CommandText = ""
                     objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId, direction, Currency_Debit_Amount,Currency_Credit_Amount) " _
                                            & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & intAdditionalTaxAcId & ", " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ",0, 'Ref:Additional Tax Against " & Me.cmbVendor.Text.Replace("'", "''") & ", " & Me.txtPONo.Text.Replace("'", "''") & "" & "', N'" & Me.txtInvoiceNo.Text.Replace("'", "''").Replace("'", "''") & "', " & IIf(Me.cmbProject.SelectedValue = Nothing, 0, Me.cmbProject.SelectedValue) & ", " & grd.GetRows(i).Cells("ItemId").Value & "," & Val(grd.GetRows(i).Cells("CurrencyAdTaxAmount").Value.ToString()) & ", " & Val(0) & ")"
@@ -2915,11 +2945,8 @@ Public Class frmPurchaseNew
                     objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId, direction, Currency_Debit_Amount,Currency_Credit_Amount) " _
                                            & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", 0, " & Val(grd.GetRows(i).Cells("AdTax_Amount").Value.ToString) & ", 'Ref:Additional Tax Against " & Me.txtPONo.Text.Replace("'", "''") & "',N'" & Me.txtInvoiceNo.Text.Replace("'", "''").Replace("'", "''") & "', " & IIf(Me.cmbProject.SelectedValue = Nothing, 0, Me.cmbProject.SelectedValue) & "," & grd.GetRows(i).Cells("ItemId").Value & ", " & Val(0) & "," & Val(grd.GetRows(i).Cells("CurrencyAdTaxAmount").Value.ToString()) & ")"
                     objCommand.ExecuteNonQuery()
-
+                    'End If
                 End If
-                'END TASK TSK-TFS-51
-
-
 
             Next
 
@@ -2945,6 +2972,35 @@ Public Class frmPurchaseNew
 
             If Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) > 0 Then
                 'Inserting Tax Debit With Purchase Tax Account
+                'Dim strBudget As String
+                'Dim dtBudget As DataTable
+                'strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, Amount from tbldefCostCenter where CostCenterID = " & cmbProject.SelectedValue & ""
+                'dtBudget = GetDataTable(strBudget)
+                'If dtBudget.Rows.Count > 0 Then
+                '    If dtBudget.Rows(0).Item(0) = "True" Then
+                '        objCommand.CommandText = ""
+                '        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId,Currency_Debit_Amount,Currency_Credit_Amount) " _
+                '                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & PurchaseTaxAccountId & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ",  " & 0 & ", 'Tax Ref: " & Me.txtPONo.Text & "', N'" & Me.txtInvoiceNo.Text.Replace("'", "''") & "', " & 1 & ", " & Val(grd.GetTotal(grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & "," & Val(0) & ")"
+                '        objCommand.ExecuteNonQuery()
+
+                '        'Inserting Tax Credit With Vendor Account
+                '        objCommand.CommandText = ""
+                '        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId,Currency_Debit_Amount,Currency_Credit_Amount) " _
+                '                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & 0 & ",  " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 'Tax Ref: " & Me.txtPONo.Text & "', N'" & Me.txtInvoiceNo.Text.Replace("'", "''") & "', " & 1 & "," & Val(0) & ", " & Val(grd.GetTotal(grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ")"
+                '        objCommand.ExecuteNonQuery()
+                '    Else
+                '        objCommand.CommandText = ""
+                '        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId,Currency_Debit_Amount,Currency_Credit_Amount) " _
+                '                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & PurchaseTaxAccountId & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ",  " & 0 & ", 'Tax Ref: " & Me.txtPONo.Text & "', N'" & Me.txtInvoiceNo.Text.Replace("'", "''") & "', " & IIf(Me.cmbProject.SelectedValue = Nothing, 0, Me.cmbProject.SelectedValue) & ", " & Val(grd.GetTotal(grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & "," & Val(0) & ")"
+                '        objCommand.ExecuteNonQuery()
+
+                '        'Inserting Tax Credit With Vendor Account
+                '        objCommand.CommandText = ""
+                '        objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId,Currency_Debit_Amount,Currency_Credit_Amount) " _
+                '                               & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & 0 & ",  " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 'Tax Ref: " & Me.txtPONo.Text & "', N'" & Me.txtInvoiceNo.Text.Replace("'", "''") & "', " & IIf(Me.cmbProject.SelectedValue = Nothing, 0, Me.cmbProject.SelectedValue) & "," & Val(0) & ", " & Val(grd.GetTotal(grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ")"
+                '        objCommand.ExecuteNonQuery()
+                '    End If
+                'Else
                 objCommand.CommandText = ""
                 objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId,Currency_Debit_Amount,Currency_Credit_Amount) " _
                                        & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & PurchaseTaxAccountId & ", " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ",  " & 0 & ", 'Tax Ref: " & Me.txtPONo.Text & "', N'" & Me.txtInvoiceNo.Text.Replace("'", "''") & "', " & IIf(Me.cmbProject.SelectedValue = Nothing, 0, Me.cmbProject.SelectedValue) & ", " & Val(grd.GetTotal(grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & "," & Val(0) & ")"
@@ -2955,8 +3011,9 @@ Public Class frmPurchaseNew
                 objCommand.CommandText = "INSERT INTO tblVoucherDetail(voucher_id, location_id, coa_detail_id, debit_amount, credit_amount, comments, sp_refrence, CostCenterId,Currency_Debit_Amount,Currency_Credit_Amount) " _
                                        & " VALUES(" & lngVoucherMasterId & ", " & IIf(flgCompanyRights = True, "" & MyCompanyId & "", "1") & ", " & Me.cmbVendor.ActiveRow.Cells(0).Value & ", " & 0 & ",  " & Val(Me.grd.GetTotal(Me.grd.RootTable.Columns("TaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ", 'Tax Ref: " & Me.txtPONo.Text & "', N'" & Me.txtInvoiceNo.Text.Replace("'", "''") & "', " & IIf(Me.cmbProject.SelectedValue = Nothing, 0, Me.cmbProject.SelectedValue) & "," & Val(0) & ", " & Val(grd.GetTotal(grd.RootTable.Columns("CurrencyTaxAmount"), Janus.Windows.GridEX.AggregateFunction.Sum)) & ")"
                 objCommand.ExecuteNonQuery()
-
             End If
+
+            'End If
 
             For Each r As Janus.Windows.GridEX.GridEXRow In Me.grdInwardExpDetail.GetRows
                 'If Val(r.Cells("Exp_Amount").Value.ToString) <> 0 Then
@@ -3343,6 +3400,18 @@ Public Class frmPurchaseNew
             End If
         End If
         ''End TFS2988
+
+        'Dim strBudget As String
+        'Dim dtBudget As DataTable
+        'strBudget = "SELECT ISNULL(SOBudget,0) as SOBudget, Amount from tbldefCostCenter where CostCenterID = " & cmbProject.SelectedValue & ""
+        'dtBudget = GetDataTable(strBudget)
+        'If dtBudget.Rows.Count > 0 Then
+        '    If dtBudget.Rows(0).Item(0) = "True" Then
+        '        If Val(lblRemainingBudget.Text) < (Me.grd.GetTotal(Me.grd.RootTable.Columns("rate"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Transportation_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) + Me.grd.GetTotal(Me.grd.RootTable.Columns("Custom_Charges"), Janus.Windows.GridEX.AggregateFunction.Sum) - Me.grd.GetTotal(Me.grd.RootTable.Columns("Discount_Price"), Janus.Windows.GridEX.AggregateFunction.Sum)) * (Me.grd.GetTotal(Me.grd.RootTable.Columns("TotalQty"), Janus.Windows.GridEX.AggregateFunction.Sum) * Val(txtCurrencyRate.Text)) Then
+        '            msg_Error("Amount exceeds from SO Budget.") : Return False : Exit Function
+        '        End If
+        '    End If
+        'End If
         Return True
 
 
@@ -3666,8 +3735,8 @@ Public Class frmPurchaseNew
             'End Task:2407
             '' TASK: TFS1357 Converted Qty columns to decimal from double to show end zero after points. Ameen on 22-08-2017 
             ''TFS1391 Added column ReceivingNoteId
-            str = "SELECT Recv_D.LocationId, Article.ArticleCode, Article.ArticleDescription AS item, Recv_D.AlternativeItem, ArticleColorDefTable.ArticleColorName AS Color,dbo.ArticleSizeDefTable.ArticleSizeName AS Size, Uom.ArticleUnitName as Uom, Recv_D.ArticleSize AS unit, 0 as X_Tray_Weights, 0 as X_Gross_Weights, 0 as X_Net_Weights, 0 as Y_Gross_Weights, 0 as Y_Tray_Weights, 0 as Y_Net_Weights, Convert(Decimal(18, " & DecimalPointInQty & "), (Recv_D.Sz1 - Isnull(DeliveredQty , 0)), 1) AS ReceivedQty, Convert(Decimal(18, " & DecimalPointInQty & "), 0) as RejectedQty, Convert(Decimal(18, " & DecimalPointInQty & "), 0) AS Qty, IsNull(Recv_D.Qty,0) AS Gross_Qty, ISNULL(NULL,0) as Column1, ISNULL(NULL,0) as Column2,  ISNULL(NULL,0) as Column3, Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Qty, 0)-IsNull(Recv_D.ReceivedTotalQty, 0), 1) As TotalQty, Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Qty, 0)-IsNull(Recv_D.ReceivedTotalQty, 0), 1) as Vendor_Qty, Convert(Decimal(18, " & DecimalPointInQty & "), 0) AS Deduction, Convert(Decimal(18, " & DecimalPointInQty & "), 0) as VendorNetQty, Recv_D.CurrentPrice, Case When IsNull(Recv_D.CurrentPrice,0) > (IsNull(Price,0)) then ((IsNull(Recv_D.CurrentPrice,0)-IsNull(Price,0))/IsNull(Recv_D.CurrentPrice,0))*100 else 0 end as RateDiscPercent, Recv_D.Price as Rate , Recv_D.BaseCurrencyId As BaseCurrencyId , Recv_D.BaseCurrencyRate As BaseCurrencyRate, Recv_D.CurrencyId As  CurrencyId, Recv_D.CurrencyRate As CurrencyRate,  Recv_D.CurrencyAmount As CurrencyAmount , Convert(float, 0) As [TotalCurrencyAmount], Convert(float, (Recv_D.Qty * Recv_D.Price))  - Convert(float, (isnull(ReceivedTotalQty,0) * Recv_D.Price)) AS Total,IsNull(Recv_D.TaxPercent,0) As TaxPercent, 0 as TaxAmount,  0 as CurrencyTaxAmount, IsNull(Recv_D.AdTax_Percent,0) as AdTax_Percent, IsNull(Recv_D.AdTax_Amount,0) as AdTax_Amount, 0 As CurrencyAdTaxAmount, " _
-                    & " Convert(float,0) as [Total Amount],  0 as Transportation_Charges, 0 as Custom_Charges, 0 as Discount_Price, " _
+            str = "SELECT Recv_D.LocationId, Article.ArticleCode, Article.ArticleDescription AS item, Recv_D.AlternativeItem, ArticleColorDefTable.ArticleColorName AS Color,dbo.ArticleSizeDefTable.ArticleSizeName AS Size, Uom.ArticleUnitName as Uom, Recv_D.ArticleSize AS unit, 0 as X_Tray_Weights, 0 as X_Gross_Weights, 0 as X_Net_Weights, 0 as Y_Gross_Weights, 0 as Y_Tray_Weights, 0 as Y_Net_Weights, Convert(Decimal(18, " & DecimalPointInQty & "), (Recv_D.Sz1 - Isnull(DeliveredQty , 0)), 1) AS ReceivedQty, Convert(Decimal(18, " & DecimalPointInQty & "), 0) as RejectedQty, Convert(Decimal(18, " & DecimalPointInQty & "), 0) AS Qty, IsNull(Recv_D.Qty,0) AS Gross_Qty, ISNULL(NULL,0) as Column1, ISNULL(NULL,0) as Column2,  ISNULL(NULL,0) as Column3, Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Qty, 0)-IsNull(Recv_D.ReceivedTotalQty, 0), 1) As TotalQty, Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Qty, 0)-IsNull(Recv_D.ReceivedTotalQty, 0), 1) as Vendor_Qty, Convert(Decimal(18, " & DecimalPointInQty & "), 0) AS Deduction, Convert(Decimal(18, " & DecimalPointInQty & "), 0) as VendorNetQty, Recv_D.CurrentPrice, Case When IsNull(Recv_D.CurrentPrice,0) > (IsNull(Price,0)) then ((IsNull(Recv_D.CurrentPrice,0)-IsNull(Price,0))/IsNull(Recv_D.CurrentPrice,0))*100 else 0 end as RateDiscPercent, Recv_D.Price as Rate , Recv_D.BaseCurrencyId As BaseCurrencyId , Recv_D.BaseCurrencyRate As BaseCurrencyRate, Recv_D.CurrencyId As  CurrencyId, Recv_D.CurrencyRate As CurrencyRate,  Recv_D.CurrencyAmount As CurrencyAmount , Convert(float, 0) As [TotalCurrencyAmount], Convert(float, (Recv_D.Qty * Recv_D.Price))  - Convert(float, (isnull(ReceivedTotalQty,0) * Recv_D.Price)) AS Total,IsNull(Recv_D.TaxPercent,0) As TaxPercent, 0.00 as TaxAmount,  0.00 as CurrencyTaxAmount, IsNull(Recv_D.AdTax_Percent,0) as AdTax_Percent, IsNull(Recv_D.AdTax_Amount,0) as AdTax_Amount, 0 As CurrencyAdTaxAmount, " _
+                    & " Convert(float,0) as [Total Amount],  0.00 as Transportation_Charges, 0.00 as Custom_Charges, 0.00 as Discount_Price, " _
                     & " Article.ArticleGroupId, Recv_D.ArticleDefId as ItemId, Recv_D.Sz7 as PackQty,  0 as PackPrice, 0 as BatchId, '' as BatchNo , getDate() as ExpiryDate,'' as Origin,   Recv_D.Comments, Isnull(Recv_D.Pack_Desc,Recv_D.ArticleSize) as Pack_Desc  , Isnull(Article_Group.SubSubId,0) as PurchaseAccountId, IsNull(Recv_D.Item_Wise_Disc,0) as ItemWiseDisc ,0 as ReceivingDetailId, 0.0 as PurchaseReturnQty,0 as ReceivingNoteDetailId, Recv_D.PurchaseOrderDetailId, 0 AS ReceivingNoteId, Recv_D.AlternativeItemId FROM dbo.PurchaseOrderDetailTable Recv_D INNER JOIN " _
                     & " dbo.ArticleDefTable Article ON Recv_D.ArticleDefId = Article.ArticleId LEFT OUTER JOIN " _
                     & " dbo.ArticleGroupDefTable Article_Group ON Article.ArticleGroupId = Article_Group.ArticleGroupId " _
@@ -3758,8 +3827,10 @@ Public Class frmPurchaseNew
             dtDisplayDetail.Columns("Total").Expression = "(IsNull(Vendor_Qty,0)-IsNull(Deduction,0))*IsNull(Rate,0)* CurrencyRate"
             'dtDisplayDetail.Columns("TaxAmount").Expression = "((IIF(Unit='Pack', ((Isnull(PackQty,0)*IsNull(Qty,0))*(IsNull(Rate,0)-IsNull(Discount_Price,0))), (IsNull(Qty,0)*(IsNull(Rate,0)-IsNull(Discount_Price,0))))*IsNull(TaxPercent,0))/100)"
             'dtDisplayDetail.Columns("TaxAmount").Expression = "((((IsNull(TotalQty,0)* IsNull(Rate,0))-IsNull(Discount_Price,0)) * IsNull(TaxPercent,0))/100)"
+            dtDisplayDetail.Columns("CurrencyTaxAmount").Expression = "((((Total)-IsNull(Discount_Price,0)) * IsNull(TaxPercent,0))/100) / CurrencyRate"
             dtDisplayDetail.Columns("TaxAmount").Expression = "((((Total)-IsNull(Discount_Price,0)) * IsNull(TaxPercent,0))/100)"
-            dtDisplayDetail.Columns("CurrencyTaxAmount").Expression = "((((CurrencyAmount)-IsNull(Discount_Price,0)) * IsNull(TaxPercent,0))/100)"
+            'dtDisplayDetail.Columns("CurrencyTaxAmount").Expression = "((((CurrencyAmount)-IsNull(Discount_Price,0)) * IsNull(TaxPercent,0))/100)"
+            dtDisplayDetail.Columns("CurrencyTaxAmount").Expression = "((((Total)-IsNull(Discount_Price,0)) * IsNull(TaxPercent,0))/100) / CurrencyRate"
             dtDisplayDetail.Columns("VendorNetQty").Expression = "(IsNull(Vendor_Qty,0)-IsNull(Deduction,0))"
             'TASK-TFS-51 Set Expression for AdTax Amount
             'dtDisplayDetail.Columns("AdTax_Amount").Expression = "((IIF(Unit='Pack', ((Isnull(PackQty,0)*IsNull(Qty,0))*(IsNull(Rate,0)-IsNull(Discount_Price,0))), (IsNull(Qty,0)*(IsNull(Rate,0)-IsNull(Discount_Price,0))))*IsNull(AdTax_Percent,0))/100)"
@@ -3858,7 +3929,7 @@ Public Class frmPurchaseNew
             '' TASK: TFS1357 Converted Qty columns to decimal from double to show end zero after points. Ameen on 22-08-2017 
             ''TFS1391 Added column ReceivingNoteId
             str = "SELECT  Recv_D.LocationId AS LocationId, Article.ArticleCode, Article.ArticleDescription AS item, Recv_D.AlternativeItem, Article.ArticleColorName AS Color,Article.ArticleSizeName AS Size, Article.ArticleUnitName as Uom, Recv_D.ArticleSize AS unit,   IsNull(Recv_D.X_Tray_Weights,0) as X_Tray_Weights,IsNull(Recv_D.X_Gross_Weights,0) as X_Gross_Weights, IsNull(Recv_D.X_Net_Weights,0) as X_Net_Weights, IsNull(Recv_D.Y_Gross_Weights,0) as Y_Gross_Weights, IsNull(Recv_D.Y_Tray_Weights,0) as Y_Tray_Weights, IsNull(Recv_D.Y_Net_Weights,0) as Y_Net_Weights, Convert(Decimal(18, " & DecimalPointInQty & "), ISNULL(Recv_D.ReceivedQty, 0), 1) " _
-                & "        AS ReceivedQty, Convert(Decimal(18, " & DecimalPointInQty & "), ISNULL(Recv_D.RejectedQty, 0), 1) AS RejectedQty, Convert(Decimal(18, " & DecimalPointInQty & "), Recv_D.Sz1, 1) AS Qty, CASE WHEN IsNull(Recv_D.Gross_Quantity,0) = 0 THEN Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Qty, 0), 1) ELSE Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Gross_Quantity, 0), 1) END AS Gross_Qty, ISNULL(Recv_D.Column1,0) as Column1, ISNULL(Recv_D.Column2,0) as Column2,  ISNULL(Recv_D.Column3,0) as Column3, Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Qty, 0), 1) As TotalQty, CASE WHEN IsNull(Recv_D.Vendor_Total_Quantity,0) = 0 THEN Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Qty, 0), 1) ELSE Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Vendor_Total_Quantity, 0), 1) END as Vendor_Qty, Convert(Decimal(18, " & DecimalPointInQty & "), IsNull(Recv_D.OtherDeduction, 0)) AS Deduction, Convert(Decimal(18, " & DecimalPointInQty & "), 0) as VendorNetQty, Recv_D.CurrentPrice, Case When IsNull(Recv_D.CurrentPrice,0) > (IsNull(Recv_D.Price,0)+ISNULL(Recv_D.Discount_Price,0)) then ((IsNull(Recv_D.CurrentPrice,0)-IsNull(Recv_D.Price,0)+ISNULL(Recv_D.Discount_Price,0))/IsNull(Recv_D.CurrentPrice,0))*100 else 0 end as RateDiscPercent, Isnull(Recv_D.Price,0)+ISNULL(Recv_D.Discount_Price,0) as Rate , IsNull(Recv_D.BaseCurrencyId, 0) As BaseCurrencyId, IsNull(Recv_D.BaseCurrencyRate, 0) As BaseCurrencyRate, IsNull(Recv_D.CurrencyId, 0) As  CurrencyId, Case When IsNull(Recv_D.CurrencyRate, 0) = 0 Then 1 Else Recv_D.CurrencyRate End As CurrencyRate, IsNull(Recv_D.CurrencyAmount, 0) As CurrencyAmount , Convert(float, 0) As [TotalCurrencyAmount], Convert(float, (Recv_D.Qty * Recv_D.Price * Case When IsNull(Recv_D.CurrencyRate, 0) = 0 Then 1 Else Recv_D.CurrencyRate End)) AS Total, IsNull(Recv_D.TaxPercent,0) As TaxPercent, 0.0 as TaxAmount, Convert(Float, 0) As [CurrencyTaxAmount], IsNull(Recv_D.AdTax_Percent,0) as AdTax_Percent,  IsNull(Recv_D.AdTax_Amount,0) as AdTax_Amount, Convert(Float, 0) As CurrencyAdTaxAmount, Convert(float,0) as [Total Amount], Isnull(Recv_D.Transportation_Charges,0) as Transportation_Charges, Isnull(Recv_D.Custom_Charges,0) as Custom_Charges, ISNULL(Recv_D.Discount_Price,0) as Discount_Price,  Article.ArticleGroupId, Recv_D.ArticleDefId as ItemId, Recv_D.Sz7 AS PackQty, Isnull(Recv_D.PackPrice,0) as PackPrice, Recv_D.BatchID, ISNULL(Recv_D.BatchNo, 'xxxx') AS BatchNo, Recv_D.ExpiryDate,ISNULL(Recv_D.Origin, '') as Origin,  Recv_D.Comments, Isnull(Recv_D.Pack_Desc,Recv_D.ArticleSize) as Pack_Desc, Isnull(Article.SubSubId,0) as PurchaseAccountId, IsNull(Recv_D.Item_Wise_Disc,0) as ItemWiseDisc ,Recv_D.ReceivingDetailId, IsNull(Recv_D.PurchaseReturnQty,0) as PurchaseReturnQty,IsNull(Recv_D.ReceivingNoteDetailId,0) as ReceivingNoteDetailId, IsNull(Recv_D.PurchaseOrderDetailId,0) as PurchaseOrderDetailId, IsNull(Recv_D.ReceivingNoteId, 0) As ReceivingNoteId, Recv_D.AlternativeItemId " _
+                & "        AS ReceivedQty, Convert(Decimal(18, " & DecimalPointInQty & "), ISNULL(Recv_D.RejectedQty, 0), 1) AS RejectedQty, Convert(Decimal(18, " & DecimalPointInQty & "), Recv_D.Sz1, 1) AS Qty, CASE WHEN IsNull(Recv_D.Gross_Quantity,0) = 0 THEN Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Qty, 0), 1) ELSE Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Gross_Quantity, 0), 1) END AS Gross_Qty, ISNULL(Recv_D.Column1,0) as Column1, ISNULL(Recv_D.Column2,0) as Column2,  ISNULL(Recv_D.Column3,0) as Column3, Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Qty, 0), 1) As TotalQty, CASE WHEN IsNull(Recv_D.Vendor_Total_Quantity,0) = 0 THEN Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Qty, 0), 1) ELSE Convert(Decimal(18, " & DecimalPointInQty & "),IsNull(Recv_D.Vendor_Total_Quantity, 0), 1) END as Vendor_Qty, Convert(Decimal(18, " & DecimalPointInQty & "), IsNull(Recv_D.OtherDeduction, 0)) AS Deduction, Convert(Decimal(18, " & DecimalPointInQty & "), 0) as VendorNetQty, Recv_D.CurrentPrice, Case When IsNull(Recv_D.CurrentPrice,0) > (IsNull(Recv_D.Price,0)+ISNULL(Recv_D.Discount_Price,0)) then ((IsNull(Recv_D.CurrentPrice,0)-IsNull(Recv_D.Price,0)+ISNULL(Recv_D.Discount_Price,0))/IsNull(Recv_D.CurrentPrice,0))*100 else 0 end as RateDiscPercent, Isnull(Recv_D.Price,0)+ISNULL(Recv_D.Discount_Price,0) as Rate , IsNull(Recv_D.BaseCurrencyId, 0) As BaseCurrencyId, IsNull(Recv_D.BaseCurrencyRate, 0) As BaseCurrencyRate, IsNull(Recv_D.CurrencyId, 0) As  CurrencyId, Case When IsNull(Recv_D.CurrencyRate, 0) = 0 Then 1 Else Recv_D.CurrencyRate End As CurrencyRate, IsNull(Recv_D.CurrencyAmount, 0) As CurrencyAmount , Convert(float, 0) As [TotalCurrencyAmount], Convert(float, (Recv_D.Qty * Recv_D.Price * Case When IsNull(Recv_D.CurrencyRate, 0) = 0 Then 1 Else Recv_D.CurrencyRate End)) AS Total, IsNull(Recv_D.TaxPercent,0) As TaxPercent, 0.0 as TaxAmount, 0.00 As [CurrencyTaxAmount], IsNull(Recv_D.AdTax_Percent,0) as AdTax_Percent,  IsNull(Recv_D.AdTax_Amount,0) as AdTax_Amount, Convert(Float, 0) As CurrencyAdTaxAmount, Convert(float,0) as [Total Amount], Isnull(Recv_D.Transportation_Charges,0.00) as Transportation_Charges, Isnull(Recv_D.Custom_Charges,0.00) as Custom_Charges, ISNULL(Recv_D.Discount_Price,0) as Discount_Price,  Article.ArticleGroupId, Recv_D.ArticleDefId as ItemId, Recv_D.Sz7 AS PackQty, Isnull(Recv_D.PackPrice,0) as PackPrice, Recv_D.BatchID, ISNULL(Recv_D.BatchNo, 'xxxx') AS BatchNo, Recv_D.ExpiryDate,ISNULL(Recv_D.Origin, '') as Origin,  Recv_D.Comments, Isnull(Recv_D.Pack_Desc,Recv_D.ArticleSize) as Pack_Desc, Isnull(Article.SubSubId,0) as PurchaseAccountId, IsNull(Recv_D.Item_Wise_Disc,0) as ItemWiseDisc ,Recv_D.ReceivingDetailId, IsNull(Recv_D.PurchaseReturnQty,0) as PurchaseReturnQty,IsNull(Recv_D.ReceivingNoteDetailId,0) as ReceivingNoteDetailId, IsNull(Recv_D.PurchaseOrderDetailId,0) as PurchaseOrderDetailId, IsNull(Recv_D.ReceivingNoteId, 0) As ReceivingNoteId, Recv_D.AlternativeItemId " _
                 & " FROM   ReceivingDetailTable Recv_D INNER JOIN ReceivingMasterTable Recv ON Recv_D.ReceivingId = Recv.ReceivingId LEFT OUTER JOIN  ReceivingNoteMasterTable AS ReceivingNote ON CASE WHEN Recv_D.ReceivingNoteId > 0 Then Recv_D.ReceivingNoteId ELSE Recv.ReceivingNoteId End = ReceivingNote.ReceivingNoteId " _
                 & "  INNER JOIN ArticleDefView Article   On Article.ArticleId = Recv_D.ArticleDefID " _
                 & " Where Recv_D.ReceivingID =" & ReceivingID & ""
@@ -3910,8 +3981,8 @@ Public Class frmPurchaseNew
             dtDisplayDetail.Columns("Total").Expression = "(IsNull(Vendor_Qty,0)-IsNull(Deduction,0))*IsNull(Rate,0) * CurrencyRate"
             'dtDisplayDetail.Columns("TaxAmount").Expression = "((IIF(Unit='Pack', ((Isnull(PackQty,0)*IsNull(Qty,0))*(IsNull(Rate,0)-IsNull(Discount_Price,0))), (IsNull(Qty,0)*(IsNull(Rate,0)-IsNull(Discount_Price,0))))*IsNull(TaxPercent,0))/100)"
             'dtDisplayDetail.Columns("TaxAmount").Expression = "((((IsNull(TotalQty,0)* IsNull(Rate,0))-IsNull(Discount_Price,0)) * IsNull(TaxPercent,0))/100)"
+            dtDisplayDetail.Columns("CurrencyTaxAmount").Expression = "((((Total)-IsNull(Discount_Price,0)) * IsNull(TaxPercent,0))/100) / CurrencyRate"
             dtDisplayDetail.Columns("TaxAmount").Expression = "((((Total)-IsNull(Discount_Price,0)) * IsNull(TaxPercent,0))/100)"
-            dtDisplayDetail.Columns("CurrencyTaxAmount").Expression = "((((CurrencyAmount)-IsNull(Discount_Price,0)) * IsNull(TaxPercent,0))/100)"
             'TASK-TFS-51 Set Expression for AdTax Amount
             'dtDisplayDetail.Columns("AdTax_Amount").Expression = "((IIF(Unit='Pack', ((Isnull(PackQty,0)*IsNull(Qty,0))*(IsNull(Rate,0)-IsNull(Discount_Price,0))), (IsNull(Qty,0)*(IsNull(Rate,0)-IsNull(Discount_Price,0))))*IsNull(AdTax_Percent,0))/100)"
             'dtDisplayDetail.Columns("AdTax_Amount").Expression = "((((IsNull(TotalQty,0)* IsNull(Rate,0))-IsNull(Discount_Price,0)) * IsNull(AdTax_Percent,0))/100)"
@@ -6620,7 +6691,7 @@ Public Class frmPurchaseNew
             For Each col As Janus.Windows.GridEX.GridEXColumn In Me.grd.RootTable.Columns
                 If col.Index <> grdEnm.LocationId AndAlso col.Index <> grdEnm.ReceivedQty _
                     AndAlso col.Index <> grdEnm.RejectedQty _
-                    AndAlso col.Index <> grdEnm.Price AndAlso col.Index <> grdEnm.TaxPercent _
+                    AndAlso col.Index <> grdEnm.Price AndAlso col.Index <> grdEnm.TaxPercent AndAlso col.Index <> grdEnm.CurrencyTaxAmount _
                     AndAlso col.Index <> grdEnm.ExpiryDate AndAlso col.Index <> grdEnm.BatchNo _
                     AndAlso col.Index <> grdEnm.Origin _
                      AndAlso col.Index <> grdEnm.Comments AndAlso col.Index <> grdEnm.Transportation_Charges AndAlso col.Index <> grdEnm.Custom_Charges _
@@ -6690,7 +6761,10 @@ Public Class frmPurchaseNew
             Me.grd.RootTable.Columns(grdEnm.TaxAmount).FormatString = "N" & TotalAmountRounding 'Task:2647 Set Rounding Format
             ''27-Jul-2014 Task:2762 Imran Ali Total Amount Rounding configuration
             Me.grd.RootTable.Columns(grdEnm.TaxAmount).TotalFormatString = "N" & TotalAmountRounding 'Task:2647 Set Rounding Format 
-
+            Me.grd.RootTable.Columns(grdEnm.CurrencyTaxAmount).FormatString = "N" & 2
+            Me.grd.RootTable.Columns(grdEnm.CurrencyTaxAmount).FormatString = "N" & 2 'Task:2647 Set Rounding Format
+            ''27-Jul-2014 Task:2762 Imran Ali Total Amount Rounding configuration
+            Me.grd.RootTable.Columns(grdEnm.CurrencyTaxAmount).TotalFormatString = "N" & 2
             Me.grd.RootTable.Columns(grdEnm.TotalAmount).FormatString = "N" & DecimalPointInValue
             Me.grd.RootTable.Columns(grdEnm.TotalAmount).FormatString = "N" & TotalAmountRounding 'Task:2647 Set Rounding Format
             Me.grd.RootTable.Columns(grdEnm.TotalAmount).TotalFormatString = "N" & TotalAmountRounding 'Task:2647 Set Rounding Format
@@ -7000,7 +7074,7 @@ Public Class frmPurchaseNew
                     'companyinitials = "UE"
                     Return GetSerialNo("Pur-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "ReceivingMasterTable", "ReceivingNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo("PI-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "ReceivingMasterTable", "ReceivingNo")
                 End If
                 ' Return GetNextDocNo(PreFix & CompanyPrefix & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "ReceivingMasterTable", "ReceivingNo")
@@ -7010,7 +7084,7 @@ Public Class frmPurchaseNew
                     'companyinitials = "UE"
                     Return GetSerialNo("Pur-" + Microsoft.VisualBasic.Right(Me.dtpPODate.Value.Year, 2) + "-", "ReceivingMasterTable", "ReceivingNo")
                 Else
-                    companyinitials = "PK"
+                    ''companyinitials = "PK"
                     Return GetNextDocNo("PI-" & companyinitials & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "ReceivingMasterTable", "ReceivingNo")
                 End If
                 ' Return GetNextDocNo(PreFix & CompanyPrefix & "-" & Format(Me.dtpPODate.Value, "yy"), 4, "ReceivingMasterTable", "ReceivingNo")
@@ -9495,4 +9569,27 @@ Public Class frmPurchaseNew
     '    End Try
     'End Sub
     'Change by Murtaza for alternativee items (01/09/2022)
+    Private Sub cmbProject_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbProject.SelectedIndexChanged
+        Try
+            'Dim Budget As String
+            'Dim dtbudget As DataTable
+            'Dim BudgetValue As Double
+            'If cmbProject.SelectedValue > 0 Then
+            '    If BtnSave.Text = "&Save" Then
+            '        Budget = "SELECT ISNULL(Amount,0) as Amount from tbldefCostCenter where CostCenterID =" & cmbProject.SelectedValue & ""
+            '        dtbudget = GetDataTable(Budget)
+            '        If dtbudget.Rows.Count > 0 Then
+            '            BudgetValue = dtbudget.Rows(0).Item(0)
+            '        End If
+            '        lblRemainingBudget.Text = BudgetValue - CDbl(GetAccountBalance(Me.cmbProject.SelectedValue))
+            '    Else
+            '        lblRemainingBudget.Text = BudgetValue - CDbl(GetAccountBalance(Me.cmbProject.SelectedValue, txtPONo.Text))
+            '    End If
+            'Else
+            '    lblRemainingBudget.Text = ""
+            'End If
+        Catch ex As Exception
+            ShowErrorMessage(ex.Message)
+        End Try
+    End Sub
 End Class

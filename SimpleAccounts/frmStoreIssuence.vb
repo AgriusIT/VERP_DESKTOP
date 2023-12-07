@@ -1033,15 +1033,17 @@ Public Class frmStoreIssuence
             Me.cmbItem.DisplayLayout.Bands(0).Columns("Cost Price").Hidden = True 'Task:2478 Column Hidden
             Me.cmbItem.DisplayLayout.Bands(0).Columns("MasterId").Hidden = True
             Me.cmbItem.DisplayLayout.Bands(0).Columns("SortOrder").Hidden = True
-            If ItemFilterByName = True Then
-                Me.cmbItem.DisplayMember = Me.cmbItem.Rows(0).Cells(2).Column.Key.ToString
-            Else
+            If Me.cmbItem.DisplayLayout.Bands(0).Columns.Count > 0 Then
+                'If ItemFilterByName = True Then
+                '    rdoName.Checked = True
+                '    Me.cmbItem.DisplayMember = Me.cmbItem.Rows(0).Cells(2).Column.Key.ToString
+                'Else
                 If Me.rdoCode.Checked = True Then
-                    Me.rdoName.Checked = True
                     Me.cmbItem.DisplayMember = Me.cmbItem.Rows(0).Cells(1).Column.Key.ToString
                 Else
                     Me.cmbItem.DisplayMember = Me.cmbItem.Rows(0).Cells(2).Column.Key.ToString
                 End If
+                'End If
             End If
         ElseIf strCondition = "CostSheetItem" Then
             str = "SELECT MasterId as Id, ArticleDescription Item, ArticleCode Code, " & IIf(Me.cmbPlan.SelectedIndex > 0, " Isnull(PL.qty,0)  as [Plan Qty] ", "0  as [Plan Qty]") & ", isNull((SELECT isNull(receivingdetailtable.Price,0) FROM receivingdetailtable WHERE receivingdetailtable.receivingdetailId = (SELECT  MAX(receivingdetailtable.receivingdetailId) FROM receivingdetailtable WHERE receivingdetailtable.ArticleDefID = ArticleId)),0) as Price , isnull(PackQty,0) as PackQty  FROM  ArticleDefTable"
@@ -4024,9 +4026,9 @@ Public Class frmStoreIssuence
         End Try
     End Sub
     Private Sub cmbItem_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbItem.Enter
-        Dim cmb As Infragistics.Win.UltraWinGrid.UltraCombo
-        cmb = sender
-        cmb.PerformAction(Infragistics.Win.UltraWinGrid.UltraComboAction.ToggleDropdown)
+        'Dim cmb As Infragistics.Win.UltraWinGrid.UltraCombo
+        'cmb = sender
+        cmbItem.PerformAction(Infragistics.Win.UltraWinGrid.UltraComboAction.ToggleDropdown)
     End Sub
     Private Sub cmbVendor_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbVendor.Enter
         Me.cmbVendor.PerformAction(Infragistics.Win.UltraWinGrid.UltraComboAction.ToggleDropdown)
@@ -4321,7 +4323,7 @@ Public Class frmStoreIssuence
                 CtrlGrdBar1.mGridPrint.Enabled = False
                 CtrlGrdBar1.mGridExport.Enabled = False
                 CtrlGrdBar1.mGridChooseFielder.Enabled = False 'Task:2406 Added Field Chooser Rights
-                Me.chkIssued.Checked = False
+                ''Me.chkIssued.Checked = False
                 Me.tsbPrintTicket.Enabled = False
                 Me.btnBarcode.Enabled = False
                 Me.ToolStripButton1.Enabled = False
@@ -4986,7 +4988,7 @@ Public Class frmStoreIssuence
                         Dim dtExpiry As DataTable = GetDataTable(str)
                         If dtExpiry.Rows.Count > 0 Then
                             If IsDBNull(dtExpiry.Rows(0).Item("ExpiryDate")) = False Then
-                                grd.GetRow.Cells("ExpiryDate").Value = CType(dtExpiry.Rows(0).Item("ExpiryDate").ToString, Date)
+                                ''grd.GetRow.Cells("ExpiryDate").Value = CType(dtExpiry.Rows(0).Item("ExpiryDate").ToString, Date)
                                 grd.GetRow.Cells("Origin").Value = dtExpiry.Rows(0).Item("Origin").ToString
                             End If
                         End If
@@ -5068,9 +5070,8 @@ Public Class frmStoreIssuence
     End Sub
     Private Sub rdoCode_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rdoCode.CheckedChanged, rdoName.CheckedChanged
         Try
-            If Not Mode = "Normal" Then Exit Sub
-            If Me.cmbItem.IsItemInList = False Then Exit Sub
-            If rdoCode.Checked = True Then
+            If IsFormOpen = False Then Exit Sub
+            If Me.rdoCode.Checked = True Then
                 Me.cmbItem.DisplayMember = Me.cmbItem.Rows(0).Cells(1).Column.Key.ToString
             Else
                 Me.cmbItem.DisplayMember = Me.cmbItem.Rows(0).Cells(2).Column.Key.ToString
@@ -5079,6 +5080,14 @@ Public Class frmStoreIssuence
             ShowErrorMessage(ex.Message)
         End Try
     End Sub
+    'Private Sub rdoName_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rdoName.CheckedChanged
+    '    Try
+    '        If IsFormOpen = False Then Exit Sub
+    '        Me.cmbItem.DisplayMember = Me.cmbItem.Rows(0).Cells(2).Column.Key.ToString
+    '    Catch ex As Exception
+    '        ShowErrorMessage(ex.Message)
+    '    End Try
+    'End Sub
 
     Private Sub txtPONo_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtPONo.TextChanged
 
@@ -5754,11 +5763,11 @@ Public Class frmStoreIssuence
             Exit Sub
         End If
 
-        If e.KeyCode = Keys.Delete Then
-            If Me.grdSaved.RowCount <= 0 Then Exit Sub
-            DeleteToolStripButton_Click(Nothing, Nothing)
-            Exit Sub
-        End If
+        'If e.KeyCode = Keys.Delete Then
+        '    If Me.grdSaved.RowCount <= 0 Then Exit Sub
+        '    DeleteToolStripButton_Click(Nothing, Nothing)
+        '    Exit Sub
+        'End If
     End Sub
     '' 04-Jul-2014 TASK:2716 Imran Ali Selected Store Issuance Update 
     Private Sub btnSelectedIssuenceUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelectedIssuenceUpdate.Click
@@ -6160,11 +6169,11 @@ Public Class frmStoreIssuence
             If Not IsDBNull(Me.grd.GetRow.Cells(grdEnm.BatchNo).Value) Then
                 Dim str As String = String.Empty
                 str = " Select   ExpiryDate, Origin  From  StockDetailTable  where BatchNo not in ('','0','xxxx') And BatchNo ='" & Me.grd.GetRow.Cells(grdEnm.BatchNo).Value.ToString & "'" _
-                     & " And ArticledefId = " & Me.grd.GetRow.Cells(grdEnm.ItemId).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(grdEnm.LocationId).Value.ToString) & "  And (isnull(InQty, 0) - isnull(OutQty, 0)) > 0 Group by BatchNo,ExpiryDate,Origin ORDER BY ExpiryDate  Asc "
+                     & " And ArticledefId = " & Me.grd.GetRow.Cells(grdEnm.ItemId).Value & "  And LocationId = " & Val(Me.grd.GetRow.Cells(grdEnm.LocationId).Value.ToString) & " Group by BatchNo,ExpiryDate,Origin Having Sum(isnull(InQty, 0)) - Sum(isnull(OutQty, 0)) > 0 ORDER BY ExpiryDate  Asc "
                 Dim dtExpiry As DataTable = GetDataTable(str)
                 If dtExpiry.Rows.Count > 0 Then
                     If IsDBNull(dtExpiry.Rows(0).Item("ExpiryDate")) = False Then
-                        grd.GetRow.Cells("ExpiryDate").Value = CType(dtExpiry.Rows(0).Item("ExpiryDate").ToString, Date)
+                        ''grd.GetRow.Cells("ExpiryDate").Value = CType(dtExpiry.Rows(0).Item("ExpiryDate").ToString, Date)
                         grd.GetRow.Cells("Origin").Value = dtExpiry.Rows(0).Item("Origin").ToString
                     End If
                 End If
