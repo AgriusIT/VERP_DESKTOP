@@ -363,5 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Include Backup and Release folders recursively
-!sirus-solutions/SimpleAccounts/Utilities/Backup/
-!sirus-solutions/SimpleAccounts/Utilities/Release/
+SimpleAccounts/Utilities/Backup/
+SimpleAccounts/Utilities/Release/
