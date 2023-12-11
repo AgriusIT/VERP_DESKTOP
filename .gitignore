@@ -16,11 +16,6 @@
 # Mono auto generated files
 mono_crash.*
 
-# Allow the backup folder
-!backup/
-
-# Allow the release folder
-!release/
 
 # Build results
 [Dd]ebug/
@@ -367,3 +362,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Allow all backup folders
+backup*/
+
+# Allow all release folders
+release*/
