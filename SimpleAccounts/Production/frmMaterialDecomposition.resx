@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>124, 17</value>
+  </metadata>
+  <data name="grd_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="DecompositionDetailId"&gt;&lt;Caption&gt;DecompositionDetailId&lt;/Caption&gt;&lt;DataMember&gt;DecompositionDetailId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;DecompositionDetailId&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;52&lt;/Width&gt;&lt;/Column0&gt;&lt;Column1 ID="DecompositionId"&gt;&lt;Caption&gt;DecompositionId&lt;/Caption&gt;&lt;DataMember&gt;DecompositionId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;DecompositionId&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;55&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="EstimationDetailId"&gt;&lt;Caption&gt;EstimationDetailId&lt;/Caption&gt;&lt;DataMember&gt;EstimationDetailId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;EstimationDetailId&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;58&lt;/Width&gt;&lt;/Column2&gt;&lt;Column3 ID="TicketId"&gt;&lt;Caption&gt;TicketId&lt;/Caption&gt;&lt;DataMember&gt;TicketId&lt;/DataMember&gt;&lt;Key&gt;TicketId&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column3&gt;&lt;Column4 ID="TicketNo"&gt;&lt;Caption&gt;Ticket No&lt;/Caption&gt;&lt;DataMember&gt;TicketNo&lt;/DataMember&gt;&lt;Key&gt;TicketNo&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;/Column4&gt;&lt;Column5 ID="LocationId"&gt;&lt;Caption&gt;Location&lt;/Caption&gt;&lt;DataMember&gt;LocationId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;LocationId&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;/Column5&gt;&lt;Column6 ID="DepartmentId"&gt;&lt;Caption&gt;Department&lt;/Caption&gt;&lt;DataMember&gt;DepartmentId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;DepartmentId&lt;/Key&gt;&lt;Position&gt;6&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;73&lt;/Width&gt;&lt;/Column6&gt;&lt;Column7 ID="Department"&gt;&lt;Caption&gt;Department&lt;/Caption&gt;&lt;DataMember&gt;Department&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;Department&lt;/Key&gt;&lt;Position&gt;7&lt;/Position&gt;&lt;/Column7&gt;&lt;Column8 ID="PlanItemId"&gt;&lt;Caption&gt;PlanItemId&lt;/Caption&gt;&lt;DataMember&gt;PlanItemId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;PlanItemId&lt;/Key&gt;&lt;Position&gt;8&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;62&lt;/Width&gt;&lt;/Column8&gt;&lt;Column9 ID="PlanItem"&gt;&lt;Caption&gt;PlanItem&lt;/Caption&gt;&lt;DataMember&gt;PlanItem&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;PlanItem&lt;/Key&gt;&lt;Position&gt;9&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;59&lt;/Width&gt;&lt;/Column9&gt;&lt;Column10 ID="ProductId"&gt;&lt;Caption&gt;ProductId&lt;/Caption&gt;&lt;DataMember&gt;ProductId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ProductId&lt;/Key&gt;&lt;Position&gt;10&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;68&lt;/Width&gt;&lt;/Column10&gt;&lt;Column11 ID="Product"&gt;&lt;Caption&gt;Product&lt;/Caption&gt;&lt;DataMember&gt;Product&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;Product&lt;/Key&gt;&lt;Position&gt;11&lt;/Position&gt;&lt;Width&gt;200&lt;/Width&gt;&lt;/Column11&gt;&lt;Column12 ID="ParentId"&gt;&lt;Caption&gt;ParentId&lt;/Caption&gt;&lt;DataMember&gt;ParentId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ParentId&lt;/Key&gt;&lt;Position&gt;12&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;73&lt;/Width&gt;&lt;/Column12&gt;&lt;Column13 ID="ArticleUnitId"&gt;&lt;Caption&gt;ArticleUnitId&lt;/Caption&gt;&lt;DataMember&gt;ArticleUnitId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ArticleUnitId&lt;/Key&gt;&lt;Position&gt;13&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column13&gt;&lt;Column14 ID="Unit"&gt;&lt;Caption&gt;Unit&lt;/Caption&gt;&lt;DataMember&gt;Unit&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;Unit&lt;/Key&gt;&lt;Position&gt;14&lt;/Position&gt;&lt;/Column14&gt;&lt;Column15 ID="Price"&gt;&lt;Caption&gt;Price&lt;/Caption&gt;&lt;DataMember&gt;Price&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;Price&lt;/Key&gt;&lt;Position&gt;15&lt;/Position&gt;&lt;/Column15&gt;&lt;Column16 ID="Qty"&gt;&lt;Caption&gt;Qty&lt;/Caption&gt;&lt;DataMember&gt;Qty&lt;/DataMember&gt;&lt;Key&gt;Qty&lt;/Key&gt;&lt;Position&gt;16&lt;/Position&gt;&lt;/Column16&gt;&lt;Column17 ID="DecomposedQty"&gt;&lt;Caption&gt;Decomposed Qty&lt;/Caption&gt;&lt;DataMember&gt;DecomposedQty&lt;/DataMember&gt;&lt;Key&gt;DecomposedQty&lt;/Key&gt;&lt;Position&gt;17&lt;/Position&gt;&lt;Width&gt;122&lt;/Width&gt;&lt;/Column17&gt;&lt;Column18 ID="ScrappedQty"&gt;&lt;Caption&gt;Scrapped Qty&lt;/Caption&gt;&lt;DataMember&gt;ScrappedQty&lt;/DataMember&gt;&lt;Key&gt;ScrappedQty&lt;/Key&gt;&lt;Position&gt;18&lt;/Position&gt;&lt;/Column18&gt;&lt;Column19 ID="WastedQty"&gt;&lt;Caption&gt;Wasted Qty&lt;/Caption&gt;&lt;DataMember&gt;WastedQty&lt;/DataMember&gt;&lt;Key&gt;WastedQty&lt;/Key&gt;&lt;Position&gt;19&lt;/Position&gt;&lt;/Column19&gt;&lt;Column20 ID="DecomposableQty"&gt;&lt;Caption&gt;Available Qty&lt;/Caption&gt;&lt;DataMember&gt;DecomposableQty&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;DecomposableQty&lt;/Key&gt;&lt;Position&gt;20&lt;/Position&gt;&lt;/Column20&gt;&lt;Column21 ID="Tag"&gt;&lt;Caption&gt;Tag#&lt;/Caption&gt;&lt;DataMember&gt;Tag&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;Tag&lt;/Key&gt;&lt;Position&gt;21&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column21&gt;&lt;Column22 ID="ParentTag"&gt;&lt;Caption&gt;Parent Tag#&lt;/Caption&gt;&lt;DataMember&gt;ParentTag&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ParentTag&lt;/Key&gt;&lt;Position&gt;22&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column22&gt;&lt;Column23 ID="UniqueId"&gt;&lt;Caption&gt;UniqueId&lt;/Caption&gt;&lt;DataMember&gt;UniqueId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;UniqueId&lt;/Key&gt;&lt;Position&gt;23&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column23&gt;&lt;Column24 ID="UniqueParentId"&gt;&lt;Caption&gt;UniqueParentId&lt;/Caption&gt;&lt;DataMember&gt;UniqueParentId&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;UniqueParentId&lt;/Key&gt;&lt;Position&gt;24&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column24&gt;&lt;Column25 ID="TotalConsumedQty"&gt;&lt;Caption&gt;TotalConsumedQty&lt;/Caption&gt;&lt;DataMember&gt;TotalConsumedQty&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;TotalConsumedQty&lt;/Key&gt;&lt;Position&gt;25&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column25&gt;&lt;Column26 ID="TempDecQty"&gt;&lt;Caption&gt;TempDecQty&lt;/Caption&gt;&lt;DataMember&gt;TempDecQty&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;TempDecQty&lt;/Key&gt;&lt;Position&gt;26&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column26&gt;&lt;Column27 ID="TempWasQty"&gt;&lt;Caption&gt;TempWasQty&lt;/Caption&gt;&lt;DataMember&gt;TempWasQty&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;TempWasQty&lt;/Key&gt;&lt;Position&gt;27&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column27&gt;&lt;Column28 ID="TempScrQty"&gt;&lt;Caption&gt;TempScrQty&lt;/Caption&gt;&lt;DataMember&gt;TempScrQty&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;TempScrQty&lt;/Key&gt;&lt;Position&gt;28&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column28&gt;&lt;Column29 ID="IsTopParent"&gt;&lt;Caption&gt;IsTopParent&lt;/Caption&gt;&lt;DataMember&gt;IsTopParent&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;IsTopParent&lt;/Key&gt;&lt;Position&gt;29&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column29&gt;&lt;Column30 ID="StockImpact"&gt;&lt;Caption&gt;StockImpact&lt;/Caption&gt;&lt;DataMember&gt;StockImpact&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;StockImpact&lt;/Key&gt;&lt;Position&gt;30&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column30&gt;&lt;Column31 ID="ConsumedChildCount"&gt;&lt;Caption&gt;ConsumedChildCount&lt;/Caption&gt;&lt;DataMember&gt;ConsumedChildCount&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ConsumedChildCount&lt;/Key&gt;&lt;Position&gt;31&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column31&gt;&lt;Column32 ID="SubSubId"&gt;&lt;Caption&gt;SubSubId&lt;/Caption&gt;&lt;DataMember&gt;SubSubId&lt;/DataMember&gt;&lt;Key&gt;SubSubId&lt;/Key&gt;&lt;Position&gt;32&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column32&gt;&lt;Column33 ID="PlanItemSubSubId"&gt;&lt;Caption&gt;PlanItemSubSubId&lt;/Caption&gt;&lt;DataMember&gt;PlanItemSubSubId&lt;/DataMember&gt;&lt;Key&gt;PlanItemSubSubId&lt;/Key&gt;&lt;Position&gt;33&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column33&gt;&lt;Column34 ID="DValue"&gt;&lt;Caption&gt;DValue&lt;/Caption&gt;&lt;DataMember&gt;DValue&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;DValue&lt;/Key&gt;&lt;Position&gt;34&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column34&gt;&lt;Column35 ID="WValue"&gt;&lt;Caption&gt;WValue&lt;/Caption&gt;&lt;DataMember&gt;WValue&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;WValue&lt;/Key&gt;&lt;Position&gt;35&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column35&gt;&lt;Column36 ID="SValue"&gt;&lt;Caption&gt;SValue&lt;/Caption&gt;&lt;DataMember&gt;SValue&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;SValue&lt;/Key&gt;&lt;Position&gt;36&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column36&gt;&lt;Column37 ID="CheckChildIsConsumed"&gt;&lt;Caption&gt;CheckChildIsConsumed&lt;/Caption&gt;&lt;DataMember&gt;CheckChildIsConsumed&lt;/DataMember&gt;&lt;Key&gt;CheckChildIsConsumed&lt;/Key&gt;&lt;Position&gt;37&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column37&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;HierarchicalMode&gt;SelfReferencing&lt;/HierarchicalMode&gt;&lt;SelfReferencingSettings ID="SelfReferencingSettings"&gt;&lt;ChildDataMember&gt;UniqueParentId&lt;/ChildDataMember&gt;&lt;ChildListMember&gt;UniqueParentId&lt;/ChildListMember&gt;&lt;ExpandColumn&gt;11&lt;/ExpandColumn&gt;&lt;HierarchicalGroupMode&gt;AllRows&lt;/HierarchicalGroupMode&gt;&lt;ParentDataMember&gt;UniqueId&lt;/ParentDataMember&gt;&lt;ParentRootMode&gt;UseParentRootValue&lt;/ParentRootMode&gt;&lt;TreatOrphanRowsAsRoot&gt;True&lt;/TreatOrphanRowsAsRoot&gt;&lt;/SelfReferencingSettings&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <metadata name="ToolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+</root>

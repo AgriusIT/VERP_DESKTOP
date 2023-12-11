@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsEmployeeSticker" targetNamespace="http://tempuri.org/dsEmployeeSticker.xsd" xmlns:mstns="http://tempuri.org/dsEmployeeSticker.xsd" xmlns="http://tempuri.org/dsEmployeeSticker.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsEmployeeSticker" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsEmployeeSticker" msprop:Generator_DataSetName="dsEmployeeSticker">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtEmployeeSticker" msprop:Generator_UserTableName="dtEmployeeSticker" msprop:Generator_RowDeletedName="dtEmployeeStickerRowDeleted" msprop:Generator_TableClassName="dtEmployeeStickerDataTable" msprop:Generator_RowChangedName="dtEmployeeStickerRowChanged" msprop:Generator_RowClassName="dtEmployeeStickerRow" msprop:Generator_RowChangingName="dtEmployeeStickerRowChanging" msprop:Generator_RowEvArgName="dtEmployeeStickerRowChangeEvent" msprop:Generator_RowEvHandlerName="dtEmployeeStickerRowChangeEventHandler" msprop:Generator_TablePropName="dtEmployeeSticker" msprop:Generator_TableVarName="tabledtEmployeeSticker" msprop:Generator_RowDeletingName="dtEmployeeStickerRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Employee_Id" msprop:Generator_UserColumnName="Employee_Id" msprop:Generator_ColumnPropNameInRow="Employee_Id" msprop:Generator_ColumnVarNameInTable="columnEmployee_Id" msprop:Generator_ColumnPropNameInTable="Employee_IdColumn" type="xs:int" />
+              <xs:element name="Employee_Code" msprop:Generator_UserColumnName="Employee_Code" msprop:Generator_ColumnPropNameInRow="Employee_Code" msprop:Generator_ColumnVarNameInTable="columnEmployee_Code" msprop:Generator_ColumnPropNameInTable="Employee_CodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Employee_Name" msprop:Generator_UserColumnName="Employee_Name" msprop:Generator_ColumnPropNameInRow="Employee_Name" msprop:Generator_ColumnVarNameInTable="columnEmployee_Name" msprop:Generator_ColumnPropNameInTable="Employee_NameColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="dtEmployeeStickerKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtEmployeeSticker" />
+      <xs:field xpath="mstns:Employee_Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

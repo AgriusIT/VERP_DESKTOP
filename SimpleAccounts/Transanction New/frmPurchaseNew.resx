@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>159, 56</value>
+  </metadata>
+  <data name="grd_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="LocationId"&gt;&lt;Caption&gt;Location&lt;/Caption&gt;&lt;DataMember&gt;LocationId&lt;/DataMember&gt;&lt;EditType&gt;Combo&lt;/EditType&gt;&lt;Key&gt;LocationId&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;HasValueList&gt;True&lt;/HasValueList&gt;&lt;/Column0&gt;&lt;Column1 ID="ArticleCode"&gt;&lt;Caption&gt;Code&lt;/Caption&gt;&lt;DataMember&gt;ArticleCode&lt;/DataMember&gt;&lt;Key&gt;ArticleCode&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;/Column1&gt;&lt;Column2 ID="Item"&gt;&lt;Caption&gt;Item&lt;/Caption&gt;&lt;DataMember&gt;Item&lt;/DataMember&gt;&lt;Key&gt;Item&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;200&lt;/Width&gt;&lt;/Column2&gt;&lt;Column3 ID="AlternativeItem"&gt;&lt;Caption&gt;AlternativeItem&lt;/Caption&gt;&lt;DataMember&gt;AlternativeItem&lt;/DataMember&gt;&lt;Key&gt;AlternativeItem&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;/Column3&gt;&lt;Column4 ID="Color"&gt;&lt;Caption&gt;Color&lt;/Caption&gt;&lt;DataMember&gt;Color&lt;/DataMember&gt;&lt;Key&gt;Color&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;/Column4&gt;&lt;Column5 ID="Size"&gt;&lt;Caption&gt;Size&lt;/Caption&gt;&lt;DataMember&gt;Size&lt;/DataMember&gt;&lt;Key&gt;Size&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;/Column5&gt;&lt;Column6 ID="Uom"&gt;&lt;Caption&gt;Uom&lt;/Caption&gt;&lt;DataMember&gt;Uom&lt;/DataMember&gt;&lt;Key&gt;Uom&lt;/Key&gt;&lt;Position&gt;6&lt;/Position&gt;&lt;/Column6&gt;&lt;Column7 ID="Unit"&gt;&lt;Caption&gt;Unit&lt;/Caption&gt;&lt;DataMember&gt;Unit&lt;/DataMember&gt;&lt;Key&gt;Unit&lt;/Key&gt;&lt;Position&gt;7&lt;/Position&gt;&lt;/Column7&gt;&lt;Column8 ID="X_Tray_Weights"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;X Tray Wts&lt;/Caption&gt;&lt;DataMember&gt;X_Tray_Weights&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;X_Tray_Weights&lt;/Key&gt;&lt;Position&gt;8&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;CellStyle&gt;&lt;BackColor&gt;Ivory&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column8&gt;&lt;Column9 ID="X_Gross_Weights"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;X Gross Wts&lt;/Caption&gt;&lt;DataMember&gt;X_Gross_Weights&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;X_Gross_Weights&lt;/Key&gt;&lt;Position&gt;9&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;CellStyle&gt;&lt;BackColor&gt;Ivory&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column9&gt;&lt;Column10 ID="X_Net_Weights"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;X Net Wts&lt;/Caption&gt;&lt;DataMember&gt;X_Net_Weights&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;X_Net_Weights&lt;/Key&gt;&lt;Position&gt;10&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;CellStyle&gt;&lt;BackColor&gt;Azure&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column10&gt;&lt;Column11 ID="Y_Gross_Weights"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Y Gross Wts&lt;/Caption&gt;&lt;DataMember&gt;Y_Gross_Weights&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Y_Gross_Weights&lt;/Key&gt;&lt;Position&gt;11&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;CellStyle&gt;&lt;BackColor&gt;Ivory&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column11&gt;&lt;Column12 ID="Y_Tray_Weights"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Y Tray Wts&lt;/Caption&gt;&lt;DataMember&gt;Y_Tray_Weights&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Y_Tray_Weights&lt;/Key&gt;&lt;Position&gt;12&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;CellStyle&gt;&lt;BackColor&gt;Ivory&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column12&gt;&lt;Column13 ID="Y_Net_Weights"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Y Net Wts&lt;/Caption&gt;&lt;DataMember&gt;Y_Net_Weights&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Y_Net_Weights&lt;/Key&gt;&lt;Position&gt;13&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;CellStyle&gt;&lt;BackColor&gt;Azure&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column13&gt;&lt;Column14 ID="ReceivedQty"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Rec Qty&lt;/Caption&gt;&lt;DataMember&gt;ReceivedQty&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;ReceivedQty&lt;/Key&gt;&lt;Position&gt;14&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;60&lt;/Width&gt;&lt;CellStyle&gt;&lt;BackColor&gt;White&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column14&gt;&lt;Column15 ID="RejectedQty"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Rej Qty&lt;/Caption&gt;&lt;DataMember&gt;RejectedQty&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;RejectedQty&lt;/Key&gt;&lt;Position&gt;15&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;60&lt;/Width&gt;&lt;CellStyle&gt;&lt;BackColor&gt;White&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column15&gt;&lt;Column16 ID="Qty"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Qty&lt;/Caption&gt;&lt;DataMember&gt;Qty&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Qty&lt;/Key&gt;&lt;Position&gt;16&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;60&lt;/Width&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column16&gt;&lt;Column17 ID="Gross_Qty"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Gross Qty&lt;/Caption&gt;&lt;DataMember&gt;Gross_Qty&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Gross_Qty&lt;/Key&gt;&lt;Position&gt;17&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column17&gt;&lt;Column18 ID="Column1"&gt;&lt;Caption&gt;Column1&lt;/Caption&gt;&lt;DataMember&gt;Column1&lt;/DataMember&gt;&lt;Key&gt;Column1&lt;/Key&gt;&lt;Position&gt;18&lt;/Position&gt;&lt;/Column18&gt;&lt;Column19 ID="Column2"&gt;&lt;Caption&gt;Column2&lt;/Caption&gt;&lt;DataMember&gt;Column2&lt;/DataMember&gt;&lt;Key&gt;Column2&lt;/Key&gt;&lt;Position&gt;19&lt;/Position&gt;&lt;/Column19&gt;&lt;Column20 ID="Column3"&gt;&lt;Caption&gt;Column3&lt;/Caption&gt;&lt;DataMember&gt;Column3&lt;/DataMember&gt;&lt;Key&gt;Column3&lt;/Key&gt;&lt;Position&gt;20&lt;/Position&gt;&lt;/Column20&gt;&lt;Column21 ID="TotalQty"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Total Quantity&lt;/Caption&gt;&lt;DataMember&gt;TotalQty&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;TotalQty&lt;/Key&gt;&lt;Position&gt;21&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column21&gt;&lt;Column22 ID="Vendor_Qty"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Vendor Qty&lt;/Caption&gt;&lt;DataMember&gt;Vendor_Qty&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Vendor_Qty&lt;/Key&gt;&lt;Position&gt;22&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column22&gt;&lt;Column23 ID="Deduction"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Deduction&lt;/Caption&gt;&lt;DataMember&gt;Deduction&lt;/DataMember&gt;&lt;Key&gt;Deduction&lt;/Key&gt;&lt;Position&gt;23&lt;/Position&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column23&gt;&lt;Column24 ID="VendorNetQty"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Vendor Net Qty&lt;/Caption&gt;&lt;DataMember&gt;VendorNetQty&lt;/DataMember&gt;&lt;Key&gt;VendorNetQty&lt;/Key&gt;&lt;Position&gt;24&lt;/Position&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column24&gt;&lt;Column25 ID="CurrentPrice"&gt;&lt;Caption&gt;Current Rate&lt;/Caption&gt;&lt;DataMember&gt;CurrentPrice&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;CurrentPrice&lt;/Key&gt;&lt;Position&gt;25&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column25&gt;&lt;Column26 ID="RateDiscPercent"&gt;&lt;Caption&gt;Disc %&lt;/Caption&gt;&lt;DataMember&gt;RateDiscPercent&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;RateDiscPercent&lt;/Key&gt;&lt;Position&gt;26&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;60&lt;/Width&gt;&lt;/Column26&gt;&lt;Column27 ID="Rate"&gt;&lt;Caption&gt;Rate&lt;/Caption&gt;&lt;DataMember&gt;Rate&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Rate&lt;/Key&gt;&lt;Position&gt;27&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;CellStyle&gt;&lt;BackColor&gt;White&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column27&gt;&lt;Column28 ID="BaseCurrencyId"&gt;&lt;Caption&gt;BaseCurrencyId&lt;/Caption&gt;&lt;DataMember&gt;BaseCurrencyId&lt;/DataMember&gt;&lt;Key&gt;BaseCurrencyId&lt;/Key&gt;&lt;Position&gt;28&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column28&gt;&lt;Column29 ID="BaseCurrencyRate"&gt;&lt;Caption&gt;Base Currency Rate&lt;/Caption&gt;&lt;DataMember&gt;BaseCurrencyRate&lt;/DataMember&gt;&lt;Key&gt;BaseCurrencyRate&lt;/Key&gt;&lt;Position&gt;29&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column29&gt;&lt;Column30 ID="CurrencyId"&gt;&lt;Caption&gt;CurrencyId&lt;/Caption&gt;&lt;DataMember&gt;CurrencyId&lt;/DataMember&gt;&lt;Key&gt;CurrencyId&lt;/Key&gt;&lt;Position&gt;30&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column30&gt;&lt;Column31 ID="CurrencyRate"&gt;&lt;Caption&gt;Currency Rate&lt;/Caption&gt;&lt;DataMember&gt;CurrencyRate&lt;/DataMember&gt;&lt;Key&gt;CurrencyRate&lt;/Key&gt;&lt;Position&gt;31&lt;/Position&gt;&lt;/Column31&gt;&lt;Column32 ID="CurrencyAmount"&gt;&lt;Caption&gt;Currency Amount&lt;/Caption&gt;&lt;DataMember&gt;CurrencyAmount&lt;/DataMember&gt;&lt;Key&gt;CurrencyAmount&lt;/Key&gt;&lt;Position&gt;32&lt;/Position&gt;&lt;/Column32&gt;&lt;Column33 ID="TotalCurrencyAmount"&gt;&lt;Caption&gt;Total Currency Amount&lt;/Caption&gt;&lt;DataMember&gt;TotalCurrencyAmount&lt;/DataMember&gt;&lt;Key&gt;TotalCurrencyAmount&lt;/Key&gt;&lt;Position&gt;33&lt;/Position&gt;&lt;/Column33&gt;&lt;Column34 ID="Total"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Total&lt;/Caption&gt;&lt;DataMember&gt;Total&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Total&lt;/Key&gt;&lt;Position&gt;34&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;CellStyle&gt;&lt;BackColor&gt;Transparent&lt;/BackColor&gt;&lt;/CellStyle&gt;&lt;/Column34&gt;&lt;Column35 ID="TaxPercent"&gt;&lt;Caption&gt;Tax %&lt;/Caption&gt;&lt;DataMember&gt;TaxPercent&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;TaxPercent&lt;/Key&gt;&lt;Position&gt;35&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;60&lt;/Width&gt;&lt;/Column35&gt;&lt;Column36 ID="TaxAmount"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Tax Amount&lt;/Caption&gt;&lt;DataMember&gt;TaxAmount&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;TaxAmount&lt;/Key&gt;&lt;Position&gt;36&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column36&gt;&lt;Column37 ID="CurrencyTaxAmount"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Currency Tax Amount&lt;/Caption&gt;&lt;DataMember&gt;CurrencyTaxAmount&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;CurrencyTaxAmount&lt;/Key&gt;&lt;Position&gt;37&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;TotalFormatString&gt;N&lt;/TotalFormatString&gt;&lt;/Column37&gt;&lt;Column38 ID="AdTax_Percent"&gt;&lt;Caption&gt;Ad Tax %&lt;/Caption&gt;&lt;DataMember&gt;AdTax_Percent&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;AdTax_Percent&lt;/Key&gt;&lt;Position&gt;38&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;80&lt;/Width&gt;&lt;/Column38&gt;&lt;Column39 ID="AdTax_Amount"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Ad Tax Amount&lt;/Caption&gt;&lt;DataMember&gt;AdTax_Amount&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;AdTax_Amount&lt;/Key&gt;&lt;Position&gt;39&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column39&gt;&lt;Column40 ID="CurrencyAdTaxAmount"&gt;&lt;Caption&gt;Curr Ad Tax Amount&lt;/Caption&gt;&lt;DataMember&gt;CurrencyAdTaxAmount&lt;/DataMember&gt;&lt;Key&gt;CurrencyAdTaxAmount&lt;/Key&gt;&lt;Position&gt;40&lt;/Position&gt;&lt;/Column40&gt;&lt;Column41 ID="Total Amount"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Total Amount&lt;/Caption&gt;&lt;DataMember&gt;Total Amount&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Total Amount&lt;/Key&gt;&lt;Position&gt;41&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column41&gt;&lt;Column42 ID="Transportation_Charges"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Trans Charges&lt;/Caption&gt;&lt;DataMember&gt;Transportation_Charges&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Transportation_Charges&lt;/Key&gt;&lt;Position&gt;42&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column42&gt;&lt;Column43 ID="Custom_Charges"&gt;&lt;Caption&gt;Custom_Charges&lt;/Caption&gt;&lt;DataMember&gt;Custom_Charges&lt;/DataMember&gt;&lt;Key&gt;Custom_Charges&lt;/Key&gt;&lt;Position&gt;43&lt;/Position&gt;&lt;/Column43&gt;&lt;Column44 ID="Discount_Price"&gt;&lt;Caption&gt;Disc Price&lt;/Caption&gt;&lt;DataMember&gt;Discount_Price&lt;/DataMember&gt;&lt;FormatString&gt;N&lt;/FormatString&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Discount_Price&lt;/Key&gt;&lt;Position&gt;44&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column44&gt;&lt;Column45 ID="CategoryId"&gt;&lt;Caption&gt;CategoryId&lt;/Caption&gt;&lt;DataMember&gt;CategoryId&lt;/DataMember&gt;&lt;Key&gt;CategoryId&lt;/Key&gt;&lt;Position&gt;45&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column45&gt;&lt;Column46 ID="ItemId"&gt;&lt;Caption&gt;ItemId&lt;/Caption&gt;&lt;DataMember&gt;ItemId&lt;/DataMember&gt;&lt;Key&gt;ItemId&lt;/Key&gt;&lt;Position&gt;46&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column46&gt;&lt;Column47 ID="PackQty"&gt;&lt;Caption&gt;PackQty&lt;/Caption&gt;&lt;DataMember&gt;PackQty&lt;/DataMember&gt;&lt;Key&gt;PackQty&lt;/Key&gt;&lt;Position&gt;47&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column47&gt;&lt;Column48 ID="PackPrice"&gt;&lt;Caption&gt;Pack Rate&lt;/Caption&gt;&lt;DataMember&gt;PackPrice&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;PackPrice&lt;/Key&gt;&lt;Position&gt;48&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column48&gt;&lt;Column49 ID="BatchId"&gt;&lt;Caption&gt;BatchId&lt;/Caption&gt;&lt;DataMember&gt;BatchId&lt;/DataMember&gt;&lt;Key&gt;BatchId&lt;/Key&gt;&lt;Position&gt;49&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column49&gt;&lt;Column50 ID="BatchNo"&gt;&lt;Caption&gt;Batch&lt;/Caption&gt;&lt;DataMember&gt;BatchNo&lt;/DataMember&gt;&lt;Key&gt;BatchNo&lt;/Key&gt;&lt;Position&gt;50&lt;/Position&gt;&lt;/Column50&gt;&lt;Column51 ID="ExpiryDate"&gt;&lt;Caption&gt;Expiry Date&lt;/Caption&gt;&lt;DataMember&gt;ExpiryDate&lt;/DataMember&gt;&lt;EditType&gt;CalendarDropDown&lt;/EditType&gt;&lt;FormatString&gt;dd/MMM/yyyy&lt;/FormatString&gt;&lt;Key&gt;ExpiryDate&lt;/Key&gt;&lt;Position&gt;51&lt;/Position&gt;&lt;/Column51&gt;&lt;Column52 ID="Origin"&gt;&lt;Caption&gt;Origin&lt;/Caption&gt;&lt;DataMember&gt;Origin&lt;/DataMember&gt;&lt;EditType&gt;Combo&lt;/EditType&gt;&lt;Key&gt;Origin&lt;/Key&gt;&lt;Position&gt;52&lt;/Position&gt;&lt;/Column52&gt;&lt;Column53 ID="Comments"&gt;&lt;Caption&gt;Comments&lt;/Caption&gt;&lt;DataMember&gt;Comments&lt;/DataMember&gt;&lt;Key&gt;Comments&lt;/Key&gt;&lt;Position&gt;53&lt;/Position&gt;&lt;/Column53&gt;&lt;Column54 ID="Pack_Desc"&gt;&lt;Caption&gt;Unit&lt;/Caption&gt;&lt;DataMember&gt;Pack_Desc&lt;/DataMember&gt;&lt;Key&gt;Pack_Desc&lt;/Key&gt;&lt;Position&gt;54&lt;/Position&gt;&lt;/Column54&gt;&lt;Column55 ID="PurchaseAccountId"&gt;&lt;Caption&gt;PurchaseAccountId&lt;/Caption&gt;&lt;DataMember&gt;PurchaseAccountId&lt;/DataMember&gt;&lt;Key&gt;PurchaseAccountId&lt;/Key&gt;&lt;Position&gt;55&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column55&gt;&lt;Column56 ID="ItemWiseDisc"&gt;&lt;Caption&gt;ItemWiseDisc&lt;/Caption&gt;&lt;DataMember&gt;ItemWiseDisc&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;ItemWiseDisc&lt;/Key&gt;&lt;Position&gt;56&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column56&gt;&lt;Column57 ID="ReceivingDetailId"&gt;&lt;Caption&gt;ReceivingDetailId&lt;/Caption&gt;&lt;DataMember&gt;ReceivingDetailId&lt;/DataMember&gt;&lt;Key&gt;ReceivingDetailId&lt;/Key&gt;&lt;Position&gt;57&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column57&gt;&lt;Column58 ID="PurchaseReturnQty"&gt;&lt;Caption&gt;PurchaseReturnQty&lt;/Caption&gt;&lt;DataMember&gt;PurchaseReturnQty&lt;/DataMember&gt;&lt;Key&gt;PurchaseReturnQty&lt;/Key&gt;&lt;Position&gt;58&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column58&gt;&lt;Column59 ID="ReceivingNoteDetailId"&gt;&lt;Caption&gt;ReceivingNoteDetailId&lt;/Caption&gt;&lt;DataMember&gt;ReceivingNoteDetailId&lt;/DataMember&gt;&lt;Key&gt;ReceivingNoteDetailId&lt;/Key&gt;&lt;Position&gt;59&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column59&gt;&lt;Column60 ID="PurchaseOrderDetailId"&gt;&lt;Caption&gt;PurchaseOrderDetailId&lt;/Caption&gt;&lt;DataMember&gt;PurchaseOrderDetailId&lt;/DataMember&gt;&lt;Key&gt;PurchaseOrderDetailId&lt;/Key&gt;&lt;Position&gt;60&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column60&gt;&lt;Column61 ID="ReceivingNoteId"&gt;&lt;Caption&gt;ReceivingNoteId&lt;/Caption&gt;&lt;DataMember&gt;ReceivingNoteId&lt;/DataMember&gt;&lt;Key&gt;ReceivingNoteId&lt;/Key&gt;&lt;Position&gt;61&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column61&gt;&lt;Column62 ID="AlternativeItemId"&gt;&lt;Caption&gt;AlternativeItemId&lt;/Caption&gt;&lt;DataMember&gt;AlternativeItemId&lt;/DataMember&gt;&lt;Key&gt;AlternativeItemId&lt;/Key&gt;&lt;Position&gt;62&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column62&gt;&lt;Column63 ID="Delete"&gt;&lt;ButtonDisplayMode&gt;Always&lt;/ButtonDisplayMode&gt;&lt;ButtonText&gt;Delete&lt;/ButtonText&gt;&lt;ButtonStyle&gt;ButtonCell&lt;/ButtonStyle&gt;&lt;Caption&gt;Action&lt;/Caption&gt;&lt;BoundMode&gt;Unbound&lt;/BoundMode&gt;&lt;HeaderAlignment&gt;Center&lt;/HeaderAlignment&gt;&lt;Key&gt;Delete&lt;/Key&gt;&lt;Position&gt;63&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;/Column63&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdInwardExpDetail_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="PurchaseId"&gt;&lt;Caption&gt;PurchaseId&lt;/Caption&gt;&lt;DataMember&gt;PurchaseId&lt;/DataMember&gt;&lt;Key&gt;PurchaseId&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column0&gt;&lt;Column1 ID="AccountId"&gt;&lt;Caption&gt;AccountId&lt;/Caption&gt;&lt;DataMember&gt;AccountId&lt;/DataMember&gt;&lt;Key&gt;AccountId&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column1&gt;&lt;Column2 ID="detail_title"&gt;&lt;Caption&gt;Account Description&lt;/Caption&gt;&lt;DataMember&gt;detail_title&lt;/DataMember&gt;&lt;Key&gt;detail_title&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;309&lt;/Width&gt;&lt;/Column2&gt;&lt;Column3 ID="Debit"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Debit&lt;/Caption&gt;&lt;DataMember&gt;Debit&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Debit&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column3&gt;&lt;Column4 ID="Credit"&gt;&lt;AggregateFunction&gt;Sum&lt;/AggregateFunction&gt;&lt;Caption&gt;Credit&lt;/Caption&gt;&lt;DataMember&gt;Credit&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Credit&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column4&gt;&lt;Column5 ID="btnGrdDelete"&gt;&lt;ButtonDisplayMode&gt;Always&lt;/ButtonDisplayMode&gt;&lt;ButtonText&gt;Delete&lt;/ButtonText&gt;&lt;ButtonStyle&gt;ButtonCell&lt;/ButtonStyle&gt;&lt;Caption&gt;Action&lt;/Caption&gt;&lt;DataMember&gt;btnGrdDelete&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Center&lt;/HeaderAlignment&gt;&lt;HeaderLineAlignment&gt;Center&lt;/HeaderLineAlignment&gt;&lt;Key&gt;btnGrdDelete&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;/Column5&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
+  <metadata name="ToolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>124, 17</value>
+  </metadata>
+  <metadata name="ToolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnSaveDocuments.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
+        YKxG6WBogkMZKgPNCEVJFBGdGETEvgwyO9DJE5syZw3PIlPEE9pgBCLZ5XvdMB8Ew8gXbl54nuf63dd9
+        0OGSnwCahxbPRNPAPMw9Xpg6ZmF46kZZ0xSKzJPIrhpDWsVnpBhGkKx3nAX8Pv7z1zg8OoY/cITdn4fw
+        bf/C0kYAN3Ma/w3gWfZL5kzTKBxjWyK2DftwI9tyMYCZKXbNHaD91bLYJrDXsYbrWfUKwJrPE9M2M1Oc
+        VzOOpHI7Jr376Hi9ogHqFIANO0/MmmmbmSmm9a8ze+I4MrNWAdjtoJgWcx+PSzg166yZZ8xM8XvXDix9
+        c4jIqFYAjoriBV9AhEPv1mH/sonogha0afbZMMZz+yreTGyhpusHwtNNCsA5U1zS4BLxzJIfg299qO32
+        Ir7UJtZfftyATqeT+8o2D8JSjQrAJblrncYL7ZJ2+bfaFnC/1S1NjL3diRat7qrO7wLRP3HjWsojBeCo
+        mDEo5mNjuweFGvjWg2EBhCbpkW78htSHHwRyNdmgAFzPEee2iFkzayy2OLXzT4gr6UdUnlXrullsxxQ+
+        kx0g8BTA3aZlButjSTyjODq/WcQcW/B/Je4OQhLvKQDnzN1mp0nnkvAhR8VuMzNrpm1mpjgkoVwB/v8D
+        TgDQASA1MVpwzwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="BackgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>231, 17</value>
+  </metadata>
+  <metadata name="BackgroundWorker2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>394, 17</value>
+  </metadata>
+  <metadata name="bwLoading.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>557, 17</value>
+  </metadata>
+  <metadata name="BackgroundWorker3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>669, 17</value>
+  </metadata>
+  <metadata name="OpenFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
+  </metadata>
+  <metadata name="ErrorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>258, 56</value>
+  </metadata>
+</root>
