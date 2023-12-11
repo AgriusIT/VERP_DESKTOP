@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsTodayTasks" targetNamespace="http://tempuri.org/dsTodayTasks.xsd" xmlns:mstns="http://tempuri.org/dsTodayTasks.xsd" xmlns="http://tempuri.org/dsTodayTasks.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsTodayTasks" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsTodayTasks" msprop:Generator_UserDSName="dsTodayTasks">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtTodayTasks" msprop:Generator_TableClassName="dtTodayTasksDataTable" msprop:Generator_TableVarName="tabledtTodayTasks" msprop:Generator_TablePropName="dtTodayTasks" msprop:Generator_RowDeletingName="dtTodayTasksRowDeleting" msprop:Generator_RowChangingName="dtTodayTasksRowChanging" msprop:Generator_RowEvHandlerName="dtTodayTasksRowChangeEventHandler" msprop:Generator_RowDeletedName="dtTodayTasksRowDeleted" msprop:Generator_UserTableName="dtTodayTasks" msprop:Generator_RowChangedName="dtTodayTasksRowChanged" msprop:Generator_RowEvArgName="dtTodayTasksRowChangeEvent" msprop:Generator_RowClassName="dtTodayTasksRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TaskDate" msprop:Generator_ColumnVarNameInTable="columnTaskDate" msprop:Generator_ColumnPropNameInRow="TaskDate" msprop:Generator_ColumnPropNameInTable="TaskDateColumn" msprop:Generator_UserColumnName="TaskDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NewTask" msprop:Generator_ColumnVarNameInTable="columnNewTask" msprop:Generator_ColumnPropNameInRow="NewTask" msprop:Generator_ColumnPropNameInTable="NewTaskColumn" msprop:Generator_UserColumnName="NewTask" type="xs:int" minOccurs="0" />
+              <xs:element name="ClosedTask" msprop:Generator_ColumnVarNameInTable="columnClosedTask" msprop:Generator_ColumnPropNameInRow="ClosedTask" msprop:Generator_ColumnPropNameInTable="ClosedTaskColumn" msprop:Generator_UserColumnName="ClosedTask" type="xs:int" minOccurs="0" />
+              <xs:element name="ClosingDate" msprop:Generator_ColumnVarNameInTable="columnClosingDate" msprop:Generator_ColumnPropNameInRow="ClosingDate" msprop:Generator_ColumnPropNameInTable="ClosingDateColumn" msprop:Generator_UserColumnName="ClosingDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ClosedTask1" msprop:Generator_ColumnVarNameInTable="columnClosedTask1" msprop:Generator_ColumnPropNameInRow="ClosedTask1" msprop:Generator_ColumnPropNameInTable="ClosedTask1Column" msprop:Generator_UserColumnName="ClosedTask1" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

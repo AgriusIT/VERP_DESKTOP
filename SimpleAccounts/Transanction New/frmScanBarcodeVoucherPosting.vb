@@ -1,0 +1,3 @@
+Public Class frmScanBarcodeVoucherPosting
+
+End Class
