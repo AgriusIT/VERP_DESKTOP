@@ -363,8 +363,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-# Allow all backup folders
-**/Backup*/
-
-# Allow all release folders
-**/Release*/
+# Include Backup and Release folders
+!sirus-solutions/SimpleAccounts/Utilities/Backup/
+!sirus-solutions/SimpleAccounts/Utilities/Release/
