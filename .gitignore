@@ -16,7 +16,6 @@
 # Mono auto generated files
 mono_crash.*
 
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -363,6 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-# Include Backup and Release folders
-!sirus-solutions/SimpleAccounts/Utilities/backup/**
-!sirus-solutions/SimpleAccounts/Utilities/release/**
+# Include Backup and Release folders recursively
+!sirus-solutions/SimpleAccounts/Utilities/Backup/
+!sirus-solutions/SimpleAccounts/Utilities/Release/
