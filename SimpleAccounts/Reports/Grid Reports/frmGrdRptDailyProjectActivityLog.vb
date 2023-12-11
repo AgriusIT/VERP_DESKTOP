@@ -1,3 +1,0 @@
-Public Class frmGrdRptDailyProjectActivityLog
-
-End Class
