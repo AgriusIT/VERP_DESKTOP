@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <tblAgingTemplate>
+    <Id>1</Id>
+    <Format_Name>Default</Format_Name>
+    <Aging>30</Aging>
+    <_x0031_stAging>60</_x0031_stAging>
+    <_x0031_stAgingName>30_60</_x0031_stAgingName>
+    <_x0032_ndAging>90</_x0032_ndAging>
+    <_x0032_ndAgingName>60_90</_x0032_ndAgingName>
+    <_x0033_rdAging>90</_x0033_rdAging>
+    <_x0033_rdAgingName>90+</_x0033_rdAgingName>
+  </tblAgingTemplate>
+</DocumentElement>

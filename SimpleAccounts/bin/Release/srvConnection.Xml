@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <srvConnectionString>
+    <Server>Rai</Server>
+    <UserId>sa</UserId>
+    <Password>sa</Password>
+    <Database>Master</Database>
+  </srvConnectionString>
+</DocumentElement>

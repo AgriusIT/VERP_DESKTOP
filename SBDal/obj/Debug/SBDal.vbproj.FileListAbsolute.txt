@@ -1,0 +1,338 @@
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+F:\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+F:\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+F:\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+F:\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+F:\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+F:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+F:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+F:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+F:\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+F:\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+F:\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+F:\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+F:\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+F:\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+F:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+F:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+F:\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+F:\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+F:\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+F:\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+F:\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+F:\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+F:\software\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+F:\software\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+F:\software\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+F:\software\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+F:\software\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+F:\software\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+F:\software\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+F:\software\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+F:\software\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+F:\software\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+F:\software\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+F:\software\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+F:\software\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+F:\software\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+F:\software\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+F:\software\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+F:\software\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+F:\software\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+F:\software\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+F:\software\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+F:\software\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+F:\software\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+G:\abdul rafay\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+G:\abdul rafay\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+G:\abdul rafay\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+G:\abdul rafay\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+G:\abdul rafay\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+G:\abdul rafay\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+G:\abdul rafay\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+G:\software\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+G:\software\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+G:\software\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+G:\software\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+G:\software\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+G:\software\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+G:\software\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+G:\software\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+G:\software\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+G:\software\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+G:\software\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+G:\software\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+G:\software\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+G:\software\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+G:\software\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+G:\software\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+G:\software\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+G:\software\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+G:\software\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+G:\software\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+G:\software\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+G:\software\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+G:\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+G:\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+G:\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+G:\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+G:\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+G:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+G:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+G:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+G:\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+G:\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+G:\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+G:\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+G:\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+G:\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+G:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+G:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+G:\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+G:\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+G:\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+G:\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+G:\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+G:\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+D:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+D:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+D:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.frmCentralizeContract.resources
+D:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+D:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+D:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+D:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+D:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+E:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+E:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+E:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+E:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.dll.licenses
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\3-27-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+E:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+E:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+E:\3-27-22\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\3-29-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+E:\3-29-22\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+E:\3-29-22\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+E:\3-29-22\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+E:\3-29-22\sirus-solutions\SBDal\obj\Debug\SBDal.dll.licenses
+E:\3-29-22\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+E:\3-29-22\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+E:\3-29-22\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\4-6-22\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+E:\4-6-22\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+E:\4-6-22\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+E:\4-6-22\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+E:\4-6-22\sirus-solutions\SBDal\obj\Debug\SBDal.dll.licenses
+E:\4-6-22\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+E:\4-6-22\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+E:\4-6-22\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+D:\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+D:\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+D:\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+D:\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+D:\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+D:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+D:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+D:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+D:\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+D:\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+D:\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+D:\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+D:\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+D:\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+D:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+D:\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+D:\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+D:\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+D:\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+D:\sirus-solutions\SBDal\obj\Debug\SBDal.dll.licenses
+D:\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+D:\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+D:\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\ERP Code\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+E:\ERP Code\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+E:\ERP Code\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+E:\ERP Code\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+E:\ERP Code\sirus-solutions\SBDal\obj\Debug\SBDal.dll.licenses
+E:\ERP Code\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+E:\ERP Code\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+E:\ERP Code\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\obj\Debug\SBDal.dll.licenses
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBDal\obj\Debug\SBDal.pdb
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\SBDal.dll.config
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\SBDal.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\SBDal.pdb
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\SBDal.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\Janus.Data.v3.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\Janus.Windows.Common.v3.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\SBModel.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\SBUtility.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\SBModel.pdb
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\SBModel.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\SBUtility.pdb
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\SBUtility.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\bin\Debug\Janus.Windows.UI.v3.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\obj\Debug\SBDal.vbprojResolveAssemblyReference.cache
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\obj\Debug\SBDal.Resources.resources
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\obj\Debug\SBDal.vbproj.GenerateResource.Cache
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\obj\Debug\SBDal.dll.licenses
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\obj\Debug\SBDal.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\obj\Debug\SBDal.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBDal\obj\Debug\SBDal.pdb

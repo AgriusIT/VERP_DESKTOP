@@ -1,0 +1,84 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Connections>
+    <Id>7</Id>
+    <Title>Waqar Item Replication</Title>
+    <Servername>DESKTOP-E6481QQ\SQLEXPRESS</Servername>
+    <UserId>sa</UserId>
+    <Password>3MsvGoaFWC0=</Password>
+    <DBName>SIRIUS_SL_DB</DBName>
+    <ReportPath />
+  </Connections>
+  <Connections>
+    <Id>8</Id>
+    <Title>AIT SL</Title>
+    <Servername>192.168.0.220</Servername>
+    <UserId>sa1</UserId>
+    <Password>kMpKGJFy1XEG9F6cldjYCw==</Password>
+    <DBName>SIRIUS_SL_DB</DBName>
+    <ReportPath />
+  </Connections>
+  <Connections>
+    <Id>5</Id>
+    <Title>Remms IT Pak</Title>
+    <Servername>192.168.0.220</Servername>
+    <UserId>sa1</UserId>
+    <Password>kMpKGJFy1XEG9F6cldjYCw==</Password>
+    <DBName>RemmsPAK_DB</DBName>
+    <ReportPath />
+  </Connections>
+  <Connections>
+    <Id>3</Id>
+    <Title>UAE_LOCAL</Title>
+    <Servername>DESKTOP-E6481QQ\SQLEXPRESS</Servername>
+    <UserId>sa</UserId>
+    <Password>3MsvGoaFWC0=</Password>
+    <DBName>SIRIUS_UAE_DB</DBName>
+    <ReportPath />
+  </Connections>
+  <Connections>
+    <Id>1</Id>
+    <Title>Waqar Local Laptop AVG DB</Title>
+    <Servername>DESKTOP-E6481QQ\SQLEXPRESS</Servername>
+    <UserId>sa</UserId>
+    <Password>3MsvGoaFWC0=</Password>
+    <DBName>SIRIUS1_DB_Avg</DBName>
+    <ReportPath />
+  </Connections>
+  <Connections>
+    <Id>6</Id>
+    <Title>MY</Title>
+    <Servername>192.168.0.220</Servername>
+    <UserId>sa1</UserId>
+    <Password>kMpKGJFy1XEG9F6cldjYCw==</Password>
+    <DBName>SIRIUS_MY_DB</DBName>
+    <ReportPath />
+  </Connections>
+  <Connections>
+    <Id>4</Id>
+    <Title>Remms IT UAE</Title>
+    <Servername>192.168.0.220</Servername>
+    <UserId>sa1</UserId>
+    <Password>kMpKGJFy1XEG9F6cldjYCw==</Password>
+    <DBName>RemmsTech_UAE_DB</DBName>
+    <ReportPath />
+  </Connections>
+  <Connections>
+    <Id>1</Id>
+    <Title>Sirius_DB(Server)</Title>
+    <Servername>192.168.0.220</Servername>
+    <UserId>sa1</UserId>
+    <Password>kMpKGJFy1XEG9F6cldjYCw==</Password>
+    <DBName>SIRIUS1_DB</DBName>
+    <ReportPath>\\192.168.0.220\Reports</ReportPath>
+  </Connections>
+  <Connections>
+    <Id>2</Id>
+    <Title>UAE(Server)</Title>
+    <Servername>192.168.0.220</Servername>
+    <UserId>sa1</UserId>
+    <Password>kMpKGJFy1XEG9F6cldjYCw==</Password>
+    <DBName>SIRIUS_UAE_DB</DBName>
+    <ReportPath>\\192.168.0.220\UAEReports</ReportPath>
+  </Connections>
+</NewDataSet>

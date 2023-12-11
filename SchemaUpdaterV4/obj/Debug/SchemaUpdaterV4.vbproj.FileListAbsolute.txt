@@ -1,0 +1,145 @@
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbprojResolveAssemblyReference.cache
+C:\Users\ADMIN\OneDrive\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+C:\Users\ADMIN\OneDrive\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+C:\Users\ADMIN\OneDrive\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbprojResolveAssemblyReference.cache
+C:\Users\ADMIN\OneDrive\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+C:\Users\ADMIN\OneDrive\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+C:\Users\ADMIN\OneDrive\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+F:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+F:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+F:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+F:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+F:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+F:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+F:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+F:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+F:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+F:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbprojResolveAssemblyReference.cache
+F:\software\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+F:\software\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+F:\software\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+F:\software\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+F:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbprojResolveAssemblyReference.cache
+F:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+F:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+F:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+F:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+F:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+G:\abdul rafay\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+G:\abdul rafay\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+G:\abdul rafay\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+G:\abdul rafay\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+G:\abdul rafay\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbprojResolveAssemblyReference.cache
+G:\abdul rafay\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+G:\abdul rafay\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+G:\abdul rafay\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+G:\abdul rafay\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+G:\abdul rafay\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+G:\software\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+G:\software\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+G:\software\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+G:\software\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+G:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+G:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+G:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+G:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+G:\software\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+G:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+G:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+G:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+G:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+G:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+G:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+G:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+G:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+G:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+G:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbprojResolveAssemblyReference.cache
+D:\3-27-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+D:\3-27-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+D:\3-27-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+D:\3-27-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+D:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+D:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+D:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+D:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+D:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+E:\3-27-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+E:\3-27-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+E:\3-27-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+E:\3-27-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+E:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+E:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+E:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+E:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+E:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+E:\3-27-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbprojResolveAssemblyReference.cache
+E:\3-29-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+E:\3-29-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+E:\3-29-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+E:\3-29-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+E:\3-29-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+E:\3-29-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+E:\3-29-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+E:\3-29-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+E:\3-29-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+E:\4-6-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+E:\4-6-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+E:\4-6-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+E:\4-6-22\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+E:\4-6-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+E:\4-6-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+E:\4-6-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+E:\4-6-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+E:\4-6-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+E:\4-6-22\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbprojResolveAssemblyReference.cache
+D:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+D:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+D:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+D:\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+D:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+D:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+D:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+D:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+D:\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+E:\ERP Code\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+E:\ERP Code\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+E:\ERP Code\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+E:\ERP Code\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+E:\ERP Code\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+E:\ERP Code\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+E:\ERP Code\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+E:\ERP Code\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+E:\ERP Code\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+E:\ERP Code\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbprojResolveAssemblyReference.cache
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll.config
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.pdb
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SchemaUpdaterV4\bin\Debug\SchemaUpdaterV4.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbprojResolveAssemblyReference.cache
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.Resources.resources
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.vbproj.GenerateResource.Cache
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SchemaUpdaterV4\obj\Debug\SchemaUpdaterV4.pdb

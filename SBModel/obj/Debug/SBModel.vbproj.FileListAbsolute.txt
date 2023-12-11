@@ -1,0 +1,207 @@
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+D:\Sirius Desktop Code\Version 06\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+C:\Users\ADMIN\OneDrive\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+F:\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+F:\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+F:\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+F:\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+F:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+F:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+F:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+F:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+F:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+F:\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+F:\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+F:\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+F:\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+F:\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+F:\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+F:\software\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+F:\software\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+F:\software\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+F:\software\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+F:\software\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+F:\software\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+F:\software\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+F:\software\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+F:\software\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+F:\software\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+F:\software\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+F:\software\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+F:\software\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+F:\software\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+F:\software\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+G:\abdul rafay\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+G:\abdul rafay\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+G:\abdul rafay\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+G:\abdul rafay\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+G:\abdul rafay\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+G:\abdul rafay\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+G:\abdul rafay\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+G:\abdul rafay\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+G:\abdul rafay\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+G:\abdul rafay\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+G:\abdul rafay\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+G:\abdul rafay\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+G:\abdul rafay\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+G:\abdul rafay\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+G:\abdul rafay\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+G:\software\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+G:\software\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+G:\software\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+G:\software\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+G:\software\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+G:\software\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+G:\software\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+G:\software\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+G:\software\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+G:\software\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+G:\software\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+G:\software\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+G:\software\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+G:\software\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+G:\software\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+G:\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+G:\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+G:\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+G:\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+G:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+G:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+G:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+G:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+G:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+G:\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+G:\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+G:\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+G:\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+G:\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+G:\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+D:\3-27-22\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+D:\3-27-22\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+D:\3-27-22\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+D:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+D:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+D:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+D:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+D:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+D:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+D:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+D:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+D:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+D:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+D:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+E:\3-27-22\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+E:\3-27-22\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+E:\3-27-22\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+E:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+E:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+E:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+E:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\3-27-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+E:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+E:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+E:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+E:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+E:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+E:\3-27-22\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+E:\3-29-22\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+E:\3-29-22\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+E:\3-29-22\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+E:\3-29-22\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+E:\3-29-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+E:\3-29-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\3-29-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+E:\3-29-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\3-29-22\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+E:\3-29-22\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+E:\3-29-22\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+E:\3-29-22\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+E:\3-29-22\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+E:\3-29-22\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+E:\3-29-22\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+D:\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+D:\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+D:\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+D:\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+D:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+D:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+D:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+D:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+D:\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+D:\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+D:\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+D:\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+D:\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+D:\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+D:\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+E:\ERP Code\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+E:\ERP Code\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+E:\ERP Code\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+E:\ERP Code\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+E:\ERP Code\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+E:\ERP Code\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\ERP Code\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+E:\ERP Code\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\ERP Code\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+E:\ERP Code\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+E:\ERP Code\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+E:\ERP Code\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+E:\ERP Code\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+E:\ERP Code\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+E:\Latestcode Waqar bhai laptop\sirus-solutions\SBModel\obj\Debug\SBModel.pdb
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\bin\Debug\SBModel.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\bin\Debug\SBModel.pdb
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\bin\Debug\SBModel.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\bin\Debug\Janus.Data.v3.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\bin\Debug\Janus.Windows.Common.v3.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\bin\Debug\Janus.Windows.GridEX.v3.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\bin\Debug\Janus.Windows.UI.v3.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\obj\Debug\SBModel.vbprojResolveAssemblyReference.cache
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\obj\Debug\SBModel.Resources.resources
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\obj\Debug\SBModel.vbproj.GenerateResource.Cache
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\obj\Debug\SBModel.dll
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\obj\Debug\SBModel.xml
+E:\ERP Code\Murtaza PC Code 19-Jan-23\sirus-solutions\SBModel\obj\Debug\SBModel.pdb

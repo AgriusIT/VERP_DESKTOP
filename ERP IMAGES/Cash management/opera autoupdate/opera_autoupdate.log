@@ -1,0 +1,4 @@
+[2108:652:0423/090812.815:477582031:ERROR:ipc_thread_impl.cc(137)] Unable to create IPC as client!Pipe name used: oauc_task_pipedcbb8f53eff625f232ff45d764476217
+[2108:12444:0423/090812.815:477582031:ERROR:autoupdate_checker.cc(381)] Locking download lock failed.
+[2108:12444:0423/090812.815:477582031:ERROR:autoupdate_checker.cc(333)] Unable to acquire locks! Download: true, metric: false
+[2108:12444:0423/090812.815:477582031:ERROR:autoupdate_checker.cc(137)] Unable to prepare update checker runtime.
